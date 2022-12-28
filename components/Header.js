@@ -3,7 +3,7 @@ import styles from '../styles/Dynamic.module.css'
 
 const Header = () => {
   return (
-    <div className='border-b-2 border-indigo-500 h-[30%] w-[1500px]'>
+    <div className='border-b-2 border-[#e2e8f0] h-[30%] w-[1500px]'>
         <h1 className='text-7xl text-center text-white font-mono'>
             I'm 
                 <ul className={styles.dynamictxt}>
