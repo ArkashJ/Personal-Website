@@ -1,0 +1,42 @@
+.dynamictxt{
+    line-height:  90px;
+    height: 90px;
+    overflow: hidden;
+}
+
+.dynamictxt li{
+    color: #FC6D6D;
+    list-style: none;
+    position: relative;
+    top: 0;
+    animation: slide 9s steps(4) infinite;
+}  
+@keyframes slide{
+    100%{
+        top: -360px    
+    }
+}
+
+
+.dynamictxt li span::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 200%;
+    background: #343F4F;
+    border-left: 2px solid;
+    color: #FC6D6D;
+    animation: typing 2.25s steps(10) infinite;
+}  
+
+@keyframes typing{
+    100%{
+        left: 100%;
+        margin: 0 -80px 0 80px;
+    }
+}
+
+.dynamictxt li span{
+    position: relative;
+}
