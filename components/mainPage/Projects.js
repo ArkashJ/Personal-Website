@@ -13,10 +13,10 @@ const Projects = () => {
        )
    })
   return (
-      <div className='border-b-2 border-[#e2e8f0] pb-5 w-[1500px]'>
+      <div className='border-b-2 border-[#e2e8f0] pb-[40px] w-[1500px]'>
       <div className='mx-[125px]'>
       <h1 className='py-2 font-mono text-3xl text-[#94a3b8]'>Projects</h1>
-          <div className="grid grid-cols-2 gap-3 mt-[30px]">
+          <div className="grid grid-cols-2 gap-4 mt-[30px]">
             {widget}
         </div>
       </div>

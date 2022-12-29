@@ -1,9 +1,9 @@
 import htmlImg from '../../public/html.jpg'
 import cssImg from '../../public/css.png'
-import js from '../../public/js.jpg'
+import js from '../../public/js.png'
 import rct from '../../public/react.png'
 import mui from '../../public/mui.png'
-import tailw from '../../public/tailw.jpg'
+import tailw from '../../public/tailw.png'
 import c from '../../public/c.png'
 import python from '../../public/python.png'
 import node from '../../public/node.png'
@@ -25,6 +25,7 @@ const Skills = () => {
   const front = frontend.map(elem => {
     return (
         <DisplayBox key  = {elem.id}
+                    name = "Frontend"
                     item = {elem}
          />
     )
@@ -46,7 +47,7 @@ const Skills = () => {
     )
   })
 
-  const other = other.map(elem => {
+  const others = other.map(elem => {
     return (
         <DisplayBox key  = {elem.id}
                     item = {elem}
@@ -54,12 +55,43 @@ const Skills = () => {
     )
   })
   
-  
-  
-
-
   return (
-    <div>Skills</div>
+    <div className=' px-[130px] py-5 pb-5'>
+      <h1 className='py-2 font-mono text-3xl text-[#94a3b8]'>Skills</h1>
+
+      <div className='flex flex-col '>
+
+        <div className="block my-10 bg-gray-800 rounded p-8 shadow-2xl">
+          <h2 className="text-3xl pb-3 text-primary border-secondary uppercase text-gray-400 font-mono italic">Frontend</h2>
+            <div className="grid grid-cols-7 items-end p-2 gap-2">
+              {front}
+            </div>
+        </div>
+
+        <div className="block my-10 bg-gray-800 rounded p-8 shadow-2xl">
+          <h2 className="text-3xl pb-3 text-primary border-secondary uppercase text-gray-400 font-mono italic">Backend and Databases</h2>
+            <div className="grid grid-cols-7 items-end p-2 gap-2">
+              {back}
+            </div>
+        </div>
+
+        <div className="block my-10 bg-gray-800 rounded p-8 shadow-2xl">
+          <h2 className="text-3xl pb-3 text-primary border-secondary uppercase text-gray-400 font-mono italic">Version Control</h2>
+            <div className="grid grid-cols-7 items-end p-2 gap-2">
+              {version}
+            </div>
+        </div>
+
+        <div className="block my-10 bg-gray-800 rounded p-8 shadow-2xl">
+          <h2 className="text-3xl pb-3 text-primary border-secondary uppercase text-gray-400 font-mono italic">Others</h2>
+            <div className="grid grid-cols-7 items-end p-2 gap-2">
+              {others}
+            </div>
+        </div>
+
+      </div>
+      
+    </div>
   )
 }
 

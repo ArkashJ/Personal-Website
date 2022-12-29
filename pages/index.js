@@ -2,10 +2,10 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Persona from '../components/mainPage/Persona'
 import Projects from '../components/mainPage/Projects'
-
+import Skills from '../components/mainPage/Skills'
 export default function Home() {
   return (
-    <div className="mt-2 w-full h-[2500px]">
+    <div className="mt-2 w-full h-[3300px]">
       
       <Head>
         <title>Portfolio Website</title>
@@ -14,6 +14,7 @@ export default function Home() {
       <Header/>
       <Persona/>
       <Projects/>
+      <Skills/>
     </div>
   )
 }
