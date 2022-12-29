@@ -1,7 +1,13 @@
+import ai from '../../public/ai.png';
+import spotify from '../../public/spotify.jpg'
+import ocaml from '../../public/ocaml.jpg'
+import stustreet from '../../public/stustreet.jpg'
+import Image from 'next/image'
+
 const Projects = () => {
   return (
-    <div className="grid grid-cols-2 gap-7">
-
+    <div className="flex flex-wrap py-10 px-2 jusitfy-center items-center">
+        
     </div>
   )
 }
