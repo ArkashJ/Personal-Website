@@ -2,7 +2,7 @@ import ai from '../../public/ai.jpg';
 import spotify from '../../public/spotify.jpg'
 import ocaml from '../../public/ocaml.jpg'
 import stustreet from '../../public/stustreet.jpg'
-import Widget from './Widget';
+import Widget from './helpers/Widget'
 
 const Projects = () => {
    const widget = data.map(elem => {
