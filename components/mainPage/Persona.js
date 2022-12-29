@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Persona = (props) => {
   return (
-    <div className='flex flex-row border-b-2 border-[#e2e8f0] py-7 w-[1500px]'>
+    <div className='flex flex-row border-b-2 border-[#e2e8f0] py-7 w-[1300px]'>
         <Image 
             src         = {myImg}
             alt         = "Picture of Arkash Jain"
