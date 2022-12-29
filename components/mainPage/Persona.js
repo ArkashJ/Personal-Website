@@ -33,7 +33,7 @@ const Persona = (props) => {
             <p className='py-2 text-[#a8d0db] text-l tracking-wider'>Outside of school I co-host a podcast where we interview 
             professors, athletes, artists and professionals to bring deep industry insight to students.</p>
 
-            <p className='py-2 text-white text-l tracking-wider'><i>You'll find more about me as you go through this website!</i></p>
+            <p className='py-2 text-white text-l tracking-wider'><i>Learn more about me here!</i></p>
         </div>
         
     </div>

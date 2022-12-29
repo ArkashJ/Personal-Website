@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Widget = (props) => {
   return (
     <div className='bg-[#d6d3d1] flex flex-col justify-between items-center space-y-[-10%] h-[450px] w-[450px] rounded-xl  drop-shadow-md'>
-        <h1 className='text-[#4c86a8] font-bold py-4 font-[700] text-[15px]'>{props.item.name}</h1>
+        <h1 className='text-[#4c86a8] font-bold py-4 font-[700] text-xl'>{props.item.name}</h1>
         <p className='podcast-title font-poppins w-[410px] px-5'>{props.item.descript}</p>
         <Image
             src         = {props.item.src}

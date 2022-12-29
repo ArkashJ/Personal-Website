@@ -53,7 +53,7 @@ const data = [
         id      : 4,
         name    : "STU STREET Podcast Website",
         ref     : "https://github.com/ArkashJ/STU-STREET-Website",
-        descript: "A website for the podcast (STU STREET) I co-host. Made using React & tailwind. This website highlights our vales, genres we explore and has links to all platforms our pdocast is available on",
+        descript: "A website for the podcast (STU STREET) I co-host. Made using React & tailwind. This website highlights our values, genres we explore and has links to all platforms our pdocast is available on",
         src     : stustreet
     },
     

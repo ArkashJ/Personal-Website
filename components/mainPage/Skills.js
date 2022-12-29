@@ -120,19 +120,20 @@ const frontend = [
     },
     {
       id  : 5,
+      src : nextjs,
+      name: "Nextjs"
+    },
+    {
+      id  : 6,
       src : mui,
       name: "Material UI"
     },
     {
-      id  : 6,
+      id  : 7,
       src : tailw,
       name: "Tailwind"
     },
-    {
-      id  : 7,
-      src : nextjs,
-      name: "Nextjs"
-    }
+    
 ]
 
 const backend = [
