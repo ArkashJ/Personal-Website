@@ -3,7 +3,10 @@ import Image from 'next/image';
 
 const Persona = (props) => {
   return (
+    <div className='py-7'>
+        <h1 className='px-[125px] font-mono text-3xl text-[#94a3b8]'>Introduction</h1>
     <div className='flex flex-row border-b-2 border-[#e2e8f0] py-7 w-[1500px]'>
+        
         <Image 
             src         = {myImg}
             alt         = "Picture of Arkash Jain"
@@ -33,6 +36,7 @@ const Persona = (props) => {
             <p className='py-2 text-white text-l tracking-wider'><i>You'll find more about me as you go through this website!</i></p>
         </div>
         
+    </div>
     </div>
   )
 }
