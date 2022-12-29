@@ -1,22 +1,22 @@
 import Image from 'next/image'
 
 const Widget = (props) => {
-    const url = props.ref
   return (
-    <div className='w-[250px] h-[25px] flex flex-col items-center'>
-        <h1>{props.name}</h1>
+    <div className='bg-white flex flex-col justify-between items-center space-y-[-10%] h-[450px] w-[450px] rounded-xl  drop-shadow-md'>
+        <h1 className='text-[#4c86a8] font-bold py-4 font-[700] text-[15px]'>{props.item.name}</h1>
+        <p className='podcast-title font-poppins w-[410px] px-5'>{props.item.descript}</p>
         <Image
-        src         = {props.src}
-        alt         = {props.descript}
-        width       = {250}
-        height      = {250}
-        className   = "rounded-b-lg"
-        onClick     = {() => window.open(url, '_blank')}
-    />
-        <p className='overflow-hidden break-words w-[80%]'>{props.descript}</p>
+            src         = {props.item.src}
+            alt         = {props.item.descript}
+            width       = {400}
+            height      = {400}
+            className   = "rounded-lg border-solid border-2 border-grey mb-1"
+            priority    = {true}
+            style={{cursor:'pointer', marginBottom: '10px'}}
+            onClick     = {() => window.open(props.item.ref, '_blank')}
+            />
     </div>
-    
   )
 }
-
+{/* <p className='overflow-hidden break-words'>{props.item.descript}</p> */}
 export default Widget
