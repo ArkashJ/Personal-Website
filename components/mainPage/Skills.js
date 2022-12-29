@@ -19,8 +19,45 @@ import flask from '../../public/flask.png'
 import git from '../../public/git.png'
 import github from '../../public/github.png'
 import gitlab from '../../public/gitlab.png'
+import DisplayBox from './helpers/DisplayBox'
 
 const Skills = () => {
+  const front = frontend.map(elem => {
+    return (
+        <DisplayBox key  = {elem.id}
+                    item = {elem}
+         />
+    )
+  })
+
+  const back = backend.map(elem => {
+    return (
+        <DisplayBox key  = {elem.id}
+                    item = {elem}
+         />
+    )
+  })
+
+  const version = vcontrol.map(elem => {
+    return (
+        <DisplayBox key  = {elem.id}
+                    item = {elem}
+         />
+    )
+  })
+
+  const other = other.map(elem => {
+    return (
+        <DisplayBox key  = {elem.id}
+                    item = {elem}
+         />
+    )
+  })
+  
+  
+  
+
+
   return (
     <div>Skills</div>
   )
@@ -31,95 +68,116 @@ export default Skills
 const frontend = [
     {
         id  : 1,
-        src : htmlImg
+        src : htmlImg,
+        name: "HTML"
     },
     {
       id  : 2,
-      src : cssImg
+      src : cssImg,
+      name: "CSS"
     },
     {
       id  : 3,
-      src : js
+      src : js,
+      name: "Javascript"
     },
     {
       id  : 4,
-      src : rct
+      src : rct,
+      name: "React"
     },
     {
       id  : 5,
-      src : mui
+      src : mui,
+      name: "Material UI"
     },
     {
       id  : 6,
-      src : tailw
+      src : tailw,
+      name: "Tailwind"
     },
     {
       id  : 7,
-      src : nextjs
+      src : nextjs,
+      name: "Nextjs"
     }
 ]
 
 const backend = [
   {
       id  : 1,
-      src : node
+      src : node,
+      name: "NodeJs"
+  },
+  {
+    id  : 2,
+    src : ex,
+    name: "ExpressJs"
   },
   {
     id  : 3,
-    src : ex
-  },
-  {
-    id  : 3,
-    src : flask
+    src : flask,
+    name: "Flask"
   },
   {
     id  : 4,
-    src : mongo
+    src : mongo,
+    name: "MongoDB"
   },
   {
     id  : 5,
-    src : sql
+    src : sql,
+    name: "SQLite"
   },
 ]
 
 const other = [
   {
     id  : 1,
-    src : python
+    src : python,
+    name: "Python"
   },
   {
     id  : 2,
-    src : c
+    src : c,
+    name: "C"
   },
   {
     id  : 3,
-    src : java
+    src : java,
+    name: "Java"
   },
   {
     id  : 4,
-    src : matlab
+    src : matlab,
+    name: "MATLAB"
   },
   {
     id  : 5,
-    src : docker
+    src : docker,
+    name: "Docker"
   },
   {
-    id  : 5,
-    src : figma
+    id  : 6,
+    src : figma,
+    name: "Figma"
   }
 ]
 
 const vcontrol = [
   {
     id  : 1,
-    src : git
+    src : git,
+    name: "Git"
   },
   {
     id  : 2,
-    src : github
+    src : github,
+    name: "Github"
   },
   {
     id  : 3,
-    src : gitlab
+    src : gitlab,
+    name: "GitLab"
   },
 ]
