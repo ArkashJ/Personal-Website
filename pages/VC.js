@@ -1,8 +1,10 @@
-import React from 'react'
+import Work from "../components/battery/Work"
 
 const VC = () => {
   return (
-    <div className='w-full h-screen'>VC</div>
+    <div>
+      <Work/>
+    </div>
   )
 }
 

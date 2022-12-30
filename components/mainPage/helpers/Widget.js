@@ -13,7 +13,7 @@ const Widget = (props) => {
               height      = {400}
               className   = "rounded-lg drop-shadow-md mb-1 transition hover:scale-105 ease-in-out"
               priority    = {true}
-              style={{cursor:'pointer', marginBottom: '10px'}}
+              style       = {{cursor:'pointer', marginBottom: '10px'}}
               onClick     = {() => window.open(props.item.ref, '_blank')}
               />
         </div>

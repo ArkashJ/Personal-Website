@@ -14,7 +14,7 @@ const Nav = () => {
                         <Link href='/Volunteering' className='text-lg'>Volunteering</Link>
                     </li>
                     <li className='text-white'>
-                        <Link href='/VC' className='text-lg'>Venture Capital</Link>
+                        <Link href='/VC' className='text-lg'>Experience</Link>
                     </li>
                     <li className='text-white'>
                         <Link href='/Projects' className='text-lg'>Interests</Link>
