@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from "next/head"
+import Info from '../components/volunteer/info'
 
 const Volunteering = () => {
   return (
@@ -7,7 +8,7 @@ const Volunteering = () => {
         <Head>
             <title>Volunteering</title>
         </Head>
-        <h1>Volunteering</h1>
+        <Info/>
     </div>
   )
 }
