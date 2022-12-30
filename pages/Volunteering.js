@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from "next/head"
-import Info from '../components/volunteer/info'
+import Info from '../components/volunteer/Info'
 
 const Volunteering = () => {
   return (
