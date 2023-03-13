@@ -6,7 +6,7 @@ import Skills from '../components/mainPage/Skills'
 
 export default function Home() {
   return (
-    <div className="mt-2 w-full h-[3300px]">
+    <div className="mt-2 w-full h-[3800px]">
       
       <Head>
         <title>Portfolio Website</title>
