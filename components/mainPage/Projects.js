@@ -3,6 +3,8 @@ import spotify from '../../public/spotify.jpg'
 import ocaml from '../../public/ocaml.jpg'
 import stustreet from '../../public/stustreet.jpg'
 import Widget from './helpers/Widget'
+import mapreduce from '../../public/mapreduce.png'
+import ttt from '../../public/ttt.png'
 
 const Projects = () => {
    const widget = data.map(elem => {
@@ -55,6 +57,20 @@ const data = [
         ref     : "https://github.com/ArkashJ/STU-STREET-Website",
         descript: "A website for the podcast (STU STREET) I co-host. Made using React & tailwind. This website highlights our values, genres we explore and has links to all platforms our pdocast is available on",
         src     : stustreet
+    },
+    {
+        id      : 5,
+        name    : "TicTacToe, Order&Chaos, Connect4",
+        ref     : "https://github.com/ArkashJ/TicTacToe2",
+        descript: "An Object Oriented Programming model that uses abstract classes, interfaces and packages to extend any turn based board game",
+        src     : ttt
+    },
+    {
+        id      : 6,
+        name    : "Map Reduce",
+        ref     : "https://github.com/ArkashJ/mapreduce",
+        descript: "Users specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce function that merges all intermediate values associated with the same intermediate key",
+        src     : mapreduce
     },
     
 ]
