@@ -23,7 +23,7 @@ export default function LearningsPage() {
         description="A running log of things that cost me something. Reverse chronological."
       />
 
-      <div className="grid gap-4 mt-8">
+      <div className="grid gap-4 mt-8 reveal">
         {sorted.map((l) => (
           <Card key={l.title} glow>
             <div className="flex items-start justify-between gap-4 mb-3">

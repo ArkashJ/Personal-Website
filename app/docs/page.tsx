@@ -35,7 +35,7 @@ export default function DocsHub() {
             <h2 className="font-mono text-[11px] uppercase tracking-widest text-primary mb-4 pb-2 border-b border-border">
               {cat}
             </h2>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 reveal">
               {byCategory[cat].map((d) => (
                 <Link key={d.slug} href={`/docs/${d.slug}`} className="block">
                   <Card glow className="h-full">

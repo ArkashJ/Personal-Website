@@ -202,6 +202,38 @@ main > * {
   animation: pulse-soft 2.4s ease-in-out infinite;
 }
 
+/* Reveal on scroll — applied to grid containers via .reveal */
+.reveal > * {
+  animation: fade-up 500ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.reveal > *:nth-child(1) {
+  animation-delay: 30ms;
+}
+.reveal > *:nth-child(2) {
+  animation-delay: 70ms;
+}
+.reveal > *:nth-child(3) {
+  animation-delay: 110ms;
+}
+.reveal > *:nth-child(4) {
+  animation-delay: 150ms;
+}
+.reveal > *:nth-child(5) {
+  animation-delay: 190ms;
+}
+.reveal > *:nth-child(6) {
+  animation-delay: 230ms;
+}
+.reveal > *:nth-child(7) {
+  animation-delay: 270ms;
+}
+.reveal > *:nth-child(8) {
+  animation-delay: 310ms;
+}
+.reveal > *:nth-child(n + 9) {
+  animation-delay: 350ms;
+}
+
 [data-theme='dark'] {
   --tweet-bg-color: #0e1b30;
   --tweet-bg-color-hover: #14233a;

@@ -8,20 +8,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Graphite / true-dark palette
-        bg: '#0A0A0A',
-        surface: '#111111',
-        elevated: '#171717',
-        border: '#262626',
-        'border-strong': '#404040',
-        // Text
-        text: '#FAFAFA',
-        muted: '#A1A1AA',
-        subtle: '#71717A',
-        // Accents — restrained
-        primary: '#5EEAD4', // teal-300, calmer than the previous neon
-        accent: '#22D3EE', // cyan-400 for stats
-        success: '#34D399', // emerald
+        bg: 'var(--color-bg)',
+        surface: 'var(--color-surface)',
+        elevated: 'var(--color-elevated)',
+        border: 'var(--color-border)',
+        'border-strong': 'var(--color-border-strong)',
+        text: 'var(--color-text)',
+        muted: 'var(--color-muted)',
+        subtle: 'var(--color-subtle)',
+        primary: 'var(--color-primary)',
+        accent: 'var(--color-accent)',
+        success: 'var(--color-success)',
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'Inter', 'system-ui', 'sans-serif'],

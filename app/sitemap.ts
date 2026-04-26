@@ -12,7 +12,6 @@ const STATIC: {
   { path: '/research', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/experience', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/projects', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/work', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/writing', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/knowledge', priority: 0.7, changeFrequency: 'weekly' },
   { path: '/architecture', priority: 0.5, changeFrequency: 'yearly' },

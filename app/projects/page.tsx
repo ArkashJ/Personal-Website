@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         italicAccent="Research code, internal tooling, open source."
         description="From Cattle Logic to a from-scratch Raft implementation. Real repos, real ship dates."
       />
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8 reveal">
         {PROJECTS.map((p) => (
           <ProjectCard key={p.name} {...p} />
         ))}

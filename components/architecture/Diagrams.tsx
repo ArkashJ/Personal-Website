@@ -109,7 +109,7 @@ export const NavigationFlowDiagram = () => (
           {NAV_TARGETS.map((_, i) => {
             const y = (i + 0.5) * (200 / NAV_TARGETS.length)
             return (
-              <g key={i} stroke="#404040" strokeWidth="1" fill="none">
+              <g key={i} stroke="var(--color-border-strong)" strokeWidth="1" fill="none">
                 <path d={`M 0 100 C 30 100, 50 ${y}, 80 ${y}`} />
                 <circle cx="80" cy={y} r="2" fill="#5EEAD4" />
               </g>
@@ -174,8 +174,20 @@ export const ContentPipelineDiagram = () => {
             {ci < cols.length - 1 && (
               <div className="flex items-center justify-center text-subtle">
                 <svg width="32" height="14" viewBox="0 0 32 14" aria-hidden>
-                  <line x1="0" y1="7" x2="26" y2="7" stroke="#404040" strokeWidth="1" />
-                  <polyline points="22,3 30,7 22,11" stroke="#404040" strokeWidth="1" fill="none" />
+                  <line
+                    x1="0"
+                    y1="7"
+                    x2="26"
+                    y2="7"
+                    stroke="var(--color-border-strong)"
+                    strokeWidth="1"
+                  />
+                  <polyline
+                    points="22,3 30,7 22,11"
+                    stroke="var(--color-border-strong)"
+                    strokeWidth="1"
+                    fill="none"
+                  />
                 </svg>
               </div>
             )}

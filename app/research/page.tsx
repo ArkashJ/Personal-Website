@@ -28,7 +28,7 @@ export default function ResearchPage() {
         description="From supercritical fluids in chemical physics to 3D self-supervised vision transformers at Harvard. Each paper, the journal, and a link."
       />
 
-      <div className="grid gap-6 md:grid-cols-2 mt-8">
+      <div className="grid gap-6 md:grid-cols-2 mt-8 reveal">
         {PAPERS.map((p) => (
           <PaperCard key={p.title} {...p} />
         ))}

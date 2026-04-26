@@ -26,7 +26,7 @@ export default function StackPage() {
             <h3 className="font-mono text-primary text-[11px] uppercase tracking-widest mb-4 pb-2 border-b border-border">
               {group.category}
             </h3>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 reveal">
               {group.items.map((item) => (
                 <Card key={item.name} glow className="flex flex-col h-full">
                   <div className="flex items-baseline justify-between gap-3 mb-2">

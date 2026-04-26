@@ -29,10 +29,6 @@ const Hero = () => (
           Arkash Jain.
         </h1>
 
-        <p className="mt-2 text-4xl md:text-6xl font-bold leading-[1.04] tracking-tight italic text-accent">
-          Build, ship, compound.
-        </p>
-
         <p className="mt-8 text-base md:text-lg text-muted max-w-xl leading-relaxed">
           AI researcher (Harvard) and forward-deployed engineer at Benmore — four published papers,
           the Cattle Logic operating system for American ranches, and the toolkit that makes SMB AI
@@ -40,7 +36,7 @@ const Hero = () => (
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
-          <Button href="/work" variant="primary">
+          <Button href="/experience" variant="primary">
             View My Work →
           </Button>
           <Button href="/writing" variant="ghost">

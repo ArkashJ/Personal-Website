@@ -31,7 +31,7 @@ const components = {
   ),
   pre: (p: ComponentProps<'pre'>) => (
     <pre
-      className="bg-[#0d1117] border border-border text-muted text-xs font-mono p-4 rounded-lg overflow-x-auto my-5"
+      className="bg-elevated border border-border text-muted text-xs font-mono p-4 rounded-lg overflow-x-auto my-5"
       {...p}
     />
   ),

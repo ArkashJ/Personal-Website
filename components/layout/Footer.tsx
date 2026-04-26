@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SITE, NAV_LINKS } from '@/lib/site'
+import { SITE, NAV_LINKS, SECONDARY_LINKS } from '@/lib/site'
 
 const Footer = () => (
   <footer className="border-t border-border mt-24 bg-surface">
@@ -13,7 +13,7 @@ const Footer = () => (
       <div>
         <h4 className="font-mono text-primary text-[11px] mb-3 uppercase tracking-widest">Pages</h4>
         <ul className="space-y-1.5 text-sm">
-          {NAV_LINKS.map((l) => (
+          {[...NAV_LINKS, ...SECONDARY_LINKS].map((l) => (
             <li key={l.href}>
               <Link href={l.href} className="text-muted hover:text-text transition-colors">
                 {l.label}
