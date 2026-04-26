@@ -18,8 +18,9 @@ export default function LearningsPage() {
     <div className="px-6 py-16 max-w-4xl mx-auto">
       <SectionHeader
         eyebrow="Learnings"
-        title="Things I have learned the hard way"
-        description="A running log. Reverse chronological. No platitudes — only lessons that cost me something."
+        title="Lessons learned the hard way."
+        italicAccent="No platitudes."
+        description="A running log of things that cost me something. Reverse chronological."
       />
 
       <div className="grid gap-4 mt-8">

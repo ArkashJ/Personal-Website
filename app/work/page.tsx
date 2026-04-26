@@ -16,7 +16,8 @@ export default function WorkPage() {
     <div className="px-6 py-16 max-w-6xl mx-auto">
       <SectionHeader
         eyebrow="Work"
-        title="Tools & CLIs I built that I use every day"
+        title="Tools & CLIs."
+        italicAccent="Used every day."
         description="The internal tooling layer at Benmore. Each one started as a one-off and graduated when it earned its keep."
       />
       <div className="grid gap-4 md:grid-cols-2 mt-8">

@@ -16,8 +16,9 @@ export default function AboutPage() {
     <div className="px-6 py-16 max-w-4xl mx-auto">
       <SectionHeader
         eyebrow="About"
-        title="Life Changelog"
-        description="Every meaningful milestone, in order. Real status, real dates."
+        title="Life Changelog."
+        italicAccent="In order. Real dates."
+        description="Every meaningful milestone — arrival in the US, first paper, Harvard, Benmore. The full arc."
       />
       <ol className="mt-12">
         {TIMELINE.map((item) => (
