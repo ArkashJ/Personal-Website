@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk ls *)",
+      "Bash(rtk read *)",
+      "Bash(rtk npm *)",
+      "Bash(echo \"PID: $!\")",
+      "Read(//tmp/**)",
+      "Bash(rtk npx *)",
+      "Read(//private/tmp/**)",
+      "Bash(npm install *)",
+      "Bash(/Users/arkashjain/Desktop/work/Personal-Website/node_modules/.bin/next dev *)",
+      "Bash(rtk curl *)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(rtk grep *)",
+      "Bash(rtk git *)",
+      "Bash(rtk git commit -m ' *)"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Arkash Jain's Portfolio" [level=1] [ref=e5]:
+          - link "Arkash Jain's Portfolio" [ref=e6] [cursor=pointer]:
+            - /url: /
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "Home" [ref=e10] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e11]:
+            - link "Volunteering" [ref=e12] [cursor=pointer]:
+              - /url: /Volunteering
+          - listitem [ref=e13]:
+            - link "Experience" [ref=e14] [cursor=pointer]:
+              - /url: /VC
+    - main [ref=e16]:
+      - generic [ref=e18]:
+        - generic [ref=e20]:
+          - generic [ref=e21]:
+            - img "Battery Ventures Image" [ref=e22] [cursor=pointer]
+            - generic [ref=e23]:
+              - generic [ref=e24]: BU CS Systems Group
+              - generic [ref=e25]: Undergraduate Research
+              - generic [ref=e26]: Jan 2023 - Present
+          - paragraph [ref=e27]: ∙ Conducted research on latest distributed systems including reading papers like MapReduce by Google, RAS by Meta, Inferline by UC Berkeley, Google File System and Raft
+          - paragraph [ref=e28]: ∙ Made presentations and wrote code in Go and Java for the functions above
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - img "Battery Ventures Image" [ref=e32] [cursor=pointer]
+            - generic [ref=e33]:
+              - generic [ref=e34]: Stealth Startup
+              - generic [ref=e35]: Co-Founder and Engineer
+              - generic [ref=e36]: Jan 2023 - Present
+          - paragraph [ref=e37]: ∙ Real Estate Solution Made using C# and Unity
+          - paragraph
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - img "Battery Ventures Image" [ref=e41] [cursor=pointer]
+            - generic [ref=e42]:
+              - generic [ref=e43]: Boston Children's Hospital
+              - generic [ref=e44]: ALS Resource Engineering Intern
+              - generic [ref=e45]: Jan 2023 - Present
+          - paragraph [ref=e46]: ∙ Created and Shipped a web application(Accessibility feature incorporated) made using NextJS, typescript, TailwindCSS, StrapiUI, Azure Lambdas, DynamoDB.
+          - paragraph [ref=e47]: ∙ People with ALS struggle to get good care because of communication problems. They shall log into the app and fill a questionnare such that every question is based on the previous question and the app essentially 'learns' from the use to produce a tailored result.
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - img "Battery Ventures Image" [ref=e51] [cursor=pointer]
+            - generic [ref=e52]:
+              - generic [ref=e53]: Stealth Startup
+              - generic [ref=e54]: Backend/Infrasturcture Engineering Intern
+              - generic [ref=e55]: Jun 2023 - Present
+          - paragraph [ref=e56]: ∙ B2B SaaS company for Enterprises using Rust, Svelte, Typescript, Tailwind, Redis, Docker, NATS, PostgreSQL
+          - paragraph [ref=e57]: ∙
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - img "Battery Ventures Image" [ref=e61] [cursor=pointer]
+            - generic [ref=e62]:
+              - generic [ref=e63]: Battery Ventures
+              - generic [ref=e64]: Analyst Sourcing Extern
+              - generic [ref=e65]: Dec 2021 - Apr 2022
+          - paragraph [ref=e66]: ∙ Sourced and led deal due-diligence for potential minority investments in early-stage and growth-stage B2B SaaS.
+          - paragraph [ref=e67]: ∙ Developed the investment thesis and pitched potential investment opportunities to Battery senior leadership & led discussions with target company CEOs and drove financial due-diligence of key SaaS metrics.
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - img "Battery Ventures Image" [ref=e71] [cursor=pointer]
+            - generic [ref=e72]:
+              - generic [ref=e73]: Battery Ventures
+              - generic [ref=e74]: Analyst Diligence Extern
+              - generic [ref=e75]: May 2022 - Aug 2022
+          - paragraph [ref=e76]: ∙ Diligenced the Automotive Repair Shop Software category; completed competitive landscaping, market sizing, product/feature comparisons, and market mapping.
+          - paragraph [ref=e77]: ∙ Identified key investment targets - managing discussions with respective management teams and preparing buy-side materials for management presentations.
+        - generic [ref=e79]:
+          - generic [ref=e80]:
+            - img "Battery Ventures Image" [ref=e81] [cursor=pointer]
+            - generic [ref=e82]:
+              - generic [ref=e83]: BU College of Engineering
+              - generic [ref=e84]: Teaching Assistant
+              - generic [ref=e85]: Sep 2021 - Dec 2021
+          - paragraph [ref=e86]: • Hold office hours for a 300+ class.
+          - paragraph [ref=e87]: • Plan, Prepare and Conduct review sessions for examinations.
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - img "Battery Ventures Image" [ref=e91] [cursor=pointer]
+            - generic [ref=e92]:
+              - generic [ref=e93]: BU Chemistry, NSF, UROP
+              - generic [ref=e94]: Undergraduate Research Assistant
+              - generic [ref=e95]: Jan 2021 - Aug 2021
+          - paragraph [ref=e96]: "∙ Conducted Research on Super-Critical Fluids under the guidance of Associated Head of BU Chemistry & Optical Engineer at NKT Photonics:"
+          - paragraph [ref=e97]: ∙ SCFs are potential green fuels. We became one of the first groups to experimentally challenge existing theories and get insight into the properties of the previously meagerly studied field of SCFs.
+  - alert [ref=e98]

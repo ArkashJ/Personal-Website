@@ -1,0 +1,103 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Arkash Jain's Portfolio" [level=1] [ref=e5]:
+          - link "Arkash Jain's Portfolio" [ref=e6] [cursor=pointer]:
+            - /url: /
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "Home" [ref=e10] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e11]:
+            - link "Volunteering" [ref=e12] [cursor=pointer]:
+              - /url: /Volunteering
+          - listitem [ref=e13]:
+            - link "Experience" [ref=e14] [cursor=pointer]:
+              - /url: /VC
+    - main [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - heading "I'm Arkash Jain a Full Stack Dev a Podcaster and an Entrepreneur" [level=1] [ref=e19]:
+            - text: I'm
+            - list [ref=e20]:
+              - listitem [ref=e21]: Arkash Jain
+              - listitem [ref=e22]: a Full Stack Dev
+              - listitem [ref=e23]: a Podcaster
+              - listitem [ref=e24]: and an Entrepreneur
+          - paragraph [ref=e25]: Passioniate about B2B SaaS, Entrepreneurship and Venture Capital
+        - generic [ref=e26]:
+          - heading "Introduction" [level=1] [ref=e27]
+          - generic [ref=e28]:
+            - img "Picture of Arkash Jain" [ref=e29]
+            - generic [ref=e30]:
+              - paragraph [ref=e31]: My name's Arkash Jain and I'm a junior doing a BA (Math & CS)/ MS (CS) at Boston Univeristy. A software engineer by trade, I have a deep rooted interest in entrepreneurship and am exhilirated by the prospect of working for a high growth tech startup.
+              - paragraph [ref=e32]: I found my calling in tech through 2 internships at Battery Ventures, a VC focussing on early stage B2B SaaS. For the first internship I focussed on sourcing startups across different verticals and for the second one, doing diligence on a specific industry.
+              - paragraph [ref=e33]: Since then I have been advising startups on campus and doing outreach for the Entrepreneurs club as a VP. I have helped 2 companies design a product by doing usability testing, making personas and conducting interviews to launching a MVP.
+              - paragraph [ref=e34]: Outside of school I co-host a podcast where we interview professors, athletes, artists and professionals to bring deep industry insight to students.
+              - paragraph [ref=e35]: Learn more about me here!
+        - generic [ref=e37]:
+          - heading "Projects" [level=1] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]:
+              - heading "Spotify To Youtube" [level=1] [ref=e41]
+              - paragraph [ref=e42]: A tool to transfer Spotify Playlists to Youtube. We use Oauth2 Spotify Login for the app, and the app displays all the users songs in a table. They can select the songs they want to transfer and on the click on a button, it makes a youtube playlist of those songs
+              - img "A tool to transfer Spotify Playlists to Youtube. We use Oauth2 Spotify Login for the app, and the app displays all the users songs in a table. They can select the songs they want to transfer and on the click on a button, it makes a youtube playlist of those songs" [ref=e44] [cursor=pointer]
+            - generic [ref=e45]:
+              - heading "OCaml Interpreter" [level=1] [ref=e46]
+              - paragraph [ref=e47]: A Backaus Naur Form (BNF) based, context free interpreter to do any unary or binary operation on a list. It supports closures, functions and mutual recursion.
+              - img "A Backaus Naur Form (BNF) based, context free interpreter to do any unary or binary operation on a list. It supports closures, functions and mutual recursion." [ref=e49] [cursor=pointer]
+            - generic [ref=e50]:
+              - heading "PersonaLearn" [level=1] [ref=e51]
+              - paragraph [ref=e52]: A tool that uses openAI to generate video recommendations for concepts based on the video transcript. The user uses our slider whenever they are confused and our code picks keywords to generate a list of recommended videos
+              - img "A tool that uses openAI to generate video recommendations for concepts based on the video transcript. The user uses our slider whenever they are confused and our code picks keywords to generate a list of recommended videos" [ref=e54] [cursor=pointer]
+            - generic [ref=e55]:
+              - heading "STU STREET Podcast Website" [level=1] [ref=e56]
+              - paragraph [ref=e57]: A website for the podcast (STU STREET) I co-host. Made using React & tailwind. This website highlights our values, genres we explore and has links to all platforms our pdocast is available on
+              - img "A website for the podcast (STU STREET) I co-host. Made using React & tailwind. This website highlights our values, genres we explore and has links to all platforms our pdocast is available on" [ref=e59] [cursor=pointer]
+            - generic [ref=e60]:
+              - heading "TicTacToe, Order&Chaos, Connect4" [level=1] [ref=e61]
+              - paragraph [ref=e62]: An Object Oriented Programming model that uses abstract classes, interfaces and packages to extend any turn based board game
+              - img "An Object Oriented Programming model that uses abstract classes, interfaces and packages to extend any turn based board game" [ref=e64] [cursor=pointer]
+            - generic [ref=e65]:
+              - heading "Map Reduce" [level=1] [ref=e66]
+              - paragraph [ref=e67]: Users specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce function that merges all intermediate values associated with the same intermediate key
+              - img "Users specify a map function that processes a key/value pair to generate a set of intermediate key/value pairs, and a reduce function that merges all intermediate values associated with the same intermediate key" [ref=e69] [cursor=pointer]
+        - generic [ref=e70]:
+          - heading "Skills" [level=1] [ref=e71]
+          - generic [ref=e72]:
+            - generic [ref=e73]:
+              - heading "Frontend" [level=2] [ref=e74]
+              - generic [ref=e75]:
+                - paragraph [ref=e77]: HTML
+                - paragraph [ref=e79]: CSS
+                - paragraph [ref=e81]: Javascript
+                - paragraph [ref=e83]: React
+                - paragraph [ref=e85]: Nextjs
+                - paragraph [ref=e87]: Material UI
+                - paragraph [ref=e89]: Tailwind
+            - generic [ref=e90]:
+              - heading "Backend and Databases" [level=2] [ref=e91]
+              - generic [ref=e92]:
+                - paragraph [ref=e94]: NodeJs
+                - paragraph [ref=e96]: ExpressJs
+                - paragraph [ref=e98]: Flask
+                - paragraph [ref=e100]: MongoDB
+                - paragraph [ref=e102]: SQLite
+            - generic [ref=e103]:
+              - heading "Version Control" [level=2] [ref=e104]
+              - generic [ref=e105]:
+                - paragraph [ref=e107]: Git
+                - paragraph [ref=e109]: Github
+                - paragraph [ref=e111]: GitLab
+            - generic [ref=e112]:
+              - heading "Others" [level=2] [ref=e113]
+              - generic [ref=e114]:
+                - paragraph [ref=e116]: Python
+                - paragraph [ref=e118]: C
+                - paragraph [ref=e120]: Java
+                - paragraph [ref=e122]: MATLAB
+                - paragraph [ref=e124]: Docker
+                - paragraph [ref=e126]: Figma
+  - img [ref=e129]
+  - alert [ref=e132]

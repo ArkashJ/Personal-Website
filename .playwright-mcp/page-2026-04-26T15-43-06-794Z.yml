@@ -1,0 +1,32 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Arkash Jain's Portfolio" [level=1] [ref=e5]:
+          - link "Arkash Jain's Portfolio" [ref=e6] [cursor=pointer]:
+            - /url: /
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "Home" [ref=e10] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e11]:
+            - link "Volunteering" [ref=e12] [cursor=pointer]:
+              - /url: /Volunteering
+          - listitem [ref=e13]:
+            - link "Experience" [ref=e14] [cursor=pointer]:
+              - /url: /VC
+    - main [ref=e16]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - img [ref=e20] [cursor=pointer]
+          - generic [ref=e21]:
+            - heading "American Red Cross" [level=1] [ref=e23]
+            - heading "Food Pantry Volunteer" [level=1] [ref=e25]
+            - paragraph [ref=e27]: I bag, collect and distribute food weekly for 4 hours at the red cross food pantry on Proctor St, Boston, MA 02119
+        - generic [ref=e28]:
+          - img [ref=e29] [cursor=pointer]
+          - generic [ref=e30]:
+            - heading "The Big Brothers and Big Sisters of Eastern Massachusetts" [level=1] [ref=e32]
+            - heading "Big Brother" [level=1] [ref=e34]
+            - paragraph [ref=e36]: Bimonthly a volunteer with the Big Brothers & Big Sisters program to mentor a 10 year old child by playing games and engaging in various activities to teach them skills like leadership and confidence
+  - alert [ref=e37]
