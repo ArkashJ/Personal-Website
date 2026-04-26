@@ -1,16 +1,10 @@
-import React from 'react'
-import Head from "next/head"
-import Info from '../components/volunteer/Info'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
-const Volunteering = () => {
-  return (
-    <div className='w-full h-screen'>
-        <Head>
-            <title>Volunteering</title>
-        </Head>
-        <Info/>
-    </div>
-  )
+export default function VolunteeringRedirect() {
+  const router = useRouter()
+  useEffect(() => {
+    router.replace('/about')
+  }, [router])
+  return null
 }
-
-export default Volunteering

@@ -1,0 +1,32 @@
+# .github/dependabot.yml
+#
+# Configures dependency scanning for security alerts.
+# open-pull-requests-limit: 0 disables automatic version-update PRs.
+#
+# NOTE: Dependabot *security update* PRs (separate from version updates)
+# are controlled in GitHub Settings → Security & analysis →
+# "Dependabot security updates". Disable that toggle to stop all auto-PRs.
+
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/Chicago'
+    open-pull-requests-limit: 0
+    labels:
+      - 'dependencies'
+    commit-message:
+      prefix: 'chore(deps)'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-patch']
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 0

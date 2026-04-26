@@ -1,0 +1,8 @@
+node_modules/
+.next/
+out/
+public/
+*.lock
+package-lock.json
+docs/architecture/*.md
+.playwright-mcp/
