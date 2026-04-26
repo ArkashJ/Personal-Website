@@ -1,0 +1,45 @@
+---
+title: 'Flink Checkpointing — What Actually Goes Wrong'
+date: '2024-08-12'
+domain: 'distributed-systems'
+description: 'A field guide to the failure modes I hit during my BU thesis on adaptive Flink checkpointing.'
+---
+
+Apache Flink's checkpointing system looks simple on paper: barriers flow through
+the operator graph, each operator snapshots local state, the JobManager confirms,
+done. In practice, every interesting failure happens in one of four places.
+
+## 1. Barrier alignment under skew
+
+When two streams join, the barrier must arrive at both inputs before the join
+operator can checkpoint. If one stream is hot and the other is cold, you wait
+for the cold side. Solutions: unaligned checkpoints (Flink 1.11+), or buffering
+the hot side and accepting some additional checkpoint state.
+
+## 2. RocksDB compaction races
+
+The default RocksDB state backend takes a snapshot by issuing a checkpoint to
+RocksDB and shipping the SST files to durable storage. If a major compaction
+runs concurrently, the snapshot can include partial files, requiring a retry.
+Mitigation: rate-limit compactions during expected checkpoint windows.
+
+## 3. Backpressure cascade
+
+If the network buffer is full upstream, barriers can't move. Checkpoint times
+balloon, which holds memory longer, which deepens backpressure. This is the
+loop my thesis attacked: detect the cascade and back off the cadence
+adaptively. See `/writing/distributed-checkpointing` for the long version.
+
+## 4. JobManager memory pressure
+
+Every in-flight checkpoint consumes JobManager memory tracking acknowledgments
+from operators. If you set the interval too aggressively (sub-second), the
+JobManager OOMs before any individual checkpoint completes. Common in CI
+environments where someone forgets to increase the JobManager heap.
+
+## Heuristic
+
+If your checkpointing fails, the bug is almost never in the barrier protocol
+itself — it's in the state backend, the buffer pool, or the alignment timing.
+The protocol is one of the most over-tested pieces of code in the project.
+Look at the seams, not the core.

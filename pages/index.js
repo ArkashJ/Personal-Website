@@ -4,13 +4,14 @@ import PaperCard from '../components/sections/PaperCard'
 import ProjectCard from '../components/sections/ProjectCard'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
-import { PAPERS, PROJECTS, WORK_TOOLS, KNOWLEDGE_DOMAINS, WRITING } from '../lib/data'
+import { PAPERS, PROJECTS, WORK_TOOLS, KNOWLEDGE_DOMAINS } from '../lib/data'
+import { getAllWritingPosts } from '../lib/content'
 import Link from 'next/link'
 
-export default function Home() {
+export default function Home({ writing }) {
   const featuredProjects = PROJECTS.slice(0, 4)
   const featuredWork = WORK_TOOLS.slice(0, 3)
-  const latestWriting = WRITING.slice(0, 3)
+  const latestWriting = writing.slice(0, 3)
 
   return (
     <div>
@@ -46,8 +47,8 @@ export default function Home() {
           </Card>
           <Card glow>
             <Badge variant="teal">Latest writing</Badge>
-            <h3 className="text-xl font-bold text-white mt-3 mb-2">{WRITING[0].title}</h3>
-            <p className="text-muted text-sm">{WRITING[0].description}</p>
+            <h3 className="text-xl font-bold text-white mt-3 mb-2">{latestWriting[0].title}</h3>
+            <p className="text-muted text-sm">{latestWriting[0].description}</p>
           </Card>
         </div>
       </section>
@@ -127,6 +128,10 @@ export default function Home() {
       </section>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  return { props: { writing: getAllWritingPosts() } }
 }
 
 Home.meta = {

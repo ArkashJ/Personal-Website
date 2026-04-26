@@ -1,0 +1,40 @@
+---
+title: 'Adaptive Checkpointing in Apache Flink'
+date: '2024-05-02'
+tags: ['Distributed Systems']
+description: 'A summary of my undergraduate thesis on driving checkpoint cadence from backpressure signals.'
+---
+
+Apache Flink's default checkpointing strategy is naïve: configure an interval (typically
+60 seconds), and the JobManager triggers a checkpoint barrier on that schedule. This works
+fine when load is steady. It falls apart when traffic spikes.
+
+## The problem
+
+Under bursty load, the operator graph builds backpressure. Checkpointing while backpressured
+makes things worse — barriers stall behind queued records, alignment time grows, the entire
+checkpoint takes minutes instead of seconds. Now you have two failures cascading:
+the original spike _and_ a checkpoint that won't complete.
+
+## What I built
+
+A backpressure-aware checkpointing controller. It samples backpressure metrics from
+each operator (idle time, busy time, backpressured time), aggregates a job-level signal,
+and adjusts the checkpoint interval up to 4× the configured baseline when the signal
+exceeds threshold.
+
+When traffic returns to normal, the controller eases the cadence back over a sliding
+window, avoiding sawtooth oscillation.
+
+## Result
+
+In synthetic burst experiments with 10× traffic spikes, the adaptive controller reduced
+mean checkpoint duration during spikes from ~145s to ~18s, with a small increase in
+recovery time on failure (because checkpoints are slightly older). For most pipelines
+that's the correct trade.
+
+## Why this matters
+
+The general lesson: any system with a fixed-rate background job and bursty foreground
+work should consider making the background rate adaptive. Garbage collectors, log
+compaction, sync schedulers — all the same shape.
