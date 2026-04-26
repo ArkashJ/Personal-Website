@@ -1,14 +1,44 @@
 import Link from 'next/link'
-import AsciiDiagram from '@/components/architecture/AsciiDiagram'
+import type { ReactNode } from 'react'
 import { buildMetadata } from '@/lib/metadata'
-import { FLOW_1, FLOW_2, FLOW_3, FLOW_4, FLOW_5, FLOW_6 } from './flows'
+import {
+  CiCdDiagram,
+  ComponentTreeDiagram,
+  ContentPipelineDiagram,
+  NavigationFlowDiagram,
+  SeoDiagram,
+  SiteMapDiagram,
+} from '@/components/architecture/Diagrams'
 
 export const metadata = buildMetadata({
   title: 'Site Architecture',
   description:
-    'ASCII architecture flows for arkashj.com — page structure, navigation, content pipeline, SEO, CI/CD, and component hierarchy.',
+    'Architecture diagrams for arkashj.com — page structure, navigation, content pipeline, SEO, CI/CD, and component hierarchy.',
   path: '/architecture',
 })
+
+const DiagramSection = ({
+  index,
+  title,
+  description,
+  children,
+}: {
+  index: string
+  title: string
+  description: string
+  children: ReactNode
+}) => (
+  <section className="mb-10">
+    <div className="border-b border-border pb-3 mb-5">
+      <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-1">
+        Diagram {index}
+      </p>
+      <h2 className="text-lg md:text-xl font-sans font-semibold text-text">{title}</h2>
+      <p className="text-muted text-sm mt-1 max-w-2xl">{description}</p>
+    </div>
+    <div className="bg-surface border border-border p-6">{children}</div>
+  </section>
+)
 
 export default function ArchitecturePage() {
   return (
@@ -27,17 +57,58 @@ export default function ArchitecturePage() {
           Site Architecture
         </h1>
         <p className="text-muted text-sm leading-relaxed max-w-2xl">
-          Six ASCII flow diagrams covering page structure, navigation, content pipeline, SEO, CI/CD,
-          and component hierarchy. The canonical reference for how arkashj.com is built.
+          Six diagrams covering page structure, navigation, content pipeline, SEO, CI/CD, and
+          component hierarchy. The canonical reference for how arkashj.com is built.
         </p>
       </div>
 
-      <AsciiDiagram title="Flow 1 — Site Architecture Overview">{FLOW_1}</AsciiDiagram>
-      <AsciiDiagram title="Flow 2 — Page Navigation Flow">{FLOW_2}</AsciiDiagram>
-      <AsciiDiagram title="Flow 3 — Content Pipeline (MDX → Pages)">{FLOW_3}</AsciiDiagram>
-      <AsciiDiagram title="Flow 4 — SEO Pipeline">{FLOW_4}</AsciiDiagram>
-      <AsciiDiagram title="Flow 5 — CI/CD Pipeline">{FLOW_5}</AsciiDiagram>
-      <AsciiDiagram title="Flow 6 — Component Hierarchy">{FLOW_6}</AsciiDiagram>
+      <DiagramSection
+        index="01"
+        title="Site map"
+        description="Top-level routes served by the App Router."
+      >
+        <SiteMapDiagram />
+      </DiagramSection>
+
+      <DiagramSection
+        index="02"
+        title="Navigation flow"
+        description="Where the homepage links out — entry points to each major section."
+      >
+        <NavigationFlowDiagram />
+      </DiagramSection>
+
+      <DiagramSection
+        index="03"
+        title="Content pipeline"
+        description="MDX files in /content are loaded, parsed, and rendered as static pages."
+      >
+        <ContentPipelineDiagram />
+      </DiagramSection>
+
+      <DiagramSection
+        index="04"
+        title="SEO pipeline"
+        description="Metadata, OG images, and JSON-LD layered onto every route."
+      >
+        <SeoDiagram />
+      </DiagramSection>
+
+      <DiagramSection
+        index="05"
+        title="CI/CD pipeline"
+        description="From local commit through GitHub Actions to a Vercel deploy."
+      >
+        <CiCdDiagram />
+      </DiagramSection>
+
+      <DiagramSection
+        index="06"
+        title="Component hierarchy"
+        description="How layout, sections, UI primitives, and embeds compose the page tree."
+      >
+        <ComponentTreeDiagram />
+      </DiagramSection>
     </div>
   )
 }
