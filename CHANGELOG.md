@@ -1,93 +1,155 @@
 # Changelog
 
-All notable changes to arkashj.com are documented here.
-Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
-Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+All notable changes to **arkashj.com** are documented here.
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-## [Unreleased] — v2.0.0 (in progress)
+## [2.2.0] — 2026-04-26
 
-### Added — V2 Pages & SEO Infrastructure (2026-04-26)
+### Added — Metior-Pro inspired visual identity
 
-- **Design system** — full Tailwind theme (`bg`, `surface`, `border`, `primary` teal, `accent` neon cyan, `muted`)
-- **UI primitives** — `Button`, `Card`, `Badge`, `StatBadge`
-- **Section components** — `Hero`, `SectionHeader`, `PaperCard`, `ProjectCard`, `ExperienceCard`, `TimelineItem`
-- **Layout overhaul** — sticky `Nav` with active-route highlighting, full `Footer` with site map + social links
-- **SEO** — `JsonLd` component with `Person`, `Article`, `ScholarlyArticle` schema factories; per-page `Meta` with OG + Twitter cards + canonical URLs + `<link rel="me">`
-- **Crawler infrastructure** — `pages/sitemap.xml.js` (server-rendered XML sitemap), `pages/robots.txt.js`
-- **Pages**
-  - `/` — full home: Hero · Arc · Now · Research · Work · Projects · Knowledge pills · Writing
-  - `/about` — Life Changelog timeline (17 milestones, status badges, avatars)
-  - `/research` — 4 paper cards with `ScholarlyArticle` JSON-LD + ML infrastructure breakdown + PyTorch contribution
-  - `/experience` — 8 reverse-chronological work entries
-  - `/projects` — 9 real projects with tech badges
-  - `/work` — 4 internal tools/CLIs with demo placeholders
-  - `/writing` — index with tag filters; `[slug]` post page with `Article` JSON-LD
-  - `/knowledge` — 6-domain hub; `[domain]` page
-  - `/404` — branded not-found page
-- **Redirects** — legacy `/VC` → `/experience`, `/Volunteering` → `/about`
-- **Centralized data** — `lib/data.js` (PAPERS, EXPERIENCE, PROJECTS, WORK_TOOLS, TIMELINE, KNOWLEDGE_DOMAINS, WRITING) and `lib/site.js` (SITE constants, NAV_LINKS)
-- **Bio updated** — "junior at BU" → Head of FDE at Benmore, Harvard Kirchhausen Lab, 4 papers
+- New navy palette: `bg #0A1628`, `surface #0E1B30`, `elevated #14233A`, `border #1C2D48`
+- Mint primary `#5EEAD4` + warm-tan italic accent `#F4A66A`
+- Sharp edges throughout (Tailwind `borderRadius` mapped to 0)
+- Full-coverage faint grid background (replaced radial-masked grid)
+- Secondary 256px grid layer with subtle teal tint
+- Geist Sans + Geist Mono via `geist` package, wired through CSS variables
+- Theme system: dark + light via `next-themes` with `data-theme` attribute
+- Sun/moon ThemeToggle in nav (lucide-react icons), works on mobile + desktop
+- All Tailwind colors are now CSS variables — single source of truth in `globals.css`
 
-### Added — Finance domain + favicon (2026-04-26 patch)
+### Added — Hero overhaul
 
-- **Finance knowledge page** — Thesis Tracker (5 active/watching theses) + Trade Log table (4 trades) on `/knowledge/finance`
-- `lib/finance.js` — THESES + TRADES data
-- `ThesisTracker` and `TradeLog` section components
-- SVG favicon — teal "a" mark on dark slate, served from `/favicon.svg`
-- Verified all 11 endpoints live (200 OK) via curl + Playwright screenshots
+- Two-column layout: copy + animated career-arc demo card on the right
+- Pill eyebrow with pulsing teal dot
+- Italic warm-tan display callout ("Build, ship, compound.")
+- Tag pill row beneath CTAs
+- New `<Pill>` and `<HeroDemo>` components
 
-### Added — MDX content pipeline (2026-04-26 patch 2)
+### Added — Consistent page headers
 
-- `lib/content.js` — `getAllWritingPosts`, `getWritingPost`, `getAllKnowledgePosts`, `getKnowledgePost`, `getKnowledgeDomains`
-- `components/MdxContent.js` — themed MDX renderer with Tailwind-styled headings, lists, blockquotes, code blocks
-- `pages/writing/[slug].js` now uses `getStaticProps` + `getStaticPaths` against `content/writing/*.mdx`
-- `pages/knowledge/[domain]/index.js` and `pages/knowledge/[domain]/[slug].js` for nested MDX routes
-- Real content shipped:
-  - `content/writing/why-fde.mdx`
-  - `content/writing/sample-ai-hardware.mdx`
-  - `content/writing/distributed-checkpointing.mdx`
-  - `content/knowledge/ai/spatialdino-lessons.mdx`
-  - `content/knowledge/ai/index.mdx`
-  - `content/knowledge/distributed-systems/flink-checkpointing.mdx`
-- Added `gray-matter` + `next-mdx-remote` deps
-- Homepage now reads writing posts from filesystem (not stubbed `WRITING` array)
+- `SectionHeader` rebuilt: Pill eyebrow → bold title → optional italic-accent line → muted description
+- Applied across all 11 pages (`/about`, `/research`, `/experience`, `/projects`, `/work`, `/writing`, `/knowledge`, `/media`, `/stack`, `/learnings`, `/architecture`)
 
-### Added — More MDX content + sitemap rewrite (2026-04-26 patch 3)
+### Added — Animations (restrained)
 
-- Sitemap now enumerates every dynamic MDX route (writing posts + knowledge articles + knowledge domains) with per-file `lastmod` dates
-- Knowledge hub shows real article counts per domain (driven by filesystem, not stub)
-- New writing post: `o1-visa-evidence-hub.mdx`
-- New knowledge MDX:
-  - `finance/aggregation-theory.mdx`, `finance/index.mdx`
-  - `physics/why-i-left-physics.mdx`, `physics/supercritical-fluids-paper.mdx`
-  - `software/claude-code-as-an-os.mdx`
-  - `math/optimizers.mdx`
+- Page entrance fade-up (320ms ease-out) on every `<main>` child
+- `.stagger` utility (40ms incremental delays for grid children)
+- `.dot-pulse` keyframe for live status dots
+- Card hover-lift with mint glow
+- All animations honor `prefers-reduced-motion`
 
-### Planned — remaining v2 work
+### Added — Life Changelog visual hierarchy
 
-- ffmpeg demo recordings for `/work` cards
-- Per-page Open Graph PNGs in `/public/og/`
-- Even more MDX articles across all 6 knowledge domains (continuous)
-- Migration to App Router + TypeScript when content stabilizes
+- Major milestones (Published / Current / Live) get spotlight treatment
+- Larger title, primary border, gradient bottom rule, ring-shadow on node
+- Routine "Completed" entries quieter
+- Reverse-chronological order
+
+### Added — `/stack`, `/learnings`, `/media`, `/architecture`
+
+- `/stack` — uses.tech-style page, 36 entries × 7 categories
+- `/learnings` — 12 lessons cards, reverse chronological
+- `/media` — STU STREET podcast YouTube embeds (4 episodes), Medium articles (7), Substack posts (3), press
+- `/architecture` — 6 React/SVG diagrams (replaced ASCII)
+- All wired into NAV_LINKS
+
+### Added — Real public links
+
+- BioRxiv: SpatialDINO + ER Exit Sites FIB-SEM
+- Journal of Cell Biology (DOI URLs)
+- Journal of Chemical Physics 2022 (full title + DOI)
+- Harvard Kirchhausen Lab profile page
+- Medium @arkjain (7 distributed-systems posts)
+- STU STREET podcast (Spotify, Apple, 4 YouTube episode IDs)
+- 6 real GitHub repos surfaced as projects (Raft, CloudComputing, NEXMARK, Implicit-SGD, CS411, Spotify)
+
+### Added — MDX embeds
+
+- `<Tweet>`, `<YouTube>`, `<LinkedInPost>`, `<Substack>`, `<Gist>` components in `components/embeds/`
+- Wired via `components/MdxContent.tsx` (server-side via `next-mdx-remote/rsc`)
+- react-tweet themed to navy palette via CSS vars
+
+### Added — Documentation
+
+- `docs/HANDOFF.md` — comprehensive 1900-word project orientation
+- `docs/TODO.md` — open work + cheatsheet
+- This CHANGELOG fully refreshed
+
+### Changed
+
+- `app/work/page.tsx` — removed all 4 "Demo coming" placeholder strings
+- `components/sections/PaperCard.tsx` — link always present (URL or "Link forthcoming")
+- `components/sections/ProjectCard.tsx` — link always present (URL or "Internal / private")
+- `app/knowledge/[domain]/page.tsx` — grid adapts to single-article (no empty column)
+- `app/architecture/page.tsx` — dropped redundant `bg-bg` wrapper, added Pill eyebrow
+- `components/Meta.js` → integrated into root `app/layout.tsx`
+- Active nav link uses primary teal (was reserved-cyan); fixes color rule violation flagged by audit
+
+### Removed
+
+- 10 stale feature branches (post-merge cleanup)
+- `pages/` directory (entirely; App Router replaces it)
+- `components/MdxContent.js` and other legacy `.js` duplicates
+- `app/architecture/flows.ts` + `components/architecture/AsciiDiagram.tsx` (unused after diagram replacement)
 
 ---
 
-## [1.0.0] — 2026-04-26
+## [2.1.0] — 2026-04-26 — App Router + TypeScript migration
 
 ### Added
 
-- Apache 2.0 License
-- Production tooling: Prettier, ESLint (stricter), Husky, lint-staged
-- `.editorconfig` for cross-editor consistency
-- `vercel.json` with security headers
+- **Next.js 13 → 15.5**, **React 18 → 19**, plain JS → TypeScript strict
+- **Pages Router → App Router** (`app/` directory, server components default)
+- `app/layout.tsx` with Person JSON-LD, Nav, Footer, OG metadataBase
+- All page routes converted: `/`, `/about`, `/research`, `/experience`, `/projects`, `/work`, `/writing`, `/writing/[slug]`, `/knowledge`, `/knowledge/[domain]`, `/knowledge/[domain]/[slug]`, `/architecture`, `/404`
+- `app/sitemap.ts` (native MetadataRoute, dynamic MDX routes)
+- `app/robots.ts` (native MetadataRoute)
+- `app/VC` + `app/Volunteering` — server-side redirects
+- MDX migrated to `next-mdx-remote/rsc` (server component, zero client JS)
+- `lib/site.ts`, `lib/data.ts`, `lib/finance.ts`, `lib/content.ts` — all typed
+- `lib/structured-data.ts` (Person/Article/ScholarlyArticle factories)
+- `lib/metadata.ts` `buildMetadata()` factory typed against `next/Metadata`
+- `tsconfig.json` strict mode + `@/*` path aliases
+- `types/css.d.ts` for CSS side-effect imports
+- `.eslintrc.json` disables `no-html-link-for-pages` (no `pages/` dir)
+
+### Added — Dynamic OG images
+
+- `lib/og.tsx` shared `renderOg()` template (1200×630)
+- Static OG for `/`, `/about`, `/research`, `/experience`, `/projects`, `/work`, `/writing`, `/knowledge`, `/architecture`
+- Dynamic per-post OG for `/writing/[slug]`, `/knowledge/[domain]`, `/knowledge/[domain]/[slug]`
+
+### Added — More MDX content
+
+- 7 additional articles: o1-visa-evidence-hub, FDE feedback loop, Raft in 5 minutes, RocksDB write amplification, convergence intuition, why TypeScript strict, FSDP vs tensor parallel
+
+---
+
+## [1.1.0] — 2026-04-26 — V2 site overhaul on legacy stack
+
+### Added
+
+- Design system, all 8 new pages, SEO infra (JsonLd, sitemap, robots), Finance Thesis Tracker + Trade Log, MDX content pipeline, /media page, dynamic OG images, real paper URLs
+
+(Largely superseded by 2.x — kept here for historical traceability.)
+
+---
+
+## [1.0.0] — 2026-04-26 — Foundation
+
+### Added
+
+- Apache 2.0 LICENSE
+- Production tooling: Prettier, ESLint (stricter), Husky, lint-staged, EditorConfig
+- `vercel.json` with security headers + caching
 - Dependabot config (security scanning, no auto-PRs)
-- GitHub Actions CI workflow
+- GitHub Actions CI (lint + format:check + build)
 - Comprehensive README with shields.io badges
 - ASCII architecture flows in `docs/architecture/`
 - Public `/architecture` page
-- `v1.0.0` git tag marking legacy site snapshot
+- `v1.0.0` git tag marking legacy snapshot
 
 ### Changed
 
@@ -99,3 +161,13 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Next.js 13 Pages Router, 3 pages: `/`, `/VC`, `/Volunteering`
 - No TypeScript, no tests, no SEO, fixed 1500px width
 - Outdated bio (still said "junior at BU")
+
+---
+
+## Roadmap
+
+See [`docs/TODO.md`](./docs/TODO.md) for prioritized open work. Highlights:
+
+- **P0** — Connect custom domain `arkashj.com` to Vercel · ffmpeg demo recordings for `/work` · Submit sitemap to Google Search Console
+- **P1** — `/press`, `/talks`, `/achievements`, `/coursework`, `/collaborators`, `/teaching`, `/open-source` surfaces
+- **P2** — Light-mode contrast audit · RSS for `/writing` · cmd+k search · resume PDF
