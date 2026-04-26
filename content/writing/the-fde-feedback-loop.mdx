@@ -1,0 +1,54 @@
+---
+title: 'The FDE Feedback Loop'
+date: '2026-04-15'
+tags: ['AI', 'Venture']
+description: 'Forward deployed engineering compounds when each engagement makes the next one easier. The loop has four steps.'
+---
+
+I keep coming back to one diagram about forward-deployed engineering. It's a loop
+with four steps, and the tightness of the loop is what determines whether you build
+a consulting firm or something more durable.
+
+## The loop
+
+```
+Engagement → Pattern → Tool → Faster engagement
+     ↑                                  │
+     └──────────────────────────────────┘
+```
+
+1. **Engagement.** A client pays you to ship something inside their environment.
+2. **Pattern.** While shipping, you notice a generalizable pattern. (Auth setup
+   for Stripe Connect. Postgres schema for multi-tenant SaaS. Whatever.)
+3. **Tool.** You codify the pattern as something repeatable — a CLI command, a
+   Claude Code skill, a template, a reusable migration.
+4. **Faster engagement.** Next engagement that hits the same pattern uses the
+   tool. You ship in days instead of weeks. Margin compounds.
+
+## Why most consulting firms can't do this
+
+The trap: most consulting firms bill hourly. Every hour spent extracting a pattern
+and writing a tool is unbillable. The incentive is to redo the engagement from
+scratch every time, because that maximizes hours.
+
+Fixed-price engagements with the FDE compounds reverses the incentive. Now every
+hour you save is your margin. The toolkit is the asset.
+
+## How Benmore implements it
+
+Three things make the loop tight at Benmore:
+
+- **Foundry CLI** — every engagement contributes commands back to a shared CLI
+  used by all engineers.
+- **Claude Code skills** — generalizable workflows become skills the next engineer
+  invokes by name (`/stripe-integration`, `/django-celery-expert`, etc.).
+- **`docs/solutions/`** — every gnarly debugging session gets written up as a
+  solution so the next person hits the bug for two minutes instead of two days.
+
+## The win condition
+
+You know the loop is working when a junior engineer onboards in week one and ships
+production code in week two — using tools that didn't exist twelve months ago, that
+were extracted from work no one is doing again.
+
+That's the entire game.

@@ -1,0 +1,46 @@
+---
+title: 'RocksDB Write Amplification'
+date: '2024-10-22'
+domain: 'distributed-systems'
+description: 'Why your RocksDB-backed database writes 10× the bytes you asked it to, and what the levers are.'
+---
+
+RocksDB is a log-structured merge tree (LSM). Every write goes to a memtable, gets
+flushed to an SST file, and then gets compacted into larger SST files as data ages.
+Each compaction rewrites bytes. Stack enough levels and you write each byte 10–30×
+before it settles.
+
+That's write amplification.
+
+## What controls it
+
+Three knobs matter most:
+
+1. **`max_bytes_for_level_multiplier`** — how much bigger each level is than the one
+   above it. Default 10. Smaller multiplier → fewer compactions but worse read perf.
+2. **`level0_file_num_compaction_trigger`** — how many L0 files accumulate before
+   compaction kicks in. Lower → smoother writes, more frequent compaction.
+3. **`compression_per_level`** — compressed levels write fewer bytes but burn CPU.
+   Common pattern: no compression on L0/L1, ZSTD on L4+.
+
+## The trade
+
+LSMs trade write amplification for sequential writes. SSDs love sequential writes,
+but they hate gratuitous rewrites of long-lived data. The math depends on:
+
+- write rate (bytes/s)
+- read rate
+- ratio of hot to cold data
+- SSD endurance budget
+
+For Apache Flink state backends I tuned `max_bytes_for_level_multiplier` from 10 down
+to 8 for jobs with high update churn — fewer levels, less write amp, slightly worse
+point lookups. The tradeoff was right because Flink reads its own state mostly via
+range scans, which don't punish you as much.
+
+## Heuristic
+
+If your storage subsystem is the bottleneck, profile compaction stats first
+(`db.compact.bytes_written`). If it's much greater than your application write rate,
+you have headroom by lowering the level multiplier or aggressively compressing
+deep levels.

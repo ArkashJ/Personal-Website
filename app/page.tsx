@@ -46,8 +46,8 @@ export default function Home() {
               <Badge variant="cyan">● Current</Badge>
               <h3 className="text-xl font-bold text-white mt-3 mb-2">Head of FDE at Benmore</h3>
               <p className="text-muted text-sm">
-                Leading forward deployed engineering across SMB AI engagements. Cattle Logic shipping
-                to ranches across the Midwest.
+                Leading forward deployed engineering across SMB AI engagements. Cattle Logic
+                shipping to ranches across the Midwest.
               </p>
             </Card>
             <Card glow>

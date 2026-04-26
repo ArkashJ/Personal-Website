@@ -2,7 +2,11 @@ import type { MetadataRoute } from 'next'
 import { SITE } from '@/lib/site'
 import { getAllWritingPosts, getAllKnowledgePosts } from '@/lib/content'
 
-const STATIC: { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' }[] = [
+const STATIC: {
+  path: string
+  priority: number
+  changeFrequency: 'weekly' | 'monthly' | 'yearly'
+}[] = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/research', priority: 0.9, changeFrequency: 'monthly' },
@@ -30,14 +34,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     }))
-  const knowledgeDomains = Array.from(
-    new Set(getAllKnowledgePosts().map((p) => p.domain))
-  ).map((d) => ({
-    url: `${SITE.url}/knowledge/${d}`,
-    lastModified: today,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
+  const knowledgeDomains = Array.from(new Set(getAllKnowledgePosts().map((p) => p.domain))).map(
+    (d) => ({
+      url: `${SITE.url}/knowledge/${d}`,
+      lastModified: today,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })
+  )
 
   return [
     ...STATIC.map((r) => ({

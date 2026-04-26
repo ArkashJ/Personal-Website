@@ -1,0 +1,47 @@
+---
+title: 'Why TypeScript Strict (Even for a Personal Site)'
+date: '2026-04-26'
+domain: 'software'
+description: "The argument for TypeScript strict mode in projects that 'don't need it,' from someone who just migrated a personal site."
+---
+
+This site just migrated from plain JavaScript to TypeScript strict. It's a personal
+website. Three pages of routing logic. The argument for strict mode is supposedly
+"safety at scale" — does it pay off here?
+
+Yes, and the reason is interesting.
+
+## What strict mode actually catches
+
+Most "TypeScript catches bugs" arguments are about runtime crashes. Those aren't the
+real win. The real wins on this site were:
+
+- **`null`/`undefined` narrowing in MDX route handlers.** `getStaticPaths` returns
+  `null` for missing posts. With strict mode the compiler forces you to handle that
+  before reading `.title` or `.description`. Without it, you ship a page that
+  500s the first time someone hits a stale URL.
+- **Forced explicit handling of `notFound()`.** TypeScript made me realize Next.js's
+  `notFound()` doesn't narrow types; you need `return notFound()` for the
+  type-narrowing to work. The Pages Router code I migrated had this latent bug
+  three different times.
+- **Discriminated unions for status badges.** Five status states ('Published',
+  'Completed', 'Current', 'Live') × four badge variants. The compiler now refuses
+  to compile if I add a sixth status without updating the variant map.
+
+## What strict mode doesn't catch
+
+- The actual content being wrong.
+- The CSS being ugly.
+- The data model being conceptually broken.
+
+You still need taste and judgment. TypeScript only enforces consistency between
+parts of the system; it doesn't tell you the system is right.
+
+## The verdict
+
+Strict TypeScript on a small project isn't about preventing crashes. It's about
+making refactors safe so you'll keep doing them. The reason this site went through
+four major architectural changes in a week is partly because the type-checker was
+pinning down what could and couldn't move.
+
+That compounding makes it worth the upfront cost even on three pages.
