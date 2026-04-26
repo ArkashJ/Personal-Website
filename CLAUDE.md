@@ -17,6 +17,7 @@ No test suite is configured.
 Next.js 13 (Pages Router) personal portfolio site styled with Tailwind CSS. No TypeScript — all files are `.js`/`.jsx`.
 
 **Routing**: Each file in `pages/` maps to a route. Currently:
+
 - `/` → `pages/index.js` — main portfolio (Header, Persona, Projects, Skills sections)
 - `/VC` → `pages/VC.js` — work/experience page
 - `/Volunteering` → `pages/Volunteering.js` — volunteer page
@@ -24,6 +25,7 @@ Next.js 13 (Pages Router) personal portfolio site styled with Tailwind CSS. No T
 **Global wrapper**: `pages/_app.js` wraps every page in `components/Layout.js`, which injects `<Meta>` (SEO tags) and `<Nav>` around all page content.
 
 **Component organization**: Components are grouped by page under `components/`:
+
 - `components/mainPage/` — sections for the home page (Header, Persona, Projects, Skills)
   - `components/mainPage/helpers/` — `Widget.js` used by Projects
 - `components/battery/` — work experience cards for the VC page

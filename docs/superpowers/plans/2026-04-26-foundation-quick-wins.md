@@ -311,30 +311,31 @@ These diagrams are the canonical reference for the site. They live in `docs/arch
 
 ## File Map
 
-| Action | Path | Responsibility |
-|---|---|---|
-| Create | `LICENSE` | Apache 2.0 full text |
-| Modify | `package.json` | version → `1.0.0`, add scripts, add dev deps |
-| Rewrite | `README.md` | Shields.io badges, setup, architecture link |
-| Create | `CHANGELOG.md` | Keep-a-Changelog format, v1.0.0 entry |
-| Create | `.github/dependabot.yml` | Security alerts only, `open-pull-requests-limit: 0` |
-| Create | `.github/workflows/ci.yml` | Lint + typecheck + test on PR |
-| Create | `.prettierrc` | Formatting rules |
-| Create | `.prettierignore` | Exclude generated files |
-| Create | `.editorconfig` | Cross-editor consistency |
-| Modify | `.eslintrc.json` | Stricter rules, Prettier integration |
-| Modify | `next.config.js` | Security headers, remove `ignoreDuringBuilds` |
-| Create | `vercel.json` | Vercel config (headers, rewrites) |
-| Create | `.husky/pre-commit` | lint-staged hook |
-| Create | `docs/architecture/site-architecture.md` | All 6 ASCII flows saved as reference |
-| Create | `pages/architecture.js` | Public `/architecture` page rendering ASCII flows |
-| Create | `components/architecture/AsciiDiagram.js` | Styled pre block component |
+| Action  | Path                                      | Responsibility                                      |
+| ------- | ----------------------------------------- | --------------------------------------------------- |
+| Create  | `LICENSE`                                 | Apache 2.0 full text                                |
+| Modify  | `package.json`                            | version → `1.0.0`, add scripts, add dev deps        |
+| Rewrite | `README.md`                               | Shields.io badges, setup, architecture link         |
+| Create  | `CHANGELOG.md`                            | Keep-a-Changelog format, v1.0.0 entry               |
+| Create  | `.github/dependabot.yml`                  | Security alerts only, `open-pull-requests-limit: 0` |
+| Create  | `.github/workflows/ci.yml`                | Lint + typecheck + test on PR                       |
+| Create  | `.prettierrc`                             | Formatting rules                                    |
+| Create  | `.prettierignore`                         | Exclude generated files                             |
+| Create  | `.editorconfig`                           | Cross-editor consistency                            |
+| Modify  | `.eslintrc.json`                          | Stricter rules, Prettier integration                |
+| Modify  | `next.config.js`                          | Security headers, remove `ignoreDuringBuilds`       |
+| Create  | `vercel.json`                             | Vercel config (headers, rewrites)                   |
+| Create  | `.husky/pre-commit`                       | lint-staged hook                                    |
+| Create  | `docs/architecture/site-architecture.md`  | All 6 ASCII flows saved as reference                |
+| Create  | `pages/architecture.js`                   | Public `/architecture` page rendering ASCII flows   |
+| Create  | `components/architecture/AsciiDiagram.js` | Styled pre block component                          |
 
 ---
 
 ## Task 1 — Apache 2.0 License + version tag
 
 **Files:**
+
 - Create: `LICENSE`
 - Modify: `package.json`
 
@@ -557,13 +558,8 @@ Replace the existing `package.json` with:
     "tailwindcss": "^3.2.4"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "next lint --fix --file",
-      "prettier --write"
-    ],
-    "*.{json,md,mdx,css}": [
-      "prettier --write"
-    ]
+    "*.{js,jsx,ts,tsx}": ["next lint --fix --file", "prettier --write"],
+    "*.{json,md,mdx,css}": ["prettier --write"]
   }
 }
 ```
@@ -589,11 +585,12 @@ git tag -a v1.0.0 -m "v1.0.0 — legacy site snapshot before v2 rebuild"
 ## Task 2 — README.md with badges and icons
 
 **Files:**
+
 - Rewrite: `README.md`
 
 - [ ] **Rewrite `README.md`**
 
-```markdown
+````markdown
 # arkashj.com
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-30ACA6.svg)](./LICENSE)
@@ -612,14 +609,14 @@ AI researcher, forward deployed engineer, and builder.
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 13 (Pages Router) → v2: App Router |
-| Language | JavaScript → v2: TypeScript strict |
-| Styling | Tailwind CSS |
-| Content | MDX files in `content/` |
-| Deployment | Vercel |
-| CI | GitHub Actions |
+| Layer      | Technology                                 |
+| ---------- | ------------------------------------------ |
+| Framework  | Next.js 13 (Pages Router) → v2: App Router |
+| Language   | JavaScript → v2: TypeScript strict         |
+| Styling    | Tailwind CSS                               |
+| Content    | MDX files in `content/`                    |
+| Deployment | Vercel                                     |
+| CI         | GitHub Actions                             |
 
 ## Local Development
 
@@ -630,6 +627,7 @@ npm run lint       # ESLint
 npm run format     # Prettier
 npm run build      # Production build
 ```
+````
 
 ## ffmpeg Demo Recipes
 
@@ -652,20 +650,22 @@ for full ASCII flows, or visit [arkashj.com/architecture](https://www.arkashj.co
 ## License
 
 [Apache 2.0](./LICENSE) © 2026 Arkash Jain
-```
+
+````
 
 - [ ] **Commit**
 
 ```bash
 git add README.md
 git commit -m "docs: rewrite README with badges, stack table, ffmpeg recipes"
-```
+````
 
 ---
 
 ## Task 3 — CHANGELOG.md
 
 **Files:**
+
 - Create: `CHANGELOG.md`
 
 - [ ] **Create `CHANGELOG.md`**
@@ -682,6 +682,7 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased] — v2.0.0
 
 ### Planned
+
 - Full rebuild: Next.js 15 App Router + TypeScript strict + Tailwind v4
 - 15+ indexed pages: `/about`, `/research`, `/experience`, `/projects`, `/work`, `/writing`, `/knowledge/*`
 - Life changelog timeline on `/about`
@@ -698,6 +699,7 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.0.0] — 2026-04-26
 
 ### Added
+
 - Apache 2.0 License
 - Production tooling: Prettier, ESLint (stricter), Husky, lint-staged
 - `.editorconfig` for cross-editor consistency
@@ -710,10 +712,12 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `v1.0.0` git tag marking legacy site snapshot
 
 ### Changed
+
 - `next.config.js`: security headers, removed `ignoreDuringBuilds`
 - `package.json`: renamed `arkashj-com`, added dev scripts
 
 ### Legacy (pre-1.0.0)
+
 - Next.js 13 Pages Router, 3 pages: `/`, `/VC`, `/Volunteering`
 - No TypeScript, no tests, no SEO, fixed 1500px width
 - Outdated bio (still said "junior at BU")
@@ -731,6 +735,7 @@ git commit -m "docs: add CHANGELOG.md with v1.0.0 entry and v2.0.0 roadmap"
 ## Task 4 — Dependabot (security scanning, no auto-PRs)
 
 **Files:**
+
 - Create: `.github/dependabot.yml`
 
 - [ ] **Create `.github/dependabot.yml`**
@@ -751,26 +756,26 @@ mkdir -p .github
 
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-      timezone: "America/Chicago"
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'America/Chicago'
     open-pull-requests-limit: 0
     labels:
-      - "dependencies"
+      - 'dependencies'
     commit-message:
-      prefix: "chore(deps)"
+      prefix: 'chore(deps)'
     ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-patch"]
+      - dependency-name: '*'
+        update-types: ['version-update:semver-patch']
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     open-pull-requests-limit: 0
 ```
 
@@ -786,6 +791,7 @@ git commit -m "chore: add dependabot config (security scanning, no auto-PRs)"
 ## Task 5 — Prettier + EditorConfig
 
 **Files:**
+
 - Create: `.prettierrc`
 - Create: `.prettierignore`
 - Create: `.editorconfig`
@@ -861,16 +867,14 @@ git commit -m "style: add Prettier and EditorConfig, format existing files"
 ## Task 6 — ESLint (stricter + Prettier integration)
 
 **Files:**
+
 - Modify: `.eslintrc.json`
 
 - [ ] **Replace `.eslintrc.json`**
 
 ```json
 {
-  "extends": [
-    "next/core-web-vitals",
-    "prettier"
-  ],
+  "extends": ["next/core-web-vitals", "prettier"],
   "rules": {
     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
@@ -905,6 +909,7 @@ git commit -m "chore: tighten ESLint rules, add Prettier integration"
 ## Task 7 — Husky + lint-staged pre-commit hook
 
 **Files:**
+
 - Modify: `package.json` (already has lint-staged config from Task 1)
 - Create: `.husky/pre-commit`
 
@@ -946,6 +951,7 @@ git revert HEAD --no-edit
 ## Task 8 — `next.config.js` security headers + remove ignoreDuringBuilds
 
 **Files:**
+
 - Modify: `next.config.js`
 
 - [ ] **Replace `next.config.js`**
@@ -953,11 +959,11 @@ git revert HEAD --no-edit
 ```js
 /** @type {import('next').NextConfig} */
 const securityHeaders = [
-  { key: 'X-DNS-Prefetch-Control',        value: 'on' },
-  { key: 'X-Frame-Options',               value: 'SAMEORIGIN' },
-  { key: 'X-Content-Type-Options',        value: 'nosniff' },
-  { key: 'Referrer-Policy',               value: 'strict-origin-when-cross-origin' },
-  { key: 'Permissions-Policy',            value: 'camera=(), microphone=(), geolocation=()' },
+  { key: 'X-DNS-Prefetch-Control', value: 'on' },
+  { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+  { key: 'X-Content-Type-Options', value: 'nosniff' },
+  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+  { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
   {
     key: 'Strict-Transport-Security',
     value: 'max-age=63072000; includeSubDomains; preload',
@@ -1004,6 +1010,7 @@ git commit -m "chore: security headers, remove ignoreDuringBuilds, enable avif/w
 ## Task 9 — Vercel CLI + `vercel.json`
 
 **Files:**
+
 - Create: `vercel.json`
 
 - [ ] **Install Vercel CLI globally (if not already installed)**
@@ -1028,22 +1035,18 @@ Expected output: `Vercel CLI X.Y.Z`
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options",         "value": "SAMEORIGIN" },
-        { "key": "X-Content-Type-Options",  "value": "nosniff" },
-        { "key": "Referrer-Policy",         "value": "strict-origin-when-cross-origin" }
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
       ]
     },
     {
       "source": "/demos/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
       "source": "/_next/static/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]
 }
@@ -1067,6 +1070,7 @@ git commit -m "chore: add vercel.json with caching and security header config"
 ## Task 10 — GitHub Actions CI workflow
 
 **Files:**
+
 - Create: `.github/workflows/ci.yml`
 
 - [ ] **Create `.github/workflows/ci.yml`**
@@ -1126,6 +1130,7 @@ Go to `https://github.com/ArkashJ/Personal-Website/actions` — the `CI` workflo
 ## Task 11 — ASCII architecture docs
 
 **Files:**
+
 - Create: `docs/architecture/site-architecture.md`
 
 - [ ] **Create `docs/architecture/site-architecture.md`**
@@ -1155,6 +1160,7 @@ git commit -m "docs: add ASCII architecture flows to docs/architecture/"
 ## Task 12 — Public `/architecture` page
 
 **Files:**
+
 - Create: `components/architecture/AsciiDiagram.js`
 - Create: `pages/architecture.js`
 
@@ -1439,50 +1445,31 @@ export default function Architecture() {
 
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="mb-12">
-          <h1 className="text-4xl font-bold font-mono text-white mb-3">
-            Site Architecture
-          </h1>
+          <h1 className="text-4xl font-bold font-mono text-white mb-3">Site Architecture</h1>
           <p className="text-[#8892B0] text-lg">
             ASCII flow diagrams for{' '}
-            <a
-              href="https://www.arkashj.com"
-              className="text-[#30ACA6] hover:underline"
-            >
+            <a href="https://www.arkashj.com" className="text-[#30ACA6] hover:underline">
               arkashj.com
             </a>{' '}
             · v2 target stack
           </p>
           <p className="text-[#8892B0] text-sm mt-1">
             Source:{' '}
-            <code className="text-[#00FFC8] text-xs">
-              docs/architecture/site-architecture.md
-            </code>
+            <code className="text-[#00FFC8] text-xs">docs/architecture/site-architecture.md</code>
           </p>
         </div>
 
-        <AsciiDiagram title="Flow 1 — Site Architecture Overview">
-          {FLOW_1}
-        </AsciiDiagram>
+        <AsciiDiagram title="Flow 1 — Site Architecture Overview">{FLOW_1}</AsciiDiagram>
 
-        <AsciiDiagram title="Flow 2 — Page Navigation Flow">
-          {FLOW_2}
-        </AsciiDiagram>
+        <AsciiDiagram title="Flow 2 — Page Navigation Flow">{FLOW_2}</AsciiDiagram>
 
-        <AsciiDiagram title="Flow 3 — Content Pipeline (MDX → Pages)">
-          {FLOW_3}
-        </AsciiDiagram>
+        <AsciiDiagram title="Flow 3 — Content Pipeline (MDX → Pages)">{FLOW_3}</AsciiDiagram>
 
-        <AsciiDiagram title="Flow 4 — SEO Pipeline">
-          {FLOW_4}
-        </AsciiDiagram>
+        <AsciiDiagram title="Flow 4 — SEO Pipeline">{FLOW_4}</AsciiDiagram>
 
-        <AsciiDiagram title="Flow 5 — CI/CD Pipeline">
-          {FLOW_5}
-        </AsciiDiagram>
+        <AsciiDiagram title="Flow 5 — CI/CD Pipeline">{FLOW_5}</AsciiDiagram>
 
-        <AsciiDiagram title="Flow 6 — Component Hierarchy">
-          {FLOW_6}
-        </AsciiDiagram>
+        <AsciiDiagram title="Flow 6 — Component Hierarchy">{FLOW_6}</AsciiDiagram>
       </div>
     </div>
   )
@@ -1541,23 +1528,23 @@ git push --tags
 
 **Spec coverage check:**
 
-| Spec requirement | Task |
-|---|---|
-| Apache 2.0 License | Task 1 |
-| Version + git tags | Task 1 + Task 13 |
-| README with icons/badges | Task 2 |
-| ffmpeg recipes documented | Task 2 (README) |
-| CHANGELOG.md | Task 3 |
-| Dependabot (no auto-PRs) | Task 4 |
-| Prettier | Task 5 |
-| EditorConfig | Task 5 |
-| ESLint (stricter) | Task 6 |
-| Husky + lint-staged | Task 7 |
-| next.config.js security headers | Task 8 |
-| Vercel CLI + vercel.json | Task 9 |
-| GitHub Actions CI | Task 10 |
-| Thorough ASCII flows | Task 11 (docs) + plan header |
-| Public /architecture page | Task 12 |
+| Spec requirement                | Task                         |
+| ------------------------------- | ---------------------------- |
+| Apache 2.0 License              | Task 1                       |
+| Version + git tags              | Task 1 + Task 13             |
+| README with icons/badges        | Task 2                       |
+| ffmpeg recipes documented       | Task 2 (README)              |
+| CHANGELOG.md                    | Task 3                       |
+| Dependabot (no auto-PRs)        | Task 4                       |
+| Prettier                        | Task 5                       |
+| EditorConfig                    | Task 5                       |
+| ESLint (stricter)               | Task 6                       |
+| Husky + lint-staged             | Task 7                       |
+| next.config.js security headers | Task 8                       |
+| Vercel CLI + vercel.json        | Task 9                       |
+| GitHub Actions CI               | Task 10                      |
+| Thorough ASCII flows            | Task 11 (docs) + plan header |
+| Public /architecture page       | Task 12                      |
 
 **Placeholder scan:** None found.
 

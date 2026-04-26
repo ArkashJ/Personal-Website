@@ -1,4 +1,5 @@
 # Personal Website Revamp — Design Spec
+
 **Date:** 2026-04-26  
 **Status:** Approved  
 **Live site:** https://www.arkashj.com  
@@ -8,9 +9,10 @@
 
 ## 1. Problem Statement
 
-The current site (Next.js 13, Pages Router, no TypeScript, 3 pages) is completely outdated — bio still says "junior at BU," Harvard and Benmore are missing entirely, no SEO infrastructure, fixed 1500px width, zero tests. 
+The current site (Next.js 13, Pages Router, no TypeScript, 3 pages) is completely outdated — bio still says "junior at BU," Harvard and Benmore are missing entirely, no SEO infrastructure, fixed 1500px width, zero tests.
 
 Two goals drive this rebuild:
+
 1. **O-1 visa** — Google must index Arkash as an extraordinary individual. The site is the canonical evidence hub linking to every public proof point (papers, GitHub, Substack, LinkedIn).
 2. **Personal brand** — a modern, data-dense portfolio that reflects the actual trajectory: physicist → VC → distributed systems researcher → Harvard AI researcher → AI consultant building companies.
 
@@ -18,19 +20,19 @@ Two goals drive this rebuild:
 
 ## 2. Tech Stack
 
-| Layer | Choice | Reason |
-|---|---|---|
-| Framework | Next.js 15 App Router + TypeScript strict | RSC streaming for SEO, ISR for writing, Vercel-native |
-| Styling | Tailwind CSS v4 | Utility-first, co-located, no CSS files to maintain |
-| Content | MDX files in `content/` | Markdown + JSX, statically built, no CMS needed |
-| Images | `next/image` everywhere | Auto WebP, lazy load, blur placeholder, LCP optimization |
-| Fonts | `next/font` (Geist Sans + Geist Mono) | Zero layout shift, subsetting |
-| SEO | Next.js native `sitemap.ts` + `robots.ts` | Auto-generated, dynamic slugs included |
-| Structured data | Custom `JsonLd` RSC component | Person + ScholarlyArticle + Article schemas |
-| Testing | Vitest (unit) + Playwright (E2E) | Content parsing, SEO helpers, key page flows |
-| Linting | ESLint + Prettier + Husky + lint-staged | Pre-commit enforcement |
-| CI/CD | GitHub Actions → Vercel | Lint + typecheck + test on PR; deploy on main |
-| Demo assets | WebM/MP4 in `public/demos/` | ffmpeg-converted screen recordings, 10-20x smaller than GIF |
+| Layer           | Choice                                    | Reason                                                      |
+| --------------- | ----------------------------------------- | ----------------------------------------------------------- |
+| Framework       | Next.js 15 App Router + TypeScript strict | RSC streaming for SEO, ISR for writing, Vercel-native       |
+| Styling         | Tailwind CSS v4                           | Utility-first, co-located, no CSS files to maintain         |
+| Content         | MDX files in `content/`                   | Markdown + JSX, statically built, no CMS needed             |
+| Images          | `next/image` everywhere                   | Auto WebP, lazy load, blur placeholder, LCP optimization    |
+| Fonts           | `next/font` (Geist Sans + Geist Mono)     | Zero layout shift, subsetting                               |
+| SEO             | Next.js native `sitemap.ts` + `robots.ts` | Auto-generated, dynamic slugs included                      |
+| Structured data | Custom `JsonLd` RSC component             | Person + ScholarlyArticle + Article schemas                 |
+| Testing         | Vitest (unit) + Playwright (E2E)          | Content parsing, SEO helpers, key page flows                |
+| Linting         | ESLint + Prettier + Husky + lint-staged   | Pre-commit enforcement                                      |
+| CI/CD           | GitHub Actions → Vercel                   | Lint + typecheck + test on PR; deploy on main               |
+| Demo assets     | WebM/MP4 in `public/demos/`               | ffmpeg-converted screen recordings, 10-20x smaller than GIF |
 
 **No fake data. No placeholder content. Everything on the site must be real.**
 
@@ -143,6 +145,7 @@ CHANGELOG.md
 The SEO anchor. Every page is reachable in one hop from here (crawl depth = 1).
 
 **Section flow:**
+
 1. **Hero** — Name, role, 4 stat badges (neon cyan), two CTAs
    - Stats: `4 Papers Published` · `Harvard + BU` · `887% Revenue Growth` · `3D SSL Pioneer`
    - CTAs: `View My Work →` + `Read My Writing →`
@@ -158,6 +161,7 @@ The SEO anchor. Every page is reachable in one hop from here (crawl depth = 1).
 ### 4.2 `/about` — Life Changelog
 
 Vertical timeline component matching the reference design (dark-themed). Each milestone card contains:
+
 - Arkash's photo as avatar (left, on the timeline)
 - Title + category pill + date
 - 2-3 sentence description
@@ -166,31 +170,32 @@ Vertical timeline component matching the reference design (dark-themed). Each mi
 
 **Milestones (chronological, all real):**
 
-| Title | Category | Date | Status |
-|---|---|---|---|
-| Arrived in the US from India | Life | Sep 2020 | Completed |
-| UROP Scholar — 1 of 5 freshmen, entire university | Award | 2021 | Completed |
-| Battery Ventures — Sourcing Intern | VC | Dec 2021 | Completed |
-| Battery Ventures — Diligence Intern | VC | May 2022 | Completed |
-| First Paper: Supercritical Fluids (Chemical Physics) | Publication | Nov 2022 | Published |
-| BCH + ZeroSync Engineering Internships | Engineering | 2023 | Completed |
-| Distributed Systems Research at BU | Research | 2023 | Completed |
-| Marvin Freedman Scholar — 1 of 6, Math dept. | Award | 2024 | Completed |
-| BA/MS BU — Magna Cum Laude | Education | May 2024 | Completed |
-| Harvard Kirchhausen Lab | Research | May 2024 | Completed |
-| SpatialDINO beats Nobel laureate's approach | Research | 2025 | Completed |
-| SpatialDINO — BioArxiv | Publication | 2025 | Published |
-| Journal of Cell Biology (×2 papers) | Publication | Aug 2025 | Published |
-| Joined Benmore — Employee #2 | Work | Aug 2025 | Completed |
-| $150k total → $150k every 15 days | Milestone | 2025–2026 | Completed |
-| Cattle Logic Launched | Product | 2026 | Live |
-| Head of FDE, Benmore | Work | Apr 2026 | Current |
+| Title                                                | Category    | Date      | Status    |
+| ---------------------------------------------------- | ----------- | --------- | --------- |
+| Arrived in the US from India                         | Life        | Sep 2020  | Completed |
+| UROP Scholar — 1 of 5 freshmen, entire university    | Award       | 2021      | Completed |
+| Battery Ventures — Sourcing Intern                   | VC          | Dec 2021  | Completed |
+| Battery Ventures — Diligence Intern                  | VC          | May 2022  | Completed |
+| First Paper: Supercritical Fluids (Chemical Physics) | Publication | Nov 2022  | Published |
+| BCH + ZeroSync Engineering Internships               | Engineering | 2023      | Completed |
+| Distributed Systems Research at BU                   | Research    | 2023      | Completed |
+| Marvin Freedman Scholar — 1 of 6, Math dept.         | Award       | 2024      | Completed |
+| BA/MS BU — Magna Cum Laude                           | Education   | May 2024  | Completed |
+| Harvard Kirchhausen Lab                              | Research    | May 2024  | Completed |
+| SpatialDINO beats Nobel laureate's approach          | Research    | 2025      | Completed |
+| SpatialDINO — BioArxiv                               | Publication | 2025      | Published |
+| Journal of Cell Biology (×2 papers)                  | Publication | Aug 2025  | Published |
+| Joined Benmore — Employee #2                         | Work        | Aug 2025  | Completed |
+| $150k total → $150k every 15 days                    | Milestone   | 2025–2026 | Completed |
+| Cattle Logic Launched                                | Product     | 2026      | Live      |
+| Head of FDE, Benmore                                 | Work        | Apr 2026  | Current   |
 
 ### 4.3 `/experience`
 
 Work history cards. Each card: org logo, role title, dates, 3-5 bullet points. Ordered reverse-chronological.
 
 **Entries:**
+
 - Benmore Technologies — Forward Deployed Strategist & Engineer (Aug 2025–present)
 - Harvard Medical School — ML Researcher (May 2024–Aug 2025)
 - ZeroSync — SWE Intern (May–Aug 2023)
@@ -205,12 +210,14 @@ Work history cards. Each card: org logo, role title, dates, 3-5 bullet points. O
 Hero section: SpatialDINO featured prominently (largest card, animated). Below: 4 paper cards + infrastructure sidebar.
 
 **Paper cards:**
+
 1. SpatialDINO — BioArxiv 2025 (first author) — link to biorxiv.org
 2. Close-Up of vesicular ER Exit Sites — Journal of Cell Biology, Aug 2025
 3. UNET for Semi-Supervised Segmentation — Journal of Cell Biology, Aug 2025
 4. Ultrafast 2DIR comparison... — Journal of Chemical Physics, Nov 2022
 
 **Infrastructure section** (the O-1 differentiator):
+
 - Full ML stack: Infiniband/RDMA → RAID → NVMe → NVLink → DGX nodes → bf16 → FSDP
 - PyTorch open source contribution: Issue #144779 (Infiniband RDZV backend) — link to GitHub
 
@@ -221,6 +228,7 @@ Hero section: SpatialDINO featured prominently (largest card, animated). Below: 
 Grid of real project cards. Each: name, description, tech stack tags, GitHub link, demo link if available.
 
 **Projects:**
+
 - Cattle Logic — OS for American cattle ranches (Benmore, 2026). Offline-first, CME-integrated.
 - SpatialDINO — 3D SSL vision transformer (Harvard, 2025)
 - Benmore Foundry CLI — orchestration layer for SMB AI consulting
@@ -236,12 +244,14 @@ Grid of real project cards. Each: name, description, tech stack tags, GitHub lin
 Separate from projects. Demonstrates craft and operational tools. Each card has an animated demo (`<video autoPlay muted loop playsInline>` with WebM + MP4 source).
 
 **Entries:**
+
 - Benmore Foundry CLI — internal orchestration layer
 - RTK (Rust Token Killer) — token-optimized Claude Code CLI proxy
 - Claude Code skills built — compound-engineering, etc.
 - Excalidraw workflow demos — client discovery flows
 
 **ffmpeg commands documented in `CLAUDE.md`:**
+
 ```bash
 # WebM (primary — best size/quality)
 ffmpeg -i recording.mov -c:v libvpx-vp9 -crf 30 -b:v 0 -an -vf "scale=1200:-2" public/demos/[name]/demo.webm
@@ -256,12 +266,13 @@ ffmpeg -i recording.mov -vf "fps=12,scale=900:-1:flags=lanczos,split[s0][s1];[s0
 Index: cards sorted by date, tag filters across top (AI · Finance · Distributed Systems · Hardware · Geopolitics · Venture).
 
 Content: manually curated MDX files in `content/writing/`. Arkash selects what to port from the alpha repo (alpha stays private). Each MDX file frontmatter:
+
 ```yaml
 ---
-title: "AI Hardware Stack Deep Dive"
-date: "2026-03-09"
-tags: ["AI", "Hardware", "Distributed Systems"]
-description: "From TSMC N3 shortages to HBM constraints — what the silicon shortage means for frontier AI."
+title: 'AI Hardware Stack Deep Dive'
+date: '2026-03-09'
+tags: ['AI', 'Hardware', 'Distributed Systems']
+description: 'From TSMC N3 shortages to HBM constraints — what the silicon shortage means for frontier AI.'
 ---
 ```
 
@@ -272,18 +283,21 @@ Individual post page gets `Article` JSON-LD.
 **Hub page:** 6 domain cards with article counts, a one-line description of Arkash's relationship to each domain, and links.
 
 **Domain pages (`/knowledge/[domain]`):**
+
 - Header: Arkash's personal intro to the domain (3-5 sentences, opinionated)
 - Article list: all MDX files in that folder, sorted by date
 - Recommended resources sidebar: podcasts, newsletters, books specific to domain
 
 **Individual pages (`/knowledge/[domain]/[slug]`):**
+
 - Full MDX content — can be notes, essay, paper summary, worked example
 - Gets `Article` JSON-LD
 - Included in sitemap
 
 **Finance domain — additional components:**
 
-*Thesis Tracker:*
+_Thesis Tracker:_
+
 ```
 Aggregation Theory → SaaS Platform Consolidation    [Active]
 AI Infrastructure Layer > Application Layer          [Active]
@@ -292,7 +306,8 @@ HBM Scarcity as Structural Constraint               [Active — early MU thesis]
 Private Credit Replacing Public Markets             [Watching]
 ```
 
-*Trade Log* (public accountability journal, framed as personal tracking not financial advice):
+_Trade Log_ (public accountability journal, framed as personal tracking not financial advice):
+
 - Simple table: Date · Instrument · Thesis · Outcome
 - Includes LITE options trade, SPY tracking, etc.
 
@@ -303,6 +318,7 @@ Private Credit Replacing Public Markets             [Watching]
 ### 5.1 Structured Data (JSON-LD)
 
 **Person schema** — root `layout.tsx`, present on every page:
+
 ```json
 {
   "@context": "https://schema.org",
@@ -324,9 +340,14 @@ Private Credit Replacing Public Markets             [Watching]
     { "@type": "EducationalOrganization", "name": "Boston University" }
   ],
   "knowsAbout": [
-    "Machine Learning", "Computer Vision", "Distributed Systems",
-    "Self-Supervised Learning", "3D Vision Transformers", "AI Infrastructure",
-    "Venture Capital", "Forward Deployed Engineering"
+    "Machine Learning",
+    "Computer Vision",
+    "Distributed Systems",
+    "Self-Supervised Learning",
+    "3D Vision Transformers",
+    "AI Infrastructure",
+    "Venture Capital",
+    "Forward Deployed Engineering"
   ]
 }
 ```
@@ -337,6 +358,7 @@ Private Credit Replacing Public Markets             [Watching]
 ### 5.2 Sitemap (`app/sitemap.ts`)
 
 Auto-generated. Includes:
+
 - All static routes (15+)
 - All `/writing/[slug]` pages (dynamic, from `content/writing/`)
 - All `/knowledge/[domain]/[slug]` pages (dynamic, from `content/knowledge/`)
@@ -348,16 +370,16 @@ Auto-generated. Includes:
 
 Every page gets unique `title` + `description` + Open Graph + Twitter card + canonical URL.
 
-| Page | Title |
-|---|---|
-| `/` | Arkash Jain — AI Researcher, Forward Deployed Engineer & Builder |
-| `/about` | Arkash Jain — From Physics to Harvard AI Research to Building AI Companies |
-| `/research` | Research — Arkash Jain · SpatialDINO, Cell Biology ML, 4 Published Papers |
-| `/experience` | Experience — Arkash Jain · Benmore, Harvard, Battery Ventures |
-| `/projects` | Projects — Arkash Jain · Cattle Logic, SpatialDINO, Open Source |
-| `/work` | Tools & CLIs — Arkash Jain · Benmore Foundry, RTK, Claude Skills |
-| `/writing` | Writing — Arkash Jain · AI Hardware, Finance, Distributed Systems |
-| `/knowledge` | Knowledge — Arkash Jain's Second Brain · AI, Finance, Physics, Math |
+| Page          | Title                                                                      |
+| ------------- | -------------------------------------------------------------------------- |
+| `/`           | Arkash Jain — AI Researcher, Forward Deployed Engineer & Builder           |
+| `/about`      | Arkash Jain — From Physics to Harvard AI Research to Building AI Companies |
+| `/research`   | Research — Arkash Jain · SpatialDINO, Cell Biology ML, 4 Published Papers  |
+| `/experience` | Experience — Arkash Jain · Benmore, Harvard, Battery Ventures              |
+| `/projects`   | Projects — Arkash Jain · Cattle Logic, SpatialDINO, Open Source            |
+| `/work`       | Tools & CLIs — Arkash Jain · Benmore Foundry, RTK, Claude Skills           |
+| `/writing`    | Writing — Arkash Jain · AI Hardware, Finance, Distributed Systems          |
+| `/knowledge`  | Knowledge — Arkash Jain's Second Brain · AI, Finance, Physics, Math        |
 
 ### 5.4 Identity Verification (`<head>`)
 
@@ -382,23 +404,26 @@ Every page gets unique `title` + `description` + Open Graph + Twitter card + can
 ## 6. Design System
 
 ### Colors
+
 ```css
---color-bg:        #1E2340;   /* dark slate — base */
---color-surface:   #252B47;   /* card backgrounds */
---color-border:    #2E3656;   /* subtle borders */
---color-primary:   #30ACA6;   /* teal — links, badges, timeline */
---color-accent:    #00FFC8;   /* neon cyan — numbers, stats, current badges */
---color-text:      #FFFFFF;   /* primary body text */
---color-muted:     #8892B0;   /* secondary text (richer than #666 on dark bg) */
+--color-bg: #1e2340; /* dark slate — base */
+--color-surface: #252b47; /* card backgrounds */
+--color-border: #2e3656; /* subtle borders */
+--color-primary: #30aca6; /* teal — links, badges, timeline */
+--color-accent: #00ffc8; /* neon cyan — numbers, stats, current badges */
+--color-text: #ffffff; /* primary body text */
+--color-muted: #8892b0; /* secondary text (richer than #666 on dark bg) */
 ```
 
 ### Typography
+
 - **Headings:** Geist Sans, bold
 - **Body:** Geist Sans, regular
 - **Code/stats:** Geist Mono
 - All via `next/font` — zero layout shift, subsetted
 
 ### Component Patterns
+
 - **Card:** `bg-surface`, `border border-border`, `hover:border-primary`, `hover:shadow-[0_0_20px_rgba(48,172,166,0.15)]`
 - **StatBadge:** `font-mono text-accent text-2xl font-bold`
 - **Tag/Badge:** `bg-primary/20 text-primary border border-primary/30 rounded-full px-3 py-1 text-sm`
@@ -413,6 +438,7 @@ Every page gets unique `title` + `description` + Open Graph + Twitter card + can
 ## 7. Production Setup
 
 ### Tooling
+
 ```json
 {
   "scripts": {
@@ -430,6 +456,7 @@ Every page gets unique `title` + `description` + Open Graph + Twitter card + can
 ```
 
 ### Pre-commit (Husky + lint-staged)
+
 ```json
 {
   "*.{ts,tsx}": ["eslint --fix", "prettier --write"],
@@ -438,10 +465,12 @@ Every page gets unique `title` + `description` + Open Graph + Twitter card + can
 ```
 
 ### GitHub Actions
+
 - **`ci.yml`:** On PR → `lint` + `typecheck` + `test`
 - **`deploy.yml`:** On push to `main` → Vercel production deploy
 
 ### Documentation files (committed day 1)
+
 - `CLAUDE.md` — dev commands, architecture overview, ffmpeg recipes, Google Search Console instructions
 - `README.md` — project overview, local setup, deployment
 - `CHANGELOG.md` — version history starting from v2.0.0 (this rebuild)
@@ -451,23 +480,25 @@ Every page gets unique `title` + `description` + Open Graph + Twitter card + can
 ## 8. Content MDX Frontmatter Schemas
 
 ### Writing posts (`content/writing/*.mdx`)
+
 ```yaml
 ---
 title: string
 date: YYYY-MM-DD
-tags: string[]          # maps to: AI | Finance | Distributed Systems | Hardware | Geopolitics | Venture
-description: string     # used for meta description + card preview
+tags: string[] # maps to: AI | Finance | Distributed Systems | Hardware | Geopolitics | Venture
+description: string # used for meta description + card preview
 ---
 ```
 
 ### Knowledge articles (`content/knowledge/[domain]/*.mdx`)
+
 ```yaml
 ---
 title: string
 date: YYYY-MM-DD
 domain: ai | finance | physics | math | distributed-systems | software
 description: string
-resources:              # optional sidebar links
+resources: # optional sidebar links
   - label: string
     url: string
 ---

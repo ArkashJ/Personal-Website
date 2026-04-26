@@ -3,16 +3,14 @@ import Meta from './Meta'
 import styles from '../styles/Layout.module.css'
 import Header from './mainPage/Header'
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
-        <Meta/>
-        <Nav />
-        <div className={styles.container}>
-            <main className={styles.main}>
-                {children}
-            </main>
-        </div>
+      <Meta />
+      <Nav />
+      <div className={styles.container}>
+        <main className={styles.main}>{children}</main>
+      </div>
     </>
   )
 }

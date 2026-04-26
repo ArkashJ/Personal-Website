@@ -1,9 +1,9 @@
-import Work from "../components/battery/Work"
+import Work from '../components/battery/Work'
 
 const VC = () => {
   return (
     <div>
-      <Work/>
+      <Work />
     </div>
   )
 }
