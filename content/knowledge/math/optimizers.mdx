@@ -1,0 +1,41 @@
+---
+title: 'Optimizer Intuition: SGD → Adam → Lion'
+date: '2025-12-04'
+domain: 'math'
+description: 'The 60-second mental model for the optimizer ladder you actually need to know.'
+---
+
+Three optimizers cover 95% of practical deep learning. Here's the one-paragraph
+mental model for each.
+
+## SGD with momentum
+
+> "Roll downhill, but a heavy ball with inertia."
+
+The gradient tells you the slope. Momentum is a moving average of recent gradients.
+The two together let the optimizer skate past small bumps and pick up speed in
+consistent directions.
+
+## Adam
+
+> "SGD, but each parameter has its own learning rate."
+
+Adam tracks two moving averages per parameter: gradient (first moment) and squared
+gradient (second moment). The effective step size is the first moment divided by
+the square root of the second. Parameters with consistently large gradients get
+smaller steps. Sparse gradients get larger steps.
+
+This is why Adam is a default for transformers — embedding-table parameters are
+extremely sparse, and the per-parameter rate adaptation handles them well.
+
+## Lion
+
+> "Adam, but with a sign function that costs less memory."
+
+Lion drops the squared-gradient moving average. Instead, it uses the _sign_ of the
+EMA-of-gradients as the update direction. This costs half the optimizer state and
+empirically matches or beats Adam on language models above a few billion parameters.
+
+For SpatialDINO I used AdamW (Adam with decoupled weight decay) because the model
+fit comfortably in memory and I valued recipe stability over the squeeze. At
+foundation-model scale, the tradeoff flips.
