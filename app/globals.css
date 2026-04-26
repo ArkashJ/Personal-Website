@@ -6,18 +6,43 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #1e2340;
-  color: #ffffff;
+  background-color: #0a0a0a;
+  color: #fafafa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family:
+    var(--font-geist-sans),
     Inter,
     system-ui,
     -apple-system,
     sans-serif;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Infinite grid background — fixed so it doesn't scroll, fades to dark center */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: -1px -1px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+}
+
+/* Make sure all real content sits above the grid */
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 a {
@@ -26,7 +51,7 @@ a {
 }
 
 a:hover {
-  color: #30aca6;
+  color: #5eead4;
 }
 
 * {
@@ -37,20 +62,38 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Selection */
+::selection {
+  background-color: #5eead4;
+  color: #0a0a0a;
+}
+
+/* Focus rings — keyboard accessibility */
+:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #1e2340;
+  background: #0a0a0a;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #2e3656;
-  border-radius: 5px;
+  background: #262626;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #30aca6;
+/* react-tweet dark theme */
+[data-theme='dark'] {
+  --tweet-bg-color: #111111;
+  --tweet-bg-color-hover: #171717;
+  --tweet-color-blue-primary: #5eead4;
+  --tweet-color-blue-primary-hover: #22d3ee;
+  --tweet-border: 1px solid #262626;
 }

@@ -2,16 +2,27 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
 import { NAV_LINKS } from '@/lib/site'
 
 const Nav = () => {
   const pathname = usePathname()
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
   return (
-    <nav className="sticky top-0 z-50 bg-bg/80 backdrop-blur border-b border-border">
+    <nav className="sticky top-0 z-50 bg-bg/85 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="font-mono text-lg font-bold text-white hover:text-primary">
+        <Link
+          href="/"
+          className="font-mono text-base font-bold text-text hover:text-primary tracking-tight"
+        >
           arkash.jain
         </Link>
+
         <ul className="hidden md:flex items-center gap-6 text-sm">
           {NAV_LINKS.filter((l) => l.href !== '/').map((link) => {
             const active = pathname === link.href || pathname?.startsWith(`${link.href}/`)
@@ -19,8 +30,8 @@ const Nav = () => {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`font-mono transition-colors ${
-                    active ? 'text-accent' : 'text-muted hover:text-primary'
+                  className={`font-mono text-[13px] transition-colors ${
+                    active ? 'text-primary' : 'text-muted hover:text-text'
                   }`}
                 >
                   {link.label}
@@ -29,7 +40,50 @@ const Nav = () => {
             )
           })}
         </ul>
+
+        <button
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden flex flex-col gap-1 p-2 -mr-2"
+        >
+          <span
+            className={`block h-0.5 w-5 bg-text transition-transform ${
+              open ? 'translate-y-1.5 rotate-45' : ''
+            }`}
+          />
+          <span
+            className={`block h-0.5 w-5 bg-text transition-opacity ${open ? 'opacity-0' : ''}`}
+          />
+          <span
+            className={`block h-0.5 w-5 bg-text transition-transform ${
+              open ? '-translate-y-1.5 -rotate-45' : ''
+            }`}
+          />
+        </button>
       </div>
+
+      {open && (
+        <div className="md:hidden border-t border-border bg-bg">
+          <ul className="px-6 py-4 flex flex-col gap-3">
+            {NAV_LINKS.filter((l) => l.href !== '/').map((link) => {
+              const active = pathname === link.href || pathname?.startsWith(`${link.href}/`)
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`block font-mono text-sm py-1 ${
+                      active ? 'text-primary' : 'text-muted hover:text-text'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
     </nav>
   )
 }

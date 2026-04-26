@@ -38,24 +38,33 @@ export default async function KnowledgeDomainPage({
   if (!d) return notFound()
 
   const posts = getAllKnowledgePosts(domain).filter((p) => p.slug !== 'index')
+  // Adapt grid to article count: single article → single column, multiple → 2-col
+  const gridCols = posts.length === 1 ? 'md:grid-cols-1 max-w-2xl' : 'md:grid-cols-2'
 
   return (
     <div className="px-6 py-16 max-w-5xl mx-auto">
-      <Link href="/knowledge" className="text-primary hover:text-accent font-mono text-sm">
+      <Link
+        href="/knowledge"
+        className="font-mono text-primary text-xs hover:text-accent uppercase tracking-widest"
+      >
         ← Knowledge
       </Link>
       <SectionHeader eyebrow={d.slug} title={d.name} description={d.description} />
 
       {posts.length > 0 && (
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-4">Articles</h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <h2 className="text-xl font-bold text-text tracking-tight mb-6">
+            Articles ({posts.length})
+          </h2>
+          <div className={`grid gap-4 ${gridCols}`}>
             {posts.map((p) => (
-              <Link key={p.slug} href={`/knowledge/${d.slug}/${p.slug}`}>
+              <Link key={p.slug} href={`/knowledge/${d.slug}/${p.slug}`} className="block">
                 <Card glow className="h-full cursor-pointer">
-                  <p className="text-muted text-xs font-mono mb-2">{p.date}</p>
-                  <h3 className="text-white font-bold mb-2">{p.title}</h3>
-                  <p className="text-muted text-sm">{p.description}</p>
+                  <p className="font-mono text-[11px] text-subtle uppercase tracking-widest mb-2">
+                    {p.date}
+                  </p>
+                  <h3 className="text-text font-bold mb-2 tracking-tight">{p.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{p.description}</p>
                 </Card>
               </Link>
             ))}
@@ -66,14 +75,14 @@ export default async function KnowledgeDomainPage({
       {d.slug === 'finance' && (
         <div className="space-y-12">
           <section>
-            <h2 className="text-2xl font-bold text-white mb-2">Thesis Tracker</h2>
+            <h2 className="text-xl font-bold text-text tracking-tight mb-2">Thesis Tracker</h2>
             <p className="text-muted text-sm mb-6">
               Live theses I&apos;m operating against. Updated when something materially changes.
             </p>
             <ThesisTracker theses={THESES} />
           </section>
           <section>
-            <h2 className="text-2xl font-bold text-white mb-2">Trade Log</h2>
+            <h2 className="text-xl font-bold text-text tracking-tight mb-2">Trade Log</h2>
             <p className="text-muted text-sm mb-6">
               Public accountability journal. Tracks the trades, not the size.
             </p>
@@ -86,7 +95,11 @@ export default async function KnowledgeDomainPage({
         <Card>
           <p className="text-muted text-sm">
             Articles for <span className="text-primary font-mono">{d.name}</span> are being written.
-            Check back soon.
+            Check back soon — or browse{' '}
+            <Link href="/writing" className="text-primary hover:text-accent">
+              /writing
+            </Link>
+            .
           </p>
         </Card>
       )}

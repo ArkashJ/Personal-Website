@@ -4,9 +4,9 @@ import type { ReactNode } from 'react'
 type Variant = 'primary' | 'ghost' | 'outline'
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-primary text-bg hover:bg-accent hover:text-bg',
-  ghost: 'bg-transparent text-primary border border-primary hover:bg-primary/10',
-  outline: 'bg-transparent text-white border border-border hover:border-primary hover:text-primary',
+  primary: 'bg-primary text-bg hover:bg-accent',
+  ghost: 'bg-transparent text-primary border border-primary/40 hover:border-primary',
+  outline: 'bg-transparent text-text border border-border hover:border-border-strong',
 }
 
 type ButtonProps = {
@@ -17,7 +17,7 @@ type ButtonProps = {
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button = ({ href, variant = 'primary', children, className = '', ...props }: ButtonProps) => {
-  const cls = `inline-flex items-center gap-2 px-5 py-2.5 rounded-md font-mono text-sm font-medium transition-colors ${variants[variant]} ${className}`
+  const cls = `inline-flex items-center gap-2 px-5 py-2.5 font-mono text-sm transition-colors ${variants[variant]} ${className}`
   if (href) {
     if (href.startsWith('http')) {
       return (

@@ -2,20 +2,20 @@ import Link from 'next/link'
 import { SITE, NAV_LINKS } from '@/lib/site'
 
 const Footer = () => (
-  <footer className="border-t border-border mt-24 bg-surface/30">
+  <footer className="border-t border-border mt-24 bg-surface">
     <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8 md:grid-cols-3">
       <div>
-        <h3 className="font-mono text-white font-bold mb-3">{SITE.name}</h3>
-        <p className="text-muted text-sm">
+        <h3 className="font-mono text-text font-bold mb-3 tracking-tight">{SITE.name}</h3>
+        <p className="text-muted text-sm leading-relaxed">
           {SITE.jobTitle} at {SITE.worksFor}.
         </p>
       </div>
       <div>
-        <h4 className="font-mono text-primary text-sm mb-3 uppercase tracking-wider">Pages</h4>
+        <h4 className="font-mono text-primary text-[11px] mb-3 uppercase tracking-widest">Pages</h4>
         <ul className="space-y-1.5 text-sm">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="text-muted hover:text-primary">
+              <Link href={l.href} className="text-muted hover:text-text transition-colors">
                 {l.label}
               </Link>
             </li>
@@ -23,25 +23,62 @@ const Footer = () => (
         </ul>
       </div>
       <div>
-        <h4 className="font-mono text-primary text-sm mb-3 uppercase tracking-wider">Elsewhere</h4>
+        <h4 className="font-mono text-primary text-[11px] mb-3 uppercase tracking-widest">
+          Elsewhere
+        </h4>
         <ul className="space-y-1.5 text-sm">
           <li>
-            <a href={SITE.social.github} className="text-muted hover:text-primary">
+            <a
+              href={SITE.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-text"
+            >
               GitHub
             </a>
           </li>
           <li>
-            <a href={SITE.social.linkedin} className="text-muted hover:text-primary">
+            <a
+              href={SITE.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-text"
+            >
               LinkedIn
             </a>
           </li>
           <li>
-            <a href={SITE.social.substack} className="text-muted hover:text-primary">
+            <a
+              href={SITE.social.substack}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-text"
+            >
               Substack
             </a>
           </li>
           <li>
-            <a href={`mailto:${SITE.email}`} className="text-muted hover:text-primary">
+            <a
+              href={SITE.social.medium}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-text"
+            >
+              Medium
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.social.harvard}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-text"
+            >
+              Harvard Lab Page
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${SITE.email}`} className="text-muted hover:text-text">
               {SITE.email}
             </a>
           </li>
@@ -49,7 +86,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-4 text-center text-xs text-muted font-mono">
+      <div className="max-w-6xl mx-auto px-6 py-4 text-center text-[11px] text-subtle font-mono uppercase tracking-widest">
         Built with Next.js · Deployed on Vercel ·{' '}
         <Link href="/architecture" className="hover:text-primary">
           /architecture
