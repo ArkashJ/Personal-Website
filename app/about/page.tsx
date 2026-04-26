@@ -20,10 +20,12 @@ export default function AboutPage() {
         italicAccent="In order. Real dates."
         description="Every meaningful milestone — arrival in the US, first paper, Harvard, Benmore. The full arc."
       />
-      <ol className="mt-12">
-        {TIMELINE.map((item) => (
-          <TimelineItem key={item.title} {...item} avatar={myImg} />
-        ))}
+      <ol className="mt-12 stagger">
+        {TIMELINE.slice()
+          .reverse()
+          .map((item) => (
+            <TimelineItem key={item.title} {...item} avatar={myImg} />
+          ))}
       </ol>
     </div>
   )
