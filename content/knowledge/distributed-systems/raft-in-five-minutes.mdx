@@ -1,0 +1,47 @@
+---
+title: 'Raft in Five Minutes'
+date: '2025-03-15'
+domain: 'distributed-systems'
+description: 'Raft is Paxos that you can actually explain at a whiteboard. The mental model in five minutes.'
+---
+
+Raft is a consensus algorithm. Its job is to keep a replicated log identical across a
+small cluster (typically 3 or 5 nodes) even when nodes fail or messages are dropped.
+The whole protocol fits in five minutes if you frame it right.
+
+## Three states
+
+Every node is in exactly one of three states at any time:
+
+- **Follower** — the default. Receives log entries from a leader.
+- **Candidate** — a follower whose election timeout fired. Asks for votes.
+- **Leader** — won an election. Replicates log entries to followers.
+
+## Two RPCs
+
+Just two:
+
+- **`RequestVote`** — candidate → followers. "Will you vote for me for term `t`?"
+- **`AppendEntries`** — leader → followers. Carries new log entries (or empty as a heartbeat).
+
+## One invariant
+
+The leader's log is the truth. If a follower disagrees, the follower truncates and
+copies. This is enforced through a clever check: every `AppendEntries` includes the
+index and term of the entry _before_ the new ones; the follower only accepts if its
+log matches at that point.
+
+## What goes wrong
+
+- **Split brain.** Two nodes both think they're leader because they were partitioned.
+  Raft prevents this with majority voting — a leader can only commit entries that
+  are replicated to a majority, so any new leader must have seen the latest committed
+  entry.
+- **Network partition.** Minority side can't elect a leader. Majority side runs normally.
+- **Log divergence.** Resolved by the truncate-and-copy rule above.
+
+## Why it works in practice
+
+Most production systems that say "Paxos" actually run Raft (etcd, Consul, CockroachDB,
+TiKV). The simpler mental model means fewer bugs and easier ops. There are also fewer
+PhD-level edge cases to memorize.

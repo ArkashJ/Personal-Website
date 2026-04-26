@@ -1,0 +1,51 @@
+---
+title: 'Convergence Intuition: Why Adam Works'
+date: '2025-08-30'
+domain: 'math'
+description: 'The geometry of why per-parameter learning rates dominate vanilla SGD on transformers.'
+---
+
+Vanilla SGD on a high-dimensional non-convex loss landscape is fragile in a specific
+way: the learning rate that works for the most-curved direction is too small for the
+flattest direction. Whichever rate you pick, you're either crawling along the flat
+directions or oscillating along the steep ones.
+
+## The geometry
+
+Imagine the loss surface as a long, narrow valley. The gradient mostly points across
+the valley (steep direction). You want to descend along the valley (flat direction).
+SGD with a fixed learning rate either:
+
+- Picks a small rate to avoid oscillating across the steep walls → crawls down the
+  valley at a fraction of optimal speed.
+- Picks a large rate that makes good progress along the valley → ricochets off the
+  walls and diverges.
+
+This shape is everywhere in deep learning loss surfaces. Embedding-table parameters
+(touched only when their token appears) live in flat directions. Active-layer
+parameters live in steep ones.
+
+## What Adam does
+
+Adam estimates the second moment of each parameter's gradient (the EMA of squared
+gradients). Big squared gradient → small effective learning rate. Small squared
+gradient → big effective learning rate.
+
+That's it. It's a per-parameter rescaling that automatically picks the right rate
+along each axis of the loss surface. The valley becomes spherical.
+
+## Why this matters at scale
+
+For a transformer with hundreds of millions of parameters, the variance in
+per-parameter gradient magnitude is enormous. Vanilla SGD requires constant manual
+learning-rate scheduling per layer. Adam's per-parameter rescaling makes the network
+trainable with a single global rate — which is the only thing that makes
+hyperparameter tuning tractable at this scale.
+
+## What it costs
+
+Adam needs to store two moving averages per parameter (first and second moment). For
+a 70B-parameter model, that's an extra 140B floats — roughly 280 GB of optimizer
+state at fp16. Lion drops one of those moments. ZeRO shards them across data-parallel
+ranks. SDA / Sophia attempt to compute curvature more cheaply. The optimizer-state
+memory footprint is the headline constraint on what you can train.

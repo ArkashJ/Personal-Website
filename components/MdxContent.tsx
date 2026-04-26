@@ -2,8 +2,12 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import type { ComponentProps } from 'react'
 
 const components = {
-  h1: (p: ComponentProps<'h1'>) => <h1 className="text-3xl font-bold text-white mt-10 mb-4" {...p} />,
-  h2: (p: ComponentProps<'h2'>) => <h2 className="text-2xl font-bold text-white mt-10 mb-3" {...p} />,
+  h1: (p: ComponentProps<'h1'>) => (
+    <h1 className="text-3xl font-bold text-white mt-10 mb-4" {...p} />
+  ),
+  h2: (p: ComponentProps<'h2'>) => (
+    <h2 className="text-2xl font-bold text-white mt-10 mb-3" {...p} />
+  ),
   h3: (p: ComponentProps<'h3'>) => <h3 className="text-xl font-bold text-white mt-8 mb-2" {...p} />,
   p: (p: ComponentProps<'p'>) => <p className="text-muted leading-relaxed mb-5" {...p} />,
   a: (p: ComponentProps<'a'>) => (
