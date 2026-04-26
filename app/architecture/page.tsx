@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
+import Pill from '@/components/ui/Pill'
 import { buildMetadata } from '@/lib/metadata'
 import {
   CiCdDiagram,
@@ -49,16 +50,17 @@ export default function ArchitecturePage() {
       >
         ← Home
       </Link>
-      <div className="mt-8 mb-12 pb-4 border-b border-border">
-        <p className="font-mono text-primary text-[11px] uppercase tracking-widest mb-2">
-          Architecture
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-text tracking-tight mb-3">
-          Site Architecture
+      <div className="mt-8 mb-12 pb-6 border-b border-border">
+        <Pill className="mb-4">Architecture</Pill>
+        <h1 className="text-3xl md:text-4xl font-bold text-text tracking-tight">
+          How this site is built.
         </h1>
-        <p className="text-muted text-sm leading-relaxed max-w-2xl">
-          Six diagrams covering page structure, navigation, content pipeline, SEO, CI/CD, and
-          component hierarchy. The canonical reference for how arkashj.com is built.
+        <p className="mt-1 text-2xl md:text-3xl font-bold leading-[1.1] tracking-tight italic text-accent">
+          Six diagrams.
+        </p>
+        <p className="text-muted text-sm md:text-base leading-relaxed max-w-2xl mt-4">
+          Page structure, navigation, content pipeline, SEO, CI/CD, and component hierarchy. The
+          canonical reference for how arkashj.com is built.
         </p>
       </div>
 

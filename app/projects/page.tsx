@@ -15,8 +15,9 @@ export default function ProjectsPage() {
     <div className="px-6 py-16 max-w-6xl mx-auto">
       <SectionHeader
         eyebrow="Projects"
-        title="Things I’ve built"
-        description="Research code, internal tooling, and open source."
+        title="Things I've built."
+        italicAccent="Research code, internal tooling, open source."
+        description="From Cattle Logic to a from-scratch Raft implementation. Real repos, real ship dates."
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
         {PROJECTS.map((p) => (

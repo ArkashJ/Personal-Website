@@ -16,8 +16,9 @@ export default function WritingIndexClient({ posts }: { posts: WritingMeta[] }) 
     <div className="px-6 py-16 max-w-5xl mx-auto">
       <SectionHeader
         eyebrow="Writing"
-        title="Essays, notes, and theses"
-        description="Curated long-form on AI, finance, distributed systems, and what I’m learning."
+        title="Essays, notes, theses."
+        italicAccent="What I'm learning, in public."
+        description="Curated long-form on AI, finance, distributed systems, and the bridge between them."
       />
 
       <div className="flex flex-wrap gap-2 my-6">

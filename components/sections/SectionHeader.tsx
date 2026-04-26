@@ -1,6 +1,9 @@
+import Pill from '@/components/ui/Pill'
+
 type SectionHeaderProps = {
   eyebrow?: string
   title: string
+  italicAccent?: string
   description?: string
   href?: string
   hrefLabel?: string
@@ -9,20 +12,26 @@ type SectionHeaderProps = {
 const SectionHeader = ({
   eyebrow,
   title,
+  italicAccent,
   description,
   href,
   hrefLabel = 'View all →',
 }: SectionHeaderProps) => (
-  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-8 pb-4 border-b border-border">
+  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 pb-6 border-b border-border">
     <div>
-      {eyebrow && (
-        <p className="font-mono text-primary text-[11px] uppercase tracking-widest mb-2">
-          {eyebrow}
+      {eyebrow && <Pill className="mb-4">{eyebrow}</Pill>}
+      <h2 className="text-3xl md:text-4xl font-bold text-text tracking-tight leading-[1.1]">
+        {title}
+      </h2>
+      {italicAccent && (
+        <p className="mt-1 text-2xl md:text-3xl font-bold leading-[1.1] tracking-tight italic text-accent">
+          {italicAccent}
         </p>
       )}
-      <h2 className="text-2xl md:text-3xl font-bold text-text tracking-tight">{title}</h2>
       {description && (
-        <p className="text-muted mt-2 max-w-2xl text-sm leading-relaxed">{description}</p>
+        <p className="text-muted mt-3 max-w-2xl text-sm md:text-base leading-relaxed">
+          {description}
+        </p>
       )}
     </div>
     {href && (

@@ -15,8 +15,9 @@ export default function ExperiencePage() {
     <div className="px-6 py-16 max-w-4xl mx-auto">
       <SectionHeader
         eyebrow="Experience"
-        title="Where I’ve worked"
-        description="Reverse-chronological. Real entries — Benmore, Harvard, Battery Ventures, ZeroSync, BCH, BU."
+        title="Where I've worked."
+        italicAccent="And what I shipped."
+        description="Reverse-chronological. Benmore · Harvard · ZeroSync · Boston Children's · Boston University · Battery Ventures."
       />
       <div className="grid gap-6 mt-8">
         {EXPERIENCE.map((e) => (

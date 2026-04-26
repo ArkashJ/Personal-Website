@@ -23,16 +23,17 @@ export default function KnowledgeHub() {
     <div className="px-6 py-16 max-w-6xl mx-auto">
       <SectionHeader
         eyebrow="Knowledge"
-        title="Second brain, in public"
-        description="Domains I think about. Each domain links to deep dives, notes, and worked examples."
+        title="Second brain."
+        italicAccent="In public."
+        description="Six domains I think about. Each is its own hub of deep dives, notes, and worked examples."
       />
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8 stagger">
         {KNOWLEDGE_DOMAINS.map((d) => {
           const count = counts[d.slug] || 0
           return (
             <Link key={d.slug} href={`/knowledge/${d.slug}`}>
               <Card glow className="h-full cursor-pointer">
-                <h3 className="text-2xl font-bold text-white mb-2">{d.name}</h3>
+                <h3 className="text-2xl font-bold text-text mb-2 tracking-tight">{d.name}</h3>
                 <p className="text-muted text-sm mb-4 leading-relaxed">{d.description}</p>
                 <p className="font-mono text-xs text-primary">
                   {count} article{count === 1 ? '' : 's'} →

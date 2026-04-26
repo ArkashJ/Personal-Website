@@ -15,12 +15,10 @@ export default function StackPage() {
     <div className="px-6 py-16 max-w-6xl mx-auto">
       <SectionHeader
         eyebrow="Stack"
-        title="What I use"
-        description="The current stack. Hardware, editor, languages, frameworks, infra. Opinionated and dated."
+        title="What I use."
+        italicAccent="Updated when something earns it."
+        description="Hardware, editor, languages, frameworks, infra. Opinionated. Real."
       />
-      <p className="text-muted text-sm italic max-w-2xl mb-12 leading-relaxed">
-        The current stack. Updated when something graduates from experiment to default.
-      </p>
 
       <div className="space-y-12">
         {STACK.map((group) => (

@@ -23,8 +23,9 @@ export default function ResearchPage() {
 
       <SectionHeader
         eyebrow="Research"
-        title="Four published papers, one thesis"
-        description="From supercritical fluids to 3D self-supervised vision transformers."
+        title="Four published papers."
+        italicAccent="One thesis."
+        description="From supercritical fluids in chemical physics to 3D self-supervised vision transformers at Harvard. Each paper, the journal, and a link."
       />
 
       <div className="grid gap-6 md:grid-cols-2 mt-8">
