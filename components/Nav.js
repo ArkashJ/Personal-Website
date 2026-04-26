@@ -1,32 +1,32 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { NAV_LINKS } from '../lib/site'
 
 const Nav = () => {
+  const router = useRouter()
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5  dark:bg-gray-900 font-poppins">
-      <div className="conatiner mx-auto flex flex-wrap items-center justify-between">
-        <h1 className="text-[#e2e8f0] text-2xl">
-          {' '}
-          <Link href="/">Arkash Jain&apos;s Portfolio</Link>
-        </h1>
-        <div className="hidden w-full md:block md:w-auto">
-          <ul className="flex flex-col  p-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li className="text-white">
-              <Link href="/" className="text-lg">
-                Home
-              </Link>
-            </li>
-            <li className="text-white">
-              <Link href="/Volunteering" className="text-lg">
-                Volunteering
-              </Link>
-            </li>
-            <li className="text-white">
-              <Link href="/VC" className="text-lg">
-                Experience
-              </Link>
-            </li>
-          </ul>
-        </div>
+    <nav className="sticky top-0 z-50 bg-bg/80 backdrop-blur border-b border-border">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="font-mono text-lg font-bold text-white hover:text-primary">
+          arkash.jain
+        </Link>
+        <ul className="hidden md:flex items-center gap-6 text-sm">
+          {NAV_LINKS.filter((l) => l.href !== '/').map((link) => {
+            const active = router.pathname === link.href
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`font-mono transition-colors ${
+                    active ? 'text-accent' : 'text-muted hover:text-primary'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </nav>
   )

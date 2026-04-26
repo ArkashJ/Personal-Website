@@ -1,11 +1,10 @@
-import Work from '../components/battery/Work'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
-const VC = () => {
-  return (
-    <div>
-      <Work />
-    </div>
-  )
+export default function VCRedirect() {
+  const router = useRouter()
+  useEffect(() => {
+    router.replace('/experience')
+  }, [router])
+  return null
 }
-
-export default VC
