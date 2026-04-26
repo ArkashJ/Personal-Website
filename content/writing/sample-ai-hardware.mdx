@@ -1,0 +1,32 @@
+---
+title: 'AI Hardware Stack Deep Dive'
+date: '2026-03-09'
+tags: ['AI', 'Hardware']
+description: 'From TSMC N3 shortages to HBM constraints — what the silicon shortage means for frontier AI.'
+---
+
+Frontier AI training is gated by three physical constraints, in this order:
+
+1. **HBM bandwidth.** High-bandwidth memory is the binding constraint on tokens-per-second
+   for any model that doesn't fit in cache.
+2. **Optical interconnect** between racks. NVLink takes you across one box. Past that
+   you're paying for InfiniBand or 800G optics.
+3. **Logic node availability.** TSMC N3 capacity is fully booked through the next two
+   generations of accelerators.
+
+## What it means for builders
+
+If you're a startup training your own foundation model — don't. The wedge isn't there.
+The wedge is in domain-specific fine-tuning, RAG over proprietary data, and tooling
+that makes the model cheaper to operate, not cheaper to train.
+
+If you're a startup building infrastructure tools, the most underbuilt category is
+**observability for distributed training**: who's blocking on what, where the
+gradient went weird, why the loss curve has that bump at step 18,000. The Datadog
+of model training does not yet exist.
+
+## What it means for capital
+
+Memory > compute > networking, on a relative-spend basis, over the next 36 months.
+Watch HBM suppliers and optical interconnect vendors more than NVDA itself —
+the marginal dollar of training spend goes there now.

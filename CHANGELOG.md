@@ -38,11 +38,27 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - SVG favicon — teal "a" mark on dark slate, served from `/favicon.svg`
 - Verified all 11 endpoints live (200 OK) via curl + Playwright screenshots
 
+### Added — MDX content pipeline (2026-04-26 patch 2)
+
+- `lib/content.js` — `getAllWritingPosts`, `getWritingPost`, `getAllKnowledgePosts`, `getKnowledgePost`, `getKnowledgeDomains`
+- `components/MdxContent.js` — themed MDX renderer with Tailwind-styled headings, lists, blockquotes, code blocks
+- `pages/writing/[slug].js` now uses `getStaticProps` + `getStaticPaths` against `content/writing/*.mdx`
+- `pages/knowledge/[domain]/index.js` and `pages/knowledge/[domain]/[slug].js` for nested MDX routes
+- Real content shipped:
+  - `content/writing/why-fde.mdx`
+  - `content/writing/sample-ai-hardware.mdx`
+  - `content/writing/distributed-checkpointing.mdx`
+  - `content/knowledge/ai/spatialdino-lessons.mdx`
+  - `content/knowledge/ai/index.mdx`
+  - `content/knowledge/distributed-systems/flink-checkpointing.mdx`
+- Added `gray-matter` + `next-mdx-remote` deps
+- Homepage now reads writing posts from filesystem (not stubbed `WRITING` array)
+
 ### Planned — remaining v2 work
 
-- MDX content pipeline for `/writing/[slug]` and `/knowledge/[domain]/[slug]`
 - ffmpeg demo recordings for `/work` cards
 - Per-page Open Graph PNGs in `/public/og/`
+- More MDX articles across all 6 knowledge domains
 - Migration to App Router + TypeScript when content stabilizes
 
 ---

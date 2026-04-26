@@ -3,13 +3,12 @@ import Link from 'next/link'
 import SectionHeader from '../../components/sections/SectionHeader'
 import Card from '../../components/ui/Card'
 import Badge from '../../components/ui/Badge'
-import { WRITING } from '../../lib/data'
+import { getAllWritingPosts } from '../../lib/content'
 
-const ALL_TAGS = Array.from(new Set(WRITING.flatMap((p) => p.tags))).sort()
-
-export default function WritingIndex() {
+export default function WritingIndex({ posts }) {
+  const allTags = Array.from(new Set(posts.flatMap((p) => p.tags || []))).sort()
   const [filter, setFilter] = useState(null)
-  const posts = filter ? WRITING.filter((p) => p.tags.includes(filter)) : WRITING
+  const visible = filter ? posts.filter((p) => (p.tags || []).includes(filter)) : posts
 
   return (
     <div className="px-6 py-16 max-w-5xl mx-auto">
@@ -30,7 +29,7 @@ export default function WritingIndex() {
         >
           All
         </button>
-        {ALL_TAGS.map((t) => (
+        {allTags.map((t) => (
           <button
             key={t}
             onClick={() => setFilter(t)}
@@ -46,14 +45,14 @@ export default function WritingIndex() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {posts.map((post) => (
+        {visible.map((post) => (
           <Link key={post.slug} href={`/writing/${post.slug}`}>
             <Card glow className="h-full cursor-pointer">
               <p className="text-muted text-xs font-mono mb-2">{post.date}</p>
               <h3 className="text-lg font-bold text-white mb-2">{post.title}</h3>
               <p className="text-muted text-sm mb-4">{post.description}</p>
               <div className="flex flex-wrap gap-1.5">
-                {post.tags.map((t) => (
+                {(post.tags || []).map((t) => (
                   <Badge key={t} variant="teal">
                     {t}
                   </Badge>
@@ -65,6 +64,10 @@ export default function WritingIndex() {
       </div>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  return { props: { posts: getAllWritingPosts() } }
 }
 
 WritingIndex.meta = {

@@ -1,0 +1,32 @@
+---
+title: 'SpatialDINO Lessons: 3D SSL on Cryo-ET'
+date: '2025-09-01'
+domain: 'ai'
+description: 'What we learned building the first 3D self-supervised vision transformer for subcellular cryo-electron tomography.'
+---
+
+SpatialDINO was the first 3D self-supervised vision transformer applied to cryo-electron
+tomograms. The model learned subcellular structural representations without labels and
+beat a Nobel laureate–led approach that relied on hand-crafted geometric features.
+
+## What worked
+
+- **Volumetric ViT patches.** Using 3D patches (rather than slice-then-stack) preserved
+  the spatial coherence the network was meant to learn.
+- **DINOv2-style multi-crop self-distillation.** Two student crops, four teacher crops,
+  EMA teacher. The recipe transferred surprisingly well from natural images.
+- **Aggressive masking.** 75% random masking forced the network to learn local structural
+  context rather than memorize global appearance.
+
+## What didn't
+
+- **Full-volume passes.** Tomograms are too large to fit in memory at native resolution.
+  We sub-sampled, which costs detail in fine structures.
+- **Infiniband RDMA stalls.** Caught a Rendezvous backend bug in PyTorch — filed
+  [#144779](https://github.com/pytorch/pytorch/issues/144779). Cost a week.
+
+## What's next
+
+Diffusion-based denoising as a pretraining objective for cryo-ET is the obvious follow-up.
+The signal-to-noise floor of CET is much worse than natural images — pretraining the
+network to denoise gives it a stronger prior than masked autoencoding alone.
