@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { NAV_LINKS } from '@/lib/site'
+import ThemeToggle from '@/components/ThemeToggle'
 
 const Nav = () => {
   const pathname = usePathname()
@@ -23,44 +24,51 @@ const Nav = () => {
           arkash.jain
         </Link>
 
-        <ul className="hidden md:flex items-center gap-6 text-sm">
-          {NAV_LINKS.filter((l) => l.href !== '/').map((link) => {
-            const active = pathname === link.href || pathname?.startsWith(`${link.href}/`)
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`font-mono text-[13px] transition-colors ${
-                    active ? 'text-primary' : 'text-muted hover:text-text'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+        <div className="hidden md:flex items-center gap-6">
+          <ul className="flex items-center gap-5">
+            {NAV_LINKS.filter((l) => l.href !== '/').map((link) => {
+              const active = pathname === link.href || pathname?.startsWith(`${link.href}/`)
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`font-mono text-[13px] transition-colors ${
+                      active ? 'text-primary' : 'text-muted hover:text-text'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+          <span className="h-4 w-px bg-border" aria-hidden />
+          <ThemeToggle />
+        </div>
 
-        <button
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden flex flex-col gap-1 p-2 -mr-2"
-        >
-          <span
-            className={`block h-0.5 w-5 bg-text transition-transform ${
-              open ? 'translate-y-1.5 rotate-45' : ''
-            }`}
-          />
-          <span
-            className={`block h-0.5 w-5 bg-text transition-opacity ${open ? 'opacity-0' : ''}`}
-          />
-          <span
-            className={`block h-0.5 w-5 bg-text transition-transform ${
-              open ? '-translate-y-1.5 -rotate-45' : ''
-            }`}
-          />
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="flex flex-col gap-1 p-2 -mr-2"
+          >
+            <span
+              className={`block h-0.5 w-5 bg-text transition-transform ${
+                open ? 'translate-y-1.5 rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`block h-0.5 w-5 bg-text transition-opacity ${open ? 'opacity-0' : ''}`}
+            />
+            <span
+              className={`block h-0.5 w-5 bg-text transition-transform ${
+                open ? '-translate-y-1.5 -rotate-45' : ''
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
       {open && (
