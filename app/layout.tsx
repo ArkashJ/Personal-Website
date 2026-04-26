@@ -1,5 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 import JsonLd from '@/components/seo/JsonLd'
@@ -15,13 +17,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <link rel="me" href={SITE.social.linkedin} />
         <link rel="me" href={SITE.social.github} />
         <link rel="me" href={SITE.social.substack} />
       </head>
-      <body className="min-h-screen flex flex-col bg-bg text-white">
+      <body className="min-h-screen flex flex-col bg-bg text-white font-sans">
         <JsonLd data={personSchema()} />
         <Nav />
         <main className="flex-1">{children}</main>

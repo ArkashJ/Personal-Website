@@ -13,16 +13,23 @@ const SectionHeader = ({
   href,
   hrefLabel = 'View all →',
 }: SectionHeaderProps) => (
-  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-8">
+  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2 mb-8 pb-4 border-b border-border">
     <div>
       {eyebrow && (
-        <p className="font-mono text-primary text-xs uppercase tracking-widest mb-2">{eyebrow}</p>
+        <p className="font-mono text-primary text-[11px] uppercase tracking-widest mb-2">
+          {eyebrow}
+        </p>
       )}
-      <h2 className="text-3xl md:text-4xl font-bold text-white">{title}</h2>
-      {description && <p className="text-muted mt-2 max-w-2xl">{description}</p>}
+      <h2 className="text-2xl md:text-3xl font-bold text-text tracking-tight">{title}</h2>
+      {description && (
+        <p className="text-muted mt-2 max-w-2xl text-sm leading-relaxed">{description}</p>
+      )}
     </div>
     {href && (
-      <a href={href} className="font-mono text-primary text-sm hover:text-accent whitespace-nowrap">
+      <a
+        href={href}
+        className="font-mono text-primary text-xs hover:text-accent whitespace-nowrap uppercase tracking-widest"
+      >
         {hrefLabel}
       </a>
     )}

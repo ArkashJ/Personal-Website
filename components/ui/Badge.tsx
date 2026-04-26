@@ -3,17 +3,17 @@ import type { ReactNode } from 'react'
 type Variant = 'default' | 'teal' | 'cyan' | 'green'
 
 const variants: Record<Variant, string> = {
-  default: 'bg-border text-muted',
-  teal: 'bg-primary/20 text-primary border border-primary/30',
+  default: 'bg-elevated text-muted border border-border',
+  teal: 'bg-primary/10 text-primary border border-primary/30',
   cyan: 'bg-accent/10 text-accent border border-accent/30',
-  green: 'bg-green-400/10 text-green-400 border border-green-400/30',
+  green: 'bg-success/10 text-success border border-success/30',
 }
 
 type BadgeProps = { children: ReactNode; variant?: Variant; className?: string }
 
 const Badge = ({ children, variant = 'default', className = '' }: BadgeProps) => (
   <span
-    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono ${variants[variant]} ${className}`}
+    className={`inline-flex items-center px-2 py-0.5 text-[11px] font-mono uppercase tracking-wider ${variants[variant]} ${className}`}
   >
     {children}
   </span>
