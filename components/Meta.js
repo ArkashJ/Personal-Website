@@ -30,7 +30,7 @@ const Meta = ({ title, description, path, image }) => {
       <link rel="me" href={SITE.social.github} />
       <link rel="me" href={SITE.social.substack} />
 
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     </Head>
   )
 }

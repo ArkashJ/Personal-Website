@@ -32,3 +32,7 @@ yarn-error.log*
 # vercel
 .vercel
 .playwright-mcp/
+
+# screenshots
+*.png
+!docs/**/*.png
