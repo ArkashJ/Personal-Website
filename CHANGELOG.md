@@ -54,11 +54,22 @@ Versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `gray-matter` + `next-mdx-remote` deps
 - Homepage now reads writing posts from filesystem (not stubbed `WRITING` array)
 
+### Added — More MDX content + sitemap rewrite (2026-04-26 patch 3)
+
+- Sitemap now enumerates every dynamic MDX route (writing posts + knowledge articles + knowledge domains) with per-file `lastmod` dates
+- Knowledge hub shows real article counts per domain (driven by filesystem, not stub)
+- New writing post: `o1-visa-evidence-hub.mdx`
+- New knowledge MDX:
+  - `finance/aggregation-theory.mdx`, `finance/index.mdx`
+  - `physics/why-i-left-physics.mdx`, `physics/supercritical-fluids-paper.mdx`
+  - `software/claude-code-as-an-os.mdx`
+  - `math/optimizers.mdx`
+
 ### Planned — remaining v2 work
 
 - ffmpeg demo recordings for `/work` cards
 - Per-page Open Graph PNGs in `/public/og/`
-- More MDX articles across all 6 knowledge domains
+- Even more MDX articles across all 6 knowledge domains (continuous)
 - Migration to App Router + TypeScript when content stabilizes
 
 ---

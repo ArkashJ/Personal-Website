@@ -1,0 +1,38 @@
+---
+title: 'Claude Code as an Operating System'
+date: '2026-04-10'
+domain: 'software'
+description: 'Why I think of Claude Code as an OS for engineering work — skills as installed apps, hooks as services, MCP as syscalls.'
+---
+
+The mental model that unlocked Claude Code for me: it's not a chatbot, it's an
+operating system for engineering work.
+
+| OS concept                | Claude Code equivalent                |
+| ------------------------- | ------------------------------------- |
+| Installed applications    | Skills (`~/.claude/skills/`)          |
+| System services / daemons | Hooks (`SessionStart`, `PostToolUse`) |
+| System calls              | MCP tools                             |
+| Shell                     | The conversation itself               |
+| Filesystem                | The repo + memory dir                 |
+| Package manager           | `bm` (Benmore)                        |
+
+## Why the analogy holds
+
+- Skills carry their own context, instructions, and discoverable interfaces.
+- Hooks fire on lifecycle events the same way init systems run on boot/login.
+- MCP tools are RPC into capability-providing processes (Slack, GitHub, Playwright).
+- Memory persists across sessions like a user's home directory.
+
+## What changes when you think this way
+
+You stop trying to memorize prompts and start designing **workflows that compound**.
+A skill is the unit of compound learning. The next session starts ahead of the
+previous one because the skill remembers the conventions you discovered together.
+
+## The practical advice
+
+- Write a skill the second time you do something. Never the first.
+- Hook the boring parts. If you've added the same `Co-Authored-By` line to ten
+  commits, write a hook.
+- Use memory for **decisions**, not facts. Facts are in the code; decisions aren't.
