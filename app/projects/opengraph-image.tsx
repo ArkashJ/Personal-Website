@@ -9,6 +9,6 @@ export default async function Image() {
   return renderOg({
     eyebrow: 'Projects',
     title: 'Things I’ve built',
-    subtitle: 'Cattle Logic · SpatialDINO · Foundry CLI · Apache Flink thesis',
+    subtitle: 'SpatialDINO · Raft · Foundry CLI · Apache Flink thesis',
   })
 }

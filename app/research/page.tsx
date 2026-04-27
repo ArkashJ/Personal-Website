@@ -8,9 +8,9 @@ import { PAPERS } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
-  title: 'Research — SpatialDINO, Cell Biology ML, 4 Published Papers',
+  title: 'Research — SpatialDINO, Cell Biology ML, 3 Published Papers',
   description:
-    'Four published papers including SpatialDINO (3D self-supervised vision transformer for cryo-ET), two Journal of Cell Biology papers, and supercritical fluid spectroscopy.',
+    'Three published papers including SpatialDINO (3D self-supervised vision transformer for cryo-ET), one Journal of Cell Biology paper, and supercritical fluid spectroscopy in J. Chem. Phys.',
   path: '/research',
   keywords: [
     'SpatialDINO',
@@ -37,7 +37,7 @@ export default function ResearchPage() {
 
       <SectionHeader
         eyebrow="Research"
-        title="Four published papers."
+        title="Three published papers."
         italicAccent="One thesis."
         description="From supercritical fluids in chemical physics to 3D self-supervised vision transformers at Harvard. Each paper, the journal, and a link."
         asH1

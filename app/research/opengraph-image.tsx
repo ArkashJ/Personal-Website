@@ -8,7 +8,7 @@ export const contentType = ogContentType
 export default async function Image() {
   return renderOg({
     eyebrow: 'Research',
-    title: 'Four published papers, one thesis',
+    title: 'Three published papers, one thesis',
     subtitle: 'SpatialDINO · Cell Biology ML · Supercritical Fluids',
   })
 }

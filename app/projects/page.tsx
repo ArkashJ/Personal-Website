@@ -6,11 +6,11 @@ import { PROJECTS } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
-  title: 'Projects — Cattle Logic, SpatialDINO, Open Source',
+  title: 'Projects — SpatialDINO, Raft, Open Source',
   description:
-    'Selected projects: Cattle Logic (Benmore), SpatialDINO (Harvard), Benmore Foundry CLI, distributed systems work, and open source contributions.',
+    'Selected projects: SpatialDINO (Harvard 3D self-supervised vision transformer), from-scratch Raft consensus in Go, NEXMARK Flink benchmark, Benmore Foundry CLI, plus open source contributions.',
   path: '/projects',
-  keywords: ['Cattle Logic', 'SpatialDINO', 'Raft', 'Flink', 'open source', 'distributed systems'],
+  keywords: ['SpatialDINO', 'Raft', 'Flink', 'open source', 'distributed systems', 'cryo-ET'],
 })
 
 export default function ProjectsPage() {
@@ -26,7 +26,7 @@ export default function ProjectsPage() {
         eyebrow="Projects"
         title="Things I've built."
         italicAccent="Research code, internal tooling, open source."
-        description="From Cattle Logic to a from-scratch Raft implementation. Real repos, real ship dates."
+        description="From SpatialDINO to a from-scratch Raft implementation. Real repos, real ship dates."
         asH1
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8 reveal">

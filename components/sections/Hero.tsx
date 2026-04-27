@@ -4,7 +4,7 @@ import Pill from '@/components/ui/Pill'
 import HeroDemo from './HeroDemo'
 
 const STATS = [
-  { value: '4', label: 'Papers' },
+  { value: '3', label: 'Papers' },
   { value: 'Harvard + BU', label: 'Education' },
   { value: '887%', label: 'Revenue Growth' },
   { value: '3D SSL', label: 'Pioneer' },
@@ -30,8 +30,8 @@ const Hero = () => (
         </h1>
 
         <p className="mt-8 text-base md:text-lg text-muted max-w-xl leading-relaxed">
-          AI researcher (Harvard) and forward-deployed engineer at Benmore — four published papers,
-          the Cattle Logic operating system for American ranches, and the toolkit that makes SMB AI
+          AI researcher (Harvard) and forward-deployed engineer at Benmore — three published papers
+          including SpatialDINO (3D self-supervised cryo-ET), and the toolkit that makes SMB AI
           consulting compound.
         </p>
 

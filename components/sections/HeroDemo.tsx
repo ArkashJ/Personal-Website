@@ -13,13 +13,7 @@ type Step = {
 
 // Most recent first
 const STEPS: Step[] = [
-  { title: 'Head of FDE', meta: 'Apr 2026 · ongoing', status: 'pending', href: '/experience' },
-  {
-    title: 'Cattle Logic launched',
-    meta: '2026 · CME-integrated',
-    status: 'active',
-    href: '/projects',
-  },
+  { title: 'Head of FDE', meta: 'Apr 2026 · ongoing', status: 'active', href: '/experience' },
   {
     title: 'Joined Benmore — Employee #2',
     meta: 'Aug 2025 · Forward Deployed',

@@ -69,7 +69,7 @@ export default function Home() {
       )}
 
       <section className="px-6 py-16 max-w-6xl mx-auto">
-        <SectionHeader eyebrow="Research" title="4 published papers" href="/research" />
+        <SectionHeader eyebrow="Research" title="3 published papers" href="/research" />
         <div className="grid gap-6 md:grid-cols-2">
           {PAPERS.map((p) => (
             <PaperCard key={p.title} {...p} />
