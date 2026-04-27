@@ -40,7 +40,10 @@ export type PressMention = {
 export type Review = {
   url: string
   source: 'Trustpilot'
+  reviewer?: string
+  date?: string
   excerpt?: string
+  image?: string
 }
 
 const STU_CHANNEL = 'https://www.youtube.com/@stustreetofficial'
@@ -279,12 +282,53 @@ export const FEATURED_VIDEOS: VideoFeature[] = [
 ]
 
 // Public client reviews (Trustpilot — Benmore engagements).
+// `image` references screenshots saved in `public/images/receipts/`.
 export const REVIEWS: Review[] = [
-  { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69e22d4dd9ce71b5546fd2b0' },
-  { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69e0f217dd4cad42cefdeea8' },
-  { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69e02257342a7cee30270e4c' },
-  { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69c2befdcbe87c9496120d52' },
-  { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69c18f48c998986d1445ef40' },
+  {
+    source: 'Trustpilot',
+    reviewer: 'Jim Watkins',
+    date: 'Mar 24, 2026',
+    url: 'https://www.trustpilot.com/reviews/69e22d4dd9ce71b5546fd2b0',
+    image: '/images/receipts/trustpilot-jim-watkins.png',
+    excerpt:
+      'I’ve Been in Technology Since 1995. I Don’t Write Reviews Like This. Benmore Technologies and Arkash Jain especially are the exception.',
+  },
+  {
+    source: 'Trustpilot',
+    reviewer: 'Jack Frisbie',
+    date: 'Mar 23, 2026',
+    url: 'https://www.trustpilot.com/reviews/69e0f217dd4cad42cefdeea8',
+    image: '/images/receipts/trustpilot-jack-frisbie.png',
+    excerpt:
+      'Richard and Arkash are amazing. Benmore has been great building our mobile application — we appreciate their work so much.',
+  },
+  {
+    source: 'Trustpilot',
+    reviewer: 'Daniel Adewumi',
+    date: 'Mar 20, 2026',
+    url: 'https://www.trustpilot.com/reviews/69e02257342a7cee30270e4c',
+    image: '/images/receipts/trustpilot-daniel-adewumi.png',
+    excerpt:
+      'Benmore is truly exceptional. Arkash’s leadership and exceptional knowledge couple with his brilliance helped our team achieve our goals for the software development.',
+  },
+  {
+    source: 'Trustpilot',
+    reviewer: 'Brad Pierce',
+    date: 'Mar 4, 2026',
+    url: 'https://www.trustpilot.com/reviews/69c2befdcbe87c9496120d52',
+    image: '/images/receipts/trustpilot-brad-pierce.png',
+    excerpt:
+      '100% Recommend. The team at Benmore Tech has been AMAZING to work with — Arkash, Charles, Georgia, and others have taken my project seriously.',
+  },
+  {
+    source: 'Trustpilot',
+    reviewer: 'Allan Bell',
+    date: 'Jan 29, 2026',
+    url: 'https://www.trustpilot.com/reviews/69c18f48c998986d1445ef40',
+    image: '/images/receipts/trustpilot-allan-bell.png',
+    excerpt:
+      'My experience working with Benmore on building out the Bag Index platform was extremely positive. Strong ability to understand both the technical requirements and the broader vision.',
+  },
   { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69bcc9fd5bf37932e12bd474' },
   { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69bc88c7306d95781ec837fc' },
   { source: 'Trustpilot', url: 'https://www.trustpilot.com/reviews/69bc5f3a0f14ed516870eb5a' },

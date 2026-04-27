@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
@@ -32,6 +33,9 @@ const REST_EPISODES = STU_STREET_EPISODES.filter(
 )
 
 const reviewLabel = (url: string) => url.split('/').pop()?.slice(0, 8) || 'review'
+
+const REVIEWS_WITH_IMAGE = REVIEWS.filter((r) => r.image)
+const REVIEWS_LINK_ONLY = REVIEWS.filter((r) => !r.image)
 
 export default function MediaPage() {
   return (
@@ -210,39 +214,87 @@ export default function MediaPage() {
           eyebrow="Reviews"
           title="What clients say"
           italicAccent="Verified on Trustpilot."
-          description={`${REVIEWS.length} public client reviews from Benmore engagements — every link goes to the live, verifiable Trustpilot review.`}
+          description={`${REVIEWS.length} public client reviews from Benmore engagements — screenshots are linked to the live Trustpilot pages.`}
         />
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {REVIEWS.map((r, i) => (
+
+        {/* Image-cards: real reviewers, real screenshots */}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {REVIEWS_WITH_IMAGE.map((r) => (
             <a
               key={r.url}
               href={r.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col gap-2 px-4 py-4 bg-surface border border-border hover:border-primary hover:-translate-y-0.5 transition-all duration-200"
+              className="group flex flex-col bg-surface border border-border hover:border-primary hover:-translate-y-0.5 transition-all duration-200"
             >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-[10px] text-primary uppercase tracking-widest">
-                  Review #{i + 1}
-                </span>
-                <span className="text-success text-base leading-none" aria-label="Five stars">
-                  ★★★★★
-                </span>
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-elevated">
+                <Image
+                  src={r.image as string}
+                  alt={`Trustpilot review from ${r.reviewer}`}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                />
               </div>
-              <p className="text-text text-sm font-medium leading-snug">
-                Verified Benmore engagement
-              </p>
-              <div className="mt-auto flex items-center justify-between">
-                <span className="font-mono text-[10px] text-subtle truncate">
-                  trustpilot.com/{reviewLabel(r.url)}…
-                </span>
-                <Badge variant="green">Trustpilot</Badge>
+              <div className="flex flex-col gap-2 p-4">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-mono text-[10px] text-primary uppercase tracking-widest truncate">
+                    {r.reviewer}
+                  </span>
+                  <span
+                    className="text-success text-base leading-none flex-shrink-0"
+                    aria-label="Five stars"
+                  >
+                    ★★★★★
+                  </span>
+                </div>
+                {r.excerpt && (
+                  <p className="text-muted text-xs leading-relaxed line-clamp-3">{r.excerpt}</p>
+                )}
+                <div className="mt-1 flex items-center justify-between gap-2">
+                  <span className="font-mono text-[10px] text-subtle truncate">
+                    {r.date || 'Trustpilot'}
+                  </span>
+                  <Badge variant="green">Trustpilot ↗</Badge>
+                </div>
               </div>
             </a>
           ))}
         </div>
+
+        {/* Remaining reviews — compact link list */}
+        {REVIEWS_LINK_ONLY.length > 0 && (
+          <div className="mt-6">
+            <p className="font-mono text-[10px] text-subtle uppercase tracking-widest mb-3">
+              + {REVIEWS_LINK_ONLY.length} more verified reviews
+            </p>
+            <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {REVIEWS_LINK_ONLY.map((r) => (
+                <li key={r.url}>
+                  <a
+                    href={r.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between gap-3 px-3 py-2 bg-surface border border-border hover:border-primary transition-colors"
+                  >
+                    <span className="font-mono text-[11px] text-muted group-hover:text-primary truncate">
+                      trustpilot.com/{reviewLabel(r.url)}…
+                    </span>
+                    <span
+                      className="text-success text-sm leading-none flex-shrink-0"
+                      aria-label="Five stars"
+                    >
+                      ★★★★★
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <p className="text-subtle text-xs mt-4 font-mono">
-          Click any review to read the full Trustpilot page.
+          Click any card or link to open the verifiable Trustpilot review page.
         </p>
       </section>
 

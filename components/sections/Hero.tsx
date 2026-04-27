@@ -6,7 +6,7 @@ import HeroDemo from './HeroDemo'
 const STATS = [
   { value: '3', label: 'Papers' },
   { value: 'Harvard + BU', label: 'Education' },
-  { value: '887%', label: 'Revenue Growth' },
+  { value: '6+ Years', label: 'Tech Experience' },
   { value: '3D SSL', label: 'Pioneer' },
 ]
 

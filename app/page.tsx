@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Hero from '@/components/sections/Hero'
+import GitHubActivity from '@/components/sections/GitHubActivity'
 import SectionHeader from '@/components/sections/SectionHeader'
 import PaperCard from '@/components/sections/PaperCard'
 import ProjectCard from '@/components/sections/ProjectCard'
@@ -188,6 +189,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* GitHub — live activity widgets + private snapshot */}
+      <GitHubActivity />
 
       {/* Tools + Knowledge — two-up */}
       <section className="px-6 py-10 max-w-6xl mx-auto">

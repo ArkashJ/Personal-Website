@@ -13,7 +13,7 @@ export const SITE = {
     biorxiv: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
     scholar: 'https://scholar.google.com/scholar?q=arkash+jain',
     harvard: 'https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs',
-    twitter: 'https://x.com/_arkash',
+    twitter: 'https://x.com/ArkashJ__',
     orcid: 'https://orcid.org/0000-0003-2692-7472',
     pubmed: 'https://pubmed.ncbi.nlm.nih.gov/?term=arkash+jain',
     bu: 'https://www.bu.edu/cs/profiles/arkash-jain/',
