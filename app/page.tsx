@@ -7,10 +7,8 @@ import ProjectCard from '@/components/sections/ProjectCard'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import TechBadge from '@/components/ui/TechBadge'
-import SocialLinks from '@/components/ui/SocialLinks'
 import { PAPERS, PROJECTS, WORK_TOOLS, KNOWLEDGE_DOMAINS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
-import { STU_STREET_EPISODES, FEATURED_VIDEOS, REVIEWS } from '@/lib/media'
 import { getAllWritingPosts } from '@/lib/content'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -40,6 +38,9 @@ export default function Home() {
   return (
     <div>
       <Hero />
+
+      {/* GitHub — live activity widgets, snapshot, top languages */}
+      <GitHubActivity />
 
       {/* Two-up: arc summary + recent posts */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
@@ -190,9 +191,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GitHub — live activity widgets + private snapshot */}
-      <GitHubActivity />
-
       {/* Tools + Knowledge — two-up */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
         <div className="grid gap-8 md:grid-cols-2">
@@ -230,90 +228,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Media preview grid */}
-      <section className="px-6 py-10 max-w-6xl mx-auto">
-        <SectionHeader
-          eyebrow="Media"
-          title="Podcasts, talks, reviews"
-          href="/media"
-          hrefLabel="All media →"
-        />
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            ...FEATURED_VIDEOS.slice(0, 1).map((v) => ({
-              kind: 'Talk',
-              label: 'Benmore Talk',
-              title: v.title,
-              href: '/media',
-            })),
-            ...STU_STREET_EPISODES.filter((e) => e.youtubeId)
-              .slice(0, 2)
-              .map((e) => ({
-                kind: 'Podcast',
-                label: `STU STREET · Ep ${e.number}`,
-                title: e.title,
-                href: '/media',
-              })),
-            {
-              kind: 'Reviews',
-              label: 'Trustpilot',
-              title: `${REVIEWS.length} verified client reviews`,
-              href: '/media',
-            },
-          ].map((item) => (
-            <Link key={item.title} href={item.href} className="block group">
-              <Card glow className="h-full">
-                <Badge variant={item.kind === 'Reviews' ? 'green' : 'teal'} className="mb-2">
-                  {item.kind === 'Reviews' ? '★ Verified' : item.kind}
-                </Badge>
-                <p className="font-mono text-[10px] text-primary uppercase tracking-widest mb-2">
-                  {item.label}
-                </p>
-                <h3 className="text-sm font-bold text-text leading-tight group-hover:text-primary transition-colors">
-                  {item.title}
-                </h3>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Connect / social profiles */}
-      <section className="px-6 py-10 max-w-6xl mx-auto">
-        <SectionHeader
-          eyebrow="Connect"
-          title="Find me everywhere."
-          italicAccent="Same person, every platform."
-          description="GitHub, LinkedIn, X, Substack, Medium, Google Scholar, ORCID, BU + Harvard profiles, BioRxiv, PubMed."
-        />
-        <SocialLinks />
-      </section>
-
-      {/* Writing */}
-      <section className="px-6 py-10 max-w-6xl mx-auto">
-        <SectionHeader eyebrow="Writing" title="Recent posts" href="/writing" />
-        <div className="grid gap-4 md:grid-cols-3">
-          {latestWriting.map((post) => (
-            <Link key={post.slug} href={`/writing/${post.slug}`} className="block group">
-              <Card glow className="h-full">
-                <p className="text-muted text-xs font-mono mb-2">{post.date}</p>
-                <h3 className="text-base font-bold text-text mb-2 group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-muted text-xs mb-3 leading-relaxed">{post.description}</p>
-                <div className="flex flex-wrap gap-1">
-                  {(post.tags || []).map((t) => (
-                    <Badge key={t} variant="teal">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
-            </Link>
-          ))}
         </div>
       </section>
     </div>

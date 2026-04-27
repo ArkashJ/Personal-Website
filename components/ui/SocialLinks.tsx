@@ -9,7 +9,7 @@ type Link = { href: string; label: string; sub?: string }
 export const SOCIAL_LINKS: Link[] = [
   { href: SITE.social.github, label: 'GitHub', sub: '@ArkashJ' },
   { href: SITE.social.linkedin, label: 'LinkedIn', sub: 'in/arkashj' },
-  { href: SITE.social.twitter, label: 'X / Twitter', sub: '@_arkash' },
+  { href: SITE.social.twitter, label: 'X / Twitter', sub: '@ArkashJ__' },
   { href: SITE.social.substack, label: 'Substack', sub: 'arkash.substack.com' },
   { href: SITE.social.medium, label: 'Medium', sub: '@arkjain' },
   { href: SITE.social.harvard, label: 'Harvard Lab Page', sub: 'Kirchhausen Lab' },
