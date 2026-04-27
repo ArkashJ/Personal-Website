@@ -37,6 +37,7 @@ yarn-error.log*
 .vercel
 .playwright-mcp/
 
-# screenshots
+# screenshots — ignore loose PNGs everywhere except inside docs/ and public/
 *.png
 !docs/**/*.png
+!public/**/*.png

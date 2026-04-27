@@ -42,7 +42,7 @@ export function buildMetadata({
   const fullTitle = title ? `${title} — ${SITE.name}` : SITE.title
   const desc = description || SITE.description
   const url = `${SITE.url}${path}`
-  const ogImage = image || `${SITE.url}/myImg.jpeg`
+  const ogImage = image || `${SITE.url}/images/profile.jpeg`
   const mergedKeywords = Array.from(new Set([...(keywords || []), ...DEFAULT_KEYWORDS]))
   return {
     title: fullTitle,

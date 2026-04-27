@@ -6,7 +6,7 @@ export const personSchema = () => ({
   '@id': `${SITE.url}#person`,
   name: SITE.name,
   url: SITE.url,
-  image: `${SITE.url}/myImg.jpeg`,
+  image: `${SITE.url}/images/profile.jpeg`,
   email: `mailto:${SITE.email}`,
   sameAs: [
     SITE.social.linkedin,
@@ -102,7 +102,7 @@ export const articleSchema = ({
   dateModified: dateModified || date,
   url: `${SITE.url}${slug}`,
   mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE.url}${slug}` },
-  image: image || `${SITE.url}/myImg.jpeg`,
+  image: image || `${SITE.url}/images/profile.jpeg`,
   inLanguage: 'en',
   ...(keywords && keywords.length ? { keywords: keywords.join(', ') } : {}),
   author: { '@id': `${SITE.url}#person` },

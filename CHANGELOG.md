@@ -5,6 +5,34 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [2.3.0] — 2026-04-26 — Asset consolidation + doc rewrite
+
+### Changed — Single image location
+
+- All site images consolidated under `public/images/`:
+  - `public/myImg.jpeg` → `public/images/profile.jpeg`
+  - `public/logos/*.svg` → `public/images/logos/*.svg`
+  - `public/files/*.pdf` → `public/images/files/*.pdf`
+  - 37 unused legacy logos/JPGs at `public/` root → `public/images/legacy/`
+- Updated all source references:
+  - `app/about/page.tsx`, `app/about/archive/page.tsx` — profile import path
+  - `lib/structured-data.ts`, `lib/metadata.ts` — Person JSON-LD + OG fallback URLs
+  - `components/ui/InstitutionLogo.tsx` — institution logo URLs
+  - `app/credentials/page.tsx`, `lib/data.ts` — verifiable credential PDF URLs
+- 58 dev/walkthrough screenshots at repo root → `docs/screenshots/`
+- `public/` root now contains only: `favicon.svg`, `images/`, `timeline/`, `llms*.txt`, `humans.txt`, `robots.txt`, and verification keys (Google, IndexNow)
+
+### Changed — Documentation
+
+- **`CLAUDE.md`** rewritten end-to-end. Old version still described the legacy Next 13 Pages Router site with three pages and "lint errors are ignored". New version reflects the App Router + TypeScript-strict architecture, the actual route table, the `lib/` data layer, the MDX content tree, and the new image conventions.
+- **`README.md`** rewritten as a comprehensive author dossier — full life timeline, credentials, publications, knowledge domains, internal tools, repo tree, stack, links, badges. Goes well beyond a project-only README to consolidate the website's content into a single Markdown reference.
+
+### Build
+
+- Production build passes after the move. No code-level behavior changes.
+
+---
+
 ## [2.2.0] — 2026-04-26
 
 ### Added — Metior-Pro inspired visual identity

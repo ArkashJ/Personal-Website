@@ -5,7 +5,7 @@ import SocialLinks from '@/components/ui/SocialLinks'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { TIMELINE } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
-import myImg from '@/public/myImg.jpeg'
+import myImg from '@/public/images/profile.jpeg'
 
 export const metadata = buildMetadata({
   title: 'About — From Physics to Harvard AI to Building AI Companies',

@@ -600,10 +600,13 @@ export const TIMELINE: TimelineEntry[] = [
     status: 'Completed',
     description: 'BA in Math & CS, MS in CS, completed in four years.',
     links: [
-      { label: 'BA degree (PDF)', href: '/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf' },
+      {
+        label: 'BA degree (PDF)',
+        href: '/images/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf',
+      },
       {
         label: 'MS degree (PDF)',
-        href: '/files/arkash-jain-master-of-science-computer-science.pdf',
+        href: '/images/files/arkash-jain-master-of-science-computer-science.pdf',
       },
     ],
   },
@@ -629,7 +632,7 @@ export const TIMELINE: TimelineEntry[] = [
         label: 'Kirchhausen Lab profile',
         href: 'https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs',
       },
-      { label: 'Harvard ID (PDF)', href: '/files/arkash-jain-harvard-university-id.pdf' },
+      { label: 'Harvard ID (PDF)', href: '/images/files/arkash-jain-harvard-university-id.pdf' },
     ],
     slug: 'harvard-kirchhausen',
   },
