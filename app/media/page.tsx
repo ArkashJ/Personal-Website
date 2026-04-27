@@ -169,7 +169,7 @@ export default function MediaPage() {
             >
               <ul className="grid gap-2 md:grid-cols-2">
                 {REST_EPISODES.map((ep) => (
-                  <li key={`${ep.number}-${ep.title}`}>
+                  <li key={`${ep.number}-${ep.title}`} className="min-w-0">
                     <a
                       href={
                         ep.youtubeId
@@ -178,7 +178,7 @@ export default function MediaPage() {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between gap-3 px-4 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
+                      className="flex items-center justify-between gap-3 px-4 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
                     >
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
@@ -270,12 +270,12 @@ export default function MediaPage() {
             </p>
             <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
               {REVIEWS_LINK_ONLY.map((r) => (
-                <li key={r.url}>
+                <li key={r.url} className="min-w-0">
                   <a
                     href={r.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-3 px-3 py-2 bg-surface border border-border hover:border-primary transition-colors"
+                    className="group flex items-center justify-between gap-3 px-3 py-2 bg-surface border border-border hover:border-primary transition-colors min-w-0"
                   >
                     <span className="font-mono text-[11px] text-muted group-hover:text-primary truncate">
                       trustpilot.com/{reviewLabel(r.url)}…
@@ -326,7 +326,7 @@ export default function MediaPage() {
               href={a.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
+              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
             >
               <div className="min-w-0">
                 <h3 className="text-text font-medium truncate">{a.title}</h3>
@@ -394,7 +394,7 @@ export default function MediaPage() {
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
+              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
             >
               <div className="min-w-0">
                 <p className="font-mono text-xs text-primary uppercase tracking-widest mb-0.5">
