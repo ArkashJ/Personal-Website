@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   ...buildMetadata({ path: '/' }),
   metadataBase: new URL(SITE.url),
   icons: { icon: '/favicon.svg' },
+  verification: {
+    google: '9i4OP2Utb_pb1gOLKG8gTxVcs0GrI8sDAJ4--Wi-xYU',
+  },
 }
 
 export const viewport: Viewport = {
