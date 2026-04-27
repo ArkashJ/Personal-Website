@@ -9,6 +9,7 @@ import TechBadge from '@/components/ui/TechBadge'
 import SocialLinks from '@/components/ui/SocialLinks'
 import { PAPERS, PROJECTS, WORK_TOOLS, KNOWLEDGE_DOMAINS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
+import { STU_STREET_EPISODES, FEATURED_VIDEOS, REVIEWS } from '@/lib/media'
 import { getAllWritingPosts } from '@/lib/content'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -225,6 +226,54 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Media preview grid */}
+      <section className="px-6 py-10 max-w-6xl mx-auto">
+        <SectionHeader
+          eyebrow="Media"
+          title="Podcasts, talks, reviews"
+          href="/media"
+          hrefLabel="All media →"
+        />
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            ...FEATURED_VIDEOS.slice(0, 1).map((v) => ({
+              kind: 'Talk',
+              label: 'Benmore Talk',
+              title: v.title,
+              href: '/media',
+            })),
+            ...STU_STREET_EPISODES.filter((e) => e.youtubeId)
+              .slice(0, 2)
+              .map((e) => ({
+                kind: 'Podcast',
+                label: `STU STREET · Ep ${e.number}`,
+                title: e.title,
+                href: '/media',
+              })),
+            {
+              kind: 'Reviews',
+              label: 'Trustpilot',
+              title: `${REVIEWS.length} verified client reviews`,
+              href: '/media',
+            },
+          ].map((item) => (
+            <Link key={item.title} href={item.href} className="block group">
+              <Card glow className="h-full">
+                <Badge variant={item.kind === 'Reviews' ? 'green' : 'teal'} className="mb-2">
+                  {item.kind === 'Reviews' ? '★ Verified' : item.kind}
+                </Badge>
+                <p className="font-mono text-[10px] text-primary uppercase tracking-widest mb-2">
+                  {item.label}
+                </p>
+                <h3 className="text-sm font-bold text-text leading-tight group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+              </Card>
+            </Link>
+          ))}
         </div>
       </section>
 

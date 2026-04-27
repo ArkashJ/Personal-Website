@@ -2,6 +2,7 @@ import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import Disclosure from '@/components/ui/Disclosure'
+import BackLink from '@/components/ui/BackLink'
 import { YouTubeEmbed } from '@next/third-parties/google'
 import {
   STU_STREET_EPISODES,
@@ -41,6 +42,8 @@ export default function MediaPage() {
           { name: 'Media', path: '/media' },
         ])}
       />
+
+      <BackLink href="/" label="Home" />
 
       <SectionHeader
         eyebrow="Media"

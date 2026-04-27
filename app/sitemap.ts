@@ -23,6 +23,7 @@ const STATIC: {
   { path: '/docs', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/architecture', priority: 0.5, changeFrequency: 'yearly' },
   { path: '/coursework', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/credentials', priority: 0.6, changeFrequency: 'yearly' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
