@@ -13,7 +13,7 @@ const ThesisTracker = ({ theses }: { theses: Thesis[] }) => (
     {theses.map((t) => (
       <Card key={t.title} glow>
         <div className="flex items-start justify-between gap-3 mb-2">
-          <h3 className="text-white font-bold">{t.title}</h3>
+          <h3 className="text-text font-bold">{t.title}</h3>
           <Badge variant={STATUS_VARIANT[t.status]}>{t.status}</Badge>
         </div>
         <p className="text-muted text-sm leading-relaxed">{t.note}</p>

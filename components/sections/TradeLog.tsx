@@ -15,7 +15,7 @@ const TradeLog = ({ trades }: { trades: Trade[] }) => (
         {trades.map((t, i) => (
           <tr key={i} className="hover:bg-surface/60 transition-colors">
             <td className="px-4 py-3 text-muted font-mono text-xs whitespace-nowrap">{t.date}</td>
-            <td className="px-4 py-3 text-white font-mono">{t.instrument}</td>
+            <td className="px-4 py-3 text-text font-mono">{t.instrument}</td>
             <td className="px-4 py-3 text-muted">{t.thesis}</td>
             <td className="px-4 py-3 text-accent font-mono whitespace-nowrap">{t.outcome}</td>
           </tr>

@@ -38,12 +38,25 @@ export default function AboutPage() {
         asH1
       />
       <ol className="mt-12 stagger">
-        {TIMELINE.slice()
+        {TIMELINE.filter((t) => t.featured)
+          .slice()
           .reverse()
           .map((item) => (
             <TimelineItem key={item.title} {...item} avatar={myImg} />
           ))}
       </ol>
+
+      <div className="mt-12 pt-8 border-t border-border">
+        <p className="text-muted text-sm">
+          Showing {TIMELINE.filter((t) => t.featured).length} curated milestones.{' '}
+          <a
+            href="/about/archive"
+            className="text-primary hover:text-accent font-mono inline-block ml-1"
+          >
+            See the full archive ({TIMELINE.length}) →
+          </a>
+        </p>
+      </div>
     </div>
   )
 }

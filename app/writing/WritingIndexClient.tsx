@@ -53,7 +53,7 @@ export default function WritingIndexClient({ posts }: { posts: WritingMeta[] }) 
           <Link key={post.slug} href={`/writing/${post.slug}`}>
             <Card glow className="h-full cursor-pointer">
               <p className="text-muted text-xs font-mono mb-2">{post.date}</p>
-              <h3 className="text-lg font-bold text-white mb-2">{post.title}</h3>
+              <h3 className="text-lg font-bold text-text mb-2">{post.title}</h3>
               <p className="text-muted text-sm mb-4">{post.description}</p>
               <div className="flex flex-wrap gap-1.5">
                 {(post.tags || []).map((t) => (

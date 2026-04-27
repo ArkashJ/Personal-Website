@@ -54,14 +54,14 @@ export default function Home() {
           <div className="grid gap-6 md:grid-cols-2">
             <Card glow>
               <Badge variant="cyan">● Current</Badge>
-              <h3 className="text-xl font-bold text-white mt-3 mb-2">Head of FDE at Benmore</h3>
+              <h3 className="text-xl font-bold text-text mt-3 mb-2">Head of FDE at Benmore</h3>
               <p className="text-muted text-sm">
                 Leading forward deployed engineering across SMB AI engagements at Benmore.
               </p>
             </Card>
             <Card glow>
               <Badge variant="teal">Latest writing</Badge>
-              <h3 className="text-xl font-bold text-white mt-3 mb-2">{latestWriting[0].title}</h3>
+              <h3 className="text-xl font-bold text-text mt-3 mb-2">{latestWriting[0].title}</h3>
               <p className="text-muted text-sm">{latestWriting[0].description}</p>
             </Card>
           </div>
@@ -86,7 +86,7 @@ export default function Home() {
         <div className="grid gap-6 md:grid-cols-3">
           {featuredWork.map((w) => (
             <Card key={w.name} glow>
-              <h3 className="text-lg font-bold text-white mb-2">{w.name}</h3>
+              <h3 className="text-lg font-bold text-text mb-2">{w.name}</h3>
               <p className="text-muted text-sm mb-3">{w.description}</p>
               <div className="flex flex-wrap gap-1.5">
                 {w.tech.map((t) => (
@@ -128,7 +128,7 @@ export default function Home() {
           {latestWriting.map((post) => (
             <Card key={post.slug} glow>
               <p className="text-muted text-xs font-mono mb-2">{post.date}</p>
-              <h3 className="text-lg font-bold text-white mb-2">{post.title}</h3>
+              <h3 className="text-lg font-bold text-text mb-2">{post.title}</h3>
               <p className="text-muted text-sm mb-3">{post.description}</p>
               <div className="flex flex-wrap gap-1.5">
                 {(post.tags || []).map((t) => (

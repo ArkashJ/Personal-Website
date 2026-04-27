@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Check, Square, ChevronLeft, ChevronRight } from 'lucide-react'
+import { TIMELINE } from '@/lib/data'
 
 type Step = {
   title: string
@@ -11,42 +12,17 @@ type Step = {
   href?: string
 }
 
-// Most recent first
-const STEPS: Step[] = [
-  { title: 'Head of FDE', meta: 'Apr 2026 · ongoing', status: 'active', href: '/experience' },
-  {
-    title: 'Joined Benmore — Employee #2',
-    meta: 'Aug 2025 · Forward Deployed',
-    status: 'done',
-    href: '/experience',
-  },
-  {
-    title: 'SpatialDINO published',
-    meta: '2025 · BioRxiv · 1st author',
-    status: 'done',
-    href: '/research',
-  },
-  {
-    title: 'Joined Harvard Kirchhausen Lab',
-    meta: 'May 2024 · ML Researcher',
-    status: 'done',
-    href: '/research',
-  },
-  {
-    title: 'Started Harvard MS',
-    meta: 'Sep 2023 · Computational Science',
-    status: 'done',
-    href: '/about',
-  },
-  { title: 'Graduated BU summa cum laude', meta: 'May 2023', status: 'done', href: '/about' },
-  { title: 'First paper published', meta: '2022 · ML systems', status: 'done', href: '/research' },
-  {
-    title: 'Started at Boston University',
-    meta: 'Sep 2020 · CS + Math',
-    status: 'done',
-    href: '/about',
-  },
-]
+// Derived from the featured TIMELINE entries — single source of truth.
+// Most recent first.
+const STEPS: Step[] = TIMELINE.filter((t) => t.featured)
+  .slice()
+  .reverse()
+  .map((t) => ({
+    title: t.title,
+    meta: `${t.date}${t.category ? ' · ' + t.category : ''}`,
+    status: t.status === 'Current' || t.status === 'Live' ? 'active' : 'done',
+    href: t.slug ? `/about/timeline/${t.slug}` : '/about',
+  }))
 
 const PAGE_SIZE = 3
 

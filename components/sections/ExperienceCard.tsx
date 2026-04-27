@@ -5,7 +5,7 @@ const ExperienceCard = ({ org, role, dates, location, bullets }: ExperienceEntry
   <Card glow>
     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-2">
       <div>
-        <h3 className="text-xl font-bold text-white">{role}</h3>
+        <h3 className="text-xl font-bold text-text">{role}</h3>
         <p className="text-primary font-mono text-sm">{org}</p>
       </div>
       <div className="text-muted text-xs font-mono whitespace-nowrap">

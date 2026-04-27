@@ -59,7 +59,7 @@ export default async function KnowledgeArticle({
         ← {domainName}
       </Link>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-white mt-6 mb-3">{post.meta.title}</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-text mt-6 mb-3">{post.meta.title}</h1>
       <p className="text-muted text-sm font-mono mb-8">{post.meta.date}</p>
 
       {post.meta.description && (

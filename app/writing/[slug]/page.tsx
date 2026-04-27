@@ -45,7 +45,7 @@ export default async function WritingPost({ params }: { params: Promise<{ slug: 
         ← Writing
       </Link>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-white mt-6 mb-3">{post.meta.title}</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-text mt-6 mb-3">{post.meta.title}</h1>
       <p className="text-muted text-sm font-mono mb-2">{post.meta.date}</p>
       <div className="flex flex-wrap gap-1.5 mb-8">
         {(post.meta.tags || []).map((t) => (
