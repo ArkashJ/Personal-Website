@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Override global gitignore (which ignores Python build dirs that collide with our source)
+!lib/
+!build/
+
 node_modules
 # dependencies
 /node_modules
