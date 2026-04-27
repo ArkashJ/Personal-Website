@@ -210,26 +210,34 @@ export default function MediaPage() {
           eyebrow="Reviews"
           title="What clients say"
           italicAccent="Verified on Trustpilot."
-          description={`${REVIEWS.length} public Trustpilot reviews from Benmore engagements.`}
+          description={`${REVIEWS.length} public client reviews from Benmore engagements — every link goes to the live, verifiable Trustpilot review.`}
         />
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {REVIEWS.map((r, i) => (
             <a
               key={r.url}
               href={r.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-3 px-4 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
+              className="group flex flex-col gap-2 px-4 py-4 bg-surface border border-border hover:border-primary hover:-translate-y-0.5 transition-all duration-200"
             >
-              <div className="min-w-0">
-                <p className="font-mono text-[10px] text-primary uppercase tracking-widest mb-0.5">
-                  Review #{i + 1} · {r.source}
-                </p>
-                <p className="text-text text-sm font-medium truncate">
-                  trustpilot.com / {reviewLabel(r.url)}…
-                </p>
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] text-primary uppercase tracking-widest">
+                  Review #{i + 1}
+                </span>
+                <span className="text-success text-base leading-none" aria-label="Five stars">
+                  ★★★★★
+                </span>
               </div>
-              <Badge variant="green">★ Verified</Badge>
+              <p className="text-text text-sm font-medium leading-snug">
+                Verified Benmore engagement
+              </p>
+              <div className="mt-auto flex items-center justify-between">
+                <span className="font-mono text-[10px] text-subtle truncate">
+                  trustpilot.com/{reviewLabel(r.url)}…
+                </span>
+                <Badge variant="green">Trustpilot</Badge>
+              </div>
             </a>
           ))}
         </div>

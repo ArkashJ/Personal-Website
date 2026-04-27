@@ -127,6 +127,28 @@ const HeroDemo = () => {
             </button>
           </div>
         </div>
+
+        {/* Quick links inside the card */}
+        <div className="mt-3 grid grid-cols-3 gap-2">
+          <Link
+            href="/media"
+            className="flex items-center justify-center gap-1.5 px-2 py-2 bg-elevated border border-border hover:border-primary hover:-translate-y-0.5 transition-all duration-200 font-mono text-[10px] uppercase tracking-widest text-muted hover:text-primary"
+          >
+            ▶ Media
+          </Link>
+          <Link
+            href="/research"
+            className="flex items-center justify-center gap-1.5 px-2 py-2 bg-elevated border border-border hover:border-primary hover:-translate-y-0.5 transition-all duration-200 font-mono text-[10px] uppercase tracking-widest text-muted hover:text-primary"
+          >
+            📄 Papers
+          </Link>
+          <Link
+            href="/credentials"
+            className="flex items-center justify-center gap-1.5 px-2 py-2 bg-elevated border border-border hover:border-primary hover:-translate-y-0.5 transition-all duration-200 font-mono text-[10px] uppercase tracking-widest text-muted hover:text-primary"
+          >
+            ◈ Degrees
+          </Link>
+        </div>
       </div>
     </div>
   )
