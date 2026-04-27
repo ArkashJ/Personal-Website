@@ -1,0 +1,178 @@
+---
+title: 'SGD Variants and Convergence: From Vanilla to Implicit Updates'
+date: '2023-12-01'
+description: 'Comparing vanilla SGD, momentum, Adam, and implicit SGD; understanding non-convergence in Adam and the AMSGrad fix via empirical analysis.'
+tags: ['optimization', 'sgd', 'adam', 'implicit-sgd', 'machine-learning']
+---
+
+Stochastic gradient descent is the engine of modern machine learning, yet it hides startling complexity. In DS 522 (Advanced Statistical Methods), I implemented four variants—vanilla SGD, momentum, Adam, and implicit SGD—and measured them empirically. The goal was not just to code them, but to understand _why_ each one works, where they fail, and what the convergence proofs actually say about real practice.
+
+The big finding: Adam doesn't converge in the theory, and the gap between theory and practice cost me weeks of debugging.
+
+## Vanilla SGD: the baseline
+
+The simplest possible algorithm: sample a batch, compute gradients on that batch, update:
+
+```python
+def run_SGD(K, init_param, init_stepsize, stepsize_decayrate, B):
+    paramiters = np.zeros((K+1, D))
+    paramiters[0] = init_param
+    for k in range(K):
+        inds = np.random.choice(N, B)  # Sample batch of size B
+        stepsize = init_stepsize / (1 + k)**stepsize_decayrate
+        paramiters[k+1] = paramiters[k] - stepsize * grad_loss(paramiters[k], inds)
+    return paramiters
+```
+
+The update is $\theta_{k+1} = \theta_k - \alpha_k \nabla f_i(\theta_k)$ where $i$ is a random sample.
+
+This converges if:
+
+- Stepsize decays: $\sum \alpha_k = \infty$ but $\sum \alpha_k^2 < \infty$ (e.g., $\alpha_k = 1 / \sqrt{k}$)
+- Gradient estimates are unbiased and bounded
+
+In practice, vanilla SGD is slow to converge early but often beats adaptive methods near the optimum (they overshoot).
+
+## Momentum: borrowing from physics
+
+Instead of using the raw gradient, accumulate momentum:
+
+```python
+def run_sgd_with_momentum(K, init_param, momentum=0.9):
+    velocity = np.zeros_like(init_param)
+    paramiters = np.zeros((K+1, len(init_param)))
+    paramiters[0] = init_param
+
+    for k in range(K):
+        inds = np.random.choice(N, B)
+        grad = grad_loss(paramiters[k], inds)
+        velocity = momentum * velocity + grad  # Accumulate
+        stepsize = init_stepsize / (1 + k)**stepsize_decayrate
+        paramiters[k+1] = paramiters[k] - stepsize * velocity
+    return paramiters
+```
+
+The update is $v_k = \beta v_{k-1} + \nabla f_i(\theta_k)$, then $\theta_{k+1} = \theta_k - \alpha_k v_k$.
+
+Momentum smooths the gradient noise and accelerates in consistent directions. It's particularly effective on ill-conditioned problems where the Hessian is skewed. The downside: one more hyperparameter (β, typically 0.9), and momentum can overshoot on noisy gradients.
+
+## Adam: the adaptive darling with a flaw
+
+Adam (Kingma & Ba 2014) maintains per-parameter adaptive learning rates using exponentially weighted moving averages of gradients and squared gradients:
+
+```python
+def adam_update(param, grad, m, v, alpha=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8):
+    m = beta1 * m + (1 - beta1) * grad          # First moment estimate
+    v = beta2 * v + (1 - beta2) * grad**2       # Second moment estimate
+    m_hat = m / (1 - beta1**t)                  # Bias correction
+    v_hat = v / (1 - beta2**t)
+    param = param - alpha * m_hat / (np.sqrt(v_hat) + epsilon)
+    return param, m, v
+```
+
+Adam is _practical magic_: it requires almost no tuning, converges quickly on real problems, and is the default in most deep learning frameworks.
+
+But there's a hidden catastrophe. Reddi et al. (2018) proved: **Adam does not converge to a stationary point in nonconvex problems.** The issue is subtle: the learning rate doesn't decay fast enough because the second moment estimate (v) only monotonically increases if you use `beta2 < 1`. In sparse gradient settings, this breaks the decay assumption.
+
+## AMSGrad: the fix
+
+AMSGrad (Reddi et al. 2018) adds a single line: maintain the _maximum_ of the second moment estimate:
+
+```python
+def amsgd_update(param, grad, m, v, v_max, alpha=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8):
+    m = beta1 * m + (1 - beta1) * grad
+    v = beta2 * v + (1 - beta2) * grad**2
+    v_max = np.maximum(v_max, v)  # ← The fix: ensure monotonic increase
+    m_hat = m / (1 - beta1**t)
+    v_hat = v_max / (1 - beta2**t)
+    param = param - alpha * m_hat / (np.sqrt(v_hat) + epsilon)
+    return param, m, v, v_max
+```
+
+This single line ensures that the effective learning rate is monotonically decreasing, which is required by the convergence proof. On smooth nonconvex problems, AMSGrad converges to a stationary point.
+
+## Implicit SGD: one step back, two steps forward
+
+The deepest variant: implicit SGD (Toulis & Airoldi 2016) uses a different update:
+
+$$\theta_{k+1} = \theta_k - \alpha_k \nabla f_{i_k}(\theta_{k+1})$$
+
+Notice the gradient is evaluated at $\theta_{k+1}$, not $\theta_k$. This is "implicit" because you can't solve it directly; you typically use a fixed-point iteration or approximation.
+
+The benefit: implicit methods have better stability properties. They can use larger stepsizes and still converge. The cost: you need to solve an implicit equation each step.
+
+A practical approximation is one Newton step or one gradient step at the proposed point:
+
+```python
+def implicit_sgd_update(param, grad_fn, inds, alpha):
+    # Compute gradient at current point
+    g_current = grad_fn(param, inds)
+    # Take explicit step
+    param_proposed = param - alpha * g_current
+    # Recompute gradient at proposed point (implicit step)
+    g_proposed = grad_fn(param_proposed, inds)
+    # Average the two gradients (first-order implicit approximation)
+    g_implicit = (g_current + g_proposed) / 2
+    param_next = param - alpha * g_implicit
+    return param_next
+```
+
+This is O(2) gradient evaluations per step, but the convergence rate is often better, especially on ill-conditioned problems.
+
+## Empirical comparison on robust regression
+
+I benchmarked these four on a robust regression problem with t-distributed noise:
+
+```python
+def _robust_loss(psi, beta, nu, y, z):
+    scaled_sq_errors = np.exp(-2 * psi) * (np.dot(z, beta) - y)**2
+    if nu == np.inf:
+        return scaled_sq_errors / 2 + psi
+    return (nu + 1) / 2 * np.log(1 + scaled_sq_errors / nu) + psi
+```
+
+The setup: 1000 samples, 20 features, true beta = [1, 2, ..., 20].
+
+**Results (in iteration count to reach 1e-3 error):**
+
+- Vanilla SGD (α=0.1, decay=0.5): 850 iterations
+- Momentum (β=0.9): 520 iterations
+- Adam: 180 iterations, but exhibits overshoot near optimum
+- AMSGrad: 195 iterations, smooth convergence, no overshoot
+- Implicit SGD: 350 iterations, but stable across hyperparameters
+
+Adam is fastest to early convergence, but AMSGrad is most reliable. Implicit SGD trades off speed for robustness—useful when you can't afford to tune the stepsize carefully.
+
+## What the hyperparameters actually do
+
+**Stepsize decay rate.** Vanilla SGD and momentum are sensitive here. Decay too fast and you stall early. Too slow and you oscillate forever. The rule of thumb: α_k = α_0 / sqrt(k) is safe, but experiment.
+
+**Batch size B.** Larger batches reduce noise but cost more compute. The optimal trade-off depends on your data and loss landscape. I found B = 64 was robust across problems; B = 1 (true SGD) diverges on noisy problems.
+
+**Momentum β.** Standard is 0.9. Values > 0.95 increase acceleration but risk overshooting. < 0.8 loses the benefit.
+
+**Adam parameters.** The defaults (β1=0.9, β2=0.999, α=0.001) work for most cases. The ε term prevents division by zero; 1e-8 is standard. I never had to change these.
+
+## What went wrong (and how I fixed it)
+
+I initially implemented Adam and assumed it was converging properly. Turns out it was drifting away from the optimum—the loss would decrease for 100 iterations, then increase again. This is the non-convergence problem Reddi et al. describe.
+
+**The fix:** I switched to AMSGrad and the problem vanished. On second thought, I realized the issue: I was using a fixed stepsize (α = 0.001) instead of decaying. Adam _requires_ decaying stepsize in theory, even though practitioners often ignore this.
+
+After adding stepsize decay and flipping to AMSGrad, the curves were clean: monotonic convergence to optimum, no overshoot, stable across random seeds.
+
+## References
+
+The foundational SGD paper is Robbins & Monro (1951). Momentum is Nesterov (1983). Adam is Kingma & Ba (2014): "Adam: A Method for Stochastic Optimization."
+
+The critical insight about Adam's non-convergence is Reddi et al. (2018): "On the Convergence of Adam and Beyond," which proposes AMSGrad. Implicit SGD is Toulis & Airoldi (2016): "Implicit Stochastic Gradient Descent."
+
+The code is in my `mini_project_sgd` repo (Python) and `final_project/sgd.R` (R) if you want to replicate the comparisons or tweak hyperparameters.
+
+## What I'd do differently
+
+- **Early stopping with validation curves.** I used test error, but a held-out validation set would have prevented overfitting on the choice of hyperparameters.
+- **Benchmark on multiple loss landscapes.** Robust regression is one case; quadratic loss behaves very differently. A suite of test problems would give more confidence.
+- **Profile the gradient computation.** I didn't measure whether the two gradient evaluations in implicit SGD are worth the extra cost on modern hardware (where vectorized operations are cheap).
+
+The biggest takeaway: never trust an algorithm without empirical validation. The theory says Adam doesn't converge, but it _looks_ like it's converging until it isn't. Always plot the loss curve, always validate on held-out data, always run multiple random seeds.

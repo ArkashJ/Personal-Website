@@ -1,0 +1,245 @@
+---
+title: 'Monsters & Heroes: Game Logic and OOP Design — BU CS 611, Spring 2023'
+date: '2023-04-15'
+description: 'A turn-based RPG battle system with polymorph characters, inventory management, and game state flows. Object-oriented design in Java.'
+tags: ['Java', 'OOP', 'Game Design', 'Polymorphism']
+---
+
+Building a game from scratch teaches you why object-oriented design exists. You start with a simple idea —
+"heroes fight monsters" — and quickly realize you need polymorphic character types, equipment systems,
+state machines for turns, and event flows that don't deadlock.
+
+For CS 611 in Spring 2023, I built [Monsters & Heroes](https://github.com/ArkashJ/Monsters_and_Heroes),
+a text-based RPG where a team of heroes battles procedurally generated monsters. The game has three
+character types (Warriors, Sorcerers, Paladins), five item classes (weapons, armor, spells, potions,
+market), and a full battle loop with dodge chances, damage calculations, and inventory management.
+
+## What it is
+
+Monsters & Heroes is a turn-based battle game. You assemble a team of heroes, equip them with weapons
+and spells from a shop, and fight increasingly difficult monsters. Each hero has health, mana, damage,
+and a type that determines which items they can use effectively.
+
+The game's architecture is:
+
+- **Characters**: base class with subclasses for different types. Warriors deal melee damage, Sorcerers
+  cast spells, Paladins have a mix and special abilities.
+- **Items**: weapons, armor, spells, potions. Each character can equip items to boost stats or restore health.
+- **Battle mechanics**: turn order, dodge chance, damage reduction from armor, mana consumption for spells.
+- **Game flow**: load data from files, team selection, market purchases, battles, level-up progression.
+
+Unlike a real-time game where physics and frame timing matter, the battle system is pure state: a character's
+turn, a choice of action, a calculation of outcomes, and a state update. No concurrency, no animation timing.
+
+## How it works: character hierarchy and polymorphism
+
+Every character — hero or monster — extends a base `Character` class:
+
+```java
+public abstract class Character {
+  protected String name;
+  protected int health;
+  protected int mana;
+  protected int baseDamage;
+  protected double dodgeChance;
+  protected Inventory inventory;
+
+  public abstract void levelUp();
+  public abstract double takeDamage(double damage);
+  public abstract boolean canUseItem(Item item);
+}
+```
+
+Heroes have subclasses. A Warrior is melee-focused; a Sorcerer uses mana for spells; a Paladin blends both:
+
+```java
+public class Warriors extends Heroes {
+  public Warriors(String name) {
+    super(name);
+    this.baseDamage = 6.5;
+    this.baseHealth = 100;
+  }
+
+  @Override
+  public void levelUp() {
+    health += 5;
+    mana += 3;
+    baseDamage += 1.0;
+    dodgeChance += 0.02;
+  }
+
+  @Override
+  public boolean canUseItem(Item item) {
+    // Warriors can only use weapons and armor
+    return item instanceof Weapons || item instanceof Armors;
+  }
+}
+```
+
+The key design choice: each subclass defines _what items it can use_ and _how stats improve_. This avoids
+a giant type-check in the battle logic; instead, the character knows its own constraints.
+
+When a hero picks up an item, the battle system calls `canUseItem()`:
+
+```java
+// In the battle loop
+Weapons weapon = (Weapons) hero.getInventory().getItem("Weapon");
+if (weapon != null && hero.canUseItem(weapon)) {
+  fightRules.useWeapon(hero, weapon, monster);
+} else {
+  System.out.println("You can't use that item.");
+}
+```
+
+## How it works: inventory and item application
+
+Every character has an inventory. Items are applied mid-battle to modify stats:
+
+```java
+public class Inventory {
+  private ArrayList<Item> items = new ArrayList<>();
+
+  public void addItem(Item item) {
+    items.add(item);
+  }
+
+  public Item getItem(String type) {
+    // Find and return the first item of this type
+    for (Item item : items) {
+      if (item.getType().equals(type)) {
+        return item;
+      }
+    }
+    return null;
+  }
+}
+```
+
+When a hero uses a potion:
+
+```java
+public static void usePotion(Heroes hero, Potions potion) {
+  int healthRestored = potion.getHealthBoost();
+  hero.setHealth(hero.getHealth() + healthRestored);
+  System.out.println(hero.getName() + " restored " + healthRestored + " health.");
+  // Note: potions are NOT consumed; this is a game design choice
+}
+```
+
+When a hero equips armor:
+
+```java
+public static double useArmor(Heroes hero, Armors armor) {
+  double damageReduction = armor.getDamageReduction();
+  hero.setHealth(hero.getHealth() + armor.getHealthBoost());
+  System.out.println(hero.getName() + " equipped " + armor.getName() +
+                     ", reducing next damage by " + damageReduction);
+  return damageReduction;
+}
+```
+
+The monster's next attack is reduced by `damageReduction`. This is where the game gets interesting:
+you're not just increasing your stats; you're directly modifying the opponent's attack for _this turn_.
+
+## How it works: battle simulation and turn order
+
+The core battle loop simulates a turn-based fight:
+
+```java
+public boolean battle(TeamHeroes heroesList) {
+  ArrayList<Monsters> monstersList = createMonstersList(heroesList.getSize());
+  fightRules.determineMonsterLevel(heroesList, monstersList);
+
+  int heroIndex = 0;
+  int monsterIndex = 0;
+  boolean battleEnded = false;
+
+  while (!battleEnded) {
+    Heroes hero = heroesList.get(heroIndex);
+    Monsters monster = monstersList.get(monsterIndex);
+
+    System.out.println("Battle: " + hero.getName() + " vs " + monster.getName());
+
+    // Player chooses action: potion, spell, weapon, armor, or attack
+    String action = scanner.nextLine().toLowerCase();
+
+    switch (action) {
+      case "potion" -> hero.getInventory().applyPotion(hero);
+      case "spell" -> fightRules.useSpell(hero, spell, monster);
+      case "weapon" -> fightRules.useWeapon(hero, weapon, monster);
+      case "armor" -> damageReduction = fightRules.useArmor(hero, armor);
+      case "attack" -> {
+        double dodgeChance = fightRules.getDodgeChance(monster);
+        if (Math.random() < dodgeChance) {
+          System.out.println(monster.getName() + " dodged!");
+        } else {
+          double damage = hero.getBaseDamage();
+          monster.takeDamage(damage);
+        }
+      }
+    }
+
+    // Monster counterattacks (if alive)
+    if (monster.getHealth() > 0) {
+      double damage = monster.getBaseDamage() - damageReduction;
+      hero.takeDamage(damage);
+    } else {
+      heroIndex++;  // next hero
+    }
+
+    // Check end conditions
+    battleEnded = (heroIndex >= heroesList.getSize()) || (allMonstersDefeated);
+  }
+
+  return heroesWon;
+}
+```
+
+The turn order is implicit: hero acts, monster counteracts (if alive). If the hero kills the monster,
+move to the next monster. If all monsters die, heroes win. If any hero dies before all monsters are gone, heroes lose.
+
+## Design decisions and tradeoffs
+
+**Item consumption**: In the implementation, potions and spells are _not consumed_ when used. This is a game design
+choice (likely for playtesting purposes) but differs from traditional RPGs where resources are limited. A real game
+would remove items from inventory and force strategy around scarcity.
+
+**Deterministic vs. random**: Dodge chance is calculated once per hero-monster pairing and reused. A more realistic
+system would recalculate per action, but this design is simpler and more deterministic for testing.
+
+**State persistence**: There's no save/load system. The game runs top-to-bottom and doesn't serialize hero or
+monster state. For a coursework project, that's fine; for a real game, you'd serialize to JSON or a database.
+
+## What I learned
+
+- **Inheritance isn't magic.** I started with a flat structure (separate Warrior, Sorcerer, Paladin classes)
+  and realized I was duplicating methods. Once I pulled them up into a common base, the code became 30% shorter
+  and much clearer about what's shared vs. specialized.
+
+- **Polymorphism solves type checking.** Instead of `if (character instanceof Warrior) { /* use weapon */ }`,
+  I delegated to the character: `if (character.canUseItem(item))`. The caller doesn't care _which_ type it is.
+
+- **Game state is data.** The battle is just a loop that reads player input and updates state. No magic, no
+  surprises. Once you see that clearly, the whole system becomes easier to test and debug.
+
+- **Inventory is tricky.** Managing what items a character has, what they can use, and how they apply
+  cascades through the system. Get the inventory API right early, or you'll refactor it three times.
+
+## What I'd do differently
+
+- **Separate battle logic from I/O.** The current implementation mixes `System.out.println()` calls throughout
+  the battle code. I'd move all output to a separate `BattleRenderer` and pass it a `BattleEvent`. This
+  makes it trivial to add a GUI or log battles to a file.
+
+- **Use an event bus.** Instead of methods like `useWeapon(hero, weapon, monster)` returning void, emit events:
+  `HeroActed(hero, action)`, `MonsterTook(monster, damage)`. A subscriber logs these to the UI or a log file.
+  This decouples the battle engine from its presentation.
+
+- **Implement proper leveling.** Right now heroes only level up if they survive a battle. I'd track XP per kill
+  and let heroes level mid-team to make progression clearer.
+
+- **Add a market persistence layer.** The market is created fresh each game. A real game would let you buy items,
+  save, and load your team with the items you bought.
+
+The full code is on [GitHub](https://github.com/ArkashJ/Monsters_and_Heroes). It's a solid OOP design for a
+coursework project, and the battle mechanics scale cleanly to more character types or item systems.

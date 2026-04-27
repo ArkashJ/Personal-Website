@@ -1,0 +1,409 @@
+# Arkash Jain — Full LLM Documentation
+
+This is the complete LLM documentation for https://arkashj.com, including published papers, essays, knowledge base, and timeline.
+
+---
+
+## WRITING: Why Forward Deployed Engineering Beats Consulting
+
+title: 'Why Forward Deployed Engineering Beats Consulting'
+date: '2026-02-14'
+tags: ['Venture', 'AI']
+description: 'The unit economics of FDE vs. traditional consulting, and why Palantir cracked it before anyone else.'
+
+The traditional consulting model sells slides. The forward-deployed model sells outcomes backed by code that the client can keep running after you leave.
+
+## The unit economics
+
+Three things make the FDE model work where vanilla consulting fails:
+
+- **Margin on retained tooling.** The CLI you build for client A becomes the foundation for client B. You amortize R&D across the book.
+- **Insider's view of the integration boundary.** Most enterprise AI failures live at the seam between the model and the system of record. FDEs sit on that seam.
+- **Compound learning.** Every engagement generates internal patterns. If you discipline yourself to write them down, your second year is 5–10× more efficient than your first.
+
+## Why Palantir saw it first
+
+Palantir built FDE in the early 2010s because the CIA wouldn't accept slides — they needed working software inside SCIFs. The pattern that emerged was: small teams of engineers parachute into the customer environment, ship working integrations in weeks, then transition to a customer team while staying involved.
+
+The shape that pattern produces is durable revenue at consulting-like dollar values with software-like retention.
+
+## What I'm actually doing at Benmore
+
+I'm building the Foundry CLI to make FDE engagements repeatable. Each engagement contributes patterns, integrations, and skills back to the CLI; the next engagement starts further ahead than the last. That's the entire game.
+
+> The win condition is not "deliver the project." It's "deliver the project AND compound the toolkit."
+
+---
+
+## WRITING: Adaptive Checkpointing in Apache Flink
+
+title: 'Adaptive Checkpointing in Apache Flink'
+date: '2024-05-02'
+tags: ['Distributed Systems']
+description: 'A summary of my undergraduate thesis on driving checkpoint cadence from backpressure signals.'
+
+Apache Flink's default checkpointing strategy is naïve: configure an interval (typically 60 seconds), and the JobManager triggers a checkpoint barrier on that schedule. This works fine when load is steady. It falls apart when traffic spikes.
+
+## The problem
+
+Under bursty load, the operator graph builds backpressure. Checkpointing while backpressured makes things worse — barriers stall behind queued records, alignment time grows, the entire checkpoint takes minutes instead of seconds. Now you have two failures cascading: the original spike _and_ a checkpoint that won't complete.
+
+## What I built
+
+A backpressure-aware checkpointing controller. It samples backpressure metrics from each operator (idle time, busy time, backpressured time), aggregates a job-level signal, and adjusts the checkpoint interval up to 4× the configured baseline when the signal exceeds threshold.
+
+When traffic returns to normal, the controller eases the cadence back over a sliding window, avoiding sawtooth oscillation.
+
+## Result
+
+In synthetic burst experiments with 10× traffic spikes, the adaptive controller reduced mean checkpoint duration during spikes from ~145s to ~18s, with a small increase in recovery time on failure (because checkpoints are slightly older). For most pipelines that's the correct trade.
+
+## Why this matters
+
+The general lesson: any system with a fixed-rate background job and bursty foreground work should consider making the background rate adaptive. Garbage collectors, log compaction, sync schedulers — all the same shape.
+
+---
+
+## WRITING: The FDE Feedback Loop
+
+title: 'The FDE Feedback Loop'
+date: '2026-04-15'
+tags: ['AI', 'Venture']
+description: 'Forward deployed engineering compounds when each engagement makes the next one easier. The loop has four steps.'
+
+I keep coming back to one diagram about forward-deployed engineering. It's a loop with four steps, and the tightness of the loop is what determines whether you build a consulting firm or something more durable.
+
+## The loop
+
+```
+Engagement → Pattern → Tool → Faster engagement
+     ↑                                  │
+     └──────────────────────────────────┘
+```
+
+1. **Engagement.** A client pays you to ship something inside their environment.
+2. **Pattern.** While shipping, you notice a generalizable pattern. (Auth setup for Stripe Connect. Postgres schema for multi-tenant SaaS. Whatever.)
+3. **Tool.** You codify the pattern as something repeatable — a CLI command, a Claude Code skill, a template, a reusable migration.
+4. **Faster engagement.** Next engagement that hits the same pattern uses the tool. You ship in days instead of weeks. Margin compounds.
+
+## Why most consulting firms can't do this
+
+The trap: most consulting firms bill hourly. Every hour spent extracting a pattern and writing a tool is unbillable. The incentive is to redo the engagement from scratch every time, because that maximizes hours.
+
+Fixed-price engagements with the FDE compounds reverses the incentive. Now every hour you save is your margin. The toolkit is the asset.
+
+## How Benmore implements it
+
+Three things make the loop tight at Benmore:
+
+- **Foundry CLI** — every engagement contributes commands back to a shared CLI used by all engineers.
+- **Claude Code skills** — generalizable workflows become skills the next engineer invokes by name (`/stripe-integration`, `/django-celery-expert`, etc.).
+- **`docs/solutions/`** — every gnarly debugging session gets written up as a solution so the next person hits the bug for two minutes instead of two days.
+
+## The win condition
+
+You know the loop is working when a junior engineer onboards in week one and ships production code in week two — using tools that didn't exist twelve months ago, that were extracted from work no one is doing again.
+
+That's the entire game.
+
+---
+
+## WRITING: AI Hardware Stack Deep Dive
+
+title: 'AI Hardware Stack Deep Dive'
+date: '2026-03-09'
+tags: ['AI', 'Hardware']
+description: 'From TSMC N3 shortages to HBM constraints — what the silicon shortage means for frontier AI.'
+
+Frontier AI training is gated by three physical constraints, in this order:
+
+1. **HBM bandwidth.** High-bandwidth memory is the binding constraint on tokens-per-second for any model that doesn't fit in cache.
+2. **Optical interconnect** between racks. NVLink takes you across one box. Past that you're paying for InfiniBand or 800G optics.
+3. **Logic node availability.** TSMC N3 capacity is fully booked through the next two generations of accelerators.
+
+## What it means for builders
+
+If you're a startup training your own foundation model — don't. The wedge isn't there. The wedge is in domain-specific fine-tuning, RAG over proprietary data, and tooling that makes the model cheaper to operate, not cheaper to train.
+
+If you're a startup building infrastructure tools, the most underbuilt category is **observability for distributed training**: who's blocking on what, where the gradient went weird, why the loss curve has that bump at step 18,000. The Datadog of model training does not yet exist.
+
+## What it means for capital
+
+Memory > compute > networking, on a relative-spend basis, over the next 36 months. Watch HBM suppliers and optical interconnect vendors more than NVDA itself — the marginal dollar of training spend goes there now.
+
+---
+
+## WRITING: Why This Site Exists — O-1 Evidence Hub
+
+title: 'Why This Site Exists: O-1 Evidence Hub'
+date: '2026-04-26'
+tags: ['Meta']
+description: 'The site is a personal portfolio, but it is also a deliberately built canonical evidence hub for an O-1 extraordinary-ability visa application.'
+
+This site is a personal portfolio. It is also, deliberately, an evidence hub.
+
+## What an O-1 actually evaluates
+
+The O-1 "extraordinary ability" visa requires showing sustained acclaim in a field. USCIS evaluates evidence across categories — published material, original contributions of major significance, scholarly articles, leadership roles, high remuneration. Adjudicators read whatever they can find on the web about the applicant.
+
+## Why the canonical hub matters
+
+If the only thing returnable for "Arkash Jain" is a LinkedIn profile and a stale GitHub README, the adjudicator reconstructs you from fragments. If there's a single canonical site that links every public proof point — papers, code, interviews, citations — they don't have to.
+
+## How this site is structured for that
+
+- **Person JSON-LD** on every page tells search engines who I am, where I work, what I've published, and which external profiles are mine.
+- **`/research`** lists every published paper with `ScholarlyArticle` JSON-LD and direct links to BioArxiv / Journal of Cell Biology / Journal of Chemical Physics.
+- **`/about`** is the life changelog — every milestone with date and category, in chronological order.
+- **`/work`** documents internal tooling I've built (Foundry CLI, RTK, skills).
+- **`<link rel="me">`** declarations on every page tie this site to LinkedIn, GitHub, Substack, BioArxiv profiles.
+
+## The honest version
+
+I'm building this for the visa, but I'd build something like it anyway. Forcing yourself to canonicalize what you've done is a useful exercise even when no adjudicator is reading.
+
+---
+
+## KNOWLEDGE: SpatialDINO Lessons — 3D SSL on Cryo-ET
+
+title: 'SpatialDINO Lessons: 3D SSL on Cryo-ET'
+date: '2025-09-01'
+domain: 'ai'
+description: 'What we learned building the first 3D self-supervised vision transformer for subcellular cryo-electron tomography.'
+
+SpatialDINO was the first 3D self-supervised vision transformer applied to cryo-electron tomograms. The model learned subcellular structural representations without labels and beat a Nobel laureate–led approach that relied on hand-crafted geometric features.
+
+## What worked
+
+- **Volumetric ViT patches.** Using 3D patches (rather than slice-then-stack) preserved the spatial coherence the network was meant to learn.
+- **DINOv2-style multi-crop self-distillation.** Two student crops, four teacher crops, EMA teacher. The recipe transferred surprisingly well from natural images.
+- **Aggressive masking.** 75% random masking forced the network to learn local structural context rather than memorize global appearance.
+
+## What didn't
+
+- **Full-volume passes.** Tomograms are too large to fit in memory at native resolution. We sub-sampled, which costs detail in fine structures.
+- **Infiniband RDMA stalls.** Caught a Rendezvous backend bug in PyTorch — filed #144779. Cost a week.
+
+## What's next
+
+Diffusion-based denoising as a pretraining objective for cryo-ET is the obvious follow-up. The signal-to-noise floor of CET is much worse than natural images — pretraining the network to denoise gives it a stronger prior than masked autoencoding alone.
+
+---
+
+## KNOWLEDGE: Aggregation Theory in 2026
+
+title: 'Aggregation Theory in 2026'
+date: '2026-01-18'
+domain: 'finance'
+description: "Ben Thompson's aggregation theory, applied to AI dev tools, CRM, and the next category of platform consolidation."
+
+Ben Thompson's aggregation theory in one line: in markets with high distribution costs and high user fragmentation, the player who controls demand-side relationships wins the entire stack.
+
+## Where it's playing out now
+
+- **AI dev tools.** Cursor, Claude Code, Copilot — whoever owns the top of the funnel for "where developers write code today" captures the orchestration layer above every model.
+- **CRM.** HubSpot is the demand-side aggregator for SMB CRM. Salesforce is the enterprise version. The middle is being squeezed.
+- **Health benefits brokerage.** Gusto-style payroll/benefits platforms aggregate the long tail of small employers and become the buyer for upstream insurers.
+
+## What I'm watching
+
+The next category to consolidate via aggregation will be **vertical AI for SMBs**. Whoever cracks the GTM motion to onboard 100,000 dentists / lawyers / restaurants gets the demand-side pricing power.
+
+## The trade
+
+Long the aggregator. Short the supplier whose primary customer is being aggregated. This is structurally what made Amazon vs. brand-name CPGs the trade of the 2010s.
+
+---
+
+## KNOWLEDGE: Claude Code as an Operating System
+
+title: 'Claude Code as an Operating System'
+date: '2026-04-10'
+domain: 'software'
+description: 'Why I think of Claude Code as an OS for engineering work — skills as installed apps, hooks as services, MCP as syscalls.'
+
+The mental model that unlocked Claude Code for me: it's not a chatbot, it's an operating system for engineering work.
+
+| OS concept                | Claude Code equivalent                |
+| ------------------------- | ------------------------------------- |
+| Installed applications    | Skills (`~/.claude/skills/`)          |
+| System services / daemons | Hooks (`SessionStart`, `PostToolUse`) |
+| System calls              | MCP tools                             |
+| Shell                     | The conversation itself               |
+| Filesystem                | The repo + memory dir                 |
+| Package manager           | `bm` (Benmore)                        |
+
+## Why the analogy holds
+
+- Skills carry their own context, instructions, and discoverable interfaces.
+- Hooks fire on lifecycle events the same way init systems run on boot/login.
+- MCP tools are RPC into capability-providing processes (Slack, GitHub, Playwright).
+- Memory persists across sessions like a user's home directory.
+
+## What changes when you think this way
+
+You stop trying to memorize prompts and start designing **workflows that compound**. A skill is the unit of compound learning. The next session starts ahead of the previous one because the skill remembers the conventions you discovered together.
+
+## The practical advice
+
+- Write a skill the second time you do something. Never the first.
+- Hook the boring parts. If you've added the same `Co-Authored-By` line to ten commits, write a hook.
+- Use memory for **decisions**, not facts. Facts are in the code; decisions aren't.
+
+---
+
+## PUBLISHED PAPERS
+
+### Paper 1: SpatialDINO
+
+**Title:** SpatialDINO: Self-Supervised Learning for 3D Vision Transformers
+**Journal:** BioRxiv
+**Date:** 2025
+**Authors:** Arkash Jain et al. (Kirchhausen Lab, Harvard Medical School)
+**URL:** https://www.biorxiv.org/content/10.1101/2025.02.04.636474
+
+Abstract: A 3D self-supervised vision transformer that beats a Nobel laureate-led approach for understanding subcellular structures from cryo-electron tomograms.
+
+### Paper 2: ER Exit Sites (Journal of Cell Biology)
+
+**Title:** Close-up of Vesicular ER Exit Sites by Volume Electron Imaging using FIB-SEM
+**Journal:** Journal of Cell Biology
+**Date:** 2026
+**Volume:** 225(1)
+**Article:** e202504178
+**Authors:** Kirchhausen Lab
+**URL:** https://rupress.org/jcb/article-abstract/225/1/e202504178/278432/
+
+Abstract: Volumetric reconstruction of mammalian ER exit sites at unprecedented resolution via FIB-SEM and learned segmentation.
+
+### Paper 3: ER Exit Sites (Preprint)
+
+**Title:** Close-up of Vesicular ER Exit Sites by FIB-SEM (preprint)
+**Journal:** BioRxiv
+**Date:** Apr 2025
+**Authors:** Kirchhausen Lab
+**URL:** https://www.biorxiv.org/content/10.1101/2025.04.23.650353v3
+
+Abstract: Pre-print companion to the JCB paper — full FIB-SEM volumes plus the segmentation pipeline used to identify vesicles.
+
+### Paper 4: Supercritical Fluids
+
+**Title:** Ultrafast 2DIR comparison of rotational energy transfer, isolated binary collision breakdown, and near critical fluctuations in Xe and SF6 solutions
+**Journal:** Journal of Chemical Physics
+**Date:** Nov 2022
+**Volume:** 157(17)
+**Article:** 174305
+**Authors:** Arkash Jain et al.
+**URL:** https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177/
+
+Abstract: First-author work on supercritical-fluid dynamics using ultrafast 2DIR spectroscopy.
+
+---
+
+## TIMELINE & CAREER
+
+### 2018–2019: Physics Preparation
+Two years of E&M, particle physics, organic and physical chemistry, and optics — the standard JEE Advanced gauntlet. Also sat AP Calculus, AP Physics C: Mechanics, AP Physics C: E&M.
+
+### 2019: JEE Advanced
+Sat the exam alongside ~1M candidates across India — top ~8,000 rank (top-percentile result).
+
+### 2020: College Acceptances
+Accepted to University College London, Nanyang Technological University, Boston University, NYU, and Dartmouth. Chose BU for its physics program and proximity to MIT/Harvard labs.
+
+### Sep 2020: Arrived in the US
+Left Chandigarh, India for Boston University as an undergraduate.
+
+### 2020–2022: Ultrafast Spectroscopy Research
+Joined Larry Ziegler's lab under PhD student Matt Rotondaro. Aligned femtosecond lasers, prepared supercritical Xe and SF6 fluids, wrote auto-correlation analysis code. Research focused on energy transfer in supercritical fluids.
+
+### 2021: NSF UROP Scholar
+1 of 5 freshmen selected university-wide. Research: "Ultrafast Two Dimensional Infrared Spectroscopy of Supercritical Fluids."
+
+### 2022: Battery Ventures (Two internships)
+Sourcing intern (Dec 2021 – Apr 2022): Sourced early-stage B2B software deals across multiple verticals. Learned VC fundamentals: Rule of 40, ARR growth, retention metrics, CAC payback.
+Diligence intern (May – Aug 2022): Deep diligence on portfolio companies, EU expansion strategy, pricing, GTM, regulatory fit.
+
+### Nov 2022: First Published Paper
+Co-authored ultrafast 2DIR study of N2O rotational and vibrational energy relaxation in supercritical Xe and SF6. Journal of Chemical Physics, 157(17): 174305.
+
+### 2023: Engineering Internships
+Boston Children's Hospital: Built ALS resource discovery tool used by clinicians and patients.
+ZeroSync: Worked on Bitcoin STARK proof systems — recursive STARK aggregation tooling.
+
+### 2023–2024: BU Distributed Systems Research
+Dynamic checkpointing for Apache Flink — adaptive checkpoint cadence driven by backpressure signals. Became undergraduate thesis.
+
+### 2024: Boston University Graduation
+BA in Math & CS, MS in Computer Science, completed in four years. Graduated Magna Cum Laude. Marvin Freedman Scholar (top mathematics award).
+
+### May 2024: Harvard Medical School
+Joined Kirchhausen Lab as ML Researcher.
+
+### 2025: SpatialDINO
+Authored first 3D self-supervised vision transformer for cryo-ET subcellular structure prediction. Trained on DGX nodes with FSDP, bf16, NVLink, Infiniband. BioRxiv preprint released.
+
+### Aug 2025: Benmore Technologies
+Joined as Employee #2. Head of FDE (Forward Deployed Strategist & Engineer).
+
+### 2025–2026: Revenue Growth
+Scaled revenue 887% across 2025–2026. Led architect on Cattle Logic — operating system for American cattle ranches (offline-first, CME-integrated).
+
+### 2026: Current Role
+Head of Forward Deployed Engineering at Benmore. Building Cattle Logic and the Benmore Foundry CLI for repeatable AI consulting engagements.
+
+---
+
+## EXPERTISE & KNOWLEDGE DOMAINS
+
+**AI & Machine Learning:**
+- Self-supervised learning (DINO, masked autoencoding)
+- 3D vision transformers
+- Cryo-electron tomography (cryo-ET)
+- Distributed training infrastructure (PyTorch FSDP, DGX, InfiniBand, RDMA)
+- Fine-tuning and transfer learning
+
+**Distributed Systems:**
+- Apache Flink (streaming, checkpointing, state management)
+- Raft consensus protocol
+- RocksDB (log-structured merge trees, write amplification)
+- MapReduce and Spark
+- Dynamic load balancing
+
+**Finance & Venture Capital:**
+- VC fundamentals (Rule of 40, ARR growth, net dollar retention)
+- Aggregation theory (Ben Thompson)
+- AI infrastructure economics
+- Early-stage SaaS diligence
+
+**Physics & Chemistry:**
+- Supercritical fluids
+- Ultrafast spectroscopy (2DIR)
+- Rotational/vibrational energy transfer
+- Critical slowing near phase transitions
+
+**Software Engineering:**
+- Full-stack development (Django, React, React Native)
+- Infrastructure automation (Stripe APIs, CME APIs)
+- CLI design (Python Typer)
+- Claude Code skill development
+
+---
+
+## SITE STRUCTURE
+
+- `/` — Home: featured papers, projects, writing, tools
+- `/about` — Full life changelog with milestones
+- `/research` — All 4 published papers
+- `/projects` — Featured projects (Cattle Logic, SpatialDINO, Raft, etc.)
+- `/experience` — Career history and work tools
+- `/writing` — Essays and long-form (AI, finance, distributed systems)
+- `/stack` — Current tools and hardware
+- `/learnings` — Lessons learned the hard way
+- `/knowledge` — Deep dives by domain (AI, Finance, Math, Physics, Distributed Systems, Software)
+- `/docs` — Project documentation and changelog
+- `/media` — Podcasts, videos, press
+
+---
+
+**End of LLM documentation for arkashj.com**

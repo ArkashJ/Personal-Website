@@ -16,6 +16,14 @@ export const metadata = buildMetadata({
   description:
     'Architecture diagrams for arkashj.com — page structure, navigation, content pipeline, SEO, CI/CD, and component hierarchy.',
   path: '/architecture',
+  keywords: [
+    'site architecture',
+    'Next.js',
+    'app router',
+    'CI/CD',
+    'content pipeline',
+    'component tree',
+  ],
 })
 
 const DiagramSection = ({

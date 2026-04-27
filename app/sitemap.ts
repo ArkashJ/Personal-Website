@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next'
 import { SITE } from '@/lib/site'
 import { getAllWritingPosts, getAllKnowledgePosts } from '@/lib/content'
+import { getAllDocs } from '@/lib/docs'
+import { TIMELINE } from '@/lib/data'
+import { COURSES, allCourseSubPages } from '@/lib/coursework'
 
 const STATIC: {
   path: string
@@ -14,7 +17,12 @@ const STATIC: {
   { path: '/projects', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/writing', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/knowledge', priority: 0.7, changeFrequency: 'weekly' },
+  { path: '/learnings', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/stack', priority: 0.6, changeFrequency: 'monthly' },
+  { path: '/media', priority: 0.6, changeFrequency: 'monthly' },
+  { path: '/docs', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/architecture', priority: 0.5, changeFrequency: 'yearly' },
+  { path: '/coursework', priority: 0.7, changeFrequency: 'monthly' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -42,6 +50,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   )
 
+  const timelineEntries = TIMELINE.filter((t) => t.slug).map((t) => ({
+    url: `${SITE.url}/about/timeline/${t.slug}`,
+    lastModified: today,
+    changeFrequency: 'yearly' as const,
+    priority: 0.6,
+  }))
+
+  const docs = getAllDocs().map((d) => ({
+    url: `${SITE.url}/docs/${d.slug}`,
+    lastModified: today,
+    changeFrequency: 'monthly' as const,
+    priority: 0.4,
+  }))
+
+  const courses = COURSES.map((c) => ({
+    url: `${SITE.url}/coursework/${c.slug}`,
+    lastModified: today,
+    changeFrequency: 'yearly' as const,
+    priority: 0.6,
+  }))
+
+  const courseSubs = allCourseSubPages().map(({ courseSlug, sub }) => ({
+    url: `${SITE.url}/coursework/${courseSlug}/${sub.slug}`,
+    lastModified: today,
+    changeFrequency: 'yearly' as const,
+    priority: 0.5,
+  }))
+
   return [
     ...STATIC.map((r) => ({
       url: `${SITE.url}${r.path}`,
@@ -52,5 +88,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...knowledgeDomains,
     ...writing,
     ...knowledge,
+    ...timelineEntries,
+    ...docs,
+    ...courses,
+    ...courseSubs,
   ]
 }

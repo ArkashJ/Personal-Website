@@ -1,0 +1,153 @@
+---
+title: 'A Merkle Tree POC in Rust — ZeroSync, 2023'
+date: '2023-08-21'
+domain: 'distributed-systems'
+description: 'A from-scratch Merkle tree in Rust over JSON records, built as a proof-of-concept for tamper-evident sync at ZeroSync. SHA-256, deterministic field hashing, and what the borrow checker forced me to learn.'
+---
+
+A Merkle tree is a binary tree where every leaf is the hash of a record and every
+internal node is the hash of the concatenation of its two children. The root hash
+is a cryptographic commitment to the entire data set: change any byte in any
+record and the root changes. They're how Git, Bitcoin, IPFS, and most replicated
+databases prove "we have the same data" without sending the data itself.
+
+I built [a Merkle tree from scratch in Rust](https://github.com/ArkashJ/merkle_tree)
+in summer 2023 at ZeroSync. The use case was tamper-evident sync — given a stream
+of structured records flowing through NATS JetStreams, can the receiver prove the
+sender's data set with a single 32-byte root?
+
+## The shape
+
+The repo is small on purpose:
+
+```
+src/
+  main.rs            // demo: build a tree from two JSON records
+  lib.rs             // pub mod merkle
+  merkle/
+    mod.rs
+    merkle.rs        // MerkleTree { root, nodes }
+```
+
+`MerkleTree` holds two pieces of state:
+
+```rust
+pub struct MerkleTree {
+    pub root: Option<String>,
+    pub nodes: HashSet<String>,
+}
+```
+
+`nodes` is the set of leaf hashes seen so far (de-duplication), and `root` is
+the latest committed root hash.
+
+## Hashing JSON records deterministically
+
+The tricky part of hashing JSON is that maps are unordered, so the _same_ logical
+record can serialize to different bytes. The fix is to walk the value and emit a
+canonical string before hashing:
+
+```rust
+pub fn make_hash(records: &HashMap<String, Value>) -> String {
+    let mut fields: Vec<String> = records
+        .iter()
+        .map(|(k, v)| format!("{}{}", k, Self::value_to_str(v)))
+        .collect();
+    fields.sort();                       // ← key order is canonicalized
+
+    let record_str = fields.iter().fold(String::new(), |mut acc, f| {
+        acc.push_str(f); acc
+    });
+
+    let mut hasher = Sha256::new();
+    hasher.update(record_str);
+    format!("{:x}", hasher.finalize())
+}
+```
+
+`value_to_str` recursively flattens nested arrays and objects. Two clients
+holding the same record always compute the same SHA-256 — that's the property
+the whole protocol depends on.
+
+## Building the tree
+
+Bottom-up, pairwise:
+
+```rust
+let mut hashes: Vec<String> = /* leaf hashes from records */;
+
+while hashes.len() > 1 {
+    let mut layer = vec![];
+    for pair in hashes.chunks(2) {
+        let mut pair = pair.to_vec();
+        pair.sort();                      // ← canonical pair order
+        let node = pair.concat();
+        layer.push(Self::make_hash_str(&node));
+    }
+    hashes = layer;
+}
+self.root = Some(hashes[0].clone());
+```
+
+Two details that matter: the pair is sorted before concatenation (so left/right
+order can't desync clients), and odd-leaf layers fall through naturally because
+`chunks(2)` yields a one-element slice on the tail.
+
+## What the borrow checker taught me
+
+Coming from Python and TypeScript, the first week with `rustc` is brutal. The
+compiler refuses to let you alias a mutable reference, share state across `.await`
+points without `Send`, or smuggle a `&str` past the lifetime of its owner. Three
+specific things clicked while writing this:
+
+1. **Ownership replaces defensive copies.** I kept reaching for `.clone()` to
+   make the compiler happy. Once you stop, the data flow becomes obvious — you
+   either move the value (handing off responsibility) or borrow it (read-only,
+   for a known scope). `clone()` is for when you actually need two copies.
+
+2. **`&str` vs `String` is not pedantry.** The hash builder takes `&str`
+   slices and only allocates a `String` at the boundary. That's the whole
+   point of the type system — push allocation to the edges.
+
+3. **Async + ownership = `tokio` makes you commit to a runtime.** I pulled
+   `tokio = { version = "1", features = ["full"] }` for the eventual NATS
+   integration, but using it forced me to internalize what `Send + 'static`
+   actually means for a future. [The Rust Book](https://doc.rust-lang.org/book/)
+   chapters 4 and 16 are the best 90 minutes you'll spend.
+
+## Verification, end-to-end
+
+Two operations the receiver cares about:
+
+```rust
+pub fn verify(&self, record: &HashMap<String, Value>) -> bool {
+    let h = Self::make_hash(record);
+    self.nodes.contains(&h)
+}
+
+pub fn verify_root(&self, root: String) -> bool {
+    self.root == Some(root)
+}
+```
+
+Cheap membership check (the leaf set), and a single-string root comparison for
+the global commitment. In the real ZeroSync pipeline, the root traveled
+alongside batches on a NATS subject and the receiver rebuilt the tree locally —
+mismatched root means something was dropped, reordered, or tampered with.
+
+## What I'd do differently
+
+- **Store proofs, not just nodes.** The current implementation holds every
+  leaf hash but doesn't expose Merkle proofs (the sibling-hash chain from a leaf
+  to the root). A real client wants a proof-by-record API.
+- **Stream rather than batch.** `add(records: Vec<…>)` rebuilds the whole tree.
+  An incremental Merkle Mountain Range or a Patricia trie scales better when
+  records arrive on a JetStream forever.
+- **Bench, don't guess.** I never benchmarked SHA-256 vs BLAKE3 here; in
+  production you almost always want BLAKE3 at this layer.
+
+The repo is the smallest reasonable thing that demonstrates the property, not a
+production library. But it was the first piece of "real" Rust I shipped, and the
+patterns from it — canonical hashing, sorted pairwise concatenation, ownership-
+aware APIs — carried directly into the rest of the ZeroSync pipeline that
+summer.

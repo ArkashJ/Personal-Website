@@ -1,5 +1,7 @@
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/structured-data'
 import { STACK } from '@/lib/stack'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -8,16 +10,24 @@ export const metadata = buildMetadata({
   description:
     'The current stack: hardware, editor, languages, frameworks, AI tooling, infrastructure, and services. Updated when something graduates from experiment to default.',
   path: '/stack',
+  keywords: ['tech stack', 'tools', 'software', 'infrastructure', 'hardware'],
 })
 
 export default function StackPage() {
   return (
     <div className="px-6 py-16 max-w-6xl mx-auto">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Stack', path: '/stack' },
+        ])}
+      />
       <SectionHeader
         eyebrow="Stack"
         title="What I use."
         italicAccent="Updated when something earns it."
         description="Hardware, editor, languages, frameworks, infra. Opinionated. Real."
+        asH1
       />
 
       <div className="space-y-12">

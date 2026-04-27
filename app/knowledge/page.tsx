@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/structured-data'
 import { KNOWLEDGE_DOMAINS } from '@/lib/data'
 import { getAllKnowledgePosts } from '@/lib/content'
 import { buildMetadata } from '@/lib/metadata'
@@ -10,6 +12,7 @@ export const metadata = buildMetadata({
   description:
     'Notes and essays organized by domain: AI, Finance, Distributed Systems, Math, Physics, Software.',
   path: '/knowledge',
+  keywords: ['knowledge', 'AI', 'finance', 'math', 'physics', 'distributed systems'],
 })
 
 export default function KnowledgeHub() {
@@ -21,11 +24,18 @@ export default function KnowledgeHub() {
 
   return (
     <div className="px-6 py-16 max-w-6xl mx-auto">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Knowledge', path: '/knowledge' },
+        ])}
+      />
       <SectionHeader
         eyebrow="Knowledge"
         title="Second brain."
         italicAccent="In public."
         description="Six domains I think about. Each is its own hub of deep dives, notes, and worked examples."
+        asH1
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8 stagger">
         {KNOWLEDGE_DOMAINS.map((d) => {

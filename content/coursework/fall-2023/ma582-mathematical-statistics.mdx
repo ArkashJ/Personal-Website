@@ -1,0 +1,137 @@
+---
+title: 'MA 582: Mathematical Statistics — Estimation and Hypothesis Testing'
+date: '2023-12-01'
+description: 'Foundational theory in point estimation, likelihood, sufficiency, and hypothesis testing via Hogg, McKean, and Craig.'
+tags: ['statistics', 'mathematical statistics', 'inference', 'MLE', 'hypothesis testing']
+---
+
+MA 582 with Hogg's _Introduction to Mathematical Statistics_ was the rigor class I needed. After years of applied stats, seeing the proofs—why the Cramér-Rao bound holds, why maximum likelihood works—reframed inference from cookbook to science.
+
+## Point estimation and loss
+
+An estimator is a function of data: `T(X1, ..., Xn)`. It's "good" if it minimizes expected loss. The mean squared error (MSE) is:
+
+```
+MSE(T) = E[(T - θ)^2] = Var(T) + Bias(T)^2
+```
+
+An unbiased estimator has `Bias(T) = 0`, so `MSE = Var`. But unbiasedness is not sacred—a biased estimator with low variance can dominate an unbiased one with high variance. This is the bias-variance tradeoff, and it haunts every inference problem.
+
+For the sample mean `X̄`, we have `E[X̄] = μ` and `Var(X̄) = σ² / n`. It's unbiased and its variance shrinks as we collect more data. For the sample variance `S²`, the unbiased estimator has an extra factor `n / (n-1)`, correcting for the fact that we're using the sample mean instead of the true mean.
+
+## Likelihood and the Cramér-Rao bound
+
+The likelihood is the probability of the data given the parameter:
+
+```
+L(θ; x) = f(x; θ)
+```
+
+For a normal distribution with unknown mean and variance:
+
+```
+L(μ, σ²) ∝ (σ²)^(-n/2) exp(-(1/2σ²) Σ(xi - μ)²)
+```
+
+The log-likelihood is easier to optimize:
+
+```
+ℓ(μ, σ²) = -n/2 log(σ²) - 1/(2σ²) Σ(xi - μ)²
+```
+
+Taking derivatives and setting to zero:
+
+```
+∂ℓ/∂μ = 1/σ² Σ(xi - μ) = 0  ⟹  μ̂ = X̄
+∂ℓ/∂σ² = -n/(2σ²) + 1/(2σ⁴) Σ(xi - μ̂)² = 0  ⟹  σ̂² = Σ(xi - X̄)² / n
+```
+
+These are the MLEs. Note that the variance MLE is _biased_—its expected value is `(n-1)/n * σ²`, not `σ²`. But its MSE is often lower than the unbiased version.
+
+The Cramér-Rao bound says: for any unbiased estimator `T`, the variance satisfies:
+
+```
+Var(T) ≥ 1 / I(θ)
+```
+
+where `I(θ)` is the Fisher information:
+
+```
+I(θ) = E[(∂ℓ/∂θ)²] = -E[∂²ℓ/∂θ²]
+```
+
+The MLE achieves this bound asymptotically (it's asymptotically efficient), meaning it has the lowest possible variance as n → ∞.
+
+## Sufficient statistics and Lehmann-Scheffé
+
+A statistic T is sufficient for θ if the conditional distribution of the data given T does not depend on θ. Intuitively: T captures all information about θ in the data.
+
+The factorization theorem: T is sufficient iff
+
+```
+f(x; θ) = g(T(x); θ) h(x)
+```
+
+where h does not depend on θ.
+
+For the normal distribution, `(X̄, S²)` is sufficient for `(μ, σ²)`. The likelihood factors:
+
+```
+f(x; μ, σ²) ∝ (σ²)^(-n/2) exp(...) = g(x̄, s²; μ, σ²) h(x)
+```
+
+The Lehmann-Scheffé theorem says: if T is sufficient and complete, and U(T) is an unbiased estimator of θ, then U(T) is the unique minimum-variance unbiased estimator (UMVUE).
+
+This is powerful: to find the UMVUE, find an unbiased function of a sufficient statistic. No other estimator will beat it.
+
+## Hypothesis testing and Neyman-Pearson
+
+A hypothesis test has a null `H0: θ ∈ Θ0` and an alternative `H1: θ ∈ Θ1`. We observe data and decide which to accept.
+
+The Neyman-Pearson lemma: to test `H0: θ = θ0` vs `H1: θ = θ1` with level α, the optimal test rejects H0 iff:
+
+```
+L(θ1; x) / L(θ0; x) > k
+```
+
+for some k chosen so the Type I error (false positive) is at most α. This is the likelihood ratio test. For normal data with unknown mean (known variance), this reduces to:
+
+```
+|X̄ - θ0| / (σ / √n) > z_α/2
+```
+
+which is the standard t-test. The Neyman-Pearson lemma tells us: this test is the most powerful among all level-α tests. No other test will reject H1 more often while keeping false positives under control.
+
+## MGF, asymptotics, and CLT
+
+The moment generating function `M(t) = E[e^(tX)]` encodes all moments: `M^(k)(0) = E[X^k]`. For the normal distribution:
+
+```
+M(t) = exp(μt + σ²t²/2)
+```
+
+This tells us immediately: `E[X] = μ` and `E[X²] = μ² + σ²`.
+
+The central limit theorem says: if `X1, X2, ...` are i.i.d. with mean μ and variance σ², then:
+
+```
+√n (X̄ - μ) / σ → N(0, 1)
+```
+
+in distribution. This is why the normal approximation works for the sample mean, even if the population is not normal.
+
+Slutsky's theorem extends this: if `Xn → X` in distribution and `Yn → c` in probability (a constant), then `Xn + Yn → X + c`, `Xn Yn → cX`, etc. This lets us bootstrap asymptotics: if we estimate σ with S, then:
+
+```
+√n (X̄ - μ) / S → N(0, 1)
+```
+
+because S → σ in probability.
+
+## Why this matters to later work
+
+These ideas show up everywhere in my graduate work. In DS 522 (Statistical Learning), SGD is analyzed via the central limit theorem: the gradient estimates are (approximately) normal by CLT, so we can reason about convergence. In SpatialDINO, when we evaluate the spatial quality of embeddings, we use hypothesis testing (is this difference significant?) and confidence intervals (both built on CLT asymptotics).
+
+The Cramér-Rao bound taught me that there's a fundamental limit to what we can estimate; you can't do better than the MLE in the limit. The sufficiency concepts taught me to look for the "right" statistic—the minimal one that carries all the information. And the Neyman-Pearson lemma taught me that optimality is precise: you can prove your test is the best under some criterion, not just intuitive.
+
+Hogg's text is dense—three chapters on special distributions, pages of tables of PDFs and MGFs—but it repays careful reading. The problems are hard (I still have my homework), but wrestling with them is how the theory settles in.

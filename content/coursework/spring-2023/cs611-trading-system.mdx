@@ -1,0 +1,273 @@
+---
+title: 'Stock Trading System with Design Patterns — BU CS 611, Spring 2023'
+date: '2023-05-05'
+description: 'A multi-user trading platform with factory-pattern accounts, JDBC database persistence, and portfolio management. A group project with careful abstraction layers.'
+tags: ['Java', 'Design Patterns', 'JDBC', 'Factory Pattern']
+---
+
+The final project for CS 611 was a real challenge: build a stock trading system from scratch, with multiple users,
+account types, persistent state, and a working frontend. Not a toy. This requires careful API design and separation
+of concerns. I worked on this with [Trisha Anil](https://github.com/trishanil) and Jianxio Yang, splitting the
+work across database, accounts, portfolio management, and the frontend.
+
+The system has three layers: the database (JDBC, MySQL), the business logic (account factory, trading operations),
+and the frontend (user menu and state machine). Each layer knows about the one below it but not above. This kept
+our code from becoming a tangled mess as we integrated.
+
+## What it is
+
+A stock trading system where users create accounts (trading or options) and buy/sell stocks. The platform
+maintains a persistent database of users, accounts, stocks, and transactions. Portfolios track positions,
+calculate profit/loss, and enforce account-type-specific rules (e.g., options accounts can trade on margin).
+
+The key design challenge: different account types have different rules. A trading account is straightforward;
+an options account can take leveraged positions. We solved this with the factory pattern: `TradingAccountFactory`
+creates the right account type without the caller knowing which.
+
+## How it works: account factory and interface abstraction
+
+Every account implements a common interface:
+
+```java
+public interface ITrading {
+  boolean buyStock(String stockName, int quantity, double price);
+  boolean sellStock(String stockName, int quantity, double price);
+  double getBalance();
+  void setBalance(double balance);
+  Portfolio getPortfolio();
+}
+```
+
+Then we have two implementations: `TradingAccount` and `OptionsAccount`. Instead of making the caller choose,
+we use a factory:
+
+```java
+public class TradingAccountFactory {
+  public static TradingAccount createTradingAccount(
+      String ownerName, CustomerStocks customerStocks,
+      double balance, int accountNumber) {
+    return new TradingAccount(ownerName, customerStocks, balance, accountNumber);
+  }
+
+  public static OptionsAccount createOptionsAccount(
+      String ownerName, CustomerStocks customerStocks,
+      double balance, int accountNumber) {
+    return new OptionsAccount(ownerName, customerStocks, balance, accountNumber);
+  }
+}
+```
+
+The frontend calls the factory once (based on user input) and then works with the `ITrading` interface.
+If we add a third account type later — crypto? futures? — the frontend doesn't change. The factory
+knows how to instantiate it, and the interface guarantees the API.
+
+## How it works: persistence with JDBC and the Singleton Database
+
+The `Database` class is a singleton (one instance per JVM). It holds the JDBC connection and exposes
+methods to create tables, insert records, and query:
+
+```java
+public class Database {
+  private static final String DB_URL =
+    "jdbc:mysql://localhost:3306/trading_system";
+  private static final String USER = "root";
+  private static final String PASSWORD = "distinctive0930";
+
+  private static Database dbInstance = new Database();
+  private static Connection conn;
+
+  private Database() {
+    conn = connect();
+  }
+
+  public static synchronized Database getInstance() {
+    return dbInstance;
+  }
+
+  public static Connection getConnection() {
+    return conn;
+  }
+}
+```
+
+To insert a stock into a user's portfolio:
+
+```java
+public void insertStockIntoCustomerStocks(
+    int accountNumber, String stockName,
+    double priceBought, int quantity) {
+  String sql = "INSERT INTO customer_stocks " +
+    "(account_number, stock_name, price_bought, quantity) " +
+    "VALUES (?, ?, ?, ?)";
+
+  try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+    pstmt.setInt(1, accountNumber);
+    pstmt.setString(2, stockName);
+    pstmt.setDouble(3, priceBought);
+    pstmt.setInt(4, quantity);
+    pstmt.executeUpdate();
+  } catch (SQLException e) {
+    System.out.println("Error inserting stock: " + e.getMessage());
+  }
+}
+```
+
+The key pattern: all database logic lives in one class, and all SQL is parameterized (preventing SQL injection).
+When you add a new feature — say, dividend tracking — you add a column and a new method. The rest of the codebase
+doesn't care.
+
+## How it works: portfolio management and buy/sell logic
+
+A `Trading` class (in `PortfolioManager`) handles the logic of buying and selling:
+
+```java
+public class Trading {
+  private Database db;
+  private TradingAccount account;
+
+  public Trading(TradingAccount account) {
+    this.account = account;
+    this.db = Database.getInstance();
+  }
+
+  public boolean buyStock(String stockName, int quantity, double currentPrice) {
+    double totalCost = quantity * currentPrice;
+
+    // Check balance
+    if (account.getBalance() < totalCost) {
+      System.out.println("Insufficient funds.");
+      return false;
+    }
+
+    // Deduct from account balance
+    account.setBalance(account.getBalance() - totalCost);
+
+    // Add to portfolio
+    db.insertStockIntoCustomerStocks(
+      account.getAccountNumber(), stockName,
+      currentPrice, quantity
+    );
+
+    // Log the transaction
+    db.insertTransaction(account.getAccountNumber(),
+      "BUY", stockName, quantity, currentPrice);
+
+    return true;
+  }
+}
+```
+
+When a user buys 10 shares of AAPL at $150, the system:
+
+1. Checks the account has $1500
+2. Deducts from balance
+3. Inserts into the `customer_stocks` table
+4. Logs the transaction
+
+If the user sells later, the quantity is decremented and the proceeds are added back. Profit/loss is calculated
+when the frontend queries the portfolio.
+
+## How it works: the three-layer interaction
+
+The architecture separates concerns cleanly:
+
+```
+Frontend (FrontEnd.java, Initiator.java)
+  ↓ creates users, accounts, initiates trades
+Business Logic (Trading.java, BankManager.java)
+  ↓ enforces rules, calculates P&L
+Database (Database.java)
+  ↓ persists to MySQL
+```
+
+The frontend never touches SQL. The business logic doesn't know about GUI details. The database doesn't know
+about trades; it just stores and retrieves data.
+
+When a user logs in:
+
+```java
+// Frontend
+Database db = Database.getInstance();
+boolean authenticated = db.checkLogin(username, password);
+
+if (authenticated) {
+  List<TradingAccount> accounts = db.getTradingAccountsForUser(username);
+  for (TradingAccount account : accounts) {
+    System.out.println(account.getName() + ": $" + account.getBalance());
+  }
+}
+```
+
+The frontend asks the database, "Do these credentials match?" If yes, "Give me this user's accounts." The
+database returns account objects, the frontend displays them. No business logic leaks into the query.
+
+## Design decisions and trade-offs
+
+**Singleton Database**: We chose a singleton to ensure one connection per JVM. In retrospect, this is fine
+for a monolithic app but would cause issues in a microservices setup. A connection pool (like HikariCP) is
+better for production.
+
+**Account interface**: Every account implements `ITrading`, but we still type accounts as `TradingAccount`
+or `OptionsAccount` in the frontend. True polymorphism would never reference the concrete types. We'd store
+accounts as `ITrading` and call methods through the interface. This is a minor regret.
+
+**Margin in options accounts**: Options accounts should allow margin (borrowing to trade). We defined the
+account type but didn't fully implement the margin calculation. A real system would track margin usage,
+interest, and margin calls.
+
+## Testing scenarios
+
+The system handles:
+
+1. **User registration and login**: Create accounts, persist to database, retrieve on login.
+2. **Buy/sell with balance checks**: Attempt to buy more than balance allows; verify the balance is unchanged.
+3. **Multiple accounts per user**: One user can have both a trading and an options account; each has independent
+   portfolio and balance.
+4. **Portfolio queries**: Display holdings, calculate unrealized P&L, show transaction history.
+5. **Concurrent requests**: Multiple users trading simultaneously. (Not fully tested, but the database
+   connection is synchronized.)
+
+## What I learned
+
+- **The factory pattern is more useful than I thought.** It's tempting to just instantiate objects directly,
+  but the factory makes it trivial to swap implementations without touching calling code. This is huge in
+  large systems.
+
+- **JDBC is verbose but safe.** Parameterized queries are non-negotiable. I never had a SQL injection risk
+  because I never concatenated strings into SQL.
+
+- **Persistence is an afterthought until it isn't.** We built the trading logic first, then bolted on the
+  database. If we'd designed the data model up front (tables, columns, constraints), the code would have
+  been cleaner.
+
+- **Layered architecture scales.** When we needed to add features (transaction logging, tax-loss harvesting),
+  we knew exactly where to put the code. New database method? Extend `Database`. New business rule? Add it to
+  `Trading`. New UI flow? Update `FrontEnd`.
+
+## What I'd do differently
+
+- **Use an ORM.** JDBC is fine for coursework, but Hibernate or JPA would eliminate boilerplate. We wrote
+  a lot of `PreparedStatement` code that an ORM would generate.
+
+- **Implement margin properly.** Options accounts should track margin usage and enforce limits. Right now
+  they're just a different account type; there's no behavioral difference.
+
+- **Add order types.** Real trading has stop-loss, limit orders, etc. We only have market orders (buy/sell
+  at current price immediately).
+
+- **Concurrency control.** If two users try to sell the same stock at the same time, there could be a race.
+  Pessimistic locking (row locks in the database) would prevent this.
+
+- **REST API.** Instead of a text-based frontend, expose endpoints so the system can be called from a web app
+  or mobile client. The database and business logic are already abstracted; adding HTTP is straightforward.
+
+## Wrapping up
+
+This project taught me that scale comes from architecture, not complexity. A trading system with 10 features
+and good layering is easier to reason about than a trading system with 3 features and tangled code. The factory
+pattern, the interface segregation, the separation of database/business/frontend — these patterns aren't just
+for show. They're how you stay sane as your system grows.
+
+The codebase lives at [github.com/ArkashJ/\_611Final_TradingSystem](https://github.com/ArkashJ/_611Final_TradingSystem).
+It's a group project (credit to Trisha and Jianxio), and while it's not a replacement for a real trading platform,
+it demonstrates the core ideas: polymorphism, persistence, and clean layering.

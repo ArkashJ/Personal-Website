@@ -9,7 +9,17 @@ import { PAPERS, PROJECTS, WORK_TOOLS, KNOWLEDGE_DOMAINS } from '@/lib/data'
 import { getAllWritingPosts } from '@/lib/content'
 import { buildMetadata } from '@/lib/metadata'
 
-export const metadata = buildMetadata({ path: '/' })
+export const metadata = buildMetadata({
+  path: '/',
+  keywords: [
+    'Arkash Jain',
+    'AI researcher',
+    'forward deployed engineer',
+    'SpatialDINO',
+    'Harvard',
+    'Benmore',
+  ],
+})
 
 export default function Home() {
   const writing = getAllWritingPosts()
@@ -33,7 +43,7 @@ export default function Home() {
             I came to Boston from India in 2020. I was an NSF UROP scholar in chemical physics, did
             two stints at Battery Ventures, researched distributed systems at BU, joined
             Harvard&apos;s Kirchhausen Lab to build SpatialDINO — and now I&apos;m Head of FDE at
-            Benmore, building Cattle Logic and helping SMBs compound through AI.
+            Benmore, helping SMBs compound through AI.
           </p>
         </Card>
       </section>
@@ -46,8 +56,7 @@ export default function Home() {
               <Badge variant="cyan">● Current</Badge>
               <h3 className="text-xl font-bold text-white mt-3 mb-2">Head of FDE at Benmore</h3>
               <p className="text-muted text-sm">
-                Leading forward deployed engineering across SMB AI engagements. Cattle Logic
-                shipping to ranches across the Midwest.
+                Leading forward deployed engineering across SMB AI engagements at Benmore.
               </p>
             </Card>
             <Card glow>

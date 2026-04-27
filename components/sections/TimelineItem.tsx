@@ -1,5 +1,7 @@
 import Image, { type StaticImageData } from 'next/image'
 import Badge from '@/components/ui/Badge'
+import TechBadge from '@/components/ui/TechBadge'
+import InstitutionLogo, { hasLogo } from '@/components/ui/InstitutionLogo'
 import type { TimelineEntry } from '@/lib/data'
 
 const STATUS_VARIANT: Record<TimelineEntry['status'], 'teal' | 'default' | 'cyan' | 'green'> = {
@@ -22,24 +24,40 @@ const isMajor = (status: TimelineEntry['status']) =>
 
 type Props = TimelineEntry & { avatar?: StaticImageData | string }
 
-const TimelineItem = ({ title, category, date, description, status, avatar }: Props) => {
+const TimelineItem = ({
+  title,
+  category,
+  date,
+  description,
+  status,
+  avatar,
+  links,
+  bullets,
+  tech,
+  slug,
+  org,
+}: Props) => {
   const major = isMajor(status)
   return (
     <li className="relative pl-12 pb-8 border-l border-border last:border-l-transparent">
       {/* Avatar / status node */}
       <span
-        className={`absolute -left-[14px] top-0 w-7 h-7 bg-surface border-2 overflow-hidden ${
+        className={`absolute -left-[14px] top-0 w-7 h-7 bg-surface border-2 overflow-hidden flex items-center justify-center ${
           major ? 'border-primary shadow-[0_0_0_4px_rgba(94,234,212,0.10)]' : 'border-border-strong'
         } ${status === 'Current' ? 'rounded-full' : ''}`}
       >
-        {avatar && (
-          <Image
-            src={avatar}
-            alt=""
-            width={28}
-            height={28}
-            className="object-cover w-full h-full"
-          />
+        {hasLogo(org) ? (
+          <InstitutionLogo org={org as string} size={22} className="object-contain" />
+        ) : (
+          avatar && (
+            <Image
+              src={avatar}
+              alt={`Icon for ${title}`}
+              width={28}
+              height={28}
+              className="object-cover w-full h-full"
+            />
+          )
         )}
       </span>
 
@@ -74,6 +92,51 @@ const TimelineItem = ({ title, category, date, description, status, avatar }: Pr
           <p className={`text-muted leading-relaxed ${major ? 'text-sm md:text-base' : 'text-sm'}`}>
             {description}
           </p>
+        )}
+
+        {bullets && bullets.length > 0 && (
+          <ul className="mt-3 space-y-1.5 list-none">
+            {bullets.map((b, i) => (
+              <li key={i} className="text-muted text-sm leading-relaxed pl-4 relative">
+                <span className="absolute left-0 top-2 w-1 h-1 bg-primary/60 rounded-full" />
+                {b}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {tech && tech.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {tech.map((t) => (
+              <TechBadge key={t} label={t} />
+            ))}
+          </div>
+        )}
+
+        {slug && (
+          <a
+            href={`/about/timeline/${slug}`}
+            className="mt-3 inline-block font-mono text-[11px] text-primary hover:text-accent uppercase tracking-widest"
+          >
+            Deep dive →
+          </a>
+        )}
+
+        {links && links.length > 0 && (
+          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono text-primary hover:underline underline-offset-4"
+                >
+                  → {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         )}
 
         {/* Accent rule — only on major milestones */}

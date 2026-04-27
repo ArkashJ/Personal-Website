@@ -1,0 +1,46 @@
+---
+title: 'CS 320: A Stack-Based Imperative Language Interpreter in OCaml'
+date: '2023-12-01'
+description: 'Building an interpreter from scratch for a BNF-defined stack language with algebraic data types, environments, and first-class functions.'
+tags: ['OCaml', 'interpreters', 'operational semantics', 'parsing', 'type systems']
+---
+
+I built a complete interpreter for a custom stack-based language in CS 320, the course on "Programming Languages" at BU. The project was 847 lines of OCaml—tokenizer, recursive-descent parser, and evaluator all handwritten, no parser generators. It taught me what operational semantics really means when you have to implement it.
+
+## The language
+
+The language is imperative and stack-based, inspired by PostScript and Forth but with a formal grammar. Every instruction is either a command or a constant. The stack is where values live; commands transform the stack (and sometimes the log).
+
+**Commands (selection)**: `Push`, `Pop`, `Add`, `Sub`, `Mul`, `Div`, `Swap`, `Neg`, `Concat`, `And`, `Or`, `Not`, `Equal`, `Lte`, `Local`, `Global`, `BeginEnd`, `IfThenElse`, `InjL`, `InjR`, `CaseLeftRight`, `Tuple`, `Get`, `Fun_Mutual`, `Return`, `Call`, `Quit`.
+
+**Values**: The stack holds `VInt`, `VString`, `VLeft`, `VRight`, `VTuple`, or `VClosure`. Sum types are represented as injected values—`InjL` tags a value as left, `InjR` as right. Tuples are heterogeneous. Closures bundle a function body with the lexical environment plus a mutual recursion list.
+
+The state is a tuple: `(stack, log, local_env, global_env)`. The log is a list of strings—whatever gets printed when `Quit` is called. Two-tier environments let you define local bindings that shadow globals, and the evaluator respects scope: `Local x` pops a value off the stack and binds it in the local environment; `Global x` does the same for the global tier.
+
+## Why this matters
+
+CS 320 was teaching operational semantics—the idea that a program is a state machine, and evaluation is a sequence of state transitions. In practice, that means:
+
+1. **The grammar is the law.** Before I wrote a single line of code, I had to understand the BNF: what are valid programs, how do `BeginEnd` blocks nest, when does a `Fun_Mutual` list terminate?
+
+2. **Types encode the structure.** OCaml's algebraic data types let me represent the grammar directly as code. `type com` is the set of all valid commands. `type value` is the set of all runtime values. Pattern matching lets me enforce invariants at the type level.
+
+3. **Environments are first-class abstractions.** The two-tier env was not a hand-wavy "symbol table"—it's a data structure with precise semantics: `lookup_bind` checks local first, then global. `add_bind` updates or inserts. Every binding is immutable; "updates" are new lists.
+
+4. **Arity matters.** Each command has a strict stack discipline: `Add` consumes 2, produces 1. `Neg` consumes 1, produces 1. `Quit` consumes 0, produces a final log. I encoded this in `com_arity` so the interpreter could reject malformed programs early.
+
+## The two deep pages
+
+This is the overview. The real substance is in two companion pages:
+
+- **[cs320-ocaml/parser.mdx](./cs320-ocaml/parser.mdx)** dives into the tokenizer and the recursive-descent parser. How do you turn a raw string into an AST by hand? How do you handle nested blocks without a parser generator?
+
+- **[cs320-ocaml/evaluator.mdx](./cs320-ocaml/evaluator.mdx)** walks the evaluator. The state machine, how environments work in detail, how closures capture scope, how sum types flow through `InjL`/`InjR`/`CaseLeftRight`.
+
+## What stuck with me
+
+The hardest part was not the OCaml syntax—it was thinking operationally. Once I realized that `Local x` is not "declaring a variable" but "consuming the top of the stack and binding it," the whole design clicked. That distinction—between compile-time declarations and runtime bindings—is subtle and crucial. It's why functional interpreters separate parsing (which happens once) from evaluation (which happens many times), and why the evaluator doesn't try to do type checking or scope analysis.
+
+I also learned that small details compound: the order of operations in environment lookup, whether `Swap` really exchanges two values or just moves pointers, how to represent mutual recursion without explicit stack frames. Getting all of that right meant reading error messages very carefully and tracing execution by hand.
+
+The code is live in [github.com/ArkashJ/OCaml-Interpreter](https://github.com/ArkashJ/OCaml-Interpreter).

@@ -19,6 +19,7 @@ export default function WritingIndexClient({ posts }: { posts: WritingMeta[] }) 
         title="Essays, notes, theses."
         italicAccent="What I'm learning, in public."
         description="Curated long-form on AI, finance, distributed systems, and the bridge between them."
+        asH1
       />
 
       <div className="flex flex-wrap gap-2 my-6">

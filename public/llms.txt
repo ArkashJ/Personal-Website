@@ -1,0 +1,92 @@
+# Arkash Jain — AI Researcher, Forward Deployed Engineer & Builder
+
+## Bio
+
+Arkash Jain is an AI researcher and forward deployed engineer based at Benmore Technologies. He recently completed ML research at Harvard Medical School (Kirchhausen Lab), where he authored SpatialDINO — the first 3D self-supervised vision transformer for cryo-electron tomography. Before that, he did distributed systems research at Boston University (BA/MS in Math & CS, 2024), worked in venture capital at Battery Ventures, and conducted undergraduate research in ultrafast spectroscopy.
+
+Current role: Head of Forward Deployed Engineering at Benmore, building Cattle Logic (operating system for American cattle ranches) and the Benmore Foundry CLI for repeatable AI consulting engagements.
+
+Expertise: self-supervised learning, vision transformers, distributed systems (Apache Flink, Raft, RocksDB), supercritical fluid spectroscopy, venture capital, building AI-first software.
+
+## Publications
+
+1. **SpatialDINO: Self-Supervised Learning for 3D Vision Transformers** (2025)
+   - BioRxiv: https://www.biorxiv.org/content/10.1101/2025.02.04.636474
+   - Authors: Arkash Jain et al. (Kirchhausen Lab, Harvard Medical School)
+   - First-author work. 3D self-supervised vision transformer for cryo-ET subcellular structure prediction.
+
+2. **Close-up of Vesicular ER Exit Sites by Volume Electron Imaging using FIB-SEM** (2026)
+   - Journal of Cell Biology, 225(1): e202504178
+   - Authors: Kirchhausen Lab
+   - URL: https://rupress.org/jcb/article-abstract/225/1/e202504178/278432/
+
+3. **Close-up of Vesicular ER Exit Sites by FIB-SEM (preprint)** (Apr 2025)
+   - BioRxiv: https://www.biorxiv.org/content/10.1101/2025.04.23.650353v3
+   - Pre-print companion with full FIB-SEM volumes and segmentation pipeline.
+
+4. **Ultrafast 2DIR comparison of rotational energy transfer, isolated binary collision breakdown, and near critical fluctuations in Xe and SF6 solutions** (Nov 2022)
+   - Journal of Chemical Physics, 157(17): 174305
+   - Authors: Arkash Jain et al.
+   - First-author work on supercritical-fluid dynamics using ultrafast 2DIR spectroscopy.
+   - URL: https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177/
+
+## Major Projects
+
+- **Cattle Logic** (2026) — Operating system for American cattle ranches. Offline-first, CME-integrated. Built at Benmore.
+- **SpatialDINO** (2025) — 3D self-supervised vision transformer for cryo-ET. BioRxiv preprint, Harvard Medical School.
+- **Benmore Foundry CLI** (2025) — Internal orchestration layer for SMB AI consulting engagements.
+- **Raft (Go)** (2023) — From-scratch consensus implementation with leader election, log replication, snapshotting.
+- **Dynamic Checkpointing in Apache Flink** (2024) — BU thesis: adaptive checkpoint cadence driven by backpressure.
+
+## Timeline Highlights
+
+- **2019**: JEE Advanced rank ~8,000 (top 1% of ~1M candidates across India)
+- **2020**: Arrived in Boston from Chandigarh, India. Started at Boston University.
+- **2021**: NSF UROP Scholar (1 of 5 freshmen selected university-wide). First paper in chemical physics.
+- **2022**: Battery Ventures intern (sourcing and diligence). First-author paper published (J. Chem. Phys.).
+- **2024**: BA/MS Boston University (Magna Cum Laude). Started at Harvard Kirchhausen Lab.
+- **2025**: SpatialDINO BioRxiv preprint. Joined Benmore Technologies as Employee #2. 887% revenue growth.
+- **2026**: Cattle Logic launched. Head of Forward Deployed Engineering at Benmore.
+
+## Education
+
+- **Boston University**: BA in Math & CS, MS in Computer Science (2024) — Magna Cum Laude
+  - TA across systems and theory courses
+  - Thesis: Dynamic checkpointing for Apache Flink
+  - Marvin Freedman Scholar (top math award)
+- **Harvard Medical School**: Kirchhausen Lab, ML Researcher (May 2024 – Aug 2025)
+- **High School**: Prepared for JEE Advanced physics, chemistry, and mathematics. Took AP Calculus, AP Physics C: Mechanics, AP Physics C: E&M.
+
+## Knowledge Domains
+
+Arkash maintains a public knowledge base organized by domain:
+- **AI**: Self-supervised learning, vision transformers, distributed training infrastructure
+- **Finance**: Aggregation theory, AI infrastructure economics, venture capital
+- **Distributed Systems**: Flink, RocksDB, Raft, MapReduce, checkpointing
+- **Math**: Optimizers, convergence, intuition behind proofs
+- **Physics**: Supercritical fluids, ultrafast spectroscopy, nuclear reactor efficiency
+- **Software**: Stack evolution, Claude Code, production tooling
+
+## Site Map
+
+Home (/) — Introduction, featured papers, current work, latest writing
+About (/about) — Full life changelog with milestones and education
+Research (/research) — All 4 published papers with abstracts and links
+Projects (/projects) — Featured work: Cattle Logic, SpatialDINO, open source
+Writing (/writing) — Essays on AI, finance, distributed systems, forward-deployed engineering
+Experience (/experience) — Career history and work tools/CLIs
+Stack (/stack) — Current tools, frameworks, hardware, services
+Learnings (/learnings) — Lessons learned the hard way
+Knowledge (/knowledge) — Deep-dive articles by domain (AI, Finance, Math, Physics, Distributed Systems, Software)
+Docs (/docs) — Project documentation, handoff, and changelog
+
+## Contact & Social
+
+Email: arkash@benmore.tech
+GitHub: https://github.com/ArkashJ
+LinkedIn: https://www.linkedin.com/in/arkashj/
+Twitter: https://x.com/_arkash
+Substack: https://arkash.substack.com
+Medium: https://medium.com/@arkjain
+Google Scholar: https://scholar.google.com/scholar?q=arkash+jain
+Harvard Profile: https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs

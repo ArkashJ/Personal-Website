@@ -1,0 +1,302 @@
+---
+title: 'Evaluating with Stacks, Environments, and Closures'
+date: '2023-12-01'
+description: 'How the evaluator threads state through commands, manages scopes with two-tier environments, and implements first-class functions via closures.'
+tags: ['interpreters', 'evaluators', 'closures', 'environments', 'OCaml']
+---
+
+The evaluator is where the AST becomes behavior. It's a state machine: `state = (stack, log, local_env, global_env)`. Each command transitions the state. The core is `eval : prog -> state -> (quitting * returning * state)`.
+
+## State and the stack discipline
+
+The stack is the register file. Values flow onto it and off it. Operations consume fixed counts (the arity) and produce results. `com_arity` encodes this:
+
+```ocaml
+let com_arity (c : com): int =
+  match c with
+  | Quit | Push(_) | BeginEnd(_) | IfThenElse(_) | Return -> 0
+  | Pop | Neg | Not | Local(_) | Global(_) | InjL | InjR
+    | CaseLeftRight(_) | Tuple(_) | Get(_) -> 1
+  | Add | Sub | Mul | Div | Swap | Concat | And | Or
+    | Equal | Lte | Call -> 2
+  | Fun_Mutual(_) -> 3
+```
+
+Arity 0 means the command doesn't consume anything (though `Push` does something, it's not a stack operation). Arity 1 means one pop. Arity 2 means two pops.
+
+The stack holds runtime values:
+
+```ocaml
+and value =
+  | VInt of int
+  | VString of string
+  | VLeft of value
+  | VRight of value
+  | VTuple of value list
+  | VClosure of (var * var * prog) * env * (var * var * prog) list
+```
+
+`VClosure` is the interesting one: it bundles a function tuple `(funcName, paramName, body)`, the lexical environment where it was defined, and the full mutual recursion list. When we call a function, we'll need all three.
+
+## Environments: lookup and binding
+
+Two environments: local and global. Local is checked first. The lookup is:
+
+```ocaml
+let lookup_bind (x : var) (envs : env * env): value option =
+  let rec lookup e =
+    match e with
+    | [] -> None
+    | (y, v)::rst -> if y = x
+                     then Some(v)
+                     else lookup rst
+  in
+  let (local, global) = envs in
+  match lookup local with
+  | None -> lookup global
+  | Some(v) -> Some(v)
+```
+
+Linear search through the list (this is not a hash table; the list is small). Try local first, fall through to global.
+
+Binding is immutable—we create a new list:
+
+```ocaml
+let add_bind (x : var) (v : value) (e : env): env  =
+  let updated, e =
+      List.fold_left
+        (fun (updated, acc) (y, v') ->
+          if y = x
+          then true, (y, v)::acc
+          else updated, (y, v')::acc)
+        (false, [])
+        e
+  in
+  let e = List.rev e in
+  if updated then e else (x, v)::e
+```
+
+If the variable already exists, update it in place (preserving order). If not, prepend. This maintains an invariant: the first occurrence of a variable is the current binding.
+
+## Basic stack operations
+
+`Push` is straightforward:
+
+```ocaml
+let push (stk, log, loc, glob : state) (c : const): (state, eval_err) result =
+  match c with
+  | Name(v) -> lookup_bind v (loc, glob)
+              |> Option.to_result ~none:(UnboundVar(v))
+              |> Result.map (fun x -> x::stk, log, loc, glob)
+  | String(s) -> Ok(VString(s) :: stk, log, loc, glob)
+  | Int(n) -> Ok(VInt(n) :: stk, log, loc, glob)
+```
+
+If it's a name, look it up; if it's a literal, create a value.
+
+`Add` expects two integers on the stack:
+
+```ocaml
+let add : state -> (state, eval_err) result =
+  with_stack @@
+    function
+    | VInt(x) :: VInt(y) :: rst -> Ok(VInt(x + y) :: rst)
+    | _ :: [] | [] as stk -> Error(InvalidArity(Add, List.length stk))
+    | x :: y :: _ -> Error(WrongType(Add, [x; y]))
+```
+
+The `with_stack` helper wraps a function that transforms the stack, leaving log and envs unchanged. Pattern matching handles both missing arguments (arity) and wrong types.
+
+## Variables: Local and Global
+
+`Local x` pops a value and binds it locally:
+
+```ocaml
+let local (s, l, loc, glob : state) (x : var) : (state, eval_err) result =
+  match s with
+  | v::rst -> Ok((rst, l, add_bind x v loc, glob))
+  | []     -> Error(InvalidArity(Local(x), 0))
+```
+
+`Global x` is identical but binds globally. The binding persists until the evaluator exits that environment.
+
+## Sum types: Inject and Case
+
+`InjL` tags a value as left:
+
+```ocaml
+let injl: state -> (state, eval_err) result =
+  with_stack @@
+    function
+    | v::rst -> Ok(VLeft(v)::rst)
+    | [] -> Error(InvalidArity(InjL, 0))
+```
+
+`CaseLeftRight` pattern-matches on the tag:
+
+```ocaml
+and caseLeftRight (s, l, loc, glob: state) (left: prog) (right: prog):
+    (bool * bool * state, eval_err) result =
+    match s with
+    | VLeft(fst)::rst ->
+        eval left (fst::rst, l, loc, glob)
+    | VRight(fst)::rst ->
+        eval right (fst::rst, l, loc, glob)
+    | [] -> Error(InvalidArity(CaseLeftRight(left, right), 0))
+    | x::rst -> Error(WrongType(CaseLeftRight(left, right), [x]))
+```
+
+If the top of the stack is a left value, run the left branch with the unwrapped value on the stack. Same for right.
+
+## Tuples and projection
+
+`Tuple(n)` pops n values and bundles them:
+
+```ocaml
+let tuple (n: int) (s, l, loc, glob : state): (state, eval_err) result =
+  if n = 0 then
+    Ok((VTuple([])::s, l, loc, glob))
+  else
+    match popNTimes n (s, l, loc, glob) with
+    | Ok(stk') -> Ok((VTuple(...first n popped values...)::stk', l, loc, glob))
+    | Error(e) -> Error(e)
+```
+
+`Get(i)` projects the i-th element:
+
+```ocaml
+let get (i: int) (s, l, loc, glob : state): (state, eval_err) result =
+  match s with
+  | VTuple(lst)::rst ->
+      (match List.nth_opt lst i with
+       | Some(v) -> Ok(v::VTuple(lst)::rst, l, loc, glob)
+       | None -> Error(InvalidArity(Get(i), 0)))
+  | [] -> Error(InvalidArity(Get(i), 0))
+  | x::rst -> Error(WrongType(Get(i), [x]))
+```
+
+The tuple stays on the stack; we push the element above it.
+
+## Closures and mutual recursion
+
+`Fun_Mutual` defines a list of mutually recursive functions. Each is a tuple `(funcName, paramName, body)`:
+
+```ocaml
+let funMutEval (s, l, loc, glob: state) (f: (var*var*prog) list):
+    (state, eval_err) result =
+  let newEnv =
+    List.fold_left
+      (fun acc (funcName, varName, prog) ->
+        add_bind (funcName)
+          (VClosure ((funcName, varName, prog), loc, f))
+          acc)
+      loc f
+  in Ok(s, l, newEnv, glob)
+```
+
+For each function, we create a closure that captures the current local environment (`loc`) and the entire list `f` (so all functions in the group are mutually visible). We bind each closure by its function name in the local environment.
+
+`Call` invokes a closure:
+
+```ocaml
+and call (s, l, loc, glob: state) =
+    match s with
+    | VClosure((f, arg, prog), loc, funmutLst)::x::rst ->
+        (match funMutEval([], [], loc, []) funmutLst with
+        | Ok(_, _, newLoc, _) ->
+            eval prog ([], l, add_bind arg x newLoc, glob)
+            |> and_then @@ fun (quitting, returning, (st, l, _, glob)) ->
+              (match returning with
+              | true ->
+                  (match st with
+                  | h::t -> Ok(quitting, false, (h::rst, l, loc, glob))
+                  | [] -> Error(NoValue(Call)))
+              | false -> Error(NoValue(Call)))
+        | Error(e) -> Error(e))
+    | _ -> Error(NoValue(Call))
+```
+
+When we call, we pop the function (a closure) and the argument. We re-instantiate all mutually recursive functions in a fresh local environment, bind the parameter, and run the function body. When the body returns (via `Return`), we pop the result from the new stack and push it onto the original stack.
+
+## Control flow: Begin, If, and Return
+
+`BeginEnd` runs a block and returns the top stack value:
+
+```ocaml
+and begin_end (s, l, loc, glob : state) (blk : prog):
+    (bool * bool * state, eval_err) result =
+  eval blk ([], l, loc, glob) |> and_then @@ fun (quitting, returning, (s', l, _, glob)) ->
+  match s' with
+  | v::rst -> Ok((quitting, returning, (v::s, l, loc, glob)))
+  | [] -> Error(NoValue(BeginEnd(blk)))
+```
+
+Notice the new stack starts empty; the block runs in isolation. Then the first value from the block's stack is pushed onto the original stack.
+
+`IfThenElse` branches on a boolean:
+
+```ocaml
+and ifthen_else (s, l, loc, glob : state) (then_blk : prog) (else_blk : prog):
+    (bool * bool * state, eval_err) result =
+  match s with
+  | VInt(v)::rst when v = 1 -> eval then_blk (rst, l, loc, glob)
+  | VInt(v)::rst when v = 0 -> eval else_blk (rst, l, loc, glob)
+  | [] -> Error(InvalidArity(IfThenElse(then_blk, else_blk), 0))
+  | x::rst -> Error(WrongType(IfThenElse(then_blk, else_blk), [x]))
+```
+
+The condition is popped; 1 runs then, 0 runs else. Both branches run on the rest of the stack.
+
+## The main evaluator loop
+
+```ocaml
+and eval (prog : prog) (st : state) : (bool * bool * state, eval_err) result =
+  match prog with
+  | [] -> Ok(false, false, st)
+  | Quit :: _ -> Ok(true, false, quit st)
+  | Push(c) :: prog -> push st c |> and_then (eval prog)
+  | Add :: prog -> add st |> and_then (eval prog)
+  | IfThenElse(t, e) :: prog -> ifthen_else st t e
+                               |> and_then @@ fun (quitting, returning, st) ->
+                               if not quitting && not returning
+                               then eval prog st
+                               else Ok(quitting, returning, st)
+  ...
+```
+
+Each command is matched, executed, and if successful, the remaining program is evaluated on the new state. Two flags: `quitting` (a `Quit` was encountered) and `returning` (a `Return` was encountered). Control flow respects these: if either is true, we stop and return early.
+
+## Example trace
+
+Program:
+
+```
+Push 5
+Local x
+Push 10
+Push x
+Add
+Quit
+```
+
+Trace:
+
+```
+([], [], [], [])
+  Push 5 → ([VInt(5)], [], [], [])
+  Local x → ([], [], [(x, VInt(5))], [])
+  Push 10 → ([VInt(10)], [], [(x, VInt(5))], [])
+  Push x → ([VInt(5), VInt(10)], [], [(x, VInt(5))], [])
+  Add → ([VInt(15)], [], [(x, VInt(5))], [])
+  Quit → log = ["15"]
+```
+
+The environment persists; `x` is visible in the `Push x` command.
+
+## What I took away
+
+Implementing the evaluator taught me that state threading is not magic—it's just careful bookkeeping. Every function takes a state, returns a state, and the chain of operations builds the computation. The `Result` monad is perfect for this: each step can fail, and we short-circuit on the first error.
+
+The closure representation was the most enlightening. By capturing the lexical environment and the mutual recursion list, we get first-class functions and mutual recursion "for free"—no explicit call stack, no environments on the heap. It's all immutable data structures, and OCaml's garbage collector reclaims them when they're no longer needed.
+
+Finally, the two-tier environment model is elegant because it's minimal: just two lists. But it's also powerful—global state persists, local state is scoped. That duality mirrors how real languages work, and understanding it here has shaped how I think about scope ever since.

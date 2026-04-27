@@ -9,6 +9,8 @@ import {
   SUBSTACK_POSTS,
   PRESS,
 } from '@/lib/media'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
@@ -16,15 +18,23 @@ export const metadata = buildMetadata({
   description:
     'STU STREET podcast episodes, Medium and Substack writing, press mentions, and public videos featuring Arkash Jain.',
   path: '/media',
+  keywords: ['podcasts', 'videos', 'articles', 'press', 'media'],
 })
 
 export default function MediaPage() {
   return (
     <div className="px-6 py-16 max-w-6xl mx-auto space-y-20">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Media', path: '/media' },
+        ])}
+      />
       <SectionHeader
         eyebrow="Media"
         title="Podcasts, videos, articles, press"
         description="The public footprint — talks I've given, podcasts I've co-hosted, things people have written about my work."
+        asH1
       />
 
       <section>

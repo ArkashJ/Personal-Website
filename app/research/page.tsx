@@ -3,7 +3,7 @@ import PaperCard from '@/components/sections/PaperCard'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
-import { scholarlyArticleSchema } from '@/lib/structured-data'
+import { scholarlyArticleSchema, breadcrumbSchema } from '@/lib/structured-data'
 import { PAPERS } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -12,11 +12,25 @@ export const metadata = buildMetadata({
   description:
     'Four published papers including SpatialDINO (3D self-supervised vision transformer for cryo-ET), two Journal of Cell Biology papers, and supercritical fluid spectroscopy.',
   path: '/research',
+  keywords: [
+    'SpatialDINO',
+    'cryo-ET',
+    '2DIR spectroscopy',
+    'supercritical fluids',
+    'ultrafast lasers',
+    'vision transformers',
+  ],
 })
 
 export default function ResearchPage() {
   return (
     <div className="px-6 py-16 max-w-6xl mx-auto">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Research', path: '/research' },
+        ])}
+      />
       {PAPERS.map((p) => (
         <JsonLd key={p.title} data={scholarlyArticleSchema(p)} />
       ))}
@@ -26,6 +40,7 @@ export default function ResearchPage() {
         title="Four published papers."
         italicAccent="One thesis."
         description="From supercritical fluids in chemical physics to 3D self-supervised vision transformers at Harvard. Each paper, the journal, and a link."
+        asH1
       />
 
       <div className="grid gap-6 md:grid-cols-2 mt-8 reveal">

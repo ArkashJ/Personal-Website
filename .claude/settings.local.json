@@ -15,7 +15,10 @@
       "mcp__playwright__browser_take_screenshot",
       "Bash(rtk grep *)",
       "Bash(rtk git *)",
-      "Bash(rtk git commit -m ' *)"
+      "Bash(rtk git commit -m ' *)",
+      "Read(//Users/arkashjain/Desktop/Post_OPT/Prev_Semesters/**)",
+      "Read(//Users/arkashjain/Desktop/Post_OPT/Prev_Semesters/Fall2023/**)",
+      "Read(//Users/arkashjain/Desktop/Post_OPT/Prev_Semesters/Fall2023/DS522/**)"
     ]
   }
 }

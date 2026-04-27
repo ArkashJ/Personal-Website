@@ -1,0 +1,231 @@
+---
+title: 'Lexing and Parsing a Stack Language Without Generators'
+date: '2023-12-01'
+description: 'Hand-written tokenizer and recursive-descent parser for a stack-based language, going from source text to AST.'
+tags: ['parsing', 'lexing', 'OCaml', 'recursive descent', 'compilers']
+---
+
+The parser is the bridge between human syntax and the AST that the evaluator consumes. I built it entirely by hand—no lex/yacc, no regex, no parser combinators. Just pattern matching and recursion. This forced me to understand tokenization deeply.
+
+## The tokenizer
+
+A token is one of four things: `NEWLINE`, `STRING of string`, `NUMBER of int`, or `SYMBOL of string`.
+
+```ocaml
+type token =
+  | NEWLINE
+  | STRING of string
+  | NUMBER of int
+  | SYMBOL of string
+```
+
+The tokenizer walks the source character by character, maintaining a line number for error reporting. Three helper functions classify characters:
+
+```ocaml
+let is_space (c : char): bool =
+  c = ' ' || c = '\t'
+
+let is_digit (c : char): bool =
+  match c with | '0' .. '9' -> true | _ -> false
+
+let is_alpha (c : char): bool =
+  match c with | 'a' .. 'z' | 'A' .. 'Z' -> true | _ -> false
+```
+
+When we hit a digit or letter, we need to consume the entire number or symbol. For numbers, we handle negation by looking ahead for a `-` and then parsing the integer:
+
+```ocaml
+let tokenize_number line_num (ls : char list): (int * char list, lexer_err) result =
+  let rec helper ls acc =
+    match ls with
+    | [] -> Ok(acc, [])
+    | ch::rst ->
+       if ch = '\n' || is_space ch then
+         Ok(acc, ls)
+       else if is_digit ch then
+         helper rst @@ acc * 10 + int_of_char ch
+       else Error(InvalidChar(line_num, ch))
+  in helper ls 0
+```
+
+This accumulates digits, shifting left by 10 each time (base conversion). When we hit a space or newline, we stop. Symbols work the same way but allow underscores and are case-sensitive.
+
+Strings are quoted and must close. We validate that each character inside is alphabetic:
+
+```ocaml
+let tokenize_string line_num (ls : char list): (string * char list, lexer_err) result =
+  let rec helper ls acc =
+    match ls with
+    | [] -> Error(UnclosedString(line_num))
+    | ch::rst ->
+       if ch = '\"' then
+         Ok(acc, rst)
+       else if is_alpha ch then
+         helper rst (acc ^ Char.escaped ch)
+       else
+         Error(InvalidChar(line_num, ch))
+  in helper ls ""
+```
+
+The main tokenization loop dispatches on the first character:
+
+```ocaml
+let tokenize_source (src : string): (token list, lexer_err) result =
+  let rec helper line_num ls acc =
+    match ls with
+    | [] -> Ok(List.rev acc)
+    | ch::rst ->
+       match ch with
+       | '\n' -> helper (line_num + 1) rst (NEWLINE :: acc)
+       | '\"' -> tokenize_string line_num rst
+                 |> and_then @@ fun (s, rst) ->
+                 helper line_num rst (STRING(s) :: acc)
+       | '-'  -> tokenize_number line_num rst
+                 |> and_then @@ fun (n, rst) ->
+                 helper line_num rst (NUMBER(-1 * n) :: acc)
+       | ch when is_digit ch
+              -> tokenize_number line_num (ch::rst)
+                 |> and_then @@ fun (n, rst) ->
+                 helper line_num rst (NUMBER(n) :: acc)
+       | ch when is_alpha ch
+              -> tokenize_symbol line_num ls
+                 |> and_then @@ fun (s, rst) ->
+                 helper line_num rst (SYMBOL(s) :: acc)
+       | ch when is_space ch -> helper line_num rst acc
+       | ch -> Error(UnknownChar(line_num, ch))
+  in helper 1 (char_list_of_string src) []
+```
+
+The result is a flat list of tokens. At this point, the grammar structure is still implicit; the parser will reify it.
+
+## The recursive-descent parser
+
+The parser is a set of mutually recursive functions that consume tokens and produce AST nodes. The key insight: each function tries to match a specific production rule, and if it succeeds, it returns the parsed node plus the remaining tokens.
+
+The main parsing functions have this type:
+
+```
+parse_com : int -> token list -> (com * int * token list, parse_err) result
+```
+
+It returns the parsed command, the current line number, and leftover tokens. Line numbers are threaded through for error reporting.
+
+Constants are simple: numbers become `Int`, strings become `String`, and symbols become `Name(var)` after validation (variables must start with a lowercase letter):
+
+```ocaml
+let make_var line_num (s : string): (var, parse_err) result =
+  if String.length s <> 0 then
+     match String.get s 0 with
+     | 'a' .. 'z' -> Ok(Var(s))
+     | _ -> Error(InvalidVar(line_num, SYMBOL(s)))
+  else Error(InvalidVar(line_num, SYMBOL(s)))
+```
+
+Parsing commands is pattern matching on the first token:
+
+```ocaml
+match ls with
+| SYMBOL("Push")  ::fst::rst ->
+   parse_const line_num fst |> and_then @@ fun x ->
+   Ok(Push(x), line_num, rst)
+| SYMBOL("Quit")  ::rst -> Ok(Quit, line_num, rst)
+| SYMBOL("Add")   ::rst -> Ok(Add, line_num, rst)
+| ...
+```
+
+Zero-arity commands consume one token. Nullary-syntax commands like `Push` consume the next token as an argument.
+
+**Blocks:** `BeginEnd` and `IfThenElse` parse nested command lists. The grammar looks like:
+
+```
+BeginEnd ::= "Begin" NEWLINE prog "End" NEWLINE
+IfThenElse ::= "IfThen" NEWLINE prog "Else" NEWLINE prog "End" NEWLINE
+```
+
+In code:
+
+```ocaml
+| SYMBOL("Begin") ::rst ->
+   consume_newline line_num false rst
+   |> and_then @@ fun (line_num, rst) ->
+   parse_com_list line_num (SYMBOL("End")) rst
+   |> and_then @@ fun (blk, line_num, rst) ->
+   Ok(BeginEnd(blk), line_num, rst)
+```
+
+`parse_com_list` recursively parses commands until it hits a terminator token:
+
+```ocaml
+and parse_com_list (line_num : int) (terminator : token) (ls : token list)
+                 : (prog * int * token list, parse_err) result =
+    match ls with
+    | fst::rst when fst = terminator -> Ok([], line_num, rst)
+    | _  -> parse_com line_num ls
+              |> and_then @@ fun (fst, line_num, ls') ->
+            consume_newline line_num true ls'
+              |> and_then @@ fun (line_num, ls'') ->
+            parse_com_list line_num terminator ls''
+              |> and_then @@ fun (rst, line_num, ls''') ->
+            Ok((fst::rst, line_num, ls'''))
+```
+
+This is tail-recursive in the token list; each command is parsed, a newline consumed, and the rest of the list parsed.
+
+**Mutual recursion:** The `Fun_Mutual` construct allows multiple function definitions. The parser recursively consumes function triples until it hits `End`:
+
+```ocaml
+and parse_functionslist (line_num: int) (ls: token list):
+                ((var*var*prog) list * int * token list, parse_err) result =
+    match ls with
+    | SYMBOL(funcName)::SYMBOL(varName)::rst ->
+      make_var line_num funcName |> and_then @@ fun f ->
+      make_var line_num varName  |> and_then @@ fun f2 ->
+        consume_newline line_num false rst
+        |> and_then @@ fun (line_num, rst) ->
+          (match parse_com_list line_num (SYMBOL("Mut")) rst with
+          | Ok(prog1, line_num1, rst1) ->
+              parse_functionslist line_num1 rst1
+              |> and_then @@ fun(fList, line_num, rst) ->
+                Ok((f, f2, prog1)::fList, line_num, rst)
+          | _ -> Error(UnexpectedEOF(line_num)))
+    | _ -> Error(UnexpectedEOF(line_num))
+```
+
+## Example: tokenize and parse
+
+Source:
+
+```
+Push 5
+Push 3
+Add
+Quit
+```
+
+Tokens:
+
+```
+[SYMBOL("Push"), NUMBER(5), NEWLINE,
+ SYMBOL("Push"), NUMBER(3), NEWLINE,
+ SYMBOL("Add"), NEWLINE,
+ SYMBOL("Quit"), NEWLINE]
+```
+
+AST:
+
+```
+[Push(Int(5)),
+ Push(Int(3)),
+ Add,
+ Quit]
+```
+
+This is a valid program: it pushes 5, pushes 3, adds them (8 on the stack), and quits (printing "8").
+
+## What I learned
+
+Hand-writing the lexer and parser forced me to see that tokenization and parsing are separate concerns. The tokenizer knows nothing about grammar—it just produces a flat stream of tokens. The parser then imposes structure by recognizing patterns. That separation is elegant, and it's why parsers can be so small: they don't reimplement character-by-character logic.
+
+The `Result` type monad (`and_then`) was essential. Every function could fail at any point, and threading error information through deeply nested calls is tedious without monadic composition. By the end, I was chaining five or six `and_then` calls in a row, and it was readable.
+
+The tricky part was handling newlines correctly. The grammar requires them after every command, but not always before terminators. `consume_newline` takes a `required` flag so we can be flexible—if there's a terminator next, we don't demand a newline.

@@ -1,0 +1,159 @@
+---
+title: 'PageRank at Scale: Iterative Ranking on a 10K-Node Mini Internet'
+date: '2023-12-01'
+description: 'Building PageRank from HTML link graphs, comparing local vs cloud compute trade-offs, and understanding convergence through the damping factor.'
+tags: ['pagerank', 'graph-algorithms', 'distributed-systems', 'python']
+---
+
+PageRank is a deceptively simple algorithm: rank web pages by how often a random surfer would visit them. The elegance hides a lot of practical complexity—especially when your graph has 10,000 nodes and you're deciding whether to compute locally or push to the cloud.
+
+In CS 561 (Cloud Computing), I implemented PageRank on a synthetically generated web graph, exploring both the mathematics of convergence and the engineering trade-off between local hardware and cloud elasticity. The assignment forced you to actually think about when cloud compute makes sense (spoiler: not always).
+
+## The algorithm
+
+PageRank models web surfing as a random walk. At each step, a surfer either:
+
+1. Follows a random outgoing link from the current page (with probability d, the **damping factor**)
+2. Jumps to any page uniformly at random (with probability 1 − d, usually 0.15)
+
+This gives the recurrence:
+
+```
+PR(A) = (1 - d) / N + d * sum(PR(T) / C(T) for T → A)
+```
+
+where `T → A` means T links to A, `C(T)` is T's outgoing link count, and N is the total number of pages.
+
+The algorithm repeats this update until convergence—when the change in the sum of all PageRanks falls below epsilon (typically 0.5%).
+
+## Parsing HTML and building the graph
+
+The first practical challenge: extracting the link graph from generated HTML files. Each file `i.html` contained `<a href="j.html">` tags. A regex extract-and-parse pipeline with concurrent file I/O was essential to avoid bottleneck:
+
+```python
+def extract_numbers_from_html(html_file_path: str, pattern: str = r'HREF="(\d+)\.html"') -> list[int]:
+    with open(html_file_path, "r", encoding="utf-8") as f:
+        html_content = f.read()
+        matches = re.findall(pattern, html_content)
+        return [int(match) for match in matches]
+```
+
+With 10,000 HTML files, serial parsing was unacceptable. The solution: `ThreadPoolExecutor` with workers pegged at `cpu_count() * 5`, extracting in parallel while a progress bar tracked throughput:
+
+```python
+with ThreadPoolExecutor(max_workers=os.cpu_count() * 5) as executor:
+    futures = [executor.submit(extract_numbers_from_html, blob.name) for blob in blobs]
+    for future in tqdm(as_completed(futures), total=len(futures)):
+        arr, file_path = future.result()
+        links_dict[int(file_path.split("/")[-1].split(".")[0])] = arr
+```
+
+This was the hidden work: parsing scales linearly, but I/O _doesn't_ parallelize by default.
+
+## The adjacency matrix
+
+Once you have the link graph as a dictionary `links_dict[page_i] = [list of pages i links to]`, construct an N × N adjacency matrix:
+
+```python
+def construct_adjacency_mat(links_dict: dict[int, list[int]]) -> np.ndarray:
+    adj_mat = np.zeros((MAX_NUM_FILES, MAX_NUM_FILES))
+    for key, value in links_dict.items():
+        for val in value:
+            adj_mat[key][val] = 1
+    return adj_mat
+```
+
+This is O(E) where E is the number of edges. Dense matrix operations are expensive, but the pre-computed adjacency matrix enables the optimization that matters most.
+
+## Convergence with smart precomputation
+
+The naive PageRank loop is O(N² \* iterations), which is brutal. The optimizations:
+
+1. **Precompute incoming links per page.** For each column i, find which rows have a 1 (those are incoming links):
+
+```python
+for i in range(MAX_NUM_FILES):
+    elems_dict[i] = np.where(adj_mat[:, i] == 1)[0]
+```
+
+2. **Precompute outgoing counts.** For each page, sum its row to get the outgoing degree:
+
+```python
+for elem in elems_dict:
+    sums_dict[elem] = adj_mat[elem].sum()
+```
+
+3. **Inner loop processes only incoming edges.**
+
+```python
+for i in range(MAX_NUM_FILES):
+    sum_rows = 0.0
+    for elem in elems_dict[i]:  # Only incoming links
+        sum_rows += page_rank_mat[elem] / sums_dict[elem]
+    page_rank_mat[i] = 0.15 + (0.85 * sum_rows)
+```
+
+This drops the inner loop from O(N) per page to O(degree), which matters for sparse graphs. The whole pass is now O(E) instead of O(N²).
+
+The outer loop runs until convergence:
+
+```python
+while True:
+    old_mat = page_rank_mat.copy()
+    # ... update all pages ...
+    percent_change = abs(page_rank_mat.sum() - old_mat.sum()) / old_mat.sum()
+    if percent_change <= epsilon:
+        return page_rank_mat
+```
+
+Typically 20–40 iterations on a well-formed web graph.
+
+## Local vs cloud: the trade-off
+
+The assignment had you implement two paths:
+
+**Local**: Load the HTML files from disk, parse, compute. This is fast if you have enough RAM and your SSD is responsive. With good thread pooling, parsing 10K files took ~30s on modern hardware.
+
+**Cloud**: Upload the HTML to Google Cloud Storage, use Compute Engine or run in a container. Cloud wins when:
+
+- You don't want to maintain local infrastructure
+- You need to scale to 100K+ pages
+- You're integrating into a larger pipeline
+
+But cloud _loses_ on latency and cost:
+
+- Network round-trips add up fast
+- Storage I/O is cheaper than egress
+- A 2-minute local run costs $0; a 2-minute GCP run costs a few cents
+
+I measured both in the assignment. Local was ~3x faster for the 10K case, but cloud scaled predictably. The lesson: benchmark _your_ graph size, don't assume.
+
+## What I learned
+
+**On the algorithm:**
+
+1. **The damping factor is crucial.** Set it too low (d = 0.5) and low-indegree pages get inflated scores. Too high (d = 0.99) and computation crawls. d = 0.85 is a sweet spot because it balances random jumps with following links.
+
+2. **Convergence is usually fast.** Despite N² potential, the sum-change criterion typically exits in 20–50 iterations. This is why PageRank is practical.
+
+3. **Sparse > dense.** A 10K × 10K dense matrix is 800 MB. The actual web is sparse—average page has ~10 outgoing links. Exploit it.
+
+**On systems:**
+
+1. **Precomputation wins big.** The difference between an "obvious" O(N²) loop and a careful O(E) loop is 10–100x in real benchmarks.
+
+2. **Profiling before optimizing saves days.** The threaded I/O was the bottleneck, not the PageRank math. I almost optimized the wrong thing.
+
+3. **Local + cloud is a spectrum.** It's not binary. You can parse locally, push to cloud for distributed aggregation, pull results back. The assignment showed the endpoints; real systems live in the middle.
+
+## References
+
+The PageRank algorithm is from Brin & Page (1998): "The Anatomy of a Large-Scale Hypertextual Web Search Engine." MapReduce (Dean & Ghemawat 2004) is the standard for distributed PageRank at scale. For approximate PageRank on streaming graphs, Dremel (Melnik et al. 2010) offers columnar approaches to cut I/O.
+
+The code is at `gh api repos/ArkashJ/CloudComputing/contents` if you want to see the full pipeline—link extraction, matrix construction, timing harness, and GCP integration.
+
+## What I'd do differently
+
+- **Use sparse matrices from the start.** `scipy.sparse.csr_matrix` would have saved memory and made the precomputation cleaner. I didn't know about it at the time.
+- **Stream, don't batch.** The current approach loads all 10K links into memory. For 100K+ pages, a streaming aggregator (like a Kafka topic) is better.
+- **Benchmark network latency explicitly.** I measured total wall time but not the GCP upload/download. A breakdown would have clarified the cloud trade-off better.

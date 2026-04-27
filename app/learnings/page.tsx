@@ -1,6 +1,8 @@
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/structured-data'
 import { LEARNINGS } from '@/lib/learnings'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -9,6 +11,7 @@ export const metadata = buildMetadata({
   description:
     'A running log of things I have learned the hard way across engineering, research, career, and life.',
   path: '/learnings',
+  keywords: ['lessons', 'learnings', 'engineering', 'career', 'hard lessons'],
 })
 
 export default function LearningsPage() {
@@ -16,11 +19,18 @@ export default function LearningsPage() {
 
   return (
     <div className="px-6 py-16 max-w-4xl mx-auto">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Learnings', path: '/learnings' },
+        ])}
+      />
       <SectionHeader
         eyebrow="Learnings"
         title="Lessons learned the hard way."
         italicAccent="No platitudes."
         description="A running log of things that cost me something. Reverse chronological."
+        asH1
       />
 
       <div className="grid gap-4 mt-8 reveal">

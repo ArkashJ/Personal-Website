@@ -2,24 +2,34 @@ import SectionHeader from '@/components/sections/SectionHeader'
 import ExperienceCard from '@/components/sections/ExperienceCard'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/structured-data'
 import { EXPERIENCE, WORK_TOOLS } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
-  title: 'Experience & Work — Benmore, Harvard, Tools & CLIs',
+  title: 'Experience & Work - Benmore, Harvard, Tools & CLIs',
   description:
-    'Career history (Benmore, Harvard, ZeroSync, Boston Children’s, BU, Battery Ventures) and the internal tooling I ship every day — Foundry CLI, RTK, Claude Code skills.',
+    "Career history (Benmore, Harvard, ZeroSync, Boston Children's, BU, Battery Ventures) and the internal tooling I ship every day - Foundry CLI, RTK, Claude Code skills.",
   path: '/experience',
+  keywords: ['Benmore', 'Harvard', 'forward deployed', 'Foundry CLI', 'RTK', 'career'],
 })
 
 export default function ExperiencePage() {
   return (
     <div className="px-6 py-16 max-w-6xl mx-auto">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Experience', path: '/experience' },
+        ])}
+      />
       <SectionHeader
         eyebrow="Experience & Work"
         title="Where I've worked, what I've shipped."
         italicAccent="Career arc + the tools that came out of it."
         description="Reverse-chronological work history, followed by the internal tooling layer that compounds across every engagement."
+        asH1
       />
 
       <section id="career" className="mt-12 max-w-4xl mx-auto">
