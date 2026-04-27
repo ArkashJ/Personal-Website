@@ -1,0 +1,32 @@
+/* TEAM */
+
+  Author:  Arkash Jain
+  Site:    https://www.arkashj.com
+  Email:   arkash@benmore.tech
+  GitHub:  https://github.com/ArkashJ
+  LinkedIn: https://www.linkedin.com/in/arkashj
+  Twitter: https://x.com/_arkash
+  ORCID:   https://orcid.org/0000-0003-2692-7472
+  Location: Boston, MA / Chicago, IL
+
+/* ROLE */
+
+  Forward Deployed Engineer & AI Researcher
+  Benmore Technologies (Employee #2)
+  Harvard Medical School — Kirchhausen Lab (alumnus)
+  Boston University — BA Math + CS, MS CS (Magna Cum Laude)
+
+/* SITE */
+
+  Built by:    Arkash Jain
+  Last update: 2026/04
+  Stack:       Next.js 14 (App Router) · TypeScript · Tailwind CSS · MDX
+  Hosting:     Vercel
+  Source:      https://github.com/ArkashJ/Personal-Website
+
+/* THANKS */
+
+  Larry Ziegler, Matt Rotondaro (BU Chemistry — first paper)
+  Tom Kirchhausen (Harvard Medical School — SpatialDINO)
+  Dallin Bills, Michael Brown (Battery Ventures)
+  Trisha Anil, Jianxio Yang (CS 611 Trading System co-authors)

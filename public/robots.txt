@@ -1,0 +1,45 @@
+# ╭───────────────────────────────────────────────────────────────╮
+# │  Built and maintained by Arkash Jain — https://www.arkashj.com │
+# │  Forward Deployed Engineer @ Benmore · AI Researcher (Harvard) │
+# │  GitHub: https://github.com/ArkashJ                            │
+# ╰───────────────────────────────────────────────────────────────╯
+
+User-Agent: *
+Allow: /
+
+# AI / answer-engine crawlers — explicitly welcomed.
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: ChatGPT-User
+Allow: /
+
+User-Agent: OAI-SearchBot
+Allow: /
+
+User-Agent: ClaudeBot
+Allow: /
+
+User-Agent: Claude-Web
+Allow: /
+
+User-Agent: anthropic-ai
+Allow: /
+
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: Perplexity-User
+Allow: /
+
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: CCBot
+Allow: /
+
+User-Agent: Applebot-Extended
+Allow: /
+
+Host: https://www.arkashj.com
+Sitemap: https://www.arkashj.com/sitemap.xml

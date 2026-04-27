@@ -1,3 +1,5 @@
+> Maintained by Arkash Jain — https://www.arkashj.com — arkash@benmore.tech
+
 # Arkash Jain — Full LLM Documentation
 
 This is the complete LLM documentation for https://arkashj.com, including published papers, essays, knowledge base, and timeline.

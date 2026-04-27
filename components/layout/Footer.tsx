@@ -86,11 +86,24 @@ const Footer = () => (
       </div>
     </div>
     <div className="border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-4 text-center text-[11px] text-subtle font-mono uppercase tracking-widest">
-        Built with Next.js · Deployed on Vercel ·{' '}
-        <Link href="/architecture" className="hover:text-primary">
-          /architecture
-        </Link>
+      <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-[11px] text-subtle font-mono uppercase tracking-widest">
+        <span>
+          © {new Date().getFullYear()} <span itemProp="author">Arkash Jain</span> — built &amp;
+          maintained by{' '}
+          <a href={SITE.url} className="hover:text-primary" rel="author">
+            arkashj.com
+          </a>
+        </span>
+        <span>
+          Built with Next.js · Deployed on Vercel ·{' '}
+          <Link href="/architecture" className="hover:text-primary">
+            /architecture
+          </Link>
+          ·{' '}
+          <a href="/humans.txt" className="hover:text-primary">
+            humans.txt
+          </a>
+        </span>
       </div>
     </div>
   </footer>

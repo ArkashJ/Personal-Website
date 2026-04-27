@@ -54,7 +54,12 @@ export const websiteSchema = () => ({
   url: SITE.url,
   name: SITE.name,
   description: SITE.description,
+  author: { '@id': `${SITE.url}#person` },
   publisher: { '@id': `${SITE.url}#person` },
+  creator: { '@id': `${SITE.url}#person` },
+  copyrightHolder: { '@id': `${SITE.url}#person` },
+  copyrightYear: new Date().getFullYear(),
+  mainEntity: { '@id': `${SITE.url}#person` },
   inLanguage: 'en',
 })
 
