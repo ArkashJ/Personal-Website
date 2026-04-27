@@ -1,4 +1,3 @@
-import Image, { type StaticImageData } from 'next/image'
 import Badge from '@/components/ui/Badge'
 import TechBadge from '@/components/ui/TechBadge'
 import InstitutionLogo, { hasLogo } from '@/components/ui/InstitutionLogo'
@@ -22,7 +21,7 @@ const STATUS_LABEL: Record<TimelineEntry['status'], string> = {
 const isMajor = (status: TimelineEntry['status']) =>
   status === 'Published' || status === 'Current' || status === 'Live'
 
-type Props = TimelineEntry & { avatar?: StaticImageData | string }
+type Props = TimelineEntry
 
 const TimelineItem = ({
   title,
@@ -30,7 +29,6 @@ const TimelineItem = ({
   date,
   description,
   status,
-  avatar,
   links,
   bullets,
   tech,
@@ -46,18 +44,8 @@ const TimelineItem = ({
           major ? 'border-primary shadow-[0_0_0_4px_rgba(94,234,212,0.10)]' : 'border-border-strong'
         } ${status === 'Current' ? 'rounded-full' : ''}`}
       >
-        {hasLogo(org) ? (
+        {hasLogo(org) && (
           <InstitutionLogo org={org as string} size={22} className="object-contain" />
-        ) : (
-          avatar && (
-            <Image
-              src={avatar}
-              alt={`Icon for ${title}`}
-              width={28}
-              height={28}
-              className="object-cover w-full h-full"
-            />
-          )
         )}
       </span>
 

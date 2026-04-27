@@ -13,7 +13,9 @@ import {
   PRESS,
   FEATURED_VIDEOS,
   REVIEWS,
+  LINKEDIN_POSTS,
 } from '@/lib/media'
+import LinkedInPost from '@/components/embeds/LinkedInPost'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
@@ -55,6 +57,36 @@ export default function MediaPage() {
         description="The public footprint — every long-form interview I co-hosted, talks where Benmore shows up, what clients have said, and what the press has indexed."
         asH1
       />
+
+      {/* Recents — LinkedIn */}
+      <section>
+        <SectionHeader
+          eyebrow="Recents"
+          title="LinkedIn posts"
+          italicAccent="Latest from the feed."
+          description="Recent long-form posts on LinkedIn — embedded directly from the source."
+        />
+        <div className="grid gap-6 md:grid-cols-2">
+          {LINKEDIN_POSTS.map((p) => (
+            <div key={p.urn} className="flex flex-col">
+              <LinkedInPost urn={p.urn} type={p.type} height={520} />
+              <div className="-mt-4 flex items-center justify-between gap-3 px-1">
+                <span className="font-mono text-[10px] text-subtle uppercase tracking-widest truncate">
+                  {p.title || 'LinkedIn post'}
+                </span>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-[10px] text-primary hover:text-accent uppercase tracking-widest whitespace-nowrap"
+                >
+                  Open on LinkedIn →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Benmore feature videos */}
       <section>

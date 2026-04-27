@@ -1,11 +1,9 @@
 import SectionHeader from '@/components/sections/SectionHeader'
 import TimelineItem from '@/components/sections/TimelineItem'
 import JsonLd from '@/components/seo/JsonLd'
-import SocialLinks from '@/components/ui/SocialLinks'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { TIMELINE } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
-import myImg from '@/public/images/profile.jpeg'
 
 export const metadata = buildMetadata({
   title: 'About — From Physics to Harvard AI to Building AI Companies',
@@ -43,7 +41,7 @@ export default function AboutPage() {
           .slice()
           .reverse()
           .map((item) => (
-            <TimelineItem key={item.title} {...item} avatar={myImg} />
+            <TimelineItem key={item.title} {...item} />
           ))}
       </ol>
 
@@ -58,16 +56,6 @@ export default function AboutPage() {
           </a>
         </p>
       </div>
-
-      <section className="mt-16 pt-10 border-t border-border">
-        <SectionHeader
-          eyebrow="Connect"
-          title="Where to find me."
-          italicAccent="Verified profiles."
-          description="Same person across every platform — confirmed via rel=me identity links."
-        />
-        <SocialLinks />
-      </section>
     </div>
   )
 }

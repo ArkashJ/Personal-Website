@@ -4,7 +4,6 @@ import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { TIMELINE } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
-import myImg from '@/public/images/profile.jpeg'
 
 export const metadata = buildMetadata({
   title: 'Life Archive — Every Milestone',
@@ -43,7 +42,7 @@ export default function ArchivePage() {
         {TIMELINE.slice()
           .reverse()
           .map((item) => (
-            <TimelineItem key={item.title} {...item} avatar={myImg} />
+            <TimelineItem key={item.title} {...item} />
           ))}
       </ol>
     </div>

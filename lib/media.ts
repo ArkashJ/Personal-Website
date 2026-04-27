@@ -46,6 +46,15 @@ export type Review = {
   image?: string
 }
 
+export type LinkedInPostEntry = {
+  urn: string
+  type: 'activity' | 'share'
+  url: string
+  title?: string
+  date?: string
+  excerpt?: string
+}
+
 const STU_CHANNEL = 'https://www.youtube.com/@stustreetofficial'
 
 // Sorted by views desc — featured grid uses top 6, the rest go behind a Disclosure.
@@ -401,6 +410,21 @@ export const SUBSTACK_POSTS: ArticleLink[] = [
     title: 'What Happened This Week — d4a',
     date: '2025-03-17',
     url: 'https://arkash.substack.com/p/what-happened-this-week-d4a',
+  },
+]
+
+// Recent LinkedIn posts — embedded via the official LinkedIn embed iframe.
+export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
+  {
+    urn: '7453549731131052032',
+    type: 'activity',
+    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7453549731131052032/',
+  },
+  {
+    urn: '7453549729759641600',
+    type: 'activity',
+    url: 'https://www.linkedin.com/posts/arkashj_at-battery-ventures-my-vp-taught-me-to-price-share-7453549729759641600-NX6e',
+    title: 'At Battery Ventures, my VP taught me to price-share…',
   },
 ]
 

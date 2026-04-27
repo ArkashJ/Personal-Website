@@ -1,9 +1,13 @@
-type LinkedInPostProps = { urn: string; height?: number }
+type LinkedInPostProps = {
+  urn: string
+  type?: 'share' | 'activity'
+  height?: number
+}
 
-const LinkedInPost = ({ urn, height = 600 }: LinkedInPostProps) => (
+const LinkedInPost = ({ urn, type = 'share', height = 600 }: LinkedInPostProps) => (
   <div className="my-8 rounded-lg overflow-hidden border border-border bg-surface">
     <iframe
-      src={`https://www.linkedin.com/embed/feed/update/urn:li:share:${urn}`}
+      src={`https://www.linkedin.com/embed/feed/update/urn:li:${type}:${urn}`}
       height={height}
       width="100%"
       frameBorder={0}
