@@ -1,6 +1,7 @@
 import SectionHeader from '@/components/sections/SectionHeader'
 import TimelineItem from '@/components/sections/TimelineItem'
 import JsonLd from '@/components/seo/JsonLd'
+import SocialLinks from '@/components/ui/SocialLinks'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { TIMELINE } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
@@ -57,6 +58,16 @@ export default function AboutPage() {
           </a>
         </p>
       </div>
+
+      <section className="mt-16 pt-10 border-t border-border">
+        <SectionHeader
+          eyebrow="Connect"
+          title="Where to find me."
+          italicAccent="Verified profiles."
+          description="Same person across every platform — confirmed via rel=me identity links."
+        />
+        <SocialLinks />
+      </section>
     </div>
   )
 }

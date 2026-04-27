@@ -6,6 +6,7 @@ import ProjectCard from '@/components/sections/ProjectCard'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import TechBadge from '@/components/ui/TechBadge'
+import SocialLinks from '@/components/ui/SocialLinks'
 import { PAPERS, PROJECTS, WORK_TOOLS, KNOWLEDGE_DOMAINS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
 import { getAllWritingPosts } from '@/lib/content'
@@ -225,6 +226,17 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Connect / social profiles */}
+      <section className="px-6 py-10 max-w-6xl mx-auto">
+        <SectionHeader
+          eyebrow="Connect"
+          title="Find me everywhere."
+          italicAccent="Same person, every platform."
+          description="GitHub, LinkedIn, X, Substack, Medium, Google Scholar, ORCID, BU + Harvard profiles, BioRxiv, PubMed."
+        />
+        <SocialLinks />
       </section>
 
       {/* Writing */}
