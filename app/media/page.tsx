@@ -1,6 +1,7 @@
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
+import Disclosure from '@/components/ui/Disclosure'
 import { YouTubeEmbed } from '@next/third-parties/google'
 import {
   STU_STREET_EPISODES,
@@ -8,18 +9,28 @@ import {
   MEDIUM_ARTICLES,
   SUBSTACK_POSTS,
   PRESS,
+  FEATURED_VIDEOS,
+  REVIEWS,
 } from '@/lib/media'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
-  title: 'Media — Podcasts, Videos, Articles, Press',
+  title: 'Media — Podcasts, Videos, Press, Reviews',
   description:
-    'STU STREET podcast episodes, Medium and Substack writing, press mentions, and public videos featuring Arkash Jain.',
+    'STU STREET podcast (25 episodes co-hosted at BU), Benmore feature talks, Trustpilot client reviews, Medium and Substack writing, and press mentions of Arkash Jain.',
   path: '/media',
-  keywords: ['podcasts', 'videos', 'articles', 'press', 'media'],
+  keywords: ['STU STREET', 'BU podcast', 'Benmore videos', 'Trustpilot reviews', 'press', 'media'],
 })
+
+const TOP_FEATURED = STU_STREET_EPISODES.filter((e) => e.youtubeId).slice(0, 6)
+const FEATURED_IDS = new Set(TOP_FEATURED.map((e) => e.youtubeId))
+const REST_EPISODES = STU_STREET_EPISODES.filter(
+  (e) => !e.youtubeId || !FEATURED_IDS.has(e.youtubeId)
+)
+
+const reviewLabel = (url: string) => url.split('/').pop()?.slice(0, 8) || 'review'
 
 export default function MediaPage() {
   return (
@@ -30,13 +41,40 @@ export default function MediaPage() {
           { name: 'Media', path: '/media' },
         ])}
       />
+
       <SectionHeader
         eyebrow="Media"
-        title="Podcasts, videos, articles, press"
-        description="The public footprint — talks I've given, podcasts I've co-hosted, things people have written about my work."
+        title="Podcasts, videos, articles, press, reviews"
+        description="The public footprint — every long-form interview I co-hosted, talks where Benmore shows up, what clients have said, and what the press has indexed."
         asH1
       />
 
+      {/* Benmore feature videos */}
+      <section>
+        <SectionHeader
+          eyebrow="Benmore"
+          title="Featured talks"
+          description="Public talks featuring Arkash and the Benmore forward-deployed practice."
+        />
+        <div className="grid gap-6 md:grid-cols-2">
+          {FEATURED_VIDEOS.map((v) => (
+            <Card key={v.youtubeId} glow className="overflow-hidden">
+              <div className="-mx-6 -mt-6 mb-4 border-b border-border">
+                <YouTubeEmbed videoid={v.youtubeId} height={260} />
+              </div>
+              {v.outlet && (
+                <Badge variant="teal" className="mb-2">
+                  {v.outlet}
+                </Badge>
+              )}
+              <h3 className="text-text font-bold mb-1">{v.title}</h3>
+              {v.description && <p className="text-muted text-sm">{v.description}</p>}
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* STU STREET — featured + disclosure */}
       <section>
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
@@ -44,11 +82,19 @@ export default function MediaPage() {
               STU STREET — BU Podcast (Co-host)
             </h2>
             <p className="text-muted text-sm mt-1">
-              I co-hosted STU STREET on WTBU during my time at Boston University. Long-form
-              interviews with founders, athletes, professors.
+              Co-hosted on WTBU during my time at Boston University. 25 episodes — long-form
+              interviews with founders, professors, athletes, and operators.
             </p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={PODCAST_LINKS.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
+            >
+              YouTube →
+            </a>
             <a
               href={PODCAST_LINKS.spotify}
               target="_blank"
@@ -65,26 +111,131 @@ export default function MediaPage() {
             >
               Apple →
             </a>
+            <a
+              href={PODCAST_LINKS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
+            >
+              Instagram →
+            </a>
+            <a
+              href={PODCAST_LINKS.tiktok}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
+            >
+              TikTok →
+            </a>
           </div>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {STU_STREET_EPISODES.map((ep) => (
+        {/* Featured top-6 with embeds */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {TOP_FEATURED.map((ep) => (
             <Card key={ep.youtubeId} glow className="overflow-hidden">
               <div className="-mx-6 -mt-6 mb-4 border-b border-border">
-                <YouTubeEmbed videoid={ep.youtubeId} height={260} />
+                <YouTubeEmbed videoid={ep.youtubeId as string} height={260} />
               </div>
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <Badge variant="teal">{ep.show}</Badge>
                 {ep.number && <Badge>Ep {ep.number}</Badge>}
+                {ep.arkashHosted && <Badge variant="cyan">● Arkash hosted</Badge>}
+                {typeof ep.views === 'number' && (
+                  <span className="font-mono text-[10px] text-subtle uppercase tracking-widest">
+                    {ep.views.toLocaleString()} views
+                  </span>
+                )}
               </div>
               <h3 className="text-text font-bold mb-1">{ep.title}</h3>
-              {ep.description && <p className="text-muted text-sm">{ep.description}</p>}
+              {ep.guests && <p className="text-muted text-xs font-mono">Guest: {ep.guests}</p>}
             </Card>
           ))}
         </div>
+
+        {/* All other episodes behind a Disclosure */}
+        {REST_EPISODES.length > 0 && (
+          <div className="mt-6">
+            <Disclosure
+              collapsedLabel={`Show all ${STU_STREET_EPISODES.length} episodes`}
+              expandedLabel="Show featured only"
+            >
+              <ul className="grid gap-2 md:grid-cols-2">
+                {REST_EPISODES.map((ep) => (
+                  <li key={`${ep.number}-${ep.title}`}>
+                    <a
+                      href={
+                        ep.youtubeId
+                          ? `https://www.youtube.com/watch?v=${ep.youtubeId}`
+                          : (ep.url as string)
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-3 px-4 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="font-mono text-[10px] text-primary uppercase tracking-widest">
+                            EP {ep.number}
+                          </span>
+                          {ep.arkashHosted && (
+                            <span className="font-mono text-[9px] text-accent uppercase tracking-widest">
+                              ARKASH HOSTED
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-text text-sm font-medium truncate">{ep.title}</h3>
+                        {ep.guests && (
+                          <p className="text-muted text-xs font-mono truncate">{ep.guests}</p>
+                        )}
+                      </div>
+                      <span className="font-mono text-[10px] text-subtle uppercase tracking-widest whitespace-nowrap">
+                        {typeof ep.views === 'number' ? `${ep.views} views` : 'Watch →'}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Disclosure>
+          </div>
+        )}
       </section>
 
+      {/* Trustpilot reviews */}
+      <section>
+        <SectionHeader
+          eyebrow="Reviews"
+          title="What clients say"
+          italicAccent="Verified on Trustpilot."
+          description={`${REVIEWS.length} public Trustpilot reviews from Benmore engagements.`}
+        />
+        <div className="grid gap-3 md:grid-cols-2">
+          {REVIEWS.map((r, i) => (
+            <a
+              key={r.url}
+              href={r.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between gap-3 px-4 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <div className="min-w-0">
+                <p className="font-mono text-[10px] text-primary uppercase tracking-widest mb-0.5">
+                  Review #{i + 1} · {r.source}
+                </p>
+                <p className="text-text text-sm font-medium truncate">
+                  trustpilot.com / {reviewLabel(r.url)}…
+                </p>
+              </div>
+              <Badge variant="green">★ Verified</Badge>
+            </a>
+          ))}
+        </div>
+        <p className="text-subtle text-xs mt-4 font-mono">
+          Click any review to read the full Trustpilot page.
+        </p>
+      </section>
+
+      {/* Medium */}
       <section>
         <div className="flex items-end justify-between gap-3 mb-6">
           <div>
@@ -112,7 +263,7 @@ export default function MediaPage() {
               href={a.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 transition-colors"
+              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className="min-w-0">
                 <h3 className="text-text font-medium truncate">{a.title}</h3>
@@ -131,6 +282,7 @@ export default function MediaPage() {
         </div>
       </section>
 
+      {/* Substack */}
       <section>
         <div className="flex items-end justify-between gap-3 mb-6">
           <div>
@@ -165,6 +317,7 @@ export default function MediaPage() {
         </div>
       </section>
 
+      {/* Press */}
       <section>
         <SectionHeader
           eyebrow="Press"
@@ -178,7 +331,7 @@ export default function MediaPage() {
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 transition-colors"
+              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className="min-w-0">
                 <p className="font-mono text-xs text-primary uppercase tracking-widest mb-0.5">
