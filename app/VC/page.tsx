@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
 export default function VCRedirect() {
-  redirect('/experience')
+  redirect('/about#career')
 }

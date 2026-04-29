@@ -7,6 +7,7 @@ import { Search } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/site'
 import ThemeToggle from '@/components/ThemeToggle'
 import CommandPalette from '@/components/ui/CommandPalette'
+import VoiceNav from '@/components/ui/VoiceNav'
 
 const Nav = () => {
   const pathname = usePathname()
@@ -62,7 +63,7 @@ const Nav = () => {
                 type="button"
                 onClick={() => setPaletteOpen(true)}
                 aria-label="Quick navigation (Cmd+K)"
-                className="inline-flex items-center gap-2 font-mono text-[11px] text-muted hover:text-text bg-elevated/60 hover:bg-elevated border border-border px-2.5 py-1.5 rounded-full transition-colors"
+                className="press inline-flex items-center gap-2 font-mono text-[11px] text-muted hover:text-text bg-elevated/60 hover:bg-elevated border border-border px-2.5 py-1.5 rounded-full transition-colors"
               >
                 <Search size={11} />
                 <span>Search</span>
@@ -70,6 +71,7 @@ const Nav = () => {
                   {isMac ? '⌘' : 'Ctrl'}K
                 </kbd>
               </button>
+              <VoiceNav />
               <ThemeToggle />
             </div>
 
@@ -78,10 +80,11 @@ const Nav = () => {
                 type="button"
                 onClick={() => setPaletteOpen(true)}
                 aria-label="Quick navigation"
-                className="p-2 -mr-1 text-muted"
+                className="press p-2 -mr-1 text-muted"
               >
                 <Search size={16} />
               </button>
+              <VoiceNav />
               <ThemeToggle />
               <button
                 aria-label={open ? 'Close menu' : 'Open menu'}
