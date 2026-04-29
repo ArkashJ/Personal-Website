@@ -348,6 +348,14 @@ export const REVIEWS: Review[] = [
 export const MEDIUM_ARTICLES: ArticleLink[] = [
   {
     source: 'Medium',
+    title: 'Writing my Neovim config from scratch',
+    date: '2024-06-02',
+    url: 'https://medium.com/@arkjain/writing-my-neovim-config-from-scratch-1e7cbfa69cb7',
+    description:
+      'Part 1 of the Neovim build. Bootstrap, options that actually matter, and a leader-centric keymap layout.',
+  },
+  {
+    source: 'Medium',
     title: 'WASP: Wide-area Adaptive Stream Processing',
     date: '2024-09',
     url: 'https://medium.com/@arkjain/event-driven-streaming-systems-series-007b04006b82',
@@ -467,17 +475,28 @@ export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
     urn: '7455216841720758272',
     type: 'activity',
     url: 'https://www.linkedin.com/posts/activity-7455216841720758272-A1au',
+    date: '2026-04-18',
+    title: 'Forward-deployed engineering at Benmore — what the model actually looks like',
+    excerpt:
+      'A short note on why FDE compounds: retained tooling, shared-language with the client, and a CLI that survives the engagement.',
   },
   {
     urn: '7453549729759641600',
     type: 'activity',
     url: 'https://www.linkedin.com/posts/arkashj_i-learnt-to-price-optionality-on-aggregation-share-7453549729759641600-PxRg',
-    title: 'I learnt to price optionality on aggregation…',
+    date: '2026-04-13',
+    title: 'I learnt to price optionality on aggregation',
+    excerpt:
+      'Aggregation theory says the platform that owns demand wins. Pricing optionality on that distribution is the trade.',
   },
   {
     urn: '7453549731131052032',
     type: 'activity',
     url: 'https://www.linkedin.com/feed/update/urn:li:activity:7453549731131052032/',
+    date: '2026-04-13',
+    title: 'AI hardware stack — layer by layer',
+    excerpt:
+      'From silicon and HBM to NVLink, CUDA kernels, and disaggregated serving. Every layer that makes inference possible.',
   },
 ]
 

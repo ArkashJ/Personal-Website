@@ -36,7 +36,7 @@ const Hero = () => (
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
-          <Button href="/experience" variant="primary">
+          <Button href="/about#career" variant="primary">
             View My Work →
           </Button>
           <Button href="/media" variant="ghost">

@@ -18,7 +18,22 @@
       "Bash(rtk git commit -m ' *)",
       "Read(//Users/arkashjain/Desktop/Post_OPT/Prev_Semesters/**)",
       "Read(//Users/arkashjain/Desktop/Post_OPT/Prev_Semesters/Fall2023/**)",
-      "Read(//Users/arkashjain/Desktop/Post_OPT/Prev_Semesters/Fall2023/DS522/**)"
+      "Read(//Users/arkashjain/Desktop/Post_OPT/Prev_Semesters/Fall2023/DS522/**)",
+      "Bash(rtk find *)",
+      "WebSearch",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:arkash.substack.com)",
+      "Bash(rtk lint *)",
+      "Skill(commit-commands:commit-push-pr)",
+      "Bash(git checkout *)",
+      "Bash(rtk gh pr create --title 'feat\\(media,knowledge\\): AI hardware stack article + fix Medium/Substack links' --body ' *)",
+      "mcp__playwright__browser_snapshot",
+      "Bash(grep -v '^\\\\s*```')",
+      "Bash(grep -v \"^[0-9]*:.*\\\\`\\\\`\\\\`\")",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(pkill -f \"next\")",
+      "Bash(rtk ps *)",
+      "Bash(git reset *)"
     ]
   }
 }

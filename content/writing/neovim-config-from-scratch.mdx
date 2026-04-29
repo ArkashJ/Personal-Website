@@ -1,0 +1,50 @@
+---
+title: 'Writing my Neovim config from scratch'
+date: '2024-06-02'
+tags: ['Tools', 'Engineering']
+description: 'A two-part Medium series on building a Neovim setup from a blank init.lua — bootstrap, options, keymaps, lazy.nvim, then the plugin layer that makes it a real editor.'
+---
+
+In 2024 I rebuilt my editor from scratch. No distros, no preset, no Cursor — just `init.lua`,
+[lazy.nvim](https://github.com/folke/lazy.nvim), and a folder of plugin files I actually
+understand.
+
+The full config lives at [`~/.config/nvim`](https://github.com/ArkashJ) under a `lua/arkash/`
+namespace — `core/` (options + keymaps), `lazy.lua` (bootstrap), and `plugins/` (one Lua
+file per plugin so I can rip any of them out without surprises).
+
+## The two-part write-up
+
+I wrote it up as I went, on Medium:
+
+- **Part 1 — Writing my Neovim config from scratch.**
+  Why I did it, the bootstrap, options that actually matter (`relativenumber`, `signcolumn`,
+  `clipboard:append("unnamedplus")`, splits right/below), and a leader-centric keymap layout.
+  → [medium.com/@arkjain/writing-my-neovim-config-from-scratch](https://medium.com/@arkjain/writing-my-neovim-config-from-scratch-1e7cbfa69cb7)
+
+- **Part 2 — Adding Plugins to my Config: No Punches Pulled Back Now.**
+  Telescope, nvim-tree, lualine, bufferline, treesitter, gitsigns, which-key, todo-comments,
+  conform, nvim-lint, mason + lspconfig + cmp/luasnip, aerial, alpha — the whole plugin layer,
+  one file at a time.
+  → [medium.com/@arkjain/adding-plugins-to-my-config](https://medium.com/@arkjain/adding-plugins-to-my-config-8776a6140096)
+
+## What's worth stealing
+
+A few opinionated bits that survived two years of daily use:
+
+- **One file per plugin under `plugins/`.** `lazy.nvim` auto-imports them via
+  `{ import = "arkash.plugins" }`. Adding a plugin is a single new file; removing one is
+  `rm`. No giant table to merge into.
+- **`<leader>` = `<space>` and stay disciplined about what gets a leader binding.** Window
+  and tab management are leader-prefixed (`<leader>sv`, `<leader>to`); search/clear
+  highlights is `<leader>nh`. Everything else stays out of the way.
+- **`auto-session` + sane defaults beat any project-management plugin** I tried — open
+  Neovim in the directory and your buffers/splits are restored.
+- **`mason` for binary management, `mason-tool-installer` to declare the toolchain in code.**
+  No more "did I `npm i -g typescript-language-server` on this machine?".
+- **`conform.nvim` for formatting, `nvim-lint` for linting.** Both are built around the
+  _idea_ that you already have `prettierd` / `ruff` / `eslint_d` on disk — they don't try
+  to be a package manager too.
+
+The repo is at [github.com/ArkashJ](https://github.com/ArkashJ) (look for the `nvim` or
+`dotfiles` repos). The README in `~/.config/nvim` mirrors this structure.

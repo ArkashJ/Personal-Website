@@ -28,7 +28,6 @@ export type NavLink = { href: string; label: string }
 export const NAV_LINKS: NavLink[] = [
   { href: '/about', label: 'About' },
   { href: '/research', label: 'Research' },
-  { href: '/experience', label: 'Experience' },
   { href: '/projects', label: 'Projects' },
   { href: '/coursework', label: 'Coursework' },
   { href: '/writing', label: 'Writing' },

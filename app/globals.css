@@ -142,6 +142,23 @@ html {
 
 /* Animations */
 
+/* Custom easing curves — see Emil Kowalski's design engineering notes.
+   Built-in CSS easings lack punch; these feel intentional. */
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Press feedback — apply to any pressable element. Subtle scale-down on
+   :active confirms the UI heard the input. Duration ≤ 160ms keeps it snappy. */
+.press {
+  transition: transform 160ms var(--ease-out);
+}
+.press:active {
+  transform: scale(0.97);
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
