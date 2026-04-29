@@ -1,7 +1,7 @@
 'use client'
 
 import { Command } from 'cmdk'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { NAV_LINKS, SECONDARY_LINKS, SITE } from '@/lib/site'
 
@@ -67,6 +67,9 @@ const CommandPalette = ({
 }) => {
   const router = useRouter()
   const [search, setSearch] = useState('')
+  const [listening, setListening] = useState(false)
+  const [voiceSupported, setVoiceSupported] = useState(false)
+  const recognitionRef = useRef<unknown>(null)
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -84,6 +87,14 @@ const CommandPalette = ({
     if (!open) setSearch('')
   }, [open])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const SR =
+      (window as unknown as { SpeechRecognition?: unknown }).SpeechRecognition ||
+      (window as unknown as { webkitSpeechRecognition?: unknown }).webkitSpeechRecognition
+    setVoiceSupported(Boolean(SR))
+  }, [])
+
   const go = (href: string) => {
     onOpenChange(false)
     if (href.startsWith('http') || href.startsWith('mailto:')) {
@@ -91,6 +102,84 @@ const CommandPalette = ({
     } else {
       router.push(href)
     }
+  }
+
+  const matchAndNavigate = (transcript: string) => {
+    const t = transcript.toLowerCase().trim()
+    if (!t) return false
+    // Strip common command prefixes
+    const cleaned = t
+      .replace(/^(go to|open|navigate to|take me to|show me|jump to|visit)\s+/i, '')
+      .replace(/[.!?]+$/, '')
+      .trim()
+    const candidates = [cleaned, t]
+    for (const q of candidates) {
+      // Exact label match first
+      const exact = ITEMS.find((i) => i.label.toLowerCase() === q)
+      if (exact) {
+        go(exact.href)
+        return true
+      }
+    }
+    // Token-overlap scoring
+    const qTokens = cleaned.split(/\s+/).filter(Boolean)
+    let best: { item: Item; score: number } | null = null
+    for (const i of ITEMS) {
+      const hay = `${i.label} ${i.hint || ''} ${i.group}`.toLowerCase()
+      let score = 0
+      for (const tok of qTokens) {
+        if (tok.length < 2) continue
+        if (hay.includes(tok)) score += tok.length
+      }
+      if (score > 0 && (!best || score > best.score)) best = { item: i, score }
+    }
+    if (best && best.score >= 3) {
+      go(best.item.href)
+      return true
+    }
+    return false
+  }
+
+  const toggleVoice = () => {
+    if (typeof window === 'undefined') return
+    const SR =
+      (window as unknown as { SpeechRecognition?: new () => unknown }).SpeechRecognition ||
+      (window as unknown as { webkitSpeechRecognition?: new () => unknown }).webkitSpeechRecognition
+    if (!SR) return
+    if (listening) {
+      ;(recognitionRef.current as { stop?: () => void } | null)?.stop?.()
+      setListening(false)
+      return
+    }
+    const rec = new (SR as new () => {
+      lang: string
+      interimResults: boolean
+      continuous: boolean
+      onresult: (e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void
+      onend: () => void
+      onerror: () => void
+      start: () => void
+      stop: () => void
+    })()
+    rec.lang = 'en-US'
+    rec.interimResults = true
+    rec.continuous = false
+    rec.onresult = (e) => {
+      const last = e.results[e.results.length - 1]
+      const transcript = last[0].transcript
+      setSearch(transcript)
+      // Final result triggers navigation attempt
+      const isFinal = (last as unknown as { isFinal?: boolean }).isFinal
+      if (isFinal) {
+        const matched = matchAndNavigate(transcript)
+        if (matched) rec.stop()
+      }
+    }
+    rec.onend = () => setListening(false)
+    rec.onerror = () => setListening(false)
+    recognitionRef.current = rec
+    setListening(true)
+    rec.start()
   }
 
   if (!open) return null
@@ -110,10 +199,26 @@ const CommandPalette = ({
           <Command.Input
             value={search}
             onValueChange={setSearch}
-            placeholder="Jump to a page, project, or paper…"
+            placeholder={
+              listening ? 'Listening… say "go to research"' : 'Jump to a page, project, or paper…'
+            }
             autoFocus
             className="flex-1 bg-transparent outline-none text-text placeholder:text-subtle text-sm font-mono"
           />
+          {voiceSupported && (
+            <button
+              type="button"
+              onClick={toggleVoice}
+              aria-label={listening ? 'Stop listening' : 'Start voice command'}
+              className={`font-mono text-[10px] border px-2 py-1 transition-colors ${
+                listening
+                  ? 'border-accent text-accent animate-pulse'
+                  : 'border-border text-subtle hover:text-primary hover:border-primary'
+              }`}
+            >
+              {listening ? '● REC' : '🎙 VOICE'}
+            </button>
+          )}
           <kbd className="font-mono text-[10px] text-subtle border border-border px-1.5 py-0.5">
             ESC
           </kbd>
@@ -152,6 +257,7 @@ const CommandPalette = ({
           <span>↑↓ navigate</span>
           <span>↵ open</span>
           <span>esc close</span>
+          {voiceSupported && <span>🎙 voice</span>}
         </div>
       </Command>
     </div>

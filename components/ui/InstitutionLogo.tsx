@@ -19,7 +19,31 @@ const LOGO_MAP: Record<string, { src: string; alt: string }> = {
   },
 }
 
-export const hasLogo = (org?: string): boolean => Boolean(org && LOGO_MAP[org])
+// Orgs that use a monogram badge instead of an SVG. Aliases map → display key.
+const MONOGRAM_ALIASES: Record<string, string> = {
+  'Benmore Technologies': 'Benmore',
+  Benmore: 'Benmore',
+  'Battery Ventures': 'Battery Ventures',
+  ZeroSync: 'ZeroSync',
+  'Harvard Medical School - Kirchhausen Lab': 'Harvard',
+  'BU Chemistry / NSF UROP': 'NSF',
+}
+
+const monogram = (org: string): string => {
+  const cleaned = org.replace(/[^a-zA-Z\s]/g, ' ').trim()
+  const words = cleaned.split(/\s+/).filter((w) => w.length > 0)
+  if (words.length === 0) return '?'
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase()
+  return (words[0][0] + words[1][0]).toUpperCase()
+}
+
+export const hasLogo = (org?: string): boolean => {
+  if (!org) return false
+  if (LOGO_MAP[org]) return true
+  if (MONOGRAM_ALIASES[org] && LOGO_MAP[MONOGRAM_ALIASES[org]]) return true
+  // Render monogram for any non-empty org
+  return true
+}
 
 type Props = {
   org: string
@@ -28,9 +52,24 @@ type Props = {
 }
 
 const InstitutionLogo = ({ org, size = 28, className }: Props) => {
-  const entry = LOGO_MAP[org]
-  if (!entry) return null
-  return <Image src={entry.src} alt={entry.alt} width={size} height={size} className={className} />
+  const aliasKey = MONOGRAM_ALIASES[org]
+  const entry = LOGO_MAP[org] || (aliasKey ? LOGO_MAP[aliasKey] : undefined)
+  if (entry) {
+    return (
+      <Image src={entry.src} alt={entry.alt} width={size} height={size} className={className} />
+    )
+  }
+  // Monogram fallback
+  return (
+    <span
+      role="img"
+      aria-label={`${org} monogram`}
+      className={`flex items-center justify-center bg-elevated text-primary font-mono font-bold ${className ?? ''}`}
+      style={{ width: size, height: size, fontSize: Math.max(8, Math.floor(size * 0.42)) }}
+    >
+      {monogram(org)}
+    </span>
+  )
 }
 
 export default InstitutionLogo

@@ -240,7 +240,6 @@ export const PROJECTS: Project[] = [
     year: '2022',
     description: 'Migrate playlists between music platforms via API matching.',
     tech: ['Python', 'OAuth'],
-    href: 'https://github.com/ArkashJ',
   },
   {
     name: 'STU STREET Podcast',

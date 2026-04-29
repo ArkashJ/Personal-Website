@@ -41,5 +41,6 @@ export const SECONDARY_LINKS: NavLink[] = [
   { href: '/learnings', label: 'Learnings' },
   { href: '/credentials', label: 'Credentials' },
   { href: '/stack', label: 'Stack' },
+  { href: '/architecture', label: 'Architecture' },
   { href: '/docs', label: 'Docs' },
 ]
