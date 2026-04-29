@@ -464,15 +464,20 @@ export const SUBSTACK_POSTS: ArticleLink[] = [
 // Recent LinkedIn posts — embedded via the official LinkedIn embed iframe.
 export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
   {
-    urn: '7453549731131052032',
+    urn: '7455216841720758272',
     type: 'activity',
-    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7453549731131052032/',
+    url: 'https://www.linkedin.com/posts/activity-7455216841720758272-A1au',
   },
   {
     urn: '7453549729759641600',
     type: 'activity',
-    url: 'https://www.linkedin.com/posts/arkashj_at-battery-ventures-my-vp-taught-me-to-price-share-7453549729759641600-NX6e',
-    title: 'At Battery Ventures, my VP taught me to price-share…',
+    url: 'https://www.linkedin.com/posts/arkashj_i-learnt-to-price-optionality-on-aggregation-share-7453549729759641600-PxRg',
+    title: 'I learnt to price optionality on aggregation…',
+  },
+  {
+    urn: '7453549731131052032',
+    type: 'activity',
+    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7453549731131052032/',
   },
 ]
 

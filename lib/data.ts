@@ -735,6 +735,20 @@ export const TIMELINE: TimelineEntry[] = [
     description: 'Leading the forward deployed engineering practice across all client engagements.',
     links: [{ label: 'Experience & work ->', href: '/experience' }],
   },
+  {
+    title: 'The Complete AI Hardware Stack — Layer by Layer',
+    featured: true,
+    category: 'Knowledge',
+    date: 'Apr 2026',
+    status: 'Published',
+    description:
+      'From silicon atoms to generated tokens — every layer that makes modern AI inference possible. L7 silicon & packaging, HBM, NVLink, CUDA kernels, disaggregated serving, and deep dives on SRAM vs HBM, CPO, and EDA.',
+    links: [
+      { label: 'Read the deep dive ->', href: '/knowledge/ai/ai-hardware-stack' },
+      { label: 'Interactive version ->', href: '/ai-hardware-stack.html' },
+    ],
+    slug: 'ai-hardware-stack',
+  },
 ]
 
 export const KNOWLEDGE_DOMAINS: KnowledgeDomainMeta[] = [
