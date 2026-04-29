@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Complete AI Hardware Stack — Layer by Layer</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,system-ui,'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;display:flex;height:100vh;overflow:hidden}
+nav{width:280px;min-width:280px;background:#161b22;border-right:1px solid #30363d;display:flex;flex-direction:column;overflow-y:auto}
+nav .brand{padding:20px 20px 16px;border-bottom:1px solid #30363d}
+nav .brand h1{font-size:13px;color:#58a6ff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+nav .brand p{font-size:11px;color:#484f58}
+nav .layers{padding:8px 0;flex:1}
+nav button{display:block;width:100%;text-align:left;background:none;border:none;border-left:3px solid transparent;padding:10px 20px;cursor:pointer;font-size:13px;color:#8b949e;font-family:inherit;transition:all .15s}
+nav button:hover{background:#1c2128;color:#c9d1d9}
+nav button.active{background:#1c2128;color:#58a6ff;border-left-color:#58a6ff}
+nav button .num{display:inline-block;width:28px;font-size:11px;color:#484f58;font-weight:600}
+nav button.active .num{color:#58a6ff}
+nav .footer{padding:12px 20px;border-top:1px solid #30363d;font-size:11px;color:#484f58}
+main{flex:1;overflow-y:auto;padding:40px 48px 80px}
+.slide{display:none;max-width:920px}
+.slide.active{display:block}
+.slide h2{font-size:26px;color:#f0f6fc;font-weight:700;margin-bottom:4px}
+.slide .layer-num{font-size:12px;color:#58a6ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.slide .subtitle{font-size:15px;color:#8b949e;margin-bottom:28px;line-height:1.5}
+.slide h3{font-size:16px;color:#58a6ff;margin:28px 0 10px;font-weight:600}
+.slide p{font-size:14px;line-height:1.7;color:#c9d1d9;margin-bottom:14px;max-width:780px}
+.ascii-flow{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:16px 20px;margin:16px 0 24px;overflow-x:auto;font-family:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono',monospace;font-size:12.5px;line-height:1.55;white-space:pre;color:#8b949e}
+.ascii-flow .h{color:#58a6ff}
+.ascii-flow .g{color:#3fb950}
+.ascii-flow .o{color:#d29922}
+.ascii-flow .r{color:#f85149}
+.ascii-flow .p{color:#bc8cff}
+.ascii-flow .w{color:#f0f6fc}
+.ascii-flow .d{color:#484f58}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0}
+.metric{background:#161b22;border:1px solid #30363d;border-radius:6px;padding:14px 16px}
+.metric .label{font-size:11px;color:#8b949e;text-transform:uppercase;letter-spacing:.5px}
+.metric .value{font-size:22px;color:#58a6ff;font-weight:700;margin:2px 0}
+.metric .detail{font-size:11px;color:#484f58}
+.callout{border:1px solid;border-radius:6px;padding:14px 18px;margin:20px 0;font-size:13px;line-height:1.6}
+.callout.warn{background:#1a1210;border-color:#f8514944;border-left:4px solid #f85149}
+.callout.info{background:#0d1520;border-color:#58a6ff44;border-left:4px solid #58a6ff}
+.callout .tag{font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600}
+.callout.warn .tag{color:#f85149}
+.callout.info .tag{color:#58a6ff}
+.kbd-hint{position:fixed;bottom:16px;right:24px;font-size:11px;color:#484f58;z-index:10}
+kbd{background:#21262d;border:1px solid #30363d;border-radius:3px;padding:1px 5px;font-family:inherit;font-size:11px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 24px}
+@media(max-width:900px){.two-col{grid-template-columns:1fr}}
+.section-break{height:1px;background:#30363d;margin:32px 0}
+.analogy{background:#111a12;border:1px solid #3fb95033;border-left:4px solid #3fb950;border-radius:6px;padding:14px 18px;margin:8px 0 24px;font-size:13px;line-height:1.7;color:#c9d1d9}
+.analogy .tag{font-size:11px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600;color:#3fb950}
+.analogy em{color:#3fb950;font-style:normal;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <h1>AI Hardware Stack</h1>
+    <p>7 Layers + Deep Dives</p>
+  </div>
+  <div class="layers">
+    <button data-slide="overview" class="active"><span class="num">&bull;</span> Full Stack Overview</button>
+    <button data-slide="layer7"><span class="num">L7</span> Silicon &amp; Packaging</button>
+    <button data-slide="layer6"><span class="num">L6</span> Inter-Node Networking</button>
+    <button data-slide="layer5"><span class="num">L5</span> Intra-Node Interconnect</button>
+    <button data-slide="layer4"><span class="num">L4</span> Memory Hierarchy</button>
+    <button data-slide="layer3"><span class="num">L3</span> Compute Hardware</button>
+    <button data-slide="layer2"><span class="num">L2</span> Software &amp; Kernels</button>
+    <button data-slide="layer1"><span class="num">L1</span> Inference &amp; Serving</button>
+    <button data-slide="claude-session"><span class="num">&rarr;</span> A Claude Code Session</button>
+    <button data-slide="inference-split"><span class="num">&rarr;</span> SRAM vs HBM Split</button>
+    <button data-slide="cpo"><span class="num">&rarr;</span> Co-Packaged Optics</button>
+    <button data-slide="eda"><span class="num">&rarr;</span> EDA Chip Design</button>
+  </div>
+  <div class="footer">Use arrow keys to navigate</div>
+</nav>
+
+<main>
+
+<!-- ============================================================ -->
+<!-- OVERVIEW                                                      -->
+<!-- ============================================================ -->
+<section class="slide active" id="overview">
+<div class="layer-num">Complete Architecture</div>
+<h2>The AI Hardware Stack</h2>
+<p class="subtitle">From silicon atoms to generated tokens — every layer that makes modern AI inference possible, and where the bottlenecks hide.</p>
+
+<div class="ascii-flow">
+<span class="w">+--------------------------------------------------------------------------+</span>
+<span class="w">|</span><span class="h">                      THE COMPLETE AI HARDWARE STACK                      </span><span class="w">|</span>
+<span class="w">+==========================================================================+</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">|</span>  <span class="h">L1</span>  <span class="w">INFERENCE &amp; SERVING</span>         Prefill --&gt; KV Transfer --&gt; Decode      <span class="w">|</span>
+<span class="w">|</span>      Disaggregated pools  |  TTFT / ITL  |  PagedAttention  |  vLLM     <span class="w">|</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">+--------------------------------------------------------------------------+</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">|</span>  <span class="h">L2</span>  <span class="w">SOFTWARE &amp; KERNELS</span>          CUDA --&gt; PTX --&gt; SASS  |  CUDA Graphs   <span class="w">|</span>
+<span class="w">|</span>      DeepGEMM (1550 TF)  |  FlashMLA  |  FlashAttention-3  |  DeepEP   <span class="w">|</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">+--------------------------------------------------------------------------+</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">|</span>  <span class="h">L3</span>  <span class="w">COMPUTE HARDWARE</span>            B200: 208B T  |  TPU v7  |  WSE-3      <span class="w">|</span>
+<span class="w">|</span>      Tensor Cores (FP4)  |  Systolic Arrays  |  Groq LPU  |  Trainium  <span class="w">|</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">+--------------------------------------------------------------------------+</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">|</span>  <span class="h">L4</span>  <span class="w">MEMORY HIERARCHY</span>            Regs --&gt; SRAM --&gt; L2 --&gt; HBM --&gt; NVMe   <span class="w">|</span>
+<span class="w">|</span>      The Memory Wall: compute 3x/2yr vs bandwidth 1.6x/2yr              <span class="w">|</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">+--------------------------------------------------------------------------+</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">|</span>  <span class="h">L5</span>  <span class="w">INTRA-NODE INTERCONNECT</span>     NVLink 5.0 (1.8 TB/s)  |  NVSwitch     <span class="w">|</span>
+<span class="w">|</span>      72 GPUs all-to-all at 130 TB/s  |  NVLink-C2C (900 GB/s)          <span class="w">|</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">+--------------------------------------------------------------------------+</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">|</span>  <span class="h">L6</span>  <span class="w">INTER-NODE NETWORKING</span>       IB 800G (115 Tb/s)  |  SHARP v4       <span class="w">|</span>
+<span class="w">|</span>      Co-Packaged Optics (65% power cut)  |  RoCE v2  |  GPUDirect      <span class="w">|</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">+--------------------------------------------------------------------------+</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">|</span>  <span class="h">L7</span>  <span class="w">SILICON &amp; PACKAGING</span>         CoWoS-L (4x reticle)  |  TSMC 3nm     <span class="w">|</span>
+<span class="w">|</span>      HBM4 (2048-bit)  |  Hybrid Bonding  |  Cadence + Synopsys EDA     <span class="w">|</span>
+<span class="w">|</span>                                                                          <span class="w">|</span>
+<span class="w">+--------------------------------------------------------------------------+</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Plain English</div>
+Think of the whole AI system like a <em>factory with 7 floors</em>. Each floor does one job, and they all depend on each other from bottom to top. The bottom floor is the raw silicon — the physical atoms. The top floor is where your prompt gets answered. Everything in between is about moving data as fast as possible between the chips that do the math.
+</div>
+
+<h3>How Data Flows Through the Stack</h3>
+
+<div class="ascii-flow">
+<span class="d">  A user prompt enters at L1 and cascades down to silicon, then back up:</span>
+
+  <span class="w">User Prompt</span>                                                 <span class="w">Generated Token</span>
+       <span class="d">|</span>                                                          <span class="d">^</span>
+       <span class="d">v</span>                                                          <span class="d">|</span>
+  <span class="h">[L1 Prefill]</span> tokenize, build KV cache ----RDMA---&gt; <span class="h">[L1 Decode]</span> autoregress
+       <span class="d">|</span>                                                          <span class="d">^</span>
+       <span class="d">v</span>                                                          <span class="d">|</span>
+  <span class="p">[L2 Kernel]</span>  FlashAttn tiles Q/K/V in SRAM, fused GEMM        <span class="p">[L2 Kernel]</span>
+       <span class="d">|</span>                                                          <span class="d">^</span>
+       <span class="d">v</span>                                                          <span class="d">|</span>
+  <span class="g">[L3 Tensor Cores]</span> wgmma: 128 threads x FP8 multiply      <span class="g">[L3 Tensor Cores]</span>
+       <span class="d">|</span>                                                          <span class="d">^</span>
+       <span class="d">v</span>                                                          <span class="d">|</span>
+  <span class="o">[L4 HBM3e]</span> 8 TB/s reads weights + KV cache               <span class="o">[L4 HBM3e]</span>
+       <span class="d">|</span>                                                          <span class="d">^</span>
+       <span class="d">v</span>                                                          <span class="d">|</span>
+  <span class="r">[L5 NVLink]</span> all-reduce across 72 GPUs at 1.8 TB/s        <span class="r">[L5 NVLink]</span>
+       <span class="d">|</span>                                                          <span class="d">^</span>
+       <span class="d">v</span>                                                          <span class="d">|</span>
+  <span class="h">[L6 IB/RDMA]</span> cross-node gradient sync, SHARP in-switch   <span class="h">[L6 IB/RDMA]</span>
+       <span class="d">|</span>                                                          <span class="d">^</span>
+       <span class="d">v</span>                                                          <span class="d">|</span>
+  <span class="d">[L7 Silicon]</span> all of this on a CoWoS-L interposer, 3nm    <span class="d">[L7 Silicon]</span>
+</div>
+
+<div class="callout info">
+<div class="tag">Key Insight</div>
+Every layer is shaped by the Memory Wall. Compute scales 3x every 2 years; memory bandwidth only 1.6x. This single constraint drives HBM investment, FlashAttention algorithms, the prefill/decode split, disaggregated serving, and the entire NVLink/NVSwitch topology.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAYER 7: SILICON & PACKAGING                                  -->
+<!-- ============================================================ -->
+<section class="slide" id="layer7">
+<div class="layer-num">Layer 7 &mdash; Foundation</div>
+<h2>Silicon &amp; Packaging</h2>
+<p class="subtitle">The physical substrate: advanced packaging places GPU dies next to HBM stacks on shared interposers, while EDA toolchains turn RTL into silicon. This is the #1 supply bottleneck for all of AI.</p>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+This is literally the physical chip. TSMC takes a digital blueprint and etches circuits onto silicon wafers — like <em>printing a microscopic city onto a fingernail-sized piece of glass</em>. The tricky part is "packaging": gluing the brain chip (GPU) next to its memory chips (HBM) on a shared platform called CoWoS. It's like building a motherboard at the scale of atoms. One bug in the design = $100M+ and 6 months lost.
+</div>
+
+<h3>CoWoS-L Package Cross-Section (B200)</h3>
+
+<div class="ascii-flow">
+<span class="w">+------------------------------------------------------------------------+</span>
+<span class="w">|</span>                      <span class="h">CoWoS-L Package (GB200)</span>                          <span class="w">|</span>
+<span class="w">|</span>                                                                        <span class="w">|</span>
+<span class="w">|</span>  <span class="o">+------+</span> <span class="o">+------+</span> <span class="o">+------+</span> <span class="g">+--------+</span> <span class="g">+--------+</span> <span class="o">+------+</span> <span class="o">+------+</span>  <span class="w">|</span>
+<span class="w">|</span>  <span class="o">|HBM3e |</span> <span class="o">|HBM3e |</span> <span class="o">|HBM3e |</span> <span class="g">|GPU Die |</span> <span class="g">|GPU Die |</span> <span class="o">|HBM3e |</span> <span class="o">|HBM3e |</span>  <span class="w">|</span>
+<span class="w">|</span>  <span class="o">| 24GB |</span> <span class="o">| 24GB |</span> <span class="o">| 24GB |</span> <span class="g">| 104B T |</span> <span class="g">| 104B T |</span> <span class="o">| 24GB |</span> <span class="o">| 24GB |</span>  <span class="w">|</span>
+<span class="w">|</span>  <span class="o">+--||--+</span> <span class="o">+--||--+</span> <span class="o">+--||--+</span> <span class="g">+---||---+</span> <span class="g">+---||---+</span> <span class="o">+--||--+</span> <span class="o">+--||--+</span>  <span class="w">|</span>
+<span class="w">|</span>     <span class="o">||</span>       <span class="o">||</span>       <span class="o">||</span>    <span class="r">10 TB/s</span>    <span class="o">||</span>       <span class="o">||</span>       <span class="o">||</span>      <span class="w">|</span>
+<span class="w">|</span>  <span class="p">+==||=======||=======||=======||=========||=======||=======||==+</span>    <span class="w">|</span>
+<span class="w">|</span>  <span class="p">|         LSIC Chiplets (Local Silicon Interconnect)           |</span>    <span class="w">|</span>
+<span class="w">|</span>  <span class="p">+-------------------------------------------------------------+</span>    <span class="w">|</span>
+<span class="w">|</span>  <span class="d">+-------------------------------------------------------------+</span>    <span class="w">|</span>
+<span class="w">|</span>  <span class="d">|            Organic Substrate (BGA Package)                   |</span>    <span class="w">|</span>
+<span class="w">|</span>  <span class="d">+-------------------------------------------------------------+</span>    <span class="w">|</span>
+<span class="w">|</span>                                                                        <span class="w">|</span>
+<span class="w">+------------------------------------------------------------------------+</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+The CoWoS package is like a <em>custom apartment building</em>. The GPU dies are the penthouse suites (doing the actual work), and the HBM stacks are the closets (storing everything). They're all connected by hallways etched into the building's foundation (the silicon interposer). The building can only be so big (reticle limit = ~858 mm²), so TSMC invented LSIC chiplets to stitch multiple foundations together — like connecting buildings with sky-bridges to make a mega-complex.
+</div>
+
+<h3>EDA Toolchain: RTL to Silicon</h3>
+
+<div class="ascii-flow">
+<span class="d">  Cadence Flow:                               Synopsys Flow:</span>
+
+  <span class="w">RTL (Verilog/VHDL)</span>                            <span class="w">RTL (Verilog/VHDL)</span>
+       <span class="d">|</span>                                              <span class="d">|</span>
+       <span class="d">v</span>                                              <span class="d">v</span>
+  <span class="h">[Genus]</span> Logic Synthesis                      <span class="h">[Design Compiler]</span>
+       <span class="d">|</span>  netlist                                     <span class="d">|</span>  netlist
+       <span class="d">v</span>                                              <span class="d">v</span>
+  <span class="g">[Innovus]</span> Place &amp; Route                     <span class="g">[IC Compiler II]</span>
+       <span class="d">|</span>  layout                                      <span class="d">|</span>  layout
+       <span class="d">v</span>                                              <span class="d">v</span>
+  <span class="o">[Xcelium]</span> Verification                     <span class="o">[VCS]</span> Verification
+       <span class="d">|</span>  clean DRC/LVS                               <span class="d">|</span>  clean DRC/LVS
+       <span class="d">v</span>                                              <span class="d">v</span>
+  <span class="r">[Tempus]</span> Timing Signoff                    <span class="r">[PrimeTime]</span> Timing Signoff
+       <span class="d">|</span>                                              <span class="d">|</span>
+       <span class="d">v</span>                                              <span class="d">v</span>
+  <span class="p">[Pegasus]</span> Physical Signoff                  <span class="p">[IC Validator]</span> Phys Signoff
+       <span class="d">|</span>                                              <span class="d">|</span>
+       <span class="d">v</span>                                              <span class="d">v</span>
+    <span class="w">GDSII Tapeout</span>                                <span class="w">GDSII Tapeout</span>
+
+  <span class="d">Feb 2026: Cadence ChipStack AI "Super Agent" claims 10x 3D-IC design speed</span>
+  <span class="d">NVIDIA invested $2B in Synopsys for GPU-accelerated simulation</span>
+</div>
+
+<h3>CoWoS Packaging Variants</h3>
+
+<div class="ascii-flow">
+  <span class="w">Variant</span>      <span class="w">Interposer</span>       <span class="w">Pitch</span>     <span class="w">Max Area</span>       <span class="w">Used By</span>
+  <span class="d">--------</span>     <span class="d">-----------</span>      <span class="d">--------</span>  <span class="d">-----------</span>    <span class="d">-----------</span>
+  <span class="h">CoWoS-S</span>      Silicon           0.4 um    858 mm2        H100
+  <span class="g">CoWoS-L</span>      LSIC + Organic    2-5 um    3400 mm2+      B200, R100
+  <span class="o">CoWoS-R</span>      RDL Organic       5+ um     Large          Network ASICs
+
+  <span class="r">Reticle limit</span>: ~858 mm2 (26mm x 33mm single exposure)
+  CoWoS-L bypasses this via LSIC chiplet stitching
+  Rubin (R100) targets <span class="w">4x reticle</span> = ~3,400 mm2 interposer area
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">TSMC CoWoS Capacity</div><div class="value">130K</div><div class="detail">wafers/month target by end 2026</div></div>
+<div class="metric"><div class="label">NVIDIA CoWoS Share</div><div class="value">&gt;50%</div><div class="detail">of total TSMC advanced packaging</div></div>
+<div class="metric"><div class="label">B200 Transistors</div><div class="value">208B</div><div class="detail">dual-die on TSMC 4NP</div></div>
+<div class="metric"><div class="label">NV-HBI Bandwidth</div><div class="value">10 TB/s</div><div class="detail">die-to-die on B200</div></div>
+</div>
+
+<div class="callout warn">
+<div class="tag">Critical Bottleneck</div>
+CoWoS is the #1 supply constraint for AI. Every H100, B200, and future Rubin chip requires advanced packaging. TSMC scaling from ~75K to 130K wafers/month, but demand far exceeds supply. SK Hynix has sold out its entire 2026 HBM supply. The transition from micro-bumps (25-40um pitch) to hybrid bonding (3-9um pitch) will unlock finer interconnect density for Rubin.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAYER 6: INTER-NODE NETWORKING                                -->
+<!-- ============================================================ -->
+<section class="slide" id="layer6">
+<div class="layer-num">Layer 6 &mdash; Network Fabric</div>
+<h2>Inter-Node Networking</h2>
+<p class="subtitle">How GPUs in different machines communicate. RDMA lets GPUs read/write each other's memory directly — bypassing CPUs and OS kernels entirely. InfiniBand's SHARP performs collective operations inside the switch fabric itself.</p>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+When you need thousands of GPUs across many servers, they talk over InfiniBand. Data goes <em>directly from one GPU's memory to another GPU's memory, skipping the CPU entirely</em> — like sending a package straight to someone's desk instead of going through the mailroom. This "RDMA" trick cuts latency dramatically. And SHARP v4 is even crazier: the network switch itself does math on your data <em>while it's in transit</em>, like a postal sorting facility that also fills out your tax forms as your envelope passes through.
+</div>
+
+<h3>GPUDirect RDMA: Zero-Copy GPU-to-GPU Transfer</h3>
+
+<div class="ascii-flow">
+  <span class="w">Source GPU</span>      <span class="w">Source NIC</span>      <span class="w">IB Switch</span>       <span class="w">Remote NIC</span>      <span class="w">Remote GPU</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span> <span class="g">1. Write HBM</span>  <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>~~~~~~~~~~~&gt;   <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span> <span class="h">2. Post SQ</span>    <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>--------------&gt;<span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span> <span class="o">3. DMA Read</span>   <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>&lt;~~~~~~~~~~~~~~<span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span> <span class="p">4. Transmit</span>   <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>--------------&gt;<span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span> <span class="r">5. SHARP v4</span>   <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span> <span class="r">(in-network</span>   <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span> <span class="r"> all-reduce)</span>  <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>--------------&gt;<span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span> <span class="g">6. DMA Write</span>  <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>~~~~~~~~~~~~~~&gt;<span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span> <span class="h">7. CQE Done</span>   <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>&lt;~~~~~~~~~~~~~~<span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+
+  <span class="d">Zero CPU involvement after setup. Kernel-bypass, zero-copy, polling-based.</span>
+  <span class="d">NIC accesses GPU HBM directly via BAR1 PCIe memory-mapped regions.</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — RDMA Step by Step</div>
+Steps 1-2: The source GPU writes data and posts a "send" request to the network card. <em>Like writing a letter and dropping it in the outbox.</em> Steps 3-4: The NIC reads directly from GPU memory (no CPU involved!) and transmits over the wire. <em>The mailroom picks up directly from your desk.</em> Step 5: SHARP v4 does math on the data inside the switch. <em>The post office adds up all the numbers while sorting.</em> Steps 6-7: Remote NIC writes directly into the destination GPU's memory. <em>Letter arrives directly on their desk, no unpacking needed.</em>
+</div>
+
+<h3>SHARP v4: In-Network Compute</h3>
+
+<div class="ascii-flow">
+  <span class="d">Traditional All-Reduce (ring):         SHARP v4 All-Reduce:</span>
+
+  <span class="w">GPU 0</span> ---data---&gt; <span class="w">GPU 1</span> ---&gt; <span class="w">GPU 2</span>      <span class="w">GPU 0</span> ---data---&gt; <span class="r">Switch</span>
+    <span class="d">^</span>                              <span class="d">|</span>        <span class="w">GPU 1</span> ---data---&gt; <span class="r">Switch</span>  <span class="o">&lt;-- 14.4 TFLOPS</span>
+    <span class="d">|</span>       O(N) steps             <span class="d">|</span>        <span class="w">GPU 2</span> ---data---&gt; <span class="r">Switch</span>  <span class="o">    in-switch ALU</span>
+    <span class="d">+</span>--------- <span class="w">GPU 3</span> &lt;-------------<span class="d">+</span>        <span class="w">GPU 3</span> ---data---&gt; <span class="r">Switch</span>
+                                                                  <span class="d">|</span>
+  Each GPU sends + receives N-1           <span class="r">Switch</span> computes SUM     <span class="d">|</span>
+  times around the ring.                         <span class="d">|</span>                <span class="d">|</span>
+  Latency: O(N) hops                            <span class="d">v</span>                <span class="d">|</span>
+                                           <span class="g">Broadcast result</span>      <span class="d">|</span>
+                                           to all GPUs &lt;---------<span class="d">+</span>
+                                           Latency: <span class="g">O(log N)</span> hops
+</div>
+
+<h3>InfiniBand vs Ethernet Comparison</h3>
+
+<div class="ascii-flow">
+  <span class="w">Feature</span>              <span class="h">InfiniBand (IB)</span>            <span class="g">Ethernet / RoCE v2</span>
+  <span class="d">-------------------  -------------------------  -------------------------</span>
+  Switch               Quantum-X800               Memory Wall: commodity
+  Port Speed            800 Gb/s                   400-800 Gb/s
+  Total BW             115.2 Tb/s (144 ports)     25.6-51.2 Tb/s typical
+  Latency              sub-100 ns (cut-through)   1-5 us (store-forward)
+  In-Network Compute   SHARP v4 (14.4 TFLOPS)     None (endpoint only)
+  RDMA                 Native IB verbs            RoCE v2 over UDP/IP
+  Cost                 Premium (~2x)              Standard (~1x)
+  Best For             Training 10K+ GPUs         Inference, &lt;10K training
+  Deployments          Stargate, Oracle 131K      Meta inference, LinkedIn
+
+  <span class="d">Ultra Ethernet Consortium (AMD, Broadcom, Cisco, Intel, Meta, Microsoft)</span>
+  <span class="d">pushing AI-optimized Ethernet: ordered delivery, packet spraying, congestion</span>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">Quantum-X800 BW</div><div class="value">115.2 Tb/s</div><div class="detail">144 ports x 800 Gb/s</div></div>
+<div class="metric"><div class="label">Port Latency</div><div class="value">&lt;100 ns</div><div class="detail">cut-through switching</div></div>
+<div class="metric"><div class="label">SHARP Compute</div><div class="value">14.4 TF</div><div class="detail">in-network all-reduce</div></div>
+<div class="metric"><div class="label">CPO Power Save</div><div class="value">65%</div><div class="detail">vs pluggable optics</div></div>
+</div>
+
+<div class="callout info">
+<div class="tag">Co-Packaged Optics (CPO)</div>
+NVIDIA's COUPE engines place optical transceivers directly into switch packages — converting electrical to optical at the package boundary instead of front-panel modules. This eliminates ~15cm of lossy copper PCB trace, cutting SerDes power 65% and extending reach 100x (km vs meters). Broadcom's Tomahawk 6 Davisson: 102.4 Tb/s with CPO. 2026 is the volume deployment year.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAYER 5: INTRA-NODE INTERCONNECT                              -->
+<!-- ============================================================ -->
+<section class="slide" id="layer5">
+<div class="layer-num">Layer 5 &mdash; Rack-Scale Fabric</div>
+<h2>Intra-Node Interconnect</h2>
+<p class="subtitle">NVLink and NVSwitch create a fabric where every GPU in a rack can talk to every other GPU at full bandwidth — no hotspots. This is what makes tensor parallelism across 72 GPUs possible.</p>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+Inside a single server rack, GPUs are connected by NVLink — a <em>super-fast private highway that's 14x faster than the normal connection (PCIe)</em>. A special traffic controller called NVSwitch makes sure any GPU can talk to any other GPU equally fast. Think of it as <em>72 people in a room who can all whisper to each other at the same speed</em> — no one is farther away than anyone else. This "all-to-all" topology is what makes it possible to split a single AI model across all 72 GPUs.
+</div>
+
+<h3>GB200 NVL72: Full Crossbar Topology</h3>
+
+<div class="ascii-flow">
+  <span class="d">                        GB200 NVL72 Rack</span>
+  <span class="d">        36 Grace-Blackwell Superchips = 72 Blackwell GPUs</span>
+
+  <span class="w">GPU 0</span>   <span class="w">GPU 1</span>   <span class="w">GPU 2</span>   <span class="w">GPU 3</span>         <span class="w">GPU 70</span>  <span class="w">GPU 71</span>
+    <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>     <span class="d">...</span>     <span class="d">|</span>       <span class="d">|</span>
+    <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>             <span class="d">|</span>       <span class="d">|</span>
+  <span class="h">==|=======|=======|=======|=============|=======|==</span>
+  <span class="h">||</span>  <span class="g">NVSwitch 0</span>   <span class="g">NVSwitch 1</span>    <span class="d">...</span>    <span class="g">NVSwitch 17</span>   <span class="h">||</span>
+  <span class="h">||</span>                                                   <span class="h">||</span>
+  <span class="h">||</span>        <span class="w">Full Crossbar: 130 TB/s aggregate</span>         <span class="h">||</span>
+  <span class="h">||</span>     Every GPU equidistant: 1 hop, ~2 us          <span class="h">||</span>
+  <span class="h">||</span>     Each NVSwitch: 64 ports, 6.4 TB/s             <span class="h">||</span>
+  <span class="h">==|=======|=======|=======|=============|=======|==</span>
+    <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>             <span class="d">|</span>       <span class="d">|</span>
+    <span class="d">v</span>       <span class="d">v</span>       <span class="d">v</span>       <span class="d">v</span>             <span class="d">v</span>       <span class="d">v</span>
+  <span class="o">Tensor Parallelism across ALL 72 GPUs in a single domain</span>
+  <span class="o">All-reduce after every transformer layer at full 1.8 TB/s per GPU</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — Why Equidistant Matters</div>
+Without NVSwitch, GPUs would be like houses on a street — neighbors talk fast, but sending a message to the other end of town takes many hops. NVSwitch makes it like everyone's in the <em>same conference room</em>. Every message is one hop. This matters because tensor parallelism requires all 72 GPUs to synchronize after every single layer of the neural network. If even one GPU is slow, everyone waits.
+</div>
+
+<h3>Grace-Blackwell Superchip: NVLink-C2C</h3>
+
+<div class="ascii-flow">
+  <span class="w">+----------------------------+</span>     <span class="w">+----------------------------+</span>
+  <span class="w">|</span>       <span class="h">Grace CPU</span>            <span class="w">|</span>     <span class="w">|</span>       <span class="g">Blackwell GPU</span>         <span class="w">|</span>
+  <span class="w">|</span>                            <span class="w">|</span>     <span class="w">|</span>                            <span class="w">|</span>
+  <span class="w">|</span>  72 ARM Neoverse V2 cores  <span class="w">|</span>     <span class="w">|</span>  576 Tensor Cores (5th gen)<span class="w">|</span>
+  <span class="w">|</span>  512 GB LPDDR5X @ 546 GB/s <span class="w">|</span>     <span class="w">|</span>  192 GB HBM3e @ 8 TB/s     <span class="w">|</span>
+  <span class="w">|</span>                            <span class="w">|</span>     <span class="w">|</span>                            <span class="w">|</span>
+  <span class="w">|</span>         <span class="d">CPU DRAM</span>           <span class="w">|</span>     <span class="w">|</span>          <span class="d">GPU HBM</span>           <span class="w">|</span>
+  <span class="w">|</span>       (spill target)       <span class="w">|</span>     <span class="w">|</span>       (primary pool)       <span class="w">|</span>
+  <span class="w">|</span>                            <span class="w">|</span>     <span class="w">|</span>                            <span class="w">|</span>
+  <span class="w">+-------------||-------------+</span>     <span class="w">+-------------||-------------+</span>
+                <span class="d">||</span>                                   <span class="d">||</span>
+                <span class="d">||</span>  <span class="r">NVLink-C2C: 900 GB/s coherent</span>  <span class="d">||</span>
+                <span class="d">||</span>  <span class="r">7x PCIe Gen5 bandwidth</span>         <span class="d">||</span>
+                <span class="d">||</span>  <span class="r">Unified virtual address space</span>  <span class="d">||</span>
+                <span class="d">||</span>  <span class="r">No explicit cudaMemcpy needed</span>  <span class="d">||</span>
+                <span class="d">||</span>                                   <span class="d">||</span>
+                <span class="d">++=================================++</span>
+</div>
+
+<h3>Bandwidth Comparison</h3>
+
+<div class="ascii-flow">
+  <span class="w">Interconnect</span>       <span class="w">Bandwidth</span>       <span class="w">Relative</span>   <span class="w">Role</span>
+  <span class="d">-----------------  --------------  ---------  -------------------------</span>
+  <span class="g">NVLink 5.0</span>         1,800 GB/s      <span class="g">14x</span>        GPU-to-GPU (tensor parallel)
+  <span class="h">NVLink-C2C</span>           900 GB/s      <span class="h"> 7x</span>        CPU-to-GPU (coherent memory)
+  <span class="o">PCIe Gen5 x16</span>        128 GB/s      <span class="o"> 1x</span>        CPU-GPU, NVMe, NICs
+  <span class="r">PCIe Gen6 x16</span>        256 GB/s      <span class="r"> 2x</span>        Next-gen (PAM-4 signaling)
+
+  <span class="d">NVLink 4 (H100): 18 links x  50 GB/s =   900 GB/s</span>
+  <span class="d">NVLink 5 (B200): 18 links x 100 GB/s = 1,800 GB/s  (2x improvement)</span>
+  <span class="d">Physical: 112 Gbps PAM-4 SerDes per lane (doubled from NVLink 4)</span>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">NVLink 5 per GPU</div><div class="value">1.8 TB/s</div><div class="detail">18 links x 100 GB/s each</div></div>
+<div class="metric"><div class="label">NVSwitch Fabric</div><div class="value">130 TB/s</div><div class="detail">72 GPUs all-to-all</div></div>
+<div class="metric"><div class="label">NVLink-C2C</div><div class="value">900 GB/s</div><div class="detail">coherent CPU-GPU link</div></div>
+<div class="metric"><div class="label">PCIe Gap</div><div class="value">14x</div><div class="detail">slower than NVLink</div></div>
+</div>
+
+<div class="callout warn">
+<div class="tag">Why NVLink Matters</div>
+Tensor parallelism requires an all-reduce after every transformer layer. For a 405B model at BF16, that's gigabytes synchronized across GPUs at each step. PCIe's 128 GB/s would make even 2-GPU TP bandwidth-bound. NVLink's 1.8 TB/s keeps tensor cores fed. The 14x gap between PCIe and NVLink is the reason NVSwitch exists.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAYER 4: MEMORY HIERARCHY                                     -->
+<!-- ============================================================ -->
+<section class="slide" id="layer4">
+<div class="layer-num">Layer 4 &mdash; The Memory Wall</div>
+<h2>Memory Hierarchy</h2>
+<p class="subtitle">The defining constraint of AI hardware. Compute scales 3x every 2 years; memory bandwidth only 1.6x. This widening gap drives every major architectural decision — from FlashAttention to disaggregated serving.</p>
+
+<div class="analogy">
+<div class="tag">Analogy — The Memory Ladder</div>
+GPUs have a memory ladder, each rung trading speed for size:<br>
+&bull; <em>Registers</em> = the numbers you hold in your head (instant, tiny)<br>
+&bull; <em>Shared memory / L1</em> = a notepad on your desk (very fast, small)<br>
+&bull; <em>L2 cache</em> = a filing cabinet in the room (fast, medium)<br>
+&bull; <em>HBM</em> = a warehouse down the street (slower, big)<br>
+&bull; <em>SSD/Flash</em> = a storage unit across town (slowest, huge)<br><br>
+The big problem: compute power doubles every ~2 years, but memory speed only grows 1.6x. This "memory wall" is why so much engineering goes into keeping data close to where it's being processed. FlashAttention exists because an HBM access costs 600x more time than reading a register.
+</div>
+
+<h3>Memory Hierarchy: Bandwidth vs Capacity vs Latency</h3>
+
+<div class="ascii-flow">
+                          <span class="w">BANDWIDTH</span>        <span class="w">CAPACITY</span>     <span class="w">LATENCY</span>
+
+                       <span class="g">+----------+</span>
+                       <span class="g">|Registers |</span>     256 KB/SM    ~1 cycle
+                       <span class="g">| ~37 TB/s |</span>
+                       <span class="g">+----||----+</span>
+                      <span class="h">+-----||------+</span>
+                      <span class="h">|  L1/Shared  |</span>   228 KB/SM    ~28-39 cycles
+                      <span class="h">|  ~19 TB/s   |</span>   <span class="o">&lt;-- FlashAttention lives here</span>
+                      <span class="h">+-----||------+</span>
+                   <span class="o">+---------||--------+</span>
+                   <span class="o">|     L2 Cache      |</span>  126 MB         ~200 cycles
+                   <span class="o">|     ~12 TB/s      |</span>
+                   <span class="o">+---------||--------+</span>
+               <span class="r">+-------------||-------------+</span>
+               <span class="r">|       HBM3e (DRAM)         |</span>  192 GB        ~600 cycles
+               <span class="r">|         8 TB/s             |</span>
+               <span class="r">+-------------||-------------+</span>
+          <span class="d">+------------------||-------------------+</span>
+          <span class="d">|          NVMe (NAND Flash)            |</span>  TB-scale      ~100K cycles
+          <span class="d">|            7-14 GB/s                  |</span>
+          <span class="d">+----------------------------------------+</span>
+
+  <span class="r">Each level down: ~10-100x more capacity, ~10-100x more latency</span>
+  <span class="r">HBM access (600 cyc) vs register (1 cyc) = 600x penalty</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — FlashAttention</div>
+Standard attention is like a student who reads the entire textbook (writes it to HBM), highlights it (reads from HBM), then writes a summary (reads from HBM again) — <em>three trips to the warehouse for every page</em>. FlashAttention is like a student who reads one chapter at a time, keeping it on their desk notepad, highlighting and summarizing before moving to the next chapter. <em>Same result, but the warehouse trip only happens once per chapter.</em> This is why FlashAttention turned a memory-bound operation into a compute-bound one.
+</div>
+
+<h3>FlashAttention: Why SRAM Tiling Matters</h3>
+
+<div class="ascii-flow">
+  <span class="d">Standard Attention:                FlashAttention (tiled in SRAM):</span>
+
+  <span class="w">Q</span> (full) x <span class="w">K</span>^T (full)              <span class="w">Q_tile</span> (fits SRAM) x <span class="w">K_tile</span>^T
+       <span class="d">|</span>                                    <span class="d">|</span>
+       <span class="d">v</span>                                    <span class="d">v</span>
+  <span class="r">S = Q*K^T</span>  (N x N matrix)           <span class="g">S_tile</span> (small, in SRAM)
+  <span class="r">Materialized in HBM!</span>                <span class="g">Never touches HBM!</span>
+       <span class="d">|</span>                                    <span class="d">|</span>
+       <span class="d">v</span>                                    <span class="d">v</span>
+  <span class="r">softmax(S)</span>  -&gt; read from HBM         <span class="g">online softmax</span> (rescaling)
+       <span class="d">|</span>                                    <span class="d">|</span>
+       <span class="d">v</span>                                    <span class="d">v</span>
+  <span class="r">P * V</span>  -&gt; another HBM round-trip      <span class="g">P_tile * V_tile</span> (still in SRAM)
+                                             <span class="d">|</span>
+  HBM reads: <span class="r">O(N^2)</span>                          <span class="d">v</span>
+  Bandwidth-bound                       <span class="g">accumulate output</span>
+                                        HBM reads: <span class="g">O(N^2 * d / M)</span>
+                                        M = SRAM size
+                                        <span class="g">Effectively IO-linear</span>
+
+  <span class="d">FlashAttention-3 (Hopper): ping-pong warpgroups, 1.3 PFLOPS = 75% peak</span>
+</div>
+
+<h3>HBM Evolution</h3>
+
+<div class="ascii-flow">
+  <span class="w">Generation</span>    <span class="w">Capacity</span>   <span class="w">Bandwidth</span>   <span class="w">Stack</span>      <span class="w">Interface</span>   <span class="w">GPU</span>
+  <span class="d">-----------   --------   ---------   --------   ---------   --------</span>
+  <span class="d">HBM3</span>           80 GB     3.35 TB/s   8-high     1024-bit    H100
+  <span class="o">HBM3e</span>         192 GB     8-9 TB/s    12-high    1024-bit    B200
+  <span class="g">HBM4</span>         384 GB+    2+ TB/s*    12-16      <span class="g">2048-bit</span>    Rubin
+                                        high
+
+  * per stack; multiple stacks per GPU
+  <span class="d">HBM4: logic-in-base die, JEDEC spec April 2025, volume late 2026</span>
+  <span class="d">Market: SK Hynix ~50%, Samsung ~40%, Micron ~10%</span>
+  <span class="d">SK Hynix 2026 HBM supply: entirely sold out to NVIDIA</span>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">B200 HBM BW</div><div class="value">8 TB/s</div><div class="detail">HBM3e, 192 GB capacity</div></div>
+<div class="metric"><div class="label">B200 L2 Cache</div><div class="value">126 MB</div><div class="detail">2.5x H100's 50 MB</div></div>
+<div class="metric"><div class="label">SRAM vs HBM</div><div class="value">600x</div><div class="detail">latency penalty for HBM</div></div>
+<div class="metric"><div class="label">Memory Wall Gap</div><div class="value">1.9x/2yr</div><div class="detail">compute vs bandwidth scaling</div></div>
+</div>
+
+<div class="callout warn">
+<div class="tag">The Memory Wall</div>
+The memory wall is the central constraint shaping every level of AI systems design. From transistor-level packaging (HBM4 logic-in-base) through algorithms (FlashAttention) to cluster architecture (disaggregated serving). A 405B model checkpoint with Adam states is ~2.4 TB. In 100K+ GPU clusters, mean time between failure is measured in hours — checkpointing to NVMe (7-14 GB/s, 1000x slower than HBM) is the fault tolerance mechanism.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAYER 3: COMPUTE HARDWARE                                     -->
+<!-- ============================================================ -->
+<section class="slide" id="layer3">
+<div class="layer-num">Layer 3 &mdash; The Engines</div>
+<h2>Compute Hardware</h2>
+<p class="subtitle">GPUs, TPUs, wafer-scale chips, and deterministic dataflow processors. The frontier is bifurcating: massive FP4/FP8 throughput for model execution, and dense ARM CPU fabrics for agentic orchestration.</p>
+
+<div class="analogy">
+<div class="tag">Analogy — Three Types of Compute</div>
+&bull; <em>GPU (NVIDIA)</em> = Swiss Army knife. Flexible, massive ecosystem, good at everything. The general-purpose workhorse of AI.<br>
+&bull; <em>Custom ASICs (TPU, Cerebras, Groq)</em> = purpose-built industrial machines. Faster at specific tasks but less flexible. A Cerebras chip is literally an entire silicon wafer — like using the whole factory floor for one machine.<br>
+&bull; <em>CPU (ARM/x86)</em> = the orchestra conductor. For AI agents like Claude Code, the CPU does 60-90% of the work: parsing JSON, calling tools, managing state. The GPU only fires for the actual "thinking" bursts. This is why the agentic era needs 4x more CPU capacity.
+</div>
+
+<h3>NVIDIA Blackwell SM: Warp-Group Architecture</h3>
+
+<div class="ascii-flow">
+  <span class="w">+================================================================+</span>
+  <span class="w">|</span>              <span class="h">Streaming Multiprocessor (SM)</span>                     <span class="w">|</span>
+  <span class="w">|</span>              B200: 576 SMs total (dual-die)                     <span class="w">|</span>
+  <span class="w">|</span>                                                                <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">+--------+</span>  <span class="g">+--------+</span>  <span class="g">+--------+</span>  <span class="g">+--------+</span>            <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">| Warp 0 |</span>  <span class="g">| Warp 1 |</span>  <span class="g">| Warp 2 |</span>  <span class="g">| Warp 3 |</span>  = 128 thr  <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">|32 thrd |</span>  <span class="g">|32 thrd |</span>  <span class="g">|32 thrd |</span>  <span class="g">|32 thrd |</span>  (1 wgrp)   <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">+---||---+</span>  <span class="g">+---||---+</span>  <span class="g">+---||---+</span>  <span class="g">+---||---+</span>            <span class="w">|</span>
+  <span class="w">|</span>      <span class="g">||</span>          <span class="g">||</span>          <span class="g">||</span>          <span class="g">||</span>                 <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">+===||==========||==========||==========||===+</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">|    Warp-Group MMA (wgmma) Instruction      |</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">|    128 threads --> single matrix multiply   |</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">|    FP4 / FP6 / FP8 / FP16 / BF16           |</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">+=============================================+</span>             <span class="w">|</span>
+  <span class="w">|</span>                       <span class="d">||</span>                                       <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">+-----------+</span>  <span class="r">+----||----+</span>  <span class="p">+-------------+</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">| Reg File  |</span>  <span class="r">|  Tensor  |</span>  <span class="p">| L1 / Shared |</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">| 256 KB    |</span>  <span class="r">|  Core    |</span>  <span class="p">| 228 KB      |</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">+-----------+</span>  <span class="r">+----------+</span>  <span class="p">+-------------+</span>             <span class="w">|</span>
+  <span class="w">|</span>                                                                <span class="w">|</span>
+  <span class="w">|</span>  <span class="d">TMA: async 1D-5D tensor moves (global &lt;-&gt; shared)</span>             <span class="w">|</span>
+  <span class="w">|</span>  <span class="d">No register file involvement, frees warps for compute</span>        <span class="w">|</span>
+  <span class="w">+================================================================+</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — Warp Groups</div>
+A GPU SM is like a <em>factory floor with 4 work crews of 32 people each</em> (warps). In older GPUs, each crew did its own small job. With warp-group MMA (wgmma), all 4 crews (128 workers) cooperate on <em>one massive matrix multiplication</em> together — like 4 construction crews building one wall instead of 4 separate small walls. The Tensor Memory Accelerator (TMA) is like a forklift that automatically delivers materials to the work area without any worker needing to stop and fetch things.
+</div>
+
+<h3>AI Accelerator Comparison</h3>
+
+<div class="ascii-flow">
+  <span class="w">Chip</span>             <span class="w">Transistors</span>  <span class="w">Peak FLOPS</span>   <span class="w">HBM</span>         <span class="w">Architecture</span>
+  <span class="d">---------------  -----------  -----------  ----------  ------------------</span>
+  <span class="g">NVIDIA B200</span>      208B (2die)  4.5 PF FP4   192GB 8T/s  SIMT + Tensor Cores
+  <span class="h">Google TPU v7</span>    N/A          4.6 PF       192GB 7.4   256x256 Systolic
+  <span class="p">Cerebras WSE-3</span>   4T (wafer)   125 PF FP16  44GB SRAM   900K cores, no HBM
+  <span class="o">Groq LPU</span>         N/A          ~1 PF        230MB SRAM  Deterministic flow
+  <span class="r">AWS Trainium2</span>    N/A          1.3 PF FP8   N/A         500K+ for Anthropic
+
+  <span class="d">Architecture styles:</span>
+  <span class="d">  NVIDIA: SIMT warps (32 threads) + Tensor Cores (wgmma)</span>
+  <span class="d">  Google: Data flows through 256x256 grid of MACs (systolic)</span>
+  <span class="d">  Cerebras: Entire wafer, eliminates HBM entirely (44GB SRAM)</span>
+  <span class="d">  Groq: Software-scheduled, no caches, deterministic latency</span>
+</div>
+
+<h3>CPU's Growing Role in Agentic AI</h3>
+
+<div class="ascii-flow">
+  <span class="d">Workload Type         GPU Util    CPU Util    Why CPU Matters</span>
+  <span class="d">--------------------  --------    --------    ---------------------------</span>
+  <span class="w">Simple chatbot Q&amp;A</span>    90-95%      5-10%       One forward pass, minimal CPU
+  <span class="o">RAG pipeline</span>          70-80%      20-30%      Retrieval, embedding, ranking
+  <span class="r">Multi-agent system</span>    30-40%      60-70%      Tool calls, API routing, JSON
+  <span class="r">Agentic orchestration</span> 10-30%      60-90%      State mgmt, memory, planning
+
+  <span class="h">Grace ARM CPU</span>: 72 cores, NVLink-C2C at 900 GB/s to Blackwell
+  <span class="d">Implication: data centers need 4x current CPU capacity per GW</span>
+  <span class="d">for agentic scale. ARM efficiency (2x perf/watt vs x86) matters.</span>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">B200 Peak (FP4)</div><div class="value">4.5 PF</div><div class="detail">per GPU, dense</div></div>
+<div class="metric"><div class="label">NVL72 Aggregate</div><div class="value">~40 PF</div><div class="detail">FP4 sparse, 72 GPUs</div></div>
+<div class="metric"><div class="label">TPU v7 Peak</div><div class="value">4.6 PF</div><div class="detail">256x256 systolic arrays</div></div>
+<div class="metric"><div class="label">WSE-3 Peak</div><div class="value">125 PF</div><div class="detail">entire 300mm wafer</div></div>
+</div>
+
+<div class="callout info">
+<div class="tag">The Agentic Shift</div>
+Simple chatbot inference is 90-95% GPU. But agentic AI — tool calls, API routing, JSON parsing, memory management — is 60-90% CPU. This is reshaping datacenter architecture: it's no longer just about GPU FLOPS, but about CPU density, memory bandwidth per core, and power efficiency. ARM's 2x perf/watt advantage over x86 positions Grace as the agentic-era CPU.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAYER 2: SOFTWARE & KERNELS                                   -->
+<!-- ============================================================ -->
+<section class="slide" id="layer2">
+<div class="layer-num">Layer 2 &mdash; The Code</div>
+<h2>Software &amp; Kernels</h2>
+<p class="subtitle">From CUDA C++ to the actual hardware instructions. DeepSeek's open-source kernels achieved cuBLAS-matching performance through PTX-level binary patching — flipping single bits in compiled GPU code for 10%+ throughput gains.</p>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+This is the code that runs on the chips. CUDA is NVIDIA's programming language for GPUs. Your code gets compiled down through layers — <em>like translating a book from English to Spanish to a regional dialect</em>: CUDA C++ (human-readable) → PTX (a "universal GPU language" that works on any generation) → SASS (the actual machine code for a specific chip). DeepSeek wrote custom kernels that squeeze dramatically more performance from the same hardware — <em>like a racecar driver who knows exactly how to take every corner</em>, even finding a single-bit tweak in compiled code that gives 10%+ speedup.
+</div>
+
+<h3>CUDA Compilation Pipeline</h3>
+
+<div class="ascii-flow">
+  <span class="w">CUDA C++</span>          <span class="h">nvcc</span>           <span class="g">PTX</span>            <span class="o">ptxas</span>          <span class="r">SASS</span>
+  (source)          (compiler)     (virtual ISA)  (assembler)    (device binary)
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>  split host   <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>  and device   <span class="d">|</span>  translate    <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>--------------&gt;<span class="d">|</span>  to virtual   <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>  instrs       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>--------------&gt;<span class="d">|</span>  compile to   <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>  target arch  <span class="d">|</span>               <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>--------------&gt;<span class="d">|</span>  actual GPU   <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>  machine code <span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>--------------&gt;<span class="d">|</span>
+       <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+
+  <span class="d">Key PTX instructions:</span>
+  <span class="d">  mma.sync      -- Volta/Turing tensor ops</span>
+  <span class="d">  wgmma.mma_async -- Hopper/Blackwell warp-group MMA</span>
+  <span class="d">  cp.async.bulk -- TMA-driven async global-&gt;shared copy</span>
+  <span class="d">  tma.load      -- Tensor Memory Accelerator descriptor loads</span>
+
+  <span class="d">JIT: PTX compiled for sm_80 JIT-compiles to SASS at runtime</span>
+  <span class="d">     via CUDA driver's ptxas (~100-500ms, cached in ~/.nv/)</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — PTX vs SASS</div>
+PTX is like <em>sheet music</em> — any orchestra (GPU generation) can read it and play the piece. SASS is like a <em>recording for a specific concert hall</em> — optimized for that exact venue's acoustics. When you distribute PTX, it gets "performed" (JIT compiled) on whatever GPU runs it. This forward-compatibility is why CUDA code written for H100 can run on future Rubin GPUs without recompilation.
+</div>
+
+<h3>DeepGEMM: Warp-Specialized FP8 GEMM</h3>
+
+<div class="ascii-flow">
+  <span class="h">Producer Warps</span>                              <span class="g">Consumer Warps</span>
+  <span class="d">(async data loading)</span>                         <span class="d">(matrix compute)</span>
+       <span class="d">|</span>                                            <span class="d">|</span>
+       <span class="d">|</span>  <span class="h">1. TMA cp.async.bulk</span>                       <span class="d">|</span>
+       <span class="d">|</span>  (Global HBM --&gt; Shared Mem)                <span class="d">|</span>
+       <span class="d">|</span>                                            <span class="d">|</span>
+       <span class="d">|</span>  Activation tiles: <span class="o">1 x 128</span> scaling          <span class="d">|</span>
+       <span class="d">|</span>  Weight tiles:   <span class="o">128 x 128</span> scaling          <span class="d">|</span>
+       <span class="d">|</span>                                            <span class="d">|</span>
+       <span class="d">|</span>  <span class="h">2. Signal barrier</span>                          <span class="d">|</span>
+       <span class="d">|</span>----------[arrive barrier]----------------&gt;<span class="d">|</span>
+       <span class="d">|</span>                                            <span class="d">|</span>
+       <span class="d">|</span>                                 <span class="g">3. wgmma</span>   <span class="d">|</span>
+       <span class="d">|</span>                                 FP8 GEMM   <span class="d">|</span>
+       <span class="d">|</span>                                 on buffer  <span class="d">|</span>
+       <span class="d">|</span>                                            <span class="d">|</span>
+       <span class="d">|</span>  <span class="h">4. Reclaim buffer</span>                         <span class="d">|</span>
+       <span class="d">|</span>&lt;---------[release barrier]-----------------<span class="d">|</span>
+       <span class="d">|</span>                                            <span class="d">|</span>
+       <span class="d">|</span>                                 <span class="r">5. FFMA</span>    <span class="d">|</span>
+       <span class="d">|</span>                                 FP32 accum <span class="d">|</span>
+       <span class="d">|</span>                                 <span class="r">yield bit</span>  <span class="d">|</span>
+       <span class="d">|</span>                                 <span class="r">flipped!</span>   <span class="d">|</span>
+       <span class="d">|</span>                                            <span class="d">|</span>
+
+  <span class="r">THE BREAKTHROUGH</span>: PTX binary patching flips bit 12 of FFMA SASS
+  encoding (the yield bit), hinting scheduler to context-switch during
+  FP32 accumulation. This single-bit patch = <span class="g">10%+ throughput gain</span>.
+  Result: <span class="g">1,550 TFLOPS FP8 on H800</span> -- matching cuBLAS, fully open-source.
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — DeepGEMM's Yield Bit Trick</div>
+Imagine an assembly line where some workers (producer warps) load parts onto the conveyor belt while others (consumer warps) assemble them. DeepSeek discovered that by <em>telling the assembler workers to take a micro-nap during a specific slow step</em> (flipping the yield bit in FFMA instructions), the factory scheduler could keep the conveyor belt fully loaded. This one-bit post-compilation patch — like a mechanic tweaking a single screw after the car left the factory — delivered 10%+ more throughput. The result: open-source code matching NVIDIA's proprietary cuBLAS performance.
+</div>
+
+<h3>FlashMLA + DeepEP</h3>
+
+<div class="ascii-flow">
+  <span class="h">FlashMLA (Multi-Head Latent Attention)</span>
+
+  <span class="d">Traditional MHA KV Cache:</span>       <span class="d">FlashMLA KV Cache:</span>
+  K: [layers x heads x seq x d]  K+V: [layers x seq x <span class="g">d_latent</span>]
+  V: [layers x heads x seq x d]
+                                  Low-rank joint compression:
+  Size: <span class="r">100%</span>                       d_latent = 512 (vs ~7680 original)
+                                  Size: <span class="g">6.7%</span> of traditional
+
+  Fused kernel: projection + attention + output in single launch
+  HBM bandwidth utilization: <span class="g">3,000 GB/s</span> (near H800 peak of 3,350 GB/s)
+
+  <span class="d">--------------------------------------------------------------------------</span>
+
+  <span class="o">DeepEP (Expert-Parallel MoE Dispatch)</span>
+
+  <span class="w">Token</span>  --&gt; <span class="o">Router</span> --&gt; Expert assignment --&gt; <span class="h">All-to-All dispatch</span>
+                                                    <span class="d">|</span>
+                                     <span class="d">+---------------+---------------+</span>
+                                     <span class="d">|</span>               <span class="d">|</span>               <span class="d">|</span>
+                               <span class="g">Local GPU</span>       <span class="p">Remote GPU 1</span>   <span class="p">Remote GPU N</span>
+                               (same node)     (IB GPUDirect)  (IB GPUDirect)
+
+  Low-latency mode: ~50 us per dispatch (inference)
+  High-throughput mode: overlapped with compute (training)
+  Direct GPU-to-GPU via InfiniBand RDMA, no CPU involvement
+</div>
+
+<h3>CUDA Execution Hierarchy</h3>
+
+<div class="ascii-flow">
+  <span class="w">Grid</span>  (entire kernel launch)
+    <span class="d">|</span>
+    <span class="d">+--&gt;</span> <span class="h">Thread Block</span> (max 1024 threads, maps to 1 SM)
+    <span class="d">|</span>       <span class="d">|</span>
+    <span class="d">|</span>       <span class="d">+--&gt;</span> <span class="g">Warp</span> (32 threads, SIMT lockstep)
+    <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>
+    <span class="d">|</span>       <span class="d">|</span>       <span class="d">+--&gt;</span> <span class="o">Thread</span> (single execution unit)
+    <span class="d">|</span>       <span class="d">|</span>
+    <span class="d">|</span>       <span class="d">+--&gt;</span> <span class="p">Warp Group</span> (4 warps = 128 threads, Hopper+)
+    <span class="d">|</span>               <span class="d">|</span>
+    <span class="d">|</span>               <span class="d">+--&gt;</span> <span class="r">wgmma</span>: single matrix-multiply-accumulate
+    <span class="d">|</span>
+    <span class="d">+--&gt;</span> <span class="d">Kernel launch overhead: 20-200 us (driver path)</span>
+    <span class="d">+--&gt;</span> <span class="d">CUDA Graphs: capture DAG, replay at ~10 us (5x speedup)</span>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">DeepGEMM</div><div class="value">1,550 TF</div><div class="detail">FP8 on H800, open-source</div></div>
+<div class="metric"><div class="label">FlashMLA KV</div><div class="value">6.7%</div><div class="detail">of traditional cache size</div></div>
+<div class="metric"><div class="label">FlashAttn-3</div><div class="value">1.3 PF</div><div class="detail">75% of H100 peak</div></div>
+<div class="metric"><div class="label">CUDA Graphs</div><div class="value">5x</div><div class="detail">launch overhead reduction</div></div>
+</div>
+
+<div class="callout warn">
+<div class="tag">DeepSeek's PTX Binary Patching</div>
+The most remarkable kernel optimization of 2025-2026: DeepSeek discovered that flipping a single bit (bit 12, the yield hint) in FFMA SASS instructions causes the warp scheduler to context-switch during FP32 accumulation, hiding latency. This post-compilation binary patch — applied to NVIDIA's own ISA — delivered 10%+ throughput gains. It required reverse-engineering undocumented SASS encoding. The result: 1,550 TFLOPS FP8, matching proprietary cuBLAS, in ~300 lines of open-source code.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- LAYER 1: INFERENCE & SERVING                                  -->
+<!-- ============================================================ -->
+<section class="slide" id="layer1">
+<div class="layer-num">Layer 1 &mdash; The Application</div>
+<h2>Inference &amp; Serving</h2>
+<p class="subtitle">The 2025-2026 standard: disaggregated serving separates prefill (compute-bound) from decode (memory-bound) into distinct GPU pools connected by RDMA. This eliminates phase interference and lets each pool be independently optimized.</p>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+This is where your prompt actually gets answered, in two phases:<br>
+&bull; <em>Prefill</em> = reading the whole question at once. Like a student reading an exam prompt. Bottleneck: how fast you can read (raw compute).<br>
+&bull; <em>Decode</em> = writing the answer one word at a time, each word depending on all previous words. Like writing an essay where you re-read everything you've written before adding each new sentence. Bottleneck: how fast you can re-read (memory speed).<br><br>
+Smart companies split these onto different GPU pools — some GPUs optimized for reading (prefill), others for writing (decode). The "memory" of what's been read (KV cache) gets transferred between them via RDMA.
+</div>
+
+<h3>Disaggregated Serving Architecture</h3>
+
+<div class="ascii-flow">
+  <span class="w">User Request</span>
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="h">+-----------+</span>        <span class="o">RDMA KV Cache Transfer</span>        <span class="g">+-----------+</span>
+  <span class="h">|  PREFILL  |</span>====================================&gt;<span class="g">|  DECODE   |</span>
+  <span class="h">|   POOL    |</span>  KV cache over IB / RoCE          <span class="g">|   POOL    |</span>
+  <span class="h">|           |</span>                                    <span class="g">|           |</span>
+  <span class="h">| 3 nodes   |</span>                                    <span class="g">| 9 nodes   |</span>
+  <span class="h">| 24 GPUs   |</span>                                    <span class="g">| 72 GPUs   |</span>
+  <span class="h">|           |</span>                                    <span class="g">|           |</span>
+  <span class="h">| Compute-  |</span>                                    <span class="g">| Memory-   |</span>
+  <span class="h">| bound     |</span>                                    <span class="g">| bound     |</span>
+  <span class="h">| 640 TFLOPS|</span>                                    <span class="g">| 8 TB/s BW |</span>
+  <span class="h">| saturated |</span>                                    <span class="g">| per GPU   |</span>
+  <span class="h">+-----------+</span>                                    <span class="g">+-----------+</span>
+       <span class="d">|</span>                                                    <span class="d">|</span>
+       <span class="d">v</span>                                                    <span class="d">v</span>
+  <span class="o">TTFT: Time to</span>                                     <span class="p">ITL: Inter-Token</span>
+  <span class="o">First Token</span>                                       <span class="p">Latency (10-50ms)</span>
+  <span class="o">(prompt processing)</span>                               <span class="p">(token generation)</span>
+
+  <span class="d">LMSYS benchmark: DeepSeek-R1 on 96 H100s</span>
+  <span class="d">  3-node prefill + 9-node decode</span>
+  <span class="d">  52,300 input tok/s + 22,300 output tok/s per node</span>
+</div>
+
+<h3>Prefill vs Decode: Why They Must Be Separated</h3>
+
+<div class="ascii-flow">
+  <span class="h">PREFILL PHASE</span>                            <span class="g">DECODE PHASE</span>
+  <span class="d">---------------------------------</span>         <span class="d">---------------------------------</span>
+
+  Process: entire prompt at once             Process: one token at a time
+  Operation: matrix-matrix multiply          Operation: matrix-vector multiply
+  Bottleneck: <span class="r">raw FLOPS</span>                      Bottleneck: <span class="r">HBM bandwidth</span>
+  Tensor cores: <span class="g">saturated</span>                    Tensor cores: <span class="o">mostly idle</span>
+
+  Arithmetic intensity: <span class="g">HIGH</span>                 Arithmetic intensity: <span class="r">LOW</span>
+  (many ops per byte read)                   (1-10 ops/byte vs 300 capacity)
+
+  Reads: weights (once)                      Reads: weights + FULL KV cache
+  Builds: KV cache                           Updates: KV cache (+1 token)
+
+  Metric: <span class="h">TTFT</span>                                Metric: <span class="g">ITL</span>
+  (time to first token)                      (inter-token latency, 10-50ms)
+
+  Optimal HW: <span class="h">max TFLOPS</span>                     Optimal HW: <span class="g">max HBM bandwidth</span>
+  (B200: 4.5 PF FP4)                        (B200: 8 TB/s HBM3e)
+
+  <span class="d">Running both on same GPUs wastes resources:</span>
+  <span class="d">  - Prefill starves decode of memory bandwidth</span>
+  <span class="d">  - Decode wastes prefill's compute capacity</span>
+  <span class="d">  - Disaggregation eliminates this interference</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — Why Disaggregate?</div>
+Imagine a restaurant where some chefs are fast at reading orders (prefill) and others are fast at plating dishes (decode). If you make every chef do both, the fast readers are stuck waiting while plating, and the fast platers are stuck waiting while reading. <em>Disaggregation puts the readers in one kitchen and the platers in another</em>, connected by a fast conveyor belt (RDMA). Each kitchen runs at peak efficiency. The 3:1 decode-to-prefill ratio (9 decode nodes vs 3 prefill) reflects that decoding is the sustained bottleneck — you read the order once but plate for much longer.
+</div>
+
+<h3>KV Cache Management at Scale</h3>
+
+<div class="ascii-flow">
+  <span class="w">70B model, 128K context, batch of concurrent requests:</span>
+
+  Single request KV cache: <span class="r">~40 GB</span> (exceeds H100's 80GB HBM alone)
+  100 concurrent requests: <span class="r">~4 TB</span> KV cache needed
+
+  <span class="h">PagedAttention</span> (vLLM):
+  +------+------+------+-------+------+
+  |Page 0|Page 1|Page 2| Free  |Page 3|  Non-contiguous pages
+  +------+------+------+-------+------+  like OS virtual memory
+  | Req A| Req A| Req B|       | Req A|  Near-100% utilization
+  +------+------+------+-------+------+  No fragmentation
+
+  <span class="g">Optimization techniques:</span>
+  +--------------------+----------------+---------------------------+
+  | Technique          | Reduction      | Mechanism                 |
+  +--------------------+----------------+---------------------------+
+  | GQA (grouped attn) | 4-8x fewer KV  | Share KV across heads     |
+  | FP8/INT4 quantize  | 2-4x smaller   | Compress KV values        |
+  | Prefix caching     | Shared prompts | Reuse system prompt KV    |
+  | CPU/SSD offload    | Infinite*      | Page cold KV (+0.1-1ms)   |
+  | FlashMLA (DeepSeek)| 15x (to 6.7%)  | Low-rank KV decomposition |
+  +--------------------+----------------+---------------------------+
+
+  <span class="d">Frameworks: NVIDIA Dynamo (orchestration), vLLM (--disaggregated-prefill)</span>
+  <span class="d">Production: Meta, LinkedIn, Mistral, Hugging Face TGI v2</span>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">LMSYS Input</div><div class="value">52.3K</div><div class="detail">tok/sec per node (prefill)</div></div>
+<div class="metric"><div class="label">LMSYS Output</div><div class="value">22.3K</div><div class="detail">tok/sec per node (decode)</div></div>
+<div class="metric"><div class="label">KV Cache (70B)</div><div class="value">~40 GB</div><div class="detail">per request at 128K ctx</div></div>
+<div class="metric"><div class="label">FlashMLA</div><div class="value">6.7%</div><div class="detail">KV cache vs traditional</div></div>
+</div>
+
+<div class="callout warn">
+<div class="tag">The Decode Bottleneck</div>
+Decode is memory-bound: each token generation reads the entire KV cache from HBM but performs trivially little compute. Arithmetic intensity is 1-10 ops/byte versus tensor core capacity of ~300 ops/byte. This means 97-99% of tensor core capability is wasted during decode. The solution is disaggregation: give decode its own GPU pool optimized for bandwidth (more HBM, fewer FLOPS), and give prefill a pool optimized for compute.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CLAUDE CODE SESSION                                           -->
+<!-- ============================================================ -->
+<section class="slide" id="claude-session">
+<div class="layer-num">End-to-End Example</div>
+<h2>A Claude Code Session Through the Stack</h2>
+<p class="subtitle">What actually happens — layer by layer — when you type a message in Claude Code, from keystroke to streamed token to tool execution and back.</p>
+
+<h3>The Full Journey: You Type "fix the auth bug"</h3>
+
+<div class="ascii-flow">
+  <span class="w">YOUR TERMINAL</span>                          <span class="w">ANTHROPIC CLOUD</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">|</span>  1. Keystroke                          <span class="d">|</span>
+       <span class="d">|</span>  "fix the auth bug"                    <span class="d">|</span>
+       <span class="d">|</span>  + system prompt                        <span class="d">|</span>
+       <span class="d">|</span>  + conversation history                 <span class="d">|</span>
+       <span class="d">|</span>  + CLAUDE.md context                    <span class="d">|</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">|</span>--------- HTTPS POST /messages -------&gt;<span class="d">|</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">|</span>                            <span class="h">LOAD BALANCER</span>
+       <span class="d">|</span>                                <span class="d">|</span>
+       <span class="d">|</span>                                <span class="d">v</span>
+       <span class="d">|</span>                         <span class="h">PREFILL POOL</span> <span class="d">(L1)</span>
+       <span class="d">|</span>                         Process entire prompt
+       <span class="d">|</span>                         ~50K tokens of context
+       <span class="d">|</span>                         640 TFLOPS saturated
+       <span class="d">|</span>                                <span class="d">|</span>
+       <span class="d">|</span>                         <span class="d">RDMA KV cache xfer</span>
+       <span class="d">|</span>                                <span class="d">|</span>
+       <span class="d">|</span>                                <span class="d">v</span>
+       <span class="d">|</span>                          <span class="g">DECODE POOL</span> <span class="d">(L1)</span>
+       <span class="d">|</span>                          Generate tokens
+       <span class="d">|</span>                          one at a time
+       <span class="d">|</span>                          8 TB/s HBM reads
+       <span class="d">|</span>                                <span class="d">|</span>
+       <span class="d">|</span>&lt;-------- SSE token stream ----------<span class="d">|</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">|</span>  <span class="o">2. Claude decides to use a tool:</span>       <span class="d">|</span>
+       <span class="d">|</span>  {"type":"tool_use",                  <span class="d">|</span>
+       <span class="d">|</span>   "name":"Grep",                      <span class="d">|</span>
+       <span class="d">|</span>   "input":{"pattern":"auth"}}         <span class="d">|</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+  <span class="r">LOCAL CPU</span>                                    <span class="d">|</span>
+  3. Your machine                               <span class="d">|</span>
+     executes the tool                           <span class="d">|</span>
+     <span class="d">(grep, bash, read)</span>                          <span class="d">|</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">|</span>  4. Tool result sent back              <span class="d">|</span>
+       <span class="d">|</span>--------- HTTPS POST /messages -------&gt;<span class="d">|</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">|</span>                         <span class="h">PREFILL</span> again (new ctx)
+       <span class="d">|</span>                                <span class="d">|</span>
+       <span class="d">|</span>                         <span class="d">RDMA KV xfer</span>
+       <span class="d">|</span>                                <span class="d">v</span>
+       <span class="d">|</span>                          <span class="g">DECODE</span> response
+       <span class="d">|</span>                                <span class="d">|</span>
+       <span class="d">|</span>&lt;-------- SSE token stream ----------<span class="d">|</span>
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">|</span>  5. Repeat until task complete         <span class="d">|</span>
+       <span class="d">|</span>     (may loop 10-50+ times)           <span class="d">|</span>
+       <span class="d">v</span>                                       <span class="d">v</span>
+  <span class="g">Bug fixed, code edited, tests passing</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Plain English</div>
+Every time you hit Enter in Claude Code, your message (plus the entire conversation history) flies over HTTPS to Anthropic's data center. There, the prefill pool reads your whole context in one parallel burst — like speed-reading 50,000 words at once. Then the KV cache (the "working memory" of what was read) gets shipped via RDMA to the decode pool, which generates the response one token at a time. When Claude decides to use a tool (Grep, Bash, Read, Edit), the token stream includes a JSON tool_use block. <em>Your local machine</em> executes that tool — the cloud never touches your files. The result goes back as a new message, triggering another prefill → decode cycle. A typical Claude Code session might do this loop 10-50+ times.
+</div>
+
+<h3>What Happens Inside One Forward Pass</h3>
+
+<div class="ascii-flow">
+  <span class="d">Layer-by-layer trace of a single token generation:</span>
+
+  <span class="w">Token "fix"</span> (from your prompt)
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="r">[L7 SILICON]</span>       B200 GPU (208B transistors, TSMC 4NP)
+       <span class="d">|</span>                sitting on CoWoS-L interposer next to HBM3e
+       <span class="d">v</span>
+  <span class="o">[L4 HBM3e]</span>         Load embedding weights from HBM (8 TB/s)
+       <span class="d">|</span>                token "fix" --&gt; 8192-dim vector
+       <span class="d">v</span>
+  <span class="h">[L2 KERNEL]</span>        FlashAttention tiles Q/K/V into SRAM (228 KB)
+       <span class="d">|</span>                avoids 600-cycle HBM penalty per access
+       <span class="d">v</span>
+  <span class="g">[L3 TENSOR CORE]</span>   wgmma: 128 threads execute FP8 matrix multiply
+       <span class="d">|</span>                Q * K^T --&gt; attention scores (in SRAM!)
+       <span class="d">|</span>                softmax --&gt; P * V --&gt; output (still in SRAM!)
+       <span class="d">v</span>
+  <span class="p">[L5 NVLink]</span>        All-reduce across 8 GPUs (tensor parallelism)
+       <span class="d">|</span>                1.8 TB/s per GPU, via NVSwitch
+       <span class="d">|</span>                <span class="d">this happens EVERY LAYER (100+ times)</span>
+       <span class="d">v</span>
+  <span class="h">[L6 InfiniBand]</span>    If model spans nodes: cross-node gradient sync
+       <span class="d">|</span>                SHARP v4 does all-reduce in-switch
+       <span class="d">|</span>                GPUDirect RDMA, zero CPU involvement
+       <span class="d">v</span>
+  <span class="o">[L4 HBM3e]</span>         Write updated KV cache entry for this token
+       <span class="d">|</span>                KV cache grows by ~512 bytes per layer
+       <span class="d">v</span>
+  <span class="w">[L1 DECODE]</span>        Sample next token from logits
+       <span class="d">|</span>                argmax/top-p/temperature
+       <span class="d">v</span>
+  <span class="g">"Let me look at the auth middleware..."</span>
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="d">(stream to your terminal via SSE)</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — One Token's Journey</div>
+For every single word Claude generates, here's the journey: The token starts as a number looked up from a huge dictionary in HBM (the warehouse). FlashAttention loads small tiles of the attention matrices onto the GPU's notepad (SRAM) to avoid constant warehouse trips. The Tensor Cores — 128 workers cooperating on one giant matrix multiply — compute attention scores <em>entirely on the notepad</em>. Then NVLink broadcasts the result to all other GPUs in the rack (the conference room PA system). If the model is too big for one rack, InfiniBand carries data across the building. The result: one new token, streamed back to your terminal. <em>This whole process takes 10-50 milliseconds and repeats for every single word.</em>
+</div>
+
+<h3>The Tool-Use Loop: Where CPU Meets GPU</h3>
+
+<div class="ascii-flow">
+  <span class="d">A typical Claude Code "fix the auth bug" session:</span>
+
+  <span class="w">Turn 1</span>: You --&gt; "fix the auth bug"
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="h">[GPU]</span> Prefill (50K tokens) --&gt; Decode --&gt; <span class="o">tool_use: Grep "auth"</span>
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="r">[YOUR CPU]</span> Execute grep locally --&gt; 15 matching files
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="w">Turn 2</span>: Tool result --&gt; API
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="h">[GPU]</span> Prefill (52K tokens) --&gt; Decode --&gt; <span class="o">tool_use: Read auth.ts</span>
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="r">[YOUR CPU]</span> Read file locally --&gt; 200 lines
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="w">Turn 3</span>: Tool result --&gt; API
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="h">[GPU]</span> Prefill (55K tokens) --&gt; Decode --&gt; <span class="o">tool_use: Edit auth.ts</span>
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="r">[YOUR CPU]</span> Apply edit locally --&gt; file modified
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="w">Turn 4</span>: Tool result --&gt; API
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="h">[GPU]</span> Prefill (56K tokens) --&gt; Decode --&gt; <span class="o">tool_use: Bash "npm test"</span>
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="r">[YOUR CPU]</span> Run tests locally --&gt; all passing
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="w">Turn 5</span>: Tool result --&gt; API
+       <span class="d">|</span>
+       <span class="d">v</span>
+  <span class="h">[GPU]</span> Prefill (58K tokens) --&gt; Decode --&gt; <span class="g">"Done! Fixed the bug."</span>
+
+  <span class="d">+--------------------------------------------------------------+</span>
+  <span class="d">| Notice: context grows every turn. By turn 5, the prefill     |</span>
+  <span class="d">| pool is processing 58K tokens — your entire conversation     |</span>
+  <span class="d">| history + all tool results. This is why prompt caching and   |</span>
+  <span class="d">| KV cache reuse matter so much for Claude Code performance.   |</span>
+  <span class="d">+--------------------------------------------------------------+</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — The Loop</div>
+Claude Code works like a <em>chess player who can see the board but can't touch the pieces</em>. The "thinking" (GPU) happens in Anthropic's cloud. But every time Claude wants to interact with your codebase — read a file, run a command, edit code — it has to <em>ask you</em> (via tool_use JSON), and your local CPU does the actual work. The result goes back, and Claude thinks again. Each loop costs a full prefill + decode cycle. With prompt caching, the unchanged prefix of your conversation can skip re-computation, saving significant time and cost.
+</div>
+
+<h3>Where Time Is Spent</h3>
+
+<div class="ascii-flow">
+  <span class="w">Component</span>            <span class="w">Time per turn</span>    <span class="w">Bottleneck</span>             <span class="w">Layer</span>
+  <span class="d">---------------------  -------------    ---------------------  -----</span>
+  Network round-trip     50-200 ms        Your ISP / distance    N/A
+  <span class="h">Prefill (50K tokens)</span>   200-800 ms       <span class="h">GPU compute (TFLOPS)</span>   L1,L3
+  <span class="o">KV cache transfer</span>      10-50 ms         <span class="o">RDMA bandwidth</span>         L6
+  <span class="g">Decode (first token)</span>   50-200 ms        <span class="g">HBM bandwidth</span>          L1,L4
+  Decode (per token)     10-50 ms         HBM bandwidth          L1,L4
+  <span class="r">Tool execution</span>         10-5000 ms       <span class="r">Your local machine</span>    N/A
+  Context compression    ~100 ms          API processing         N/A
+
+  <span class="d">For a 5-turn session generating ~2000 tokens with 4 tool calls:</span>
+  <span class="d">  Prefill: 5 x ~400ms = ~2s   (GPU compute-bound)</span>
+  <span class="d">  Decode:  2000 x ~30ms = ~60s (HBM bandwidth-bound)</span>
+  <span class="d">  Tools:   4 x ~500ms = ~2s    (your local CPU)</span>
+  <span class="d">  Network: 10 x ~100ms = ~1s   (round trips)</span>
+  <span class="d">  Total: ~65s. Decode dominates — the memory wall in action.</span>
+</div>
+
+<div class="callout warn">
+<div class="tag">Key Insight</div>
+In a Claude Code session, <em>decode dominates</em>. The majority of wall-clock time is the GPU reading KV cache from HBM one token at a time — this is the memory wall made visible. Prefill is fast (parallel), tools are fast (local). But generating 2000 tokens at 30ms each = 60 seconds of memory-bandwidth-limited decode. This is why HBM bandwidth (8 TB/s on B200) matters more than raw TFLOPS for inference, and why disaggregated serving puts decode on bandwidth-optimized GPUs.
+</div>
+
+<div class="callout info">
+<div class="tag">Prompt Caching</div>
+Claude Code's prompt caching means the first 90%+ of your context (system prompt, CLAUDE.md, conversation history) doesn't need re-prefilling every turn — the KV cache from the previous turn is reused. Only the new tool result needs to be prefilled. This turns a 50K-token prefill into a ~2K-token incremental prefill, cutting prefill time by ~25x. The 5-minute cache TTL means rapid back-and-forth tool loops stay fast, but a long pause between turns forces a cold re-prefill.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SRAM vs HBM: THE INFERENCE SPLIT                              -->
+<!-- ============================================================ -->
+<section class="slide" id="inference-split">
+<div class="layer-num">2026 Industry Shift</div>
+<h2>The SRAM vs HBM Inference Split</h2>
+<p class="subtitle">The decode bottleneck is HBM bandwidth. Cerebras and Groq attacked it by replacing HBM with on-chip SRAM entirely — trading capacity for 5,000-7,000x more bandwidth. In 2026, OpenAI shipped GPT-5.3-Codex-Spark on Cerebras chips, and NVIDIA integrated Groq into Vera Rubin. The industry is splitting: train on GPUs, serve on SRAM.</p>
+
+<h3>The Core Tradeoff: Why SRAM Wins at Decode</h3>
+
+<div class="ascii-flow">
+  <span class="d">THE DECODE PROBLEM (from Layer 1):</span>
+  <span class="d">Each token reads the full KV cache + weights from memory.</span>
+  <span class="d">Arithmetic intensity: 1-10 ops/byte. Tensor cores 97% idle.</span>
+  <span class="d">Bottleneck is PURE MEMORY BANDWIDTH.</span>
+
+  <span class="w">Architecture</span>         <span class="w">Memory Type</span>    <span class="w">Bandwidth</span>       <span class="w">vs H100</span>
+  <span class="d">--------------------  -----------    ------------    --------</span>
+  <span class="o">NVIDIA H100</span>           HBM3            3.35 TB/s      1x
+  <span class="h">NVIDIA B200</span>           HBM3e           8 TB/s         2.4x
+  <span class="g">Cerebras WSE-3</span>        On-wafer SRAM   ~56 PB/s       <span class="g">7,000x</span>
+  <span class="p">Groq 3 LPU</span>            On-chip SRAM    40 PB/s        <span class="p">5,000x</span>
+
+  <span class="r">The catch</span>: SRAM is 100-1000x more expensive per bit than DRAM.
+  Cerebras: 44 GB SRAM (one wafer). Groq: 500 MB SRAM (one chip).
+  NVIDIA B200: 192 GB HBM3e. Capacity vs bandwidth tradeoff.
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+HBM is like a <em>huge warehouse with a narrow loading dock</em> — tons of storage, but you can only move stuff in and out so fast. SRAM is like having <em>everything on your desk</em> — tiny workspace, but instant access. During decode, the GPU barely computes — it spends 97% of its time waiting for the next piece of data from the warehouse. Cerebras and Groq said: "forget the warehouse, put everything on the desk." The desk is expensive and small, but for inference, you don't need a warehouse — you need speed.
+</div>
+
+<h3>How the Three Architectures Work</h3>
+
+<div class="ascii-flow">
+  <span class="h">NVIDIA B200 (GPU)</span>                        <span class="d">"The General-Purpose Workhorse"</span>
+
+  <span class="h">+-------------------+</span>     <span class="o">+-------+</span>
+  <span class="h">| 576 Tensor Cores  |</span>     <span class="o">| HBM3e |</span>
+  <span class="h">| 4.5 PF FP4        |</span>&lt;---&gt;<span class="o">| 192GB |</span>     8 TB/s bandwidth
+  <span class="h">| 126 MB L2 cache   |</span>     <span class="o">| (off- |</span>     Weights in HBM
+  <span class="h">| CUDA + wgmma      |</span>     <span class="o">| chip) |</span>     Decode reads HBM every token
+  <span class="h">+-------------------+</span>     <span class="o">+-------+</span>
+
+  <span class="d">Strengths: Training, huge models, CUDA ecosystem, flexibility</span>
+  <span class="d">Weakness:  Decode is HBM-bandwidth-bound (97% tensor core idle)</span>
+
+  <span class="d">--------------------------------------------------------------------------</span>
+
+  <span class="g">CEREBRAS WSE-3</span>                              <span class="d">"The Entire Wafer"</span>
+
+  <span class="g">+==============================================+</span>
+  <span class="g">|  300mm Silicon Wafer (entire thing is 1 chip)|</span>
+  <span class="g">|                                              |</span>
+  <span class="g">|  900,000 AI Cores    44 GB SRAM (on-wafer)   |</span>
+  <span class="g">|  4 Trillion transistors                       |</span>
+  <span class="g">|  ~56 PB/s aggregate memory bandwidth          |</span>
+  <span class="g">|                                              |</span>
+  <span class="g">|  No HBM. No off-chip memory bottleneck.      |</span>
+  <span class="g">|  Weights live ON the wafer. Zero bus latency. |</span>
+  <span class="g">+==============================================+</span>
+             <span class="d">|</span>                          <span class="d">|</span>
+        <span class="d">MemoryX</span>                    <span class="d">SwarmX</span>
+    (off-chip weight          (multi-wafer
+     store for &gt;44GB           interconnect
+     models)                   for clusters)
+
+  <span class="d">Strengths: Fastest inference for models ≤44GB on-chip, zero TTFT</span>
+  <span class="d">Weakness:  44GB SRAM = ~70B dense model max without MemoryX</span>
+
+  <span class="d">--------------------------------------------------------------------------</span>
+
+  <span class="p">GROQ 3 LPU</span>                                  <span class="d">"The Deterministic Engine"</span>
+
+  <span class="p">+------------------------------------------+</span>
+  <span class="p">|  500 MB SRAM (on-chip, no HBM, no cache) |</span>
+  <span class="p">|  1.2 PF INT8                              |</span>
+  <span class="p">|  40 PB/s on-chip SRAM bandwidth           |</span>
+  <span class="p">|                                           |</span>
+  <span class="p">|  Compiler pre-computes ENTIRE execution   |</span>
+  <span class="p">|  graph down to individual clock cycles.   |</span>
+  <span class="p">|  Zero runtime scheduling. Zero variance.  |</span>
+  <span class="p">|  Every token takes exactly the same time. |</span>
+  <span class="p">+------------------------------------------+</span>
+        <span class="d">|</span>                    <span class="d">|</span>
+   <span class="d">640 TB/s</span>            <span class="d">Rack-scale</span>
+   chip-to-chip       deterministic
+   interconnect        fabric
+
+  <span class="d">Strengths: Lowest latency, zero variance, 0.2s TTFT, 300+ tok/s</span>
+  <span class="d">Weakness:  500MB = small models only, or distributed across many chips</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — Three Restaurants</div>
+&bull; <em>NVIDIA GPU</em> = a massive restaurant with a huge kitchen (HBM) down the hall. Can cook any dish (flexible), but waiters spend most of their time running back and forth to the kitchen. Great for banquets (training). Slow for individual orders (decode).<br>
+&bull; <em>Cerebras WSE-3</em> = the chef has every ingredient on the counter in front of them (on-wafer SRAM). No walking to the pantry. Blazing fast for any dish that fits on the counter. But the counter is only 44 GB — for a 10-course banquet, you need the MemoryX pantry nearby.<br>
+&bull; <em>Groq LPU</em> = a sushi bar where the chef pre-plans every movement before service starts (compiler-scheduled). Zero improvisation, zero wasted motion. Every piece of sushi takes exactly 3 seconds. Incredibly fast and predictable, but can only make sushi (inference, not training).
+</div>
+
+<h3>The 2026 Industry Split</h3>
+
+<div class="ascii-flow">
+  <span class="d">How AI companies deploy in 2026:</span>
+
+  <span class="w">TRAINING</span>                              <span class="w">INFERENCE</span>
+  (learn the model)                    (serve the model)
+       <span class="d">|</span>                                       <span class="d">|</span>
+       <span class="d">v</span>                                       <span class="d">v</span>
+  <span class="h">NVIDIA GPUs</span>                          <span class="d">+-------+-------+-------+</span>
+  Still dominates.                     <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>
+  No real alternative                  <span class="d">v</span>       <span class="d">v</span>       <span class="d">v</span>       <span class="d">v</span>
+  for training at scale.          <span class="h">NVIDIA</span>  <span class="g">Cerebras</span> <span class="p">Groq</span>   <span class="o">Trainium</span>
+  Needs HBM capacity              GPUs    WSE-3   LPU 3  (AWS)
+  + NVLink + IB.                    <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>       <span class="d">|</span>
+                                    <span class="d">v</span>       <span class="d">v</span>       <span class="d">v</span>       <span class="d">v</span>
+                                 General  Speed-  Ultra-  Captive
+                                 purpose  critical low-lat (Anthropic)
+                                 serving  coding   real-time Claude
+                                          agents   apps     training
+
+  <span class="r">KEY DEALS (2026):</span>
+  OpenAI + Cerebras:  $10B+, 750 MW, GPT-5.3-Codex-Spark
+  NVIDIA + Groq:      Groq 3 LPU integrated into Vera Rubin
+  AWS + Cerebras:     WSE-3 on Amazon Bedrock, 5x token capacity
+  Anthropic + AWS:    500K+ Trainium2 chips for Claude training
+
+  <span class="d">The pattern: NVIDIA for training, SRAM chips for latency-critical inference.</span>
+  <span class="d">OpenAI's Codex-Spark on Cerebras = the proof point of this split.</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Plain English — Why This Split Happened</div>
+For years, NVIDIA GPUs did everything — training and inference. But as models got deployed to millions of users, companies realized they were wasting money: during decode (generating each word), 97% of the GPU's math power sits idle, waiting for data from memory. It's like hiring a team of 500 mathematicians but only giving them one page of problems at a time. Cerebras and Groq said: <em>"What if we made the memory the chip?"</em> Instead of a separate memory warehouse (HBM), they put massive SRAM directly on the compute die. The data is already there — no waiting. OpenAI proved this works in production by running Codex-Spark on Cerebras. NVIDIA's response: buy Groq's technology and integrate it into their next platform (Vera Rubin), so they offer both options.
+</div>
+
+<h3>Token Economics: Why Speed = Money</h3>
+
+<div class="ascii-flow">
+  <span class="w">Why agentic coding cares about tok/s:</span>
+
+  A Claude Code session fixing a bug:
+    ~5 turns x ~400 tokens decoded per turn = 2,000 tokens
+
+  <span class="o">On NVIDIA B200</span>:     2000 tok / ~100 tok/s  = <span class="o">~20 sec decode time</span>
+  <span class="g">On Cerebras WSE-3</span>:  2000 tok / ~2500 tok/s = <span class="g">~0.8 sec decode time</span>
+  <span class="p">On Groq 3 LPU</span>:      2000 tok / ~300 tok/s  = <span class="p">~6.7 sec decode time</span>
+
+  <span class="d">For a developer doing 50 Claude Code sessions/day:</span>
+  <span class="d">  B200:     50 x 20s  = 16.7 min/day waiting for decode</span>
+  <span class="d">  Cerebras: 50 x 0.8s = 0.7 min/day waiting for decode</span>
+  <span class="d">  Groq:     50 x 6.7s = 5.6 min/day waiting for decode</span>
+
+  <span class="d">This is why OpenAI put their CODING model on Cerebras specifically.</span>
+  <span class="d">For agentic AI, inference latency = developer productivity.</span>
+</div>
+
+<div class="callout warn">
+<div class="tag">The Convergence</div>
+The lines are blurring. NVIDIA's Vera Rubin platform now includes Groq LPUs alongside GPUs — one rack, two chip types, automatically routing workloads to the right hardware. Cerebras is adding MemoryX (off-chip weight storage) to handle models bigger than 44GB SRAM. And NVIDIA keeps growing on-chip SRAM (B200 has 126 MB L2, up from H100's 50 MB). Everyone is converging on the same insight: the memory wall is the bottleneck, and the fix is more SRAM closer to compute. The only question is how much SRAM and where to put it.
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">OpenAI + Cerebras</div><div class="value">$10B+</div><div class="detail">750 MW, multi-year deal</div></div>
+<div class="metric"><div class="label">Cerebras vs B200</div><div class="value">2.5x</div><div class="detail">faster tok/s on Llama 4 Maverick</div></div>
+<div class="metric"><div class="label">Groq SRAM BW</div><div class="value">40 PB/s</div><div class="detail">5,000x more than B200 HBM</div></div>
+<div class="metric"><div class="label">GroqCloud Devs</div><div class="value">3.5M+</div><div class="detail">as of Feb 2026</div></div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CO-PACKAGED OPTICS (CPO)                                     -->
+<!-- ============================================================ -->
+<section class="slide" id="cpo">
+<div class="layer-num">Deep Dive &mdash; Optics</div>
+<h2>Co-Packaged Optics (CPO)</h2>
+<p class="subtitle">Replacing lossy electrical traces with silicon photonics integrated directly onto the switch package. Cuts power 65%, extends reach from meters to kilometers, and enables 100+ Tb/s switch bandwidth. 2026 is the volume deployment year.</p>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+Currently, data inside a datacenter travels as <em>electricity over copper wires</em>, then gets converted to <em>light</em> for longer distances using a bulky pluggable module on the front panel. CPO moves the light converter <em>directly onto the chip package</em> — like moving the translator from the lobby into your office. No more signal loss walking down the hallway. The result: 65% less power, 100x more reach, and 2-3x more ports per switch.
+</div>
+
+<h3>Traditional Pluggable vs Co-Packaged Optics</h3>
+
+<div class="ascii-flow">
+  <span class="r">TRADITIONAL (Pluggable Optics):</span>
+
+  <span class="h">Switch ASIC</span>                          <span class="o">Pluggable Module</span>
+  <span class="h">+----------+</span>    electrical traces    <span class="o">+-------------+</span>    optical fiber
+  <span class="h">|          |</span> -------- ~15 cm -----&gt; <span class="o">| Transceiver |</span> ===== fiber ====&gt; remote
+  <span class="h">| Digital  |</span>    (lossy, hot)        <span class="o">| QSFP-DD     |</span>   (long reach)
+  <span class="h">| Logic    |</span>    ~15-25W per         <span class="o">| E/O + O/E   |</span>
+  <span class="h">+----------+</span>    800G port           <span class="o">+-------------+</span>
+
+     <span class="r">Problems:</span>
+     <span class="d">- Signal degrades over 15cm of board traces (SerDes power)</span>
+     <span class="d">- E/O conversion at package boundary is power-hungry</span>
+     <span class="d">- Front-panel space limits port density</span>
+     <span class="d">- Cannot scale beyond ~51.2 Tb/s per switch</span>
+
+  <span class="d">--------------------------------------------------------------------------</span>
+
+  <span class="g">CO-PACKAGED OPTICS:</span>
+
+  <span class="g">+------------------------------------------+</span>    optical fiber
+  <span class="g">| Switch Package                            |</span> ===== fiber ====&gt; remote
+  <span class="g">|  +----------+    +---------------------+  |</span>   (100x reach)
+  <span class="g">|  | Switch   |---&gt;| Optical Engine      |  |</span>
+  <span class="g">|  | ASIC     |    | (Silicon Photonic   |  |</span>
+  <span class="g">|  |          |    |  die ON package)    |  |</span>
+  <span class="g">|  |          |    |                     |  |</span>
+  <span class="g">|  | Broadcom |    | Laser + Modulator   |  |</span>
+  <span class="g">|  | or NVIDIA|    | + Photodetector     |  |</span>
+  <span class="g">|  +----------+    +---------------------+  |</span>
+  <span class="g">+------------------------------------------+</span>
+
+     <span class="g">Benefits:</span>
+     <span class="d">- No board traces for data (mm-scale, not cm)</span>
+     <span class="d">- E/O conversion on-package (minimal loss)</span>
+     <span class="d">- 65% power reduction vs pluggable</span>
+     <span class="d">- 3.5x more energy efficient per bit</span>
+     <span class="d">- 2-3x higher port density</span>
+</div>
+
+<h3>Data Flow Through a CPO Engine</h3>
+
+<div class="ascii-flow">
+  <span class="w">TRANSMIT PATH (Electrical to Optical):</span>
+
+  <span class="h">Switch Die</span>                    <span class="g">Silicon Photonic Engine</span>
+  +----------+                   +----------------------------+
+  |          |  electrical       |  +---------+  +----------+ |
+  | Digital  | --short path---&gt; |  | Driver  |--&gt;|Modulator | |--&gt; <span class="p">Fiber out</span>
+  | Logic    |  (on-package,    |  | Circuit |  |(Mach-    | |    <span class="p">(light)</span>
+  |          |   mm-scale)      |  |         |  | Zehnder) | |
+  +----------+                   |  +---------+  +----------+ |
+                                 +----------------------------+
+
+  <span class="w">RECEIVE PATH (Optical to Electrical):</span>
+
+  <span class="h">Switch Die</span>                    <span class="g">Silicon Photonic Engine</span>
+  +----------+                   +----------------------------+
+  |          |  electrical       |  +---------+  +----------+ |
+  | Digital  | &lt;--short path--- |  |  TIA    |&lt;--|  Photo-  | |&lt;-- <span class="p">Fiber in</span>
+  | Logic    |  (on-package,    |  | (Trans- |  | detector | |    <span class="p">(light)</span>
+  |          |   mm-scale)      |  |  imped.)|  |          | |
+  +----------+                   |  +---------+  +----------+ |
+                                 +----------------------------+
+
+  <span class="d">Mach-Zehnder modulator: encodes data by varying light phase</span>
+  <span class="d">TIA: converts photocurrent to voltage (trans-impedance amplifier)</span>
+  <span class="d">Key: all conversion happens ON the package, not on a separate module</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — The Two Paths</div>
+Sending data with CPO is like a <em>translator sitting right next to you</em> instead of in a booth across the room. When you speak (electrical signal), the translator instantly converts to the other language (light). When someone speaks back (light arrives), the translator instantly converts back. Because the translator is inches away instead of across the room, there's no time wasted, no signal lost, and the translator uses much less energy.
+</div>
+
+<h3>CPO Key Players and Timeline</h3>
+
+<div class="ascii-flow">
+  <span class="w">Company</span>           <span class="w">Product</span>                       <span class="w">Bandwidth</span>     <span class="w">Timeline</span>
+  <span class="d">----------------  ----------------------------  -----------   ----------</span>
+  <span class="h">NVIDIA</span>            Quantum-X (InfiniBand + CPO)  1.6 Tb/s      2H 2025
+  <span class="h">NVIDIA</span>            Spectrum-X (Ethernet + CPO)   3.2 Tb/s      2H 2026
+  <span class="g">Broadcom</span>          TH6-Davisson (Ethernet)       102.4 Tb/s    2025-2026
+  <span class="o">Marvell</span>           CPO for AI datacenters        TBD           2026+
+  <span class="p">Ayar Labs</span>         In-package optical I/O        TBD           2025+
+
+  <span class="d">Market projection: &gt;$20B by 2036 (37% CAGR), inflection point in 2026</span>
+</div>
+
+<h3>Pluggable vs CPO: Head-to-Head</h3>
+
+<div class="ascii-flow">
+  <span class="w">Metric</span>                    <span class="r">Pluggable</span>          <span class="g">CPO</span>
+  <span class="d">------------------------  -----------------  -----------------</span>
+  Switch bandwidth          51.2 Tb/s          <span class="g">100+ Tb/s</span>
+  Power per 800G port       ~15-25W            <span class="g">~5-9W</span>
+  Reach (copper)            &lt;10m               N/A
+  Reach (optical)           10-2000m           <span class="g">&gt;1000m</span>
+  Port density              Constrained        <span class="g">2-3x higher</span>
+  Cooling challenge         Major              <span class="g">Reduced</span>
+  Serviceability            Hot-swappable      <span class="r">Non-removable</span>
+  Maturity                  Production          Early production
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — Why CPO Matters for AI</div>
+AI training clusters have <em>thousands of GPUs</em> that need to communicate constantly. With pluggable optics, each switch wastes 15-25 watts per port just on signal conversion. At 100,000+ GPU scale, that's <em>megawatts of wasted power</em>. CPO cuts that by 65%. It's like upgrading from incandescent bulbs to LEDs — same brightness, fraction of the electricity. And because CPO supports 2-3x more ports, you can build <em>flatter network topologies</em> with fewer hops between any two GPUs.
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">Power Savings</div><div class="value">65%</div><div class="detail">vs pluggable per port</div></div>
+<div class="metric"><div class="label">TH6-Davisson</div><div class="value">102.4 Tb/s</div><div class="detail">Broadcom CPO switch</div></div>
+<div class="metric"><div class="label">Market Size</div><div class="value">$20B+</div><div class="detail">by 2036, 37% CAGR</div></div>
+<div class="metric"><div class="label">Energy Efficiency</div><div class="value">3.5x</div><div class="detail">better per bit vs pluggable</div></div>
+</div>
+
+<div class="callout info">
+<div class="tag">The Serviceability Tradeoff</div>
+The one downside of CPO: pluggable transceivers can be hot-swapped in seconds if one fails. CPO optical engines are permanently attached to the switch package — if one fails, the entire switch must be replaced. This is why some hyperscalers are cautious: at 100K+ switch scale, transceiver failures are daily events. The industry is betting CPO reliability will offset the serviceability loss, but this remains an active engineering challenge.
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- EDA CHIP DESIGN PIPELINE                                      -->
+<!-- ============================================================ -->
+<section class="slide" id="eda">
+<div class="layer-num">Deep Dive &mdash; Chip Design</div>
+<h2>EDA Chip Design Pipeline</h2>
+<p class="subtitle">Cadence and Synopsys control ~70% of the EDA market. Their tools take a chip from idea to silicon through 7 stages. One bug at tapeout = $100M+ and 6 months lost. AI is now designing AI chips.</p>
+
+<div class="analogy">
+<div class="tag">Analogy</div>
+Designing a chip is like <em>building a city from scratch</em>. You start with a master plan (architecture), draw detailed blueprints for every building (RTL), inspect every blueprint for errors (verification), figure out which materials to use (synthesis), decide where every building goes and how roads connect them (place &amp; route), do final inspections (signoff), then hand it to the construction company (TSMC). The "city" has 208 billion buildings (transistors), 15+ layers of roads (metal layers), and if you find one structural flaw after construction starts, you tear everything down — $100M gone, 6 months lost.
+</div>
+
+<h3>The 7-Stage Pipeline</h3>
+
+<div class="ascii-flow">
+  <span class="w">1. ARCHITECTURE</span>                              <span class="d">Define what the chip does</span>
+  <span class="d">|</span>  Define ISA, SM count, tensor core specs, memory hierarchy
+  <span class="d">|</span>  Power budget, NVLink ports, die area targets
+  <span class="d">|</span>  Tools: SystemC/TLM modeling, Arm FastModels
+  <span class="d">|</span>
+  <span class="d">v</span>
+  <span class="h">2. RTL DESIGN</span>                                <span class="d">Write the logic in code</span>
+  <span class="d">|</span>  Verilog / SystemVerilog for every block:
+  <span class="d">|</span>  SMs, Tensor Cores, L2 controllers, NVLink PHYs
+  <span class="d">|</span>  H100: 80B transistors   B200: 208B transistors
+  <span class="d">|</span>
+  <span class="d">v</span>
+  <span class="g">3. VERIFICATION</span>                              <span class="d">Prove it actually works</span>
+  <span class="d">|</span>  RTL simulation (cycle-accurate)
+  <span class="d">|</span>  UVM (Universal Verification Methodology)
+  <span class="d">|</span>  Formal verification (mathematical proof)
+  <span class="d">|</span>  Emulation on Palladium / ZeBu hardware
+  <span class="d">|</span>  <span class="r">208B transistors = weeks of simulation</span>
+  <span class="d">|</span>  <span class="r">One bug = $100M+ respin + 6 month delay</span>
+  <span class="d">|</span>
+  <span class="d">v</span>
+  <span class="o">4. LOGIC SYNTHESIS</span>                           <span class="d">Turn code into circuits</span>
+  <span class="d">|</span>  RTL --&gt; Gate-level netlist (AND, OR, FF gates)
+  <span class="d">|</span>  Optimizes for timing, area, power
+  <span class="d">|</span>  Targets TSMC 3nm/4nm standard cell libraries
+  <span class="d">|</span>
+  <span class="d">v</span>
+  <span class="r">5. PLACE &amp; ROUTE</span>                             <span class="d">Physical layout on silicon</span>
+  <span class="d">|</span>  Floorplan: assign blocks to regions
+  <span class="d">|</span>  Place: position billions of standard cells
+  <span class="d">|</span>  Clock tree: distribute clock to all flip-flops
+  <span class="d">|</span>  Route: connect with 15+ metal layers
+  <span class="d">|</span>
+  <span class="d">v</span>
+  <span class="p">6. SIGNOFF</span>                                   <span class="d">Final checks before tapeout</span>
+  <span class="d">|</span>  Timing: verify all paths meet frequency target
+  <span class="d">|</span>  Power: verify grid, IR drop, electromigration
+  <span class="d">|</span>  Physical: DRC (fab rules) + LVS (layout = schematic)
+  <span class="d">|</span>
+  <span class="d">v</span>
+  <span class="w">7. FABRICATION + PACKAGING</span>                   <span class="d">Build the physical chip</span>
+     GDSII file --&gt; TSMC 3nm/4nm fab
+     Wafer processing: ~3-4 months
+     CoWoS packaging: mount GPU + HBM on interposer
+     Total: 6-12 months from tapeout to volume
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — Each Stage</div>
+<em>Stage 1</em>: The mayor decides the city needs 576 factories and 18 highways. <em>Stage 2</em>: Architects draw detailed blueprints for every building. <em>Stage 3</em>: Inspectors check every blueprint — does the plumbing work? Do the elevators reach every floor? <em>Stage 4</em>: Engineers choose specific bricks and wiring from the catalog. <em>Stage 5</em>: Urban planners decide where each building goes and route all roads. <em>Stage 6</em>: Final inspection — fire code, structural integrity, electrical safety. <em>Stage 7</em>: TSMC builds it. If inspectors missed a flaw? Demolish and rebuild. $100M+ gone.
+</div>
+
+<h3>Cadence vs Synopsys: Tool-for-Tool</h3>
+
+<div class="ascii-flow">
+  <span class="d">Cadence Flow:                              Synopsys Flow:</span>
+
+  <span class="w">RTL (Verilog/VHDL)</span>                           <span class="w">RTL (Verilog/VHDL)</span>
+       <span class="d">|</span>                                             <span class="d">|</span>
+       <span class="d">v</span>                                             <span class="d">v</span>
+  <span class="h">[Genus]</span> Logic Synthesis                     <span class="h">[Design Compiler]</span>
+       <span class="d">|</span>  netlist                                    <span class="d">|</span>  netlist
+       <span class="d">v</span>                                             <span class="d">v</span>
+  <span class="g">[Innovus]</span> Place &amp; Route                    <span class="g">[IC Compiler II]</span>
+       <span class="d">|</span>  layout                                     <span class="d">|</span>  layout
+       <span class="d">v</span>                                             <span class="d">v</span>
+  <span class="o">[Xcelium]</span> Verification                    <span class="o">[VCS]</span> Verification
+       <span class="d">|</span>  clean DRC/LVS                              <span class="d">|</span>  clean DRC/LVS
+       <span class="d">v</span>                                             <span class="d">v</span>
+  <span class="r">[Tempus]</span> Timing Signoff                   <span class="r">[PrimeTime]</span> Timing Signoff
+       <span class="d">|</span>                                             <span class="d">|</span>
+       <span class="d">v</span>                                             <span class="d">v</span>
+  <span class="p">[Pegasus]</span> Physical Signoff                 <span class="p">[IC Validator]</span> Phys Signoff
+       <span class="d">|</span>                                             <span class="d">|</span>
+       <span class="d">v</span>                                             <span class="d">v</span>
+    <span class="w">GDSII Tapeout</span>                               <span class="w">GDSII Tapeout</span>
+</div>
+
+<h3>Place &amp; Route: What It Actually Looks Like</h3>
+
+<div class="ascii-flow">
+  <span class="d">Floorplan of a GPU die (simplified):</span>
+
+  <span class="w">+================================================================+</span>
+  <span class="w">|</span>                     <span class="h">GPU Die (~814 mm2)</span>                        <span class="w">|</span>
+  <span class="w">|</span>                                                                <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span>      <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">| SM 0 |</span> <span class="g">| SM 1 |</span> <span class="g">| SM 2 |</span> <span class="g">| SM 3 |</span> <span class="g">| SM 4 |</span> <span class="g">| SM 5 |</span>      <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span>      <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span>      <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">| SM 6 |</span> <span class="g">| SM 7 |</span> <span class="g">|  ... |</span> <span class="g">|  ... |</span> <span class="g">|  ... |</span> <span class="g">|SM 113|</span>      <span class="w">|</span>
+  <span class="w">|</span>  <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span> <span class="g">+------+</span>      <span class="w">|</span>
+  <span class="w">|</span>                                                                <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">+========================+</span>  <span class="p">+========================+</span>    <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">|     L2 Cache (50 MB)   |</span>  <span class="p">|    Memory Controllers  |</span>    <span class="w">|</span>
+  <span class="w">|</span>  <span class="o">+========================+</span>  <span class="p">+========================+</span>    <span class="w">|</span>
+  <span class="w">|</span>                                                                <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">+--------+</span> <span class="h">+--------+</span> <span class="h">+--------+</span> <span class="h">+--------+</span> <span class="h">+--------+</span>    <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">|NVLink  |</span> <span class="h">|NVLink  |</span> <span class="h">|NVLink  |</span> <span class="h">| PCIe   |</span> <span class="h">| PCIe   |</span>    <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">|PHY 0-5 |</span> <span class="h">|PHY 6-11|</span> <span class="h">|PHY12-17|</span> <span class="h">| Gen5   |</span> <span class="h">| Gen5   |</span>    <span class="w">|</span>
+  <span class="w">|</span>  <span class="h">+--------+</span> <span class="h">+--------+</span> <span class="h">+--------+</span> <span class="h">+--------+</span> <span class="h">+--------+</span>    <span class="w">|</span>
+  <span class="w">+================================================================+</span>
+
+  <span class="d">The P&amp;R tool positions every cell and routes 15+ metal layers</span>
+  <span class="d">of interconnect between them. For 80B transistors, this is an</span>
+  <span class="d">NP-hard optimization problem — which is why AI is being used.</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — Place &amp; Route</div>
+Place &amp; route is like solving <em>the world's hardest jigsaw puzzle while also designing the road system</em>. You have 80 billion pieces (transistors) that need exact positions on a surface the size of a thumbnail. Then you connect them all with 15 layers of microscopic wiring — imagine 15 transparent sheets stacked on top of each other, each with its own road network. The wiring must ensure every signal arrives on time (timing closure), no two wires short-circuit (DRC), and the power grid can deliver electricity to every corner (IR drop).
+</div>
+
+<h3>AI Designing AI Chips</h3>
+
+<div class="ascii-flow">
+  <span class="w">The Meta-Loop: AI chips are now designed by AI</span>
+
+  <span class="g">Synopsys DSO.ai</span> (Design Space Optimization)
+  +----------------------------------------------------------+
+  |  Reinforcement Learning agent explores floorplan space    |
+  |                                                          |
+  |  State:  current layout metrics (timing, area, power)    |
+  |  Action: adjust block placement, routing priorities      |
+  |  Reward: timing slack * area efficiency * power budget   |
+  |                                                          |
+  |  Explores 1000s of options humans would never try        |
+  |  Result: 5-10x faster design closure                     |
+  +----------------------------------------------------------+
+
+  <span class="h">Cadence ChipStack Super Agent</span> (Agentic AI, Feb 2026)
+  +----------------------------------------------------------+
+  |  Multi-agent system for 3D-IC verification                |
+  |                                                          |
+  |  Agent 1: identifies critical timing paths                |
+  |  Agent 2: checks power integrity across chiplets          |
+  |  Agent 3: validates thermal profiles                      |
+  |  Agent 4: cross-references DRC with layout intent         |
+  |                                                          |
+  |  Claims 10x speedup for 3D-IC design verification        |
+  +----------------------------------------------------------+
+
+  <span class="p">NVIDIA GPU-Accelerated EDA</span>
+  +----------------------------------------------------------+
+  |  NVIDIA invested $2B in Synopsys                          |
+  |                                                          |
+  |  PrimeSim on GH200: 15x SPICE simulation speedup         |
+  |  cuLitho:  GPU-accelerated computational lithography      |
+  |  Result:   mask generation 40x faster on H100 vs CPU     |
+  +----------------------------------------------------------+
+
+  <span class="d">"Chips designed for AI, by AI" — the recursive loop</span>
+</div>
+
+<div class="analogy">
+<div class="tag">Analogy — AI Designing AI Chips</div>
+This is like <em>an architect using a building they designed to design better buildings</em>. Synopsys DSO.ai is an RL agent (trained on GPUs) that explores thousands of chip layout options humans would never try. Cadence's ChipStack deploys a <em>team of AI agents</em> that each specialize in a different aspect of chip verification. And NVIDIA invested $2B in Synopsys to accelerate the simulation tools themselves on GPUs. The meta-irony: the GPU designs the next GPU.
+</div>
+
+<h3>EDA Market Dynamics</h3>
+
+<div class="ascii-flow">
+  <span class="w">Metric</span>                    <span class="w">Value</span>
+  <span class="d">------------------------  ----------------------------------------</span>
+  Market duopoly            Synopsys + Cadence = ~70% of EDA market
+  Cadence Q1 2025 rev       $1.24B (+23% YoY)
+  Total addressable market  $34.71B by 2035 (15-20% CAGR)
+  NVIDIA EDA investment     $2B into Synopsys (GPU-accelerated EDA)
+
+  <span class="d">Key trend: AI workloads drive chip complexity, which drives EDA</span>
+  <span class="d">spend, which funds AI-powered EDA tools, which design better AI</span>
+  <span class="d">chips. A self-reinforcing flywheel.</span>
+</div>
+
+<div class="metrics">
+<div class="metric"><div class="label">EDA Duopoly</div><div class="value">~70%</div><div class="detail">Synopsys + Cadence market share</div></div>
+<div class="metric"><div class="label">Cadence Revenue</div><div class="value">$1.24B</div><div class="detail">Q1 2025, +23% YoY</div></div>
+<div class="metric"><div class="label">NVIDIA in Synopsys</div><div class="value">$2B</div><div class="detail">GPU-accelerated simulation</div></div>
+<div class="metric"><div class="label">Respin Cost</div><div class="value">$100M+</div><div class="detail">+ 6 months for one tapeout bug</div></div>
+</div>
+
+<div class="callout warn">
+<div class="tag">The $100M Bug</div>
+At 208 billion transistors, functional verification is the longest and most expensive phase of chip design. A single missed bug that makes it to tapeout means: scrapping the mask set ($5-10M), re-running fabrication (~4 months at TSMC), re-doing packaging and testing (~2 months), and lost revenue from delayed product. Total cost: $100M+ and 6+ months. This is why verification consumes ~60% of the total chip design effort, and why Cadence and Synopsys are pouring resources into AI-assisted verification.
+</div>
+</section>
+
+</main>
+
+<div class="kbd-hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> Navigate layers</div>
+
+<script>
+const slides = ['overview','layer7','layer6','layer5','layer4','layer3','layer2','layer1','claude-session','inference-split','cpo','eda'];
+let current = 0;
+
+function showSlide(idx) {
+  if (idx < 0 || idx >= slides.length) return;
+  current = idx;
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(slides[idx]).classList.add('active');
+  document.querySelectorAll('nav button')[idx].classList.add('active');
+  document.querySelector('main').scrollTop = 0;
+}
+
+document.querySelectorAll('nav button').forEach((btn, i) => {
+  btn.addEventListener('click', () => showSlide(i));
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); showSlide(current + 1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); showSlide(current - 1); }
+});
+</script>
+</body>
+</html>
