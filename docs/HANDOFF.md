@@ -76,7 +76,8 @@ MdxContent.tsx  themed MDXRemote wrapper used by all MDX routes
 | `finance.ts`         | `THESES`, `TRADES` for `/knowledge/finance`                                                                            |
 | `learnings.ts`       | Knowledge highlights                                                                                                   |
 | `stack.ts`           | Tech stack metadata                                                                                                    |
-| `flows.ts`           | ASCII architecture flows                                                                                               |
+| `coursework.ts`      | BU + Harvard course entries                                                                                            |
+| `docs.ts`            | Loaders for `docs/*.md` rendered at `/docs`                                                                            |
 | `content.ts`         | MDX loaders: `getAllWritingPosts`, `getWritingPost`, `getAllKnowledgePosts`, `getKnowledgePost`, `getKnowledgeDomains` |
 | `metadata.ts`        | Per-page Next.js `Metadata` factories                                                                                  |
 | `og.tsx`             | Dynamic OG image renderer (Edge runtime, satori)                                                                       |
@@ -209,9 +210,8 @@ Pre-commit: Husky + lint-staged runs `next lint --fix --file` and `prettier --wr
 ## 9. What's NOT done yet (open work)
 
 - **ffmpeg demo recordings** for `/work` cards (placeholders removed; need real captures).
-- **Light mode** — currently dark only. Tokens are theme-ready but no toggle.
 - **More MDX content** — most knowledge domains have 1–2 articles; goal is 5+ each.
-- **Proposed pages** not yet scaffolded: `/press`, `/talks`, `/achievements`, `/coursework`, `/collaborators`, `/open-source`, `/uses`.
+- **Proposed pages** not yet scaffolded: `/press`, `/talks`, `/achievements`, `/collaborators`, `/open-source`, `/uses`.
 - **Tailwind v4 upgrade** — deferred. v3 works; no urgency.
 - **Animations / page transitions** — none currently. Consider Framer Motion or View Transitions API once content stabilizes.
 - **Per-page hand-tuned OG PNGs** — currently all generated. Hero pages could benefit from custom art.
