@@ -1,0 +1,636 @@
+---
+title: 'The Complete AI Hardware Stack — Layer by Layer'
+date: '2026-04-28'
+domain: 'ai'
+description: 'From silicon atoms to generated tokens — every layer that makes modern AI inference possible, and where the bottlenecks hide. With deep dives on SRAM vs HBM, co-packaged optics, and EDA.'
+---
+
+Every token a language model generates touches seven physical layers — from a transistor
+switching state on a 3nm TSMC die, up through memory hierarchies, intra-node fabrics,
+inter-datacenter networks, software kernels, and finally the serving tier that routes
+your request. Understanding where each bottleneck lives explains almost every major
+engineering decision in AI infrastructure.
+
+[Open the interactive version →](/ai-hardware-stack.html)
+
+The whole architecture is shaped by one constraint: compute scales ~3× every two years;
+memory bandwidth only ~1.6×. That gap — the **Memory Wall** — drives HBM investment,
+FlashAttention algorithms, the prefill/decode split, disaggregated serving, and
+the entire NVLink/NVSwitch topology. SemiAnalysis tracks this in detail in
+[Scaling the Memory Wall: The Rise and Roadmap of HBM](https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm).
+
+---
+
+## L7 — Silicon & Packaging
+
+**The physical substrate.** TSMC etches circuits at 3–4nm; advanced packaging (CoWoS-L)
+places GPU dies next to HBM stacks on a shared silicon interposer. A B200 puts two GPU
+dies and six HBM3e stacks on one CoWoS-L package, delivering 10 TB/s of on-package
+bandwidth via the NV-HBI die-to-die interconnect. One tape-out error costs $100M+ and
+six months.
+
+**CoWoS is the #1 supply bottleneck for all of AI.** TSMC is scaling from ~75K to 130K
+advanced-packaging wafers/month by end of 2026, but NVIDIA alone consumes >50% of that
+capacity. SK Hynix has sold out its entire 2026 HBM supply to NVIDIA.
+See: [The Great AI Silicon Shortage](https://newsletter.semianalysis.com/p/the-great-ai-silicon-shortage)
+and [AI Expansion — Supply Chain Analysis for CoWoS and HBM](https://newsletter.semianalysis.com/p/ai-expansion-supply-chain-analysis).
+
+**CoWoS packaging variants:**
+
+```
+Variant      Interposer       Pitch     Max Area       Used By
+--------     -----------      --------  -----------    -----------
+CoWoS-S      Silicon           0.4 um    858 mm²        H100
+CoWoS-L      LSIC + Organic    2-5 um    3400 mm²+      B200, R100
+CoWoS-R      RDL Organic       5+ um     Large          Network ASICs
+
+Reticle limit: ~858 mm² (26mm × 33mm single exposure)
+CoWoS-L bypasses this via LSIC chiplet stitching
+Rubin (R100) targets 4× reticle = ~3,400 mm² interposer area
+```
+
+**B200 package cross-section:**
+
+```
++------------------------------------------------------------------------+
+|                      CoWoS-L Package (GB200)                           |
+|                                                                        |
+|  +------+ +------+ +------+ +--------+ +--------+ +------+ +------+   |
+|  |HBM3e | |HBM3e | |HBM3e | |GPU Die | |GPU Die | |HBM3e | |HBM3e |   |
+|  | 24GB | | 24GB | | 24GB | | 104B T | | 104B T | | 24GB | | 24GB |   |
+|  +--||--+ +--||--+ +--||--+ +---||---+ +---||---+ +--||--+ +--||--+   |
+|                              10 TB/s                                   |
+|  +===================================================================+ |
+|  |         LSIC Chiplets (Local Silicon Interconnect)                | |
+|  +===================================================================+ |
+|  +-------------------------------------------------------------------+ |
+|  |            Organic Substrate (BGA Package)                        | |
+|  +-------------------------------------------------------------------+ |
++------------------------------------------------------------------------+
+```
+
+The CoWoS package is like a custom apartment building: the GPU dies are the penthouse
+suites (doing the actual work), HBM stacks are the closets (storage), all connected by
+hallways etched into the building's foundation (the silicon interposer). TSMC invented
+LSIC chiplets to stitch multiple foundations together — like connecting buildings with
+sky-bridges to make a mega-complex.
+
+**EDA Toolchain: RTL to Silicon**
+
+Cadence and Synopsys control ~70% of the EDA market. The pipeline:
+RTL → Logic Synthesis → Place & Route → Verification → Timing Signoff → Physical Signoff → GDSII Tapeout.
+Cadence: Genus → Innovus → Xcelium → Tempus → Pegasus.
+Synopsys: Design Compiler → IC Compiler II → VCS → PrimeTime → IC Validator.
+
+In Feb 2026, Cadence launched ChipStack AI "Super Agent" claiming 10× 3D-IC design
+speed. NVIDIA invested $2B in Synopsys for GPU-accelerated simulation (PrimeSim on
+GH200: 15× SPICE speedup; cuLitho: 40× faster mask generation).
+
+**Key numbers:** CoWoS capacity 130K wafers/month (2026 target) · B200 208B transistors on TSMC 4NP · NV-HBI die-to-die 10 TB/s · SK Hynix 2026 HBM supply entirely sold out
+
+---
+
+## L6 — Inter-Node Networking
+
+**How racks talk to racks.** InfiniBand NDR at 800 Gb/s per port, organized into fat-tree
+topologies. SHARP v4 does in-network all-reduces so gradient traffic never touches the
+host CPU. GPUDirect RDMA lets GPUs read/write each other's memory directly — skipping
+the OS kernel entirely.
+
+SHARP v4 is remarkable: the network switch itself performs collective operations _while
+data is in transit_ — like a postal sorting facility that also does your tax math as your
+envelope passes through. Traditional ring all-reduce is O(N) hops; SHARP reduces to O(log N).
+
+**InfiniBand vs Ethernet:**
+
+```
+Feature              InfiniBand (IB)            Ethernet / RoCE v2
+-------------------  -------------------------  -------------------------
+Switch               Quantum-X800               Commodity
+Port Speed            800 Gb/s                   400-800 Gb/s
+Total BW             115.2 Tb/s (144 ports)     25.6-51.2 Tb/s typical
+Latency              sub-100 ns (cut-through)   1-5 us (store-forward)
+In-Network Compute   SHARP v4 (14.4 TFLOPS)     None
+RDMA                 Native IB verbs            RoCE v2 over UDP/IP
+Best For             Training 10K+ GPUs         Inference, <10K training
+Deployments          Stargate, Oracle 131K       Meta inference, LinkedIn
+```
+
+**Co-Packaged Optics (CPO)** is the 2026 inflection point for networking. NVIDIA's COUPE
+engines place optical transceivers directly into switch packages, converting electrical
+to optical at the package boundary. This eliminates ~15cm of lossy PCB trace, cuts
+SerDes power 65%, and extends reach 100× (km vs meters). Broadcom's Tomahawk 6
+Davisson hits 102.4 Tb/s with CPO. Details in
+[NVIDIA GTC 2025 — Vera Rubin, CPO, Dynamo Inference](https://semianalysis.com/2025/03/19/nvidia-gtc-2025-built-for-reasoning-vera-rubin-kyber-cpo-dynamo-inference-jensen-math-feynman/).
+
+**Key numbers:** Quantum-X800 115.2 Tb/s · port latency <100 ns · SHARP in-network compute 14.4 TFLOPS · CPO power saving 65%
+
+---
+
+## L5 — Intra-Node Interconnect
+
+**How GPUs inside one rack talk to each other.** NVLink 5.0 gives each GPU 1.8 TB/s
+bidirectional bandwidth — 14× faster than PCIe Gen5. NVSwitch chips create a
+non-blocking all-to-all fabric across 72 GPUs (a GB200 NVL72 rack) at 130 TB/s
+aggregate. Every GPU is exactly one hop from every other GPU, at ~2µs latency.
+
+This is what makes tensor parallelism across 72 GPUs practical. A 405B model at BF16
+requires gigabytes synchronized across GPUs at each transformer layer. PCIe at 128 GB/s
+would make even 2-GPU tensor-parallel bandwidth-bound. NVLink's 1.8 TB/s keeps the
+tensor cores fed.
+
+**GB200 NVL72 topology:**
+
+```
+                      GB200 NVL72 Rack
+      36 Grace-Blackwell Superchips = 72 Blackwell GPUs
+
+GPU 0   GPU 1   GPU 2   GPU 3         GPU 70  GPU 71
+  |       |       |       |     ...     |       |
+  |       |       |       |             |       |
+========================================================
+||  NVSwitch 0   NVSwitch 1    ...    NVSwitch 17   ||
+||                                                   ||
+||        Full Crossbar: 130 TB/s aggregate          ||
+||     Every GPU equidistant: 1 hop, ~2 us           ||
+||     Each NVSwitch: 64 ports, 6.4 TB/s             ||
+========================================================
+  |       |       |       |             |       |
+  v       v       v       v             v       v
+Tensor Parallelism across ALL 72 GPUs in a single domain
+```
+
+**Grace-Blackwell NVLink-C2C** connects the ARM CPU to the Blackwell GPU die at 900 GB/s
+with a fully coherent unified address space — no explicit `cudaMemcpy` needed, 7× PCIe
+bandwidth.
+
+**Bandwidth comparison:**
+
+```
+Interconnect       Bandwidth       Relative   Role
+-----------------  --------------  ---------  -------------------------
+NVLink 5.0         1,800 GB/s      14x        GPU-to-GPU tensor parallel
+NVLink-C2C           900 GB/s       7x        CPU-to-GPU coherent memory
+PCIe Gen5 x16        128 GB/s       1x        Baseline
+```
+
+**Key numbers:** NVLink 5.0 at 1.8 TB/s · NVL72 all-to-all 130 TB/s · NVLink-C2C 900 GB/s coherent · PCIe gap 14×
+
+---
+
+## L4 — Memory Hierarchy
+
+**The defining constraint.** The memory ladder from fastest to largest:
+
+```
+                       BANDWIDTH        CAPACITY     LATENCY
+
+                    +----------+
+                    |Registers |     256 KB/SM    ~1 cycle
+                    | ~37 TB/s |
+                    +----||----+
+                   +-----||------+
+                   |  L1/Shared  |   228 KB/SM    ~28-39 cycles
+                   |  ~19 TB/s   |   <-- FlashAttention lives here
+                   +-----||------+
+                +---------||--------+
+                |     L2 Cache      |  126 MB         ~200 cycles
+                |     ~12 TB/s      |
+                +---------||--------+
+            +-------------||-------------+
+            |       HBM3e (DRAM)         |  192 GB        ~600 cycles
+            |         8 TB/s             |
+            +-------------||-------------+
+       +------------------||-------------------+
+       |          NVMe (NAND Flash)            |  TB-scale      ~100K cycles
+       |            7-14 GB/s                  |
+       +----------------------------------------+
+
+Each level down: ~10-100x more capacity, ~10-100x more latency
+HBM access (600 cyc) vs register (1 cyc) = 600x penalty
+```
+
+**FlashAttention** exists entirely because of this hierarchy. Standard attention
+materializes the full N×N score matrix in HBM — three round-trips for every sequence
+position. FlashAttention tiles Q/K/V in SRAM and runs online softmax, keeping all
+intermediate results on the notepad. Same output, O(N²d/M) HBM reads instead of O(N²).
+FlashAttention-3 on Hopper achieves 1.3 PFLOPS (75% of H100 peak) via ping-pong
+warpgroups.
+
+**HBM evolution:**
+
+```
+Generation    Capacity   Bandwidth   Stack      Interface   GPU
+-----------   --------   ---------   --------   ---------   --------
+HBM3           80 GB     3.35 TB/s   8-high     1024-bit    H100
+HBM3e         192 GB     8-9 TB/s    12-high    1024-bit    B200
+HBM4         384 GB+    2+ TB/s*    12-16      2048-bit    Rubin
+                                     high
+
+* per stack; multiple stacks per GPU
+HBM4: logic-in-base die, JEDEC spec April 2025, volume late 2026
+Market: SK Hynix ~50%, Samsung ~40%, Micron ~10%
+```
+
+Full supply chain breakdown in [AI Capacity Constraints — CoWoS and HBM Supply Chain](https://newsletter.semianalysis.com/p/ai-capacity-constraints-cowos-and).
+
+**Key numbers:** B200 HBM3e 8 TB/s · L2 cache 126 MB · SRAM vs HBM latency 600× · memory wall gap 1.9× per 2 years (compute vs bandwidth)
+
+---
+
+## L3 — Compute Hardware
+
+**Three architecture philosophies competing:**
+
+- **GPU (NVIDIA)** — Swiss Army knife. SIMT warps + Tensor Cores. The general-purpose workhorse.
+- **Custom ASICs (TPU, Cerebras, Groq)** — purpose-built. Cerebras WSE-3 is a full 300mm silicon wafer: 4 trillion transistors, 44 GB on-wafer SRAM, ~56 PB/s aggregate bandwidth, no HBM.
+- **CPU (ARM Grace)** — the orchestrator. For agentic AI, CPU does 60-90% of the work: JSON parsing, tool routing, state management. The GPU only fires for the actual "thinking" bursts.
+
+**Blackwell SM: warp-group architecture**
+
+The B200 SM introduces warp-group MMA (wgmma): 4 warps × 32 threads = 128 threads
+cooperate on a single large matrix multiply. The Tensor Memory Accelerator (TMA) moves
+data asynchronously from global HBM into shared memory without register file involvement,
+freeing warps to stay on compute. Supported precisions: FP4 / FP6 / FP8 / FP16 / BF16.
+
+**Accelerator comparison:**
+
+```
+Chip             Transistors  Peak FLOPS   HBM         Architecture
+---------------  -----------  -----------  ----------  ------------------
+NVIDIA B200      208B (2die)  4.5 PF FP4   192GB 8T/s  SIMT + Tensor Cores
+Google TPU v7    N/A          4.6 PF       192GB 7.4   256x256 Systolic
+Cerebras WSE-3   4T (wafer)   125 PF FP16  44GB SRAM   900K cores, no HBM
+Groq LPU         N/A          ~1 PF        230MB SRAM  Deterministic flow
+AWS Trainium2    N/A          1.3 PF FP8   N/A         500K+ for Anthropic
+```
+
+**The agentic shift in CPU load:**
+
+```
+Workload Type         GPU Util    CPU Util    Why CPU Matters
+--------------------  --------    --------    ---------------------------
+Simple chatbot Q&A    90-95%      5-10%       One forward pass, minimal CPU
+RAG pipeline          70-80%      20-30%      Retrieval, embedding, ranking
+Multi-agent system    30-40%      60-70%      Tool calls, API routing, JSON
+Agentic orchestration 10-30%      60-90%      State mgmt, memory, planning
+```
+
+Data centers need ~4× current CPU capacity per GW for agentic scale. ARM's 2× perf/watt
+advantage over x86 is why Grace is positioned as the agentic-era CPU. See the broader
+analysis in [Nvidia — The Inference Kingdom Expands (GTC 2026)](https://newsletter.semianalysis.com/p/nvidia-the-inference-kingdom-expands).
+
+**Key numbers:** B200 4.5 PF FP4 · NVL72 aggregate ~40 PF FP4 sparse · TPU v7 4.6 PF · WSE-3 125 PF FP16
+
+---
+
+## L2 — Software & Kernels
+
+**CUDA → PTX → SASS** is the compiler chain. CUDA C++ splits host/device code; nvcc
+compiles to PTX (virtual ISA); ptxas assembles to SASS (device binary). PTX is
+forward-compatible — code written for sm_80 JIT-compiles to SASS on future chips via
+the driver's cached ptxas (~100-500ms, cached in `~/.nv/`).
+
+Key PTX instructions:
+
+- `wgmma.mma_async` — Hopper/Blackwell warp-group MMA
+- `cp.async.bulk` — TMA-driven async global→shared copy
+- `tma.load` — Tensor Memory Accelerator descriptor loads
+
+**DeepGEMM: the yield-bit breakthrough**
+
+DeepSeek's DeepGEMM achieves 1,550 TFLOPS FP8 on H800 — matching proprietary cuBLAS —
+in ~300 lines of open-source code. The key insight: warp-specialized producer/consumer
+roles (producers load tiles via TMA; consumers run wgmma), plus **PTX binary patching**
+that flips bit 12 (the yield hint) of FFMA SASS instructions post-compilation. Flipping
+the yield bit tells the warp scheduler to context-switch during FP32 accumulation,
+hiding memory latency. A single-bit patch discovered by reverse-engineering undocumented
+SASS encoding = 10%+ throughput gain.
+
+**FlashMLA** (DeepSeek's Multi-head Latent Attention kernel) compresses the KV cache via
+low-rank joint compression: d_latent=512 versus the ~7,680-dimensional traditional MHA
+KV. That's **6.7% of the traditional cache size**, with HBM bandwidth utilization hitting
+3,000 GB/s (near H800 peak of 3,350 GB/s) in a fused projection+attention+output kernel.
+
+**DeepEP** handles expert-parallel MoE dispatch: token → router → expert assignment →
+all-to-all dispatch via InfiniBand GPUDirect RDMA. Low-latency mode: ~50µs per dispatch.
+No CPU involvement.
+
+**CUDA Execution Hierarchy:**
+
+```
+Grid  (entire kernel launch)
+  |
+  +--> Thread Block (max 1024 threads, maps to 1 SM)
+  |       |
+  |       +--> Warp (32 threads, SIMT lockstep)
+  |       |
+  |       +--> Warp Group (4 warps = 128 threads, Hopper+)
+  |               |
+  |               +--> wgmma: single matrix-multiply-accumulate
+
+Kernel launch overhead: 20-200 us (driver path)
+CUDA Graphs: capture DAG, replay at ~10 us (5x speedup)
+```
+
+**Key numbers:** DeepGEMM 1,550 TF FP8 · FlashMLA KV cache 6.7% of traditional · FlashAttention-3 1.3 PF (75% peak) · CUDA Graphs 5× launch overhead reduction
+
+---
+
+## L1 — Inference & Serving
+
+**Disaggregated prefill/decode** is the 2025-2026 standard. The two phases have
+fundamentally different bottlenecks:
+
+```
+PREFILL PHASE                            DECODE PHASE
+---------------------------------        ---------------------------------
+Process: entire prompt at once           Process: one token at a time
+Operation: matrix-matrix multiply        Operation: matrix-vector multiply
+Bottleneck: raw FLOPS                    Bottleneck: HBM bandwidth
+Tensor cores: saturated                  Tensor cores: mostly idle
+
+Arithmetic intensity: HIGH               Arithmetic intensity: LOW
+                                         (1-10 ops/byte vs 300 capacity)
+
+Metric: TTFT (time to first token)       Metric: ITL (inter-token latency)
+Optimal HW: max TFLOPS                   Optimal HW: max HBM bandwidth
+```
+
+Running both on the same GPUs wastes resources — prefill starves decode of memory
+bandwidth; decode wastes prefill's compute capacity. Disaggregation:
+
+```
+User Request
+     |
+     v
++-----------+        RDMA KV Cache Transfer        +-----------+
+|  PREFILL  |=================================>|  DECODE   |
+|   POOL    |  KV cache over IB / RoCE          |   POOL    |
+|           |                                    |           |
+| 3 nodes   |                                    | 9 nodes   |
+| 24 GPUs   |                                    | 72 GPUs   |
+|           |                                    |           |
+| Compute-  |                                    | Memory-   |
+| bound     |                                    | bound     |
+| 640 TFLOPS|                                    | 8 TB/s BW |
++-----------+                                    +-----------+
+     |                                                |
+     v                                                v
+TTFT (prompt processing)                   ITL: Inter-Token Latency
+```
+
+DeepSeek-R1 on 96 H100s (LMSYS benchmark): 3 prefill nodes + 9 decode nodes,
+52,300 input tok/s + 22,300 output tok/s per node.
+
+**PagedAttention** (vLLM) manages KV cache as virtual memory pages — near-100% HBM
+utilization, no fragmentation, same semantics as OS virtual memory.
+
+**KV cache at scale:** a 70B model at 128K context = ~40 GB per request. 100 concurrent
+requests = ~4 TB KV cache needed. Reduction techniques:
+
+| Technique               | Reduction      | Mechanism                 |
+| ----------------------- | -------------- | ------------------------- |
+| GQA (grouped attention) | 4-8× fewer KV  | Share KV across heads     |
+| FP8/INT4 quantize       | 2-4× smaller   | Compress KV values        |
+| Prefix caching          | Shared prompts | Reuse system prompt KV    |
+| CPU/SSD offload         | Infinite\*     | Page cold KV (+0.1-1ms)   |
+| FlashMLA (DeepSeek)     | 15× (to 6.7%)  | Low-rank KV decomposition |
+
+Full benchmarks across hardware in [InferenceX v2 — NVIDIA Blackwell vs AMD vs Hopper](https://newsletter.semianalysis.com/p/inferencex-v2-nvidia-blackwell-vs).
+
+**Key numbers:** LMSYS 52.3K input tok/s per node · ITL 10-50ms · KV cache 70B@128K ~40 GB/request · FlashMLA 6.7%
+
+---
+
+## Deep Dive: A Claude Code Session Through the Stack
+
+Every time you hit Enter in Claude Code, your message (plus the full conversation history)
+flies over HTTPS to Anthropic. The prefill pool reads your entire context in parallel.
+The KV cache ships via RDMA to the decode pool. When Claude uses a tool (Grep, Bash,
+Read, Edit), the JSON `tool_use` block goes to _your local machine_ — the cloud never
+touches your files. The result returns as a new message, triggering another prefill→decode
+cycle. A typical session loops 10-50+ times.
+
+**Where time is spent per turn:**
+
+| Component            | Time       | Bottleneck           | Layer |
+| -------------------- | ---------- | -------------------- | ----- |
+| Network round-trip   | 50-200 ms  | ISP / distance       | —     |
+| Prefill (50K tokens) | 200-800 ms | GPU compute (TFLOPS) | L1,L3 |
+| KV cache transfer    | 10-50 ms   | RDMA bandwidth       | L6    |
+| Decode (first token) | 50-200 ms  | HBM bandwidth        | L1,L4 |
+| Decode (per token)   | 10-50 ms   | HBM bandwidth        | L1,L4 |
+| Tool execution       | 10-5000 ms | Local machine        | —     |
+
+For a 5-turn session generating ~2,000 tokens with 4 tool calls:
+
+- Prefill: 5 × ~400ms = ~2s (GPU compute-bound)
+- Decode: 2,000 × ~30ms = ~60s (**HBM bandwidth-bound**)
+- Tools: 4 × ~500ms = ~2s (your local CPU)
+- Network: 10 × ~100ms = ~1s (round trips)
+- **Total: ~65s. Decode dominates. The memory wall made visible.**
+
+**Prompt caching** is why rapid tool loops stay fast. The first 90%+ of context (system
+prompt, CLAUDE.md, conversation history) doesn't re-prefill every turn — the KV cache
+from the previous turn is reused. A 50K-token prefill becomes a ~2K incremental prefill:
+~25× speedup. The 5-minute cache TTL means long pauses between turns force a cold
+re-prefill.
+
+**One token's full journey through all 7 layers:**
+
+```
+Token "fix" (from your prompt)
+     |
+     v
+[L7 SILICON]       B200 GPU (208B transistors, TSMC 4NP)
+     |                sitting on CoWoS-L interposer next to HBM3e
+     v
+[L4 HBM3e]         Load embedding weights from HBM (8 TB/s)
+     |                token "fix" --> 8192-dim vector
+     v
+[L2 KERNEL]        FlashAttention tiles Q/K/V into SRAM (228 KB)
+     |                avoids 600-cycle HBM penalty per access
+     v
+[L3 TENSOR CORE]   wgmma: 128 threads execute FP8 matrix multiply
+     |                Q * K^T --> attention scores (in SRAM!)
+     |                softmax --> P * V --> output (still in SRAM!)
+     v
+[L5 NVLink]        All-reduce across 8 GPUs (tensor parallelism)
+     |                1.8 TB/s per GPU, via NVSwitch
+     |                this happens EVERY LAYER (100+ times)
+     v
+[L6 InfiniBand]    If model spans nodes: cross-node sync
+     |                SHARP v4 does all-reduce in-switch
+     v
+[L4 HBM3e]         Write updated KV cache entry for this token
+     v
+[L1 DECODE]        Sample next token from logits
+     v
+"Let me look at the auth middleware..."
+```
+
+---
+
+## Deep Dive: The SRAM vs HBM Inference Split (2026)
+
+The decode bottleneck is pure memory bandwidth. Tensor cores sit 97% idle during decode —
+one token at a time, 1-10 arithmetic ops per byte of data read, versus tensor core
+capacity of ~300 ops/byte. Cerebras and Groq attacked this by replacing HBM with on-chip
+SRAM entirely:
+
+```
+Architecture         Memory Type    Bandwidth       vs H100
+--------------------  -----------    ------------    --------
+NVIDIA H100           HBM3            3.35 TB/s      1x
+NVIDIA B200           HBM3e           8 TB/s         2.4x
+Cerebras WSE-3        On-wafer SRAM   ~56 PB/s       7,000x
+Groq 3 LPU            On-chip SRAM    40 PB/s        5,000x
+
+Catch: SRAM is 100-1000x more expensive per bit than DRAM.
+Cerebras: 44 GB SRAM (one wafer). Groq: 500 MB SRAM (one chip).
+```
+
+**The three architectures:**
+
+_NVIDIA B200_ — general-purpose workhorse. Weights in HBM, reads every token from HBM at 8 TB/s. Excellent for training and flexible inference. Weakness: decode is HBM-bandwidth-bound, 97% tensor core idle.
+
+_Cerebras WSE-3_ — the entire 300mm silicon wafer as one chip. 900K AI cores, 4T transistors, 44 GB SRAM _on the wafer_, ~56 PB/s aggregate bandwidth. No HBM, no off-chip memory bottleneck. MemoryX handles weight storage for models >44 GB. SwarmX handles multi-wafer clusters.
+
+_Groq LPU_ — compiler pre-schedules the entire execution graph down to individual clock cycles. Zero runtime scheduling, zero variance. Every token takes exactly the same time: ~0.2s TTFT, 300+ tok/s, 40 PB/s on-chip SRAM bandwidth.
+
+**Token speed at the developer level:**
+
+```
+On NVIDIA B200:     2000 tok / ~100 tok/s  = ~20 sec decode time
+On Cerebras WSE-3:  2000 tok / ~2500 tok/s = ~0.8 sec decode time
+On Groq 3 LPU:      2000 tok / ~300 tok/s  = ~6.7 sec decode time
+
+For a developer doing 50 Claude Code sessions/day:
+  B200:     50 × 20s  = 16.7 min/day waiting for decode
+  Cerebras: 50 × 0.8s = 0.7 min/day waiting for decode
+```
+
+This is why OpenAI put their coding model (GPT-5.3-Codex-Spark) on Cerebras specifically.
+For agentic AI, inference latency is developer productivity.
+
+**2026 key deals:**
+
+| Deal              | Scale                                      |
+| ----------------- | ------------------------------------------ |
+| OpenAI + Cerebras | $10B+, 750 MW, GPT-5.3-Codex-Spark         |
+| NVIDIA + Groq     | Groq 3 LPU integrated into Vera Rubin      |
+| AWS + Cerebras    | WSE-3 on Amazon Bedrock, 5× token capacity |
+| Anthropic + AWS   | 500K+ Trainium2 chips for Claude training  |
+
+The lines are converging: NVIDIA's Vera Rubin integrates Groq LPUs alongside GPUs.
+Cerebras added MemoryX for models >44 GB. NVIDIA keeps growing on-chip SRAM (B200:
+126 MB L2, up from H100's 50 MB). Everyone is converging on the same insight: move
+SRAM closer to compute. See [Another Giant Leap: The Rubin CPX Specialized Accelerator](https://newsletter.semianalysis.com/p/another-giant-leap-the-rubin-cpx-specialized-accelerator-rack)
+and [Nvidia's Blackwell Reworked](https://newsletter.semianalysis.com/p/nvidias-blackwell-reworked-shipment).
+
+---
+
+## Deep Dive: Co-Packaged Optics (CPO)
+
+2026 is the volume deployment year for CPO. Instead of bulky pluggable transceiver
+modules on the front panel, CPO moves the optical engine — the laser, modulator, and
+photodetector — directly onto the switch ASIC package.
+
+**Traditional pluggable vs CPO:**
+
+```
+TRADITIONAL:
+Switch ASIC  ---  15cm PCB traces (lossy, hot)  -->  QSFP-DD Module  -->  Fiber
+             ~15-25W per 800G port
+             Problems: signal degradation, power-hungry E/O conversion,
+                       front-panel space limits port density
+
+CO-PACKAGED:
++------------------------------------------+
+| Switch Package                            |  ==>  Fiber (100x reach)
+|  Switch ASIC  -->  Optical Engine         |
+|                  (Silicon Photonic die    |
+|                   ON package)             |
+|                  Laser + Modulator        |
+|                   + Photodetector         |
++------------------------------------------+
+  65% power reduction · 2-3x higher port density · mm-scale path vs cm
+```
+
+The Mach-Zehnder modulator encodes data by varying light phase; a TIA (trans-impedance
+amplifier) converts photocurrent to voltage on receive. All conversion happens on the
+package — no separate module, no long PCB trace.
+
+**CPO vs pluggable head-to-head:**
+
+| Metric              | Pluggable     | CPO           |
+| ------------------- | ------------- | ------------- |
+| Switch bandwidth    | 51.2 Tb/s     | 100+ Tb/s     |
+| Power per 800G port | ~15-25W       | ~5-9W         |
+| Reach (optical)     | 10-2000m      | >1000m        |
+| Port density        | Constrained   | 2-3× higher   |
+| Serviceability      | Hot-swappable | Non-removable |
+
+**Key players:**
+
+| Company  | Product                     | Bandwidth  | Timeline  |
+| -------- | --------------------------- | ---------- | --------- |
+| NVIDIA   | Quantum-X (IB + CPO)        | 1.6 Tb/s   | 2H 2025   |
+| NVIDIA   | Spectrum-X (Ethernet + CPO) | 3.2 Tb/s   | 2H 2026   |
+| Broadcom | TH6-Davisson                | 102.4 Tb/s | 2025-2026 |
+| Marvell  | CPO for AI datacenters      | TBD        | 2026+     |
+
+Market projection: >$20B by 2036 at 37% CAGR, 2026 inflection point.
+
+The one downside: pluggable transceivers can be hot-swapped in seconds. CPO optical
+engines are permanently attached — a failure means replacing the entire switch. At
+100K+ switch scale, transceiver failures are daily events. Reliability will determine
+whether CPO's power savings offset this operational cost.
+
+---
+
+## Deep Dive: EDA Chip Design Pipeline
+
+**Designing a chip is like building a city from scratch** — except the city has 208
+billion buildings (transistors), 15+ layers of roads (metal layers), takes 6-12 months
+to construct, and one structural flaw found after construction starts means $100M+ and
+6 months lost.
+
+**The 7-stage pipeline:**
+
+1. **Architecture** — ISA definition, SM count, tensor core specs, power budget, NVLink ports
+2. **RTL Design** — Verilog/SystemVerilog for every block: SMs, Tensor Cores, L2 controllers, NVLink PHYs
+3. **Verification** — RTL simulation (cycle-accurate), UVM, formal verification, hardware emulation (Palladium/ZeBu). One bug at tapeout = $100M+ respin + 6-month delay. Verification consumes ~60% of total design effort.
+4. **Logic Synthesis** — RTL → gate-level netlist (AND, OR, FF gates), optimized for timing/area/power, targeting TSMC 3nm/4nm standard cell libraries
+5. **Place & Route** — floorplan block assignment, position billions of cells, distribute clock to all flip-flops, route 15+ metal layers. NP-hard optimization.
+6. **Signoff** — timing (all paths meet frequency target), power (IR drop, electromigration), physical (DRC + LVS)
+7. **Fabrication + Packaging** — GDSII → TSMC → ~3-4 months wafer processing → CoWoS packaging
+
+**AI designing AI chips:**
+
+_Synopsys DSO.ai_ uses an RL agent to explore floorplan space, targeting timing × area × power reward — 5-10× faster design closure than manual methods.
+
+_Cadence ChipStack Super Agent_ (Feb 2026) deploys a multi-agent system for 3D-IC verification: one agent per concern (timing paths, power integrity, thermal, DRC). Claims 10× speedup.
+
+_NVIDIA's $2B investment in Synopsys_ accelerates GPU-based simulation: PrimeSim on GH200 = 15× SPICE speedup; cuLitho = 40× faster mask generation.
+
+The meta-loop: GPUs train models that power EDA tools that design better GPUs.
+
+**EDA market:**
+Synopsys + Cadence control ~70% of the market. Cadence Q1 2025: $1.24B revenue (+23% YoY).
+Total EDA TAM: $34.71B by 2035 at 15-20% CAGR — driven by AI chip complexity demanding better tools.
+
+---
+
+## Further Reading
+
+- [The Great AI Silicon Shortage — SemiAnalysis](https://newsletter.semianalysis.com/p/the-great-ai-silicon-shortage)
+- [AI Expansion — Supply Chain Analysis for CoWoS and HBM — SemiAnalysis](https://newsletter.semianalysis.com/p/ai-expansion-supply-chain-analysis)
+- [AI Capacity Constraints — CoWoS and HBM Supply Chain — SemiAnalysis](https://newsletter.semianalysis.com/p/ai-capacity-constraints-cowos-and)
+- [Scaling the Memory Wall: The Rise and Roadmap of HBM — SemiAnalysis](https://newsletter.semianalysis.com/p/scaling-the-memory-wall-the-rise-and-roadmap-of-hbm)
+- [NVIDIA GTC 2025 — Vera Rubin, CPO, Dynamo Inference — SemiAnalysis](https://semianalysis.com/2025/03/19/nvidia-gtc-2025-built-for-reasoning-vera-rubin-kyber-cpo-dynamo-inference-jensen-math-feynman/)
+- [Nvidia — The Inference Kingdom Expands (GTC 2026) — SemiAnalysis](https://newsletter.semianalysis.com/p/nvidia-the-inference-kingdom-expands)
+- [InferenceX v2 — NVIDIA Blackwell vs AMD vs Hopper — SemiAnalysis](https://newsletter.semianalysis.com/p/inferencex-v2-nvidia-blackwell-vs)
+- [Another Giant Leap: The Rubin CPX Specialized Accelerator — SemiAnalysis](https://newsletter.semianalysis.com/p/another-giant-leap-the-rubin-cpx-specialized-accelerator-rack)
+- [Nvidia's Blackwell Reworked — SemiAnalysis](https://newsletter.semianalysis.com/p/nvidias-blackwell-reworked-shipment)
