@@ -48,7 +48,9 @@ export type Review = {
 
 export type LinkedInPostEntry = {
   urn: string
-  type: 'activity' | 'share'
+  // LinkedIn URN type. Most "share"-style URL posts embed under `ugcPost`;
+  // older posts use `activity` or `share`. If one 404s, try `ugcPost`.
+  type: 'activity' | 'share' | 'ugcPost'
   url: string
   title?: string
   date?: string
@@ -470,33 +472,25 @@ export const SUBSTACK_POSTS: ArticleLink[] = [
 ]
 
 // Recent LinkedIn posts — embedded via the official LinkedIn embed iframe.
+// URNs come from a post's "Embed this post" code; type is 'share' or 'activity'.
 export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
   {
-    urn: '7455216841720758272',
-    type: 'activity',
-    url: 'https://www.linkedin.com/posts/activity-7455216841720758272-A1au',
-    date: '2026-04-18',
-    title: 'Forward-deployed engineering at Benmore — what the model actually looks like',
+    urn: '7454318675311874048',
+    type: 'ugcPost',
+    url: 'https://www.linkedin.com/posts/arkashj_home-service-pass-all-your-home-services-share-7454318675311874048-ulgC',
+    date: '2026-04-15',
+    title: 'Home Service Pass — all your home services in one place',
     excerpt:
-      'A short note on why FDE compounds: retained tooling, shared-language with the client, and a CLI that survives the engagement.',
+      'Shipped Home Service Pass with the team — a single membership that bundles routine home services for owners and renters.',
   },
   {
     urn: '7453549729759641600',
-    type: 'activity',
+    type: 'ugcPost',
     url: 'https://www.linkedin.com/posts/arkashj_i-learnt-to-price-optionality-on-aggregation-share-7453549729759641600-PxRg',
     date: '2026-04-13',
     title: 'I learnt to price optionality on aggregation',
     excerpt:
       'Aggregation theory says the platform that owns demand wins. Pricing optionality on that distribution is the trade.',
-  },
-  {
-    urn: '7453549731131052032',
-    type: 'activity',
-    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7453549731131052032/',
-    date: '2026-04-13',
-    title: 'AI hardware stack — layer by layer',
-    excerpt:
-      'From silicon and HBM to NVLink, CUDA kernels, and disaggregated serving. Every layer that makes inference possible.',
   },
 ]
 

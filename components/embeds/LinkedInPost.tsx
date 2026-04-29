@@ -1,6 +1,6 @@
 type LinkedInPostProps = {
   urn: string
-  type?: 'share' | 'activity'
+  type?: 'share' | 'activity' | 'ugcPost'
   height?: number
 }
 
