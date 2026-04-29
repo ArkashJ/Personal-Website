@@ -710,7 +710,7 @@ export const TIMELINE: TimelineEntry[] = [
       'Claude Code',
     ],
     links: [
-      { label: 'Experience & work ->', href: '/experience' },
+      { label: 'Experience & work ->', href: '/about#career' },
       { label: 'Why FDE ->', href: '/writing/why-fde' },
     ],
     slug: 'benmore-fde',
@@ -732,7 +732,7 @@ export const TIMELINE: TimelineEntry[] = [
     date: 'Apr 2026',
     status: 'Current',
     description: 'Leading the forward deployed engineering practice across all client engagements.',
-    links: [{ label: 'Experience & work ->', href: '/experience' }],
+    links: [{ label: 'Experience & work ->', href: '/about#career' }],
   },
   {
     title: 'The Complete AI Hardware Stack — Layer by Layer',
