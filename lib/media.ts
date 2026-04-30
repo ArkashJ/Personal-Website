@@ -476,7 +476,7 @@ export const SUBSTACK_POSTS: ArticleLink[] = [
 export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
   {
     urn: '7454318675311874048',
-    type: 'ugcPost',
+    type: 'share',
     url: 'https://www.linkedin.com/posts/arkashj_home-service-pass-all-your-home-services-share-7454318675311874048-ulgC',
     date: '2026-04-15',
     title: 'Home Service Pass — all your home services in one place',
@@ -485,7 +485,7 @@ export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
   },
   {
     urn: '7453549729759641600',
-    type: 'ugcPost',
+    type: 'share',
     url: 'https://www.linkedin.com/posts/arkashj_i-learnt-to-price-optionality-on-aggregation-share-7453549729759641600-PxRg',
     date: '2026-04-13',
     title: 'I learnt to price optionality on aggregation',

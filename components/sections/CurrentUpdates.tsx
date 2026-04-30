@@ -2,6 +2,7 @@ import Link from 'next/link'
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
+import LinkedInPost from '@/components/embeds/LinkedInPost'
 import { LINKEDIN_POSTS, MEDIUM_ARTICLES } from '@/lib/media'
 import type { WritingMeta } from '@/lib/content'
 
@@ -79,13 +80,11 @@ const CurrentUpdates = ({ writing }: { writing: WritingMeta[] }) => {
         ))}
       </div>
 
-      {/* LinkedIn — preview cards. LinkedIn's embed iframe 404s for posts
-          that haven't had "Embed this post" explicitly enabled, so render
-          full cards that always work. /media shows iframe attempts. */}
+      {/* LinkedIn — official embedded views (collapsed iframes). */}
       <div className="mt-2">
         <div className="flex items-baseline justify-between gap-3 mb-3">
           <span className="font-mono text-[11px] uppercase tracking-widest text-primary">
-            ● LinkedIn — recent posts
+            ● LinkedIn — embedded
           </span>
           <a
             href="https://www.linkedin.com/in/arkashj/"
@@ -96,36 +95,21 @@ const CurrentUpdates = ({ writing }: { writing: WritingMeta[] }) => {
             Follow on LinkedIn →
           </a>
         </div>
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {latestLinkedIn.map((p) => (
-            <a
-              key={p.urn}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group press"
-              aria-label={`LinkedIn: ${p.title || 'post'}`}
-            >
-              <Card glow className="h-full flex flex-col">
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <Badge>LinkedIn</Badge>
+            <div key={p.urn} className="bg-surface">
+              <LinkedInPost urn={p.urn} type={p.type} height={420} />
+              {(p.title || p.date) && (
+                <div className="border border-t-0 border-border px-4 py-3 flex items-center justify-between gap-3">
+                  {p.title && <span className="text-xs text-muted line-clamp-1">{p.title}</span>}
                   {p.date && (
                     <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
                       {formatDate(p.date)}
                     </span>
                   )}
                 </div>
-                {p.title && (
-                  <h3 className="text-sm font-bold text-text leading-snug mb-2 group-hover:text-primary transition-colors">
-                    {p.title}
-                    <span className="ml-1 text-subtle">↗</span>
-                  </h3>
-                )}
-                {p.excerpt && (
-                  <p className="text-muted text-xs leading-relaxed line-clamp-4">{p.excerpt}</p>
-                )}
-              </Card>
-            </a>
+              )}
+            </div>
           ))}
         </div>
       </div>
