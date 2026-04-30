@@ -15,7 +15,6 @@ import {
   REVIEWS,
   LINKEDIN_POSTS,
 } from '@/lib/media'
-import LinkedInPost from '@/components/embeds/LinkedInPost'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
@@ -58,32 +57,49 @@ export default function MediaPage() {
         asH1
       />
 
-      {/* Recents — LinkedIn (official embedded iframes, collapsed). */}
+      {/* Recents — LinkedIn (preview cards; LinkedIn iframe embeds 404
+          anonymously even with the official ?collapsed=1 URL). */}
       <section>
         <SectionHeader
           eyebrow="Recents"
           title="LinkedIn posts"
           italicAccent="Latest from the feed."
-          description="Recent long-form posts on LinkedIn — embedded directly from the source."
+          description="Title, excerpt, and a link out to the full post on LinkedIn."
         />
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {LINKEDIN_POSTS.map((p) => (
-            <div key={p.urn} className="flex flex-col">
-              <LinkedInPost urn={p.urn} type={p.type} height={520} />
-              <div className="flex items-center justify-between gap-3 px-1 mt-3">
-                <span className="font-mono text-[10px] text-subtle uppercase tracking-widest truncate">
-                  {p.title || 'LinkedIn post'}
-                </span>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-[10px] text-primary hover:text-accent uppercase tracking-widest whitespace-nowrap press"
-                >
-                  Open on LinkedIn →
-                </a>
-              </div>
-            </div>
+            <a
+              key={p.urn}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group press"
+              aria-label={`LinkedIn: ${p.title || 'post'}`}
+            >
+              <Card glow className="h-full flex flex-col">
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <Badge>LinkedIn</Badge>
+                  {p.date && (
+                    <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
+                      {new Date(p.date).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                      })}
+                    </span>
+                  )}
+                </div>
+                {p.title && (
+                  <h3 className="text-sm font-bold text-text leading-snug mb-2 group-hover:text-primary transition-colors">
+                    {p.title}
+                    <span className="ml-1 text-subtle">↗</span>
+                  </h3>
+                )}
+                {p.excerpt && (
+                  <p className="text-muted text-xs leading-relaxed line-clamp-5">{p.excerpt}</p>
+                )}
+              </Card>
+            </a>
           ))}
         </div>
       </section>
