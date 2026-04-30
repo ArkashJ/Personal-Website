@@ -13,7 +13,6 @@ import {
   PRESS,
   FEATURED_VIDEOS,
   REVIEWS,
-  LINKEDIN_POSTS,
 } from '@/lib/media'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
@@ -56,53 +55,6 @@ export default function MediaPage() {
         description="The public footprint — every long-form interview I co-hosted, talks where Benmore shows up, what clients have said, and what the press has indexed."
         asH1
       />
-
-      {/* Recents — LinkedIn (preview cards; LinkedIn iframe embeds 404
-          anonymously even with the official ?collapsed=1 URL). */}
-      <section>
-        <SectionHeader
-          eyebrow="Recents"
-          title="LinkedIn posts"
-          italicAccent="Latest from the feed."
-          description="Title, excerpt, and a link out to the full post on LinkedIn."
-        />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {LINKEDIN_POSTS.map((p) => (
-            <a
-              key={p.urn}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group press"
-              aria-label={`LinkedIn: ${p.title || 'post'}`}
-            >
-              <Card glow className="h-full flex flex-col">
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <Badge>LinkedIn</Badge>
-                  {p.date && (
-                    <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
-                      {new Date(p.date).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })}
-                    </span>
-                  )}
-                </div>
-                {p.title && (
-                  <h3 className="text-sm font-bold text-text leading-snug mb-2 group-hover:text-primary transition-colors">
-                    {p.title}
-                    <span className="ml-1 text-subtle">↗</span>
-                  </h3>
-                )}
-                {p.excerpt && (
-                  <p className="text-muted text-xs leading-relaxed line-clamp-5">{p.excerpt}</p>
-                )}
-              </Card>
-            </a>
-          ))}
-        </div>
-      </section>
 
       {/* Benmore feature videos */}
       <section>
