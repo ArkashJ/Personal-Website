@@ -1,7 +1,7 @@
 ---
 title: 'Writing my Neovim config from scratch'
-date: '2024-06-02'
-tags: ['Tools', 'Engineering']
+date: '2026-05-02'
+tags: ['Tools', 'Engineering', 'Neovim']
 description: 'A two-part Medium series on building a Neovim setup from a blank init.lua — bootstrap, options, keymaps, lazy.nvim, then the plugin layer that makes it a real editor.'
 ---
 
@@ -46,5 +46,17 @@ A few opinionated bits that survived two years of daily use:
   _idea_ that you already have `prettierd` / `ruff` / `eslint_d` on disk — they don't try
   to be a package manager too.
 
-The repo is at [github.com/ArkashJ](https://github.com/ArkashJ) (look for the `nvim` or
-`dotfiles` repos). The README in `~/.config/nvim` mirrors this structure.
+## 2026 update — what got added
+
+Since the Medium series, six plugins made it into the core lineup:
+
+- **harpoon (ThePrimeagen/harpoon, branch harpoon2)** — pinned-file fast-switch; `<leader>ha` to add, `<leader>hh` for the menu, `<leader>h1`..`<leader>h4` to jump.
+- **flash.nvim (folke/flash.nvim)** — label-based motion that replaced easymotion / sneak; `s` to jump, `S` for treesitter labels.
+- **trouble.nvim (folke/trouble.nvim)** — diagnostics / quickfix / loclist in one panel; `<leader>xx` toggles.
+- **oil.nvim (stevearc/oil.nvim)** — edit a directory as a buffer; `<leader>o` opens it. Kept nvim-tree as the primary tree, oil for surgical filesystem edits.
+- **nvim-surround (kylechui/nvim-surround)** — `ys{motion}{char}` add, `ds{char}` delete, `cs{old}{new}` change.
+- **undotree (mbbill/undotree)** — `<leader>u` to visualize the undo branches.
+
+The philosophy remains: one file per plugin, leader-prefixed bindings, no distro. The config stays human-scale and transparent.
+
+The repo is at [github.com/ArkashJ/NeoDotfiles](https://github.com/ArkashJ/NeoDotfiles). The README in that repo has the full keymap table.
