@@ -18,7 +18,7 @@ const LOGO_MAP: Record<string, { src: string; alt: string }> = {
     alt: 'National Science Foundation logo',
   },
   'Battery Ventures': {
-    src: '/images/logos/battery-ventures.svg',
+    src: '/images/logos/battery-ventures.png',
     alt: 'Battery Ventures logo',
   },
   Benmore: {

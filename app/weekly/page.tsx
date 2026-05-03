@@ -7,6 +7,7 @@ import { buildMetadata } from '@/lib/metadata'
 import { getAllItems, getAllWeeklyLogs } from '@/lib/weekly'
 import { tagsByFrequency } from '@/lib/tags'
 import TagFzf from '@/components/weekly/TagFzf'
+import WeekCard from '@/components/weekly/WeekCard'
 
 export const metadata = buildMetadata({
   title: 'Weekly Logs — what I read, watched, built, and shipped',
@@ -105,40 +106,11 @@ export default async function WeeklyIndexPage({
         ) : (
           <div className="grid gap-4">
             {filteredLogs.map((log) => {
-              const total = itemsByLog.get(log.slug)!.length
-              const summary = `${total} item${total === 1 ? '' : 's'}`
-
-              return (
-                <Link key={log.slug} href={`/weekly/${log.slug}`} className="block group">
-                  <Card glow>
-                    <div className="flex items-baseline justify-between gap-3 mb-2">
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                        {log.slug}
-                      </span>
-                      <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
-                        {log.weekStart} → {log.weekEnd}
-                      </span>
-                    </div>
-                    <h2 className="text-lg font-bold text-text leading-tight group-hover:text-primary transition-colors duration-150">
-                      {log.title}
-                    </h2>
-                    {log.description && (
-                      <p className="text-muted text-sm mt-2 leading-relaxed">{log.description}</p>
-                    )}
-                    {summary && (
-                      <p className="font-mono text-[11px] text-subtle mt-3 uppercase tracking-wider">
-                        {summary}
-                      </p>
-                    )}
-                    {log.tags && log.tags.length > 0 && (
-                      <p className="font-mono text-[10px] text-subtle mt-3 uppercase tracking-wider">
-                        {log.tags.length} tags · {log.tags.slice(0, 3).join(' · ')}
-                        {log.tags.length > 3 ? ' …' : ''}
-                      </p>
-                    )}
-                  </Card>
-                </Link>
-              )
+              const items = itemsByLog.get(log.slug)!
+              const datesSet = new Set<string>()
+              for (const it of items) if (it.date) datesSet.add(it.date)
+              const dates = Array.from(datesSet).sort()
+              return <WeekCard key={log.slug} log={log} itemCount={items.length} dates={dates} />
             })}
           </div>
         )}

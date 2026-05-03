@@ -23,6 +23,7 @@ export type WeeklyItem =
       source?: string
       kind?: WeeklyItemKind
       notes?: string
+      bullets?: string[]
       tags?: string[]
       date?: string
     }
@@ -37,6 +38,7 @@ export type EnrichedWeeklyItem = {
   source?: string
   kind: WeeklyItemKind
   notes?: string
+  bullets?: string[]
   tags: string[]
   date?: string
 }
@@ -128,6 +130,7 @@ export function getAllItems(meta: WeeklyLogMeta): EnrichedWeeklyItem[] {
         source: obj.source,
         kind,
         notes: obj.notes,
+        bullets: obj.bullets,
         tags: merged,
         date: obj.date,
       })

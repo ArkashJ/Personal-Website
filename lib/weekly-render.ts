@@ -42,6 +42,7 @@ export type ResolvedItem = {
   source?: string
   kind?: WeeklyItemKind
   notes?: string
+  bullets?: string[]
   tags?: string[]
   date?: string
   // Markdown body to render inside the modal when no `anchor:` section is
@@ -57,7 +58,7 @@ export function resolveItem(item: WeeklyItem): ResolvedItem {
     return { text: item, bodyMarkdown: item }
   }
   let { image, source } = item
-  const { text, href, anchor, kind, notes } = item
+  const { text, href, anchor, kind, notes, bullets } = item
 
   if (!image && href) {
     const yt = youtubeIdFromUrl(href)
@@ -76,7 +77,7 @@ export function resolveItem(item: WeeklyItem): ResolvedItem {
   // exists, the modal will render a generic CTA + fallback line in the UI.
   const bodyMarkdown = anchor ? undefined : notes
 
-  return { text, href, anchor, image, source, kind, notes, bodyMarkdown }
+  return { text, href, anchor, image, source, kind, notes, bullets, bodyMarkdown }
 }
 
 // Same as resolveItem but for the EnrichedWeeklyItem shape produced by
@@ -98,6 +99,7 @@ export function resolveEnriched(item: EnrichedWeeklyItem): ResolvedItem {
     rail: item.rail,
     tags: item.tags,
     date: item.date,
+    bullets: item.bullets,
     bodyMarkdown: base.bodyMarkdown ?? (item.anchor ? undefined : item.text),
   }
 }

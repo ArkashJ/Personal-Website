@@ -182,6 +182,20 @@ function DetailModal({
           className="overflow-y-auto flex-1 p-5 prose-modal scroll-smooth"
           style={{ overscrollBehavior: 'contain' }}
         >
+          {resolved.bullets && resolved.bullets.length > 0 && (
+            <div className="mb-5 pb-4 border-b border-border">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-2">
+                TL;DR · {resolved.bullets.length} point{resolved.bullets.length === 1 ? '' : 's'}
+              </p>
+              <ul className="list-disc list-outside ml-4 space-y-1.5">
+                {resolved.bullets.map((b, i) => (
+                  <li key={i} className="text-sm text-text leading-relaxed">
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {content ? (
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -233,11 +247,11 @@ function DetailModal({
             >
               {content}
             </ReactMarkdown>
-          ) : (
+          ) : !resolved.bullets || resolved.bullets.length === 0 ? (
             <p className="text-sm text-muted">
               No detailed notes for this entry yet — open the original via the link above.
             </p>
-          )}
+          ) : null}
           <div className="mt-6 pt-4 border-t border-border flex items-center gap-3 flex-wrap">
             {!hasContent && resolved.href && (
               <a
@@ -362,9 +376,11 @@ function ItemCard({
 export function WeeklyGrid({
   meta,
   sections,
+  initialDate,
 }: {
   meta: WeeklyLogMeta
   sections: Record<string, string>
+  initialDate?: string
 }) {
   const items = useMemo(() => getAllItems(meta), [meta])
   const resolved = useMemo(() => items.map((it) => resolveEnriched(it)), [items])
@@ -376,6 +392,11 @@ export function WeeklyGrid({
   }, [resolved])
 
   const { values, set, reset } = useUrlState(['q', 'tag', 'kind', 'date'])
+
+  useEffect(() => {
+    if (initialDate && !values.date) set('date', initialDate)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialDate])
 
   const q = values.q.trim().toLowerCase()
   const tag = values.tag

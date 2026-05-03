@@ -41,7 +41,8 @@
       "Bash(claude mcp *)",
       "Bash(awk '/^export const PROJECTS/,/^export const WORK_TOOLS/' lib/data.ts)",
       "Bash(jq '.env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = \"1\"' ~/.claude/settings.json)",
-      "Bash(mv ~/.claude/settings.json.tmp ~/.claude/settings.json)"
+      "Bash(mv ~/.claude/settings.json.tmp ~/.claude/settings.json)",
+      "Bash(rtk tsc *)"
     ]
   }
 }
