@@ -13,6 +13,7 @@ import {
   type WeeklyLogMeta,
 } from '@/lib/weekly'
 import { getCommitsForWeek, getGitChangelog } from '@/lib/git-changelog'
+import { findReleaseInWeek } from '@/lib/changelog-md'
 import { WeeklyGrid } from './WeeklyGrid'
 
 export const dynamicParams = false
@@ -88,6 +89,7 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
   if (!post) return notFound()
   const meta: WeeklyLogMeta = post.meta
   const sections = extractSections(post.source)
+  const changelogRelease = findReleaseInWeek(meta.weekStart, meta.weekEnd)
 
   return (
     <article className="px-6 py-16 max-w-5xl mx-auto">
@@ -99,6 +101,21 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
         {meta.slug}
       </p>
       <h1 className="text-3xl md:text-4xl font-bold text-text mt-2 mb-3">{meta.title}</h1>
+
+      {/* CHANGELOG badge — shown when a release date falls inside this week */}
+      {changelogRelease && (
+        <div className="mb-3">
+          <Link
+            href={`/changelog#${changelogRelease.id}`}
+            className="inline-flex items-center gap-1.5 group"
+          >
+            <Badge variant="green">Released in CHANGELOG: v{changelogRelease.version}</Badge>
+            <span className="font-mono text-[10px] text-subtle group-hover:text-primary transition-colors">
+              →
+            </span>
+          </Link>
+        </div>
+      )}
       <p className="text-muted text-sm font-mono mb-6">
         {meta.weekStart} → {meta.weekEnd}
         {meta.tags && meta.tags.length > 0 && (
