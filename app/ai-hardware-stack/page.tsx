@@ -42,10 +42,10 @@ export default function AiHardwareStackDeckPage() {
       />
 
       <Link
-        href="/knowledge/ai"
+        href="/writing"
         className="font-mono text-primary text-xs hover:text-accent uppercase tracking-widest"
       >
-        ← AI Knowledge
+        ← Writing
       </Link>
 
       <SectionHeader
@@ -75,7 +75,7 @@ export default function AiHardwareStackDeckPage() {
           View raw HTML ↗
         </a>
         <Link
-          href="/knowledge/ai/ai-hardware-stack"
+          href="/writing/ai-hardware-stack"
           className="font-mono text-primary text-xs hover:text-accent uppercase tracking-widest"
         >
           Read the long-form essay →

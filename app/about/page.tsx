@@ -1,11 +1,9 @@
 import SectionHeader from '@/components/sections/SectionHeader'
 import TimelineItem from '@/components/sections/TimelineItem'
 import ExperienceCard from '@/components/sections/ExperienceCard'
-import Card from '@/components/ui/Card'
-import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
-import { TIMELINE, EXPERIENCE, WORK_TOOLS } from '@/lib/data'
+import { TIMELINE, EXPERIENCE } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
@@ -61,12 +59,6 @@ export default function AboutPage() {
         >
           ● Career
         </a>
-        <a
-          href="#tools"
-          className="px-3 py-1.5 border border-border rounded-full text-muted hover:text-primary hover:border-primary press"
-        >
-          ● Tools & CLIs
-        </a>
       </nav>
 
       {/* Timeline */}
@@ -104,29 +96,6 @@ export default function AboutPage() {
         <div className="grid gap-6 reveal">
           {EXPERIENCE.map((e) => (
             <ExperienceCard key={`${e.org}-${e.role}`} {...e} />
-          ))}
-        </div>
-      </section>
-
-      {/* Tools & CLIs */}
-      <section id="tools" className="mt-20 scroll-mt-24">
-        <h2 className="font-mono text-[11px] uppercase tracking-widest text-primary mb-4">
-          ● Tools & CLIs
-        </h2>
-        <p className="text-muted text-sm mb-6 max-w-2xl">
-          Each one started as a one-off and graduated when it earned its keep.
-        </p>
-        <div className="grid gap-4 md:grid-cols-2 reveal">
-          {WORK_TOOLS.map((w) => (
-            <Card key={w.name} glow className="flex flex-col h-full">
-              <h3 className="text-lg font-bold text-text mb-2 tracking-tight">{w.name}</h3>
-              <p className="text-muted text-sm mb-4 leading-relaxed flex-1">{w.description}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {w.tech.map((t) => (
-                  <Badge key={t}>{t}</Badge>
-                ))}
-              </div>
-            </Card>
           ))}
         </div>
       </section>

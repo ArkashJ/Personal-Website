@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
+import CopyForLlm from '@/components/ui/CopyForLlm'
 import MdxContent from '@/components/MdxContent'
 import JsonLd from '@/components/seo/JsonLd'
 import { articleSchema } from '@/lib/structured-data'
@@ -41,9 +42,12 @@ export default async function WritingPost({ params }: { params: Promise<{ slug: 
         })}
       />
 
-      <Link href="/writing" className="text-primary hover:text-accent font-mono text-sm">
-        ← Writing
-      </Link>
+      <div className="flex items-center justify-between gap-3">
+        <Link href="/writing" className="text-primary hover:text-accent font-mono text-sm">
+          ← Writing
+        </Link>
+        <CopyForLlm rawUrl={`/writing/${slug}/raw`} />
+      </div>
 
       <h1 className="text-3xl md:text-4xl font-bold text-text mt-6 mb-3">{post.meta.title}</h1>
       <p className="text-muted text-sm font-mono mb-2">{post.meta.date}</p>

@@ -1,4 +1,4 @@
-import { getAllWritingPosts, getAllKnowledgePosts } from '@/lib/content'
+import { getAllWritingPosts } from '@/lib/content'
 import WritingIndexClient from './WritingIndexClient'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
@@ -6,9 +6,9 @@ import { buildMetadata } from '@/lib/metadata'
 import { LEARNINGS } from '@/lib/learnings'
 
 export const metadata = buildMetadata({
-  title: 'Writing & Second Brain — Essays, Learnings, Knowledge Domains',
+  title: 'Writing — Essays + Learnings',
   description:
-    'Long-form essays on AI, forward-deployed engineering, distributed systems, and finance — plus a running log of lessons learned the hard way, and six knowledge domains explored in public.',
+    'Long-form essays on AI, forward-deployed engineering, distributed systems, finance, math, and physics — plus a running log of lessons learned the hard way. One searchable index.',
   path: '/writing',
   keywords: [
     'essays',
@@ -25,11 +25,6 @@ export const metadata = buildMetadata({
 export default function WritingPage() {
   const posts = getAllWritingPosts()
   const learnings = [...LEARNINGS].sort((a, b) => b.year - a.year)
-  const knowledgePosts = getAllKnowledgePosts().filter((p) => p.slug !== 'index')
-  const domainCounts = knowledgePosts.reduce<Record<string, number>>((acc, p) => {
-    acc[p.domain] = (acc[p.domain] || 0) + 1
-    return acc
-  }, {})
 
   return (
     <>
@@ -39,7 +34,7 @@ export default function WritingPage() {
           { name: 'Writing', path: '/writing' },
         ])}
       />
-      <WritingIndexClient posts={posts} learnings={learnings} domainCounts={domainCounts} />
+      <WritingIndexClient posts={posts} learnings={learnings} />
     </>
   )
 }

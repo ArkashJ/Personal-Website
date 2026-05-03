@@ -136,7 +136,7 @@ export const ContentPipelineDiagram = () => {
     [
       {
         title: 'Source',
-        items: [{ label: 'content/writing/*.mdx' }, { label: 'content/knowledge/[domain]/*.mdx' }],
+        items: [{ label: 'content/writing/*.mdx (with originalDomain)' }],
       },
       {
         title: 'Loader',

@@ -56,6 +56,55 @@ const nextConfig = {
         destination: '/writing/why-typescript-strict',
         permanent: true,
       },
+      // v2.6.0 — full knowledge collapse: remaining articles + domain landings
+      {
+        source: '/knowledge/ai/ai-hardware-stack',
+        destination: '/writing/ai-hardware-stack',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/ai/fsdp-vs-tensor-parallel',
+        destination: '/writing/fsdp-vs-tensor-parallel',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/ai/spatialdino-lessons',
+        destination: '/writing/spatialdino-lessons',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/distributed-systems/flink-checkpointing',
+        destination: '/writing/flink-checkpointing',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/distributed-systems/merkle-tree-rust-poc',
+        destination: '/writing/merkle-tree-rust-poc',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/distributed-systems/raft-in-five-minutes',
+        destination: '/writing/raft-in-five-minutes',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/distributed-systems/rocksdb-write-amplification',
+        destination: '/writing/rocksdb-write-amplification',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/math/convergence-intuition',
+        destination: '/writing/convergence-intuition',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/math/optimizers',
+        destination: '/writing/optimizers',
+        permanent: true,
+      },
+      // Domain landings + index → /writing
+      { source: '/knowledge', destination: '/writing', permanent: true },
+      { source: '/knowledge/:domain', destination: '/writing', permanent: true },
     ]
   },
   images: {

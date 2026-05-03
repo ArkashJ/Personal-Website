@@ -47,3 +47,5 @@ yarn-error.log*
 !public/**/*.png
 
 .compound-engineering/*.local.yaml
+.env.local
+docs/screenshots/

@@ -1,9 +1,8 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
-import MdxContent from '@/components/MdxContent'
+import CopyForLlm from '@/components/ui/CopyForLlm'
 import GitChangelog from '@/components/sections/GitChangelog'
 import { buildMetadata } from '@/lib/metadata'
 import {
@@ -93,9 +92,12 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
 
   return (
     <article className="px-6 py-16 max-w-5xl mx-auto">
-      <Link href="/weekly" className="text-primary hover:text-accent font-mono text-sm">
-        ← Weekly
-      </Link>
+      <div className="flex items-center justify-between gap-3">
+        <Link href="/weekly" className="text-primary hover:text-accent font-mono text-sm">
+          ← Weekly
+        </Link>
+        <CopyForLlm rawUrl={`/weekly/${meta.slug}/raw`} />
+      </div>
 
       <p className="font-mono text-[11px] uppercase tracking-widest text-primary mt-6">
         {meta.slug}
@@ -133,16 +135,8 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
         <WeeklyGrid meta={meta} sections={sections} />
       </Suspense>
 
-      {/* Prose body — linear reading and SEO */}
-      {post.source ? (
-        <div className="prose-custom">
-          <MdxContent source={post.source} />
-        </div>
-      ) : (
-        <Card>
-          <p className="text-muted text-sm">Notes coming soon.</p>
-        </Card>
-      )}
+      {/* Prose body removed in v2.6.0 — full content lives behind each item modal + the
+          per-week /raw endpoint for LLMs. Detail-on-demand, not a wall of text. */}
 
       {/* Repository commits this week (build-time cached) */}
       <GitChangelog

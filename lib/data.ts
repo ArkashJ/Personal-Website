@@ -158,7 +158,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
       },
       {
         label: 'SpatialDINO engineering log',
-        href: '/knowledge/ai/spatialdino-lessons',
+        href: '/writing/spatialdino-lessons',
       },
     ],
     bullets: [
@@ -279,7 +279,7 @@ export const PROJECTS: Project[] = [
     name: 'SpatialDINO',
     year: '2025',
     description:
-      'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Adapts DINO-style student/teacher contrastive learning natively into 3D — student/teacher 3D ViTs trained over volumetric LLSM crops with 3D iBOT block masking. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s using PyTorch DDP, bf16 mixed precision, NVLink intra-node and InfiniBand inter-node. On downstream subcellular structure prediction it outperformed a prior approach co-led by Nobel laureate Eric Betzig. Released as a BioRxiv preprint, first-author; full engineering log at /knowledge/ai/spatialdino-lessons. The work also produced a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training over InfiniBand.',
+      'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Adapts DINO-style student/teacher contrastive learning natively into 3D — student/teacher 3D ViTs trained over volumetric LLSM crops with 3D iBOT block masking. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s using PyTorch DDP, bf16 mixed precision, NVLink intra-node and InfiniBand inter-node. On downstream subcellular structure prediction it outperformed a prior approach co-led by Nobel laureate Eric Betzig. Released as a BioRxiv preprint, first-author; full engineering log at /writing/spatialdino-lessons. The work also produced a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training over InfiniBand.',
     tech: ['PyTorch', 'DDP', 'DGX A100', 'LLSM', '3D ViT', 'DINO', 'Triton', 'CUDA'],
     href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
     highlights: [
@@ -782,7 +782,7 @@ export const TIMELINE: TimelineEntry[] = [
       { label: 'merkle_tree (Rust POC)', href: 'https://github.com/ArkashJ/merkle_tree' },
       {
         label: 'Merkle tree write-up',
-        href: '/knowledge/distributed-systems/merkle-tree-rust-poc',
+        href: '/writing/merkle-tree-rust-poc',
       },
       {
         label: 'excel_connector (Yeoman + NATS)',
@@ -911,7 +911,7 @@ export const TIMELINE: TimelineEntry[] = [
       'Introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), and a 3D adaptation of SINDER for singular-defect repair.',
       'Built a streaming encoder with token-store + online softmax for full-volume inference at million-token sequence lengths.',
       'Beat the prior SOTA — including the Nobel-laureate-led approach — on downstream subcellular structure prediction.',
-      'Released as a BioRxiv preprint, first-author; engineering log at /knowledge/ai/spatialdino-lessons.',
+      'Released as a BioRxiv preprint, first-author; engineering log at /writing/spatialdino-lessons.',
     ],
     tech: ['PyTorch', 'DINO', '3D ViT', 'Self-Supervised Learning', 'LLSM', 'DDP', 'Triton'],
     links: [
@@ -919,7 +919,7 @@ export const TIMELINE: TimelineEntry[] = [
         label: 'BioArxiv preprint',
         href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
       },
-      { label: 'SpatialDINO lessons ->', href: '/knowledge/ai/spatialdino-lessons' },
+      { label: 'SpatialDINO lessons ->', href: '/writing/spatialdino-lessons' },
       { label: 'View papers ->', href: '/research' },
     ],
     slug: 'spatialdino',
@@ -1006,34 +1006,13 @@ export const TIMELINE: TimelineEntry[] = [
     description:
       'From silicon atoms to generated tokens — every layer that makes modern AI inference possible. L7 silicon & packaging, HBM, NVLink, CUDA kernels, disaggregated serving, and deep dives on SRAM vs HBM, CPO, and EDA.',
     links: [
-      { label: 'Read the deep dive ->', href: '/knowledge/ai/ai-hardware-stack' },
+      { label: 'Read the deep dive ->', href: '/writing/ai-hardware-stack' },
       { label: 'Interactive version ->', href: '/ai-hardware-stack.html' },
     ],
     slug: 'ai-hardware-stack',
   },
 ]
 
-export const KNOWLEDGE_DOMAINS: KnowledgeDomainMeta[] = [
-  {
-    slug: 'ai',
-    name: 'AI',
-    description:
-      'Self-supervised learning, vision transformers, distributed training infrastructure.',
-  },
-  {
-    slug: 'finance',
-    name: 'Finance',
-    description:
-      'Aggregation theory, AI infrastructure as a structural trade, public thesis tracker.',
-  },
-  {
-    slug: 'distributed-systems',
-    name: 'Distributed Systems',
-    description: 'Flink, RocksDB, Raft, MapReduce, compression, checkpointing.',
-  },
-  {
-    slug: 'math',
-    name: 'Math',
-    description: 'Optimizers, convergence, intuition behind the proofs.',
-  },
-]
+// KNOWLEDGE_DOMAINS removed in v2.6.0 — content/knowledge/ collapsed into
+// content/writing/ with `originalDomain` frontmatter. /knowledge/* URLs
+// 308-redirect to /writing/<slug> via next.config.js.

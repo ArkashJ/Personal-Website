@@ -4,7 +4,6 @@ import matter from 'gray-matter'
 
 const ROOT = process.cwd()
 const WRITING_DIR = path.join(ROOT, 'content', 'writing')
-const KNOWLEDGE_DIR = path.join(ROOT, 'content', 'knowledge')
 const COURSEWORK_DIR = path.join(ROOT, 'content', 'coursework')
 
 export type WritingMeta = {
@@ -13,14 +12,7 @@ export type WritingMeta = {
   date: string
   description: string
   tags?: string[]
-}
-
-export type KnowledgeMeta = {
-  slug: string
-  domain: string
-  title: string
-  date: string
-  description: string
+  originalDomain?: string
 }
 
 function readDir(dir: string): string[] {
@@ -53,39 +45,9 @@ export async function getWritingPost(
   return { meta: { slug, ...(data as Omit<WritingMeta, 'slug'>) }, source: content }
 }
 
-export function getKnowledgeDomains(): string[] {
-  if (!fs.existsSync(KNOWLEDGE_DIR)) return []
-  return fs
-    .readdirSync(KNOWLEDGE_DIR)
-    .filter((d) => fs.statSync(path.join(KNOWLEDGE_DIR, d)).isDirectory())
-}
-
-export function getAllKnowledgePosts(domain?: string): KnowledgeMeta[] {
-  const domains = domain ? [domain] : getKnowledgeDomains()
-  const posts: KnowledgeMeta[] = []
-  for (const d of domains) {
-    const dir = path.join(KNOWLEDGE_DIR, d)
-    for (const file of readDir(dir)) {
-      const slug = file.replace(/\.mdx?$/, '')
-      const { data } = readMdx(path.join(dir, file))
-      posts.push({ slug, domain: d, ...(data as Omit<KnowledgeMeta, 'slug' | 'domain'>) })
-    }
-  }
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
-}
-
-export async function getKnowledgePost(
-  domain: string,
-  slug: string
-): Promise<{ meta: KnowledgeMeta; source: string } | null> {
-  const file = path.join(KNOWLEDGE_DIR, domain, `${slug}.mdx`)
-  if (!fs.existsSync(file)) return null
-  const { data, content } = readMdx(file)
-  return {
-    meta: { slug, domain, ...(data as Omit<KnowledgeMeta, 'slug' | 'domain'>) },
-    source: content,
-  }
-}
+// Knowledge loaders removed in v2.6.0 — all articles consolidated under
+// content/writing/ with `originalDomain` frontmatter. /knowledge/* URLs
+// 308-redirect to /writing/<slug> via next.config.js.
 
 // -------- Coursework --------
 // Layout: content/coursework/<semester-slug>/<course-slug>.mdx

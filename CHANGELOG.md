@@ -5,6 +5,110 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [2.6.0] — 2026-05-03 — Site overhaul: branded share image, /experience removed, home rolling-log, /changelog page, Clerk-gated weekly admin, LLM-copyable everywhere, /knowledge collapsed into /writing
+
+### Added — Round 2 (post-merge user followups)
+
+- **NowSection moved to the top of `/`** (right under Hero) and converted to horizontal-scrollable rails (`overflow-x-auto snap-x snap-mandatory`, 6 items per rail instead of 3, fixed-width snap cards `w-72 sm:w-80`).
+- **`/knowledge/*` collapsed entirely into `/writing/`.** All 9 remaining articles (`ai/{ai-hardware-stack,fsdp-vs-tensor-parallel,spatialdino-lessons}`, `distributed-systems/{flink-checkpointing,merkle-tree-rust-poc,raft-in-five-minutes,rocksdb-write-amplification}`, `math/{convergence-intuition,optimizers}`) moved into `content/writing/` with `originalDomain` frontmatter. `app/knowledge/` deleted. `lib/content.ts` `getKnowledgeDomains/getAllKnowledgePosts/getKnowledgePost` deleted. `lib/data.ts` `KNOWLEDGE_DOMAINS` deleted. The `Second Brain` block on `/writing` removed — single searchable index now.
+- **308 redirects** added in `next.config.js` for every `/knowledge/<domain>/<slug>` → `/writing/<slug>`, plus catch-alls `/knowledge` → `/writing` and `/knowledge/:domain` → `/writing`.
+
+### Changed — Round 2
+
+- `/about` no longer renders the "Tools & CLIs" section — `WORK_TOOLS` was duplicated context with `/projects` + `/work`. Section + subnav anchor + import all removed.
+- `/weekly/[slug]` no longer renders the long-form MDX prose body below the item grid. Detail-on-demand: full content stays accessible via the per-item modal and the `/weekly/[slug]/raw` endpoint (LLM-copyable).
+- `/skills` nav label → **Claude Skills** (`lib/site.ts` `NAV_LINKS`).
+- `/weekly` index header dropped the "one entry per ISO week" subtitle — multiple entries per week are explicitly allowed.
+
+### Build — Round 2
+
+- Vercel env: `ADMIN_EMAIL=arkashjain17@gmail.com` set on Production + Development via `vercel env add` (CLI v50.37.3). `vercel env pull .env.local --environment=development` populates the local file. `.env.local` added to `.gitignore`.
+- `app/sitemap.ts` no longer enumerates knowledge URLs; adds `/changelog`.
+- `components/architecture/Diagrams.tsx` source rail updated.
+
+### Original release (initial commit)
+
+### Added — Home rolling log + merged Now section
+
+- `components/sections/RollingLog.tsx` — paginated date-stamped feed of weekly logs (5/page via `?page=N`, server component, fully indexable). Replaces the single "This Week" card.
+- `components/sections/NowSection.tsx` — unifies the old "Now" + "This Week" sections into one block with four anchor-linked rails: Milestones / Writing / Media / Projects. `components/sections/CurrentUpdates.tsx` removed.
+
+### Added — `/changelog` route + commits-and-history sidebar
+
+- `app/changelog/page.tsx` — new top-level route. Two-column desktop layout: parsed `CHANGELOG.md` left (⅔), `<CommitsSidebar />` right (⅓, sticky).
+- `lib/changelog-md.ts` — Keep-a-Changelog 1.1.0 parser (handles em-dash separators, long descriptive section labels), module-level cache.
+- `components/sections/CommitsSidebar.tsx` — type-grouped accordion (`feat`/`fix` open by default), 20 commits per group, deep-links to GitHub commit + to `/weekly/<slug>` when commit date overlaps a published week.
+- `app/weekly/[slug]/page.tsx` now renders a "Released in CHANGELOG: vX.Y.Z →" badge when a release date falls inside the week.
+
+### Added — `/admin/weekly` editor (Clerk-gated, server-action MDX append)
+
+- `app/admin/weekly/{page,ClerkAuthGate,WeeklyItemForm,actions}.tsx` mirroring the `/ce-plan` pattern.
+- Server action `addWeeklyItem(formData)` checks `auth().sessionClaims.email` (fallback `currentUser()`) against `process.env.ADMIN_EMAIL` allowlist; parses + appends to `content/weekly/<current-iso-week>.mdx` via `gray-matter`; revalidates `/`, `/weekly`, and `/weekly/<slug>`.
+- Auto-creates the current ISO-week MDX file from a template if missing.
+- Wraps `fs.writeFileSync` in try/catch — surfaces a friendly "filesystem read-only" message on Vercel prod (admin is local-only by design; commit the diff to ship).
+- `lib/weekly-dates.ts` — extracted ISO-week math (`getIsoWeek`, `isoWeekSlug`, `weekToRange`).
+
+### Added — Weekly clickable + fzf tag index on `/weekly`
+
+- `components/weekly/TagFzf.tsx` — client component with debounced filter over the top-30 tags by frequency. Press Enter on first match navigates to `/weekly?tag=<slug>`.
+- `app/weekly/page.tsx` reads `searchParams.tag` and filters cards. Active tag shows an "× clear filter" affordance.
+
+### Added — LLM-copyable everywhere
+
+- `app/writing/[slug]/raw/route.ts`, `app/weekly/[slug]/raw/route.ts`, `app/knowledge/[domain]/[slug]/raw/route.ts` — each emits the underlying MDX (frontmatter + body) as `text/plain; charset=utf-8`, cached `s-maxage=86400`. Mirrors the existing `/skills/<slug>/raw` pattern.
+- `components/ui/CopyForLlm.tsx` + `lib/copy-for-llm.ts` — generic Safari-safe Clipboard-API button. Wired into the back-link header of every writing, weekly, and knowledge detail page.
+
+### Added — Bidirectional CHANGELOG ↔ weekly
+
+- See `lib/changelog-md.ts#findReleaseInWeek` and the badge wiring in `app/weekly/[slug]/page.tsx`.
+
+### Changed — Default share image is now branded, not the headshot
+
+- `lib/metadata.ts#buildMetadata` no longer defaults `openGraph.images` / `twitter.images` to `/images/profile.jpeg`. Next.js's file-convention `app/opengraph-image.tsx` (which renders the branded card via `lib/og.tsx#renderOg`) is now the source of truth for OG/Twitter cards on every route.
+- `lib/structured-data.ts#personSchema` still uses `profile.jpeg` for `Person.image` (correct per schema.org).
+- Existing per-route OG renderers (e.g. `app/writing/[slug]/opengraph-image.tsx`) are unaffected.
+
+### Changed — Weekly subtitle, item cards, filter bar
+
+- `/weekly` index header dropped the "one entry per ISO week." italic accent — multiple entries per week are now allowed.
+- `app/weekly/[slug]/WeeklyGrid.tsx` `ItemCard` no longer renders the body-text paragraph below the title. Click still opens the full-body modal.
+- The filter bar (search + kind + tag pills) is no longer sticky — sits in flow.
+
+### Changed — Skills nav label
+
+- `lib/site.ts` `NAV_LINKS`: `Skills → Claude Skills` to make the surface readable at-a-glance from the navbar.
+
+### Changed — Essay-shaped knowledge articles moved to `/writing`
+
+- Moved (with `originalDomain` frontmatter + 308 redirects in `next.config.js`):
+  - `physics/why-i-left-physics`, `physics/supercritical-fluids-paper`
+  - `finance/aggregation-theory`
+  - `software/claude-code-as-an-os`, `software/why-typescript-strict`
+- `lib/data.ts` `KNOWLEDGE_DOMAINS` no longer lists `physics` or `software` (vacated). `finance` retained for its index + thesis/trade sections.
+
+### Removed — `/experience` page
+
+- `app/experience/page.tsx` deleted. Removed from `lib/site.ts` `NAV_LINKS`, `app/sitemap.ts`, `components/architecture/Diagrams.tsx`. CommandPalette + Footer auto-synced.
+- 308 redirect `/experience → /about#career` added in `next.config.js`. `/about#career` is the canonical career history.
+
+### Refactored — Cross-cutting deduplication (post-overhaul `/ce-simplify-code` pass)
+
+- `lib/weekly.ts#getAllWeeklyLogs` now caches at module scope (eliminates ~3 redundant FS scans per `/weekly` + `/changelog` render).
+- `app/weekly/page.tsx` memoizes `getAllItems()` per log into a `Map<slug, items>` (was called 3× per log).
+- `components/ui/ExternalLinkIcon.tsx` extracted; replaces inline copies in `CommitsSidebar` + `GitChangelog`.
+- `lib/git-commit.ts` exports `CommitType` union + adds `'weekly'` to `KNOWN_TYPES`; `CommitsSidebar` imports instead of redeclaring.
+- `lib/weekly-types.ts` now exports `RAIL_ORDER` + `RAIL_DEFAULT_KIND`; admin form imports instead of redeclaring.
+- `app/admin/weekly/actions.ts` replaces TOCTOU `existsSync→read` with `try/read/catch ENOENT`; adds `instanceof Error` guard before `ErrnoException` casts; drops redundant `sessionClaims['email']` fallback.
+
+### Build
+
+- `package.json` 2.5.0 → 2.6.0.
+- New routes generated: `/changelog`, `/admin/weekly`, `/writing/<slug>/raw`, `/weekly/<slug>/raw`, `/knowledge/<domain>/<slug>/raw`.
+- Vercel env: `ADMIN_EMAIL=arkashjain17@gmail.com` set on Production + Development.
+- Recommended git tag: `v2.6.0`.
+
+---
+
 ## [2.5.0] — 2026-05-02 — Weekly grid, cached git changelog, per-project pages, polished modals
 
 ### Added — Flat weekly item grid (drops the 6-rail bucket UX)

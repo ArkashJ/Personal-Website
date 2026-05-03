@@ -36,6 +36,9 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
     <div>
       <Hero />
 
+      {/* Now — moved to top in v2.6.0: Milestones / Writing / Media / Projects */}
+      <NowSection />
+
       {/* Rolling log — paginated weekly updates (replaces single "This Week" card) */}
       <section className="px-6 py-4 max-w-6xl mx-auto">
         <div className="mb-4">
@@ -79,9 +82,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
           </div>
         </Card>
       </section>
-
-      {/* Now — merged Now + This Week: Milestones / Writing / Media / Projects */}
-      <NowSection />
 
       {/* Research */}
       <section className="px-6 py-10 max-w-6xl mx-auto">

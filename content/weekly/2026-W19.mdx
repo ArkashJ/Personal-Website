@@ -1,0 +1,242 @@
+---
+title: 'Kalshi, Spectacles, and Stripe Sessions 2026 — agentic commerce gets its protocols'
+weekStart: '2026-05-04'
+weekEnd: '2026-05-10'
+description: 'Tarek Mansour on building Kalshi against the regulators, Evan Spiegel on Spectacles and the post-feed internet, and the Stripe Sessions 2026 keynote with MPP, UCP, Stripe Database, Treasury, and the agentic commerce stack.'
+tags:
+  [
+    'Kalshi',
+    'Tarek Mansour',
+    'Prediction Markets',
+    'CFTC',
+    'Hedging',
+    'Y Combinator',
+    'Hackathon',
+    'Order Book',
+    'Lean Teams',
+    'Self-Organizing',
+    'Snap',
+    'Evan Spiegel',
+    'Cheeky Pint',
+    'Spectacles',
+    'Spatial Computing',
+    'Snap OS',
+    'Linux',
+    'AI Codegen',
+    'Snapchat+',
+    'Teen Wellbeing',
+    'Norway',
+    'Stripe Sessions',
+    'Stripe Projects',
+    'Stripe Database',
+    'Stripe Treasury',
+    'Stripe Signals',
+    'Checkout Studio',
+    'Metronome',
+    'Tempo',
+    'Agentic Commerce',
+    'MPP',
+    'Model Payment Protocol',
+    'UCP',
+    'Universal Commerce Protocol',
+    'Stablecoins',
+    'Programmable Money',
+    'Public Roadmap',
+    'Link Wallet',
+    'Postgres',
+  ]
+watched:
+  - text: 'Uncapped (Jack Altman): Tarek Mansour on building Kalshi — hackathon → CFTC fight → landmark 2024 win'
+    href: 'https://youtu.be/Tt6ozrcjLyQ'
+    anchor: 'kalshi-tarek'
+    image: 'https://i.ytimg.com/vi/Tt6ozrcjLyQ/hqdefault.jpg'
+    source: 'Uncapped'
+    kind: 'youtube'
+    notes: 'Born in California, raised in Lebanon — math-as-stability instinct came early. Goldman + Citadel showed him traders were really expressing event opinions through clumsy proxies (Brexit, 2016). YC hackathon Oct 2018: judges said "not allowed in the US," they won anyway. Regulated exchange approval Nov 2020; sued the government after election market was blocked in 2023; landmark win Oct 2024 redefining gambling vs financial markets. Not a casino: open book, users trade against each other, Kalshi takes a transaction fee. Real-world hedging on inflation prints, Fed decisions, weather. ~127 people, no managerial layers, self-organizing around the most critical problems. "You cannot beat hedge funds at options — but you can hedge real life, and that is fairer."'
+  - text: 'Cheeky Pint: Evan Spiegel on Spectacles, the post-feed internet, and AI-written code at Snap'
+    href: 'https://youtu.be/8fZNK-M-77I'
+    anchor: 'spiegel-cheeky-pint'
+    image: 'https://i.ytimg.com/vi/8fZNK-M-77I/hqdefault.jpg'
+    source: 'Cheeky Pint'
+    kind: 'youtube'
+    notes: 'Spectacles as "making computing human again" — see-through glasses, social by default, opposite of isolating VR headsets like Vision Pro. Built on a proprietary Linux-based Snap OS to avoid Android bloat. >2/3 of new code at Snap is now AI-written. Snapchat separates social (private messaging with close friends) from media (Discover) — sidesteps the perverse incentives of endless feeds. Snapchat+ at 25M subscribers. On teen policy: blanket bans miss that every kid is different; research links Snapchat to positive relationship outcomes vs other platforms. Norway was first country to embrace Snap due to high-end devices + reliable internet. Spiegel: leadership has shifted from product builder to empathy + inspiring the team. Closed with a darts game.'
+  - text: 'Stripe Sessions 2026 Keynote: Projects, Database, Checkout Studio, Treasury, Signals + MPP and UCP protocols'
+    href: 'https://www.youtube.com/live/e13-s0p1tfE'
+    anchor: 'stripe-sessions-2026'
+    image: 'https://i.ytimg.com/vi/e13-s0p1tfE/hqdefault.jpg'
+    source: 'Stripe Sessions'
+    kind: 'youtube'
+    notes: 'Stripe positioning itself as the economic infrastructure for the agent era. Stripe Projects: agents deploy services, DBs (Supabase), hosting (Vercel) programmatically. Agentic Commerce Suite + Model Payment Protocol (MPP) for agent-to-agent transactions via Link wallet (human authorizes via biometrics). Checkout Studio: visual builder + analytics. Stripe Database: Postgres, real-time queryable Stripe business data for devs and their agents. Metronome + Tempo for real-time metering, rating, streaming pay (token-by-token billing). Stripe Signals: real-time risk + insights API. Stripe Treasury: multicurrency, FDIC-insured, payouts to 160 countries, stablecoin rail support. Public roadmap at stripe.com/roadmap through Q1 2027. UCP joined by Meta, Amazon, Salesforce, Microsoft alongside Stripe + Google.'
+shipped: []
+built: []
+learned:
+  - 'Kalshi got told "this is illegal in the US" by YC judges and won the hackathon anyway — the regulatory premise was wrong, not the idea.'
+  - 'You cannot beat hedge funds in options — but a regulated event-contract exchange lets retail hedge actual life risk (inflation, Fed, weather) on equal footing.'
+  - 'Spectacles thesis: phones isolate, see-through glasses are social by default — and you can ship a real spatial computer at glasses-weight if you build the OS yourself.'
+  - 'Snap separating social (messaging) from media (Discover) is the cleanest argument I have seen for why feed-driven products produce worse outcomes than feed-free ones.'
+  - 'Stripe formalised two protocols this week: MPP (agent-to-agent payments) and UCP (cross-platform commerce standard). Standards land before the agent economy does.'
+  - 'Stripe Database = Postgres-shaped read API over your Stripe data. The point is to make Stripe legible to agents, not just dashboards.'
+met: []
+changelog:
+  - date: '2026-05-04'
+    note: 'Initial publish — three watched entries (Kalshi, Spiegel, Stripe Sessions 2026 keynote) with anchored prose sections.'
+---
+
+## What actually shipped
+
+W19 starts with three long-form watches that all point at the same thing —
+**the substrate is being formalised**. Kalshi formalised event hedging into a
+regulated exchange. Snap is formalising "compute as glasses + private
+messaging" instead of "compute as phone + endless feed". Stripe formalised
+agentic commerce into two protocols (MPP + UCP) and a real-time Postgres view
+of your business. Different domains, same move: turn an emerging behaviour
+into a standard before the messy version locks in.
+
+Foundry v0.5 plumbing continues. Cattle Logic ranch learnings from W18 are
+being written up.
+
+---
+
+<div id="kalshi-tarek"></div>
+
+## Uncapped — Tarek Mansour on Building Kalshi
+
+**[Watch on YouTube ↗](https://youtu.be/Tt6ozrcjLyQ)** · Jack Altman with Tarek Mansour, co-founder/CEO of Kalshi
+
+### Background and Genesis (0:29 – 3:55)
+
+Born in California, raised in Lebanon. The volatility of his environment turned math into a stability instrument early. MIT → Goldman Sachs → Citadel, where he noticed something specific about how traders actually worked: **most ideas were opinions about future events** (Brexit outcomes, 2016 election, Fed decisions) being expressed through indirect proxies — currency pairs, vol structures, sector ETFs. Traditional markets weren't built to clear opinions on outcomes; they were built to clear claims on assets. The mismatch produced "backwards" trading and missed risk transfer.
+
+### YC Hackathon → Y Combinator (6:42 – 8:02)
+
+October 2018. He and his co-founder built an **order book for event contracts** at the YC hackathon. Judges told them flatly: _not allowed in the US_. They won the hackathon anyway. Entering YC was hard — no product, no customers, just a regulatory mountain.
+
+### Regulatory Battle (11:06 – 18:32)
+
+- **Nov 2020** — granted regulated exchange approval (CFTC).
+- **2023** — election market blocked; multiple delays.
+- After exhausting the cooperative path, they **sued the government**.
+- **Oct 2024** — landmark legal win redefining the line between gambling and financial markets, establishing Kalshi as a regulated exchange and clearing house.
+
+The legal milestone matters not just for Kalshi but for the category: it created a federal precedent that event contracts on real-world outcomes can be financial instruments rather than gaming products.
+
+### Market Structure (18:36 – 18:50)
+
+Kalshi is **not a casino**. It's an open book where users trade against each other; Kalshi takes a small transaction fee. There is no house taking the other side. That is the structural difference — and it's what allows institutions to participate with a straight face.
+
+### Hedging Real Life (35:51 – 38:00)
+
+The pitch isn't "predict the future for fun." It's **hedge the things that actually move your life and balance sheet**: CPI prints, FOMC decisions, weather events for energy and ag exposure, election outcomes for regulated industries. The fairness argument: you can't beat hedge funds at options pricing, but you can buy a fixed-payoff contract on the underlying event at the same price they can.
+
+### Team Structure (41:47 – 43:30)
+
+**~127 people. No traditional managerial layers.** The org is self-organizing — the team's job is to identify the company's most critical problem and route themselves toward it. Tarek's framing: high-output autonomy beats hierarchy when the problem set is fast-moving and the bar for individual contributors is high. He also names what most founders don't say out loud: **firing is hard**, and the only way to keep the bar high is to keep doing it.
+
+### What I'm taking away
+
+The thing that's underrated about Kalshi is the **legitimacy compounding**. Each regulatory win made the next harder to deny. The 2024 case wasn't a leap — it was the inevitable consequence of three years of patient ratcheting. Building inside hostile regulation rewards founders who can take a punch repeatedly.
+
+---
+
+<div id="spiegel-cheeky-pint"></div>
+
+## Cheeky Pint — Evan Spiegel on Spectacles, Snap, and Computing Made Human
+
+**[Watch on YouTube ↗](https://youtu.be/8fZNK-M-77I)** · Snap CEO Evan Spiegel
+
+### Spectacles and the Future of Computing
+
+Spiegel's framing for Spectacles: **"making computing human again"**. The phone isolates — head down, screen between you and the world. See-through glasses are social by default. He explicitly contrasts with full VR headsets (Vision Pro): they're powerful but anti-social. Spectacles are the bet that a real spatial computer at **glasses weight** will win because it doesn't ask you to leave the room you're in.
+
+### The Stack
+
+To hit the form factor and the responsiveness, Snap rebuilt the OS. **Snap OS is Linux-based, proprietary** — they explicitly avoided Android because the bloat costs them latency, battery, and weight. The decision to build the OS top-to-bottom is the same instinct Apple acted on with Vision Pro: at glasses weight, you cannot afford a generic mobile stack.
+
+### AI in Production
+
+**Over two-thirds of new code at Snap is AI-written.** This is the line that should make every CTO ask whether their org is still pretending this is a year-out conversation. Spiegel doesn't dwell — he treats it as the new baseline.
+
+### Snap's Core Philosophy (28:13 – 34:08)
+
+Snapchat distinguishes itself by **separating social (private messaging with close friends) from media (Discover)**. The endless public feed is the failure mode of social media. Spiegel credits this separation for Snap's relatively positive impact on user wellbeing. The financial argument tracks too: avoiding feed-driven engagement loops removed the perverse incentive that drives most platforms toward outrage.
+
+### Business Mix
+
+Two revenue streams: advertising + **Snapchat+ subscription at 25M subscribers**. The subscription is real revenue, not a vanity number — it changes the margin profile and the incentive structure when a meaningful chunk of users pay you directly.
+
+### Teens, Policy, and Wellbeing (38:55 – 45:30)
+
+Spiegel pushes back on blanket teen-platform bans: **every child is different**, and policy that treats teens as a uniform mass produces worse outcomes than policy that empowers parents. He cites research suggesting Snapchat usage is associated with **better** relationship outcomes than other platforms, attributable to the friend-graph and messaging-first design.
+
+### Leadership Evolution (59:49 – 1:00:59)
+
+He started as a product builder. The role now is **empathy and inspiration** — getting a large team to attack massive, industry-shaping problems with conviction. Less hands on a Figma file, more hands on the team's morale and clarity of mission.
+
+### Fun Facts
+
+- **Norway** was the first country to embrace Snapchat — high-end device penetration + reliable internet meant the product worked the way it was designed to.
+- The interview ended with a darts game in the pub. On brand.
+
+---
+
+<div id="stripe-sessions-2026"></div>
+
+## Stripe Sessions 2026 — Keynote: Projects, Database, MPP, UCP, Treasury, and the Agent Substrate
+
+**[Watch on YouTube ↗](https://www.youtube.com/live/e13-s0p1tfE)** · Stripe Sessions 2026 Keynote
+
+The Sessions 2026 keynote is the cleanest read so far on **what an agent-native commerce stack looks like**. Stripe is positioning itself as **the economic infrastructure for the AI era** (2:50 – 8:36) and shipping the surface area to back the claim.
+
+### Product Launches
+
+**Stripe Projects (11:02 – 14:17).** Programmatic deployment of applications. Agents can spin up services, databases (Supabase), and hosting (Vercel) from inside a Stripe-managed control plane. The point isn't "Stripe deploys your app" — it's that the deployment graph is now legible to a payment system, so spend, metering, and reconciliation flow through one substrate.
+
+**Agentic Commerce Suite (19:40 – 22:27).** Makes products **legible to agents** — structured product feeds, machine-readable pricing, deterministic checkout flows. Includes support for the **Model Payment Protocol (MPP)** for agent-to-agent transactions.
+
+**Checkout Studio (24:01 – 26:31).** Visual builder + analytics dashboard for high-performing checkout flows. Custom embedded forms, optimization signals.
+
+**Stripe Database (57:48 – 58:10).** **Postgres-based**. Real-time queryable view of your Stripe business data — for developers and their agents. This is the move that matters most to me as a builder: agents reason in SQL-like patterns; giving them a Postgres surface over your business is the cleanest substrate possible.
+
+**Metronome + Tempo (45:47 – 50:55).** Real-time metering, rating, and **payment streaming**. New business models become possible: charge as tokens are consumed, not at the end of a billing period. Metering becomes a primitive, not a billing-system afterthought.
+
+**Stripe Signals (1:27:28 – 1:28:09).** Intelligence API — real-time risk scores and insights on customers and transactions, callable from any system.
+
+**Stripe Treasury (1:40:15 – 1:48:21).** Financial operating system: multicurrency accounts, FDIC-insured balances in the US, payouts across **160 countries**, and **stablecoin rail support** — enabling cross-border money movement that doesn't go through correspondent banking.
+
+### Strategic Updates
+
+**Platform Growth Studio (1:54:31 – 1:56:51).** Cross-platform recommendation engine surfacing growth opportunities from aggregate Stripe data.
+
+**Public Roadmap (2:08:33 – 2:09:12).** Stripe published a comprehensive **public roadmap at stripe.com/roadmap** through Q1 2027. This is unusual for an infrastructure company at this scale — and an explicit signal that Stripe wants downstream partners betting on specific dates.
+
+### The Two Protocols
+
+The structural news of the keynote: Stripe shipped two protocols.
+
+#### Model Payment Protocol — MPP (14:59 – 18:20)
+
+**Purpose.** An open standard for agents to **purchase goods and services autonomously**. The hard problem MPP solves: pricing pages, forms, and payment flows were designed for humans, and agents fail at them in ways that are non-obvious until you watch one try.
+
+**Mechanism.** A communication layer that lets a service signal to an agent that **payment is required**, then exchanges value directly between two autonomous endpoints. Integrates with the **Link wallet** so a human can review and authorize agent-initiated payments via biometric thumbprint. The control surface is "human approves a budget envelope, agent transacts inside it."
+
+#### Universal Commerce Protocol — UCP (2:03:01 – 2:04:16)
+
+**Purpose.** A unified commerce standard across platforms — eliminates fragmentation across the buy / fulfill / refund / dispute lifecycle.
+
+**Context.** Pioneered by **Stripe and Google**. As of this keynote, **Meta, Amazon, Salesforce, and Microsoft** have joined the UCP general committee. The goal: one standard to build on, one specification to implement, one community to support — so agentic commerce doesn't fragment into platform-specific dialects the way bot APIs did.
+
+### Why this keynote matters
+
+Two patterns landed in the same keynote:
+
+1. **Make business state legible to agents** — Stripe Database (Postgres surface), Stripe Signals (intelligence API), Checkout Studio analytics.
+2. **Standardize the agent-to-agent commerce path** — MPP for payments, UCP for the broader commerce journey.
+
+The economics implied: as soon as agents can read business state and transact across a standard protocol, the unit cost of a transaction collapses and metering pressure rises. Tempo + Metronome are the answer to the metering pressure. It's a coherent stack, not a list of features.
+
+---
+
+## What's next week
+
+Wrap-up of the W18 ranch-walkthrough learnings, Foundry v0.5 audit-log surface
+landing, and likely follow-ups on MPP / UCP once the spec drops are public.

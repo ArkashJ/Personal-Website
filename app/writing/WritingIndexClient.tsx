@@ -6,14 +6,12 @@ import { Search, X } from 'lucide-react'
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
-import { KNOWLEDGE_DOMAINS } from '@/lib/data'
 import type { WritingMeta } from '@/lib/content'
 import type { Learning } from '@/lib/learnings'
 
 type Props = {
   posts: WritingMeta[]
   learnings: Learning[]
-  domainCounts: Record<string, number>
 }
 
 type Tab = 'essays' | 'learnings'
@@ -27,7 +25,7 @@ function matches(query: string, ...fields: (string | string[] | undefined)[]): b
   })
 }
 
-export default function WritingIndexClient({ posts, learnings, domainCounts }: Props) {
+export default function WritingIndexClient({ posts, learnings }: Props) {
   const allTags = Array.from(new Set(posts.flatMap((p) => p.tags || []))).sort()
   const [tab, setTab] = useState<Tab>('essays')
   const [query, setQuery] = useState('')
@@ -182,48 +180,6 @@ export default function WritingIndexClient({ posts, learnings, domainCounts }: P
           )}
         </div>
       )}
-      {/* Second Brain — knowledge domains */}
-      <section id="second-brain" className="mt-20 pt-12 border-t border-border">
-        <div className="mb-8">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-primary mb-2">
-            ● Second Brain
-          </p>
-          <h2 className="text-2xl font-bold text-text">
-            Six domains. <span className="italic font-normal text-muted">In public.</span>
-          </h2>
-          <p className="text-muted text-sm mt-2 max-w-xl">
-            Notes, deep dives, and worked examples organized by domain. Everything I&apos;m thinking
-            through — made linkable.
-          </p>
-        </div>
-
-        <ol className="divide-y divide-border">
-          {KNOWLEDGE_DOMAINS.map((d) => {
-            const count = domainCounts[d.slug] || 0
-            return (
-              <li key={d.slug}>
-                <Link
-                  href={`/knowledge/${d.slug}`}
-                  className="group flex items-center gap-4 py-4 hover:bg-surface/50 -mx-2 px-2 transition-colors"
-                >
-                  <span className="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <span className="text-text font-semibold group-hover:text-primary transition-colors">
-                      {d.name}
-                    </span>
-                    <span className="text-muted text-sm ml-3 hidden sm:inline">
-                      {d.description}
-                    </span>
-                  </div>
-                  <span className="font-mono text-xs text-primary shrink-0">
-                    {count} article{count === 1 ? '' : 's'} →
-                  </span>
-                </Link>
-              </li>
-            )
-          })}
-        </ol>
-      </section>
     </div>
   )
 }

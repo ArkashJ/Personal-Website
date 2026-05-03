@@ -46,7 +46,6 @@ export default async function WeeklyIndexPage({
         <SectionHeader
           eyebrow="Weekly"
           title="What I read, watched, and shipped"
-          italicAccent="one entry per ISO week."
           description="Append-only running log. Higher cadence than /writing, narrower scope than /about."
           asH1
         />

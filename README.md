@@ -257,7 +257,7 @@ Profile: **[github.com/ArkashJ](https://github.com/ArkashJ)**.
 | Analyst — Sourcing Extern                            | **Battery Ventures**                         | Dec 2021 – Apr 2022 | Boston, MA          |
 | Undergraduate Researcher (NSF UROP)                  | **BU Chemistry / Ziegler Lab**               | Jan – Aug 2021      | Boston, MA          |
 
-Detailed bullets per role live at [arkashj.com/experience](https://www.arkashj.com/experience).
+Detailed bullets per role live at [arkashj.com/about](https://www.arkashj.com/about) (the Life Changelog timeline). Older `/experience` URLs 308-redirect to `/about#career`.
 
 ---
 
@@ -491,9 +491,9 @@ Personal-Website/
 └── vercel.json                  # Headers + caching
 ```
 
-### Skills Library
+### Claude Skills Library
 
-The site hosts a **public, browsable index of 71 Claude Code skills** authored across Benmore engagements at [`/skills`](https://www.arkashj.com/skills). Source-of-truth lives in `content/skills/*.md` (flat directory of markdown files); the loader and category rules live in `lib/skills.ts`.
+The site hosts a **public, browsable index of 71 Claude Code skills** authored across Benmore engagements at [`/skills`](https://www.arkashj.com/skills) (surfaced in nav as "Claude Skills"). Source-of-truth lives in `content/skills/*.md` (flat directory of markdown files); the loader and category rules live in `lib/skills.ts`.
 
 | Surface                                               | What it is                                                                                                          |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -504,12 +504,31 @@ The site hosts a **public, browsable index of 71 Claude Code skills** authored a
 
 To install a skill into your own Claude Code setup, follow the bootstrap script referenced on each skill page (`skills.sh`).
 
-The site also exposes a weekly running log at [`/weekly`](https://www.arkashj.com/weekly) — ISO-week-keyed entries sourced from `content/weekly/` and a typed highlights data bank (`lib/highlights.ts`) shared with the homepage Recent Wins rail. Each rail entry (`read`/`watched`/`built`/`shipped`/`learned`/`met`) accepts either a plain string or a rich `{text, href, image?, source?, kind?}` object — YouTube URLs auto-derive thumbnails, common sources (GitHub, Substack, Medium, X, arXiv, Spotify, Apple Podcasts, Latent Space) auto-fetch SimpleIcons logos via `lib/weekly-render.ts`. The latest weekly log surfaces on the home page as a "This week" card directly under the hero.
+### LLM-copyable everywhere
+
+Every detail page on the site has a sibling `/raw` endpoint emitting `text/plain; charset=utf-8` plus a "Copy for LLM" button in the page header:
+
+| Page                         | Raw endpoint                     |
+| ---------------------------- | -------------------------------- |
+| `/skills/[slug]`             | `/skills/[slug]/raw`             |
+| `/writing/[slug]`            | `/writing/[slug]/raw`            |
+| `/weekly/[slug]`             | `/weekly/[slug]/raw`             |
+| `/knowledge/[domain]/[slug]` | `/knowledge/[domain]/[slug]/raw` |
+
+The shared client helper (`lib/copy-for-llm.ts`) uses the Clipboard `ClipboardItem` API with a `Promise<Blob>` so the user-activation gesture survives the network round-trip on Safari.
+
+### Weekly log + admin
+
+`/weekly` surfaces an append-only weekly running log sourced from `content/weekly/<YYYY>-W<NN>.mdx`. Multiple entries per ISO week are allowed. Each rail entry (`read`/`watched`/`built`/`shipped`/`learned`/`met`) accepts either a plain string or a rich `{text, href, image?, source?, kind?}` object — YouTube URLs auto-derive thumbnails, common sources (GitHub, Substack, Medium, X, arXiv, Spotify, Apple Podcasts, Latent Space) auto-fetch SimpleIcons logos via `lib/weekly-render.ts`. The home page rolling-log paginates these (5 per page).
+
+A Clerk-gated owner-only editor at `/admin/weekly` (allowlisted to `process.env.ADMIN_EMAIL`) appends new items to the current ISO-week MDX via a server action — local-only since Vercel's filesystem is read-only.
 
 ### Routes
 
 ```
-/                                — Hero · Arc · Now · Research · Work · Projects · Skills · Writing · Recent wins
+/                                — Hero · GitHub activity · Arc · Now (Milestones/Writing/Media/Projects rails) · Rolling weekly log · Research · Work · Coursework · Projects
+/changelog                       — Parsed CHANGELOG.md + sticky commits sidebar (deep-links to weekly logs)
+/admin/weekly                    — Clerk-gated owner-only weekly editor
 /about                           — Life Changelog
 /about/timeline/[slug]           — Per-milestone deep dive
 /about/archive                   — Pre-revamp legacy bio

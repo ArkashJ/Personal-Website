@@ -40,6 +40,40 @@ tags:
     'Permanent Capital',
     'Insurance Float',
     'Concentrated Investing',
+    'All-In',
+    'OpenAI',
+    'GPT 5.5',
+    'Spud',
+    'Anthropic',
+    'Opus 4.7',
+    'Mythos',
+    'AI Cybersecurity',
+    'Vibecoding',
+    'Hyperscalers Capex',
+    'Dark GPUs',
+    'Musk vs Altman',
+    'Retatrutide',
+    'Peptides',
+    'Friedberg',
+    'TBPN',
+    'Stripe Sessions',
+    'Stripe Atlas',
+    'Stripe Radar',
+    'Stripe Treasury',
+    'Stablecoins',
+    'Programmable Money',
+    'Money Stuff',
+    'Matt Levine',
+    'Bobby Jain',
+    'Multi-Strat',
+    'Boaz Weinstein',
+    'Non-Traded BDC',
+    'Saba Capital',
+    'Avis',
+    'Short Squeeze',
+    'Section 16',
+    'Pentwater',
+    'SRS',
   ]
 watched:
   - text: 'Stripe Sessions keynote: AI replatforming global trade, agentic commerce, and the Solow Paradox'
@@ -77,6 +111,27 @@ watched:
     source: 'YouTube'
     kind: 'youtube'
     notes: 'PSUS: tax-efficient closed-end structure, no incentive fees (lowest-cost Pershing Square vehicle), permanent capital compounding model. 19% ROE over 22 years; 24.9% over 8 years of permanent capital. Vantage Holdings insurer modeled on Buffett insurance float.'
+  - text: 'All-In: OpenAI missed targets, machine-vs-machine cybersecurity, Musk-Altman trial, hyperscaler capex, vibecoding risk, retatrutide'
+    href: 'https://www.youtube.com/watch?v=fpC4sbawSzQ'
+    anchor: 'all-in-may2'
+    image: 'https://i.ytimg.com/vi/fpC4sbawSzQ/hqdefault.jpg'
+    source: 'All-In'
+    kind: 'youtube'
+    notes: 'AI agent deleted a prod codebase during a routine credential fix — vibecoding cautionary tale. OpenAI missed 1B WAU + revenue targets, but the bottleneck is power/compute not demand. Cybersecurity flips to machine-vs-machine: GPT 5.5 ≈ Anthropic Mythos for white-hat work. Hyperscaler capex isn’t a Cisco-2000 bubble — there are no "dark GPUs", every chip is utilized on arrival. Retatrutide (GLP1+GIP+glucagon) shows real liver-fat reduction while preserving muscle.'
+  - text: 'TBPN live from Stripe Sessions: Collisons on agentic commerce, Atlas, Radar, Treasury, programmable money + stablecoins'
+    href: 'https://www.youtube.com/live/T6ZRmi7Iwzc'
+    anchor: 'tbpn-stripe'
+    image: 'https://i.ytimg.com/vi/T6ZRmi7Iwzc/hqdefault.jpg'
+    source: 'TBPN'
+    kind: 'youtube'
+    notes: '71% YoY growth in new businesses joining Stripe in Q1. Stripe Atlas now incorporates 26% of new US C-corps. Agentic commerce: agents purchasing domains, signing up for APIs, deploying infra autonomously — Radar evolves to fight AI-driven fraud. Stablecoins quietly winning on cross-border, working capital, streaming pay; agentic wallets enable controlled programmable spend. Build products that are "legible" to agents.'
+  - text: 'Money Stuff: Ackman PSUS dual IPO, Bobby Jain unwind, Boaz Weinstein BDC tender, Avis squeeze + Section 16 dodge'
+    href: 'https://www.youtube.com/watch?v=41wsYdkShKQ'
+    anchor: 'money-stuff-psus'
+    image: 'https://i.ytimg.com/vi/41wsYdkShKQ/hqdefault.jpg'
+    source: 'Money Stuff'
+    kind: 'podcast'
+    notes: 'Levine + Greifeld on the "physics" of finance. PSUS dual IPO promised premium-to-NAV, opened at ~20% discount; anchors got 3/10 of a management-co share, others 1/5. Bobby Jain returns to Millennium — multi-strat economics break unless you start huge (PMs want $50M cash now, LPs want steady returns now). Boaz Weinstein tender at ~65¢ on the dollar got <1% — non-traded BDC investors refuse to mark to market. Pentwater rode Avis from $100→$700, sold ~$1.75B with ~$1B profit; coughed up Section 16 short-swing on ~94k shares (~$50M) and kept the rest by booking the sells out of separate, longer-held funds.'
 shipped:
   - text: '71 public Claude Code skills at /skills'
     href: '/skills'
@@ -124,6 +179,8 @@ changelog:
     note: 'Backfilled Thursday (Apr 30) deep-dive session across all 5 podcasts in learned rail.'
   - date: '2026-05-02'
     note: 'Modal UX: clicking a watched item now opens a scrollable detail modal (react-markdown, ESC/X/backdrop to close) instead of jumping to a page anchor.'
+  - date: '2026-05-03'
+    note: 'Added 3 podcast entries: All-In (OpenAI/cyber/capex/vibecoding/retatrutide), TBPN live from Stripe Sessions (agentic commerce + Atlas/Radar/Treasury), Money Stuff (PSUS, Bobby Jain, Boaz Weinstein BDC, Avis short squeeze + Section 16). Tags expanded with the new namespaces.'
 ---
 
 ## What actually shipped
@@ -308,6 +365,124 @@ High maintenance costs, regulatory risk (legal status could shift), low liquidit
 
 - **19% return on equity** over the last 22 years
 - **24.9% return** over the 8 years since adopting permanent capital
+
+---
+
+---
+
+<div id="all-in-may2"></div>
+
+## All-In — OpenAI Misses, Machine-vs-Machine Cybersecurity, Capex, Vibecoding, Peptides
+
+**[Watch on YouTube ↗](https://www.youtube.com/watch?v=fpC4sbawSzQ)** · Chamath, Sacks, Friedberg, Calacanis
+
+### OpenAI Misses Internal Targets — But Not Because of Demand
+
+Reports surfaced this week that OpenAI fell short of internal goals for both user growth (the 1B weekly-active-user target) and revenue. The hosts argue the miss is not a demand problem — it's a **compute and power** bottleneck. Every hyperscaler is supply-capped on power for data centers, which mechanically benefits Amazon, Google, and Meta because they own the long-dated power and land. Developer interest is rotating toward OpenAI's new **"Spud" base model** and **GPT 5.5**, while Anthropic's **Opus 4.7** is taking heat for compute rationing and performance bugs.
+
+### AI Cybersecurity (20:02–31:02) — One-Time Upgrade Cycle
+
+GPT 5.5 and Anthropic's **"Mythos"** can simulate sophisticated attacks. The framing the hosts land on: this is a **one-time upgrade cycle**, not a permanent escalation. White-hat use of the same models hardens human-written code that was always insecure; the steady state is **machine vs. machine**, with most production code eventually rewritten by machines. The transition window is the dangerous period, not the destination.
+
+### Musk vs. Altman Trial (31:03–40:59)
+
+Musk's complaint alleges breach of charitable trust and unjust enrichment in OpenAI's pivot from non-profit to for-profit structure. He's seeking significant damages and a structural reversal. The hosts focus on the original-intent question: what was the founding charter actually committing to, and does the current structure violate it?
+
+### Big Tech Earnings & the Capex Explosion (41:00–52:43)
+
+Google, Microsoft, and Amazon are pouring capital into AI infrastructure at a pace that compresses free cash flow. The hosts reject the Cisco-2000 comparison: that bubble left **dark fiber** sitting unused for years. Today there are **no dark GPUs** — every chip purchased is being utilized on arrival because demand is voracious. The structural shift is real, not speculative overbuild.
+
+### Vibecoding Risks (52:44–58:32)
+
+Anchored on a recent incident where an AI agent **deleted an entire codebase during a routine credential fix**. The warning: "vibecoding" — leaning on AI for complex sysadmin and infra work without rigorous supervision — fails because the model often doesn't know when to stop or ask for confirmation. Human accountability and validation gates are non-negotiable for professional software work.
+
+### Peptide Trends (58:33–1:06:33)
+
+**Retatrutide** — a triple agonist hitting GLP-1, GIP, and glucagon receptors — is going mainstream. Trial data shows significant weight loss, **liver fat reduction**, and A1C improvements, with notable muscle preservation relative to GLP-1 monotherapy. The hosts caution that "peptides as health optimization" is a real trend but these are real interventions that need real planning, not casual stacking.
+
+### Friedberg's Supreme Court Day (1:06:34–1:20:57)
+
+Friedberg attended oral arguments in a Monsanto/Roundup case. Procedural takeaway: SCOTUS is not re-litigating facts — it focuses on the legal interpretation of federal statute vs. state authority. He notes the intensity of justice questioning and the difficulty of compressing a complex regulatory dispute into a 60-minute argument.
+
+---
+
+<div id="tbpn-stripe"></div>
+
+## TBPN Live from Stripe Sessions — Agentic Commerce and the Internet Economy
+
+**[Watch on YouTube ↗](https://www.youtube.com/live/T6ZRmi7Iwzc)** · Conversations with Stripe leaders + fintech operators
+
+### The AI-Driven Business Surge (04:00–15:57)
+
+John and Patrick Collison highlight **71% YoY growth** in new businesses joining Stripe in Q1. AI is collapsing the cost of starting a company — solo founders ship faster, hire later, and reach revenue earlier. The same dynamic creates a new fraud surface, which is why **Stripe Radar** is being upgraded to deal with AI-generated identity, synthetic accounts, and prompt-injected commerce flows.
+
+### Agentic Commerce (23:05–25:00)
+
+The center of gravity at Sessions: agents that purchase domains, sign up for APIs, deploy infrastructure, and reconcile invoices — without a human in the loop. The Collisons' framing: the path runs from **pair programming → workflow execution → autonomous business operations**. Stripe is positioning itself as the payment substrate that makes that legal, observable, and reversible.
+
+### Programmable Financial Services (12:07–14:00)
+
+Stripe is no longer a payment gateway. With **Stripe Treasury**, businesses can hold balances, dispatch global payouts, run multicurrency, and build financial products on top — Stripe as the **operating system for global money movement**.
+
+### Stablecoins and the Future of Finance (32:27–46:46, 1:10:58–1:29:00)
+
+Henri Stern and Zach Abrams make a pragmatic case: ignore the price action, watch the rails. Stablecoin volume is real for **cross-border payments, working capital, and streaming payments**. The next surface is **agentic wallets** — programmable spend rules that an autonomous agent can transact within, while the human keeps key authorization and limits.
+
+### Effective Product Development (46:46–1:10:58)
+
+Jeff Weinstein details **Stripe Atlas**, which has incorporated **26% of new C-corps in the US** and continues to compress time-to-incorporation. His durable lesson: build products that are **legible to AI agents** — clean APIs, deterministic flows, machine-readable receipts. If a model can't reason about your product, agents won't pick it.
+
+### Tags
+
+`#StripeSessions #AI #Fintech #AgenticCommerce #Stablecoins #Entrepreneurship #ProgrammableMoney`
+
+---
+
+<div id="money-stuff-psus"></div>
+
+## Money Stuff — PSUS Dual IPO, Multi-Strat Brutality, BDC Psychology, Avis Section-16 Dodge
+
+**[Listen ↗](https://www.youtube.com/watch?v=41wsYdkShKQ)** · Matt Levine + Katie Greifeld
+
+A classic episode: small talk on Hoboken mold and radon, then four meaty stories. Levine's running theme — financial structures that look elegant on paper run into the **physics** of market microstructure, talent economics, investor psychology, and securities-law tripwires.
+
+### 1. Bill Ackman's Dual Pershing Square / PSUS IPO (~1:40)
+
+Ackman took **two** things public in one week: **PSUS**, a new $5B closed-end fund holding large-caps, hedges, and Uber; and the **Pershing Square management company** itself. IPO buyers of PSUS automatically received **1/5 of a management-company share**; anchor investors got a sweeter **3/10**. The free management-co stock was the sweetener that got the closed-end fund subscribed.
+
+**The physics of CEFs.** Closed-end funds issue a fixed number of shares and trade on-exchange. You can't redeem at NAV. As a structural matter, CEFs **almost always trade at a discount** — investors demand it because they're stuck with whatever price the market gives them. Ackman spent years promising PSUS would defy this. It opened at a **~20% discount**, drifted to the low-$40s, and the management company traded around $29–$30. IPO buyers slightly underwater; anchors slightly up; Ackman bought in the open market the next day.
+
+**Why bother?** **Permanent capital.** Ackman wants to make long-duration, illiquid bets without the redemption risk that arbitrageurs exploit. He's framing PSUS as a Berkshire-style permanent vehicle, with Howard Hughes Corp. as an acquisition platform alongside it.
+
+### 2. Multi-Strat Hedge Funds and Bobby Jain's Return to Millennium (12:45)
+
+Bobby Jain — former Millennium co-president, the architect of much of its multi-strat machine — launched **Jain Global** in 2024 with ~$6B and is now returning outside capital and going home to manage money for Millennium only.
+
+**Why new multi-strats almost never scale.** Multi-strat funds run dozens of independent pods, each a mini-business with high fixed costs (data, prime brokerage, salaries). PMs get paid **$30–100M+** on their own books via pass-through fees. Pods that are too small lose money on PM comp; pods that are too big run out of strategy capacity. LPs (pensions, endowments) want **steady 10–15% with low correlation, now** — they will not wait 5–10 years for scale. The economics only close at enormous AUM. Even Jain couldn't crack it in two years.
+
+**Levine's analogy.** Tech inverts this — low cash, big equity, patient capital. Multi-strats demand cash now on both sides of the table. The math doesn't work until you're already huge.
+
+### 3. Boaz Weinstein's Tender for OBDC2 (17:45)
+
+Saba's Boaz Weinstein offered to buy 5–10% of Blue Owl's non-traded BDC at **~65¢ on the dollar**. Fill rate: **<1%**.
+
+**BDC mechanics.** Non-traded BDCs lend to private middle-market borrowers, sell through advisors to retail/HNW, and offer quarterly redemptions at NAV (capped, e.g., 5% of fund per quarter). Investors bought the product **because** it doesn't visibly mark down. Even with secondary pricing implying a 35% discount, they refuse to crystallize the loss. They'd rather queue at 100¢ for years (or ignore the tender entirely — Levine: "I throw them away").
+
+**Conclusion.** The tender was partly trolling, but it surfaced a useful read: private credit holders are not panicking, they are stubborn. Boaz may try the same play on longer-duration BDCs where redemption queues are longer and stale-NAV pressure is higher.
+
+### 4. The Avis Short Squeeze and the Section 16 Workaround (22:31)
+
+Avis ran from ~$100 to over **$700** and back to the $100s. Two funds — long-term holder **SRS** (board seat, locked up) and opportunistic **Pentwater** (~50% including derivatives) — together owned **more than 100% of the float**. Pentwater sold into the squeeze for **~$1.75B** with profits estimated **~$1B**.
+
+**The Section 16 problem.** Owning >10% makes you an insider; buying and selling within six months triggers **short-swing profit disgorgement** — all profits go back to the company. Pentwater had doubled its stake earlier in the year, so on its face, the squeeze sale should have triggered the rule.
+
+**The workaround.** Pentwater told Avis: **~94,000 shares** were short-swing — here's a check (~$50M or less). The **millions of other shares** were sold out of **different funds and accounts** that had held longer than six months or were structured separately, so no Section-16 liability. They kept the vast majority of the windfall.
+
+**Aftermath.** Avis's earnings call was awkward; executives said they'd "look into anything we can do to recover for shareholders". Levine's read: the lawyers will fight over whether the separate-account structure really insulates the trade. Either way — caused/rode the squeeze, cashed at the top, dodged the trap. Epic trade.
+
+### Levine's running thesis
+
+Finance is full of structures that look great on paper but run into the physics: CEF discounts, multi-strat fixed costs, BDC investor psychology, Section-16 tripwires. The four stories of the week are four different versions of the same lesson.
 
 ---
 
