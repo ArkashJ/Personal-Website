@@ -329,11 +329,6 @@ function ItemCard({
               </span>
             )}
           </div>
-          {resolved.notes && (
-            <p className="text-xs text-muted leading-relaxed line-clamp-2 mt-auto">
-              {resolved.notes}
-            </p>
-          )}
           <span className="font-mono text-[10px] uppercase tracking-widest text-primary/80 mt-2">
             Click to read →
           </span>
