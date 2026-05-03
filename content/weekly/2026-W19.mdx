@@ -44,6 +44,17 @@ tags:
     'Public Roadmap',
     'Link Wallet',
     'Postgres',
+    'RTK',
+    'Token Killer',
+    'CLI Proxy',
+    'Token Optimization',
+    'Context Mode',
+    'MCP Sandbox',
+    'SQLite',
+    'Compound Engineering',
+    'Plugin',
+    'Every',
+    'Dev Tooling',
   ]
 watched:
   - text: 'Uncapped (Jack Altman): Tarek Mansour on building Kalshi — hackathon → CFTC fight → landmark 2024 win'
@@ -89,12 +100,54 @@ watched:
       - 'Stripe Treasury: multicurrency, FDIC-insured US balances, payouts to 160 countries, stablecoin rails.'
       - 'Public roadmap at stripe.com/roadmap through Q1 2027 — Meta, Amazon, Salesforce, Microsoft on UCP committee.'
 shipped: []
-built: []
+built:
+  - text: 'RTK (Rust Token Killer): CLI proxy that compresses dev-command output before it hits the LLM context'
+    href: 'https://github.com/rtk-ai/rtk'
+    anchor: 'rtk'
+    image: '/images/weekly/rtk-stats.png'
+    source: 'GitHub'
+    kind: 'repo'
+    date: '2026-05-04'
+    notes: 'Single Rust binary, zero dependencies, ~100+ supported commands, <10ms overhead. Hook transparently rewrites Bash commands (e.g., git status → rtk git status) before execution; Claude never sees the rewrite, just the compressed output. My own stats after running it: 13,454 commands · 50.0M input + 31.2M output tokens · 17.9M tokens saved (35.9%) · avg 4.0s per command. Heaviest savers: rtk lint eslint (97.8% saved), rtk gh pr create (99.9%), rtk gh issue list (99.7%), rtk curl (95–98%). Works across Claude Code, Cursor, Gemini CLI, Aider, Codex, Windsurf, and Cline.'
+    bullets:
+      - '13,454 commands run · 17.9M tokens saved (35.9%) on my Claude Code sessions.'
+      - 'Single Rust binary, zero deps, <10ms overhead — drop-in CLI proxy that compresses tool output.'
+      - 'Hook rewrites bash commands transparently (git status → rtk git status); the model only sees compressed output.'
+      - 'Best savings on lint (~98%), gh pr/issue calls (~99%), and curl-style fetches (~95–98%).'
+      - 'Works with Claude Code, Cursor, Gemini CLI, Aider, Codex, Windsurf, Cline.'
+  - text: 'context-mode: MCP sandbox + per-project SQLite that gives Claude Code session continuity (98% context reduction)'
+    href: 'https://github.com/mksglu/context-mode'
+    anchor: 'context-mode'
+    source: 'GitHub'
+    kind: 'repo'
+    date: '2026-05-04'
+    notes: 'MCP server that sits between Claude Code and tool outputs. Sandboxes execution and indexes everything into a per-project SQLite database, so on /compact or --continue your working state is rebuilt automatically — the model picks up at your last prompt without you re-narrating. Registers PreToolUse / PostToolUse / PreCompact / SessionStart hooks plus 11 MCP tools (6 sandbox: ctx_batch_execute, ctx_execute, ctx_execute_file, ctx_index, ctx_search, ctx_fetch_and_index; 5 meta: ctx_stats, ctx_doctor, ctx_upgrade, ctx_purge, ctx_insight). Reported 315 KB → 5.4 KB on representative tool outputs (98% reduction). Install: `/plugin marketplace add mksglu/context-mode` then `/plugin install context-mode@context-mode`. Full session continuity on Claude Code, Gemini CLI, VS Code Copilot, JetBrains Copilot.'
+    bullets:
+      - '98% context reduction on tool output (e.g., 315 KB → 5.4 KB) by sandboxing execution.'
+      - 'Per-project SQLite captures every meaningful event so /compact and --continue rebuild your working state automatically.'
+      - 'Registers PreToolUse / PostToolUse / PreCompact / SessionStart hooks + 11 MCP tools (6 sandbox, 5 meta).'
+      - 'Install via Claude Code: /plugin marketplace add mksglu/context-mode → /plugin install context-mode@context-mode.'
+      - 'Full continuity on Claude Code, Gemini CLI, VS Code Copilot, JetBrains Copilot — 14 platforms supported.'
+  - text: 'Compound Engineering plugin (Every): 37 skills + 51 agents — /ce-setup green across 7/7 tools'
+    href: 'https://github.com/EveryInc/compound-engineering-plugin'
+    anchor: 'compound-engineering'
+    source: 'GitHub'
+    kind: 'repo'
+    date: '2026-05-04'
+    notes: 'Official Compound Engineering plugin from Every for Claude Code (also Codex, Cursor, etc). Currently ships 37 skills and 51 specialized subagents — code review, planning, ideation, frontend design, debugging, docs, and more. Install: `/plugin marketplace add EveryInc/compound-engineering-plugin` → `/plugin install compound-engineering`. Then `/compound-engineering:ce-setup` runs the bundled health check (engineering/3.4.1/skills/ce-setup/scripts/check-health --version 3.4.1) and reports green: Plugin v3.4.1 · Tools 7/7 (agent-browser, gh, jq, vhs, silicon, ffmpeg, ast-grep) · Skills 1/1 (ast-grep) · ✅ All clear.'
+    bullets:
+      - 'Every-built official plugin — 37 skills + 51 agents covering review, planning, ideation, design, debugging, docs.'
+      - 'Install: /plugin marketplace add EveryInc/compound-engineering-plugin → /plugin install compound-engineering.'
+      - '/compound-engineering:ce-setup runs check-health and reports Plugin v3.4.1 · 7/7 tools · 1/1 skills green.'
+      - 'Tools provisioned: agent-browser, gh, jq, vhs, silicon, ffmpeg, ast-grep.'
+      - 'Same plugin already underpins many of the agents I delegate to in /skills.'
 learned: []
 met: []
 changelog:
   - date: '2026-05-04'
     note: 'Initial publish — three watched entries (Kalshi, Spiegel, Stripe Sessions 2026 keynote) with anchored prose sections.'
+  - date: '2026-05-04'
+    note: 'Added 3 dev-tooling finds to built rail: RTK (token killer), context-mode (MCP sandbox + SQLite session continuity), Compound Engineering plugin v3.4.1.'
 ---
 
 ## What actually shipped
@@ -248,6 +301,107 @@ Two patterns landed in the same keynote:
 2. **Standardize the agent-to-agent commerce path** — MPP for payments, UCP for the broader commerce journey.
 
 The economics implied: as soon as agents can read business state and transact across a standard protocol, the unit cost of a transaction collapses and metering pressure rises. Tempo + Metronome are the answer to the metering pressure. It's a coherent stack, not a list of features.
+
+---
+
+---
+
+<div id="rtk"></div>
+
+## RTK — Rust Token Killer
+
+**[Repo ↗](https://github.com/rtk-ai/rtk)** · single Rust binary, zero dependencies
+
+CLI proxy that compresses dev-command output before it reaches the LLM context window. Hook transparently rewrites bash commands (`git status` → `rtk git status`) — Claude never sees the rewrite, only the compressed result.
+
+### My stats after running it across this codebase
+
+- **13,454 commands** proxied
+- **50.0M input tokens · 31.2M output tokens**
+- **17.9M tokens saved (35.9%)** on average across the session
+- **avg 4.0s** per command
+
+### Top savers
+
+| Command                 | Count | Tokens saved | Hit-rate |
+| ----------------------- | ----- | ------------ | -------- |
+| `rtk lint eslint`       | 48    | 2.6M         | 97.8%    |
+| `rtk gh pr create`      | 2     | 987.6K       | 99.9%    |
+| `rtk curl` (HTTP fetch) | 12    | 730.8K       | 95.8%    |
+| `rtk gh pr`             | 46    | 696.7K       | 53.4%    |
+| `rtk gh issue list`     | 853   | 621.2K       | 99.7%    |
+
+### What it works with
+
+Claude Code, Cursor, Gemini CLI, Aider, Codex, Windsurf, Cline. Install for Claude Code: `rtk init -g`, then restart your AI tool. <10ms overhead, ~100+ commands supported.
+
+---
+
+<div id="context-mode"></div>
+
+## context-mode — MCP sandbox with session continuity
+
+**[Repo ↗](https://github.com/mksglu/context-mode)** · MCP server + per-project SQLite
+
+Sits between Claude Code and your tool outputs, sandboxing execution and indexing every meaningful event into a per-project SQLite store. On `/compact` or `--continue`, your working state rebuilds automatically — the model picks up at your last prompt with no re-narration.
+
+### Hooks + tools
+
+- **Hooks registered**: `PreToolUse`, `PostToolUse`, `PreCompact`, `SessionStart`
+- **6 sandbox MCP tools**: `ctx_batch_execute`, `ctx_execute`, `ctx_execute_file`, `ctx_index`, `ctx_search`, `ctx_fetch_and_index`
+- **5 meta tools**: `ctx_stats`, `ctx_doctor`, `ctx_upgrade`, `ctx_purge`, `ctx_insight`
+
+### Headline number
+
+**315 KB tool output → 5.4 KB** in the model context. **98% reduction.**
+
+### Install
+
+```
+/plugin marketplace add mksglu/context-mode
+/plugin install context-mode@context-mode
+```
+
+Full session continuity on Claude Code, Gemini CLI, VS Code Copilot, JetBrains Copilot. 14 platforms total.
+
+---
+
+<div id="compound-engineering"></div>
+
+## Compound Engineering plugin (Every) — /ce-setup green
+
+**[Repo ↗](https://github.com/EveryInc/compound-engineering-plugin)** · official Every plugin
+
+37 skills · 51 specialized subagents covering code review, planning, ideation, frontend design, debugging, documentation, and more. Already underpins most of the agents I delegate work to in `/skills`.
+
+### Install
+
+```
+/plugin marketplace add EveryInc/compound-engineering-plugin
+/plugin install compound-engineering
+```
+
+### `/compound-engineering:ce-setup` health check
+
+Runs the bundled `engineering/3.4.1/skills/ce-setup/scripts/check-health --version 3.4.1` and reports:
+
+```
+🟢  Plugin version v3.4.1
+
+Tools  7/7
+ 🟢  agent-browser
+ 🟢  gh
+ 🟢  jq
+ 🟢  vhs
+ 🟢  silicon
+ 🟢  ffmpeg
+ 🟢  ast-grep
+
+Skills  1/1
+ 🟢  ast-grep
+
+✅  All clear  7/7 tools  1/1 skills
+```
 
 ---
 
