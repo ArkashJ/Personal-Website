@@ -34,7 +34,8 @@
       "Bash(pkill -f \"next\")",
       "Bash(rtk ps *)",
       "Bash(git reset *)",
-      "Bash(rtk wc *)"
+      "Bash(rtk wc *)",
+      "Bash(/usr/bin/find /Users/arkashjain/.gemini/skills -mindepth 1 -maxdepth 1 -type l -delete)"
     ]
   }
 }
