@@ -6,6 +6,7 @@ import { TIMELINE } from '@/lib/data'
 import { COURSES, allCourseSubPages } from '@/lib/coursework'
 import { getAllSkills } from '@/lib/skills'
 import { getAllWeeklyLogs } from '@/lib/weekly'
+import { getAllProjects } from '@/lib/projects'
 
 const STATIC: {
   path: string
@@ -98,6 +99,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
+  const projects = getAllProjects().map((p) => ({
+    url: `${SITE.url}/projects/${p.slug}`,
+    lastModified: today,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
   return [
     ...STATIC.map((r) => ({
       url: `${SITE.url}${r.path}`,
@@ -114,5 +122,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...courseSubs,
     ...skills,
     ...weekly,
+    ...projects,
   ]
 }

@@ -1,7 +1,16 @@
 'use client'
 
+import Link from 'next/link'
 import Badge from '@/components/ui/Badge'
 import type { Project, WorkTool } from '@/lib/data'
+
+const projectSlug = (name: string): string =>
+  name
+    .toLowerCase()
+    .replace(/\(.+?\)/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 64)
 
 const splitFirstTwoSentences = (text: string) => {
   const matches = text.match(/[^.!?]+[.!?]+(\s+|$)/g)
@@ -62,25 +71,35 @@ const ProjectCard = (props: Props) => {
         </div>
       )}
 
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between gap-3 flex-wrap">
         <span className="font-mono text-primary text-xs uppercase tracking-widest group-hover:text-accent transition-colors">
-          {onOpen ? 'Open details →' : 'View →'}
+          {onOpen ? 'Quick look' : 'View →'}
         </span>
-        {onOpen && href ? (
-          <a
-            href={href}
-            target={isExternal ? '_blank' : undefined}
-            rel={isExternal ? 'noopener noreferrer' : undefined}
+        <div className="flex items-center gap-3">
+          <Link
+            href={`/projects/${props.slug ?? projectSlug(name)}`}
             onClick={(e) => e.stopPropagation()}
-            className="font-mono text-subtle text-xs uppercase tracking-widest hover:text-primary transition-colors"
+            className="font-mono text-primary text-xs uppercase tracking-widest hover:text-accent transition-colors"
           >
-            GitHub →
-          </a>
-        ) : !onOpen && !href ? (
-          <span className="font-mono text-subtle text-xs uppercase tracking-widest">
-            Internal / private
-          </span>
-        ) : null}
+            Read more →
+          </Link>
+          {href && (
+            <a
+              href={href}
+              target={isExternal ? '_blank' : undefined}
+              rel={isExternal ? 'noopener noreferrer' : undefined}
+              onClick={(e) => e.stopPropagation()}
+              className="font-mono text-subtle text-xs uppercase tracking-widest hover:text-primary transition-colors"
+            >
+              GitHub →
+            </a>
+          )}
+          {!onOpen && !href && (
+            <span className="font-mono text-subtle text-xs uppercase tracking-widest">
+              Internal / private
+            </span>
+          )}
+        </div>
       </div>
     </button>
   )
