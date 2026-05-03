@@ -46,7 +46,6 @@ const Label = ({ children }: { children: ReactNode }) => (
 const PAGES = [
   '/about',
   '/research',
-  '/experience',
   '/projects',
   '/work',
   '/writing',

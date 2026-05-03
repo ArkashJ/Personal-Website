@@ -42,7 +42,6 @@ export function buildMetadata({
   const fullTitle = title ? `${title} — ${SITE.name}` : SITE.title
   const desc = description || SITE.description
   const url = `${SITE.url}${path}`
-  const ogImage = image || `${SITE.url}/images/profile.jpeg`
   const mergedKeywords = Array.from(new Set([...(keywords || []), ...DEFAULT_KEYWORDS]))
   return {
     title: fullTitle,
@@ -70,7 +69,7 @@ export function buildMetadata({
       title: fullTitle,
       description: desc,
       url,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: fullTitle }],
+      ...(image ? { images: [{ url: image, width: 1200, height: 630, alt: fullTitle }] } : {}),
       siteName: SITE.name,
       locale: 'en_US',
       ...(publishedTime ? { publishedTime } : {}),
@@ -80,7 +79,7 @@ export function buildMetadata({
       card: 'summary_large_image',
       title: fullTitle,
       description: desc,
-      images: [ogImage],
+      ...(image ? { images: [image] } : {}),
       creator: '@_arkash',
       site: '@_arkash',
     },

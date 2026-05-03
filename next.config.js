@@ -25,6 +25,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: '/experience',
+        destination: '/about#career',
+        permanent: true,
+      },
       // knowledge → writing migration
       {
         source: '/knowledge/physics/why-i-left-physics',
