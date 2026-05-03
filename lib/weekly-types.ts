@@ -61,9 +61,9 @@ export type WeeklyLogMeta = {
   changelog?: ChangelogEntry[]
 }
 
-const RAIL_ORDER: RailKey[] = ['read', 'watched', 'built', 'shipped', 'learned', 'met']
+export const RAIL_ORDER: RailKey[] = ['read', 'watched', 'built', 'shipped', 'learned', 'met']
 
-const RAIL_DEFAULT_KIND: Record<RailKey, WeeklyItemKind> = {
+export const RAIL_DEFAULT_KIND: Record<RailKey, WeeklyItemKind> = {
   read: 'article',
   watched: 'youtube',
   built: 'repo',

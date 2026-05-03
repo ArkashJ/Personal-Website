@@ -27,7 +27,12 @@ function isValidWeeklyMeta(d: Record<string, unknown>): boolean {
   )
 }
 
+// Cached at module scope. Invalidated only on process restart / redeploy —
+// matches lib/git-changelog.ts and lib/changelog-md.ts.
+let _cache: WeeklyLogMeta[] | null = null
+
 export function getAllWeeklyLogs(): WeeklyLogMeta[] {
+  if (_cache) return _cache
   const out: WeeklyLogMeta[] = []
   for (const file of readDir(WEEKLY_DIR)) {
     const slug = file.replace(/\.mdx?$/, '')
@@ -38,7 +43,8 @@ export function getAllWeeklyLogs(): WeeklyLogMeta[] {
     }
     out.push({ slug, ...(data as Omit<WeeklyLogMeta, 'slug'>) })
   }
-  return out.sort((a, b) => (a.weekStart < b.weekStart ? 1 : -1))
+  _cache = out.sort((a, b) => (a.weekStart < b.weekStart ? 1 : -1))
+  return _cache
 }
 
 export async function getWeeklyLog(

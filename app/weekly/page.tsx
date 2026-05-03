@@ -26,13 +26,12 @@ export default async function WeeklyIndexPage({
   const { tag: activeTag } = await searchParams
   const logs = getAllWeeklyLogs()
 
-  // Collect all items across all weekly logs to build the global tag frequency map
-  const allItems = logs.flatMap((log) => getAllItems(log))
+  const itemsByLog = new Map(logs.map((log) => [log.slug, getAllItems(log)]))
+  const allItems = Array.from(itemsByLog.values()).flat()
   const topTags = tagsByFrequency(allItems, (item) => item.tags).slice(0, TOP_TAG_COUNT)
 
-  // Filter logs by active tag — include a log if any of its items contain the tag
   const filteredLogs = activeTag
-    ? logs.filter((log) => getAllItems(log).some((item) => item.tags.includes(activeTag)))
+    ? logs.filter((log) => itemsByLog.get(log.slug)!.some((item) => item.tags.includes(activeTag)))
     : logs
 
   return (
@@ -107,7 +106,7 @@ export default async function WeeklyIndexPage({
         ) : (
           <div className="grid gap-4">
             {filteredLogs.map((log) => {
-              const total = getAllItems(log).length
+              const total = itemsByLog.get(log.slug)!.length
               const summary = `${total} item${total === 1 ? '' : 's'}`
 
               return (

@@ -5,28 +5,9 @@ import { Search, X, Plus, Minus } from 'lucide-react'
 import { tagsByFrequency } from '@/lib/tags'
 import { commitGithubUrl, shortHash, type GitCommit } from '@/lib/git-commit'
 import Badge from '@/components/ui/Badge'
+import ExternalLinkIcon from '@/components/ui/ExternalLinkIcon'
 
 const TOP_TAGS = 12
-
-function ExternalLinkIcon() {
-  return (
-    <svg
-      width="11"
-      height="11"
-      viewBox="0 0 12 12"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7" />
-      <path d="M8 1h3v3" />
-      <path d="M11 1 6 6" />
-    </svg>
-  )
-}
 
 function dayKey(iso: string): string {
   return iso.slice(0, 10)

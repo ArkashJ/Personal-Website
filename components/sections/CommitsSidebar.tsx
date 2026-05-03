@@ -1,28 +1,10 @@
-// Server component — no 'use client'. Accordion behavior via native <details>.
 import Link from 'next/link'
 import Badge from '@/components/ui/Badge'
+import ExternalLinkIcon from '@/components/ui/ExternalLinkIcon'
 import { getGitChangelog } from '@/lib/git-changelog'
 import { getAllWeeklyLogs } from '@/lib/weekly'
-import { commitGithubUrl, shortHash, type GitCommit } from '@/lib/git-commit'
+import { commitGithubUrl, shortHash, type GitCommit, type CommitType } from '@/lib/git-commit'
 
-// ── Types ──────────────────────────────────────────────────────────────────
-
-type CommitType =
-  | 'feat'
-  | 'fix'
-  | 'refactor'
-  | 'chore'
-  | 'docs'
-  | 'perf'
-  | 'test'
-  | 'build'
-  | 'ci'
-  | 'style'
-  | 'revert'
-  | 'weekly'
-  | 'other'
-
-// Ordered display groups
 const TYPE_ORDER: CommitType[] = [
   'feat',
   'fix',
@@ -39,10 +21,8 @@ const TYPE_ORDER: CommitType[] = [
   'other',
 ]
 
-// Groups open by default
 const DEFAULT_OPEN = new Set<CommitType>(['feat', 'fix'])
 
-// Per-type badge variant (matches GitChangelog.tsx teal for feat/fix)
 type BadgeVariant = 'teal' | 'cyan' | 'green' | 'default'
 
 const TYPE_VARIANT: Record<CommitType, BadgeVariant> = {
@@ -61,18 +41,12 @@ const TYPE_VARIANT: Record<CommitType, BadgeVariant> = {
   other: 'default',
 }
 
-// Max commits shown per group
 const MAX_PER_GROUP = 20
 
-// ── Date-to-weekly-slug map ────────────────────────────────────────────────
-
-/** Build a Map from every ISO date (YYYY-MM-DD) that falls in a weekly
- *  log window to that log's slug. */
 function buildDateToSlugMap(): Map<string, string> {
   const logs = getAllWeeklyLogs()
   const map = new Map<string, string>()
   for (const log of logs) {
-    // iterate each day in [weekStart, weekEnd]
     const start = new Date(log.weekStart)
     const end = new Date(log.weekEnd)
     if (isNaN(start.getTime()) || isNaN(end.getTime())) continue
@@ -86,8 +60,6 @@ function buildDateToSlugMap(): Map<string, string> {
   return map
 }
 
-// ── Group commits ──────────────────────────────────────────────────────────
-
 function groupByType(commits: GitCommit[]): Map<CommitType, GitCommit[]> {
   const map = new Map<CommitType, GitCommit[]>()
   for (const type of TYPE_ORDER) map.set(type, [])
@@ -97,28 +69,6 @@ function groupByType(commits: GitCommit[]): Map<CommitType, GitCommit[]> {
     else map.get('other')!.push(c)
   }
   return map
-}
-
-// ── Sub-components ─────────────────────────────────────────────────────────
-
-function ExternalLinkIcon() {
-  return (
-    <svg
-      width="10"
-      height="10"
-      viewBox="0 0 12 12"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7" />
-      <path d="M8 1h3v3" />
-      <path d="M11 1 6 6" />
-    </svg>
-  )
 }
 
 function SidebarCommitRow({
@@ -134,11 +84,9 @@ function SidebarCommitRow({
 
   return (
     <li className="relative pl-4">
-      {/* Timeline dot */}
-      <span className="absolute left-[-1px] top-[6px] w-1.5 h-1.5 rounded-full bg-border flex-shrink-0" />
+      <span className="absolute left-[-1px] top-[6px] w-1.5 h-1.5 rounded-full bg-border" />
 
       <div className="flex flex-col gap-0.5">
-        {/* Date + hash row */}
         <div className="flex items-center gap-2 flex-wrap">
           <span className="font-mono text-[10px] text-subtle">{dateKey}</span>
           <a
@@ -149,11 +97,10 @@ function SidebarCommitRow({
             title="View on GitHub"
           >
             {shortHash(commit.hash)}
-            <ExternalLinkIcon />
+            <ExternalLinkIcon size={10} />
           </a>
         </div>
 
-        {/* Type-scope pill */}
         {scopeLabel && (
           <Badge
             variant={TYPE_VARIANT[commit.type as CommitType] ?? 'default'}
@@ -163,10 +110,8 @@ function SidebarCommitRow({
           </Badge>
         )}
 
-        {/* Summary */}
         <p className="text-[12px] text-text leading-snug line-clamp-2">{commit.summary}</p>
 
-        {/* Weekly log deep-link */}
         {weeklySlug && (
           <Link
             href={`/weekly/${weeklySlug}`}
@@ -196,7 +141,6 @@ function TypeGroup({
   return (
     <details open={isOpen} className="group">
       <summary className="flex items-center gap-2 cursor-pointer select-none list-none py-2 border-b border-border hover:text-primary transition-colors">
-        {/* Remove default marker */}
         <span className="font-mono text-[9px] uppercase tracking-widest text-subtle group-open:text-primary transition-colors">
           ▸
         </span>
@@ -208,7 +152,6 @@ function TypeGroup({
         </span>
       </summary>
 
-      {/* Timeline rail */}
       <ul className="mt-3 mb-4 pl-2 border-l border-border space-y-4">
         {visible.map((c) => (
           <SidebarCommitRow
@@ -253,7 +196,6 @@ export default function CommitsSidebar() {
 
   return (
     <div className="border border-border bg-surface">
-      {/* Header */}
       <div className="px-4 py-3 border-b border-border">
         <p className="font-mono text-[10px] uppercase tracking-widest text-primary">
           Commit history
@@ -264,8 +206,7 @@ export default function CommitsSidebar() {
         </p>
       </div>
 
-      {/* Accordion groups */}
-      <div className="px-4 py-2 divide-y-0">
+      <div className="px-4 py-2">
         {TYPE_ORDER.map((type) => (
           <TypeGroup
             key={type}

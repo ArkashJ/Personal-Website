@@ -83,11 +83,13 @@ export function getParsedChangelog(): ChangelogRelease[] {
 
   const filePath = path.join(process.cwd(), 'CHANGELOG.md')
 
+  const msg = (err: unknown) => (err instanceof Error ? err.message : String(err))
+
   let raw: string
   try {
     raw = fs.readFileSync(filePath, 'utf8')
   } catch (err) {
-    console.warn('[changelog-md] Could not read CHANGELOG.md:', err)
+    console.warn('[changelog-md] Could not read CHANGELOG.md:', msg(err))
     _cache = []
     return _cache
   }
@@ -95,7 +97,7 @@ export function getParsedChangelog(): ChangelogRelease[] {
   try {
     _cache = parseChangelog(raw)
   } catch (err) {
-    console.warn('[changelog-md] Failed to parse CHANGELOG.md:', err)
+    console.warn('[changelog-md] Failed to parse CHANGELOG.md:', msg(err))
     _cache = []
   }
 

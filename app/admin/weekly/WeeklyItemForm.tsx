@@ -3,18 +3,9 @@
 import { useState, useCallback } from 'react'
 import { addWeeklyItem } from './actions'
 import type { RailKey, WeeklyItemKind } from '@/lib/weekly-types'
-import { RAIL_LABEL } from '@/lib/weekly-types'
+import { RAIL_LABEL, RAIL_ORDER, RAIL_DEFAULT_KIND } from '@/lib/weekly-types'
 
-const RAIL_KEYS: RailKey[] = ['read', 'watched', 'built', 'shipped', 'learned', 'met']
-
-const RAIL_DEFAULT_KIND: Record<RailKey, WeeklyItemKind> = {
-  read: 'article',
-  watched: 'youtube',
-  built: 'repo',
-  shipped: 'note',
-  learned: 'note',
-  met: 'meeting',
-}
+const RAIL_KEYS: readonly RailKey[] = RAIL_ORDER
 
 const KIND_OPTIONS: WeeklyItemKind[] = [
   'youtube',

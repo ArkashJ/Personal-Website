@@ -1,5 +1,14 @@
 [
   {
+    "hash": "195d2c4531f3c69367d95bc45121bd5849088bd1",
+    "date": "2026-05-03T13:20:13-05:00",
+    "type": "chore",
+    "scopes": ["content"],
+    "summary": "regenerate cached changelog + README snapshots",
+    "body": "",
+    "tags": ["chore", "content"]
+  },
+  {
     "hash": "2a362e64e27b0075905d3d5ee3302f6ef6400161",
     "date": "2026-05-03T13:15:22-05:00",
     "type": "feat",
