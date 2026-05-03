@@ -557,13 +557,53 @@ export function WeeklyGrid({
         </div>
       </div>
 
-      {/* Card grid */}
+      {/* Card grid — segmented by day when items carry dates and no date filter is active */}
       {filtered.length > 0 ? (
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mb-12">
-          {filtered.map((item, i) => (
-            <ItemCard key={item.id} resolved={item} index={i} onOpen={() => openModal(item)} />
-          ))}
-        </div>
+        presentDates.length > 0 && !date ? (
+          <div className="space-y-8 mb-12">
+            {(() => {
+              const groups = new Map<string, ResolvedItem[]>()
+              for (const item of filtered) {
+                const k = item.date ?? '__undated__'
+                const arr = groups.get(k) ?? []
+                arr.push(item)
+                groups.set(k, arr)
+              }
+              const keys = Array.from(groups.keys()).sort((a, b) => {
+                if (a === '__undated__') return 1
+                if (b === '__undated__') return -1
+                return a.localeCompare(b)
+              })
+              return keys.map((k) => {
+                const list = groups.get(k) ?? []
+                return (
+                  <div key={k}>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">
+                      {k === '__undated__' ? 'Week-wide' : formatDateTab(k)} · {list.length} item
+                      {list.length === 1 ? '' : 's'}
+                    </p>
+                    <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                      {list.map((item, i) => (
+                        <ItemCard
+                          key={item.id}
+                          resolved={item}
+                          index={i}
+                          onOpen={() => openModal(item)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )
+              })
+            })()}
+          </div>
+        ) : (
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mb-12">
+            {filtered.map((item, i) => (
+              <ItemCard key={item.id} resolved={item} index={i} onOpen={() => openModal(item)} />
+            ))}
+          </div>
+        )
       ) : (
         <div className="border border-border bg-surface p-8 mb-12 text-center">
           <p className="text-sm text-muted">No items match your filters.</p>
