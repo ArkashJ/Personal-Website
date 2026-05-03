@@ -37,12 +37,14 @@ function simpleIconSlugFor(
 export function resolveItem(item: WeeklyItem): {
   text: string
   href?: string
+  anchor?: string
   image?: string
   source?: string
+  notes?: string
 } {
   if (typeof item === 'string') return { text: item }
   let { image, source } = item
-  const { text, href, kind } = item
+  const { text, href, anchor, kind, notes } = item
 
   if (!image && href) {
     const yt = youtubeIdFromUrl(href)
@@ -57,5 +59,5 @@ export function resolveItem(item: WeeklyItem): {
     if (slug) image = `https://cdn.simpleicons.org/${slug}/9aa0a6`
   }
 
-  return { text, href, image, source }
+  return { text, href, anchor, image, source, notes }
 }

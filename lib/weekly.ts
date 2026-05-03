@@ -12,9 +12,11 @@ export type WeeklyItem =
   | {
       text: string
       href?: string
+      anchor?: string
       image?: string
       source?: string
       kind?: 'youtube' | 'podcast' | 'article' | 'paper' | 'repo' | 'meeting' | 'tweet'
+      notes?: string
     }
 
 export type WeeklyLogMeta = {

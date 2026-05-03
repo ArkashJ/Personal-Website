@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Card from '@/components/ui/Card'
@@ -9,10 +8,9 @@ import {
   getAllWeeklyLogs,
   getWeeklyLog,
   type ChangelogEntry,
-  type WeeklyItem,
   type WeeklyLogMeta,
 } from '@/lib/weekly'
-import { resolveItem } from '@/lib/weekly-render'
+import { WeeklyRails } from './WeeklyRails'
 
 export const dynamicParams = false
 
@@ -31,87 +29,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   })
 }
 
-type RailKey = 'read' | 'watched' | 'built' | 'shipped' | 'learned' | 'met'
-
-const RAILS: { key: RailKey; label: string }[] = [
-  { key: 'read', label: 'Read' },
-  { key: 'watched', label: 'Watched' },
-  { key: 'built', label: 'Built' },
-  { key: 'shipped', label: 'Shipped' },
-  { key: 'learned', label: 'Learned' },
-  { key: 'met', label: 'Met' },
-]
-
-function RailItemBody({ resolved }: { resolved: ReturnType<typeof resolveItem> }) {
-  const { text, image, source } = resolved
-  const isYouTubeThumb = image?.includes('ytimg.com')
-  return (
-    <div className="flex items-start gap-3">
-      {image &&
-        (isYouTubeThumb ? (
-          <Image
-            src={image}
-            alt=""
-            width={64}
-            height={36}
-            className="flex-shrink-0 mt-0.5 border border-border object-cover"
-            unoptimized
-          />
-        ) : (
-          <Image
-            src={image}
-            alt=""
-            width={16}
-            height={16}
-            className="flex-shrink-0 mt-1"
-            unoptimized
-          />
-        ))}
-      <div className="min-w-0">
-        <p className="text-sm text-text leading-snug">{text}</p>
-        {source && (
-          <p className="font-mono text-[10px] uppercase tracking-wider text-subtle mt-0.5">
-            {source}
-          </p>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function Rail({ label, items }: { label: string; items?: WeeklyItem[] }) {
-  if (!items || items.length === 0) return null
-  return (
-    <div className="border border-border bg-surface p-4">
-      <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">{label}</p>
-      <ul className="space-y-3">
-        {items.map((item, i) => {
-          const resolved = resolveItem(item)
-          const key = (typeof item === 'string' ? item : item.text) + i
-          if (resolved.href) {
-            const external = resolved.href.startsWith('http')
-            return (
-              <li key={key}>
-                <a
-                  href={resolved.href}
-                  target={external ? '_blank' : undefined}
-                  rel={external ? 'noreferrer' : undefined}
-                  className="block group hover:text-primary transition-colors duration-150"
-                >
-                  <RailItemBody resolved={resolved} />
-                </a>
-              </li>
-            )
-          }
-          return (
-            <li key={key}>
-              <RailItemBody resolved={resolved} />
-            </li>
-          )
-        })}
-      </ul>
-    </div>
-  )
+// Splits MDX source on <div id="..."></div> markers and returns a map of
+// anchor id → markdown content for that section.
+function extractSections(source: string): Record<string, string> {
+  const sections: Record<string, string> = {}
+  const parts = source.split(/<div id="([^"]+)"><\/div>/)
+  for (let i = 1; i < parts.length; i += 2) {
+    const id = parts[i]
+    let content = parts[i + 1] ?? ''
+    // Trim trailing --- separator (leads into the next section intro or closing prose)
+    content = content.replace(/\n---\s*$/, '').trim()
+    sections[id] = content
+  }
+  return sections
 }
 
 function Changelog({ entries }: { entries?: ChangelogEntry[] }) {
@@ -154,6 +84,7 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
   const post = await getWeeklyLog(slug)
   if (!post) return notFound()
   const meta: WeeklyLogMeta = post.meta
+  const sections = extractSections(post.source)
 
   return (
     <article className="px-6 py-16 max-w-3xl mx-auto">
@@ -181,12 +112,10 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
         <p className="text-muted text-lg leading-relaxed mb-8">{meta.description}</p>
       )}
 
-      <div className="grid gap-3 md:grid-cols-2 mb-10">
-        {RAILS.map((r) => (
-          <Rail key={r.key} label={r.label} items={meta[r.key]} />
-        ))}
-      </div>
+      {/* Client component: rails grid + modal */}
+      <WeeklyRails meta={meta} sections={sections} />
 
+      {/* Prose body — linear reading and SEO */}
       {post.source ? (
         <div className="prose-custom">
           <MdxContent source={post.source} />

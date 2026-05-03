@@ -5,6 +5,27 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [2.4.2] — 2026-05-02 — Weekly log modal reader, full podcast notes, expanded tags
+
+### Added — Click-to-read modal on weekly rail items
+
+- `app/weekly/[slug]/WeeklyRails.tsx` (new client component): rail items with a frontmatter `anchor:` field now open a scrollable detail modal instead of jumping to a page anchor. Modal features: semi-transparent backdrop, max-w-2xl × 85vh scrollable container, thumbnail + title + watch/listen link in header, full section notes rendered via `react-markdown` + `remark-gfm`, closes on X button / backdrop click / ESC key, body scroll locked while open.
+- `app/weekly/[slug]/page.tsx`: server-side `extractSections()` splits the MDX source on `<div id="..."></div>` markers and passes per-anchor markdown strings to `WeeklyRails` as props. Prose body retained below rails for linear reading and SEO.
+- `lib/weekly.ts` + `lib/weekly-render.ts`: `WeeklyItem` gains optional `anchor` field (links item to a detail section) and `notes` field (inline summary shown in the rail card).
+
+### Added — Full podcast notes for 2026-W18
+
+- `content/weekly/2026-W18.mdx`: 5 new watched entries with full structured notes:
+  - **Stripe Sessions keynote** — AI replatforming, solopreneurs (5M Americans, $100k+), Tempo CLI stablecoin micro-payments, complement theory (data / network effects / physical moats), Solow Paradox.
+  - **Odd Lots — Taiwan/China** — Eyck Freymann: Xi's political legitimacy motivation, silicon shield, KMT vs DPP, China's shock absorbers, ruble trade playbook, avalanche decoupling.
+  - **Odd Lots — METR** — Joel Becker & Chris Painter: time horizon methodology, 50% success threshold, 4-month capability doubling, Baptist-and-Bootlegger dynamic.
+  - **Odd Lots — Dinosaur fossils** — Salomon Aaron: Stan T-Rex $31M / Apex Stegosaurus $45M pricing reset, bone maps, pre-buy strategy, sovereign wealth fund competition.
+  - **Pershing Square PSUS** — Bill Ackman: closed-end fund structure, no incentive fees, permanent capital compounding, Vantage Holdings insurance float model, 19% ROE / 24.9% 8yr track record.
+- Thursday (Apr 30) deep-dive session backfilled in `learned` rail.
+- Tags expanded to 35 covering: Agentic Commerce, Stablecoin Payments, Solow Paradox, Silicon Shield, TSMC Dependence, KMT vs DPP, Avalanche Decoupling, Time Horizons, Capability Doubling, Baptist-and-Bootlegger, Alternative Assets, Fossil Market, Pre-Buy Strategy, Closed-End Funds, Permanent Capital, Insurance Float, and more.
+
+---
+
 ## [2.4.1] — 2026-05-02 — Rich weekly logs, home-page surfacing, mobile fix
 
 ### Fixed — Safari "Copy for LLM" button silently failed
