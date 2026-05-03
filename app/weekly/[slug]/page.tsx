@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Card from '@/components/ui/Card'
+import Badge from '@/components/ui/Badge'
 import MdxContent from '@/components/MdxContent'
 import GitChangelog from '@/components/sections/GitChangelog'
 import { buildMetadata } from '@/lib/metadata'
@@ -128,6 +129,22 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
       />
 
       <Changelog entries={meta.changelog} />
+
+      {/* Tags moved to the bottom — discovery surface, not header noise */}
+      {meta.tags && meta.tags.length > 0 && (
+        <section className="mt-12 border-t border-border pt-8">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-4">
+            Tags · {meta.tags.length}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {meta.tags.map((t) => (
+              <Badge key={t} variant="teal">
+                {t}
+              </Badge>
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   )
 }

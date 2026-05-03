@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import Badge from '@/components/ui/Badge'
 import type { Project, WorkTool } from '@/lib/data'
 
@@ -30,18 +31,19 @@ const ProjectCard = (props: Props) => {
   const year = 'year' in props ? props.year : undefined
   const head = description ? splitFirstTwoSentences(description) : ''
   const isExternal = href ? /^https?:\/\//.test(href) : false
+  const slug = props.slug ?? projectSlug(name)
+  const router = useRouter()
 
-  // When no onOpen handler is supplied (e.g. embed on home page), fall back to
-  // navigating to the GitHub href on card click — matches legacy behavior.
+  // Card click ALWAYS keeps the user on-site:
+  // - On /projects (with onOpen): open the quick-look modal.
+  // - Anywhere else (home page embed): navigate to /projects/<slug>.
+  // GitHub never wins the card click — only the explicit "GitHub →" link.
   const handleClick = () => {
     if (onOpen) {
       onOpen()
       return
     }
-    if (href && typeof window !== 'undefined') {
-      if (isExternal) window.open(href, '_blank', 'noopener,noreferrer')
-      else window.location.href = href
-    }
+    router.push(`/projects/${slug}`)
   }
 
   return (
@@ -49,7 +51,7 @@ const ProjectCard = (props: Props) => {
       type="button"
       onClick={handleClick}
       data-project-card
-      aria-label={onOpen ? `Open ${name} details` : `Open ${name}`}
+      aria-label={onOpen ? `Open ${name} details` : `Open ${name} page`}
       className={cardClasses}
     >
       <div className="flex items-start justify-between mb-3 gap-2 w-full">
@@ -72,17 +74,23 @@ const ProjectCard = (props: Props) => {
       )}
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
-        <span className="font-mono text-primary text-xs uppercase tracking-widest group-hover:text-accent transition-colors">
-          {onOpen ? 'Quick look' : 'View →'}
-        </span>
+        <Link
+          href={`/projects/${slug}`}
+          onClick={(e) => e.stopPropagation()}
+          className="font-mono text-primary text-xs uppercase tracking-widest group-hover:text-accent transition-colors"
+        >
+          {onOpen ? 'Quick look ↗' : 'Read more →'}
+        </Link>
         <div className="flex items-center gap-3">
-          <Link
-            href={`/projects/${props.slug ?? projectSlug(name)}`}
-            onClick={(e) => e.stopPropagation()}
-            className="font-mono text-primary text-xs uppercase tracking-widest hover:text-accent transition-colors"
-          >
-            Read more →
-          </Link>
+          {onOpen && (
+            <Link
+              href={`/projects/${slug}`}
+              onClick={(e) => e.stopPropagation()}
+              className="font-mono text-muted text-xs uppercase tracking-widest hover:text-primary transition-colors"
+            >
+              Page →
+            </Link>
+          )}
           {href && (
             <a
               href={href}
