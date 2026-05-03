@@ -29,6 +29,8 @@ export type Project = {
   description: string
   tech: string[]
   href?: string
+  highlights?: string[]
+  commands?: string[]
 }
 
 export type WorkTool = {
@@ -216,6 +218,54 @@ export const EXPERIENCE: ExperienceEntry[] = [
 ]
 
 export const PROJECTS: Project[] = [
+  {
+    name: 'Benmore-Meridian (bm CLI)',
+    year: '2026',
+    description:
+      "Benmore Studio's Claude Code monorepo and the bm CLI that drives it. 77 production skills covering Django, FastAPI, Stripe, HIPAA/GDPR/SOC 2 compliance, mobile (Expo/React Native), SEO, deployment (Heroku/DigitalOcean/Vercel), and PCS microservices — all symlinked into ~/.claude/skills/ via one command so `git pull` is the only update step. Ships with `benmore_client`, a separate pip-installable typed async Python client for Benmore's project-management API (30+ endpoints, Pydantic v2 models, py.typed, 168 tests) whose 58 parallel HTTP calls drop end-to-end latency from ~30s to 3.7s via asyncio.gather. Adds 11 reusable prompt templates exportable as Claude Code /commands, git auto-sync hooks for skills and prompts, project-aware skill suggestions from static stack detection, post-session skill candidates surfaced from recent git history, a CLAUDE.md snippet generator, and a curated dev-toolkit installer (ripgrep, fzf, lazygit, bat, eza, zoxide, delta, gh). Every command supports --json so Claude agents can query the registry directly. Built with Typer + Rich, strict mypy (zero errors), ruff, 84+ tests, hatchling, uv. Used by every Benmore engineer; full FDE onboarding deck and presentation live in-repo.",
+    tech: [
+      'Python',
+      'Typer',
+      'Rich',
+      'asyncio',
+      'Pydantic',
+      'httpx',
+      'uv',
+      'ruff',
+      'mypy',
+      'pytest',
+      'Claude Code',
+      'Markdown',
+    ],
+    href: 'https://github.com/Benmore-Studio/Benmore-Meridian',
+    highlights: [
+      'Symlink-first install — edit a skill once, every Claude session reflects it',
+      'Project-skill lifecycle: scope to a project, generalize when proven universal',
+      'Registry at ~/.bm/registry.json tracks every skill with source + install method',
+      'Plugin detection for Superpowers and Double Shot Latte with install guides',
+      '11 saved prompt templates exportable as Claude Code /commands ($1, $2, $ARGUMENTS)',
+      'Git hooks auto-run bm install on pull/checkout when skills or prompts change',
+      'Static stack detection → ranked skill suggestions and CLAUDE.md snippets',
+      'Post-session debrief surfaces skill candidates from recent git history',
+      'asyncio.gather parallelizes 58 Benmore API calls — 30s → 3.7s',
+      '--json on every command for agent-native queries',
+      'Strict mypy (zero errors), ruff clean, 84+ tests, dry-run on every destructive op',
+    ],
+    commands: [
+      'bm install',
+      'bm doctor',
+      'bm status --json',
+      'bm skill add <name> --project <p>',
+      'bm skill generalize <name>',
+      'bm suggest [path]',
+      'bm context [path] --copy',
+      'bm debrief --since <tag>',
+      'bm prompt export --all',
+      'bm hooks install',
+      'bm benmore list',
+      'bm tools install ripgrep fzf lazygit',
+    ],
+  },
   {
     name: 'SpatialDINO',
     year: '2025',
