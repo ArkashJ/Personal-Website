@@ -4,14 +4,13 @@ import GitHubActivity from '@/components/sections/GitHubActivity'
 import SectionHeader from '@/components/sections/SectionHeader'
 import PaperCard from '@/components/sections/PaperCard'
 import ProjectCard from '@/components/sections/ProjectCard'
-import CurrentUpdates from '@/components/sections/CurrentUpdates'
+import NowSection from '@/components/sections/NowSection'
+import RollingLog from '@/components/sections/RollingLog'
 import FeaturedBanner from '@/components/sections/FeaturedBanner'
 import Card from '@/components/ui/Card'
 import TechBadge from '@/components/ui/TechBadge'
-import { PAPERS, PROJECTS, TIMELINE } from '@/lib/data'
+import { PAPERS, PROJECTS } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
-import { getAllWritingPosts } from '@/lib/content'
-import { getLatestWeeklyLog } from '@/lib/weekly'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
@@ -26,55 +25,24 @@ export const metadata = buildMetadata({
   ],
 })
 
-export default function Home() {
-  const writing = getAllWritingPosts()
+export default async function Home({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+  const params = await searchParams
+  const page = Math.max(1, parseInt(params.page ?? '1', 10) || 1)
+
   const featuredProjects = PROJECTS.slice(0, 4)
-  const latestTimeline = TIMELINE.filter((t) => t.featured)
-    .slice()
-    .reverse()
-    .slice(0, 6)
   const featuredCourses = COURSES.slice(0, 6)
-  const latestWeekly = getLatestWeeklyLog()
 
   return (
     <div>
       <Hero />
 
-      {/* This week — latest weekly log surfaced on home, with the active "What's new" banner stacked above the card */}
-      {latestWeekly && (
-        <section className="px-6 py-8 max-w-6xl mx-auto">
-          <SectionHeader
-            eyebrow="This week"
-            title={latestWeekly.title}
-            href={`/weekly/${latestWeekly.slug}`}
-            hrefLabel="Read the log →"
-          />
-          <div className="mb-4">
-            <FeaturedBanner />
-          </div>
-          <Link href={`/weekly/${latestWeekly.slug}`} className="block group">
-            <Card glow>
-              <div className="flex items-baseline justify-between gap-3 mb-3">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                  {latestWeekly.slug}
-                </span>
-                <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
-                  {latestWeekly.weekStart} → {latestWeekly.weekEnd}
-                </span>
-              </div>
-              {latestWeekly.description && (
-                <p className="text-muted text-sm leading-relaxed">{latestWeekly.description}</p>
-              )}
-              {latestWeekly.tags && latestWeekly.tags.length > 0 && (
-                <p className="font-mono text-[10px] text-subtle mt-4 uppercase tracking-wider">
-                  {latestWeekly.tags.length} tags · {latestWeekly.tags.slice(0, 4).join(' · ')}
-                  {latestWeekly.tags.length > 4 ? ' …' : ''}
-                </p>
-              )}
-            </Card>
-          </Link>
-        </section>
-      )}
+      {/* Rolling log — paginated weekly updates (replaces single "This Week" card) */}
+      <section className="px-6 py-4 max-w-6xl mx-auto">
+        <div className="mb-4">
+          <FeaturedBanner />
+        </div>
+      </section>
+      <RollingLog page={page} />
 
       {/* GitHub — live activity widgets, snapshot, top languages */}
       <GitHubActivity />
@@ -112,41 +80,8 @@ export default function Home() {
         </Card>
       </section>
 
-      {/* Current updates — latest writing + Medium + LinkedIn embeds */}
-      <CurrentUpdates writing={writing} />
-
-      {/* Recent timeline strip — mini changelog */}
-      <section className="px-6 py-10 max-w-6xl mx-auto">
-        <SectionHeader
-          eyebrow="Recent"
-          title="Latest milestones"
-          href="/about"
-          hrefLabel="Full timeline →"
-        />
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          {latestTimeline.map((t) => (
-            <Link
-              key={t.title}
-              href={t.slug ? `/about/timeline/${t.slug}` : '/about'}
-              className="block group"
-            >
-              <Card glow className="h-full">
-                <div className="flex items-baseline justify-between gap-3 mb-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                    {t.category}
-                  </span>
-                  <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
-                    {t.date}
-                  </span>
-                </div>
-                <h3 className="text-sm font-bold text-text leading-tight group-hover:text-primary transition-colors">
-                  {t.title}
-                </h3>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* Now — merged Now + This Week: Milestones / Writing / Media / Projects */}
+      <NowSection />
 
       {/* Research */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
