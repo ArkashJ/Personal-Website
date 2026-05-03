@@ -1,5 +1,104 @@
 [
   {
+    "hash": "2a362e64e27b0075905d3d5ee3302f6ef6400161",
+    "date": "2026-05-03T13:15:22-05:00",
+    "type": "feat",
+    "scopes": ["admin"],
+    "summary": "Clerk-gated /admin/weekly editor with server-action MDX append",
+    "body": "Mirror of the ce-plan pattern: dynamic-imported ClerkAuthGate (ssr:false),\nowner-only auth via sessionClaims email + currentUser() fallback, ISO-week\nmath to locate/create the current week's MDX, gray-matter parse+append+\nstringify, and revalidatePath on /, /weekly, and /weekly/<slug>.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "admin"]
+  },
+  {
+    "hash": "e526e25dc58096eff15c0fdfc92cac3168c099c8",
+    "date": "2026-05-03T13:15:13-05:00",
+    "type": "feat",
+    "scopes": ["changelog"],
+    "summary": "commits-and-history sidebar with weekly deep-links",
+    "body": "Adds CommitsSidebar (server component, <details> accordion) grouped by\nconventional-commit type. feat/fix expand by default; all others collapsed.\nEach row shows date, hash linked to GitHub, type-scope pill, summary, and\nan optional →/weekly/<slug> link when the commit date falls in a published\nweekly log's window. Wires into the /changelog 2-col layout as a sticky\ndesktop aside (top-20 / max-h calc).\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "changelog"]
+  },
+  {
+    "hash": "3efa1b4cdad82b58a54f3b68e8a6e140b7c02079",
+    "date": "2026-05-03T13:06:10-05:00",
+    "type": "feat",
+    "scopes": ["changelog"],
+    "summary": "parse CHANGELOG.md, link bidirectionally with weekly logs",
+    "body": "- lib/changelog-md.ts: hand-rolled regex parser for Keep-a-Changelog\n  1.1.0 format. Exports typed ChangelogRelease[] with version, date, id,\n  and sections map. Cached in module scope; degrades gracefully on\n  parse errors. findReleaseInWeek() matches a release date to a week range.\n\n- app/changelog/page.tsx: new /changelog route rendering parsed CHANGELOG\n  in a 2-column layout (2/3 left, 1/3 right). Left column shows all\n  releases with color-coded section badges (Added=teal, Changed=cyan,\n  Fixed=green). Right column placeholder aside for CommitsSidebar (U9).\n\n- app/weekly/[slug]/page.tsx: imports findReleaseInWeek(); renders a\n  Released in CHANGELOG: vX.Y.Z green badge near the page title when\n  the week contains a release. Renders nothing when no release matches.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "changelog"]
+  },
+  {
+    "hash": "9f7dbf45e7436f299f336fe7894815ef0162e536",
+    "date": "2026-05-03T13:05:53-05:00",
+    "type": "feat",
+    "scopes": ["home"],
+    "summary": "merge Now + This Week into one section with 4 rails",
+    "body": "Replace CurrentUpdates component and inline \"Now\" eyebrow with a single\nNowSection server component that stacks 4 anchor-linked rails: Milestones\n(top 3 featured timeline entries), Writing (top 3 posts), Media (top 3\nMedium articles), Projects (top 3 with /projects/<slug> deep-links).\nEach rail has a sub-eyebrow label and a \"View all →\" link to the\ncorresponding route. In-section anchor nav at top for keyboard/skip access.\n\nDeletes CurrentUpdates.tsx whose writing + media reach is now covered.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "home"]
+  },
+  {
+    "hash": "d5267b719cd7a5aafc4e8da01d689ebae8416e1f",
+    "date": "2026-05-03T13:05:40-05:00",
+    "type": "feat",
+    "scopes": ["home"],
+    "summary": "paginated rolling log of weekly updates",
+    "body": "Replace single-card \"This Week\" block with RollingLog server component\nthat paginates all weekly logs 5 per page via ?page=N URL param. Each\ncard shows ISO-week badge, date range, title, item count, top 3 tags,\nand a read-the-log link. Pagination controls only render when >1 page\nexists; out-of-range pages show an empty state with back link.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "home"]
+  },
+  {
+    "hash": "71ed8ae259590231e381bab684b682c247e283ba",
+    "date": "2026-05-03T13:04:33-05:00",
+    "type": "chore",
+    "scopes": ["content"],
+    "summary": "move essay-shaped knowledge articles into /writing with redirects",
+    "body": "Moved 5 essay-shaped articles from knowledge domains into writing:\n- why-i-left-physics (physics)\n- supercritical-fluids-paper (physics)\n- aggregation-theory (finance)\n- claude-code-as-an-os (software)\n- why-typescript-strict (software)\n\nAdded 308 redirects from old /knowledge/<domain>/<slug> URLs to /writing/<slug>.\nAdded originalDomain field to moved article frontmatter for origin tracking.\nRemoved empty physics and software knowledge domains from KNOWLEDGE_DOMAINS.\nFinance domain kept (still has index and special thesis/trade sections).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "content"]
+  },
+  {
+    "hash": "f1c436ed290d2897282ecf0d8a1c8ada4a7e1115",
+    "date": "2026-05-03T13:02:36-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "clickable + fzf tag index on /weekly",
+    "body": "- Collect all items across all weekly logs via getAllWeeklyLogs +\n  getAllItems to build a global tag-frequency map (top 30 tags).\n- app/weekly/page.tsx now accepts searchParams.tag; when set, filters\n  the weekly card grid to logs that contain at least one item tagged\n  with that value. Shows an active-tag pill + \"× clear filter\" link.\n- New components/weekly/TagFzf.tsx (client component): controlled input\n  that filters the visible badge cloud via String.includes; pressing\n  Enter navigates to /weekly?tag=<first-match>. No new dependencies\n  (cmdk already present; simple filter is more appropriate for inline\n  badge cloud than command-palette UX).\n- Active tag highlighted in teal; first-match on search highlighted in\n  cyan. Empty-match state shows a descriptive message.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
+    "hash": "7041ab2f609a4e23794f3aed489963c21ab2a581",
+    "date": "2026-05-03T13:00:07-05:00",
+    "type": "chore",
+    "scopes": ["nav"],
+    "summary": "delete /experience page; redirect to /about#career",
+    "body": "Remove /experience from the codebase, navigation links, sitemap, CommandPalette (via NAV_LINKS removal), and architecture diagram. Add a 308 permanent redirect from /experience to /about#career in next.config.js to preserve inbound links. The about page contains all career information under the Career section.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "nav"]
+  },
+  {
+    "hash": "c920762292a096888f75059f752058f7a6f8c9d4",
+    "date": "2026-05-03T12:59:59-05:00",
+    "type": "fix",
+    "scopes": ["seo"],
+    "summary": "remove face headshot from default share image",
+    "body": "Let Next.js's file-convention app/opengraph-image.tsx be the source of truth for default OG cards instead of hardcoding profile.jpeg, allowing the branded card to render for all routes unless explicitly overridden. Keeps lib/structured-data.ts Person.image unchanged (schema.org Person correctly uses a headshot).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "seo"]
+  },
+  {
+    "hash": "79b5b884d53dc377868b4d16110638ebb2f776cc",
+    "date": "2026-05-03T12:59:48-05:00",
+    "type": "fix",
+    "scopes": ["weekly"],
+    "summary": "unsticky filter bar; sit in page flow",
+    "body": "Remove sticky, top-0, z-20, bg-background/85, backdrop-blur, and\nsupports-[backdrop-filter] classes from the filter bar container so it\nstays at its in-flow position instead of following the user's scroll.\nSpacing (-mx-6 px-6 py-3 mb-6) and border are preserved.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["fix", "weekly"]
+  },
+  {
+    "hash": "8bd42c6049c83bf155edc59fa68be71be842762c",
+    "date": "2026-05-03T12:59:31-05:00",
+    "type": "fix",
+    "scopes": ["weekly"],
+    "summary": "remove notes paragraph from item cards",
+    "body": "Delete the conditional <p className=\"line-clamp-2 ...\"> notes block from\nItemCard so cards show only title, source/kind pills, thumbnail, and\n\"Click to read →\". Detail modal with full body is unchanged.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["fix", "weekly"]
+  },
+  {
     "hash": "ca4a4fb558e502093b5cb5c62cbd1109c9a85e1d",
     "date": "2026-05-03T00:11:57-05:00",
     "type": "fix",
