@@ -3,7 +3,7 @@ export const SITE = {
   url: 'https://www.arkashj.com',
   title: 'Arkash Jain — AI Researcher, Forward Deployed Engineer & Builder',
   description:
-    'AI researcher (Harvard Kirchhausen Lab), forward deployed engineer at Benmore Technologies, three published papers including SpatialDINO — a 3D self-supervised vision transformer for cryo-electron tomography.',
+    'AI researcher (Harvard Kirchhausen Lab), forward deployed engineer at Benmore Technologies, three published papers including SpatialDINO — a 3D self-supervised vision transformer for lattice light-sheet microscopy.',
   email: 'arkash@benmore.tech',
   social: {
     github: 'https://github.com/ArkashJ',

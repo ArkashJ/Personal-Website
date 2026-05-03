@@ -14,7 +14,7 @@ const TAGS = [
   'AI Researcher',
   'Forward Deployed',
   'Distributed Systems',
-  'Cryo-ET',
+  '3D Vision',
   'Stripe',
   'Open Source',
 ]
@@ -31,8 +31,8 @@ const Hero = () => (
 
         <p className="mt-5 text-base text-muted max-w-xl leading-relaxed">
           AI researcher (Harvard) and forward-deployed engineer at Benmore — three published papers
-          including SpatialDINO (3D self-supervised cryo-ET), and the toolkit that makes SMB AI
-          consulting compound.
+          including SpatialDINO (3D self-supervised vision transformer for live-cell microscopy),
+          and the toolkit that makes SMB AI consulting compound.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">

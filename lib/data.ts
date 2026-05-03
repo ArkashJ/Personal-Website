@@ -74,7 +74,7 @@ export const PAPERS: Paper[] = [
     date: '2025',
     authors: 'Arkash Jain et al. (Kirchhausen Lab, Harvard Medical School)',
     abstract:
-      'A 3D self-supervised vision transformer that beats a Nobel laureate-led approach for understanding subcellular structures from cryo-electron tomograms.',
+      'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Beat a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction.',
     url: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
     featured: true,
     doi: '10.1101/2025.02.04.636474',
@@ -135,13 +135,13 @@ export const EXPERIENCE: ExperienceEntry[] = [
     location: 'Boston, MA',
     featured: true,
     story:
-      'Joined the Kirchhausen Lab at Harvard Medical School to work on cryo-electron tomography — the technique that lets you see individual proteins inside cells. I authored SpatialDINO, the first 3D self-supervised vision transformer applied to cryo-ET subcellular structure prediction. Training ran on DGX A100 nodes with FSDP and NVLink; I also contributed a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training for the team. The work produced three papers, two published in the Journal of Cell Biology.',
+      'Joined the Kirchhausen Lab at Harvard Medical School to work on lattice light-sheet microscopy (LLSM) — 4D live-cell imaging of subcellular dynamics at ~3 nm. I authored SpatialDINO, a 3D self-supervised vision transformer for label-free segmentation and tracking of endosomes, viruses, and other sub-resolution organelles in LLSM volumes. Pre-trained on 2.4 TB / 180k volumes across 24 A100s; introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), a 3D adaptation of SINDER for singular-defect repair, and a streaming encoder with token-store + online softmax for full-volume inference. Contributed a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training. The work produced three papers, two published in the Journal of Cell Biology.',
     stats: [
       { label: 'Papers', value: '3' },
       { label: 'Training infra', value: 'DGX A100' },
       { label: 'PyTorch PR', value: '#144779' },
     ],
-    tech: ['PyTorch', 'FSDP', 'DGX', 'cryo-ET', 'Python', 'CUDA'],
+    tech: ['PyTorch', 'DDP', 'DGX A100', 'LLSM', '3D ViT', 'MONAI', 'Triton', 'Python', 'CUDA'],
     links: [
       {
         label: 'SpatialDINO (BioRxiv)',
@@ -151,10 +151,14 @@ export const EXPERIENCE: ExperienceEntry[] = [
         label: 'Kirchhausen Lab',
         href: 'https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs',
       },
+      {
+        label: 'SpatialDINO engineering log',
+        href: '/knowledge/ai/spatialdino-lessons',
+      },
     ],
     bullets: [
-      'Authored SpatialDINO - first 3D self-supervised vision transformer for cryo-ET subcellular structure prediction.',
-      'Trained on DGX nodes with FSDP, bf16, NVLink, Infiniband; contributed Rendezvous backend fix to PyTorch (#144779).',
+      'Authored SpatialDINO - 3D self-supervised vision transformer for label-free segmentation and tracking in lattice light-sheet microscopy.',
+      'Pre-trained on 2.4 TB / 180k volumes on DGX A100 nodes with DDP, bf16, NVLink, InfiniBand; contributed Rendezvous backend fix to PyTorch (#144779).',
       'Co-authored two follow-on papers in Journal of Cell Biology.',
     ],
   },
@@ -269,8 +273,9 @@ export const PROJECTS: Project[] = [
   {
     name: 'SpatialDINO',
     year: '2025',
-    description: 'First 3D self-supervised vision transformer for cryo-ET subcellular structures.',
-    tech: ['PyTorch', 'FSDP', 'DGX', 'cryo-ET'],
+    description:
+      '3D self-supervised vision transformer for label-free segmentation and tracking in lattice light-sheet microscopy.',
+    tech: ['PyTorch', 'DDP', 'DGX', 'LLSM', '3D ViT'],
     href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
   },
   {
@@ -717,13 +722,13 @@ export const TIMELINE: TimelineEntry[] = [
     date: 'May 2024',
     status: 'Completed',
     description:
-      'ML researcher at Harvard Medical School applying 3D vision transformers to cryo-electron tomography. The lab images subcellular structures at near-atomic resolution; my job was to make the resulting volumes interpretable at scale.',
+      'ML researcher at Harvard Medical School applying 3D vision transformers to lattice light-sheet microscopy. The lab images live-cell subcellular dynamics at ~3 nm; my job was to make the resulting 4D volumes interpretable at scale.',
     bullets: [
       'Trained on multi-node DGX clusters: A100 / H100, NVLink intra-node, Infiniband inter-node, RAID + NVMe storage tier.',
-      'PyTorch FSDP with bf16 mixed precision and activation checkpointing to fit large 3D ViTs.',
+      'PyTorch DDP with bf16 mixed precision and activation checkpointing to fit large 3D ViTs.',
       'Diagnosed a Rendezvous (RDZV) backend issue affecting Infiniband multi-node training — filed PyTorch issue #144779.',
     ],
-    tech: ['PyTorch', 'FSDP', 'CUDA', 'Infiniband', 'NCCL', 'DGX', 'cryo-ET'],
+    tech: ['PyTorch', 'DDP', 'CUDA', 'Infiniband', 'NCCL', 'DGX', 'LLSM', '3D ViT'],
     links: [
       { label: 'View research ->', href: '/research' },
       { label: 'PyTorch #144779', href: 'https://github.com/pytorch/pytorch/issues/144779' },
@@ -736,21 +741,22 @@ export const TIMELINE: TimelineEntry[] = [
     slug: 'harvard-kirchhausen',
   },
   {
-    title: 'SpatialDINO - first 3D self-supervised vision transformer for cryo-ET',
+    title: 'SpatialDINO - 3D self-supervised vision transformer for LLSM',
     featured: true,
     org: 'Harvard',
     category: 'Research',
     date: '2025',
     status: 'Completed',
     description:
-      'Designed and trained the first 3D self-supervised vision transformer for subcellular structure prediction from cryo-electron tomograms — a result that beat a prior approach led by a Nobel laureate.',
+      'Designed and trained a 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy — pre-trained on 2.4 TB / 180k volumes across 24 A100s. Beat a prior approach co-led by Nobel laureate Eric Betzig on downstream evaluation.',
     bullets: [
-      'Adapted DINO-style self-supervised contrastive learning into 3D — student/teacher ViTs over volumetric tomograms.',
-      'Pretrained on unannotated tomograms; fine-tuned on a tiny labeled set for vesicle / organelle classification.',
-      'Beat the prior SOTA, including the Nobel-laureate-led approach, on downstream evaluation.',
-      'Released as a BioRxiv preprint, first-author.',
+      'Adapted DINO-style self-supervised contrastive learning into 3D — student/teacher ViTs over LLSM volumes with native 3D iBOT block masking.',
+      'Introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), and a 3D adaptation of SINDER for singular-defect repair.',
+      'Built a streaming encoder with token-store + online softmax for full-volume inference at million-token sequence lengths.',
+      'Beat the prior SOTA — including the Nobel-laureate-led approach — on downstream subcellular structure prediction.',
+      'Released as a BioRxiv preprint, first-author; engineering log at /knowledge/ai/spatialdino-lessons.',
     ],
-    tech: ['PyTorch', 'DINO', '3D ViT', 'Self-Supervised Learning', 'cryo-ET', 'FSDP'],
+    tech: ['PyTorch', 'DINO', '3D ViT', 'Self-Supervised Learning', 'LLSM', 'DDP', 'Triton'],
     links: [
       {
         label: 'BioArxiv preprint',

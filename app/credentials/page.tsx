@@ -59,7 +59,7 @@ const CREDENTIALS: Credential[] = [
     date: 'May 2024 – Aug 2025',
     fileUrl: '/images/files/arkash-jain-harvard-university-id.pdf',
     description: 'ML researcher at Harvard Medical School — Kirchhausen Lab.',
-    badges: ['Kirchhausen Lab', 'cryo-ET', 'SpatialDINO'],
+    badges: ['Kirchhausen Lab', 'LLSM', 'SpatialDINO'],
   },
   {
     title: 'NSF UROP Scholar',

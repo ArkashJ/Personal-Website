@@ -19,7 +19,7 @@ const DEFAULT_KEYWORDS = [
   'Harvard',
   'Boston University',
   'SpatialDINO',
-  'cryo-electron tomography',
+  'lattice light-sheet microscopy',
   'self-supervised learning',
   'distributed systems',
   'Apache Flink',

@@ -31,7 +31,7 @@ export const personSchema = () => ({
     'Distributed Systems',
     'Self-Supervised Learning',
     '3D Vision Transformers',
-    'Cryo-Electron Tomography',
+    'Lattice Light-Sheet Microscopy',
     'AI Infrastructure',
     'Venture Capital',
     'Forward Deployed Engineering',

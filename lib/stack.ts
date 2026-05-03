@@ -19,7 +19,7 @@ export const STACK: StackGroup[] = [
       },
       {
         name: 'DGX cluster (Harvard)',
-        why: 'Training rig for SpatialDINO and follow-on cryo-ET work. FSDP across 8x H100 with NVLink + Infiniband.',
+        why: 'Training rig for SpatialDINO and follow-on lab work. DDP across 8x H100 with NVLink + Infiniband.',
       },
       {
         name: 'Apple Studio Display',
@@ -109,7 +109,7 @@ export const STACK: StackGroup[] = [
       },
       {
         name: 'PyTorch + FSDP',
-        why: 'Training stack for SpatialDINO and everything cryo-ET adjacent.',
+        why: 'Training stack for SpatialDINO and the 3D microscopy ViT pipeline.',
       },
       {
         name: 'Apache Flink',

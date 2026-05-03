@@ -10,7 +10,7 @@ export const metadata = buildMetadata({
   description:
     'Selected projects: SpatialDINO (Harvard 3D self-supervised vision transformer), from-scratch Raft consensus in Go, NEXMARK Flink benchmark, Benmore Foundry CLI, plus open source contributions.',
   path: '/projects',
-  keywords: ['SpatialDINO', 'Raft', 'Flink', 'open source', 'distributed systems', 'cryo-ET'],
+  keywords: ['SpatialDINO', 'Raft', 'Flink', 'open source', 'distributed systems', 'LLSM'],
 })
 
 export default function ProjectsPage() {

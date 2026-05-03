@@ -10,11 +10,11 @@ import { buildMetadata } from '@/lib/metadata'
 export const metadata = buildMetadata({
   title: 'Research — SpatialDINO, Cell Biology ML, 3 Published Papers',
   description:
-    'Three published papers including SpatialDINO (3D self-supervised vision transformer for cryo-ET), one Journal of Cell Biology paper, and supercritical fluid spectroscopy in J. Chem. Phys.',
+    'Three published papers including SpatialDINO (3D self-supervised vision transformer for lattice light-sheet microscopy), one Journal of Cell Biology paper, and supercritical fluid spectroscopy in J. Chem. Phys.',
   path: '/research',
   keywords: [
     'SpatialDINO',
-    'cryo-ET',
+    'lattice light-sheet microscopy',
     '2DIR spectroscopy',
     'supercritical fluids',
     'ultrafast lasers',
