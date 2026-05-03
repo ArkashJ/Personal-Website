@@ -2,8 +2,19 @@ import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import type { Project } from '@/lib/data'
 
+const splitFirstTwoSentences = (text: string) => {
+  const matches = text.match(/[^.!?]+[.!?]+(\s+|$)/g)
+  if (!matches || matches.length <= 2) return { head: text, tail: '' }
+  return {
+    head: matches.slice(0, 2).join('').trim(),
+    tail: matches.slice(2).join('').trim(),
+  }
+}
+
 const ProjectCard = ({ name, description, tech, href, year, highlights, commands }: Project) => {
-  const hasDetails = (highlights && highlights.length > 0) || (commands && commands.length > 0)
+  const { head, tail } = description ? splitFirstTwoSentences(description) : { head: '', tail: '' }
+  const hasDetails =
+    tail.length > 0 || (highlights && highlights.length > 0) || (commands && commands.length > 0)
 
   return (
     <Card glow className="flex flex-col h-full">
@@ -16,7 +27,7 @@ const ProjectCard = ({ name, description, tech, href, year, highlights, commands
         )}
       </div>
 
-      {description && <p className="text-muted text-sm mb-4 leading-relaxed">{description}</p>}
+      {head && <p className="text-muted text-sm mb-4 leading-relaxed">{head}</p>}
 
       {hasDetails && (
         <details className="group/details mb-4">
@@ -25,6 +36,7 @@ const ProjectCard = ({ name, description, tech, href, year, highlights, commands
             <span className="hidden group-open/details:inline">Hide details ▴</span>
           </summary>
           <div className="mt-3 space-y-3">
+            {tail && <p className="text-muted text-sm leading-relaxed">{tail}</p>}
             {highlights && highlights.length > 0 && (
               <ul className="text-muted text-xs space-y-1 list-disc list-inside marker:text-primary/50">
                 {highlights.map((h) => (
