@@ -12,7 +12,6 @@ import TechBadge from '@/components/ui/TechBadge'
 import { PAPERS, PROJECTS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
 import { getAllWritingPosts } from '@/lib/content'
-import { topHighlights } from '@/lib/highlights'
 import { getLatestWeeklyLog, categoryCounts } from '@/lib/weekly'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -36,7 +35,6 @@ export default function Home() {
     .reverse()
     .slice(0, 6)
   const featuredCourses = COURSES.slice(0, 6)
-  const recentWins = topHighlights(4, 30)
   const latestWeekly = getLatestWeeklyLog()
   const latestWeeklyCounts = latestWeekly ? categoryCounts(latestWeekly) : null
 
@@ -140,60 +138,6 @@ export default function Home() {
 
       {/* Current updates — latest writing + Medium + LinkedIn embeds */}
       <CurrentUpdates writing={writing} />
-
-      {/* Recent wins — top-priority highlights from the data bank */}
-      {recentWins.length > 0 && (
-        <section className="px-6 py-10 max-w-6xl mx-auto">
-          <SectionHeader
-            eyebrow="Recent wins"
-            title="The highlight reel"
-            href="/weekly"
-            hrefLabel="Weekly logs →"
-          />
-          <div className="grid gap-3 md:grid-cols-2">
-            {recentWins.map((h) => {
-              const isExternal = h.link?.startsWith('http')
-              const inner = (
-                <Card glow className="h-full">
-                  <div className="flex items-baseline justify-between gap-3 mb-2">
-                    <Badge variant="teal">{h.category}</Badge>
-                    <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
-                      {h.date}
-                    </span>
-                  </div>
-                  <p className="text-sm font-bold text-text leading-snug group-hover:text-primary transition-colors duration-150">
-                    {h.headline}
-                    {h.link && <span className="ml-1 text-primary">→</span>}
-                  </p>
-                </Card>
-              )
-              const key = `${h.date}-${h.headline}`
-              if (h.link) {
-                return isExternal ? (
-                  <a
-                    key={key}
-                    href={h.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block group"
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <Link key={key} href={h.link} className="block group">
-                    {inner}
-                  </Link>
-                )
-              }
-              return (
-                <div key={key} className="block group">
-                  {inner}
-                </div>
-              )
-            })}
-          </div>
-        </section>
-      )}
 
       {/* Recent timeline strip — mini changelog */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
