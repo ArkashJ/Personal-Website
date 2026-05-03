@@ -280,27 +280,30 @@ function ItemCard({
   return (
     <div
       data-weekly-card
-      className="relative border border-border bg-surface p-4 hover:border-primary/60 active:scale-[0.99] transition-[border-color,transform] duration-150 motion-reduce:!transform-none weekly-card-enter"
+      className="relative border border-border bg-surface hover:border-primary/60 active:scale-[0.99] transition-[border-color,transform] duration-150 motion-reduce:!transform-none weekly-card-enter flex flex-col h-full"
       style={{ animationDelay: `${Math.min(index, 11) * 30}ms` }}
     >
       <button
         type="button"
         onClick={onOpen}
         aria-label={resolved.text}
-        className="block w-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="flex flex-col text-left h-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
-        <div className="flex items-start gap-3">
-          {resolved.image &&
-            (isYouTubeThumb ? (
-              <Image
-                src={resolved.image}
-                alt=""
-                width={64}
-                height={36}
-                className="flex-shrink-0 mt-0.5 border border-border object-cover"
-                unoptimized
-              />
-            ) : (
+        {isYouTubeThumb && resolved.image && (
+          <div className="relative w-full aspect-video border-b border-border bg-elevated overflow-hidden">
+            <Image
+              src={resolved.image}
+              alt=""
+              fill
+              sizes="320px"
+              className="object-cover"
+              unoptimized
+            />
+          </div>
+        )}
+        <div className="p-4 flex flex-col gap-2 flex-1">
+          <div className="flex items-start gap-2">
+            {!isYouTubeThumb && resolved.image && (
               <Image
                 src={resolved.image}
                 alt=""
@@ -309,27 +312,31 @@ function ItemCard({
                 className="flex-shrink-0 mt-1"
                 unoptimized
               />
-            ))}
-          <div className="min-w-0 flex-1 pr-12">
-            <p className="text-sm text-text leading-snug font-medium">{resolved.text}</p>
-            <div className="flex items-center gap-2 mt-1 flex-wrap">
-              {resolved.source && (
-                <span className="font-mono text-[10px] uppercase tracking-wider text-subtle">
-                  {resolved.source}
-                </span>
-              )}
-              {resolved.rail && (
-                <span className="font-mono text-[10px] uppercase tracking-wider text-primary/70">
-                  {RAIL_LABEL[resolved.rail]}
-                </span>
-              )}
-            </div>
-            {resolved.notes && (
-              <p className="text-xs text-muted leading-relaxed mt-2 border-l-2 border-border pl-2 line-clamp-3">
-                {resolved.notes}
-              </p>
+            )}
+            <p className="text-sm text-text leading-snug font-medium line-clamp-2 flex-1 pr-16">
+              {resolved.text}
+            </p>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            {resolved.source && (
+              <span className="font-mono text-[10px] uppercase tracking-wider text-subtle">
+                {resolved.source}
+              </span>
+            )}
+            {resolved.rail && (
+              <span className="font-mono text-[10px] uppercase tracking-wider text-primary/70">
+                · {RAIL_LABEL[resolved.rail]}
+              </span>
             )}
           </div>
+          {resolved.notes && (
+            <p className="text-xs text-muted leading-relaxed line-clamp-2 mt-auto">
+              {resolved.notes}
+            </p>
+          )}
+          <span className="font-mono text-[10px] uppercase tracking-widest text-primary/80 mt-2">
+            Click to read →
+          </span>
         </div>
       </button>
       <div className="absolute top-3 right-3 flex items-center gap-2">

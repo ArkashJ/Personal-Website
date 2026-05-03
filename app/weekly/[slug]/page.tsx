@@ -90,7 +90,7 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
   const sections = extractSections(post.source)
 
   return (
-    <article className="px-6 py-16 max-w-3xl mx-auto">
+    <article className="px-6 py-16 max-w-5xl mx-auto">
       <Link href="/weekly" className="text-primary hover:text-accent font-mono text-sm">
         ← Weekly
       </Link>
