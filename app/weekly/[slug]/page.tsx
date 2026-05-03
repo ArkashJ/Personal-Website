@@ -5,7 +5,13 @@ import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import MdxContent from '@/components/MdxContent'
 import { buildMetadata } from '@/lib/metadata'
-import { getAllWeeklyLogs, getWeeklyLog, type WeeklyItem, type WeeklyLogMeta } from '@/lib/weekly'
+import {
+  getAllWeeklyLogs,
+  getWeeklyLog,
+  type ChangelogEntry,
+  type WeeklyItem,
+  type WeeklyLogMeta,
+} from '@/lib/weekly'
 import { resolveItem } from '@/lib/weekly-render'
 
 export const dynamicParams = false
@@ -108,6 +114,41 @@ function Rail({ label, items }: { label: string; items?: WeeklyItem[] }) {
   )
 }
 
+function Changelog({ entries }: { entries?: ChangelogEntry[] }) {
+  if (!entries || entries.length === 0) return null
+  const sorted = [...entries].sort((a, b) => (a.date < b.date ? 1 : -1))
+  return (
+    <section className="mt-12 border-t border-border pt-8">
+      <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-4">
+        Changelog · live
+      </p>
+      <ol className="space-y-3">
+        {sorted.map((e, i) => (
+          <li key={`${e.date}-${i}`} className="flex gap-4 text-sm">
+            <time className="font-mono text-[11px] text-subtle whitespace-nowrap pt-0.5 w-24 flex-shrink-0">
+              {e.date}
+            </time>
+            <p className="text-muted leading-relaxed">
+              {e.href ? (
+                <a
+                  href={e.href}
+                  target={e.href.startsWith('http') ? '_blank' : undefined}
+                  rel={e.href.startsWith('http') ? 'noreferrer' : undefined}
+                  className="text-text hover:text-primary transition-colors"
+                >
+                  {e.note}
+                </a>
+              ) : (
+                e.note
+              )}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}
+
 export default async function WeeklyDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = await getWeeklyLog(slug)
@@ -155,6 +196,8 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
           <p className="text-muted text-sm">Notes coming soon.</p>
         </Card>
       )}
+
+      <Changelog entries={meta.changelog} />
     </article>
   )
 }

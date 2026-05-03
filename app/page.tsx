@@ -279,33 +279,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* Skills */}
-      <section className="px-6 py-10 max-w-6xl mx-auto">
-        <SectionHeader
-          eyebrow="Skills Library"
-          title="71 agent skills"
-          href="/skills"
-          hrefLabel="Browse all →"
-        />
-        <Card glow href="/skills" className="block">
-          <p className="text-muted text-sm leading-relaxed mb-3">
-            Public library of agent skills used daily at Benmore — payments, design, compliance, CLI
-            tooling, AI SEO. Each one is one click to copy into your LLM.
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {['Payments', 'Compliance', 'Design Eng', 'AI SEO', 'CLI', 'Frontend'].map((c) => (
-              <span
-                key={c}
-                className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-primary border border-primary/30 bg-primary/5"
-              >
-                {c}
-              </span>
-            ))}
-          </div>
-          <p className="font-mono text-xs text-primary mt-4">View all 71 →</p>
-        </Card>
-      </section>
     </div>
   )
 }

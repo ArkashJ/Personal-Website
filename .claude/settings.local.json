@@ -33,7 +33,8 @@
       "Bash(pkill -f \"next dev\")",
       "Bash(pkill -f \"next\")",
       "Bash(rtk ps *)",
-      "Bash(git reset *)"
+      "Bash(git reset *)",
+      "Bash(rtk wc *)"
     ]
   }
 }

@@ -12,6 +12,19 @@ const cardClasses = (glow: boolean, className: string) =>
 
 const Card = ({ children, className = '', glow = false, href }: CardProps) => {
   if (href) {
+    const external = /^https?:\/\//.test(href)
+    if (external) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cardClasses(glow, className)}
+        >
+          {children}
+        </a>
+      )
+    }
     return (
       <Link href={href} className={cardClasses(glow, className)}>
         {children}

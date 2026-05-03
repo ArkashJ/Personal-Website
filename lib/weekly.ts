@@ -30,6 +30,13 @@ export type WeeklyLogMeta = {
   shipped?: WeeklyItem[]
   learned?: WeeklyItem[]
   met?: WeeklyItem[]
+  changelog?: ChangelogEntry[]
+}
+
+export type ChangelogEntry = {
+  date: string
+  note: string
+  href?: string
 }
 
 function readDir(dir: string): string[] {
