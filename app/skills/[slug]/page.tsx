@@ -59,12 +59,12 @@ export default async function SkillPage({ params }: { params: Promise<Params> })
             View raw .md →
           </a>
           <a
-            href={`https://github.com/Benmore-Studio/Benmore-Meridian/blob/main/skills/${slug}/SKILL.md`}
+            href="https://skills.sh"
             target="_blank"
             rel="noopener noreferrer"
             className="px-3 py-1.5 text-xs font-mono border border-border text-muted hover:border-primary hover:text-primary transition-[color,border-color] duration-150"
           >
-            GitHub →
+            skills.sh →
           </a>
           <span className="ml-auto text-[11px] font-mono text-subtle">{skill.lineCount} lines</span>
         </div>
