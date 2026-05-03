@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Pill from '@/components/ui/Pill'
 
 type SectionHeaderProps = {
@@ -40,12 +41,12 @@ const SectionHeader = ({
         )}
       </div>
       {href && (
-        <a
+        <Link
           href={href}
-          className="font-mono text-primary text-xs hover:text-accent whitespace-nowrap uppercase tracking-widest"
+          className="font-mono text-primary text-xs hover:text-accent transition-colors duration-150 whitespace-nowrap uppercase tracking-widest"
         >
           {hrefLabel}
-        </a>
+        </Link>
       )}
     </div>
   )

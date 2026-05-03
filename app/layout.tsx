@@ -9,6 +9,7 @@ import ThemeProvider from '@/components/ThemeProvider'
 import { personSchema, websiteSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { SITE } from '@/lib/site'
+import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata: Metadata = {
   ...buildMetadata({ path: '/' }),
@@ -71,13 +72,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Site built and maintained by Arkash Jain — <a href={SITE.url}>{SITE.url}</a>.
           </p>
         </noscript>
-        <ThemeProvider>
-          <JsonLd data={personSchema()} />
-          <JsonLd data={websiteSchema()} />
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <ClerkProvider>
+          <ThemeProvider>
+            <JsonLd data={personSchema()} />
+            <JsonLd data={websiteSchema()} />
+            <Nav />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   )

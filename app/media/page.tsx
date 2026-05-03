@@ -5,7 +5,6 @@ import Badge from '@/components/ui/Badge'
 import Disclosure from '@/components/ui/Disclosure'
 import BackLink from '@/components/ui/BackLink'
 import { YouTubeEmbed } from '@next/third-parties/google'
-import LinkedInPost from '@/components/embeds/LinkedInPost'
 import {
   STU_STREET_EPISODES,
   PODCAST_LINKS,
@@ -85,7 +84,7 @@ export default function MediaPage() {
       </nav>
 
       {/* Benmore feature videos */}
-      <section id="benmore" className="scroll-mt-20">
+      <section id="benmore" className="scroll-mt-24">
         <SectionHeader
           eyebrow="Benmore"
           title="Featured talks"
@@ -110,7 +109,7 @@ export default function MediaPage() {
       </section>
 
       {/* LinkedIn posts */}
-      <section id="linkedin" className="scroll-mt-20">
+      <section id="linkedin" className="scroll-mt-24">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">LinkedIn — Posts</h2>
@@ -127,30 +126,39 @@ export default function MediaPage() {
             Profile →
           </a>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 reveal">
+        <div className="grid gap-3 md:grid-cols-2 reveal">
           {LINKEDIN_POSTS.map((post) => (
-            <div key={post.urn} className="flex flex-col gap-3">
-              <LinkedInPost urn={post.urn} type={post.type} height={400} />
-              <div className="flex items-center justify-between gap-2 px-1">
-                {post.title && (
-                  <span className="text-text text-sm font-medium line-clamp-1">{post.title}</span>
+            <a
+              key={post.urn}
+              href={post.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start justify-between gap-4 px-5 py-4 bg-surface border border-border hover:border-primary/60 hover:-translate-y-px transition-[transform,border-color] duration-150"
+            >
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="font-mono text-[10px] text-primary uppercase tracking-widest">
+                    LinkedIn
+                  </span>
+                  {post.date && (
+                    <span className="font-mono text-[10px] text-subtle">{post.date}</span>
+                  )}
+                </div>
+                {post.title && <h3 className="text-text font-medium text-sm mb-1">{post.title}</h3>}
+                {post.excerpt && (
+                  <p className="text-muted text-xs line-clamp-2 leading-relaxed">{post.excerpt}</p>
                 )}
-                <a
-                  href={post.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-[10px] text-primary hover:text-accent transition-colors duration-150 uppercase tracking-widest whitespace-nowrap"
-                >
-                  Open →
-                </a>
               </div>
-            </div>
+              <span className="font-mono text-[10px] text-primary group-hover:text-accent transition-colors duration-150 uppercase tracking-widest whitespace-nowrap flex-shrink-0 mt-0.5">
+                Open →
+              </span>
+            </a>
           ))}
         </div>
       </section>
 
       {/* STU STREET — featured + disclosure */}
-      <section id="stu-street" className="scroll-mt-20">
+      <section id="stu-street" className="scroll-mt-24">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">
@@ -254,7 +262,7 @@ export default function MediaPage() {
       </section>
 
       {/* Trustpilot reviews */}
-      <section id="reviews" className="scroll-mt-20">
+      <section id="reviews" className="scroll-mt-24">
         <SectionHeader
           eyebrow="Reviews"
           title="What clients say"
@@ -344,7 +352,7 @@ export default function MediaPage() {
       </section>
 
       {/* Medium */}
-      <section id="medium" className="scroll-mt-20">
+      <section id="medium" className="scroll-mt-24">
         <div className="flex items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">
@@ -391,7 +399,7 @@ export default function MediaPage() {
       </section>
 
       {/* Substack */}
-      <section id="substack" className="scroll-mt-20">
+      <section id="substack" className="scroll-mt-24">
         <div className="flex items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">Substack — Weekly Notes</h2>
@@ -426,7 +434,7 @@ export default function MediaPage() {
       </section>
 
       {/* Press */}
-      <section id="press" className="scroll-mt-20">
+      <section id="press" className="scroll-mt-24">
         <SectionHeader
           eyebrow="Press"
           title="Press, profiles, mentions"

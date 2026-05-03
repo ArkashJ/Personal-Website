@@ -26,7 +26,9 @@ const Nav = () => {
   return (
     <>
       <div className="sticky top-0 z-50 px-3 pt-3 pb-1 bg-gradient-to-b from-bg/95 via-bg/70 to-transparent backdrop-blur-md">
-        <nav className="max-w-6xl mx-auto rounded-full bg-surface/95 border border-border-strong shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)]">
+        <nav
+          className={`max-w-6xl mx-auto bg-surface/95 border border-border-strong shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-[border-radius] duration-200 ${open ? 'rounded-2xl' : 'rounded-full'}`}
+        >
           <div className="px-5 py-2.5 flex items-center justify-between gap-4">
             <Link
               href="/"
@@ -44,7 +46,7 @@ const Nav = () => {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className={`relative font-mono text-[12px] px-3 py-1.5 rounded-full transition-all ${
+                        className={`relative font-mono text-[12px] px-3 py-1.5 rounded-full transition-[color,background-color] duration-150 ${
                           active
                             ? 'text-primary bg-elevated'
                             : 'text-muted hover:text-text hover:bg-elevated/60'
@@ -89,6 +91,7 @@ const Nav = () => {
               <button
                 aria-label={open ? 'Close menu' : 'Open menu'}
                 aria-expanded={open}
+                type="button"
                 onClick={() => setOpen((v) => !v)}
                 className="flex flex-col gap-1 p-2 -mr-2"
               >
@@ -110,7 +113,7 @@ const Nav = () => {
           </div>
 
           {open && (
-            <div className="md:hidden border-t border-border rounded-b-3xl">
+            <div className="md:hidden border-t border-border rounded-b-2xl">
               <ul className="px-5 py-4 flex flex-col gap-2">
                 {NAV_LINKS.map((link) => {
                   const active = pathname === link.href || pathname?.startsWith(`${link.href}/`)

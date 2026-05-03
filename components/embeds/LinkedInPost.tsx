@@ -23,11 +23,10 @@ const LinkedInPost = ({
         src={src}
         height={height}
         width="100%"
-        frameBorder={0}
         allowFullScreen
         title={`LinkedIn post ${urn}`}
         loading="lazy"
-        className="block"
+        className="block border-0"
       />
     </div>
   )

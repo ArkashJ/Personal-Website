@@ -5,10 +5,18 @@ const TradeLog = ({ trades }: { trades: Trade[] }) => (
     <table className="min-w-full divide-y divide-border text-sm">
       <thead className="bg-surface/60 text-primary font-mono uppercase text-xs tracking-wider">
         <tr>
-          <th className="px-4 py-3 text-left">Date</th>
-          <th className="px-4 py-3 text-left">Instrument</th>
-          <th className="px-4 py-3 text-left">Thesis</th>
-          <th className="px-4 py-3 text-left">Outcome</th>
+          <th scope="col" className="px-4 py-3 text-left">
+            Date
+          </th>
+          <th scope="col" className="px-4 py-3 text-left">
+            Instrument
+          </th>
+          <th scope="col" className="px-4 py-3 text-left">
+            Thesis
+          </th>
+          <th scope="col" className="px-4 py-3 text-left">
+            Outcome
+          </th>
         </tr>
       </thead>
       <tbody className="divide-y divide-border bg-surface/20">
