@@ -3,6 +3,7 @@ import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
+import CommitsSidebar from '@/components/sections/CommitsSidebar'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { getParsedChangelog } from '@/lib/changelog-md'
@@ -24,7 +25,6 @@ const SECTION_VARIANT: Record<string, 'teal' | 'cyan' | 'green' | 'default'> = {
 }
 
 function sectionVariant(label: string): 'teal' | 'cyan' | 'green' | 'default' {
-  // Match first word of section label against known types
   const key = label.split(/\s+/)[0]
   return SECTION_VARIANT[key] ?? 'default'
 }
@@ -56,8 +56,8 @@ export default function ChangelogPage() {
           asH1
         />
 
-        {/* 2-column layout: changelog left (⅔), sidebar slot right (⅓) */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        {/* 2-column layout: changelog left (⅔), commits sidebar right (⅓) */}
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
           {/* Left: parsed CHANGELOG.md */}
           <div className="lg:col-span-2">
             {releases.length === 0 ? (
@@ -135,21 +135,10 @@ export default function ChangelogPage() {
             </div>
           </div>
 
-          {/* Right: CommitsSidebar slot — implemented in U9 (Worktree C) */}
+          {/* Right: CommitsSidebar — sticky on desktop, stacks below on mobile */}
           <aside className="lg:col-span-1">
-            <div className="sticky top-6">
-              <div className="border border-border bg-surface p-6">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-subtle mb-2">
-                  Commits sidebar
-                </p>
-                <p className="text-muted text-sm">
-                  Commit history and git activity grid coming soon — see{' '}
-                  <Link href="/weekly" className="text-primary hover:text-accent transition-colors">
-                    /weekly
-                  </Link>{' '}
-                  for per-week commit details.
-                </p>
-              </div>
+            <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              <CommitsSidebar />
             </div>
           </aside>
         </div>
