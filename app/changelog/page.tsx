@@ -3,10 +3,12 @@ import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
-import CommitsSidebar from '@/components/sections/CommitsSidebar'
+import GitChangelog from '@/components/sections/GitChangelog'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { getParsedChangelog } from '@/lib/changelog-md'
+import { getAllWeeklyLogs } from '@/lib/weekly'
+import { getCommitsForWeek, getGitChangelog } from '@/lib/git-changelog'
 
 export const metadata = buildMetadata({
   title: 'Changelog — arkashj.com',
@@ -37,6 +39,10 @@ function formatDate(date: string) {
 
 export default function ChangelogPage() {
   const releases = getParsedChangelog()
+  // Use the latest weekly log's range as "this week" for the commits scope toggle.
+  const latestWeek = getAllWeeklyLogs()[0]
+  const allCommits = getGitChangelog()
+  const weekCommits = latestWeek ? getCommitsForWeek(latestWeek.weekStart, latestWeek.weekEnd) : []
 
   return (
     <>
@@ -56,10 +62,9 @@ export default function ChangelogPage() {
           asH1
         />
 
-        {/* 2-column layout: changelog left (⅔), commits sidebar right (⅓) */}
-        <div className="grid lg:grid-cols-3 gap-8 items-start">
-          {/* Left: parsed CHANGELOG.md */}
-          <div className="lg:col-span-2">
+        {/* Single column: parsed CHANGELOG.md, then full repository commits below */}
+        <div>
+          <div>
             {releases.length === 0 ? (
               <Card>
                 <p className="text-muted text-sm">No releases found in CHANGELOG.md.</p>
@@ -135,12 +140,8 @@ export default function ChangelogPage() {
             </div>
           </div>
 
-          {/* Right: CommitsSidebar — sticky on desktop, stacks below on mobile */}
-          <aside className="lg:col-span-1">
-            <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
-              <CommitsSidebar />
-            </div>
-          </aside>
+          {/* Repository commits — moved off weekly slug pages onto /changelog. */}
+          <GitChangelog weekCommits={weekCommits} allCommits={allCommits} />
         </div>
       </div>
     </>

@@ -4,7 +4,6 @@ import GitHubActivity from '@/components/sections/GitHubActivity'
 import SectionHeader from '@/components/sections/SectionHeader'
 import PaperCard from '@/components/sections/PaperCard'
 import ProjectCard from '@/components/sections/ProjectCard'
-import NowSection from '@/components/sections/NowSection'
 import RollingLog from '@/components/sections/RollingLog'
 import FeaturedBanner from '@/components/sections/FeaturedBanner'
 import Card from '@/components/ui/Card'
@@ -35,9 +34,6 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
   return (
     <div>
       <Hero />
-
-      {/* Now — moved to top in v2.6.0: Milestones / Writing / Media / Projects */}
-      <NowSection />
 
       {/* Rolling log — paginated weekly updates (replaces single "This Week" card) */}
       <section className="px-6 py-4 max-w-6xl mx-auto">

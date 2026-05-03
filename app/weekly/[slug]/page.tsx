@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Badge from '@/components/ui/Badge'
 import CopyForLlm from '@/components/ui/CopyForLlm'
-import GitChangelog from '@/components/sections/GitChangelog'
 import { buildMetadata } from '@/lib/metadata'
 import {
   getAllWeeklyLogs,
@@ -11,7 +10,6 @@ import {
   type ChangelogEntry,
   type WeeklyLogMeta,
 } from '@/lib/weekly'
-import { getCommitsForWeek, getGitChangelog } from '@/lib/git-changelog'
 import { findReleaseInWeek } from '@/lib/changelog-md'
 import { WeeklyGrid } from './WeeklyGrid'
 
@@ -120,9 +118,6 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
       )}
       <p className="text-muted text-sm font-mono mb-6">
         {meta.weekStart} → {meta.weekEnd}
-        {meta.tags && meta.tags.length > 0 && (
-          <span className="text-subtle"> · {meta.tags.length} tags</span>
-        )}
       </p>
       {meta.description && (
         <p className="text-muted text-lg leading-relaxed mb-8">{meta.description}</p>
@@ -138,29 +133,7 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
       {/* Prose body removed in v2.6.0 — full content lives behind each item modal + the
           per-week /raw endpoint for LLMs. Detail-on-demand, not a wall of text. */}
 
-      {/* Repository commits this week (build-time cached) */}
-      <GitChangelog
-        weekCommits={getCommitsForWeek(meta.weekStart, meta.weekEnd)}
-        allCommits={getGitChangelog()}
-      />
-
       <Changelog entries={meta.changelog} />
-
-      {/* Tags moved to the bottom — discovery surface, not header noise */}
-      {meta.tags && meta.tags.length > 0 && (
-        <section className="mt-12 border-t border-border pt-8">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-4">
-            Tags · {meta.tags.length}
-          </p>
-          <div className="flex flex-wrap gap-1.5">
-            {meta.tags.map((t) => (
-              <Badge key={t} variant="teal">
-                {t}
-              </Badge>
-            ))}
-          </div>
-        </section>
-      )}
     </article>
   )
 }

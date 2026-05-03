@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
-import { Search, X, Plus, Minus } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import {
@@ -14,7 +14,6 @@ import {
   type WeeklyLogMeta,
 } from '@/lib/weekly-types'
 import { resolveEnriched, type ResolvedItem } from '@/lib/weekly-render'
-import { tagsByFrequency } from '@/lib/tags'
 import { useUrlState } from '@/lib/url-state'
 import Badge from '@/components/ui/Badge'
 
@@ -28,8 +27,6 @@ const KIND_ORDER: WeeklyItemKind[] = [
   'tweet',
   'note',
 ]
-
-const TOP_TAGS = 8
 
 // ---------------------------------------------------------------------------
 // Modal (unchanged logic; moved here so the grid can own its open/close)
@@ -372,7 +369,6 @@ export function WeeklyGrid({
   const items = useMemo(() => getAllItems(meta), [meta])
   const resolved = useMemo(() => items.map((it) => resolveEnriched(it)), [items])
 
-  const allTags = useMemo(() => tagsByFrequency(resolved, (r) => r.tags ?? []), [resolved])
   const presentKinds = useMemo(() => {
     const set = new Set<WeeklyItemKind>()
     for (const r of resolved) if (r.kind) set.add(r.kind)
@@ -380,7 +376,6 @@ export function WeeklyGrid({
   }, [resolved])
 
   const { values, set, reset } = useUrlState(['q', 'tag', 'kind'])
-  const [showAllTags, setShowAllTags] = useState(false)
 
   const q = values.q.trim().toLowerCase()
   const tag = values.tag
@@ -400,9 +395,6 @@ export function WeeklyGrid({
       return true
     })
   }, [resolved, q, tag, kind])
-
-  const visibleTags = showAllTags ? allTags : allTags.slice(0, TOP_TAGS)
-  const hiddenTagCount = Math.max(0, allTags.length - TOP_TAGS)
 
   // -------------------- modal state --------------------
   const [modal, setModal] = useState<ModalState>({
@@ -483,54 +475,6 @@ export function WeeklyGrid({
                 {kindLabel(k)}
               </button>
             ))}
-          </div>
-        )}
-
-        {/* Tag pills */}
-        {allTags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-2">
-            <button
-              type="button"
-              onClick={() => set('tag', null)}
-              className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
-                !tag
-                  ? 'bg-primary text-bg border-primary'
-                  : 'border-border text-muted hover:border-primary hover:text-primary'
-              }`}
-            >
-              All tags
-            </button>
-            {visibleTags.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => set('tag', tag === t ? null : t)}
-                className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
-                  tag === t
-                    ? 'bg-primary text-bg border-primary'
-                    : 'border-border text-muted hover:border-primary hover:text-primary'
-                }`}
-              >
-                {t}
-              </button>
-            ))}
-            {hiddenTagCount > 0 && (
-              <button
-                type="button"
-                onClick={() => setShowAllTags((s) => !s)}
-                className="flex items-center gap-1 px-3 py-1 text-xs font-mono border border-border text-muted hover:border-primary hover:text-primary transition-[color,border-color] duration-150"
-              >
-                {showAllTags ? (
-                  <>
-                    <Minus className="w-3 h-3" /> Less
-                  </>
-                ) : (
-                  <>
-                    <Plus className="w-3 h-3" /> {hiddenTagCount} more
-                  </>
-                )}
-              </button>
-            )}
           </div>
         )}
 
