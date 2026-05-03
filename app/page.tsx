@@ -12,7 +12,7 @@ import TechBadge from '@/components/ui/TechBadge'
 import { PAPERS, PROJECTS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
 import { getAllWritingPosts } from '@/lib/content'
-import { getLatestWeeklyLog, categoryCounts } from '@/lib/weekly'
+import { getLatestWeeklyLog } from '@/lib/weekly'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
@@ -36,7 +36,6 @@ export default function Home() {
     .slice(0, 6)
   const featuredCourses = COURSES.slice(0, 6)
   const latestWeekly = getLatestWeeklyLog()
-  const latestWeeklyCounts = latestWeekly ? categoryCounts(latestWeekly) : null
 
   return (
     <div>
@@ -44,7 +43,7 @@ export default function Home() {
       <Hero />
 
       {/* This week — latest weekly log surfaced on home */}
-      {latestWeekly && latestWeeklyCounts && (
+      {latestWeekly && (
         <section className="px-6 py-8 max-w-6xl mx-auto">
           <SectionHeader
             eyebrow="This week"
@@ -63,29 +62,8 @@ export default function Home() {
                 </span>
               </div>
               {latestWeekly.description && (
-                <p className="text-muted text-sm leading-relaxed mb-4">
-                  {latestWeekly.description}
-                </p>
+                <p className="text-muted text-sm leading-relaxed">{latestWeekly.description}</p>
               )}
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-3 pt-3 border-t border-border">
-                {(
-                  [
-                    ['Read', latestWeeklyCounts.read],
-                    ['Watched', latestWeeklyCounts.watched],
-                    ['Built', latestWeeklyCounts.built],
-                    ['Shipped', latestWeeklyCounts.shipped],
-                    ['Learned', latestWeeklyCounts.learned],
-                    ['Met', latestWeeklyCounts.met],
-                  ] as const
-                ).map(([label, count]) => (
-                  <div key={label}>
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-subtle">
-                      {label}
-                    </p>
-                    <p className="text-xl font-bold text-text mt-0.5">{count}</p>
-                  </div>
-                ))}
-              </div>
               {latestWeekly.tags && latestWeekly.tags.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-4">
                   {latestWeekly.tags.map((t) => (
