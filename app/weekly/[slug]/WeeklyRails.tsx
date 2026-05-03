@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -103,11 +104,16 @@ function DetailModal({
 }) {
   const { resolved, content, hasContent } = modal
   const [entered, setEntered] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   const requestClose = useCallback(() => {
     setEntered(false)
     window.setTimeout(onClose, MODAL_EXIT_MS)
   }, [onClose])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (!resolved) return
@@ -122,11 +128,11 @@ function DetailModal({
     }
   }, [resolved, requestClose])
 
-  if (!resolved) return null
+  if (!resolved || !mounted) return null
 
   const isYouTubeThumb = resolved.image?.includes('ytimg.com')
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6">
       {/* Backdrop */}
       <div
@@ -282,7 +288,8 @@ function DetailModal({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
 

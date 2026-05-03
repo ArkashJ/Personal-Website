@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import type { Project, WorkTool } from '@/lib/data'
 
 type ProjectLike = Project | WorkTool
@@ -37,11 +38,16 @@ export default function ProjectDetailModal({
   onClose: () => void
 }) {
   const [entered, setEntered] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   const requestClose = useCallback(() => {
     setEntered(false)
     window.setTimeout(onClose, EXIT_MS)
   }, [onClose])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (!project) return
@@ -58,14 +64,14 @@ export default function ProjectDetailModal({
     }
   }, [project, requestClose])
 
-  if (!project) return null
+  if (!project || !mounted) return null
 
   const year = 'year' in project ? project.year : undefined
   const highlights = project.highlights ?? []
   const commands = project.commands ?? []
   const isExternal = project.href ? /^https?:\/\//.test(project.href) : false
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6">
       {/* Backdrop */}
       <div
@@ -219,6 +225,7 @@ export default function ProjectDetailModal({
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }
