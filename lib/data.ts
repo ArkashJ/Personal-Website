@@ -16,6 +16,11 @@ export type ExperienceEntry = {
   dates: string
   location?: string
   bullets: string[]
+  story?: string
+  stats?: { label: string; value: string }[]
+  tech?: string[]
+  links?: { label: string; href: string }[]
+  featured?: boolean
 }
 
 export type Project = {
@@ -103,6 +108,16 @@ export const EXPERIENCE: ExperienceEntry[] = [
     role: 'Head of FDE - Forward Deployed Strategist & Engineer',
     dates: 'Aug 2025 - Present',
     location: 'Remote',
+    featured: true,
+    story:
+      'Joined as Employee #2 and became the technical spine of every client engagement. I built the Benmore Foundry CLI — an orchestration layer that turns a consulting engagement into a repeatable, AI-augmented delivery machine. Deployed across 15+ SMB clients, forward-engineering production systems in Stripe, Django, Next.js, FastAPI, and React Native. Revenue scaled 887% in under a year because the Foundry made every engineer 3–5× more effective per engagement.',
+    stats: [
+      { label: 'Revenue growth', value: '887%' },
+      { label: 'Client engagements', value: '15+' },
+      { label: 'Employee #', value: '2' },
+    ],
+    tech: ['Python', 'Django', 'Next.js', 'FastAPI', 'React Native', 'Stripe', 'Claude Code'],
+    links: [{ label: 'benmore.tech', href: 'https://benmore.tech' }],
     bullets: [
       'Employee #2; scaled revenue 887% across 2025-2026.',
       'Forward-deployed lead engineer across the Benmore portfolio of SMB AI engagements.',
@@ -115,6 +130,25 @@ export const EXPERIENCE: ExperienceEntry[] = [
     role: 'ML Researcher',
     dates: 'May 2024 - Aug 2025',
     location: 'Boston, MA',
+    featured: true,
+    story:
+      'Joined the Kirchhausen Lab at Harvard Medical School to work on cryo-electron tomography — the technique that lets you see individual proteins inside cells. I authored SpatialDINO, the first 3D self-supervised vision transformer applied to cryo-ET subcellular structure prediction. Training ran on DGX A100 nodes with FSDP and NVLink; I also contributed a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training for the team. The work produced three papers, two published in the Journal of Cell Biology.',
+    stats: [
+      { label: 'Papers', value: '3' },
+      { label: 'Training infra', value: 'DGX A100' },
+      { label: 'PyTorch PR', value: '#144779' },
+    ],
+    tech: ['PyTorch', 'FSDP', 'DGX', 'cryo-ET', 'Python', 'CUDA'],
+    links: [
+      {
+        label: 'SpatialDINO (BioRxiv)',
+        href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+      },
+      {
+        label: 'Kirchhausen Lab',
+        href: 'https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs',
+      },
+    ],
     bullets: [
       'Authored SpatialDINO - first 3D self-supervised vision transformer for cryo-ET subcellular structure prediction.',
       'Trained on DGX nodes with FSDP, bf16, NVLink, Infiniband; contributed Rendezvous backend fix to PyTorch (#144779).',
@@ -140,6 +174,16 @@ export const EXPERIENCE: ExperienceEntry[] = [
     role: 'TA + Distributed Systems Researcher',
     dates: '2021 - 2024',
     location: 'Boston, MA',
+    featured: true,
+    story:
+      'BU was the foundation. I arrived as a freshman from India, won one of five university-wide NSF UROP scholarships, and published my first first-author paper in chemical physics — all before my second year. I spent three years as a TA for systems and CS theory courses while pursuing a thesis on dynamic checkpointing for Apache Flink, building adaptive checkpoint cadence based on real-time backpressure signals. BU is where I learned that shipping real systems is different from studying them.',
+    stats: [
+      { label: 'NSF UROP', value: '1 of 5' },
+      { label: 'First paper', value: 'Year 1' },
+      { label: 'TA tenure', value: '3 years' },
+    ],
+    tech: ['Java', 'Apache Flink', 'RocksDB', 'Go', 'Python'],
+    links: [{ label: 'BU CS Profile', href: 'https://www.bu.edu/cs/profiles/arkash-jain/' }],
     bullets: [
       'TA across systems and CS theory courses.',
       'Thesis: dynamic checkpointing for Apache Flink - adaptive checkpoint cadence based on backpressure signals.',

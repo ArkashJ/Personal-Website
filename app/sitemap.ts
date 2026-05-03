@@ -12,6 +12,7 @@ const STATIC: {
 }[] = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/experience', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/research', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/projects', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/writing', priority: 0.8, changeFrequency: 'weekly' },

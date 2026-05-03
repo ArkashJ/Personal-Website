@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react'
 import Card from '@/components/ui/Card'
 import Disclosure from '@/components/ui/Disclosure'
 import InstitutionLogo, { hasLogo } from '@/components/ui/InstitutionLogo'
 import type { ExperienceEntry } from '@/lib/data'
 
-const Bullet = ({ children }: { children: React.ReactNode }) => (
+const Bullet = ({ children }: { children: ReactNode }) => (
   <li className="flex gap-2">
     <span className="text-primary mt-1">›</span>
     <span>{children}</span>
