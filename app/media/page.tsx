@@ -39,9 +39,19 @@ const reviewLabel = (url: string) => url.split('/').pop()?.slice(0, 8) || 'revie
 const REVIEWS_WITH_IMAGE = REVIEWS.filter((r) => r.image)
 const REVIEWS_LINK_ONLY = REVIEWS.filter((r) => !r.image)
 
+const NAV_SECTIONS = [
+  { href: '#benmore', label: 'Benmore' },
+  { href: '#linkedin', label: 'LinkedIn' },
+  { href: '#stu-street', label: 'STU STREET' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#medium', label: 'Medium' },
+  { href: '#substack', label: 'Substack' },
+  { href: '#press', label: 'Press' },
+]
+
 export default function MediaPage() {
   return (
-    <div className="px-6 py-16 max-w-6xl mx-auto space-y-20">
+    <div className="px-6 pt-6 pb-16 max-w-6xl mx-auto space-y-14">
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
@@ -58,14 +68,30 @@ export default function MediaPage() {
         asH1
       />
 
+      {/* Quick-scroll nav */}
+      <nav
+        aria-label="Page sections"
+        className="flex flex-wrap gap-2 font-mono text-[11px] stagger"
+      >
+        {NAV_SECTIONS.map(({ href, label }) => (
+          <a
+            key={href}
+            href={href}
+            className="px-3 py-1.5 border border-border text-muted hover:text-primary hover:border-primary transition-colors duration-150 press"
+          >
+            ● {label}
+          </a>
+        ))}
+      </nav>
+
       {/* Benmore feature videos */}
-      <section>
+      <section id="benmore" className="scroll-mt-20">
         <SectionHeader
           eyebrow="Benmore"
           title="Featured talks"
           description="Public talks featuring Arkash and the Benmore forward-deployed practice."
         />
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 reveal">
           {FEATURED_VIDEOS.map((v) => (
             <Card key={v.youtubeId} glow className="overflow-hidden">
               <div className="-mx-6 -mt-6 mb-4 border-b border-border">
@@ -84,7 +110,7 @@ export default function MediaPage() {
       </section>
 
       {/* LinkedIn posts */}
-      <section>
+      <section id="linkedin" className="scroll-mt-20">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">LinkedIn — Posts</h2>
@@ -96,12 +122,12 @@ export default function MediaPage() {
             href="https://www.linkedin.com/in/arkashj"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
+            className="font-mono text-xs text-primary hover:text-accent transition-colors duration-150 uppercase tracking-widest"
           >
             Profile →
           </a>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 reveal">
           {LINKEDIN_POSTS.map((post) => (
             <div key={post.urn} className="flex flex-col gap-3">
               <LinkedInPost urn={post.urn} type={post.type} height={400} />
@@ -113,7 +139,7 @@ export default function MediaPage() {
                   href={post.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-[10px] text-primary hover:text-accent uppercase tracking-widest whitespace-nowrap"
+                  className="font-mono text-[10px] text-primary hover:text-accent transition-colors duration-150 uppercase tracking-widest whitespace-nowrap"
                 >
                   Open →
                 </a>
@@ -124,7 +150,7 @@ export default function MediaPage() {
       </section>
 
       {/* STU STREET — featured + disclosure */}
-      <section>
+      <section id="stu-street" className="scroll-mt-20">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">
@@ -136,51 +162,28 @@ export default function MediaPage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a
-              href={PODCAST_LINKS.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
-            >
-              YouTube →
-            </a>
-            <a
-              href={PODCAST_LINKS.spotify}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
-            >
-              Spotify →
-            </a>
-            <a
-              href={PODCAST_LINKS.apple}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
-            >
-              Apple →
-            </a>
-            <a
-              href={PODCAST_LINKS.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
-            >
-              Instagram →
-            </a>
-            <a
-              href={PODCAST_LINKS.tiktok}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
-            >
-              TikTok →
-            </a>
+            {[
+              { href: PODCAST_LINKS.youtube, label: 'YouTube' },
+              { href: PODCAST_LINKS.spotify, label: 'Spotify' },
+              { href: PODCAST_LINKS.apple, label: 'Apple' },
+              { href: PODCAST_LINKS.instagram, label: 'Instagram' },
+              { href: PODCAST_LINKS.tiktok, label: 'TikTok' },
+            ].map(({ href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs text-primary hover:text-accent transition-colors duration-150 uppercase tracking-widest"
+              >
+                {label} →
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Featured top-6 with embeds */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 reveal">
           {TOP_FEATURED.map((ep) => (
             <Card key={ep.youtubeId} glow className="overflow-hidden">
               <div className="-mx-6 -mt-6 mb-4 border-b border-border">
@@ -220,7 +223,7 @@ export default function MediaPage() {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between gap-3 px-4 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
+                      className="flex items-center justify-between gap-3 px-4 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-px transition-[transform,border-color] duration-150 min-w-0"
                     >
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
@@ -251,7 +254,7 @@ export default function MediaPage() {
       </section>
 
       {/* Trustpilot reviews */}
-      <section>
+      <section id="reviews" className="scroll-mt-20">
         <SectionHeader
           eyebrow="Reviews"
           title="What clients say"
@@ -260,14 +263,14 @@ export default function MediaPage() {
         />
 
         {/* Image-cards: real reviewers, real screenshots */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal">
           {REVIEWS_WITH_IMAGE.map((r) => (
             <a
               key={r.url}
               href={r.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col bg-surface border border-border hover:border-primary hover:-translate-y-0.5 transition-all duration-200"
+              className="group flex flex-col bg-surface border border-border hover:border-primary hover:-translate-y-px transition-[transform,border-color] duration-150"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-elevated">
                 <Image
@@ -317,9 +320,9 @@ export default function MediaPage() {
                     href={r.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-between gap-3 px-3 py-2 bg-surface border border-border hover:border-primary transition-colors min-w-0"
+                    className="group flex items-center justify-between gap-3 px-3 py-2 bg-surface border border-border hover:border-primary transition-[border-color] duration-150 min-w-0"
                   >
-                    <span className="font-mono text-[11px] text-muted group-hover:text-primary truncate">
+                    <span className="font-mono text-[11px] text-muted group-hover:text-primary transition-colors duration-150 truncate">
                       trustpilot.com/{reviewLabel(r.url)}…
                     </span>
                     <span
@@ -341,7 +344,7 @@ export default function MediaPage() {
       </section>
 
       {/* Medium */}
-      <section>
+      <section id="medium" className="scroll-mt-20">
         <div className="flex items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">
@@ -356,19 +359,19 @@ export default function MediaPage() {
             href="https://medium.com/@arkjain"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
+            className="font-mono text-xs text-primary hover:text-accent transition-colors duration-150 uppercase tracking-widest"
           >
             Profile →
           </a>
         </div>
-        <div className="grid gap-3">
+        <div className="grid gap-3 stagger">
           {MEDIUM_ARTICLES.map((a) => (
             <a
               key={a.title}
               href={a.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
+              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-px transition-[transform,border-color] duration-150 min-w-0"
             >
               <div className="min-w-0">
                 <h3 className="text-text font-medium truncate">{a.title}</h3>
@@ -388,7 +391,7 @@ export default function MediaPage() {
       </section>
 
       {/* Substack */}
-      <section>
+      <section id="substack" className="scroll-mt-20">
         <div className="flex items-end justify-between gap-3 mb-6">
           <div>
             <h2 className="text-xl font-bold text-text tracking-tight">Substack — Weekly Notes</h2>
@@ -400,17 +403,17 @@ export default function MediaPage() {
             href="https://arkash.substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
+            className="font-mono text-xs text-primary hover:text-accent transition-colors duration-150 uppercase tracking-widest"
           >
             Subscribe →
           </a>
         </div>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-3 reveal">
           {SUBSTACK_POSTS.map((p) => (
             <a key={p.title} href={p.url} target="_blank" rel="noopener noreferrer">
               <Card glow className="h-full">
-                <Badge variant="teal" className="mb-2">
-                  Substack
+                <Badge variant={p.source === 'Other' ? 'cyan' : 'teal'} className="mb-2">
+                  {p.source === 'Other' ? 'LinkedIn' : 'Substack'}
                 </Badge>
                 <h3 className="text-text font-medium mb-1">{p.title}</h3>
                 {p.date && (
@@ -423,20 +426,20 @@ export default function MediaPage() {
       </section>
 
       {/* Press */}
-      <section>
+      <section id="press" className="scroll-mt-20">
         <SectionHeader
           eyebrow="Press"
           title="Press, profiles, mentions"
           description="Third-party pages that index or feature my work."
         />
-        <div className="grid gap-3">
+        <div className="grid gap-3 stagger">
           {PRESS.map((p) => (
             <a
               key={p.url}
               href={p.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-0.5 transition-all duration-200 min-w-0"
+              className="flex items-center justify-between gap-4 px-5 py-3 bg-surface border border-border hover:border-primary/60 hover:-translate-y-px transition-[transform,border-color] duration-150 min-w-0"
             >
               <div className="min-w-0">
                 <p className="font-mono text-xs text-primary uppercase tracking-widest mb-0.5">
