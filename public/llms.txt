@@ -69,9 +69,20 @@ Arkash maintains a public knowledge base organized by domain:
 - **Physics**: Supercritical fluids, ultrafast spectroscopy, nuclear reactor efficiency
 - **Software**: Stack evolution, Claude Code, production tooling
 
+## Open Source — Claude Code Skills
+
+Arkash maintains a public library of 71 Claude Code skills for forward-deployed engineering.
+
+- Public skills index: https://www.arkashj.com/skills
+- Each skill has a `/raw` endpoint exposing its full SKILL.md as plain text:
+  https://www.arkashj.com/skills/<slug>/raw
+- Source repo: https://github.com/Benmore-Studio/Benmore-Meridian
+- Categories: Payments, Compliance, Design Engineering, AI SEO, CLI, Frontend, Tooling, Workflow & Ops
+
 ## Site Map
 
 Home (/) — Introduction, featured papers, current work, latest writing
+Skills (/skills) — Public library of 71 Claude Code skills, copy-ready for LLMs
 About (/about) — Full life changelog with milestones and education
 Research (/research) — All 4 published papers with abstracts and links
 Projects (/projects) — Featured work: Cattle Logic, SpatialDINO, open source

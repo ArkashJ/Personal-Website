@@ -4,6 +4,7 @@ import { getAllWritingPosts, getAllKnowledgePosts } from '@/lib/content'
 import { getAllDocs } from '@/lib/docs'
 import { TIMELINE } from '@/lib/data'
 import { COURSES, allCourseSubPages } from '@/lib/coursework'
+import { getAllSkills } from '@/lib/skills'
 
 const STATIC: {
   path: string
@@ -15,6 +16,7 @@ const STATIC: {
   { path: '/experience', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/research', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/projects', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/skills', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/writing', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/knowledge', priority: 0.7, changeFrequency: 'weekly' },
   { path: '/learnings', priority: 0.7, changeFrequency: 'monthly' },
@@ -79,6 +81,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }))
 
+  const skills = getAllSkills().map((s) => ({
+    url: `${SITE.url}/skills/${s.slug}`,
+    lastModified: today,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
   return [
     ...STATIC.map((r) => ({
       url: `${SITE.url}${r.path}`,
@@ -93,5 +102,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...docs,
     ...courses,
     ...courseSubs,
+    ...skills,
   ]
 }

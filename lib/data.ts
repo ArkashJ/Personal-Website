@@ -35,6 +35,7 @@ export type WorkTool = {
   name: string
   description: string
   tech: string[]
+  href?: string
 }
 
 export type TimelineEntry = {
@@ -316,8 +317,9 @@ export const WORK_TOOLS: WorkTool[] = [
   {
     name: 'Compound Engineering Skills',
     description:
-      'Authored Claude Code skills for code review, debugging, planning, brainstorming, frontend design - used by team daily.',
+      '71 Claude Code skills authored for forward-deployed engineering. Public on GitHub, copy-ready on /skills.',
     tech: ['Markdown', 'Claude Code Skills'],
+    href: 'https://github.com/Benmore-Studio/Benmore-Meridian',
   },
   {
     name: 'Excalidraw Discovery Flows',

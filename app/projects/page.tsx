@@ -1,8 +1,8 @@
 import SectionHeader from '@/components/sections/SectionHeader'
-import ProjectCard from '@/components/sections/ProjectCard'
+import ProjectsClient from './ProjectsClient'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
-import { PROJECTS } from '@/lib/data'
+import { PROJECTS, WORK_TOOLS } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
@@ -29,11 +29,7 @@ export default function ProjectsPage() {
         description="From SpatialDINO to a from-scratch Raft implementation. Real repos, real ship dates."
         asH1
       />
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8 reveal">
-        {PROJECTS.map((p) => (
-          <ProjectCard key={p.name} {...p} />
-        ))}
-      </div>
+      <ProjectsClient projects={PROJECTS} workTools={WORK_TOOLS} />
     </div>
   )
 }

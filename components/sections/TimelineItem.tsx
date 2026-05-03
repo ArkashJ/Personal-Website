@@ -37,20 +37,27 @@ const TimelineItem = ({
 }: Props) => {
   const major = isMajor(status)
   return (
-    <li className="relative pl-12 pb-8 border-l border-border last:border-l-transparent">
+    <li className="relative pl-14 pb-8 border-l border-border last:border-l-transparent">
       {/* Avatar / status node */}
       <span
-        className={`absolute -left-[14px] top-0 w-7 h-7 bg-surface border-2 overflow-hidden flex items-center justify-center ${
+        className={`absolute -left-[18px] top-0 w-9 h-9 bg-elevated border-2 overflow-hidden flex items-center justify-center ${
           major ? 'border-primary shadow-[0_0_0_4px_rgba(94,234,212,0.10)]' : 'border-border-strong'
-        } ${status === 'Current' ? 'rounded-full' : ''}`}
+        } ${status === 'Current' ? 'rounded-full' : 'rounded-md'}`}
       >
-        {hasLogo(org) && (
-          <InstitutionLogo org={org as string} size={22} className="object-contain" />
+        {org && hasLogo(org) ? (
+          <InstitutionLogo org={org} size={28} className="object-contain p-0.5" />
+        ) : (
+          <span
+            className="font-mono text-[10px] font-bold uppercase tracking-tight text-primary"
+            aria-hidden="true"
+          >
+            {category ? category.slice(0, 2).toUpperCase() : '●'}
+          </span>
         )}
       </span>
 
       <div
-        className={`bg-surface border p-5 transition-all ${
+        className={`bg-surface border p-5 transition-[border-color] duration-150 ${
           major
             ? 'border-primary/40 hover:border-primary'
             : 'border-border hover:border-border-strong'

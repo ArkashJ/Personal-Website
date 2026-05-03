@@ -37,6 +37,10 @@ yarn-error.log*
 .vercel
 .playwright-mcp/
 
+# claude code session artifacts + dev audit dumps
+.claude/
+/site-audit/
+
 # screenshots — ignore loose PNGs everywhere except inside docs/ and public/
 *.png
 !docs/**/*.png

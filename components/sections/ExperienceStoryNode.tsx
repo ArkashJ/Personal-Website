@@ -24,11 +24,11 @@ const ExperienceStoryNode = ({
   bullets,
 }: ExperienceEntry) => {
   return (
-    <li className="relative pl-12 pb-12 border-l border-border last:border-l-transparent reveal">
+    <li className="relative pl-14 pb-12 border-l border-border last:border-l-transparent reveal">
       {/* Timeline node */}
-      <span className="absolute -left-[14px] top-0 w-7 h-7 bg-surface border-2 border-primary shadow-[0_0_0_4px_rgba(94,234,212,0.10)] overflow-hidden flex items-center justify-center">
-        {hasLogo(org) ? (
-          <InstitutionLogo org={org} size={20} className="object-contain" />
+      <span className="absolute -left-[18px] top-5 w-9 h-9 bg-elevated border-2 border-primary shadow-[0_0_0_4px_rgba(94,234,212,0.10)] overflow-hidden flex items-center justify-center rounded-md">
+        {org && hasLogo(org) ? (
+          <InstitutionLogo org={org} size={28} className="object-contain p-0.5" />
         ) : (
           <span className="w-2 h-2 bg-primary rounded-full" />
         )}

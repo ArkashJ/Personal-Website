@@ -30,6 +30,7 @@ export const NAV_LINKS: NavLink[] = [
   { href: '/experience', label: 'Experience' },
   { href: '/research', label: 'Research' },
   { href: '/projects', label: 'Projects' },
+  { href: '/skills', label: 'Skills' },
   { href: '/writing', label: 'Writing' },
   { href: '/media', label: 'Media' },
 ]

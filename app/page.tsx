@@ -7,7 +7,7 @@ import ProjectCard from '@/components/sections/ProjectCard'
 import CurrentUpdates from '@/components/sections/CurrentUpdates'
 import Card from '@/components/ui/Card'
 import TechBadge from '@/components/ui/TechBadge'
-import { PAPERS, PROJECTS, WORK_TOOLS, KNOWLEDGE_DOMAINS, TIMELINE } from '@/lib/data'
+import { PAPERS, PROJECTS, KNOWLEDGE_DOMAINS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
 import { getAllWritingPosts } from '@/lib/content'
 import { buildMetadata } from '@/lib/metadata'
@@ -27,7 +27,6 @@ export const metadata = buildMetadata({
 export default function Home() {
   const writing = getAllWritingPosts()
   const featuredProjects = PROJECTS.slice(0, 4)
-  const featuredWork = WORK_TOOLS.slice(0, 3)
   const latestTimeline = TIMELINE.filter((t) => t.featured)
     .slice()
     .reverse()
@@ -162,37 +161,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tools + Knowledge — two-up */}
+      {/* Skills + Knowledge — two-up */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
         <div className="grid gap-8 md:grid-cols-2">
           <div>
             <SectionHeader
-              eyebrow="Work & Tools"
-              title="What I ship every day"
-              href="/about#tools"
+              eyebrow="Skills Library"
+              title="71 Claude Code skills"
+              href="/skills"
+              hrefLabel="Browse all →"
             />
-            <div className="grid gap-3">
-              {featuredWork.map((w) => (
-                <Card key={w.name} glow>
-                  <h3 className="text-base font-bold text-text mb-1.5">{w.name}</h3>
-                  <p className="text-muted text-xs leading-relaxed mb-2">{w.description}</p>
-                  <div className="flex flex-wrap gap-1">
-                    {w.tech.map((t) => (
-                      <TechBadge key={t} label={t} />
-                    ))}
-                  </div>
-                </Card>
-              ))}
-            </div>
+            <Card glow href="/skills" className="block">
+              <p className="text-muted text-sm leading-relaxed mb-3">
+                Public library of agent skills used daily at Benmore — payments, design, compliance,
+                CLI tooling, AI SEO. Each one is one click to copy into your LLM.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {['Payments', 'Compliance', 'Design Eng', 'AI SEO', 'CLI', 'Frontend'].map((c) => (
+                  <span
+                    key={c}
+                    className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-primary border border-primary/30 bg-primary/5"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+              <p className="font-mono text-xs text-primary mt-4">View all 71 →</p>
+            </Card>
           </div>
           <div>
-            <SectionHeader eyebrow="Knowledge" title="Second brain, in public" href="/knowledge" />
-            <div className="flex flex-wrap gap-2">
+            <SectionHeader
+              eyebrow="Knowledge"
+              title="Second brain, in public"
+              href="/writing#second-brain"
+            />
+            <div className="flex flex-wrap gap-2 mt-2">
               {KNOWLEDGE_DOMAINS.map((d) => (
                 <Link
                   key={d.slug}
                   href={`/knowledge/${d.slug}`}
-                  className="px-4 py-2 rounded-full bg-surface border border-border hover:border-primary hover:text-primary hover:-translate-y-0.5 text-sm font-mono transition-all duration-200"
+                  className="px-4 py-2 rounded-full bg-surface border border-border hover:border-primary hover:text-primary hover:-translate-y-0.5 text-sm font-mono transition-[color,border-color,transform] duration-150"
                 >
                   {d.name}
                 </Link>

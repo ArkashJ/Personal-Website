@@ -36,7 +36,11 @@ export default function WritingPage() {
           { name: 'Writing', path: '/writing' },
         ])}
       />
-      <WritingIndexClient posts={posts} domainCounts={domainCounts} />
+      <WritingIndexClient
+        posts={posts}
+        knowledgePosts={knowledgePosts}
+        domainCounts={domainCounts}
+      />
     </>
   )
 }
