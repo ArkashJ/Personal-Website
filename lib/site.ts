@@ -27,19 +27,20 @@ export type NavLink = { href: string; label: string }
 
 export const NAV_LINKS: NavLink[] = [
   { href: '/about', label: 'About' },
+  { href: '/experience', label: 'Experience' },
   { href: '/research', label: 'Research' },
   { href: '/projects', label: 'Projects' },
-  { href: '/coursework', label: 'Coursework' },
   { href: '/writing', label: 'Writing' },
   { href: '/media', label: 'Media' },
-  { href: '/knowledge', label: 'Knowledge' },
 ]
 
 // Secondary pages — surfaced in footer, not primary nav
 export const SECONDARY_LINKS: NavLink[] = [
+  { href: '/knowledge', label: 'Knowledge' },
   { href: '/learnings', label: 'Learnings' },
   { href: '/credentials', label: 'Credentials' },
   { href: '/stack', label: 'Stack' },
   { href: '/architecture', label: 'Architecture' },
+  { href: '/coursework', label: 'Coursework' },
   { href: '/docs', label: 'Docs' },
 ]
