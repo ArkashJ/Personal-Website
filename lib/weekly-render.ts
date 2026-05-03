@@ -43,6 +43,7 @@ export type ResolvedItem = {
   kind?: WeeklyItemKind
   notes?: string
   tags?: string[]
+  date?: string
   // Markdown body to render inside the modal when no `anchor:` section is
   // available. Falls back to `notes` for rich rail items, or to the raw
   // string text for pure-string items.
@@ -96,6 +97,7 @@ export function resolveEnriched(item: EnrichedWeeklyItem): ResolvedItem {
     id: item.id,
     rail: item.rail,
     tags: item.tags,
+    date: item.date,
     bodyMarkdown: base.bodyMarkdown ?? (item.anchor ? undefined : item.text),
   }
 }

@@ -4,15 +4,12 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { Settings } from 'lucide-react'
-import { SECONDARY_LINKS } from '@/lib/site'
 
 const PRIMARY = [
   { href: '/credentials', label: 'Credentials' },
   { href: '/info', label: 'Docs / Architecture' },
   { href: '/coursework', label: 'Coursework' },
 ]
-
-const PRIMARY_HREFS = new Set(PRIMARY.map((l) => l.href))
 
 const GearMenu = ({ size = 14 }: { size?: number }) => {
   const [open, setOpen] = useState(false)
@@ -38,8 +35,6 @@ const GearMenu = ({ size = 14 }: { size?: number }) => {
       document.removeEventListener('keydown', onKey)
     }
   }, [open])
-
-  const moreLinks = SECONDARY_LINKS.filter((l) => !PRIMARY_HREFS.has(l.href))
 
   return (
     <div ref={wrapRef} className="relative">
@@ -72,27 +67,6 @@ const GearMenu = ({ size = 14 }: { size?: number }) => {
               </li>
             ))}
           </ul>
-          {moreLinks.length > 0 && (
-            <>
-              <div className="my-1 border-t border-border" />
-              <p className="px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-subtle">
-                More
-              </p>
-              <ul className="flex flex-col">
-                {moreLinks.map((l) => (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      role="menuitem"
-                      className="block font-mono text-[11px] px-3 py-1.5 text-subtle hover:text-text hover:bg-elevated/60 transition-colors"
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
         </div>
       )}
     </div>

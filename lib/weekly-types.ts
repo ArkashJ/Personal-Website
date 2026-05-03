@@ -24,6 +24,7 @@ export type WeeklyItem =
       kind?: WeeklyItemKind
       notes?: string
       tags?: string[]
+      date?: string
     }
 
 export type EnrichedWeeklyItem = {
@@ -37,6 +38,7 @@ export type EnrichedWeeklyItem = {
   kind: WeeklyItemKind
   notes?: string
   tags: string[]
+  date?: string
 }
 
 export type ChangelogEntry = {
@@ -127,6 +129,7 @@ export function getAllItems(meta: WeeklyLogMeta): EnrichedWeeklyItem[] {
         kind,
         notes: obj.notes,
         tags: merged,
+        date: obj.date,
       })
     }
   }

@@ -375,16 +375,24 @@ export function WeeklyGrid({
     return KIND_ORDER.filter((k) => set.has(k))
   }, [resolved])
 
-  const { values, set, reset } = useUrlState(['q', 'tag', 'kind'])
+  const { values, set, reset } = useUrlState(['q', 'tag', 'kind', 'date'])
 
   const q = values.q.trim().toLowerCase()
   const tag = values.tag
   const kind = values.kind
+  const date = values.date
+
+  const presentDates = useMemo(() => {
+    const set = new Set<string>()
+    for (const r of resolved) if (r.date) set.add(r.date)
+    return Array.from(set).sort()
+  }, [resolved])
 
   const filtered = useMemo(() => {
     return resolved.filter((r) => {
       if (kind && r.kind !== kind) return false
       if (tag && !(r.tags ?? []).includes(tag)) return false
+      if (date && r.date !== date) return false
       if (q) {
         const hay = [r.text, r.source, r.notes, ...(r.tags ?? [])]
           .filter(Boolean)
@@ -394,7 +402,7 @@ export function WeeklyGrid({
       }
       return true
     })
-  }, [resolved, q, tag, kind])
+  }, [resolved, q, tag, kind, date])
 
   // -------------------- modal state --------------------
   const [modal, setModal] = useState<ModalState>({
@@ -420,7 +428,27 @@ export function WeeklyGrid({
     setModal({ open: true, resolved: item, content, hasContent: Boolean(content) })
   }
 
-  const hasFilters = Boolean(q || tag || kind)
+  const hasFilters = Boolean(q || tag || kind || date)
+
+  function formatDateTab(d: string): string {
+    const [, m, day] = d.split('-')
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ]
+    const mi = parseInt(m, 10) - 1
+    return `${monthNames[mi] ?? m} ${parseInt(day, 10)}`
+  }
 
   return (
     <>
@@ -478,12 +506,44 @@ export function WeeklyGrid({
           </div>
         )}
 
+        {/* Date facet tabs — surfaces day-by-day grouping when items carry dates */}
+        {presentDates.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            <button
+              type="button"
+              onClick={() => set('date', null)}
+              className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+                !date
+                  ? 'bg-primary text-bg border-primary'
+                  : 'border-border text-muted hover:border-primary hover:text-primary'
+              }`}
+            >
+              All days
+            </button>
+            {presentDates.map((d) => (
+              <button
+                key={d}
+                type="button"
+                onClick={() => set('date', date === d ? null : d)}
+                className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+                  date === d
+                    ? 'bg-primary text-bg border-primary'
+                    : 'border-border text-muted hover:border-primary hover:text-primary'
+                }`}
+              >
+                {formatDateTab(d)}
+              </button>
+            ))}
+          </div>
+        )}
+
         <div className="flex items-center justify-between mt-3 text-xs font-mono text-muted">
           <span>
             {filtered.length} item{filtered.length === 1 ? '' : 's'}
             {q ? ` · "${q}"` : ''}
             {tag ? ` · #${tag}` : ''}
             {kind ? ` · ${kindLabel(kind as WeeklyItemKind)}` : ''}
+            {date ? ` · ${formatDateTab(date)}` : ''}
           </span>
           {hasFilters && (
             <button
