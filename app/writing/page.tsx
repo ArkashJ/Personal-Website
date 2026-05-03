@@ -3,16 +3,14 @@ import WritingIndexClient from './WritingIndexClient'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
-import { LEARNINGS } from '@/lib/learnings'
 
 export const metadata = buildMetadata({
-  title: 'Writing — Essays + Learnings',
+  title: 'Writing — Essays',
   description:
-    'Long-form essays on AI, forward-deployed engineering, distributed systems, finance, math, and physics — plus a running log of lessons learned the hard way. One searchable index.',
+    'Long-form essays on AI, forward-deployed engineering, distributed systems, finance, math, and physics. Sorted newest first.',
   path: '/writing',
   keywords: [
     'essays',
-    'learnings',
     'second brain',
     'AI hardware',
     'forward deployed',
@@ -24,7 +22,6 @@ export const metadata = buildMetadata({
 
 export default function WritingPage() {
   const posts = getAllWritingPosts()
-  const learnings = [...LEARNINGS].sort((a, b) => b.year - a.year)
 
   return (
     <>
@@ -34,7 +31,7 @@ export default function WritingPage() {
           { name: 'Writing', path: '/writing' },
         ])}
       />
-      <WritingIndexClient posts={posts} learnings={learnings} />
+      <WritingIndexClient posts={posts} />
     </>
   )
 }

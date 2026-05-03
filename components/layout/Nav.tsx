@@ -7,6 +7,7 @@ import { Search } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/site'
 import ThemeToggle from '@/components/ThemeToggle'
 import CommandPalette from '@/components/ui/CommandPalette'
+import GearMenu from '@/components/layout/GearMenu'
 
 const Nav = () => {
   const pathname = usePathname()
@@ -72,6 +73,7 @@ const Nav = () => {
                   {isMac ? '⌘' : 'Ctrl'}K
                 </kbd>
               </button>
+              <GearMenu />
               <ThemeToggle />
             </div>
 
@@ -84,6 +86,7 @@ const Nav = () => {
               >
                 <Search size={16} />
               </button>
+              <GearMenu size={16} />
               <ThemeToggle />
               <button
                 aria-label={open ? 'Close menu' : 'Open menu'}

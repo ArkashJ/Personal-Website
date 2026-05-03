@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import Badge from '@/components/ui/Badge'
+import { TagBadgeList } from '@/components/ui/TagBadge'
 import type { Project, WorkTool } from '@/lib/data'
 
 const projectSlug = (name: string): string =>
@@ -65,13 +65,7 @@ const ProjectCard = (props: Props) => {
 
       {head && <p className="text-muted text-sm mb-4 leading-relaxed">{head}</p>}
 
-      {tech.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mb-4 mt-auto">
-          {tech.map((t) => (
-            <Badge key={t}>{t}</Badge>
-          ))}
-        </div>
-      )}
+      {tech.length > 0 && <TagBadgeList tags={tech} className="mb-4 mt-auto" />}
 
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <Link

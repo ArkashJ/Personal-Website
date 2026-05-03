@@ -5,16 +5,12 @@ import Link from 'next/link'
 import { Search, X } from 'lucide-react'
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
-import Badge from '@/components/ui/Badge'
+import TagBadge from '@/components/ui/TagBadge'
 import type { WritingMeta } from '@/lib/content'
-import type { Learning } from '@/lib/learnings'
 
 type Props = {
   posts: WritingMeta[]
-  learnings: Learning[]
 }
-
-type Tab = 'essays' | 'learnings'
 
 function matches(query: string, ...fields: (string | string[] | undefined)[]): boolean {
   const q = query.toLowerCase()
@@ -25,9 +21,8 @@ function matches(query: string, ...fields: (string | string[] | undefined)[]): b
   })
 }
 
-export default function WritingIndexClient({ posts, learnings }: Props) {
+export default function WritingIndexClient({ posts }: Props) {
   const allTags = Array.from(new Set(posts.flatMap((p) => p.tags || []))).sort()
-  const [tab, setTab] = useState<Tab>('essays')
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState<string | null>(null)
 
@@ -40,53 +35,26 @@ export default function WritingIndexClient({ posts, learnings }: Props) {
     return result
   }, [posts, filter, q])
 
-  const visibleLearnings = useMemo(() => {
-    if (!q) return learnings
-    return learnings.filter((l) => matches(q, l.title, l.lesson, l.category, String(l.year)))
-  }, [learnings, q])
-
   return (
     <div className="px-6 py-16 max-w-5xl mx-auto">
       <SectionHeader
-        eyebrow="Writing & Learnings"
+        eyebrow="Writing"
         title="Essays, notes, lessons."
         italicAccent="What I'm learning, in public."
-        description="Curated long-form on AI, finance, distributed systems, and forward-deployed engineering — plus a running log of lessons that cost me something."
+        description="Curated long-form on AI, finance, distributed systems, and forward-deployed engineering — sorted newest first."
         asH1
       />
 
-      {/* Tab switcher */}
-      <div className="flex border-b border-border mt-8 mb-4">
-        <button
-          type="button"
-          onClick={() => setTab('essays')}
-          className={`px-4 py-2 -mb-px font-mono text-xs uppercase tracking-widest border-b-2 transition-[color,border-color] duration-150 ${
-            tab === 'essays'
-              ? 'border-primary text-primary'
-              : 'border-transparent text-muted hover:text-text'
-          }`}
-        >
-          Essays ({posts.length})
-        </button>
-        <button
-          type="button"
-          onClick={() => setTab('learnings')}
-          className={`px-4 py-2 -mb-px font-mono text-xs uppercase tracking-widest border-b-2 transition-[color,border-color] duration-150 ${
-            tab === 'learnings'
-              ? 'border-primary text-primary'
-              : 'border-transparent text-muted hover:text-text'
-          }`}
-        >
-          Learnings ({learnings.length})
-        </button>
-      </div>
+      <p className="font-mono text-[11px] uppercase tracking-widest text-subtle mt-8 mb-3">
+        Essays · {posts.length}
+      </p>
 
       {/* Search */}
       <div className="relative mb-4">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" />
         <input
           type="text"
-          placeholder={tab === 'essays' ? 'Search essays by title, tag…' : 'Search learnings…'}
+          placeholder="Search essays by title, tag…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full pl-9 pr-10 py-2.5 bg-surface border border-border text-text placeholder:text-muted text-sm font-mono focus:outline-none focus:border-primary/60 transition-[border-color] duration-150"
@@ -102,8 +70,8 @@ export default function WritingIndexClient({ posts, learnings }: Props) {
         )}
       </div>
 
-      {/* Tag filter — only on essays tab */}
-      {tab === 'essays' && allTags.length > 0 && (
+      {/* Tag filter */}
+      {allTags.length > 0 && (
         <div className="flex flex-wrap gap-2 mb-8">
           <button
             type="button"
@@ -134,52 +102,27 @@ export default function WritingIndexClient({ posts, learnings }: Props) {
       )}
 
       {/* Essays grid */}
-      {tab === 'essays' && (
-        <div className="grid gap-6 md:grid-cols-2">
-          {visiblePosts.map((post) => (
-            <Link key={post.slug} href={`/writing/${post.slug}`}>
-              <Card glow className="h-full cursor-pointer">
-                <p className="text-muted text-xs font-mono mb-2">{post.date}</p>
-                <h3 className="text-lg font-bold text-text mb-2">{post.title}</h3>
-                <p className="text-muted text-sm mb-4">{post.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {(post.tags || []).map((t) => (
-                    <Badge key={t} variant="teal">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
-            </Link>
-          ))}
-          {visiblePosts.length === 0 && (
-            <p className="text-muted text-sm py-8 col-span-2 text-center">
-              No essays match your search.
-            </p>
-          )}
-        </div>
-      )}
-
-      {/* Learnings list */}
-      {tab === 'learnings' && (
-        <div className="grid gap-4">
-          {visibleLearnings.map((l) => (
-            <Card key={l.title} glow>
-              <div className="flex items-start justify-between gap-4 mb-3">
-                <span className="font-mono text-[11px] text-subtle uppercase tracking-widest">
-                  {l.year}
-                </span>
-                <Badge variant="teal">{l.category}</Badge>
+      <div className="grid gap-6 md:grid-cols-2">
+        {visiblePosts.map((post) => (
+          <Link key={post.slug} href={`/writing/${post.slug}`}>
+            <Card glow className="h-full cursor-pointer">
+              <p className="text-muted text-xs font-mono mb-2">{post.date}</p>
+              <h3 className="text-lg font-bold text-text mb-2">{post.title}</h3>
+              <p className="text-muted text-sm mb-4">{post.description}</p>
+              <div className="flex flex-wrap gap-1.5">
+                {(post.tags || []).map((t) => (
+                  <TagBadge key={t} name={t} variant="teal" />
+                ))}
               </div>
-              <h3 className="text-lg font-bold text-text tracking-tight mb-2">{l.title}</h3>
-              <p className="text-muted text-sm leading-relaxed">{l.lesson}</p>
             </Card>
-          ))}
-          {visibleLearnings.length === 0 && (
-            <p className="text-muted text-sm py-8 text-center">No learnings match your search.</p>
-          )}
-        </div>
-      )}
+          </Link>
+        ))}
+        {visiblePosts.length === 0 && (
+          <p className="text-muted text-sm py-8 col-span-2 text-center">
+            No essays match your search.
+          </p>
+        )}
+      </div>
     </div>
   )
 }

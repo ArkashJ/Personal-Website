@@ -53,7 +53,6 @@ const PAGES = [
   '/knowledge',
   '/architecture',
   '/stack',
-  '/learnings',
 ]
 
 export const SiteMapDiagram = () => (

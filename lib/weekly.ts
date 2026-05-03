@@ -12,7 +12,9 @@ const WEEKLY_DIR = path.join(ROOT, 'content', 'weekly')
 
 function readDir(dir: string): string[] {
   if (!fs.existsSync(dir)) return []
-  return fs.readdirSync(dir).filter((f) => f.endsWith('.mdx') || f.endsWith('.md'))
+  return fs
+    .readdirSync(dir)
+    .filter((f) => !f.startsWith('_') && (f.endsWith('.mdx') || f.endsWith('.md')))
 }
 
 function readMdx(filePath: string): { data: Record<string, unknown>; content: string } {

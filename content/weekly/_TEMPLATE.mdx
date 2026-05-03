@@ -1,0 +1,105 @@
+---
+# ────────────────────────────────────────────────────────────────────────────
+# Weekly entry template — duplicate this file as `YYYY-W##.mdx` and edit.
+# Files prefixed with `_` are skipped by lib/weekly.ts so this never publishes.
+# ────────────────────────────────────────────────────────────────────────────
+
+title: 'One-line theme of the week'
+weekStart: '2026-MM-DD' # Monday (ISO week start)
+weekEnd: '2026-MM-DD' # Sunday
+description: 'One-paragraph description that surfaces on the home page rolling log and as the weekly slug meta description.'
+
+# Tags drive search and the (now-hidden) tag filter. Reuse existing tags where
+# possible — a fresh look at content/weekly/*.mdx is the easiest reference.
+tags:
+  - 'Benmore'
+  - 'Foundry'
+
+# ────────────────────────────────────────────────────────────────────────────
+# Rails — each item can be a string OR an object:
+#   { text, href?, anchor?, image?, source?, kind?, notes? }
+#
+# - `kind` ∈ youtube | podcast | article | paper | repo | meeting | tweet | note
+# - `source` autodetects a logo for github / x / arxiv / spotify / substack / medium / etc.
+# - YouTube `href` auto-derives the thumbnail and source = "YouTube".
+# - `anchor` matches a `<div id="..."></div>` later in the body — opens that
+#   markdown section inside the click-through modal. Skip if you only want the
+#   modal to show the inline `notes` field.
+# ────────────────────────────────────────────────────────────────────────────
+
+watched:
+  - text: 'Episode / talk title — speaker · venue'
+    href: 'https://www.youtube.com/watch?v=...'
+    anchor: 'episode-anchor'
+    source: 'Show name'
+    kind: 'youtube'
+    notes: 'One-paragraph TL;DR — surfaces in the modal preview, in /weekly/<slug>/raw, and in search.'
+
+shipped:
+  - text: 'What landed this week'
+    href: 'https://github.com/...'
+    source: 'GitHub'
+    kind: 'repo'
+    notes: 'What it is, what it unlocks, what is left.'
+
+built:
+  - text: 'WIP that is not ready to ship'
+    notes: 'Plumbing, scaffolding, half-done features. No links required.'
+
+learned: []
+# - 'One-liner lesson learned this week.'
+
+met:
+  - text: 'Person or team you met with'
+    source: 'Context tag (e.g. customer name)'
+    kind: 'meeting'
+    notes: 'What came out of it.'
+
+# Hand-curated change log for this week's entry. Append a new row each time you
+# update the file — readers see the trail of edits.
+changelog:
+  - date: '2026-MM-DD'
+    note: 'Initial publish — rails, prose, and home-page surfacing.'
+---
+
+## What actually shipped
+
+Two-to-three paragraphs of plain prose about the week's headline outcome. This
+is what lands first on the page — keep it concrete: what changed, who saw it,
+what got better.
+
+## Reading
+
+Optional. Drop in 1–3 things you read this week with a one-sentence why.
+
+---
+
+{/_
+Modal anchors. Each <div id="..."></div> matches an `anchor:` field above.
+Anything between two anchors is rendered as the modal body for that item.
+The trailing `---` separator is stripped automatically.
+_/}
+
+<div id="episode-anchor"></div>
+
+## Long-form notes for the watched item
+
+**[Watch on YouTube ↗](https://www.youtube.com/watch?v=...)** · Speaker · Venue
+
+### Section heading 1
+
+Bullet-driven or paragraph notes. Markdown is rendered via `react-markdown`
+inside the modal — `**bold**`, `*italic*`, lists, links, blockquotes,
+inline code all work.
+
+### Section heading 2
+
+- Point one
+- Point two
+
+---
+
+## What's next week
+
+One paragraph forecast — what you're chasing, what you expect to ship, what's
+blocked.

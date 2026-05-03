@@ -17,9 +17,21 @@ const LOGO_MAP: Record<string, { src: string; alt: string }> = {
     src: '/images/logos/nsf.svg',
     alt: 'National Science Foundation logo',
   },
+  'Battery Ventures': {
+    src: '/images/logos/battery-ventures.svg',
+    alt: 'Battery Ventures logo',
+  },
+  Benmore: {
+    src: '/images/logos/benmore.png',
+    alt: 'Benmore Technologies logo',
+  },
+  ZeroSync: {
+    src: '/images/logos/zerosync.png',
+    alt: 'ZeroSync logo',
+  },
 }
 
-// Orgs that use a monogram badge instead of an SVG. Aliases map → display key.
+// Aliases map alternate org strings → canonical LOGO_MAP key.
 const MONOGRAM_ALIASES: Record<string, string> = {
   'Benmore Technologies': 'Benmore',
   Benmore: 'Benmore',
