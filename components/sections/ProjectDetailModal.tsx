@@ -89,7 +89,7 @@ export default function ProjectDetailModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
-        className="relative w-full max-w-lg max-h-[78vh] flex flex-col border border-border bg-background shadow-2xl will-change-transform motion-reduce:!transform-none motion-reduce:!transition-opacity"
+        className="relative w-full max-w-3xl max-h-[82vh] flex flex-col border border-border bg-surface shadow-2xl will-change-transform motion-reduce:!transform-none motion-reduce:!transition-opacity"
         style={{
           transformOrigin: 'center',
           transform: entered ? 'scale(1) translateY(0)' : 'scale(0.96) translateY(8px)',
