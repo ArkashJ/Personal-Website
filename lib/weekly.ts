@@ -5,6 +5,18 @@ import matter from 'gray-matter'
 const ROOT = process.cwd()
 const WEEKLY_DIR = path.join(ROOT, 'content', 'weekly')
 
+// A rail item is either a plain string (for quick logging) or a rich object
+// that can render as a linked card with an optional thumbnail / source logo.
+export type WeeklyItem =
+  | string
+  | {
+      text: string
+      href?: string
+      image?: string
+      source?: string
+      kind?: 'youtube' | 'podcast' | 'article' | 'paper' | 'repo' | 'meeting' | 'tweet'
+    }
+
 export type WeeklyLogMeta = {
   slug: string
   title: string
@@ -12,12 +24,12 @@ export type WeeklyLogMeta = {
   weekEnd: string
   description?: string
   tags?: string[]
-  read?: string[]
-  watched?: string[]
-  built?: string[]
-  shipped?: string[]
-  learned?: string[]
-  met?: string[]
+  read?: WeeklyItem[]
+  watched?: WeeklyItem[]
+  built?: WeeklyItem[]
+  shipped?: WeeklyItem[]
+  learned?: WeeklyItem[]
+  met?: WeeklyItem[]
 }
 
 function readDir(dir: string): string[] {
@@ -59,6 +71,11 @@ export async function getWeeklyLog(
   const { data, content } = readMdx(file)
   if (!isValidWeeklyMeta(data)) return null
   return { meta: { slug, ...(data as Omit<WeeklyLogMeta, 'slug'>) }, source: content }
+}
+
+export function getLatestWeeklyLog(): WeeklyLogMeta | null {
+  const all = getAllWeeklyLogs()
+  return all[0] ?? null
 }
 
 export function categoryCounts(meta: WeeklyLogMeta) {

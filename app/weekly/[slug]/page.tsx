@@ -1,10 +1,12 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import MdxContent from '@/components/MdxContent'
 import { buildMetadata } from '@/lib/metadata'
-import { getAllWeeklyLogs, getWeeklyLog, type WeeklyLogMeta } from '@/lib/weekly'
+import { getAllWeeklyLogs, getWeeklyLog, type WeeklyItem, type WeeklyLogMeta } from '@/lib/weekly'
+import { resolveItem } from '@/lib/weekly-render'
 
 export const dynamicParams = false
 
@@ -34,17 +36,73 @@ const RAILS: { key: RailKey; label: string }[] = [
   { key: 'met', label: 'Met' },
 ]
 
-function Rail({ label, items }: { label: string; items?: string[] }) {
+function RailItemBody({ resolved }: { resolved: ReturnType<typeof resolveItem> }) {
+  const { text, image, source } = resolved
+  const isYouTubeThumb = image?.includes('ytimg.com')
+  return (
+    <div className="flex items-start gap-3">
+      {image &&
+        (isYouTubeThumb ? (
+          <Image
+            src={image}
+            alt=""
+            width={64}
+            height={36}
+            className="flex-shrink-0 mt-0.5 border border-border object-cover"
+            unoptimized
+          />
+        ) : (
+          <Image
+            src={image}
+            alt=""
+            width={16}
+            height={16}
+            className="flex-shrink-0 mt-1"
+            unoptimized
+          />
+        ))}
+      <div className="min-w-0">
+        <p className="text-sm text-text leading-snug">{text}</p>
+        {source && (
+          <p className="font-mono text-[10px] uppercase tracking-wider text-subtle mt-0.5">
+            {source}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function Rail({ label, items }: { label: string; items?: WeeklyItem[] }) {
   if (!items || items.length === 0) return null
   return (
     <div className="border border-border bg-surface p-4">
-      <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-2">{label}</p>
-      <ul className="space-y-1.5">
-        {items.map((item) => (
-          <li key={item} className="text-sm text-muted leading-relaxed">
-            {item}
-          </li>
-        ))}
+      <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">{label}</p>
+      <ul className="space-y-3">
+        {items.map((item, i) => {
+          const resolved = resolveItem(item)
+          const key = (typeof item === 'string' ? item : item.text) + i
+          if (resolved.href) {
+            const external = resolved.href.startsWith('http')
+            return (
+              <li key={key}>
+                <a
+                  href={resolved.href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noreferrer' : undefined}
+                  className="block group hover:text-primary transition-colors duration-150"
+                >
+                  <RailItemBody resolved={resolved} />
+                </a>
+              </li>
+            )
+          }
+          return (
+            <li key={key}>
+              <RailItemBody resolved={resolved} />
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
