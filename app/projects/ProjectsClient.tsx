@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { Search, X, ChevronLeft, ChevronRight, Plus, Minus } from 'lucide-react'
 import ProjectCard from '@/components/sections/ProjectCard'
+import ProjectDetailModal from '@/components/sections/ProjectDetailModal'
 import type { Project, WorkTool } from '@/lib/data'
 
 type Item = Project | WorkTool
@@ -33,6 +34,7 @@ export default function ProjectsClient({ projects, workTools }: Props) {
   const [tagFilter, setTagFilter] = useState<string | null>(null)
   const [page, setPage] = useState(1)
   const [showAllTags, setShowAllTags] = useState(false)
+  const [openItem, setOpenItem] = useState<Item | null>(null)
   const visibleTags = showAllTags ? tagsByFrequency : tagsByFrequency.slice(0, TOP_TAGS)
   const hiddenCount = tagsByFrequency.length - TOP_TAGS
 
@@ -146,12 +148,14 @@ export default function ProjectsClient({ projects, workTools }: Props) {
       {/* Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 reveal">
         {paginated.map((p) => (
-          <ProjectCard key={p.name} {...(p as Project)} />
+          <ProjectCard key={p.name} {...p} onOpen={() => setOpenItem(p)} />
         ))}
         {paginated.length === 0 && (
           <p className="text-muted text-sm col-span-3 py-8">No projects match your search.</p>
         )}
       </div>
+
+      <ProjectDetailModal project={openItem} onClose={() => setOpenItem(null)} />
 
       {/* Pagination */}
       {totalPages > 1 && (

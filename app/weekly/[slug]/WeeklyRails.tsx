@@ -5,7 +5,7 @@ import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import type { WeeklyItem, WeeklyLogMeta } from '@/lib/weekly'
-import { resolveItem } from '@/lib/weekly-render'
+import { resolveItem, type ResolvedItem } from '@/lib/weekly-render'
 
 type RailKey = 'read' | 'watched' | 'built' | 'shipped' | 'learned' | 'met'
 const RAILS: { key: RailKey; label: string }[] = [
@@ -19,8 +19,11 @@ const RAILS: { key: RailKey; label: string }[] = [
 
 type ModalState = {
   open: boolean
-  resolved: ReturnType<typeof resolveItem> | null
+  resolved: ResolvedItem | null
   content: string
+  /** Whether `content` came from a `sections[anchor]` lookup (true) or from
+   *  inline notes / pure-string text (false). Drives the fallback-line UI. */
+  hasContent: boolean
 }
 
 function ExternalLinkIcon() {
@@ -43,7 +46,7 @@ function ExternalLinkIcon() {
   )
 }
 
-function RailItemBody({ resolved }: { resolved: ReturnType<typeof resolveItem> }) {
+function RailItemBody({ resolved }: { resolved: ResolvedItem }) {
   const { text, image, source, notes } = resolved
   const isYouTubeThumb = image?.includes('ytimg.com')
   return (
@@ -85,8 +88,16 @@ function RailItemBody({ resolved }: { resolved: ReturnType<typeof resolveItem> }
   )
 }
 
-function DetailModal({ modal, onClose }: { modal: ModalState; onClose: () => void }) {
-  const { resolved, content } = modal
+function DetailModal({
+  modal,
+  onClose,
+  weekStart,
+}: {
+  modal: ModalState
+  onClose: () => void
+  weekStart: string
+}) {
+  const { resolved, content, hasContent } = modal
   if (!resolved) return null
 
   const isYouTubeThumb = resolved.image?.includes('ytimg.com')
@@ -211,8 +222,27 @@ function DetailModal({ modal, onClose }: { modal: ModalState; onClose: () => voi
               {content}
             </ReactMarkdown>
           ) : (
-            <p className="text-sm text-muted">No detailed notes yet.</p>
+            <p className="text-sm text-muted">
+              No detailed notes for this entry yet — open the original via the link above.
+            </p>
           )}
+
+          {/* Footer: logged date + (when no markdown body) link CTA */}
+          <div className="mt-6 pt-4 border-t border-border flex items-center gap-3 flex-wrap">
+            {!hasContent && resolved.href && (
+              <a
+                href={resolved.href}
+                target={resolved.href.startsWith('http') ? '_blank' : undefined}
+                rel={resolved.href.startsWith('http') ? 'noreferrer' : undefined}
+                className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-primary hover:text-accent transition-colors border border-border px-2.5 py-1"
+              >
+                Open original <ExternalLinkIcon />
+              </a>
+            )}
+            <span className="font-mono text-[10px] uppercase tracking-wider text-subtle">
+              logged · {weekStart}
+            </span>
+          </div>
         </div>
       </div>
     </>
@@ -226,7 +256,12 @@ export function WeeklyRails({
   meta: WeeklyLogMeta
   sections: Record<string, string>
 }) {
-  const [modal, setModal] = useState<ModalState>({ open: false, resolved: null, content: '' })
+  const [modal, setModal] = useState<ModalState>({
+    open: false,
+    resolved: null,
+    content: '',
+    hasContent: false,
+  })
 
   const close = useCallback(() => setModal((m) => ({ ...m, open: false })), [])
 
@@ -243,9 +278,11 @@ export function WeeklyRails({
     }
   }, [modal.open, close])
 
-  function openModal(resolved: ReturnType<typeof resolveItem>) {
-    const content = resolved.anchor ? (sections[resolved.anchor] ?? '') : ''
-    setModal({ open: true, resolved, content })
+  function openModal(resolved: ResolvedItem) {
+    // Priority: anchor section markdown → bodyMarkdown (notes / pure-string text) → empty
+    const fromSection = resolved.anchor ? (sections[resolved.anchor] ?? '') : ''
+    const content = fromSection || resolved.bodyMarkdown || ''
+    setModal({ open: true, resolved, content, hasContent: Boolean(content) })
   }
 
   return (
@@ -264,49 +301,33 @@ export function WeeklyRails({
                   const resolved = resolveItem(item)
                   const key = (typeof item === 'string' ? item : item.text) + i
 
-                  if (resolved.anchor) {
-                    return (
-                      <li key={key} className="relative">
-                        <button
-                          onClick={() => openModal(resolved)}
-                          className="block w-full text-left group hover:text-primary transition-colors duration-150 cursor-pointer"
-                        >
-                          <RailItemBody resolved={resolved} />
-                        </button>
-                        {resolved.href && (
-                          <a
-                            href={resolved.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="absolute top-0.5 right-0 text-subtle hover:text-primary transition-colors"
-                            title="Open original"
-                          >
-                            <ExternalLinkIcon />
-                          </a>
-                        )}
-                      </li>
-                    )
-                  }
-
-                  if (resolved.href) {
-                    const external = resolved.href.startsWith('http')
-                    return (
-                      <li key={key}>
+                  // Every rail item is now a button that opens the modal. The
+                  // external-link icon (when href exists) is a sibling <a> so
+                  // users can still jump straight to the source without going
+                  // through the modal.
+                  return (
+                    <li key={key} className="relative">
+                      <button
+                        type="button"
+                        onClick={() => openModal(resolved)}
+                        aria-label={resolved.text}
+                        className="block w-full text-left group hover:text-primary transition-colors duration-150 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      >
+                        <RailItemBody resolved={resolved} />
+                      </button>
+                      {resolved.href && (
                         <a
                           href={resolved.href}
-                          target={external ? '_blank' : undefined}
-                          rel={external ? 'noreferrer' : undefined}
-                          className="block group hover:text-primary transition-colors duration-150"
+                          target={resolved.href.startsWith('http') ? '_blank' : undefined}
+                          rel={resolved.href.startsWith('http') ? 'noreferrer' : undefined}
+                          onClick={(e) => e.stopPropagation()}
+                          className="absolute top-0.5 right-0 text-subtle hover:text-primary transition-colors p-1 -m-1"
+                          title="Open original"
+                          aria-label={`Open ${resolved.text} in a new tab`}
                         >
-                          <RailItemBody resolved={resolved} />
+                          <ExternalLinkIcon />
                         </a>
-                      </li>
-                    )
-                  }
-
-                  return (
-                    <li key={key}>
-                      <RailItemBody resolved={resolved} />
+                      )}
                     </li>
                   )
                 })}
@@ -316,7 +337,9 @@ export function WeeklyRails({
         })}
       </div>
 
-      {modal.open && modal.resolved && <DetailModal modal={modal} onClose={close} />}
+      {modal.open && modal.resolved && (
+        <DetailModal modal={modal} onClose={close} weekStart={meta.weekStart} />
+      )}
     </>
   )
 }

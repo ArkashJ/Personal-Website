@@ -28,6 +28,7 @@ const STATIC: {
   { path: '/architecture', priority: 0.5, changeFrequency: 'yearly' },
   { path: '/coursework', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/credentials', priority: 0.6, changeFrequency: 'yearly' },
+  { path: '/ai-hardware-stack', priority: 0.7, changeFrequency: 'monthly' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

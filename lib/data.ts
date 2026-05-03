@@ -38,6 +38,9 @@ export type WorkTool = {
   description: string
   tech: string[]
   href?: string
+  highlights?: string[]
+  commands?: string[]
+  year?: string
 }
 
 export type TimelineEntry = {
@@ -274,113 +277,265 @@ export const PROJECTS: Project[] = [
     name: 'SpatialDINO',
     year: '2025',
     description:
-      '3D self-supervised vision transformer for label-free segmentation and tracking in lattice light-sheet microscopy.',
-    tech: ['PyTorch', 'DDP', 'DGX', 'LLSM', '3D ViT'],
+      'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Adapts DINO-style student/teacher contrastive learning natively into 3D — student/teacher 3D ViTs trained over volumetric LLSM crops with 3D iBOT block masking. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s using PyTorch DDP, bf16 mixed precision, NVLink intra-node and InfiniBand inter-node. On downstream subcellular structure prediction it outperformed a prior approach co-led by Nobel laureate Eric Betzig. Released as a BioRxiv preprint, first-author; full engineering log at /knowledge/ai/spatialdino-lessons. The work also produced a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training over InfiniBand.',
+    tech: ['PyTorch', 'DDP', 'DGX A100', 'LLSM', '3D ViT', 'DINO', 'Triton', 'CUDA'],
     href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+    highlights: [
+      'Native 3D student/teacher ViT with 3D iBOT block masking — no 2D-stack hacks',
+      'KMeans content-aware 3D cropping and a 3D adaptation of SINDER for singular-defect repair',
+      'No-positional-encoding 3D ViTs (NoPE) — let attention learn structure from scratch',
+      'Streaming encoder with token-store + online softmax for full-volume inference at million-token sequence lengths',
+      'Pre-trained on 2.4 TB / 180k volumes across 24 A100s with DDP + bf16',
+      'Beat the prior SOTA (Nobel-laureate-led) on downstream subcellular structure prediction',
+      'Surfaced a PyTorch Rendezvous backend bug, filed and contributed PR #144779',
+    ],
   },
   {
     name: 'Raft (Go)',
     year: '2023',
     description:
-      'From-scratch Raft consensus implementation. Leader election, log replication, snapshotting.',
-    tech: ['Go', 'gRPC', 'Distributed Systems'],
+      'From-scratch Raft consensus implementation in Go for BU CS 350 (Distributed Systems). Implements the full state machine: leader election with randomized election timeouts, log replication with AppendEntries, persistence to stable storage, and snapshot install RPC for log compaction. Designed to pass the MIT 6.824 / BU 350 test harness covering elections, replication, persistence, snapshots, and unreliable-network conditions. Companion repo to a from-scratch MapReduce coordinator/worker also written in Go for the same course.',
+    tech: ['Go', 'gRPC', 'Distributed Systems', 'Consensus'],
     href: 'https://github.com/ArkashJ/Raft',
+    highlights: [
+      'Leader election with randomized election timeouts — handles split votes cleanly',
+      'AppendEntries-based log replication with prevLogIndex/prevLogTerm consistency check',
+      'Persistent state (currentTerm, votedFor, log) survives crash + restart',
+      'Snapshot install RPC for log compaction on long-running clusters',
+      'Passes the unreliable-network test harness (drops, reorders, partitions)',
+    ],
   },
   {
     name: 'CloudComputing - coursework + projects',
     year: '2023',
     description:
-      'BU CS591 coursework, including MapReduce, Spark, distributed kv-store experiments.',
-    tech: ['Go', 'Spark', 'Hadoop'],
+      'Cloud-systems coursework spanning MapReduce, distributed key-value stores, and graph-scale workloads. Includes a from-scratch MapReduce coordinator + worker with plugin-loaded map/reduce functions, distributed kv-store experiments, and a generated mini-internet used to benchmark PageRank locally vs. on Google Cloud. Repo serves as the working scratchpad for BU cloud / distributed-systems labs.',
+    tech: ['Go', 'Spark', 'Hadoop', 'GCP', 'PageRank'],
     href: 'https://github.com/ArkashJ/CloudComputing',
+    highlights: [
+      'MapReduce coordinator + worker in Go with plugin-loaded map/reduce functions',
+      'Distributed key-value store experiments (replication, leader assignment)',
+      'Generated-HTML mini-internet for PageRank benchmarking',
+      'PageRank evaluated locally vs. on GCP — same code, two scales',
+    ],
   },
   {
     name: 'NEXMARK Benchmark',
     year: '2023',
-    description: 'Streaming-systems benchmark suite implementation against Apache Flink.',
-    tech: ['Java', 'Flink', 'RocksDB'],
+    description:
+      "Implementation of the NEXMARK streaming-systems benchmark suite against Apache Flink, used as the workload generator for my BU master's thesis on dynamic checkpointing. NEXMARK simulates an online auction: streams of person, auction, and bid events at configurable rates. Each query stresses a different streaming primitive — joins, aggregations, windowing, sessions — making it the standard rig for measuring tail latency, throughput, and checkpoint cost on bursty workloads. Wired into Flink with the RocksDB state backend so checkpoint behavior could be measured under realistic state sizes.",
+    tech: ['Java', 'Apache Flink', 'RocksDB', 'Streaming'],
     href: 'https://github.com/ArkashJ/NEXMARK-Benchmark',
+    highlights: [
+      'Implements the standard NEXMARK queries (joins, aggregations, windows, sessions)',
+      'Configurable event-rate driver for steady-state and burst workloads',
+      'RocksDB state backend wired in for realistic state-size measurements',
+      'Used as the workload generator for the dynamic-checkpointing thesis',
+      'Captures throughput, tail latency, and checkpoint cost per query',
+    ],
   },
   {
     name: 'Implicit SGD',
     year: '2024',
     description:
-      'Implicit stochastic gradient descent - convergence improvements for ill-conditioned problems.',
-    tech: ['Python', 'NumPy', 'Optimization'],
+      'NumPy implementation and empirical study of implicit stochastic gradient descent (Toulis et al.) alongside standard explicit SGD baselines. Implicit SGD evaluates the gradient at the next iterate rather than the current one, which dramatically improves stability on ill-conditioned problems where explicit SGD diverges or oscillates with even modest step sizes. The repo runs a controlled comparison on synthetic regression problems with adjustable condition numbers and noise levels. Companion to BU DS 522 coursework on optimization (Adam / AMSGrad / RMSProp comparison and article evaluations of Reddi 2018 and Toulis 2016).',
+    tech: ['Python', 'NumPy', 'Optimization', 'SGD'],
     href: 'https://github.com/ArkashJ/implict-SGD-implementation',
+    highlights: [
+      'NumPy implementation of implicit SGD alongside explicit SGD baselines',
+      'Synthetic regression rig with adjustable condition number and noise',
+      'Empirical demonstration of stability gains on ill-conditioned problems',
+      'Tied to a written evaluation of Toulis 2016 and Reddi 2018 (AMSGrad)',
+    ],
   },
   {
     name: 'CS411 Software Engineering Labs',
     year: '2023',
     description:
-      'TA materials and reference solutions for the BU undergraduate software-engineering course.',
-    tech: ['Java', 'JUnit'],
+      'TA materials and reference solutions for BU CS 411 (undergraduate Software Engineering). Covers the standard SE curriculum: build systems, version control workflows, testing strategies, and small-team collaboration patterns. Reference solutions are in Java with JUnit tests so students can self-check; lab handouts walk through incremental refactors, code review, and CI-style automation.',
+    tech: ['Java', 'JUnit', 'Testing'],
     href: 'https://github.com/ArkashJ/CS411_labs',
+    highlights: [
+      'Reference solutions in Java with JUnit coverage',
+      'Lab handouts on build systems, VCS workflows, and code review',
+      'Incremental-refactor exercises mirroring real-world maintenance work',
+      'Used by undergraduates across multiple semesters',
+    ],
   },
   {
     name: 'Benmore Foundry CLI',
     year: '2025',
-    description: 'Internal orchestration layer for SMB AI consulting engagements.',
-    tech: ['Python', 'Typer', 'Claude Code'],
+    description:
+      "Internal orchestration layer for Benmore's SMB AI consulting engagements. Kicks off scoped Claude Code agents per engagement, books and tracks scoped work, manages handoffs between FDEs, and standardizes the engagement lifecycle from scope → build → ship → debrief. Built on Typer + Rich with strict mypy and a registry that tracks every agent, skill, and engagement. Designed so that any FDE on the team can pick up any engagement and continue without context loss.",
+    tech: ['Python', 'Typer', 'Rich', 'Claude Code', 'mypy'],
+    highlights: [
+      'Per-engagement scoped agent orchestration on top of Claude Code',
+      'Registry of skills, prompts, and active engagements with --json on every command',
+      'Lifecycle commands: scope, kickoff, ship, debrief',
+      'Strict typing (mypy zero errors), Rich-formatted CLI output',
+      'Handoff packets so any FDE can pick up any engagement',
+    ],
+    commands: [
+      'foundry kickoff <client>',
+      'foundry status --json',
+      'foundry ship <engagement>',
+      'foundry debrief --since <tag>',
+    ],
   },
   {
     name: 'Dynamic Checkpointing in Apache Flink',
     year: '2024',
-    description: 'BU thesis - adaptive checkpoint cadence driven by backpressure signals.',
-    tech: ['Java', 'Apache Flink', 'RocksDB'],
+    description:
+      "BU master's thesis. Static checkpoint intervals are a tax during idle periods and a stall during bursts. I built an adaptive controller that surfaces per-operator backpressure ratios from the Flink JobManager and uses them as a control signal: shorten cadence when load is low, lengthen under sustained backpressure to avoid amplifying stalls. Validated on the NEXMARK streaming benchmark with the RocksDB state backend; quantified write-amplification tradeoffs vs. in-memory state. Measured tail-latency wins on bursty workloads.",
+    tech: ['Java', 'Apache Flink', 'RocksDB', 'NEXMARK', 'JVM'],
+    highlights: [
+      'Instrumented JobManager to surface per-operator backpressure ratios',
+      'Adaptive checkpoint cadence — short under low load, long under burst',
+      'RocksDB state backend benchmarked vs. in-memory; write-amplification quantified',
+      'Validated on NEXMARK queries with bursty event rates',
+      'Tail-latency wins on bursty workloads vs. fixed-interval baseline',
+    ],
   },
   {
     name: 'OCaml Interpreter',
     year: '2022',
-    description: 'Tree-walking interpreter for a typed functional language.',
-    tech: ['OCaml'],
+    description:
+      'Tree-walking interpreter for a typed functional language, built from scratch for BU CS 320 (Programming Languages). Hand-written lexer, hand-written recursive-descent parser over the BNF grammar, and a stack-machine evaluator. No parser-generator — every token, every production, every reduction was written by hand. The exercise made the relationship between grammar, AST, and runtime semantics legible in a way that working with off-the-shelf parsers never quite does.',
+    tech: ['OCaml', 'Compilers', 'Interpreters'],
+    highlights: [
+      'Hand-written lexer over the source grammar',
+      'Hand-written recursive-descent parser over BNF — no parser-generator',
+      'Stack-machine evaluator for the parsed AST',
+      'Type checker for the typed core language',
+    ],
+    commands: ['dune build', 'dune exec interpreter <source.ml>', 'dune runtest'],
   },
   {
     name: 'Spotify to YouTube Transfer',
     year: '2022',
-    description: 'Migrate playlists between music platforms via API matching.',
-    tech: ['Python', 'OAuth'],
+    description:
+      "Migrate playlists between Spotify and YouTube Music via API matching. Authenticates against both platforms with OAuth, fetches the source playlist, and runs each track through a fuzzy title/artist match against the destination's search API. Edge cases handled: featuring credits, remixes, regional availability, and tracks that simply don't exist on the other side. A weekend project that turned into a working tool for actually moving years of curated playlists across services.",
+    tech: ['Python', 'OAuth', 'Spotify API', 'YouTube API'],
+    highlights: [
+      'OAuth flows against both Spotify and YouTube Music',
+      'Fuzzy title/artist matching with feature-credit and remix handling',
+      'Reports unmatched tracks so the user can fix them by hand',
+      'Idempotent — re-running on the same playlist is a no-op',
+    ],
   },
   {
     name: 'STU STREET Podcast',
     year: '2022',
-    description: 'Co-hosted long-form interviews with founders, athletes, and professors on WTBU.',
-    tech: ['Audio', 'Production'],
+    description:
+      'Co-hosted long-form interview podcast on WTBU (Boston University radio). Conversations with founders, professional athletes, and university professors about their work and craft. Covered the full production loop — booking, prep, recording, editing, distribution to Apple Podcasts and Spotify. Several episodes are linked from /media. The show ran across the 2022 academic year.',
+    tech: ['Audio', 'Production', 'Interviewing'],
     href: 'https://podcasts.apple.com/us/podcast/stu-street/id1635472305',
+    highlights: [
+      'Long-form interviews with founders, athletes, and professors',
+      'Full ownership of booking, prep, recording, editing, and distribution',
+      'Distributed on Apple Podcasts and Spotify',
+      'Hosted under the WTBU (Boston University radio) umbrella',
+    ],
   },
   {
     name: 'ALS Resource Tool',
     year: '2023',
-    description: "Resource-discovery tool for ALS patients, built at Boston Children's.",
-    tech: ['Django', 'Postgres'],
+    description:
+      "Internal ALS resource-discovery web app for clinicians and patient families, built at Boston Children's Hospital. The whole product was scoped to Section 508 / WCAG 2.1 AA — accessibility was the bar, not an afterthought. React frontend wired to a Strapi headless CMS so non-technical staff could update content without a deploy. Swagger-documented REST API for self-service contributor onboarding. Search and filter UX validated with real ALS clinicians; iterated on care-workflow ergonomics across the engagement.",
+    tech: [
+      'React',
+      'Strapi',
+      'Swagger / OpenAPI',
+      'Node.js',
+      'PostgreSQL',
+      'WCAG 2.1',
+      'Section 508',
+    ],
+    highlights: [
+      'Section 508 / WCAG 2.1 AA: keyboard nav, ARIA landmarks, focus rings, contrast, skip links',
+      'Strapi headless CMS so clinicians can update content without a deploy',
+      'Swagger-documented REST API for contributor onboarding',
+      'Search + filter UX validated directly with ALS clinicians',
+      'Screen-reader tested across primary care-workflow paths',
+    ],
   },
 ]
 
 export const WORK_TOOLS: WorkTool[] = [
   {
     name: 'Benmore Foundry CLI',
+    year: '2025',
     description:
-      'Internal orchestration layer for SMB AI consulting engagements - kicks off scoped agents, books work, manages handoffs.',
-    tech: ['Python', 'Typer', 'Claude Code'],
+      'Internal orchestration layer for SMB AI consulting engagements at Benmore. Kicks off scoped Claude Code agents per engagement, books and tracks scoped work, and manages handoffs between FDEs. Standardizes the engagement lifecycle from scope → build → ship → debrief so any FDE on the team can pick up any engagement without context loss. Built on Typer + Rich with strict mypy and a registry that tracks every active engagement.',
+    tech: ['Python', 'Typer', 'Rich', 'Claude Code', 'mypy'],
+    highlights: [
+      'Per-engagement scoped agent orchestration on top of Claude Code',
+      'Lifecycle commands: scope, kickoff, ship, debrief',
+      '--json on every command for agent-native queries',
+      'Strict typing (mypy zero errors), Rich-formatted CLI output',
+      'Handoff packets so any FDE can resume any engagement',
+    ],
+    commands: [
+      'foundry kickoff <client>',
+      'foundry status --json',
+      'foundry ship <engagement>',
+      'foundry debrief --since <tag>',
+    ],
   },
   {
     name: 'RTK - Rust Token Killer',
+    year: '2026',
     description:
-      'Token-optimized CLI proxy for Claude Code. 60-90% token savings on dev operations through transparent rewrite hooks.',
-    tech: ['Rust', 'Claude Code Hooks'],
+      "Token-optimized CLI proxy for Claude Code. Intercepts common dev commands via Claude Code hooks and rewrites their output before it hits the model context — 60-90% token savings on routine dev operations like git, ls, find, and grep without changing the developer's muscle memory. Written in Rust for fast startup; ships analytics so you can see exactly how many tokens (and dollars) you saved per session.",
+    tech: ['Rust', 'Claude Code Hooks', 'CLI'],
+    highlights: [
+      'Transparent rewrite via Claude Code hooks — zero workflow change',
+      '60-90% token savings on git, ls, find, grep, and other read-only commands',
+      'Built-in analytics: rtk gain shows savings per session and historically',
+      'Discovery mode mines Claude Code history for missed-savings opportunities',
+      'Fast startup — Rust binary, no runtime',
+    ],
+    commands: [
+      'rtk --version',
+      'rtk gain',
+      'rtk gain --history',
+      'rtk discover',
+      'rtk proxy <cmd>',
+    ],
   },
   {
     name: 'Compound Engineering Skills',
+    year: '2026',
     description:
-      '71 Claude Code skills authored for forward-deployed engineering. Public on GitHub, copy-ready on /skills.',
-    tech: ['Markdown', 'Claude Code Skills'],
+      '71+ Claude Code skills authored for forward-deployed engineering — production-ready playbooks for Django, FastAPI, Stripe, HIPAA/GDPR/SOC 2 compliance, mobile (Expo/React Native), SEO, and deployment (Heroku/DigitalOcean/Vercel). Symlinked into ~/.claude/skills/ via one command so every Claude session reflects the latest versions; git pull is the only update step. Public on GitHub, copy-ready on /skills.',
+    tech: ['Markdown', 'Claude Code Skills', 'Python'],
     href: 'https://github.com/Benmore-Studio/Benmore-Meridian',
+    highlights: [
+      '71+ skills covering Django, FastAPI, Stripe, mobile, SEO, deployment, compliance',
+      'Symlink-first install — edit a skill once, every session reflects it',
+      'Git hooks auto-run install on pull/checkout when skills change',
+      'Project-aware skill suggestions from static stack detection',
+      'Public on GitHub, surfaced on /skills',
+    ],
+    commands: [
+      'bm install',
+      'bm skill add <name>',
+      'bm suggest [path]',
+      'bm context [path] --copy',
+    ],
   },
   {
     name: 'Excalidraw Discovery Flows',
+    year: '2025',
     description:
-      'Reusable client-discovery diagram set used during scoping engagements at Benmore.',
-    tech: ['Excalidraw', 'Process'],
+      'Reusable client-discovery diagram set used during scoping engagements at Benmore. Pre-built Excalidraw templates for the recurring shapes of an SMB AI engagement: as-is workflow capture, gap analysis, system context, integration map, sequence diagrams for the proposed end-state, and a one-page summary slide. Cuts the prep time on a discovery call from a blank canvas to a structured walk-through.',
+    tech: ['Excalidraw', 'Process', 'Discovery'],
+    highlights: [
+      'Templates for as-is workflows, gap analysis, system context, integration maps',
+      'Sequence diagrams for proposed end-state architectures',
+      'One-page summary slide template for handoff to client stakeholders',
+      'Used across 15+ Benmore client engagements',
+    ],
   },
 ]
 

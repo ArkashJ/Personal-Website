@@ -32,17 +32,26 @@ function simpleIconSlugFor(
   return undefined
 }
 
-// Normalizes a rail entry into a renderable object, deriving thumbnails and
-// source logos when the author didn't supply them.
-export function resolveItem(item: WeeklyItem): {
+export type ResolvedItem = {
   text: string
   href?: string
   anchor?: string
   image?: string
   source?: string
+  kind?: string
   notes?: string
-} {
-  if (typeof item === 'string') return { text: item }
+  // Markdown body to render inside the modal when no `anchor:` section is
+  // available. Falls back to `notes` for rich rail items, or to the raw
+  // string text for pure-string items.
+  bodyMarkdown?: string
+}
+
+// Normalizes a rail entry into a renderable object, deriving thumbnails and
+// source logos when the author didn't supply them.
+export function resolveItem(item: WeeklyItem): ResolvedItem {
+  if (typeof item === 'string') {
+    return { text: item, bodyMarkdown: item }
+  }
   let { image, source } = item
   const { text, href, anchor, kind, notes } = item
 
@@ -59,5 +68,9 @@ export function resolveItem(item: WeeklyItem): {
     if (slug) image = `https://cdn.simpleicons.org/${slug}/9aa0a6`
   }
 
-  return { text, href, anchor, image, source, notes }
+  // Modal body falls back to notes when no anchor is provided. When neither
+  // exists, the modal will render a generic CTA + fallback line in the UI.
+  const bodyMarkdown = anchor ? undefined : notes
+
+  return { text, href, anchor, image, source, kind, notes, bodyMarkdown }
 }

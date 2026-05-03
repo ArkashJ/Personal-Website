@@ -51,6 +51,26 @@ export default async function KnowledgeDomainPage({
       </Link>
       <SectionHeader eyebrow={d.slug} title={d.name} description={d.description} />
 
+      {d.slug === 'ai' && (
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-text tracking-tight mb-6">Featured deck</h2>
+          <Link href="/ai-hardware-stack" className="block">
+            <Card glow className="h-full cursor-pointer">
+              <p className="font-mono text-[11px] text-subtle uppercase tracking-widest mb-2">
+                Interactive · 7 layers · Updated 2026-04-28
+              </p>
+              <h3 className="text-text font-bold mb-2 tracking-tight">
+                The Complete AI Hardware Stack — Layer by Layer
+              </h3>
+              <p className="text-muted text-sm leading-relaxed">
+                Self-contained interactive deck: silicon and CoWoS-L packaging up through HBM3e,
+                NVLink, InfiniBand, CUDA kernels, and disaggregated prefill/decode serving.
+              </p>
+            </Card>
+          </Link>
+        </section>
+      )}
+
       {posts.length > 0 && (
         <section className="mb-12">
           <h2 className="text-xl font-bold text-text tracking-tight mb-6">
