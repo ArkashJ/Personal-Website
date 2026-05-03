@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Mail, ExternalLink, Briefcase, GraduationCap } from 'lucide-react'
 import { SITE, NAV_LINKS, SECONDARY_LINKS } from '@/lib/site'
+import BenmoreBadge from '@/components/ui/BenmoreBadge'
 
 // simple-icons CDN brand marks (same trick as TechBadge); fall through to
 // lucide for things without a registered brand (email).
@@ -55,8 +56,18 @@ const Footer = () => (
     <div className="max-w-6xl mx-auto px-6 py-12 grid gap-10 md:grid-cols-12">
       <div className="md:col-span-4">
         <h3 className="font-mono text-text font-bold mb-2 tracking-tight">{SITE.name}</h3>
-        <p className="text-muted text-sm leading-relaxed mb-4">
-          {SITE.jobTitle} at {SITE.worksFor}.
+        <p className="text-muted text-sm leading-relaxed mb-3">
+          {SITE.jobTitle} at{' '}
+          <a
+            href="https://benmore.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text hover:text-primary inline-flex items-center gap-1.5 transition-colors duration-150"
+          >
+            <BenmoreBadge size={14} />
+            <span>{SITE.worksFor}</span>
+          </a>
+          .
         </p>
         <p className="text-subtle text-xs leading-relaxed">{SITE.description}</p>
       </div>

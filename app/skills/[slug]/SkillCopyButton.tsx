@@ -42,7 +42,7 @@ export default function SkillCopyButton({ slug }: { slug: string }) {
         </>
       ) : (
         <>
-          <Copy className="w-3 h-3" /> Copy SKILL.md
+          <Copy className="w-3 h-3" /> Copy for LLM
         </>
       )}
     </button>

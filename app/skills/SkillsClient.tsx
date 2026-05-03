@@ -158,7 +158,7 @@ export default function SkillsClient({ skills, categories }: Props) {
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3 h-3" /> Copy SKILL.md
+                      <Copy className="w-3 h-3" /> Copy for LLM
                     </>
                   )}
                 </button>
@@ -173,8 +173,9 @@ export default function SkillsClient({ skills, categories }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ml-auto text-[10px] font-mono text-subtle hover:text-primary transition-colors duration-150"
+                  title="Plain-text endpoint — for LLM crawlers + curl"
                 >
-                  /skills/{s.slug}/raw →
+                  raw .md →
                 </a>
               </div>
             </article>
