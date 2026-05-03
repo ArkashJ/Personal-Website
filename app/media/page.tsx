@@ -5,6 +5,7 @@ import Badge from '@/components/ui/Badge'
 import Disclosure from '@/components/ui/Disclosure'
 import BackLink from '@/components/ui/BackLink'
 import { YouTubeEmbed } from '@next/third-parties/google'
+import LinkedInPost from '@/components/embeds/LinkedInPost'
 import {
   STU_STREET_EPISODES,
   PODCAST_LINKS,
@@ -13,6 +14,7 @@ import {
   PRESS,
   FEATURED_VIDEOS,
   REVIEWS,
+  LINKEDIN_POSTS,
 } from '@/lib/media'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
@@ -77,6 +79,46 @@ export default function MediaPage() {
               <h3 className="text-text font-bold mb-1">{v.title}</h3>
               {v.description && <p className="text-muted text-sm">{v.description}</p>}
             </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* LinkedIn posts */}
+      <section>
+        <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
+          <div>
+            <h2 className="text-xl font-bold text-text tracking-tight">LinkedIn — Posts</h2>
+            <p className="text-muted text-sm mt-1">
+              Public dispatches on engineering, startups, and what I&apos;m working on.
+            </p>
+          </div>
+          <a
+            href="https://www.linkedin.com/in/arkashj"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs text-primary hover:text-accent uppercase tracking-widest"
+          >
+            Profile →
+          </a>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {LINKEDIN_POSTS.map((post) => (
+            <div key={post.urn} className="flex flex-col gap-3">
+              <LinkedInPost urn={post.urn} type={post.type} height={400} />
+              <div className="flex items-center justify-between gap-2 px-1">
+                {post.title && (
+                  <span className="text-text text-sm font-medium line-clamp-1">{post.title}</span>
+                )}
+                <a
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-[10px] text-primary hover:text-accent uppercase tracking-widest whitespace-nowrap"
+                >
+                  Open →
+                </a>
+              </div>
+            </div>
           ))}
         </div>
       </section>

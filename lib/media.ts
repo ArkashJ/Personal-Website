@@ -428,6 +428,13 @@ export const SUBSTACK_POSTS: ArticleLink[] = [
     url: 'https://arkash.substack.com/p/what-happened-this-week-ab3',
   },
   {
+    source: 'Other',
+    title: 'What happened this week (LinkedIn dispatch)',
+    date: '2025-09-07',
+    url: 'https://www.linkedin.com/posts/arkashj_what-happened-this-week-share-7345125994594230272-4SBI',
+    description: 'Weekly notes cross-posted to LinkedIn.',
+  },
+  {
     source: 'Substack',
     title: 'What Happened This Week — 3fb',
     date: '2025-06-21',
@@ -472,7 +479,7 @@ export const SUBSTACK_POSTS: ArticleLink[] = [
 ]
 
 // Recent LinkedIn posts — embedded via the official LinkedIn embed iframe.
-// URNs come from a post's "Embed this post" code; type is 'share' or 'activity'.
+// URNs come from a post's "Embed this post" code; type is 'share', 'activity', or 'ugcPost'.
 export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
   {
     urn: '7454318675311874048',
@@ -491,6 +498,32 @@ export const LINKEDIN_POSTS: LinkedInPostEntry[] = [
     title: 'I learnt to price optionality on aggregation',
     excerpt:
       'Aggregation theory says the platform that owns demand wins. Pricing optionality on that distribution is the trade.',
+  },
+  {
+    urn: '7441575280814698496',
+    type: 'share',
+    url: 'https://www.linkedin.com/posts/arkashj_when-we-were-evaluating-delve-drata-and-share-7441575280814698496-ahPC',
+    date: '2026-03-12',
+    title: 'When we were evaluating Delve, Drata, and Vanta',
+    excerpt:
+      'Notes on evaluating compliance automation platforms — what actually separates Drata, Vanta, and Delve at the SMB layer.',
+  },
+  {
+    urn: '7345125994594230272',
+    type: 'share',
+    url: 'https://www.linkedin.com/posts/arkashj_what-happened-this-week-share-7345125994594230272-4SBI',
+    date: '2025-09-07',
+    title: 'What happened this week',
+    excerpt: 'Weekly dispatch — cross-posted from Substack.',
+  },
+  {
+    urn: '7198500677231198208',
+    type: 'ugcPost',
+    url: 'https://www.linkedin.com/posts/arkashj_a-huge-chapter-of-my-life-came-to-an-end-ugcPost-7198500677231198208-pDtI',
+    date: '2024-05-20',
+    title: 'A huge chapter of my life came to an end',
+    excerpt:
+      'Graduated from Boston University with a BA in Math & CS + MS in CS, Magna Cum Laude — four years, two degrees, and a lot in between.',
   },
 ]
 

@@ -607,6 +607,10 @@ export const TIMELINE: TimelineEntry[] = [
         label: 'MS degree (PDF)',
         href: '/images/files/arkash-jain-master-of-science-computer-science.pdf',
       },
+      {
+        label: 'Graduation post (LinkedIn)',
+        href: 'https://www.linkedin.com/posts/arkashj_a-huge-chapter-of-my-life-came-to-an-end-ugcPost-7198500677231198208-pDtI',
+      },
     ],
   },
   {
