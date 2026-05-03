@@ -5,6 +5,42 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [2.4.1] — 2026-05-02 — Rich weekly logs, home-page surfacing, mobile fix
+
+### Fixed — Safari "Copy for LLM" button silently failed
+
+- `app/skills/SkillsClient.tsx` and `app/skills/[slug]/SkillCopyButton.tsx` previously did `await fetch('/skills/<slug>/raw')` followed by `navigator.clipboard.writeText(text)`. Safari (and Chromium under strict clipboard policies) revokes the user-activation gesture across the async hop, so the clipboard write threw `NotAllowedError` and the button rendered the red "Copy failed" state.
+- New `lib/copy-skill.ts` uses the spec-blessed `navigator.clipboard.write([new ClipboardItem({'text/plain': fetch(url).then(r => r.blob())})])` pattern — Safari preserves the user gesture across a `Promise<Blob>` passed to `ClipboardItem`. Falls back to `writeText` for older browsers without `ClipboardItem`. Errors now log to console for diagnosability.
+
+### Added — Rich rail items on weekly logs
+
+- `lib/weekly.ts` extended: each entry in `read`/`watched`/`built`/`shipped`/`learned`/`met` is now `string | { text, href?, image?, source?, kind? }`. Plain strings still work for quick logging.
+- New `lib/weekly-render.ts` derives renderable items: YouTube URLs auto-resolve `https://i.ytimg.com/vi/<id>/mqdefault.jpg` thumbnails (`youtube.com/watch?v=…`, `youtu.be/…`, `youtube.com/shorts/…`); known sources (YouTube, Substack, Medium, GitHub, LinkedIn, X, arXiv, Spotify, Apple Podcasts, Overcast, Latent Space) auto-fetch monochrome SimpleIcons logos via `cdn.simpleicons.org`. Falls through cleanly when nothing matches.
+- `app/weekly/[slug]/page.tsx` rails now render link cards: 64×36 thumbnail (YouTube) or 16×16 logo (SimpleIcons), linked title with hover, source label in muted mono caps. External `href`s open in new tab; internal `href`s use anchor navigation.
+- `content/weekly/2026-W18.mdx` updated to use the rich format end-to-end (Karpathy YouTube → auto-thumbnail, Latent Space podcast, a16z article, GitHub repos with auto-resolved logos).
+
+### Added — "This week" home-page section
+
+- `app/page.tsx` now renders a "This week" card directly under the hero, surfacing the latest weekly log: title, week range, six-category counts grid (Read · Watched · Built · Shipped · Learned · Met), tags, click-through to `/weekly/<slug>`. Wired via new `getLatestWeeklyLog()` export from `lib/weekly.ts`.
+
+### Fixed — `/skills` horizontal overflow on mobile
+
+- The three-column "How to use these skills" grid contained `<pre>` blocks with unbreakable shell commands (`curl -fsSL "https://www.arkashj.com/skills/$s/raw"`). CSS Grid items default to `min-width: auto` = `min-content`; on a 390px viewport this expanded each cell to **565px**, forcing horizontal page scroll despite the inner `<pre>` having `overflow-x-auto`.
+- Added `min-w-0` to the three grid children so they can shrink below intrinsic min-content and the inner `overflow-x-auto` can engage. iPhone 13 (390×844) viewport probe goes from `hOverflow: true` (175px excess) to clean.
+- Audited all 19 public routes at iPhone width with a programmatic Playwright probe (`document.documentElement.scrollWidth` vs `innerWidth`, walking offending elements) — every other route was already responsive-clean.
+
+### Docs
+
+- Release note: `docs/release-notes/2026-05-02-weekly-rich-items.md`.
+- `CLAUDE.md` — "Adding content" cheatsheet now documents the rich weekly-item shape and auto-derivation rules.
+
+### Build
+
+- `package.json` version bumped 2.4.0 → 2.4.1.
+- Recommended git tag: `v2.4.1`.
+
+---
+
 ## [2.4.0] — 2026-05-02 — Public skills library, unified search, weekly logs
 
 ### Added — Public skills library

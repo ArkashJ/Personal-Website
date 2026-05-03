@@ -504,7 +504,7 @@ The site hosts a **public, browsable index of 71 Claude Code skills** authored a
 
 To install a skill into your own Claude Code setup, follow the bootstrap script referenced on each skill page (`skills.sh`).
 
-The site also exposes a weekly running log at [`/weekly`](https://www.arkashj.com/weekly) — ISO-week-keyed entries sourced from `content/weekly/` and a typed highlights data bank (`lib/highlights.ts`) shared with the homepage Recent Wins rail.
+The site also exposes a weekly running log at [`/weekly`](https://www.arkashj.com/weekly) — ISO-week-keyed entries sourced from `content/weekly/` and a typed highlights data bank (`lib/highlights.ts`) shared with the homepage Recent Wins rail. Each rail entry (`read`/`watched`/`built`/`shipped`/`learned`/`met`) accepts either a plain string or a rich `{text, href, image?, source?, kind?}` object — YouTube URLs auto-derive thumbnails, common sources (GitHub, Substack, Medium, X, arXiv, Spotify, Apple Podcasts, Latent Space) auto-fetch SimpleIcons logos via `lib/weekly-render.ts`. The latest weekly log surfaces on the home page as a "This week" card directly under the hero.
 
 ### Routes
 
