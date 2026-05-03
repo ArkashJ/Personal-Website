@@ -7,7 +7,6 @@ import ProjectCard from '@/components/sections/ProjectCard'
 import CurrentUpdates from '@/components/sections/CurrentUpdates'
 import FeaturedBanner from '@/components/sections/FeaturedBanner'
 import Card from '@/components/ui/Card'
-import Badge from '@/components/ui/Badge'
 import TechBadge from '@/components/ui/TechBadge'
 import { PAPERS, PROJECTS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
@@ -39,10 +38,9 @@ export default function Home() {
 
   return (
     <div>
-      <FeaturedBanner />
       <Hero />
 
-      {/* This week — latest weekly log surfaced on home */}
+      {/* This week — latest weekly log surfaced on home, with the active "What's new" banner stacked above the card */}
       {latestWeekly && (
         <section className="px-6 py-8 max-w-6xl mx-auto">
           <SectionHeader
@@ -51,6 +49,9 @@ export default function Home() {
             href={`/weekly/${latestWeekly.slug}`}
             hrefLabel="Read the log →"
           />
+          <div className="mb-4">
+            <FeaturedBanner />
+          </div>
           <Link href={`/weekly/${latestWeekly.slug}`} className="block group">
             <Card glow>
               <div className="flex items-baseline justify-between gap-3 mb-3">
@@ -65,13 +66,10 @@ export default function Home() {
                 <p className="text-muted text-sm leading-relaxed">{latestWeekly.description}</p>
               )}
               {latestWeekly.tags && latestWeekly.tags.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 mt-4">
-                  {latestWeekly.tags.map((t) => (
-                    <Badge key={t} variant="teal">
-                      {t}
-                    </Badge>
-                  ))}
-                </div>
+                <p className="font-mono text-[10px] text-subtle mt-4 uppercase tracking-wider">
+                  {latestWeekly.tags.length} tags · {latestWeekly.tags.slice(0, 4).join(' · ')}
+                  {latestWeekly.tags.length > 4 ? ' …' : ''}
+                </p>
               )}
             </Card>
           </Link>

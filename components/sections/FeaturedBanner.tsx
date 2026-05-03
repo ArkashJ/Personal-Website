@@ -18,19 +18,15 @@ const FeaturedBanner = () => {
     </div>
   )
 
-  return (
-    <div className="px-6 pt-4 max-w-6xl mx-auto">
-      {banner.href ? (
-        <Link
-          href={banner.href}
-          className="block bg-surface border border-border hover:border-primary transition-[border-color] duration-150"
-        >
-          {inner}
-        </Link>
-      ) : (
-        <div className="bg-surface border border-border">{inner}</div>
-      )}
-    </div>
+  return banner.href ? (
+    <Link
+      href={banner.href}
+      className="block bg-surface border border-border hover:border-primary transition-[border-color] duration-150"
+    >
+      {inner}
+    </Link>
+  ) : (
+    <div className="bg-surface border border-border">{inner}</div>
   )
 }
 
