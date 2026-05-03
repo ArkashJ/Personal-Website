@@ -72,7 +72,7 @@ export default function SkillsPage() {
           </a>
         </header>
         <div className="grid divide-y divide-border md:grid-cols-3 md:divide-y-0 md:divide-x">
-          <div className="p-5">
+          <div className="p-5 min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-widest text-text mb-2">
               ① One skill, one paste
             </p>
@@ -82,7 +82,7 @@ export default function SkillsPage() {
               system prompt.
             </p>
           </div>
-          <div className="p-5">
+          <div className="p-5 min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-widest text-text mb-2">
               ② Install all globally (Claude Code)
             </p>
@@ -105,7 +105,7 @@ done`}</pre>
               into the Claude Code skills dir.
             </p>
           </div>
-          <div className="p-5">
+          <div className="p-5 min-w-0">
             <p className="font-mono text-[10px] uppercase tracking-widest text-text mb-2">
               ③ Symlink for your LLM
             </p>
