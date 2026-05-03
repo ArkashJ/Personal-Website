@@ -9,6 +9,7 @@ import {
   NavigationFlowDiagram,
   SeoDiagram,
   SiteMapDiagram,
+  SkillsLibraryDiagram,
 } from '@/components/architecture/Diagrams'
 
 export const metadata = buildMetadata({
@@ -64,11 +65,11 @@ export default function ArchitecturePage() {
           How this site is built.
         </h1>
         <p className="mt-1 text-2xl md:text-3xl font-bold leading-[1.1] tracking-tight italic text-accent">
-          Six diagrams.
+          Seven diagrams.
         </p>
         <p className="text-muted text-sm md:text-base leading-relaxed max-w-2xl mt-4">
-          Page structure, navigation, content pipeline, SEO, CI/CD, and component hierarchy. The
-          canonical reference for how arkashj.com is built.
+          Page structure, navigation, content pipeline, SEO, CI/CD, component hierarchy, and the
+          public skills library. The canonical reference for how arkashj.com is built.
         </p>
       </div>
 
@@ -118,6 +119,14 @@ export default function ArchitecturePage() {
         description="How layout, sections, UI primitives, and embeds compose the page tree."
       >
         <ComponentTreeDiagram />
+      </DiagramSection>
+
+      <DiagramSection
+        index="07"
+        title="Skills library"
+        description="71 Claude Code skills served from flat markdown files via /skills, /skills/[slug], /skills/[slug]/raw, and /skills.json."
+      >
+        <SkillsLibraryDiagram />
       </DiagramSection>
     </div>
   )

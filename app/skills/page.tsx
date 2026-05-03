@@ -4,6 +4,7 @@ import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { getAllSkills, getCategories } from '@/lib/skills'
 import SkillsClient from './SkillsClient'
+import BenmoreBadge from '@/components/ui/BenmoreBadge'
 
 export const metadata = buildMetadata({
   title: 'Skills — 71 Claude Code skills, copy-ready for LLMs',
@@ -32,6 +33,21 @@ export default function SkillsPage() {
           { name: 'Skills', path: '/skills' },
         ])}
       />
+      {/* Benmore affiliation banner — only on this page per Arkash's preference */}
+      <a
+        href="https://benmore.tech"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex items-center gap-2 mb-4 px-3 py-1.5 bg-surface border border-border hover:border-primary/60 transition-[border-color] duration-150"
+      >
+        <BenmoreBadge size={16} />
+        <span className="font-mono text-[11px] uppercase tracking-widest text-text group-hover:text-primary transition-colors duration-150">
+          Authored at Benmore Technologies
+        </span>
+        <span className="font-mono text-[10px] text-muted group-hover:text-primary transition-colors duration-150">
+          benmore.tech →
+        </span>
+      </a>
       <SectionHeader
         eyebrow="Skills Library"
         title={`${skills.length} agent skills.`}
@@ -72,30 +88,44 @@ export default function SkillsPage() {
             </p>
             <pre className="text-text text-[11px] font-mono bg-elevated border border-border px-2 py-2 leading-relaxed overflow-x-auto">{`mkdir -p ~/.claude/skills
 for s in $(curl -s https://www.arkashj.com/skills.json | jq -r '.[]'); do
+  mkdir -p ~/.claude/skills/$s
   curl -fsSL "https://www.arkashj.com/skills/$s/raw" \\
-    -o ~/.claude/skills/$s.md
+    -o ~/.claude/skills/$s/SKILL.md
 done`}</pre>
+            <p className="text-muted text-[11px] mt-2 leading-relaxed">
+              One-shot pull of all{' '}
+              <a
+                href="/skills.json"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:text-accent transition-colors duration-150"
+              >
+                /skills.json
+              </a>{' '}
+              into the Claude Code skills dir.
+            </p>
           </div>
           <div className="p-5">
             <p className="font-mono text-[10px] uppercase tracking-widest text-text mb-2">
               ③ Symlink for your LLM
             </p>
             <p className="text-muted text-xs leading-relaxed mb-2">Pick the path your tool uses:</p>
-            <ul className="text-[11px] font-mono text-muted space-y-1">
-              <li>
-                <span className="text-primary">Claude Code</span>:
-                ~/.claude/skills/&lt;name&gt;/SKILL.md
-              </li>
-              <li>
-                <span className="text-primary">Cursor</span>: .cursor/rules/&lt;name&gt;.mdc
-              </li>
-              <li>
-                <span className="text-primary">Codex</span>: ~/.codex/skills/&lt;name&gt;.md
-              </li>
-              <li>
-                <span className="text-primary">Web LLM</span>: paste into a Project / Custom GPT
-              </li>
-            </ul>
+            <pre className="text-text text-[11px] font-mono bg-elevated border border-border px-2 py-2 leading-relaxed overflow-x-auto">{`# Claude Code
+~/.claude/skills/<name>/SKILL.md
+
+# Cursor (per-repo)
+ln -s ~/.claude/skills/<name>/SKILL.md \\
+      .cursor/rules/<name>.mdc
+
+# Codex
+ln -s ~/.claude/skills/<name>/SKILL.md \\
+      ~/.codex/skills/<name>.md
+
+# Continue / Aider / Cline
+~/.config/<tool>/skills/<name>.md
+
+# Web LLM (Claude.ai, ChatGPT)
+Paste into a Project or Custom GPT`}</pre>
           </div>
         </div>
         <p className="px-5 py-3 text-[11px] font-mono text-subtle border-t border-border">

@@ -72,13 +72,52 @@ export default async function SkillPage({ params }: { params: Promise<Params> })
 
       <SkillBody body={skill.body} />
 
-      <footer className="mt-12 pt-6 border-t border-border">
+      {/* Per-skill credit + install hint */}
+      <aside className="mt-12 bg-surface border border-border p-5">
+        <div className="flex items-baseline justify-between gap-4 mb-3 flex-wrap">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-primary">
+            ● Authored at Benmore Technologies
+          </p>
+          <a
+            href="https://benmore.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[11px] text-muted hover:text-primary transition-colors duration-150"
+          >
+            benmore.tech →
+          </a>
+        </div>
+        <p className="text-muted text-xs leading-relaxed mb-4">
+          Used daily by the Benmore forward-deployed engineering team. Built on the open Anthropic
+          Skills format — drop the SKILL.md into any agent that supports skills, or paste it into a
+          web LLM as a system prompt.
+        </p>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-text mb-2">
+          Install just this skill
+        </p>
+        <pre className="text-text text-[11px] font-mono bg-elevated border border-border px-2 py-2 leading-relaxed overflow-x-auto">{`# Claude Code
+mkdir -p ~/.claude/skills/${slug}
+curl -fsSL https://www.arkashj.com/skills/${slug}/raw \\
+  -o ~/.claude/skills/${slug}/SKILL.md
+
+# Cursor
+curl -fsSL https://www.arkashj.com/skills/${slug}/raw \\
+  -o .cursor/rules/${slug}.mdc
+
+# Symlink it back to the upstream copy
+ln -s ~/.claude/skills/${slug}/SKILL.md .cursor/rules/${slug}.mdc`}</pre>
+      </aside>
+
+      <footer className="mt-8 pt-6 border-t border-border flex items-center justify-between gap-4 flex-wrap">
         <Link
           href="/skills"
           className="font-mono text-xs text-primary hover:text-accent transition-colors duration-150"
         >
           ← Browse all skills
         </Link>
+        <span className="font-mono text-[10px] text-subtle uppercase tracking-widest">
+          {skill.category} · {skill.lineCount} lines
+        </span>
       </footer>
     </article>
   )

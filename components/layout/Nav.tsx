@@ -8,7 +8,6 @@ import { NAV_LINKS } from '@/lib/site'
 import ThemeToggle from '@/components/ThemeToggle'
 import CommandPalette from '@/components/ui/CommandPalette'
 import VoiceNav from '@/components/ui/VoiceNav'
-import BenmoreBadge from '@/components/ui/BenmoreBadge'
 
 const Nav = () => {
   const pathname = usePathname()
@@ -31,26 +30,13 @@ const Nav = () => {
           className={`max-w-6xl mx-auto bg-surface/95 border border-border-strong shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-[border-radius] duration-200 ${open ? 'rounded-2xl' : 'rounded-full'}`}
         >
           <div className="px-5 py-2.5 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2 whitespace-nowrap">
-              <Link
-                href="/"
-                className="font-mono text-sm font-bold text-text hover:text-primary tracking-tight"
-              >
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mr-2 align-middle" />
-                arkash.jain
-              </Link>
-              <a
-                href="https://benmore.tech"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Benmore Technologies"
-                title="Built at Benmore Technologies"
-                className="hidden sm:inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-subtle hover:text-primary transition-colors duration-150 border-l border-border pl-2 ml-1"
-              >
-                <BenmoreBadge size={12} />
-                <span>Benmore</span>
-              </a>
-            </div>
+            <Link
+              href="/"
+              className="font-mono text-sm font-bold text-text hover:text-primary tracking-tight whitespace-nowrap"
+            >
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mr-2 align-middle" />
+              arkash.jain
+            </Link>
 
             <div className="hidden md:flex items-center gap-1">
               <ul className="flex items-center">

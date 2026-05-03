@@ -5,7 +5,7 @@
 > This README is intentionally long. It consolidates the website's contents — biography, credentials, publications, experience, knowledge, projects, internal tools, life changelog, stack, and external links — into a single navigable Markdown reference. Treat it as the canonical text-only mirror of [arkashj.com](https://www.arkashj.com).
 
 [![License](https://img.shields.io/badge/license-Apache_2.0-5EEAD4.svg?style=flat-square&labelColor=0A1628)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-2.3.0-F4A66A.svg?style=flat-square&labelColor=0A1628)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.4.0-F4A66A.svg?style=flat-square&labelColor=0A1628)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/status-live-34D399.svg?style=flat-square&labelColor=0A1628)](https://www.arkashj.com)
 [![CI](https://img.shields.io/github/actions/workflow/status/ArkashJ/Personal-Website/ci.yml?branch=main&style=flat-square&labelColor=0A1628&label=CI)](https://github.com/ArkashJ/Personal-Website/actions/workflows/ci.yml)
 
@@ -442,6 +442,8 @@ Personal-Website/
 │   │   ├── math/
 │   │   ├── physics/
 │   │   └── software/
+│   ├── skills/                  # 71 Claude Code skills (flat .md files)
+│   ├── weekly/                  # ISO-week running logs (.mdx)
 │   └── writing/                 # Long-form MDX essays
 ├── lib/                         # Typed data + helpers (single source of truth)
 │   ├── content.ts               # MDX frontmatter loaders
@@ -449,13 +451,16 @@ Personal-Website/
 │   ├── data.ts                  # Papers, experience, projects, timeline, ...
 │   ├── docs.ts                  # docs/*.md loader for /docs
 │   ├── finance.ts               # Theses + trade log
-│   ├── learnings.ts             # Learnings cards
+│   ├── highlights.ts            # Highlights data bank (Recent Wins + /weekly)
+│   ├── learnings.ts             # Learnings cards (folded into /writing)
 │   ├── media.ts                 # Podcast, Medium, Substack, press
 │   ├── metadata.ts              # buildMetadata() factory
 │   ├── og.tsx                   # Shared 1200×630 OG renderer
 │   ├── site.ts                  # SITE constants + NAV_LINKS
+│   ├── skills.ts                # /skills loader + category rules
 │   ├── stack.ts                 # uses.tech entries
-│   └── structured-data.ts       # Person · Article · ScholarlyArticle JSON-LD
+│   ├── structured-data.ts       # Person · Article · ScholarlyArticle JSON-LD
+│   └── weekly.ts                # ISO-week log loader for /weekly
 ├── public/
 │   ├── favicon.svg              # Next.js favicon convention
 │   ├── images/                  # SINGLE consolidated location for all site images
@@ -486,20 +491,40 @@ Personal-Website/
 └── vercel.json                  # Headers + caching
 ```
 
+### Skills Library
+
+The site hosts a **public, browsable index of 71 Claude Code skills** authored across Benmore engagements at [`/skills`](https://www.arkashj.com/skills). Source-of-truth lives in `content/skills/*.md` (flat directory of markdown files); the loader and category rules live in `lib/skills.ts`.
+
+| Surface                                               | What it is                                                                                                          |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `/skills`                                             | Server-rendered list of all 71 skills, grouped by category, with client-side filter UI (`SkillsClient`).            |
+| `/skills/[slug]`                                      | Per-skill detail — rendered markdown body, line count, category, and a **Copy for LLM** button.                     |
+| `/skills/[slug]/raw`                                  | Plain-text endpoint (`text/plain; charset=utf-8`) returning the raw markdown — `curl`-able, pasteable into any LLM. |
+| [`/skills.json`](https://www.arkashj.com/skills.json) | JSON index of every skill (`slug`, `name`, `description`, `category`, `lineCount`) for programmatic discovery.      |
+
+To install a skill into your own Claude Code setup, follow the bootstrap script referenced on each skill page (`skills.sh`).
+
+The site also exposes a weekly running log at [`/weekly`](https://www.arkashj.com/weekly) — ISO-week-keyed entries sourced from `content/weekly/` and a typed highlights data bank (`lib/highlights.ts`) shared with the homepage Recent Wins rail.
+
 ### Routes
 
 ```
-/                                — Hero · Arc · Now · Research · Work · Projects · Knowledge · Writing
+/                                — Hero · Arc · Now · Research · Work · Projects · Skills · Writing · Recent wins
 /about                           — Life Changelog
 /about/timeline/[slug]           — Per-milestone deep dive
 /about/archive                   — Pre-revamp legacy bio
 /research                        — 4 papers + ML stack + PyTorch contribution
 /experience                      — 8 reverse-chrono entries
-/projects                        — 13 real projects with GitHub links
+/projects                        — Real projects + internal tools, search + tag filter + pagination
 /work                            — Foundry · RTK · Skills · Excalidraw
-/writing                         — Essay index
+/skills                          — 71-skill public library (categorized, copy-for-LLM)
+/skills/[slug]                   — Per-skill detail (rendered MD + Copy for LLM button)
+/skills/[slug]/raw               — Plain-text endpoint (text/plain) for LLM ingestion
+/skills.json                     — JSON index of all skills
+/writing                         — Essay index + unified search across essays + knowledge + tag filter
 /writing/[slug]                  — MDX article
-/knowledge                       — 6 domains
+/weekly                          — ISO-week running logs (highlights data bank)
+/knowledge                       — 6 domains (secondary nav)
 /knowledge/[domain]              — domain index
 /knowledge/[domain]/[slug]       — MDX deep dive
 /coursework                      — BU + Harvard coursework
@@ -507,8 +532,7 @@ Personal-Website/
 /credentials                     — Verifiable PDFs
 /media                           — Podcasts, Medium, Substack, press
 /stack                           — uses.tech-style page (36 × 7)
-/learnings                       — 12+ lessons
-/architecture                    — 6 React/SVG diagrams
+/architecture                    — React/SVG diagrams
 /docs · /docs/[slug]             — In-site rendering of docs/*.md
 /sitemap.xml                     — All static + dynamic MDX routes
 /robots.txt                      — Allow-all + sitemap pointer

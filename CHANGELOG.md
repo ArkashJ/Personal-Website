@@ -5,6 +5,68 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [2.4.0] — 2026-05-02 — Public skills library, unified search, weekly logs
+
+### Added — Public skills library
+
+- New `/skills` route renders all 71 Claude Code skills authored across Benmore engagements as a browsable, copy-for-LLM index.
+- `content/skills/*.md` is the source of truth — flat directory of 71 skill markdown files (lessons, system prompts, scripts) loaded server-side via `lib/skills.ts` (`fs` + `gray-matter`).
+- `app/skills/page.tsx` — server-rendered list, filtered by category via `<SkillsClient>` (client-only filter UI; data is server-fetched).
+- `app/skills/[slug]/page.tsx` — per-skill detail page with rendered body, line count, category, and a `<SkillCopyButton>` ("Copy for LLM") that streams the raw markdown to clipboard.
+- `app/skills/[slug]/raw/route.ts` — plain-text endpoint at `/skills/<slug>/raw` returning the raw markdown with `text/plain; charset=utf-8`. Unauthenticated, cacheable, designed to be `curl`-able and pasteable into any LLM.
+- `app/skills.json/route.ts` — JSON index of all skills (slug, name, description, category, lineCount) for programmatic discovery and crawler hints.
+- `lib/skills.ts` — single loader. Categorization via regex rules (Payments, Python Backend, Frontend & Apps, Compliance & Security, SEO & AI, Design Engineering, Product & Discovery, Workflow & Ops, Tooling & Integrations, Misc).
+- LLM install instructions surfaced on each skill page; references to the public `skills.sh` install script (replaces per-skill GitHub link).
+- Page-tour screenshots committed under `docs/screenshots/final/` (01–09 covering home, about, experience, projects, research, writing, learnings, skill-detail, media).
+- `app/sitemap.ts` enumerates `/skills` + every `/skills/[slug]` route.
+- `public/llms.txt` updated to advertise `/skills.json` and `/skills/<slug>/raw` endpoints to AI crawlers.
+- Benmore badge (`components/ui/BenmoreBadge.tsx`) lives on `/skills` only — moved out of nav to keep main chrome neutral.
+
+### Added — Unified search on `/writing`
+
+- `app/writing/WritingIndexClient.tsx` rewritten to search across **essays + knowledge-domain articles** in one input. Tag filter pills run alongside the search input; results merge writing entries and knowledge entries with source-type badges.
+- `/learnings` content folded into `/writing` (the standalone `/learnings` route is being retired as the primary surface).
+
+### Added — Projects search + tag filter + pagination
+
+- `app/projects/ProjectsClient.tsx` — search box, tag filter collapsed to **top 8 tags + "+N more" expander**, paginated grid, and `WORK_TOOLS` (internal CLIs from `/work`) folded into the same surface so Foundry / RTK / Compound Skills / Excalidraw appear next to public projects.
+- `app/projects/page.tsx` slimmed to a server shell that delegates to the client component.
+
+### Added — Home page rewiring
+
+- Skills card on the homepage promoting `/skills` (replaces the prior Knowledge two-up).
+- "Recent wins" rail and Featured-banner support for surfacing the latest highlight.
+- "Second brain" section removed from home and from `/writing` (folded into the unified search experience).
+
+### Added — `/weekly` running logs
+
+- New `/weekly` route renders ISO-week running logs sourced from `content/weekly/` (MDX) and `lib/weekly.ts` (typed loader).
+- `lib/highlights.ts` — typed data bank for "highlights of the week"; consumed by the home Recent Wins rail and `/weekly`.
+- Plan: `docs/plans/2026-05-02-004-feat-weekly-logs-and-data-bank-plan.md`.
+
+### Changed — Navigation
+
+- `lib/site.ts` `NAV_LINKS` updated: `/skills` and `/writing` (with merged learnings) added/promoted; `/knowledge` demoted to secondary.
+- Benmore badge removed from `<Nav>`; only renders on `/skills`.
+
+### Changed — Timeline avatars
+
+- `components/sections/TimelineItem.tsx` — avatars bumped to **36 px**, monogram fallback when no logo is available, `bg-elevated` background, consistent ring treatment across major and minor entries.
+
+### Docs
+
+- New plans:
+  - `docs/plans/2026-05-02-003-feat-llm-copy-and-skills-public-plan.md` — design + rollout for the public skills library and "Copy for LLM" affordances.
+  - `docs/plans/2026-05-02-004-feat-weekly-logs-and-data-bank-plan.md` — `/weekly` route + highlights data bank.
+- Release note: `docs/release-notes/2026-05-02-skills-library.md`.
+
+### Build
+
+- `package.json` version bumped 2.3.0 → 2.4.0.
+- Recommended git tag: `v2.4.0`.
+
+---
+
 ## [2.3.0] — 2026-04-27 — Asset consolidation, mobile, Trustpilot, GitHub live charts
 
 ### Added — Live GitHub activity section on the homepage

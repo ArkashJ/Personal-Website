@@ -79,6 +79,13 @@ Arkash maintains a public library of 71 Claude Code skills for forward-deployed 
 - Source repo: https://github.com/Benmore-Studio/Benmore-Meridian
 - Categories: Payments, Compliance, Design Engineering, AI SEO, CLI, Frontend, Tooling, Workflow & Ops
 
+## Recent Activity
+
+Arkash maintains a weekly running log at https://www.arkashj.com/weekly with one entry per ISO week covering what he read, watched, built, shipped, learned, and who he met.
+
+Latest weekly logs:
+- 2026-W18 (2026-04-27 → 2026-05-03): Cattle Logic onboarding + Skills go public — https://www.arkashj.com/weekly/2026-W18
+
 ## Site Map
 
 Home (/) — Introduction, featured papers, current work, latest writing
@@ -87,6 +94,7 @@ About (/about) — Full life changelog with milestones and education
 Research (/research) — All 4 published papers with abstracts and links
 Projects (/projects) — Featured work: Cattle Logic, SpatialDINO, open source
 Writing (/writing) — Essays on AI, finance, distributed systems, forward-deployed engineering
+Weekly (/weekly) — Running log: read/watched/built/shipped/learned per ISO week
 Experience (/experience) — Career history and work tools/CLIs
 Stack (/stack) — Current tools, frameworks, hardware, services
 Learnings (/learnings) — Lessons learned the hard way

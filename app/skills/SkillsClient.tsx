@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { Search, X, Copy, Check, ExternalLink } from 'lucide-react'
 import type { SkillMeta } from '@/lib/skills'
+import { copySkillRawToClipboard } from '@/lib/copy-skill'
 
 type Props = {
   skills: SkillMeta[]
@@ -34,13 +35,11 @@ export default function SkillsClient({ skills, categories }: Props) {
 
   async function handleCopy(slug: string) {
     try {
-      const res = await fetch(`/skills/${slug}/raw`)
-      if (!res.ok) throw new Error('failed')
-      const text = await res.text()
-      await navigator.clipboard.writeText(text)
+      await copySkillRawToClipboard(slug)
       setCopiedSlug(slug)
       setTimeout(() => setCopiedSlug((s) => (s === slug ? null : s)), 1800)
-    } catch {
+    } catch (err) {
+      console.error('[skills] copy failed', err)
       setCopiedSlug('error:' + slug)
       setTimeout(() => setCopiedSlug(null), 1800)
     }

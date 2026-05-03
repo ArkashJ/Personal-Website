@@ -144,6 +144,9 @@ Reference rules:
 | Surface                                          | How                                                                                                         |
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | New writing post                                 | Add MDX to `content/writing/*.mdx` with frontmatter.                                                        |
+| New weekly log                                   | Add MDX to `content/weekly/<YYYY>-W<NN>.mdx` (ISO week) with `title`, `weekStart`, `weekEnd` frontmatter.   |
+| New highlight                                    | Append a typed entry to `HIGHLIGHTS` in `lib/highlights.ts` (`priority >= 4` surfaces on home).             |
+| New featured banner                              | Append to `BANNERS` in `lib/banners.ts`; highest `priority` and non-expired wins.                           |
 | New knowledge article                            | `content/knowledge/[domain]/*.mdx`. New domain = new folder + entry in `KNOWLEDGE_DOMAINS` (`lib/data.ts`). |
 | New paper / experience / project / internal tool | Edit the relevant array in `lib/data.ts`.                                                                   |
 | New podcast / Medium / Substack / press          | `lib/media.ts`.                                                                                             |

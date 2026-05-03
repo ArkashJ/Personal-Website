@@ -397,3 +397,81 @@ export const ComponentTreeDiagram = () => (
     </div>
   </div>
 )
+
+/* ------------------------------------------------------------------ */
+/* 7. Skills library                                                   */
+/* ------------------------------------------------------------------ */
+
+export const SkillsLibraryDiagram = () => {
+  const cols: { title: string; items: { label: string; tone?: 'default' | 'teal' | 'cyan' }[] }[] =
+    [
+      {
+        title: 'Source',
+        items: [{ label: 'content/skills/*.md' }, { label: '71 markdown files', tone: 'default' }],
+      },
+      {
+        title: 'Loader',
+        items: [
+          { label: 'lib/skills.ts', tone: 'teal' },
+          { label: 'fs + gray-matter', tone: 'teal' },
+          { label: 'category rules (regex)', tone: 'teal' },
+        ],
+      },
+      {
+        title: 'Surfaces',
+        items: [
+          { label: '/skills (list)', tone: 'cyan' },
+          { label: '/skills/[slug] (detail)', tone: 'cyan' },
+          { label: '/skills/[slug]/raw (text/plain)', tone: 'cyan' },
+          { label: '/skills.json (index)', tone: 'cyan' },
+        ],
+      },
+    ]
+  return (
+    <div className="w-full overflow-x-auto">
+      <Label>File-based content → server-rendered list → static raw + JSON endpoints</Label>
+      <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-3 min-w-[720px]">
+        {cols.map((col, ci) => (
+          <div key={col.title} className="contents">
+            <div className="flex flex-col gap-2">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-subtle">
+                {col.title}
+              </p>
+              {col.items.map((it) => (
+                <Node key={it.label} tone={it.tone}>
+                  {it.label}
+                </Node>
+              ))}
+            </div>
+            {ci < cols.length - 1 && (
+              <div className="flex items-center justify-center text-subtle">
+                <svg width="32" height="14" viewBox="0 0 32 14" aria-hidden>
+                  <line
+                    x1="0"
+                    y1="7"
+                    x2="26"
+                    y2="7"
+                    stroke="var(--color-border-strong)"
+                    strokeWidth="1"
+                  />
+                  <polyline
+                    points="22,3 30,7 22,11"
+                    stroke="var(--color-border-strong)"
+                    strokeWidth="1"
+                    fill="none"
+                  />
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <p className="font-mono text-[10px] text-subtle mt-4 max-w-2xl">
+        Each skill is a flat .md file. The loader runs once per request on the server, categorizes
+        by filename regex, and feeds three render paths: a categorized list page, a per-skill detail
+        page with a Copy-for-LLM button, and two machine-readable endpoints (`/raw` plain text +
+        `/skills.json` index) designed to be curl-able by other agents.
+      </p>
+    </div>
+  )
+}

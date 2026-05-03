@@ -5,11 +5,14 @@ import SectionHeader from '@/components/sections/SectionHeader'
 import PaperCard from '@/components/sections/PaperCard'
 import ProjectCard from '@/components/sections/ProjectCard'
 import CurrentUpdates from '@/components/sections/CurrentUpdates'
+import FeaturedBanner from '@/components/sections/FeaturedBanner'
 import Card from '@/components/ui/Card'
+import Badge from '@/components/ui/Badge'
 import TechBadge from '@/components/ui/TechBadge'
-import { PAPERS, PROJECTS, KNOWLEDGE_DOMAINS, TIMELINE } from '@/lib/data'
+import { PAPERS, PROJECTS, TIMELINE } from '@/lib/data'
 import { COURSES } from '@/lib/coursework'
 import { getAllWritingPosts } from '@/lib/content'
+import { topHighlights } from '@/lib/highlights'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
@@ -32,9 +35,11 @@ export default function Home() {
     .reverse()
     .slice(0, 6)
   const featuredCourses = COURSES.slice(0, 6)
+  const recentWins = topHighlights(4, 30)
 
   return (
     <div>
+      <FeaturedBanner />
       <Hero />
 
       {/* GitHub — live activity widgets, snapshot, top languages */}
@@ -75,6 +80,60 @@ export default function Home() {
 
       {/* Current updates — latest writing + Medium + LinkedIn embeds */}
       <CurrentUpdates writing={writing} />
+
+      {/* Recent wins — top-priority highlights from the data bank */}
+      {recentWins.length > 0 && (
+        <section className="px-6 py-10 max-w-6xl mx-auto">
+          <SectionHeader
+            eyebrow="Recent wins"
+            title="The highlight reel"
+            href="/weekly"
+            hrefLabel="Weekly logs →"
+          />
+          <div className="grid gap-3 md:grid-cols-2">
+            {recentWins.map((h) => {
+              const isExternal = h.link?.startsWith('http')
+              const inner = (
+                <Card glow className="h-full">
+                  <div className="flex items-baseline justify-between gap-3 mb-2">
+                    <Badge variant="teal">{h.category}</Badge>
+                    <span className="font-mono text-[10px] text-subtle whitespace-nowrap">
+                      {h.date}
+                    </span>
+                  </div>
+                  <p className="text-sm font-bold text-text leading-snug group-hover:text-primary transition-colors duration-150">
+                    {h.headline}
+                    {h.link && <span className="ml-1 text-primary">→</span>}
+                  </p>
+                </Card>
+              )
+              const key = `${h.date}-${h.headline}`
+              if (h.link) {
+                return isExternal ? (
+                  <a
+                    key={key}
+                    href={h.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block group"
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <Link key={key} href={h.link} className="block group">
+                    {inner}
+                  </Link>
+                )
+              }
+              return (
+                <div key={key} className="block group">
+                  {inner}
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Recent timeline strip — mini changelog */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
@@ -161,53 +220,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills + Knowledge — two-up */}
+      {/* Skills */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
-        <div className="grid gap-8 md:grid-cols-2">
-          <div>
-            <SectionHeader
-              eyebrow="Skills Library"
-              title="71 Claude Code skills"
-              href="/skills"
-              hrefLabel="Browse all →"
-            />
-            <Card glow href="/skills" className="block">
-              <p className="text-muted text-sm leading-relaxed mb-3">
-                Public library of agent skills used daily at Benmore — payments, design, compliance,
-                CLI tooling, AI SEO. Each one is one click to copy into your LLM.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {['Payments', 'Compliance', 'Design Eng', 'AI SEO', 'CLI', 'Frontend'].map((c) => (
-                  <span
-                    key={c}
-                    className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-primary border border-primary/30 bg-primary/5"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-              <p className="font-mono text-xs text-primary mt-4">View all 71 →</p>
-            </Card>
+        <SectionHeader
+          eyebrow="Skills Library"
+          title="71 agent skills"
+          href="/skills"
+          hrefLabel="Browse all →"
+        />
+        <Card glow href="/skills" className="block">
+          <p className="text-muted text-sm leading-relaxed mb-3">
+            Public library of agent skills used daily at Benmore — payments, design, compliance, CLI
+            tooling, AI SEO. Each one is one click to copy into your LLM.
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {['Payments', 'Compliance', 'Design Eng', 'AI SEO', 'CLI', 'Frontend'].map((c) => (
+              <span
+                key={c}
+                className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider text-primary border border-primary/30 bg-primary/5"
+              >
+                {c}
+              </span>
+            ))}
           </div>
-          <div>
-            <SectionHeader
-              eyebrow="Knowledge"
-              title="Second brain, in public"
-              href="/writing#second-brain"
-            />
-            <div className="flex flex-wrap gap-2 mt-2">
-              {KNOWLEDGE_DOMAINS.map((d) => (
-                <Link
-                  key={d.slug}
-                  href={`/knowledge/${d.slug}`}
-                  className="px-4 py-2 rounded-full bg-surface border border-border hover:border-primary hover:text-primary hover:-translate-y-0.5 text-sm font-mono transition-[color,border-color,transform] duration-150"
-                >
-                  {d.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+          <p className="font-mono text-xs text-primary mt-4">View all 71 →</p>
+        </Card>
       </section>
     </div>
   )

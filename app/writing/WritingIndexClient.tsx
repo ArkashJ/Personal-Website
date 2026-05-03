@@ -6,14 +6,15 @@ import { Search, X } from 'lucide-react'
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
-import type { WritingMeta, KnowledgeMeta } from '@/lib/content'
-import { KNOWLEDGE_DOMAINS } from '@/lib/data'
+import type { WritingMeta } from '@/lib/content'
+import type { Learning } from '@/lib/learnings'
 
 type Props = {
   posts: WritingMeta[]
-  knowledgePosts: KnowledgeMeta[]
-  domainCounts: Record<string, number>
+  learnings: Learning[]
 }
+
+type Tab = 'essays' | 'learnings'
 
 function matches(query: string, ...fields: (string | string[] | undefined)[]): boolean {
   const q = query.toLowerCase()
@@ -24,8 +25,9 @@ function matches(query: string, ...fields: (string | string[] | undefined)[]): b
   })
 }
 
-export default function WritingIndexClient({ posts, knowledgePosts, domainCounts }: Props) {
+export default function WritingIndexClient({ posts, learnings }: Props) {
   const allTags = Array.from(new Set(posts.flatMap((p) => p.tags || []))).sort()
+  const [tab, setTab] = useState<Tab>('essays')
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState<string | null>(null)
 
@@ -38,42 +40,60 @@ export default function WritingIndexClient({ posts, knowledgePosts, domainCounts
     return result
   }, [posts, filter, q])
 
-  const visibleDomains = useMemo(() => {
-    if (!q) return KNOWLEDGE_DOMAINS
-    return KNOWLEDGE_DOMAINS.filter((d) => matches(q, d.name, d.description))
-  }, [q])
-
-  const visibleKnowledgeArticles = useMemo(() => {
-    if (!q) return []
-    return knowledgePosts.filter((p) => matches(q, p.title, p.description, p.domain))
-  }, [knowledgePosts, q])
-
-  const hasResults =
-    visiblePosts.length > 0 || visibleDomains.length > 0 || visibleKnowledgeArticles.length > 0
-  const totalResults = visiblePosts.length + visibleDomains.length + visibleKnowledgeArticles.length
+  const visibleLearnings = useMemo(() => {
+    if (!q) return learnings
+    return learnings.filter((l) => matches(q, l.title, l.lesson, l.category, String(l.year)))
+  }, [learnings, q])
 
   return (
     <div className="px-6 py-16 max-w-5xl mx-auto">
       <SectionHeader
-        eyebrow="Writing"
-        title="Essays, notes, theses."
+        eyebrow="Writing & Learnings"
+        title="Essays, notes, lessons."
         italicAccent="What I'm learning, in public."
-        description="Curated long-form on AI, finance, distributed systems, and the bridge between them."
+        description="Curated long-form on AI, finance, distributed systems, and forward-deployed engineering — plus a running log of lessons that cost me something."
         asH1
       />
 
+      {/* Tab switcher */}
+      <div className="flex border-b border-border mt-8 mb-4">
+        <button
+          type="button"
+          onClick={() => setTab('essays')}
+          className={`px-4 py-2 -mb-px font-mono text-xs uppercase tracking-widest border-b-2 transition-[color,border-color] duration-150 ${
+            tab === 'essays'
+              ? 'border-primary text-primary'
+              : 'border-transparent text-muted hover:text-text'
+          }`}
+        >
+          Essays ({posts.length})
+        </button>
+        <button
+          type="button"
+          onClick={() => setTab('learnings')}
+          className={`px-4 py-2 -mb-px font-mono text-xs uppercase tracking-widest border-b-2 transition-[color,border-color] duration-150 ${
+            tab === 'learnings'
+              ? 'border-primary text-primary'
+              : 'border-transparent text-muted hover:text-text'
+          }`}
+        >
+          Learnings ({learnings.length})
+        </button>
+      </div>
+
       {/* Search */}
-      <div className="relative mt-6 mb-4">
+      <div className="relative mb-4">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" />
         <input
           type="text"
-          placeholder="Search essays, topics, knowledge domains…"
+          placeholder={tab === 'essays' ? 'Search essays by title, tag…' : 'Search learnings…'}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full pl-9 pr-10 py-2.5 bg-surface border border-border text-text placeholder:text-muted text-sm font-mono focus:outline-none focus:border-primary/60 transition-[border-color] duration-150"
         />
         {q && (
           <button
+            type="button"
             onClick={() => setQuery('')}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-text transition-colors duration-150"
           >
@@ -82,46 +102,39 @@ export default function WritingIndexClient({ posts, knowledgePosts, domainCounts
         )}
       </div>
 
-      {/* Tag filter */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        <button
-          type="button"
-          onClick={() => setFilter(null)}
-          className={`px-3 py-1 rounded-full text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
-            !filter
-              ? 'bg-primary text-bg border-primary'
-              : 'border-border text-muted hover:border-primary hover:text-primary'
-          }`}
-        >
-          All
-        </button>
-        {allTags.map((t) => (
+      {/* Tag filter — only on essays tab */}
+      {tab === 'essays' && allTags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-8">
           <button
-            key={t}
             type="button"
-            onClick={() => setFilter(filter === t ? null : t)}
+            onClick={() => setFilter(null)}
             className={`px-3 py-1 rounded-full text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
-              filter === t
+              !filter
                 ? 'bg-primary text-bg border-primary'
                 : 'border-border text-muted hover:border-primary hover:text-primary'
             }`}
           >
-            {t}
+            All
           </button>
-        ))}
-      </div>
-
-      {/* Result count */}
-      {q && (
-        <p className="text-xs font-mono text-muted mb-5">
-          {hasResults
-            ? `${totalResults} result${totalResults === 1 ? '' : 's'} for "${q}"`
-            : `No results for "${q}"`}
-        </p>
+          {allTags.map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setFilter(filter === t ? null : t)}
+              className={`px-3 py-1 rounded-full text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+                filter === t
+                  ? 'bg-primary text-bg border-primary'
+                  : 'border-border text-muted hover:border-primary hover:text-primary'
+              }`}
+            >
+              {t}
+            </button>
+          ))}
+        </div>
       )}
 
-      {/* Writing posts grid */}
-      {visiblePosts.length > 0 && (
+      {/* Essays grid */}
+      {tab === 'essays' && (
         <div className="grid gap-6 md:grid-cols-2">
           {visiblePosts.map((post) => (
             <Link key={post.slug} href={`/writing/${post.slug}`}>
@@ -139,75 +152,34 @@ export default function WritingIndexClient({ posts, knowledgePosts, domainCounts
               </Card>
             </Link>
           ))}
+          {visiblePosts.length === 0 && (
+            <p className="text-muted text-sm py-8 col-span-2 text-center">
+              No essays match your search.
+            </p>
+          )}
         </div>
       )}
 
-      {/* Article matches from knowledge */}
-      {visibleKnowledgeArticles.length > 0 && (
-        <div className="mt-10">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-primary mb-4">
-            ● Knowledge Articles
-          </p>
-          <div className="grid gap-4 md:grid-cols-2">
-            {visibleKnowledgeArticles.map((a) => (
-              <Link key={`${a.domain}/${a.slug}`} href={`/knowledge/${a.domain}/${a.slug}`}>
-                <Card glow className="h-full cursor-pointer">
-                  <p className="text-muted text-xs font-mono mb-2">{a.domain}</p>
-                  <h3 className="text-base font-bold text-text mb-1">{a.title}</h3>
-                  <p className="text-muted text-sm">{a.description}</p>
-                </Card>
-              </Link>
-            ))}
-          </div>
+      {/* Learnings list */}
+      {tab === 'learnings' && (
+        <div className="grid gap-4">
+          {visibleLearnings.map((l) => (
+            <Card key={l.title} glow>
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <span className="font-mono text-[11px] text-subtle uppercase tracking-widest">
+                  {l.year}
+                </span>
+                <Badge variant="teal">{l.category}</Badge>
+              </div>
+              <h3 className="text-lg font-bold text-text tracking-tight mb-2">{l.title}</h3>
+              <p className="text-muted text-sm leading-relaxed">{l.lesson}</p>
+            </Card>
+          ))}
+          {visibleLearnings.length === 0 && (
+            <p className="text-muted text-sm py-8 text-center">No learnings match your search.</p>
+          )}
         </div>
       )}
-
-      {/* Second Brain — knowledge domains */}
-      <section id="second-brain" className="mt-20 pt-12 border-t border-border">
-        <div className="mb-8">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-primary mb-2">
-            ● Second Brain
-          </p>
-          <h2 className="text-2xl font-bold text-text">
-            Six domains. <span className="italic font-normal text-muted">In public.</span>
-          </h2>
-          <p className="text-muted text-sm mt-2 max-w-xl">
-            Notes, deep dives, and worked examples organized by domain. Everything I&apos;m thinking
-            through — made linkable.
-          </p>
-        </div>
-
-        <ol className="divide-y divide-border">
-          {visibleDomains.map((d) => {
-            const count = domainCounts[d.slug] || 0
-            return (
-              <li key={d.slug}>
-                <Link
-                  href={`/knowledge/${d.slug}`}
-                  className="group flex items-center gap-4 py-4 hover:bg-surface/50 -mx-2 px-2 transition-[background-color] duration-150"
-                >
-                  <span className="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <span className="text-text font-semibold group-hover:text-primary transition-colors duration-150">
-                      {d.name}
-                    </span>
-                    <span className="text-muted text-sm ml-3 hidden sm:inline">
-                      {d.description}
-                    </span>
-                  </div>
-                  <span className="font-mono text-xs text-primary shrink-0">
-                    {count} article{count === 1 ? '' : 's'} →
-                  </span>
-                </Link>
-              </li>
-            )
-          })}
-        </ol>
-
-        {q && visibleDomains.length === 0 && (
-          <p className="text-sm text-muted py-4">No domains match your search.</p>
-        )}
-      </section>
     </div>
   )
 }

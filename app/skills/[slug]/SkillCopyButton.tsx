@@ -2,19 +2,18 @@
 
 import { useState } from 'react'
 import { Copy, Check, X } from 'lucide-react'
+import { copySkillRawToClipboard } from '@/lib/copy-skill'
 
 export default function SkillCopyButton({ slug }: { slug: string }) {
   const [state, setState] = useState<'idle' | 'copied' | 'error'>('idle')
 
   async function handleCopy() {
     try {
-      const res = await fetch(`/skills/${slug}/raw`)
-      if (!res.ok) throw new Error('failed')
-      const text = await res.text()
-      await navigator.clipboard.writeText(text)
+      await copySkillRawToClipboard(slug)
       setState('copied')
       setTimeout(() => setState('idle'), 2000)
-    } catch {
+    } catch (err) {
+      console.error('[skills] copy failed', err)
       setState('error')
       setTimeout(() => setState('idle'), 2000)
     }

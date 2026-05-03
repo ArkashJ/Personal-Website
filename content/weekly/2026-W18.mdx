@@ -1,0 +1,49 @@
+---
+title: 'Cattle Logic onboarding + Skills go public'
+weekStart: '2026-04-27'
+weekEnd: '2026-05-03'
+description: 'Texas ranch pilot, Foundry v0.4, and 71 Claude Code skills published as a copy-ready library.'
+tags: ['Benmore', 'Cattle Logic', 'Skills', 'FDE']
+read:
+  - 'Andreessen on agentic infrastructure'
+  - 'Tyler Cowen interview with Patrick Collison on craft + scaling'
+watched:
+  - 'Karpathy — state of LLM infra (2026)'
+  - 'Latent Space pod — context engineering vs prompt engineering'
+shipped:
+  - '71 public Claude Code skills at /skills'
+  - 'Cattle Logic ranch onboarding flow (Amarillo pilot)'
+  - 'Foundry CLI v0.4'
+built:
+  - 'arkashj.com /images consolidation'
+  - 'Featured banner system for the home page'
+learned:
+  - 'How feedlots hedge corn basis on CME'
+  - 'ISO week math edge cases (week 53, year boundary)'
+met:
+  - 'Ranch ops team in Amarillo, TX'
+---
+
+## What actually shipped
+
+The big one: every Claude Code skill we use daily at Benmore is now public at
+[/skills](/skills) with a `/raw` endpoint per skill so any LLM can pull the full
+SKILL.md as plain text. 71 skills across payments, compliance, design eng, AI SEO,
+CLI, frontend, and tooling.
+
+Cattle Logic crossed a real threshold this week — first in-person ranch
+walkthrough in Amarillo. The onboarding flow is the kind of thing that only gets
+better when you watch someone with cracked, sun-cracked hands try to use it on
+a phone in 102°F heat. Three changes shipped the next day.
+
+## Reading
+
+Andreessen's piece on agentic infra reframes "AI infrastructure" as agent
+substrate, not just GPU rental. The thing I keep coming back to: the unit of
+deployment is shifting from container to agent, and the orchestration primitives
+we have (k8s, Airflow) don't fit. New layer coming.
+
+## What's next week
+
+Foundry v0.5 — multi-tenant audit log emission. And the first weekly log
+following this one (this is the experiment).

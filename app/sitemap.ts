@@ -5,6 +5,7 @@ import { getAllDocs } from '@/lib/docs'
 import { TIMELINE } from '@/lib/data'
 import { COURSES, allCourseSubPages } from '@/lib/coursework'
 import { getAllSkills } from '@/lib/skills'
+import { getAllWeeklyLogs } from '@/lib/weekly'
 
 const STATIC: {
   path: string
@@ -18,6 +19,7 @@ const STATIC: {
   { path: '/projects', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/skills', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/writing', priority: 0.8, changeFrequency: 'weekly' },
+  { path: '/weekly', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/knowledge', priority: 0.7, changeFrequency: 'weekly' },
   { path: '/learnings', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/stack', priority: 0.6, changeFrequency: 'monthly' },
@@ -88,6 +90,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
+  const weekly = getAllWeeklyLogs().map((w) => ({
+    url: `${SITE.url}/weekly/${w.slug}`,
+    lastModified: w.weekEnd ? new Date(w.weekEnd) : today,
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }))
+
   return [
     ...STATIC.map((r) => ({
       url: `${SITE.url}${r.path}`,
@@ -103,5 +112,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...courses,
     ...courseSubs,
     ...skills,
+    ...weekly,
   ]
 }
