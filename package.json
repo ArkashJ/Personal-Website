@@ -1,6 +1,6 @@
 {
   "name": "arkashj-com",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "private": true,
   "engines": {
     "node": "22.x"
@@ -8,7 +8,7 @@
   "scripts": {
     "predev": "node scripts/sync-git-changelog.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/sync-git-changelog.mjs",
+    "prebuild": "node scripts/sync-git-changelog.mjs && node scripts/sync-project-readmes.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -16,6 +16,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "sync:changelog": "node scripts/sync-git-changelog.mjs",
+    "sync:readmes": "node scripts/sync-project-readmes.mjs",
     "prepare": "husky"
   },
   "dependencies": {

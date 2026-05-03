@@ -1,11 +1,91 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import type { ComponentProps } from 'react'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { getAllProjects, getProjectBySlug } from '@/lib/projects'
+import { getReadme } from '@/lib/projects-readme'
+
+// slug -> "owner/repo" for the README eyebrow. Mirrors scripts/sync-project-readmes.mjs.
+const README_REPOS: Record<string, string> = {
+  'benmore-meridian': 'Benmore-Studio/Benmore-Meridian',
+  raft: 'ArkashJ/Raft',
+  'cloudcomputing-coursework-projects': 'ArkashJ/CloudComputing',
+  'nexmark-benchmark': 'ArkashJ/NEXMARK-Benchmark',
+  'implicit-sgd': 'ArkashJ/implict-SGD-implementation',
+  'cs411-software-engineering-labs': 'ArkashJ/CS411_labs',
+  'ocaml-interpreter': 'ArkashJ/OCaml-Interpreter',
+  'stu-street-podcast': 'ArkashJ/STU-STREET-Website',
+  'compound-engineering-skills': 'Benmore-Studio/Benmore-Meridian',
+}
+
+const readmeMdxComponents = {
+  h1: (p: ComponentProps<'h1'>) => <h1 className="text-2xl font-bold text-text mt-8 mb-3" {...p} />,
+  h2: (p: ComponentProps<'h2'>) => <h2 className="text-xl font-bold text-text mt-8 mb-3" {...p} />,
+  h3: (p: ComponentProps<'h3'>) => <h3 className="text-lg font-bold text-text mt-6 mb-2" {...p} />,
+  p: (p: ComponentProps<'p'>) => <p className="text-muted leading-relaxed mb-4" {...p} />,
+  a: (p: ComponentProps<'a'>) => (
+    <a className="text-primary hover:text-accent underline underline-offset-2" {...p} />
+  ),
+  ul: (p: ComponentProps<'ul'>) => (
+    <ul className="list-disc list-outside ml-5 mb-4 text-muted space-y-1.5" {...p} />
+  ),
+  ol: (p: ComponentProps<'ol'>) => (
+    <ol className="list-decimal list-outside ml-5 mb-4 text-muted space-y-1.5" {...p} />
+  ),
+  li: (p: ComponentProps<'li'>) => <li className="leading-relaxed" {...p} />,
+  blockquote: (p: ComponentProps<'blockquote'>) => (
+    <blockquote className="border-l-2 border-primary pl-4 py-1 my-5 text-muted italic" {...p} />
+  ),
+  code: (p: ComponentProps<'code'>) => (
+    <code
+      className="bg-surface border border-border text-accent text-[12px] font-mono px-1.5 py-0.5 rounded"
+      {...p}
+    />
+  ),
+  pre: (p: ComponentProps<'pre'>) => (
+    <pre
+      className="bg-elevated border border-border text-muted text-xs font-mono p-4 rounded-lg overflow-x-auto my-4"
+      {...p}
+    />
+  ),
+  hr: () => <hr className="border-border my-8" />,
+  strong: (p: ComponentProps<'strong'>) => <strong className="text-text font-bold" {...p} />,
+  em: (p: ComponentProps<'em'>) => <em className="text-text" {...p} />,
+  // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+  img: (p: ComponentProps<'img'>) => <img className="max-w-full h-auto my-4" {...p} />,
+  table: (p: ComponentProps<'table'>) => (
+    <div className="overflow-x-auto my-4">
+      <table className="text-sm text-muted border border-border" {...p} />
+    </div>
+  ),
+  th: (p: ComponentProps<'th'>) => (
+    <th className="border border-border px-3 py-1.5 text-left font-semibold text-text" {...p} />
+  ),
+  td: (p: ComponentProps<'td'>) => <td className="border border-border px-3 py-1.5" {...p} />,
+}
+
+async function ReadmeBody({ source }: { source: string }) {
+  try {
+    // MDXRemote is async — awaiting it here lets us catch parse errors and
+    // fall back to a plain <pre> instead of 500ing the page.
+    return await MDXRemote({
+      source,
+      components: readmeMdxComponents,
+      options: { mdxOptions: { remarkPlugins: [], rehypePlugins: [] } },
+    })
+  } catch {
+    return (
+      <pre className="whitespace-pre-wrap text-sm text-muted font-mono leading-relaxed bg-surface border border-border p-4 overflow-x-auto">
+        {source}
+      </pre>
+    )
+  }
+}
 
 export const dynamicParams = false
 
@@ -56,6 +136,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const isExternal = project.href ? /^https?:\/\//.test(project.href) : false
   const highlights = project.highlights ?? []
   const commands = project.commands ?? []
+  const readme = getReadme(slug)
+  const readmeRepo = README_REPOS[slug]
 
   return (
     <article className="px-6 py-16 max-w-3xl mx-auto">
@@ -159,6 +241,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             View on GitHub <ExternalLinkIcon />
           </a>
         </Card>
+      )}
+
+      {readme && (
+        <section className="mt-12 pt-10 border-t border-border">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-6">
+            {readmeRepo ? `README · github.com/${readmeRepo}` : 'README'}
+          </p>
+          <div className="readme-body">
+            <ReadmeBody source={readme} />
+          </div>
+        </section>
       )}
     </article>
   )

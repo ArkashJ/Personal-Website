@@ -5,6 +5,56 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [2.5.0] — 2026-05-02 — Weekly grid, cached git changelog, per-project pages, polished modals
+
+### Added — Flat weekly item grid (drops the 6-rail bucket UX)
+
+- `app/weekly/[slug]/WeeklyGrid.tsx` (renamed from `WeeklyRails.tsx`): one unified grid of cards (3-col lg / 2-col md / 1 mobile). Each card shows title, source, kind badge (Video / Podcast / Article / Repo / Meeting / Note), and a 3-line notes preview. Click opens the existing `<DetailModal>` (anchor section markdown -> notes -> fallback CTA).
+- Sticky filter bar above the grid: search input (matches title/source/notes/tags), kind facet chips, and frequency-ranked tag pills (top 8 + "+N more"). All three filters serialize into `?q=&tag=&kind=` for shareable URLs via the new `useUrlState` helper (`lib/url-state.ts`).
+- Per-item tag derivation: log-level `tags:` propagate to every item; an item's own `tags:` adds to the pool; `kind` and `source` auto-tag too. Pure-string `learned` items auto-promote to `{ text, kind: 'note' }`.
+- Card stagger entry animation (30 ms cap at 12 cards) via new `.weekly-card-enter` keyframes; `prefers-reduced-motion` falls back to opacity-only.
+- Tag wall removed from the page header on both `/weekly` and `/weekly/[slug]`. Tags now render as a footer "Tags · N" section beneath the prose, with the in-grid pills as the canonical filter surface.
+- Removed four placeholder mock entries from `content/weekly/2026-W18.mdx` (Andreessen, Tyler Cowen, Karpathy, Latent Space). Only real consumed items remain.
+
+### Added — Cached git changelog under the grid
+
+- `scripts/sync-git-changelog.mjs` generator: reads `git log --no-merges -n 200`, parses conventional-commit `type(scope): subject` (and multi-scope `feat(weekly,projects):`) tolerantly, falls back gracefully on non-conventional messages, drops trivial `.` WIP commits, and writes `content/_generated/git-changelog.json`. Wired as `predev` and `prebuild` hooks in `package.json`. Vercel build has `git`; runtime doesn't — JSON is committed.
+- `lib/git-changelog.ts` (server-only loader, `'server-only'` guarded) + `lib/git-commit.ts` (client-safe types + `commitGithubUrl`/`shortHash`). Splitting prevents `fs` from leaking into the client bundle.
+- `components/sections/GitChangelog.tsx`: filterable client component grouped by day. Type/scope tag pills (top 12 + expand), search across subject/body/type/scope, "This week / All time" scope toggle, click-to-expand commit body, link-out to GitHub commit.
+
+### Added — Per-project detail pages
+
+- `app/projects/[slug]/page.tsx` (new dynamic route) and `lib/projects.ts` loader. Mirrors the `/writing/[slug]` pattern: header (name + year + kind + GitHub CTA), full description, highlights bullets, run-it command blocks, tech badges, GitHub CTA card.
+- Slug derivation in `lib/projects.ts:projectSlug()`: kebab-case, parens-stripped (so `Benmore-Meridian (bm CLI)` -> `benmore-meridian`); collisions between `PROJECTS` and `WORK_TOOLS` get a `-tool` suffix.
+- `components/sections/ProjectCard.tsx` click ALWAYS keeps the user on-site. Card body navigates to `/projects/<slug>`; the only off-site path is the explicit "GitHub →" footer link.
+- `app/sitemap.ts` enumerates every `/projects/<slug>` URL.
+- New `scripts/sync-project-readmes.mjs` + `lib/projects-readme.ts`: at build time, `gh api repos/<owner>/<repo>/readme` snapshots are written to `content/projects/<slug>.md` and rendered at the bottom of each project page via `<MdxContent>`.
+
+### Added — Lifted helpers reusable across surfaces
+
+- `lib/tags.ts:tagsByFrequency()` — generic frequency rank used by weekly grid and git changelog.
+- `lib/url-state.ts:useUrlState()` — small `useSearchParams`/`router.replace` wrapper for shareable filter URLs.
+- `lib/weekly-types.ts` — pure types + helpers (no `fs`) so client components can import without dragging the server-only loader into the bundle.
+
+### Changed — Weekly modal sized for substance
+
+- `max-w-lg` → `max-w-3xl`, `max-h-[78vh]` → `max-h-[82vh]`. `bg-background` → `bg-surface`.
+- Body-portaled via `createPortal(…, document.body)` to escape an ancestor `transform` that scoped `position: fixed` away from the viewport.
+- Entry/exit animation: `scale(0.96) + translateY(8px) + opacity` over 220 ms with `cubic-bezier(0.23, 1, 0.32, 1)`; exit 160 ms; `motion-reduce` collapses to opacity-only. Per Emil Kowalski's design-engineering framework.
+
+### Build
+
+- `package.json` 2.4.1 → 2.5.0. New `predev` + `prebuild` scripts run the changelog + readme sync. New `sync:changelog` and `sync:readmes` for manual rerun.
+- `server-only` added to dependencies.
+- Recommended git tag: `v2.5.0`.
+
+### Docs
+
+- `docs/release-notes/2026-05-02-weekly-grid-and-changelog.md`: full release notes.
+- README routes table refreshed.
+
+---
+
 ## [2.4.2] — 2026-05-02 — Weekly log modal reader, full podcast notes, expanded tags
 
 ### Added — Click-to-read modal on weekly rail items

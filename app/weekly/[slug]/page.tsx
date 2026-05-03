@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Card from '@/components/ui/Card'
@@ -108,8 +109,12 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
         <p className="text-muted text-lg leading-relaxed mb-8">{meta.description}</p>
       )}
 
-      {/* Client component: flat item grid + filter bar + modal */}
-      <WeeklyGrid meta={meta} sections={sections} />
+      {/* Client component: flat item grid + filter bar + modal.
+          Wrapped in Suspense because useSearchParams() inside the grid would
+          otherwise opt the whole page out of static generation. */}
+      <Suspense fallback={<div className="h-32" />}>
+        <WeeklyGrid meta={meta} sections={sections} />
+      </Suspense>
 
       {/* Prose body — linear reading and SEO */}
       {post.source ? (

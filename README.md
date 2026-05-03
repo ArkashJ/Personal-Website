@@ -516,6 +516,7 @@ The site also exposes a weekly running log at [`/weekly`](https://www.arkashj.co
 /research                        — 4 papers + ML stack + PyTorch contribution
 /experience                      — 8 reverse-chrono entries
 /projects                        — Real projects + internal tools, search + tag filter + pagination
+/projects/[slug]                 — Per-project detail (description, highlights, run-it commands, GitHub README snapshot)
 /work                            — Foundry · RTK · Skills · Excalidraw
 /skills                          — 71-skill public library (categorized, copy-for-LLM)
 /skills/[slug]                   — Per-skill detail (rendered MD + Copy for LLM button)
@@ -523,7 +524,8 @@ The site also exposes a weekly running log at [`/weekly`](https://www.arkashj.co
 /skills.json                     — JSON index of all skills
 /writing                         — Essay index + unified search across essays + knowledge + tag filter
 /writing/[slug]                  — MDX article
-/weekly                          — ISO-week running logs (highlights data bank)
+/weekly                          — ISO-week running logs index
+/weekly/[slug]                   — Flat searchable item grid + filterable git-commit changelog (cached at build)
 /knowledge                       — 6 domains (secondary nav)
 /knowledge/[domain]              — domain index
 /knowledge/[domain]/[slug]       — MDX deep dive

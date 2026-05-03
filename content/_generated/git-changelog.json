@@ -1,5 +1,32 @@
 [
   {
+    "hash": "9c34b7311a3cce41d2d51f1d9eaa730e5f435be5",
+    "date": "2026-05-02T23:49:27-05:00",
+    "type": "fix",
+    "scopes": ["weekly", "projects"],
+    "summary": "drop mock entries, move tags to bottom, cards stay on-site",
+    "body": "- Remove the four placeholder weekly entries (Andreessen, Tyler Cowen, Karpathy, Latent Space). Only the user's 5 real podcasts/videos remain (Stripe, Taiwan, METR, Dinosaurs, Ackman) plus shipped/built/learned/met. 21 -> 17 cards.\n- Move the log-level tag list to a dedicated bottom section under \"Tags · N\". Top of the page is just title, date range, and \"N tags\" hint.\n- ProjectCard click NEVER navigates off-site. On the home embed (no onOpen) the card now router.push's to /projects/<slug>. The only path off-site is the explicit \"GitHub →\" link on the card footer.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "weekly", "projects"]
+  },
+  {
+    "hash": "64a298f244680e1c50718804c99f88f60f743111",
+    "date": "2026-05-02T23:44:14-05:00",
+    "type": "feat",
+    "scopes": ["projects"],
+    "summary": "per-project detail pages mirroring /writing/[slug] pattern",
+    "body": "- New dynamic route /projects/<slug> with generateStaticParams over PROJECTS + WORK_TOOLS, generateMetadata for OG/canonical, breadcrumb JSON-LD.\n- Slug derivation via lib/projects.ts: kebab-case of name, parens-stripped; collisions between PROJECTS/WORK_TOOLS get a -tool suffix.\n- Page renders full description, highlights, run-it commands, tech badges, GitHub CTA. Same density and chrome as /writing/<slug>.\n- ProjectCard footer now exposes both \"Quick look\" (modal) and \"Read more →\" (page) so the canonical URL is one click away. Middle-click + cmd-click work as expected.\n- Sitemap picks up every project URL.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "projects"]
+  },
+  {
+    "hash": "cb8bb6af7ded80e500b38ae8a7f50dc89689b8ca",
+    "date": "2026-05-02T23:41:01-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "flat item grid + cached git changelog + searchable tag filters",
+    "body": "- Drop the 6-rail bucket UX. Replace with one flat card grid (3-col lg, 2-col md, 1 mobile). Each card shows title, source, kind badge, notes preview; click opens the existing description modal (anchor section -> notes -> fallback).\n- Sticky filter bar above the grid: search (matches title/source/notes/tags), kind facet chips (Video/Podcast/Article/Repo/Meeting/Note...), and frequency-ranked tag pills (top 8 + \"+N more\"). All three filters serialize into ?q=&tag=&kind= for shareable URLs (lib/url-state.ts).\n- New lib/weekly-types.ts (client-safe) split out from lib/weekly.ts (server-only) so the grid can import types without dragging fs into the client bundle. Same split for lib/git-commit.ts vs lib/git-changelog.ts.\n- Per-item tag derivation: log-level tags propagate to every item; item-level tags add to the pool; kind + source auto-tag too.\n- Auto-promote pure-string learned items to {text, kind:'note'} so every entry has a stable shape.\n- Cached git changelog under the grid: scripts/sync-git-changelog.mjs reads `git log --no-merges -n 200`, parses conventional-commit type/scope/multi-scope tolerantly, writes content/_generated/git-changelog.json. Wired as predev + prebuild in package.json.\n- New <GitChangelog> component (components/sections/GitChangelog.tsx) renders commits grouped by day, with type/scope tag pills, search, \"this week / all time\" scope toggle, and click-to-expand commit body.\n- Hide the long top-level tag wall on /weekly/[slug] and /weekly. Tags now live as filters in the grid (per the user's ask).\n- Stagger entry animation on grid cards (30ms cap at 12 cards), motion-reduce safe.\n- Modal unchanged (max-w-3xl, bg-surface, body-portaled, Emil-framework animation).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
     "hash": "e6cd0f4c55baa4bb0d0571796115024d5e49769c",
     "date": "2026-05-02T23:22:34-05:00",
     "type": "fix",
