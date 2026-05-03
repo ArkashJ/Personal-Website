@@ -1036,14 +1036,4 @@ export const KNOWLEDGE_DOMAINS: KnowledgeDomainMeta[] = [
     name: 'Math',
     description: 'Optimizers, convergence, intuition behind the proofs.',
   },
-  {
-    slug: 'physics',
-    name: 'Physics',
-    description: 'Supercritical fluids, nuclear reactor efficiency, why I left physics.',
-  },
-  {
-    slug: 'software',
-    name: 'Software',
-    description: 'Stack evolution, Claude Code, the tools that make me 10x.',
-  },
 ]

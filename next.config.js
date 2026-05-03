@@ -23,6 +23,36 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      // knowledge → writing migration
+      {
+        source: '/knowledge/physics/why-i-left-physics',
+        destination: '/writing/why-i-left-physics',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/physics/supercritical-fluids-paper',
+        destination: '/writing/supercritical-fluids-paper',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/finance/aggregation-theory',
+        destination: '/writing/aggregation-theory',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/software/claude-code-as-an-os',
+        destination: '/writing/claude-code-as-an-os',
+        permanent: true,
+      },
+      {
+        source: '/knowledge/software/why-typescript-strict',
+        destination: '/writing/why-typescript-strict',
+        permanent: true,
+      },
+    ]
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

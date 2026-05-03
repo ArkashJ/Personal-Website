@@ -1,5 +1,32 @@
 [
   {
+    "hash": "ca4a4fb558e502093b5cb5c62cbd1109c9a85e1d",
+    "date": "2026-05-03T00:11:57-05:00",
+    "type": "fix",
+    "scopes": ["home"],
+    "summary": "trim This Week tag wall to a one-line hint, surface skills banner inside the section",
+    "body": "- Tag wall on the home /This week card collapses to \"35 tags · BENMORE · CATTLE LOGIC · SKILLS · FDE …\" — same treatment as /weekly/[slug] header.\n- Move the FeaturedBanner (\"New · 71 Claude Code skills now public on /skills\") from above the hero into the This Week section so the announcement sits next to the latest log card, not lost above the fold.\n- FeaturedBanner is now layout-agnostic — its outer wrapper moved to the consumer so it can be embedded anywhere.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "home"]
+  },
+  {
+    "hash": "89db7d27ce4a1315051f0f965141d37d9a5cbd0e",
+    "date": "2026-05-03T00:07:13-05:00",
+    "type": "fix",
+    "scopes": ["weekly"],
+    "summary": "trim cards — full-width thumbnail, line-clamp notes, wider grid",
+    "body": "- Thumbnail moves from inline-side (was 64x36 squashed) to top-of-card aspect-video full-width.\n- Notes preview line-clamp-2 instead of line-clamp-3; the full body lives in the modal.\n- Article container max-w-3xl -> max-w-5xl so the 3-col grid has breathable card widths (~330px each instead of ~245px).\n- Explicit \"Click to read →\" CTA in the card footer signals modal intent.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "weekly"]
+  },
+  {
+    "hash": "d706dbab77a8814bb670bb90d7d25525e42872c3",
+    "date": "2026-05-03T00:04:35-05:00",
+    "type": "chore",
+    "scopes": ["content"],
+    "summary": "regenerate cached changelog + README snapshots",
+    "body": "Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "content"]
+  },
+  {
     "hash": "82d190f79cc6b0920247bd31a67d0f93a72f6e22",
     "date": "2026-05-03T00:00:36-05:00",
     "type": null,
