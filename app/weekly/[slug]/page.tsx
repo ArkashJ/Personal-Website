@@ -12,6 +12,7 @@ import {
 } from '@/lib/weekly'
 import { findReleaseInWeek } from '@/lib/changelog-md'
 import { WeeklyGrid } from './WeeklyGrid'
+import WeeklyBullets from '@/components/weekly/WeeklyBullets'
 
 export const dynamicParams = false
 
@@ -122,6 +123,8 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
       {meta.description && (
         <p className="text-muted text-lg leading-relaxed mb-8">{meta.description}</p>
       )}
+
+      <WeeklyBullets meta={meta} />
 
       {/* Client component: flat item grid + filter bar + modal.
           Wrapped in Suspense because useSearchParams() inside the grid would

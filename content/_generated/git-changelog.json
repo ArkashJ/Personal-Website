@@ -1,5 +1,14 @@
 [
   {
+    "hash": "8a99c26c638908a1e4b5da1fa98a9d88342fe137",
+    "date": "2026-05-03T18:04:00-05:00",
+    "type": "chore",
+    "scopes": ["content"],
+    "summary": "regenerate git-changelog cache + prettier on project notes",
+    "body": "Auto-regenerated artifacts after the recent weekly/site overhaul: build\nrefreshes content/_generated/git-changelog.json, and prettier normalizes\nthe numbered-list style across content/projects/*.md.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "content"]
+  },
+  {
     "hash": "96a2244307ba9ac32fe58edba7cedb85285489a6",
     "date": "2026-05-03T18:00:04-05:00",
     "type": null,

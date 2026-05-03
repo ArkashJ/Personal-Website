@@ -7,6 +7,7 @@ import { getAllWeeklyLogs, getWeeklyLog } from '@/lib/weekly'
 import { getAllItems } from '@/lib/weekly-types'
 
 import { WeeklyGrid } from '../WeeklyGrid'
+import WeeklyBullets from '@/components/weekly/WeeklyBullets'
 
 export const dynamicParams = false
 
@@ -80,6 +81,8 @@ export default async function WeeklyDayPage({
       {meta.description && (
         <p className="text-muted text-lg leading-relaxed mb-8">{meta.description}</p>
       )}
+
+      <WeeklyBullets meta={meta} filterDate={date} />
 
       <Suspense fallback={<div className="h-32" />}>
         <WeeklyGrid meta={meta} sections={sections} initialDate={date} />
