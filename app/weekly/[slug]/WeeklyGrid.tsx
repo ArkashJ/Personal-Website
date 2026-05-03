@@ -329,11 +329,6 @@ function ItemCard({
               </span>
             )}
           </div>
-          {resolved.notes && (
-            <p className="text-xs text-muted leading-relaxed line-clamp-2 mt-auto">
-              {resolved.notes}
-            </p>
-          )}
           <span className="font-mono text-[10px] uppercase tracking-widest text-primary/80 mt-2">
             Click to read →
           </span>
@@ -437,8 +432,8 @@ export function WeeklyGrid({
 
   return (
     <>
-      {/* Sticky filter bar */}
-      <div className="sticky top-0 z-20 -mx-6 px-6 py-3 mb-6 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-border">
+      {/* Filter bar */}
+      <div className="-mx-6 px-6 py-3 mb-6 border-b border-border">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" />
           <input
