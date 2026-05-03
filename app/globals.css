@@ -193,6 +193,17 @@ main > * {
   animation: fade-up 320ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
+/* Weekly grid cards: stagger entry, capped via inline animation-delay */
+.weekly-card-enter {
+  animation: fade-up 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weekly-card-enter {
+    animation: fade-in 200ms ease both;
+  }
+}
+
 .stagger > * {
   animation: fade-up 360ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }

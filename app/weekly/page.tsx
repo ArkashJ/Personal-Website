@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import SectionHeader from '@/components/sections/SectionHeader'
 import Card from '@/components/ui/Card'
-import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
-import { getAllWeeklyLogs, categoryCounts } from '@/lib/weekly'
+import { getAllItems, getAllWeeklyLogs } from '@/lib/weekly'
 
 export const metadata = buildMetadata({
   title: 'Weekly Logs — what I read, watched, built, and shipped',
@@ -42,17 +41,8 @@ export default function WeeklyIndexPage() {
         ) : (
           <div className="grid gap-4">
             {logs.map((log) => {
-              const counts = categoryCounts(log)
-              const summary = [
-                counts.read && `${counts.read} read`,
-                counts.watched && `${counts.watched} watched`,
-                counts.built && `${counts.built} built`,
-                counts.shipped && `${counts.shipped} shipped`,
-                counts.learned && `${counts.learned} learned`,
-                counts.met && `${counts.met} met`,
-              ]
-                .filter(Boolean)
-                .join(' · ')
+              const total = getAllItems(log).length
+              const summary = `${total} item${total === 1 ? '' : 's'}`
 
               return (
                 <Link key={log.slug} href={`/weekly/${log.slug}`} className="block group">
@@ -77,13 +67,10 @@ export default function WeeklyIndexPage() {
                       </p>
                     )}
                     {log.tags && log.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mt-3">
-                        {log.tags.map((t) => (
-                          <Badge key={t} variant="teal">
-                            {t}
-                          </Badge>
-                        ))}
-                      </div>
+                      <p className="font-mono text-[10px] text-subtle mt-3 uppercase tracking-wider">
+                        {log.tags.length} tags · {log.tags.slice(0, 3).join(' · ')}
+                        {log.tags.length > 3 ? ' …' : ''}
+                      </p>
                     )}
                   </Card>
                 </Link>

@@ -1,45 +1,14 @@
+import 'server-only'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import type { WeeklyLogMeta } from './weekly-types'
+
+// Re-export everything from weekly-types so existing imports keep working.
+export * from './weekly-types'
 
 const ROOT = process.cwd()
 const WEEKLY_DIR = path.join(ROOT, 'content', 'weekly')
-
-// A rail item is either a plain string (for quick logging) or a rich object
-// that can render as a linked card with an optional thumbnail / source logo.
-export type WeeklyItem =
-  | string
-  | {
-      text: string
-      href?: string
-      anchor?: string
-      image?: string
-      source?: string
-      kind?: 'youtube' | 'podcast' | 'article' | 'paper' | 'repo' | 'meeting' | 'tweet'
-      notes?: string
-    }
-
-export type WeeklyLogMeta = {
-  slug: string
-  title: string
-  weekStart: string
-  weekEnd: string
-  description?: string
-  tags?: string[]
-  read?: WeeklyItem[]
-  watched?: WeeklyItem[]
-  built?: WeeklyItem[]
-  shipped?: WeeklyItem[]
-  learned?: WeeklyItem[]
-  met?: WeeklyItem[]
-  changelog?: ChangelogEntry[]
-}
-
-export type ChangelogEntry = {
-  date: string
-  note: string
-  href?: string
-}
 
 function readDir(dir: string): string[] {
   if (!fs.existsSync(dir)) return []
@@ -85,15 +54,4 @@ export async function getWeeklyLog(
 export function getLatestWeeklyLog(): WeeklyLogMeta | null {
   const all = getAllWeeklyLogs()
   return all[0] ?? null
-}
-
-export function categoryCounts(meta: WeeklyLogMeta) {
-  return {
-    read: meta.read?.length ?? 0,
-    watched: meta.watched?.length ?? 0,
-    built: meta.built?.length ?? 0,
-    shipped: meta.shipped?.length ?? 0,
-    learned: meta.learned?.length ?? 0,
-    met: meta.met?.length ?? 0,
-  }
 }

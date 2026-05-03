@@ -1,0 +1,579 @@
+'use client'
+
+import { useState, useEffect, useCallback, useMemo } from 'react'
+import { createPortal } from 'react-dom'
+import Image from 'next/image'
+import { Search, X, Plus, Minus } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import {
+  RAIL_LABEL,
+  getAllItems,
+  kindLabel,
+  type WeeklyItemKind,
+  type WeeklyLogMeta,
+} from '@/lib/weekly-types'
+import { resolveEnriched, type ResolvedItem } from '@/lib/weekly-render'
+import { tagsByFrequency } from '@/lib/tags'
+import { useUrlState } from '@/lib/url-state'
+import Badge from '@/components/ui/Badge'
+
+const KIND_ORDER: WeeklyItemKind[] = [
+  'youtube',
+  'podcast',
+  'article',
+  'paper',
+  'repo',
+  'meeting',
+  'tweet',
+  'note',
+]
+
+const TOP_TAGS = 8
+
+// ---------------------------------------------------------------------------
+// Modal (unchanged logic; moved here so the grid can own its open/close)
+// ---------------------------------------------------------------------------
+
+const MODAL_EASE = 'cubic-bezier(0.23, 1, 0.32, 1)'
+const MODAL_ENTER_MS = 220
+const MODAL_EXIT_MS = 160
+
+type ModalState = {
+  open: boolean
+  resolved: ResolvedItem | null
+  content: string
+  hasContent: boolean
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg
+      width="11"
+      height="11"
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7" />
+      <path d="M8 1h3v3" />
+      <path d="M11 1 6 6" />
+    </svg>
+  )
+}
+
+function DetailModal({
+  modal,
+  onClose,
+  weekStart,
+}: {
+  modal: ModalState
+  onClose: () => void
+  weekStart: string
+}) {
+  const { resolved, content, hasContent } = modal
+  const [entered, setEntered] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  const requestClose = useCallback(() => {
+    setEntered(false)
+    window.setTimeout(onClose, MODAL_EXIT_MS)
+  }, [onClose])
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!resolved) return
+    const raf = requestAnimationFrame(() => setEntered(true))
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') requestClose()
+    }
+    document.addEventListener('keydown', handler)
+    return () => {
+      cancelAnimationFrame(raf)
+      document.removeEventListener('keydown', handler)
+    }
+  }, [resolved, requestClose])
+
+  if (!resolved || !mounted) return null
+
+  const isYouTubeThumb = resolved.image?.includes('ytimg.com')
+
+  return createPortal(
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6">
+      <div
+        onClick={requestClose}
+        aria-hidden="true"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+        style={{
+          opacity: entered ? 1 : 0,
+          transition: `opacity ${entered ? MODAL_ENTER_MS : MODAL_EXIT_MS}ms ease-out`,
+        }}
+      />
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="relative w-full max-w-3xl max-h-[82vh] flex flex-col border border-border bg-surface shadow-2xl will-change-transform motion-reduce:!transform-none motion-reduce:!transition-opacity"
+        style={{
+          transformOrigin: 'center',
+          transform: entered ? 'scale(1) translateY(0)' : 'scale(0.96) translateY(8px)',
+          opacity: entered ? 1 : 0,
+          transition: `transform ${entered ? MODAL_ENTER_MS : MODAL_EXIT_MS}ms ${MODAL_EASE}, opacity ${entered ? MODAL_ENTER_MS : MODAL_EXIT_MS}ms ${MODAL_EASE}`,
+        }}
+      >
+        <div className="flex items-start gap-3 p-5 border-b border-border flex-shrink-0">
+          {isYouTubeThumb && resolved.image && (
+            <Image
+              src={resolved.image}
+              alt=""
+              width={96}
+              height={54}
+              className="flex-shrink-0 border border-border object-cover"
+              unoptimized
+            />
+          )}
+          <div className="min-w-0 flex-1">
+            <p className="text-base font-semibold text-text leading-snug">{resolved.text}</p>
+            <div className="flex items-center gap-3 mt-1 flex-wrap">
+              {resolved.rail && (
+                <span className="font-mono text-[10px] uppercase tracking-wider text-primary">
+                  {RAIL_LABEL[resolved.rail]}
+                </span>
+              )}
+              {resolved.source && (
+                <span className="font-mono text-[10px] uppercase tracking-wider text-subtle">
+                  {resolved.source}
+                </span>
+              )}
+              {resolved.href && (
+                <a
+                  href={resolved.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-mono text-[10px] uppercase tracking-wider text-primary hover:text-accent flex items-center gap-1 transition-colors"
+                >
+                  Watch / Listen <ExternalLinkIcon />
+                </a>
+              )}
+            </div>
+          </div>
+          <button
+            onClick={requestClose}
+            className="flex-shrink-0 text-subtle hover:text-text active:scale-[0.92] transition-[color,transform] duration-150 p-1 -mr-1 -mt-1"
+            aria-label="Close"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            >
+              <path d="M3 3l10 10M13 3L3 13" />
+            </svg>
+          </button>
+        </div>
+        <div
+          className="overflow-y-auto flex-1 p-5 prose-modal scroll-smooth"
+          style={{ overscrollBehavior: 'contain' }}
+        >
+          {content ? (
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({ children }) => (
+                  <h2 className="text-lg font-bold text-text mt-6 mb-2 first:mt-0">{children}</h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-base font-semibold text-text mt-4 mb-1">{children}</h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-sm text-muted leading-relaxed mb-3">{children}</p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc list-outside ml-4 mb-3 space-y-1">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal list-outside ml-4 mb-3 space-y-1">{children}</ol>
+                ),
+                li: ({ children }) => (
+                  <li className="text-sm text-muted leading-relaxed">{children}</li>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-semibold text-text">{children}</strong>
+                ),
+                em: ({ children }) => <em className="text-text">{children}</em>,
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary hover:text-accent underline underline-offset-2 transition-colors"
+                  >
+                    {children}
+                  </a>
+                ),
+                hr: () => <hr className="border-border my-5" />,
+                blockquote: ({ children }) => (
+                  <blockquote className="border-l-2 border-primary pl-3 my-3 text-muted italic text-sm">
+                    {children}
+                  </blockquote>
+                ),
+                code: ({ children }) => (
+                  <code className="bg-surface border border-border text-accent text-xs font-mono px-1.5 py-0.5">
+                    {children}
+                  </code>
+                ),
+              }}
+            >
+              {content}
+            </ReactMarkdown>
+          ) : (
+            <p className="text-sm text-muted">
+              No detailed notes for this entry yet — open the original via the link above.
+            </p>
+          )}
+          <div className="mt-6 pt-4 border-t border-border flex items-center gap-3 flex-wrap">
+            {!hasContent && resolved.href && (
+              <a
+                href={resolved.href}
+                target={resolved.href.startsWith('http') ? '_blank' : undefined}
+                rel={resolved.href.startsWith('http') ? 'noreferrer' : undefined}
+                className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-primary hover:text-accent transition-colors border border-border px-2.5 py-1"
+              >
+                Open original <ExternalLinkIcon />
+              </a>
+            )}
+            <span className="font-mono text-[10px] uppercase tracking-wider text-subtle">
+              logged · {weekStart}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Card
+// ---------------------------------------------------------------------------
+
+function ItemCard({
+  resolved,
+  index,
+  onOpen,
+}: {
+  resolved: ResolvedItem
+  index: number
+  onOpen: () => void
+}) {
+  const isYouTubeThumb = resolved.image?.includes('ytimg.com')
+  return (
+    <div
+      data-weekly-card
+      className="relative border border-border bg-surface p-4 hover:border-primary/60 active:scale-[0.99] transition-[border-color,transform] duration-150 motion-reduce:!transform-none weekly-card-enter"
+      style={{ animationDelay: `${Math.min(index, 11) * 30}ms` }}
+    >
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={resolved.text}
+        className="block w-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      >
+        <div className="flex items-start gap-3">
+          {resolved.image &&
+            (isYouTubeThumb ? (
+              <Image
+                src={resolved.image}
+                alt=""
+                width={64}
+                height={36}
+                className="flex-shrink-0 mt-0.5 border border-border object-cover"
+                unoptimized
+              />
+            ) : (
+              <Image
+                src={resolved.image}
+                alt=""
+                width={16}
+                height={16}
+                className="flex-shrink-0 mt-1"
+                unoptimized
+              />
+            ))}
+          <div className="min-w-0 flex-1 pr-12">
+            <p className="text-sm text-text leading-snug font-medium">{resolved.text}</p>
+            <div className="flex items-center gap-2 mt-1 flex-wrap">
+              {resolved.source && (
+                <span className="font-mono text-[10px] uppercase tracking-wider text-subtle">
+                  {resolved.source}
+                </span>
+              )}
+              {resolved.rail && (
+                <span className="font-mono text-[10px] uppercase tracking-wider text-primary/70">
+                  {RAIL_LABEL[resolved.rail]}
+                </span>
+              )}
+            </div>
+            {resolved.notes && (
+              <p className="text-xs text-muted leading-relaxed mt-2 border-l-2 border-border pl-2 line-clamp-3">
+                {resolved.notes}
+              </p>
+            )}
+          </div>
+        </div>
+      </button>
+      <div className="absolute top-3 right-3 flex items-center gap-2">
+        {resolved.kind && (
+          <Badge variant="teal" className="text-[10px]">
+            {kindLabel(resolved.kind)}
+          </Badge>
+        )}
+        {resolved.href && (
+          <a
+            href={resolved.href}
+            target={resolved.href.startsWith('http') ? '_blank' : undefined}
+            rel={resolved.href.startsWith('http') ? 'noreferrer' : undefined}
+            onClick={(e) => e.stopPropagation()}
+            className="text-subtle hover:text-primary transition-colors"
+            title="Open original"
+            aria-label={`Open ${resolved.text} in a new tab`}
+          >
+            <ExternalLinkIcon />
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Grid + filter bar
+// ---------------------------------------------------------------------------
+
+export function WeeklyGrid({
+  meta,
+  sections,
+}: {
+  meta: WeeklyLogMeta
+  sections: Record<string, string>
+}) {
+  const items = useMemo(() => getAllItems(meta), [meta])
+  const resolved = useMemo(() => items.map((it) => resolveEnriched(it)), [items])
+
+  const allTags = useMemo(() => tagsByFrequency(resolved, (r) => r.tags ?? []), [resolved])
+  const presentKinds = useMemo(() => {
+    const set = new Set<WeeklyItemKind>()
+    for (const r of resolved) if (r.kind) set.add(r.kind)
+    return KIND_ORDER.filter((k) => set.has(k))
+  }, [resolved])
+
+  const { values, set, reset } = useUrlState(['q', 'tag', 'kind'])
+  const [showAllTags, setShowAllTags] = useState(false)
+
+  const q = values.q.trim().toLowerCase()
+  const tag = values.tag
+  const kind = values.kind
+
+  const filtered = useMemo(() => {
+    return resolved.filter((r) => {
+      if (kind && r.kind !== kind) return false
+      if (tag && !(r.tags ?? []).includes(tag)) return false
+      if (q) {
+        const hay = [r.text, r.source, r.notes, ...(r.tags ?? [])]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase()
+        if (!hay.includes(q)) return false
+      }
+      return true
+    })
+  }, [resolved, q, tag, kind])
+
+  const visibleTags = showAllTags ? allTags : allTags.slice(0, TOP_TAGS)
+  const hiddenTagCount = Math.max(0, allTags.length - TOP_TAGS)
+
+  // -------------------- modal state --------------------
+  const [modal, setModal] = useState<ModalState>({
+    open: false,
+    resolved: null,
+    content: '',
+    hasContent: false,
+  })
+
+  const close = useCallback(() => setModal((m) => ({ ...m, open: false })), [])
+
+  useEffect(() => {
+    if (!modal.open) return
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [modal.open])
+
+  function openModal(item: ResolvedItem) {
+    const fromSection = item.anchor ? (sections[item.anchor] ?? '') : ''
+    const content = fromSection || item.bodyMarkdown || ''
+    setModal({ open: true, resolved: item, content, hasContent: Boolean(content) })
+  }
+
+  const hasFilters = Boolean(q || tag || kind)
+
+  return (
+    <>
+      {/* Sticky filter bar */}
+      <div className="sticky top-0 z-20 -mx-6 px-6 py-3 mb-6 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-border">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted pointer-events-none" />
+          <input
+            type="text"
+            placeholder="Search items by name, source, notes, tag…"
+            value={values.q}
+            onChange={(e) => set('q', e.target.value || null)}
+            className="w-full pl-9 pr-10 py-2.5 bg-surface border border-border text-text placeholder:text-muted text-sm font-mono focus:outline-none focus:border-primary/60 transition-[border-color] duration-150"
+          />
+          {values.q && (
+            <button
+              type="button"
+              onClick={() => set('q', null)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-text transition-colors duration-150"
+              aria-label="Clear search"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+
+        {/* Kind facet chips */}
+        {presentKinds.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            <button
+              type="button"
+              onClick={() => set('kind', null)}
+              className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+                !kind
+                  ? 'bg-primary text-bg border-primary'
+                  : 'border-border text-muted hover:border-primary hover:text-primary'
+              }`}
+            >
+              All kinds
+            </button>
+            {presentKinds.map((k) => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => set('kind', kind === k ? null : k)}
+                className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+                  kind === k
+                    ? 'bg-primary text-bg border-primary'
+                    : 'border-border text-muted hover:border-primary hover:text-primary'
+                }`}
+              >
+                {kindLabel(k)}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Tag pills */}
+        {allTags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            <button
+              type="button"
+              onClick={() => set('tag', null)}
+              className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+                !tag
+                  ? 'bg-primary text-bg border-primary'
+                  : 'border-border text-muted hover:border-primary hover:text-primary'
+              }`}
+            >
+              All tags
+            </button>
+            {visibleTags.map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => set('tag', tag === t ? null : t)}
+                className={`px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+                  tag === t
+                    ? 'bg-primary text-bg border-primary'
+                    : 'border-border text-muted hover:border-primary hover:text-primary'
+                }`}
+              >
+                {t}
+              </button>
+            ))}
+            {hiddenTagCount > 0 && (
+              <button
+                type="button"
+                onClick={() => setShowAllTags((s) => !s)}
+                className="flex items-center gap-1 px-3 py-1 text-xs font-mono border border-border text-muted hover:border-primary hover:text-primary transition-[color,border-color] duration-150"
+              >
+                {showAllTags ? (
+                  <>
+                    <Minus className="w-3 h-3" /> Less
+                  </>
+                ) : (
+                  <>
+                    <Plus className="w-3 h-3" /> {hiddenTagCount} more
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+        )}
+
+        <div className="flex items-center justify-between mt-3 text-xs font-mono text-muted">
+          <span>
+            {filtered.length} item{filtered.length === 1 ? '' : 's'}
+            {q ? ` · "${q}"` : ''}
+            {tag ? ` · #${tag}` : ''}
+            {kind ? ` · ${kindLabel(kind as WeeklyItemKind)}` : ''}
+          </span>
+          {hasFilters && (
+            <button
+              type="button"
+              onClick={reset}
+              className="text-primary hover:text-accent transition-colors"
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Card grid */}
+      {filtered.length > 0 ? (
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mb-12">
+          {filtered.map((item, i) => (
+            <ItemCard key={item.id} resolved={item} index={i} onOpen={() => openModal(item)} />
+          ))}
+        </div>
+      ) : (
+        <div className="border border-border bg-surface p-8 mb-12 text-center">
+          <p className="text-sm text-muted">No items match your filters.</p>
+          <button
+            type="button"
+            onClick={reset}
+            className="mt-3 font-mono text-xs uppercase tracking-widest text-primary hover:text-accent transition-colors"
+          >
+            Reset
+          </button>
+        </div>
+      )}
+
+      {modal.open && modal.resolved && (
+        <DetailModal modal={modal} onClose={close} weekStart={meta.weekStart} />
+      )}
+    </>
+  )
+}

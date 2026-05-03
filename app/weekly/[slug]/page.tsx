@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Card from '@/components/ui/Card'
-import Badge from '@/components/ui/Badge'
 import MdxContent from '@/components/MdxContent'
+import GitChangelog from '@/components/sections/GitChangelog'
 import { buildMetadata } from '@/lib/metadata'
 import {
   getAllWeeklyLogs,
@@ -10,7 +10,8 @@ import {
   type ChangelogEntry,
   type WeeklyLogMeta,
 } from '@/lib/weekly'
-import { WeeklyRails } from './WeeklyRails'
+import { getCommitsForWeek, getGitChangelog } from '@/lib/git-changelog'
+import { WeeklyGrid } from './WeeklyGrid'
 
 export const dynamicParams = false
 
@@ -50,7 +51,7 @@ function Changelog({ entries }: { entries?: ChangelogEntry[] }) {
   return (
     <section className="mt-12 border-t border-border pt-8">
       <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-4">
-        Changelog · live
+        Notes from this week · hand-curated
       </p>
       <ol className="space-y-3">
         {sorted.map((e, i) => (
@@ -96,24 +97,18 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
         {meta.slug}
       </p>
       <h1 className="text-3xl md:text-4xl font-bold text-text mt-2 mb-3">{meta.title}</h1>
-      <p className="text-muted text-sm font-mono mb-2">
+      <p className="text-muted text-sm font-mono mb-6">
         {meta.weekStart} → {meta.weekEnd}
+        {meta.tags && meta.tags.length > 0 && (
+          <span className="text-subtle"> · {meta.tags.length} tags</span>
+        )}
       </p>
-      {meta.tags && meta.tags.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 mb-6">
-          {meta.tags.map((t) => (
-            <Badge key={t} variant="teal">
-              {t}
-            </Badge>
-          ))}
-        </div>
-      )}
       {meta.description && (
         <p className="text-muted text-lg leading-relaxed mb-8">{meta.description}</p>
       )}
 
-      {/* Client component: rails grid + modal */}
-      <WeeklyRails meta={meta} sections={sections} />
+      {/* Client component: flat item grid + filter bar + modal */}
+      <WeeklyGrid meta={meta} sections={sections} />
 
       {/* Prose body — linear reading and SEO */}
       {post.source ? (
@@ -125,6 +120,12 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
           <p className="text-muted text-sm">Notes coming soon.</p>
         </Card>
       )}
+
+      {/* Repository commits this week (build-time cached) */}
+      <GitChangelog
+        weekCommits={getCommitsForWeek(meta.weekStart, meta.weekEnd)}
+        allCommits={getGitChangelog()}
+      />
 
       <Changelog entries={meta.changelog} />
     </article>

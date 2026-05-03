@@ -31,6 +31,7 @@ export type Project = {
   href?: string
   highlights?: string[]
   commands?: string[]
+  slug?: string
 }
 
 export type WorkTool = {
@@ -41,6 +42,7 @@ export type WorkTool = {
   highlights?: string[]
   commands?: string[]
   year?: string
+  slug?: string
 }
 
 export type TimelineEntry = {

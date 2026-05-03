@@ -1,4 +1,4 @@
-import type { WeeklyItem } from './weekly'
+import type { EnrichedWeeklyItem, WeeklyItem, WeeklyItemKind, RailKey } from './weekly-types'
 
 const YOUTUBE_RE = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/
 
@@ -33,13 +33,16 @@ function simpleIconSlugFor(
 }
 
 export type ResolvedItem = {
+  id?: string
+  rail?: RailKey
   text: string
   href?: string
   anchor?: string
   image?: string
   source?: string
-  kind?: string
+  kind?: WeeklyItemKind
   notes?: string
+  tags?: string[]
   // Markdown body to render inside the modal when no `anchor:` section is
   // available. Falls back to `notes` for rich rail items, or to the raw
   // string text for pure-string items.
@@ -73,4 +76,26 @@ export function resolveItem(item: WeeklyItem): ResolvedItem {
   const bodyMarkdown = anchor ? undefined : notes
 
   return { text, href, anchor, image, source, kind, notes, bodyMarkdown }
+}
+
+// Same as resolveItem but for the EnrichedWeeklyItem shape produced by
+// getAllItems(). Carries id, rail, and tags through so the grid + filter UI
+// can reference them.
+export function resolveEnriched(item: EnrichedWeeklyItem): ResolvedItem {
+  const base = resolveItem({
+    text: item.text,
+    href: item.href,
+    anchor: item.anchor,
+    image: item.image,
+    source: item.source,
+    kind: item.kind,
+    notes: item.notes,
+  })
+  return {
+    ...base,
+    id: item.id,
+    rail: item.rail,
+    tags: item.tags,
+    bodyMarkdown: base.bodyMarkdown ?? (item.anchor ? undefined : item.text),
+  }
 }

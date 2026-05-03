@@ -1,0 +1,812 @@
+[
+  {
+    "hash": "e6cd0f4c55baa4bb0d0571796115024d5e49769c",
+    "date": "2026-05-02T23:22:34-05:00",
+    "type": "fix",
+    "scopes": ["modals"],
+    "summary": "bigger surface (max-w-3xl), bg-surface for token consistency",
+    "body": "- Bumped from max-w-lg (32rem) to max-w-3xl (48rem); max-h 78vh -> 82vh.\n- bg-background -> bg-surface so the modal uses the elevated-card token\n  shared by the rest of the design system.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "modals"]
+  },
+  {
+    "hash": "54a99c3f08b02f7c2963cabcf4b1d3c9cf86b7d6",
+    "date": "2026-05-02T23:19:26-05:00",
+    "type": "fix",
+    "scopes": ["modals"],
+    "summary": "centered, focused, animated per Emil's framework",
+    "body": "- Smaller, square-ish footprint: max-w-lg / max-h-78vh, centered via flex.\n- Body-portal (createPortal) escapes ancestor transform that was scoping\n  position:fixed away from the viewport.\n- Entry: scale(0.96) + translateY(8px) + opacity(0) -> scale(1) at 220ms\n  with cubic-bezier(0.23, 1, 0.32, 1). Exit at 160ms (asymmetric).\n- Backdrop: bg-black/80 + backdrop-blur-md, opacity transition.\n- transform-origin: center (modal exception per Emil).\n- Buttons: active:scale-[0.92] feedback, transition specifies exact props.\n- Body: scroll-smooth + overscroll-behavior contain.\n- prefers-reduced-motion: opacity-only transition.\n- Single source of truth for ESC handler (child manages); parent keeps\n  body scroll lock.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "modals"]
+  },
+  {
+    "hash": "c3772182935bfff7b3832be1fc6b41c96417bb12",
+    "date": "2026-05-02T23:13:59-05:00",
+    "type": "feat",
+    "scopes": ["weekly", "projects", "ai-hardware-stack"],
+    "summary": "click-to-read modals + new deck route",
+    "body": "- Weekly: every rail item is now a clickable button that opens a description\n  modal (anchor section -> notes -> fallback). Added notes to all previously\n  bare items in 2026-W18 (read, watched, shipped, built, met).\n- Projects: cards open a detail modal showing description, highlights,\n  install/run commands, tech badges, and a prominent GitHub CTA. Inner GitHub\n  anchor uses stopPropagation so middle-click still works. Enriched every\n  PROJECT and WORK_TOOL in lib/data.ts (description, highlights, commands).\n- New /ai-hardware-stack route wraps public/ai-hardware-stack.html in a\n  same-origin iframe under the site chrome; surfaced as a Featured deck card\n  on /knowledge/ai; sitemap entry added.\n- Verified in Playwright (after MCP loaded): 21 weekly buttons, modal opens\n  with full notes; 9 project cards, SpatialDINO modal renders highlights +\n  GitHub CTA; ai-hardware-stack iframe loads with deck content.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "weekly", "projects", "ai-hardware-stack"]
+  },
+  {
+    "hash": "fbe39d4a168a250a5270cf155272f03a58273d93",
+    "date": "2026-05-02T22:56:12-05:00",
+    "type": "restore",
+    "scopes": ["writing"],
+    "summary": "Second Brain knowledge domains section + domainCounts",
+    "body": "The Second Brain section was removed without approval in the v2.4.0\nweekly-logs rework (commit 40b1320). This restores it exactly as it\nexisted in e4f8c93, wired into the current tabbed UI design:\n\n- WritingIndexClient.tsx: restore KNOWLEDGE_DOMAINS import, add\n  domainCounts prop, re-add the \"Six domains. In public.\" section\n  with per-domain article counts and /knowledge/[domain] links.\n  Section sits below the Essays/Learnings tabs — additive, not replacing.\n- page.tsx: restore getAllKnowledgePosts() import and domainCounts\n  calculation; pass alongside existing posts + learnings props.\n- Metadata updated to mention Second Brain and knowledge domains.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["restore", "writing"]
+  },
+  {
+    "hash": "387d576a89c5488daff0b464129df417b1b39380",
+    "date": "2026-05-02T22:46:10-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "modal reader, full podcast notes, Thursday backfill, expanded tags",
+    "body": "- WeeklyRails.tsx (new client component): clicking a watched item with\n  an anchor field opens a scrollable modal (react-markdown, ESC/X/backdrop\n  to close, body scroll lock) instead of jumping to a page anchor.\n  External ↗ icon stays accessible next to each card.\n\n- page.tsx: extractSections() splits MDX source on <div id=\"...\"> markers\n  server-side and passes per-anchor markdown strings as props to WeeklyRails.\n\n- WeeklyItem gains optional anchor and notes fields (lib/weekly.ts +\n  lib/weekly-render.ts).\n\n- 2026-W18.mdx: 5 new watched entries with full structured notes:\n  Stripe Sessions (agentic commerce, Tempo CLI, Solow Paradox),\n  Odd Lots Taiwan/China (Freymann, silicon shield, avalanche decoupling),\n  Odd Lots METR (time horizons, 4-month doubling, Baptist-and-Bootlegger),\n  Odd Lots Dinosaurs (bone maps, pre-buy, Stan/Apex pricing reset),\n  Pershing Square PSUS (permanent capital, insurance float, track record).\n  Thursday Apr 30 deep-dive backfilled in learned rail.\n  Tags expanded to 35.\n\n- CHANGELOG.md: v2.4.2 entry documenting all changes.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
+    "hash": "e3dcb0e654d2046f9351274e70f6a881e51f9c68",
+    "date": "2026-05-02T21:52:47-05:00",
+    "type": "fix",
+    "scopes": ["home"],
+    "summary": "drop weekly rail counters from \"This week\" card",
+    "body": "Keeps the latest weekly log surfaced on home with title/description/tags,\nbut removes the READ/WATCHED/BUILT/SHIPPED/LEARNED/MET count grid.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "home"]
+  },
+  {
+    "hash": "12f5c88addd89e76c966850bac77e240ce3d89e2",
+    "date": "2026-05-02T21:50:15-05:00",
+    "type": "fix",
+    "scopes": ["home", "projects"],
+    "summary": "restore project descriptions, collapse heavy detail, drop highlight reel",
+    "body": "- ProjectCard now renders description again. Heavy highlights+commands lists\n  (Benmore CLI) collapse into a <details> \"Show details\" toggle so the card\n  stays compact but content is preserved.\n- Remove the home-page \"Recent wins / The highlight reel\" section.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "home", "projects"]
+  },
+  {
+    "hash": "b487606b1c4c58ef6fffc6f1555f79ec7b377d5a",
+    "date": "2026-05-02T21:46:31-05:00",
+    "type": "docs",
+    "scopes": ["spatialdino"],
+    "summary": "rewrite log + correct cryo-ET → LLSM across site",
+    "body": "- Rewrite knowledge/ai/spatialdino-lessons.mdx with full engineering detail:\n  data pipeline, KMeans cropping, NoPE 3D ViT, 3D SINDER, StreamingEncoder,\n  segmentation, tracking, collapse history, headline innovations\n- Add public link to engineering log from Kirchhausen Lab experience entry\n- Correct cryo-ET → lattice light-sheet microscopy (LLSM) across site\n  (data, site, metadata, structured-data, stack, hero, research, projects,\n  credentials, README) — preserves Nobel laureate Eric Betzig comparison\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["docs", "spatialdino"]
+  },
+  {
+    "hash": "8aced52d330e5b7aa639c9e4898f802dceb82391",
+    "date": "2026-05-02T21:06:12-05:00",
+    "type": "docs",
+    "scopes": ["2.4.1"],
+    "summary": "rich weekly logs, home surfacing, mobile fix",
+    "body": "Documents the three things shipped in commits 40b1320, 01a6cbf, 1620218:\n\n- Safari ClipboardItem fix on the skills \"Copy for LLM\" buttons\n- Rich rail items on /weekly/<slug> with auto YouTube thumbnails\n  and SimpleIcons logos for known sources\n- \"This week\" home-page card surfacing the latest weekly log\n- /skills mobile overflow fix (min-w-0 on grid children whose\n  unbreakable shell-command lines were forcing 565px columns)\n\nCHANGELOG entry [2.4.1], release note in\ndocs/release-notes/2026-05-02-weekly-rich-items.md, CLAUDE.md\n\"Adding content\" cheatsheet expanded with the rich weekly-item\nshape, README.md weekly paragraph rewritten, package.json bumped\n2.4.0 -> 2.4.1.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["docs", "2.4.1"]
+  },
+  {
+    "hash": "16202180366f0520e8ce880f9f9d97b04c805167",
+    "date": "2026-05-02T21:02:17-05:00",
+    "type": "fix",
+    "scopes": ["skills"],
+    "summary": "contain long shell snippets on mobile",
+    "body": "The \"How to use these skills\" three-up grid had pre/code blocks with\nunbreakable shell commands (curl, mkdir). Grid items default to\nmin-width: auto = min-content, which on mobile equals the longest\nunwrappable token, so the cell expanded past the viewport and pushed\nthe whole page horizontally — observed 565px scrollWidth on a 390px\nviewport.\n\nAdding min-w-0 to the three grid children lets each cell shrink below\nits content's natural minimum, allowing the inner pre's\noverflow-x-auto to actually engage. /skills viewport probe goes from\nhOverflow: true (175px excess) to clean.\n\nAudited every route at iPhone width (390x844) — every other route\nwas already responsive-clean. No other fixes needed.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "skills"]
+  },
+  {
+    "hash": "01a6cbf897b189365438e8ecd5afc8a4820fcefa",
+    "date": "2026-05-02T20:53:52-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "rich rail items + home-page surfacing",
+    "body": "Weekly logs now render each rail item as a linked card with thumbnail\nor source logo. Each entry can be a plain string (quick logging) or\n{ text, href, image, source, kind } — YouTube URLs auto-derive\nmqdefault thumbnails, common sources (GitHub/Substack/Latent Space/\nMedium/X/arXiv/Spotify) auto-fetch SimpleIcons logos so authoring\nstays terse.\n\nAdds a \"This week\" section to the home page directly under the hero,\nshowing the latest weekly log's title, week range, six-category\ncounts grid, and tags. Routes the visitor straight into /weekly/<slug>\nso the running log is one click off the landing page.\n\nUpdates 2026-W18 to use the new rich format (YouTube + Latent Space\npodcast + a16z + GitHub repos with auto-resolved logos).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
+    "hash": "40b1320cc1d96e4c6f999812bbc4310c78b37aa1",
+    "date": "2026-05-02T20:46:39-05:00",
+    "type": "feat",
+    "scopes": ["v2.4.0"],
+    "summary": "weekly logs + highlights data bank + featured banners + structural rework",
+    "body": "Big release. Adds /weekly (ISO-week running log of read/watched/built/shipped/learned/\nmet), lib/highlights.ts data bank (Recent Wins rail on home), and lib/banners.ts featured\nbanner system. Restructures /writing to merge in /learnings as a tabbed view (Essays |\nLearnings), drops the Second Brain rail from home and /writing, and demotes /knowledge\nto secondary nav. Per-skill Benmore credit + per-skill install snippet on every detail\npage; expanded LLM symlink/install commands on /skills (Claude Code, Cursor, Codex,\nContinue/Aider/Cline, Web LLM). Benmore badge scoped to /skills only — removed from nav\nand footer. /learnings stays as a 308 redirect to /writing.\n\nDocs: CHANGELOG entry [2.4.0], README routes/repo-tree updated, package.json bumped\n2.3.0 → 2.4.0, architecture page gains a Skills-library diagram (now seven), release\nnote at docs/release-notes/2026-05-02-skills-library.md.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "v2.4.0"]
+  },
+  {
+    "hash": "5963926b36c3b5b8a6fdf2cf7749b23d3482ec61",
+    "date": "2026-05-02T20:37:54-05:00",
+    "type": "chore",
+    "scopes": ["skills"],
+    "summary": "replace per-skill GitHub link with skills.sh + add page-tour screenshots",
+    "body": "The Benmore-Meridian repo stays private — the public surface is /skills/<slug> + /raw.\nEach skill detail page now points to skills.sh (the open Anthropic Skills format) instead\nof a private GitHub URL. Page-tour screenshots checked in to docs/screenshots/final/.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["chore", "skills"]
+  },
+  {
+    "hash": "6f5b27f969960e684b83aa10d3569fe416467957",
+    "date": "2026-05-02T20:29:01-05:00",
+    "type": "feat",
+    "scopes": ["skills", "writing", "projects"],
+    "summary": "public skills library + unified search across the site",
+    "body": "Adds a /skills route that exposes 71 Claude Code skills authored at Benmore — each with\na one-click \"Copy SKILL.md\" for pasting into LLMs and a /skills/<slug>/raw plain-text\nendpoint for AI crawlers. Knowledge articles now searchable from /writing alongside\nessays. Projects page gains tag-by-frequency search + pagination with Foundry/RTK/\nCompound Skills folded in. Home page Work&Tools removed; Skills + Knowledge sit two-up.\nTimeline avatars enlarged with monogram fallbacks. llms.txt points crawlers at the new\nskill raw endpoints.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "skills", "writing", "projects"]
+  },
+  {
+    "hash": "45d6074b6b2d715d92111cb20c5053f6d7d333d6",
+    "date": "2026-05-02T19:58:04-05:00",
+    "type": "fix",
+    "scopes": ["middleware"],
+    "summary": "remove Clerk dependency — no protected routes on this site",
+    "body": "The /ce-plan route doesn't exist; Clerk env vars were never set in Vercel,\ncausing MIDDLEWARE_INVOCATION_FAILED 500 on every request.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["fix", "middleware"]
+  },
+  {
+    "hash": "c1f1707463dfd84ee8677f84ee5fa762da682e44",
+    "date": "2026-05-02T19:51:51-05:00",
+    "type": "feat",
+    "scopes": [],
+    "summary": "Clerk auth, /ce-plan editor, /components, nav + audit fixes",
+    "body": "Clerk auth:\n- Install @clerk/nextjs, middleware.ts protects /ce-plan(.*)\n- app/layout.tsx wraps with ClerkProvider unconditionally\n- ClerkAuthGate uses modern <Show when=\"signed-in/out\"> API\n- app/ce-plan/ — split-pane markdown editor with frontmatter,\n  live preview, existing-posts sidebar, publishPost() Server Action\n- app/sign-in/[[...sign-in]]/ — Clerk SignIn page\n- app/api/ce-plan/posts/ — protected GET listing writing posts\n\n/components page:\n- app/components/page.tsx — design-system showcase of all UI primitives\n\nNav + audit fixes:\n- Nav oval bug: rounded-full → rounded-2xl when mobile menu open\n- Nav hamburger: add missing type=\"button\"\n- Nav desktop links: transition-all → transition-[color,background-color]\n- SectionHeader: <a> → <Link> for client-side nav\n- Card: transition-all → transition-[transform,border-color,box-shadow]\n- TradeLog: add scope=\"col\" on all <th> elements\n- LinkedInPost/Gist/Substack: remove deprecated frameBorder={0}\n- Gist/Substack: remove misleading rounded-lg (maps to 0 in config)\n- LinkedIn section on /media: iframes → clean link cards\n\nMedia page:\n- scroll-mt-20 → scroll-mt-24 for better sticky-nav clearance\n- LinkedIn embeds replaced with title/excerpt/date link cards\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat"]
+  },
+  {
+    "hash": "e4f8c9310eb30e833955f10b6b1dfba37dd46528",
+    "date": "2026-05-02T19:47:07-05:00",
+    "type": "feat",
+    "scopes": ["revamp"],
+    "summary": "second brain on writing, experience page, route accessibility",
+    "body": "- Add Second Brain timeline section to /writing (6 knowledge domains with\n  article counts, each linking to /knowledge/[domain])\n- Build dedicated /experience page with story + stats + animations for\n  Benmore, Harvard Medical School, and Boston University — replaces the\n  redirect to /about#career\n- Add ExperienceStoryNode component: timeline node with narrative paragraph,\n  impact stats grid, tech badges, disclosure bullets, external links\n- Extend ExperienceEntry type with story, stats, tech, links, featured fields\n- Redirect /knowledge index to /writing#second-brain; [domain] routes untouched\n- Replace Knowledge in primary nav with Experience; move Knowledge to footer\n- Add /experience to sitemap with 0.9 priority\n- Extend Card primitive with optional href prop (auto-wraps as Link)\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "revamp"]
+  },
+  {
+    "hash": "097f7804d659be32ed0dc84e3305656be6066447",
+    "date": "2026-05-02T19:39:42-05:00",
+    "type": "feat",
+    "scopes": ["media"],
+    "summary": "tighten top spacing, add quick-scroll nav + stagger animations",
+    "body": "- pt-6/pb-16 instead of py-16 — removes dead air above the fold\n- space-y-14 instead of space-y-20 — tighter section rhythm\n- Quick-scroll pill nav (Benmore · LinkedIn · STU STREET · Reviews ·\n  Medium · Substack · Press) with stagger fade-in entry\n- id + scroll-mt-20 on every section for smooth anchor targeting\n- reveal class on all card grids for stagger fade-up entry\n- transition-[transform,border-color] / transition-colors on all\n  hover states (no more transition-all per Emil design principles)\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "media"]
+  },
+  {
+    "hash": "1f0d29d50217d62a33d546b775fbccd5435f01e5",
+    "date": "2026-05-02T19:35:15-05:00",
+    "type": "feat",
+    "scopes": ["media"],
+    "summary": "add LinkedIn posts section + graduation post link",
+    "body": "- Add 3 new LINKEDIN_POSTS entries: Delve/Drata evaluation post\n  (share:7441575280814698496), What happened this week cross-post\n  (share:7345125994594230272), and graduation post (ugcPost:7198500677231198208)\n- Render all LINKEDIN_POSTS as embedded iframes in a new section at\n  the top of /media (between Benmore videos and STU STREET)\n- Cross-reference \"What happened this week\" LinkedIn post in SUBSTACK_POSTS\n- Add graduation LinkedIn post link to BA/MS timeline entry in lib/data.ts\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "media"]
+  },
+  {
+    "hash": "347392c532cf986ffe87eb782d5af660971bbd84",
+    "date": "2026-05-02T14:32:56-05:00",
+    "type": "writing",
+    "scopes": ["neovim"],
+    "summary": "add 2026 update with 6 new plugins, link to NeoDotfiles repo",
+    "body": "Adds harpoon, flash, trouble, oil, nvim-surround, undotree to the\nneovim post; updates the closing paragraph to link to\ngithub.com/ArkashJ/NeoDotfiles directly so readers can land on the\nREADME controls table.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["writing", "neovim"]
+  },
+  {
+    "hash": "a227153ca00514207441106c3b4ae069143874ef",
+    "date": "2026-04-30T11:23:35-07:00",
+    "type": "chore",
+    "scopes": ["linkedin"],
+    "summary": "remove LinkedIn sections from home + /media",
+    "body": "LinkedIn's iframe embed endpoint 404s anonymously even with the\nofficial ?collapsed=1 URL, so the cards looked vestigial and the\ndata wasn't pulling its weight. Drop entirely. LINKEDIN_POSTS data\n+ LinkedInPost component remain in the repo for if/when LinkedIn\nopens up the embed flow.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "linkedin"]
+  },
+  {
+    "hash": "f41c7ddd23e1efb33f3cbb8277141ed3e143f149",
+    "date": "2026-04-30T11:18:37-07:00",
+    "type": "chore",
+    "scopes": ["node", "linkedin"],
+    "summary": "pin Node 22 + LinkedIn back to cards",
+    "body": "- .nvmrc + package.json engines.node = 22.x — Vercel was rejecting\n  the project's previous 18.x setting as discontinued.\n- LinkedIn iframes still 404 anonymously (even with the official\n  ?collapsed=1 URL from \"Embed this post\"), so home + /media revert\n  to preview cards: title, excerpt, date, link out. Always works.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "node", "linkedin"]
+  },
+  {
+    "hash": "e85fab1b08bfb02d36c36bbc1c68c753f2effe25",
+    "date": "2026-04-29T21:48:41-07:00",
+    "type": "feat",
+    "scopes": ["linkedin", "voice"],
+    "summary": "restore official iframe embeds; allow mic in CSP",
+    "body": "- LinkedInPost iframe defaults to ?collapsed=1 (matches LinkedIn's official\n  embed snippet so the public embed endpoint actually renders).\n- LINKEDIN_POSTS now have real share URNs from the user's posts; type union\n  also accepts 'ugcPost' for posts that need it.\n- Home Current updates and /media render iframes again; cards no longer\n  shown for LinkedIn since the URNs are now embeddable.\n- next.config.js Permissions-Policy: switch microphone from () to (self)\n  so the in-nav VoiceNav button can actually request mic access on the\n  deployed site (was globally denied before).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "linkedin", "voice"]
+  },
+  {
+    "hash": "5340245e216ae50a8118e3e7bee8228e1ec4bd41",
+    "date": "2026-04-29T14:34:50-07:00",
+    "type": null,
+    "scopes": [],
+    "summary": "/",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "97c51a4299806e6c2dc5cc8afed5580b9f95d8c6",
+    "date": "2026-04-29T13:37:19-07:00",
+    "type": "docs",
+    "scopes": ["handoff"],
+    "summary": "drop stale flows.ts row, mark coursework + light-mode shipped",
+    "body": "- Replace removed lib/flows.ts with current coursework.ts + docs.ts\n- Remove /coursework from \"not yet scaffolded\" — fully shipped\n- Remove light-mode TODO — ThemeProvider + toggle have been live since v2.1\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["docs", "handoff"]
+  },
+  {
+    "hash": "df884894620e625b8ac7240242c6e9894cf56f95",
+    "date": "2026-04-29T13:35:37-07:00",
+    "type": "fix",
+    "scopes": ["ui", "nav"],
+    "summary": "monogram fallback for unknown orgs + voice command palette + architecture in nav",
+    "body": "- InstitutionLogo: render initials badge for orgs without an SVG (Benmore,\n  Battery Ventures, ZeroSync) instead of an empty avatar slot. Aliases map\n  variant names (\"Benmore Technologies\" → \"Benmore\") to canonical keys.\n- CommandPalette: add SpeechRecognition voice button. Transcripts feed the\n  search input and auto-navigate on phrases like \"go to research\" or\n  \"open AI hardware stack\". Falls back silently when API unavailable.\n- site.ts: add /architecture to footer SECONDARY_LINKS so the page is\n  reachable from nav (was orphaned).\n- data.ts: drop generic GitHub-profile href on Spotify→YouTube project\n  (audit flagged it; ProjectCard now shows \"Internal / private\" fallback).\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["fix", "ui", "nav"]
+  },
+  {
+    "hash": "1fdef036c1ee89ee3286c6f65455c1305986d09c",
+    "date": "2026-04-29T13:26:32-07:00",
+    "type": "feat",
+    "scopes": ["knowledge", "media", "home"],
+    "summary": "port full AI hardware stack slides + LinkedIn posts + home recent",
+    "body": "- Rewrite ai-hardware-stack.mdx with complete slide content: ASCII diagrams,\n  plain-English analogies, GPUDirect RDMA flow, Grace-Blackwell superchip,\n  FlashAttention tiling, PagedAttention, DeepEP, agentic inference trace\n- Add AI hardware stack as featured TIMELINE entry (surfaces on home page)\n- Add two new LinkedIn posts to LINKEDIN_POSTS in lib/media.ts\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "knowledge", "media", "home"]
+  },
+  {
+    "hash": "b8964260f24884ceb451430c1bf98199cc3edb7a",
+    "date": "2026-04-28T22:23:59-07:00",
+    "type": "feat",
+    "scopes": ["media", "knowledge"],
+    "summary": "add AI hardware stack article + fix Medium/Substack links",
+    "body": "- Add full 7-layer AI hardware stack knowledge article with deep dives on\n  SRAM vs HBM inference split, co-packaged optics, and EDA pipeline;\n  links to 9 SemiAnalysis articles throughout\n- Add interactive HTML version served at /ai-hardware-stack.html\n- Fix all Medium article URLs from homepage to per-article slugs\n- Add 3 missing Medium articles (Milwheel Pt.2, Impatience Sort Pt.2,\n  Adding Plugins Pt.2) with full titles\n- Add 5 missing Substack posts (Feb–Mar 2025, back to first post)\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["feat", "media", "knowledge"]
+  },
+  {
+    "hash": "59c4b73adccaa5eaf71c581713c1bd5101a374dc",
+    "date": "2026-04-27T15:04:30-05:00",
+    "type": "feat",
+    "scopes": ["media", "about"],
+    "summary": "add LinkedIn recents; drop avatars + connect block",
+    "body": "- /media: new \"Recents — LinkedIn posts\" section embedding two recent activity URNs\n- LinkedInPost: support type='activity' alongside 'share'\n- /about: remove \"Where to find me\" Connect section and per-entry profile avatar\n- TimelineItem: keep institution logos; drop avatar fallback for cleaner indicator\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "media", "about"]
+  },
+  {
+    "hash": "cd33b2e662e155978d97a3e96589a27f1c61ced1",
+    "date": "2026-04-27T00:18:15-05:00",
+    "type": "feat",
+    "scopes": ["home"],
+    "summary": "trim landing page; tighten GitHub section",
+    "body": "- /  : drop Media preview grid, Connect/SocialLinks, and Writing strip from\n       the landing page. They remain reachable via /media, /connect-style\n       footer, /writing — landing page focuses on the hero + GitHub +\n       arc/now + research + coursework + projects + tools/knowledge.\n- /  : move GitHubActivity directly under <Hero> so the live commit graph\n       is the first thing past the stat box (was buried below /projects).\n- GitHubActivity: drop Stats card (with B- rank), drop Streak card, drop\n       Top Languages card. Snapshot table (30d/7d/active/raw/adj) takes\n       the prominent slot next to a small commit-tracker thumbnail\n       (max 320 px). Contribution graph capped at max-w-3xl, deep\n       GitHub green (#216E39).\n- SocialLinks: refresh the X / Twitter sub-label (@_arkash → @ArkashJ__).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "home"]
+  },
+  {
+    "hash": "11441f13e50dc9d0550b3cbd1daf1e3df8ec4839",
+    "date": "2026-04-27T00:09:01-05:00",
+    "type": "chore",
+    "scopes": ["release"],
+    "summary": "v2.3.0 — image consolidation, mobile, GitHub live charts, Trustpilot images",
+    "body": "Bumps package.json 1.0.0 -> 2.3.0 and rewrites the CHANGELOG entry\nto cover the full set of changes shipped this cycle:\n\n- Asset consolidation under public/images/\n- New /media page Trustpilot section using real reviewer screenshots\n- Live GitHub activity widgets on the homepage (contribution graph, stats, streak, top langs)\n- Hero stat: 887% revenue -> 6+ years tech experience\n- Twitter handle fix (x.com/_arkash -> x.com/ArkashJ__)\n- Mobile responsiveness fixes (min-w-0 on grid items in /media disclosure & link lists)\n- docs/cover-letters/ private working folder for O-1 evidence drafting\n- README, CLAUDE.md, profile README rewrites\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "release"]
+  },
+  {
+    "hash": "59db2095b20d40f8f6901c62fef8c90109572631",
+    "date": "2026-04-26T23:49:35-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "personal docs",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "87807cb13ae225b4db484afa637029db3c6af77f",
+    "date": "2026-04-26T23:09:30-05:00",
+    "type": "feat",
+    "scopes": ["ui"],
+    "summary": "footer icon grid, tighter Hero, HeroDemo quick links, ★ reviews",
+    "body": "Footer:\n- Replaced text-only social list with a 3-column icon grid. Each tile\n  is a hover-lift card with a brand mark + label.\n- Brand marks pulled from cdn.simpleicons.org (github, x, substack, medium,\n  googlescholar, orcid). LinkedIn + Harvard (no simple-icons brand) fall\n  through to lucide Briefcase / GraduationCap. Email uses Mail.\n- Pages list now 2-column to match the wider grid.\n- Bottom strip: '/architecture' and 'humans.txt' get inline ↗ glyphs.\n\nHero:\n- Section padding py-20 → py-10, stat-grid mt-16 → mt-8 — drops ~120px of\n  empty space above the fold.\n- H1 step down 5xl/7xl → 4xl/6xl. Body copy tightened.\n- New 'Watch Talks →' button between primary work + writing CTAs to\n  surface /media in the highest-traffic spot.\n\nHeroDemo:\n- New 3-up quick-link strip at the bottom of the career-arc card:\n  ▶ Media · 📄 Papers · ◈ Degrees. Hover-lift, links to /media,\n  /research, /credentials.\n\nTrustpilot reviews:\n- Card layout now lg:grid-cols-3, taller tiles with explicit ★★★★★ row,\n  trustpilot.com path snippet at the bottom.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "ui"]
+  },
+  {
+    "hash": "355c1d243bb231b933ce7a6618825ac1d9ab988a",
+    "date": "2026-04-26T23:00:20-05:00",
+    "type": "feat",
+    "scopes": ["nav"],
+    "summary": "pill-style sticky nav, Cmd+K palette, BackLink, /credentials",
+    "body": "Navigation:\n- Restyled <Nav/> as a floating pill: rounded-full bg-surface, shadow,\n  gradient top fade. Each NAV_LINK becomes a rounded chip with active-state\n  bg-elevated. New 'Search' button on the right shows ⌘K hint and opens the\n  command palette. Mobile gets a Search icon + drawer.\n- NAV_LINKS: added 'Media' to primary. Added 'Credentials' to footer\n  secondary links. Removed 'Home' label (the arkash.jain logo is the home\n  link).\n- New <CommandPalette/> (cmdk-based, client). Cmd/Ctrl+K toggles. Groups:\n  Navigate (every nav route), Coursework (8 deep dives), Timeline (5 deep\n  dives), More (secondary routes), External (every social profile + email).\n  ESC closes; click-outside closes. Result rows use data-[selected=true]\n  states and arrow-key navigation comes free from cmdk.\n\nNew routes:\n- /credentials — verifiable degrees + Harvard ID + scholarships, each with\n  inline InstitutionLogo and 'View PDF →' link to public/files/.\n  Sitemap entry added.\n\nUX components:\n- New <BackLink href label/> with animated ArrowLeft (translate-x on hover).\n  Wired into /media. Coursework deep-dives already use plain back links.\n\nLanding page:\n- New 'Media — Podcasts, talks, reviews' 4-up grid linking to /media.\n- Knowledge pills column tightened.\n\nBug fix:\n- next.config.js images.remotePatterns now allow-lists ytimg.com,\n  i9.ytimg.com, img.youtube.com, cdn.jsdelivr.net so YouTube embed\n  thumbnails actually render (was the cause of the black-tile placeholders).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "nav"]
+  },
+  {
+    "hash": "ee5890fcedc1654d4f3809daca1e45823716772e",
+    "date": "2026-04-26T22:51:11-05:00",
+    "type": "feat",
+    "scopes": ["media"],
+    "summary": "all 25 STU STREET episodes, Benmore talks, Trustpilot reviews",
+    "body": "lib/media.ts:\n- STU_STREET_EPISODES expanded from 4 → 25 entries (every public episode),\n  sorted by views, with views + arkashHosted flags. YouTube IDs sourced for\n  10 episodes; the rest link to the channel.\n- New FEATURED_VIDEOS array — 2 Benmore talks (0XDr6hGHQSs, iJwLvPLINHc).\n- New REVIEWS array — 10 Trustpilot reviews from Benmore engagements.\n- PODCAST_LINKS now includes YouTube, Instagram, TikTok handles.\n\napp/media/page.tsx rewritten:\n- New 'Featured talks' section at the top with both Benmore embeds.\n- STU STREET section: top-6 most-viewed episodes get full YouTube embeds.\n  Remaining 19 collapsed behind a <Disclosure> with view counts and\n  'ARKASH HOSTED' tags on the episodes I co-hosted.\n- New 'What clients say' Trustpilot grid — 10 verified review cards with\n  hover-lift, ★ Verified badge.\n- Podcast platform header now links Spotify + Apple + YouTube + Instagram +\n  TikTok (was just two).\n- All sections gain hover:-translate-y-0.5 + transition-all on cards.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "media"]
+  },
+  {
+    "hash": "632601e43ebebbc651c9692fc856b5c66123fccc",
+    "date": "2026-04-26T22:39:57-05:00",
+    "type": "chore",
+    "scopes": ["seo"],
+    "summary": "add IndexNow keyfile + Bing/Yandex submit script",
+    "body": "- public/<key>.txt — IndexNow ownership-verification token (key:\n  d6181e9a79154869b9a72fb056eecbb0)\n- scripts/indexnow-submit.sh — fetches live sitemap.xml, posts every URL\n  to api.indexnow.org plus direct mirrors at bing.com/indexnow and\n  yandex.com/indexnow. Run after each prod deploy.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "seo"]
+  },
+  {
+    "hash": "478751f1f3054198b272f3d7d44dec2715064069",
+    "date": "2026-04-26T21:51:16-05:00",
+    "type": "feat",
+    "scopes": ["seo"],
+    "summary": "aggressive social-graph linking for identity indexing",
+    "body": "Goal: every search engine + AI crawler immediately resolves all of Arkash's\nprofiles to one Person.\n\nSurfaces added:\n- lib/site.ts: add ORCID, PubMed, BU CS profile URLs to SITE.social\n- app/layout.tsx <head>: 10 <link rel=\"me\"> entries (LinkedIn, GitHub,\n  X/Twitter, Substack, Medium, ORCID, Scholar, Harvard lab, BU profile,\n  email) — IndieWeb identity verification + fediverse two-way handshake\n- app/layout.tsx <head>: 10 <meta property=\"og:see_also\"> tags pointing at\n  every public profile — Google SGE / Bing Copilot ingest these\n- Person JSON-LD sameAs: now 11 entries (added ORCID, PubMed, BU)\n- New <SocialLinks/> component with grid + inline variants. Every link\n  carries rel=\"me me-author noopener noreferrer\" and a short subtitle.\n- /  page: new \"Connect — Find me everywhere\" section with the grid\n- /about page: new \"Connect — Where to find me\" section after the timeline\n- Footer already wires the same set; humans.txt + llms.txt already credit.\n\nNet: 22 rel=me links, 10 og:see_also, 11-entry sameAs, all on every page.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "seo"]
+  },
+  {
+    "hash": "d6f321ee53bbc1eb241396efadd625f6880d2b22",
+    "date": "2026-04-26T21:46:20-05:00",
+    "type": "feat",
+    "scopes": ["seo"],
+    "summary": "index 'Arkash Jain' as author across every crawler surface",
+    "body": "- llms.txt + llms-full.txt: prepend 'Maintained by Arkash Jain — arkashj.com'\n- robots.txt: convert to static public/robots.txt with credit header comment\n  block (replaces app/robots.ts so the file actually contains comments).\n- humans.txt: new — full credits file at site root (TEAM, ROLE, SITE, THANKS).\n- HTML <head>: add explicit <meta name=author/creator/designer/copyright/\n  owner> + <link rel=author> + article:author OpenGraph property.\n- <noscript> credit line in body root — visible in view-source on every page,\n  indexed by every crawler regardless of JS state.\n- WebSite JSON-LD: add author / publisher / creator / copyrightHolder /\n  mainEntity all referencing the Person@id, plus copyrightYear.\n- Footer: replace one-line tech credit with two-up layout — left side has\n  '© <year> Arkash Jain — built & maintained by arkashj.com' with\n  rel=author + itemProp=author; right side keeps tech credit + humans.txt\n  link.\n\nNet effect: every page emits Arkash's name to crawlers via meta tags,\nJSON-LD, noscript fallback, and footer. Three top-level credit files\n(robots.txt, humans.txt, llms.txt) all open with maintainer attribution.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "seo"]
+  },
+  {
+    "hash": "0eb291e7a381ca63f4cbdf438af73ad8e243929c",
+    "date": "2026-04-26T21:13:41-05:00",
+    "type": "fix",
+    "scopes": [],
+    "summary": "track lib/ directory (was ignored by global gitignore)",
+    "body": "Global ~/.gitignore_global includes Python's lib/ rule, which silently\nexcluded our TypeScript lib/ from commits. Direct CLI deploys uploaded\nlocal files; GitHub-triggered builds saw nothing and failed to resolve\n@/lib/* imports. Local .gitignore now overrides with !lib/.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix"]
+  },
+  {
+    "hash": "efa01d057d75a41757b38e9e34a66174f5717787",
+    "date": "2026-04-26T21:10:06-05:00",
+    "type": "chore",
+    "scopes": [],
+    "summary": "add Google Search Console meta verification",
+    "body": "Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore"]
+  },
+  {
+    "hash": "ee4ebc1b260a83dbfaf02dec09ac0cca17442c58",
+    "date": "2026-04-26T21:09:34-05:00",
+    "type": "chore",
+    "scopes": [],
+    "summary": "add Google Search Console HTML verification file",
+    "body": "Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore"]
+  },
+  {
+    "hash": "31b020ef29721dbbf1ac8b54a35cff2eac87b996",
+    "date": "2026-04-26T20:43:51-05:00",
+    "type": "feat",
+    "scopes": ["home"],
+    "summary": "denser landing page, hover effects, show-more disclosures",
+    "body": "Landing page repack:\n- Two-up Arc summary + Currently/Latest-writing sidebar\n- New 'Latest milestones' strip — 6 most-recent featured TIMELINE entries as\n  hoverable cards linking to deep dives\n- New 'BU CS, Math & PL — by class' coursework strip — 6 courses with code +\n  semester + tech badges\n- Two-up 'What I ship every day' + 'Knowledge' (replaces two separate full-\n  width sections of mostly empty space)\n- Stats sub-grid inside Arc card: Papers / Classes / Repos\n- Reduced section padding py-16 → py-10 across all sections\n- All cards now wrapped in Link with group-hover:text-primary on titles\n- Cattle Logic and outdated 'Started Harvard MS' references gone\n\nHover effects:\n- Knowledge pills: hover:-translate-y-0.5 + transition-all\n- Card titles: group-hover:text-primary\n- (Card lift + Badge transitions were already in place)\n\nShow-more:\n- New <Disclosure/> client component (max-height + opacity transition,\n  ChevronDown rotation, ARIA-correct).\n- ExperienceCard now collapses bullets > 2 behind 'Show N more'.\n- ExperienceCard also renders InstitutionLogo inline next to org when\n  available (BU, Harvard, BCH, NSF).\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "home"]
+  },
+  {
+    "hash": "597a04260d4ca8a65f12e277534b56309b543e69",
+    "date": "2026-04-26T20:38:23-05:00",
+    "type": "feat",
+    "scopes": ["site"],
+    "summary": "nav rework, curated timeline, light-mode contrast, HeroDemo from TIMELINE",
+    "body": "- NAV: drop /home from primary; add /coursework + /knowledge to primary;\n  move /stack and /docs to secondary. Easier discovery of the deepest content.\n- TIMELINE: add `featured?: boolean`. Mark 15 high-impact entries as featured.\n  /about now renders only featured (curated changelog, ~half the noise) with\n  a 'See the full archive (N)' link to /about/archive — new route showing\n  every entry, fully indexable.\n- HeroDemo: replace hardcoded STEPS with a derivation from TIMELINE filtered\n  to featured. Single source of truth — landing-page mini timeline can never\n  drift from the changelog again. Drops Cattle Logic from the demo.\n- Light mode contrast fix: every hardcoded `text-white` (16 occurrences across\n  Page, MdxContent, Knowledge, Writing, ExperienceCard, TradeLog,\n  ThesisTracker, not-found) replaced with `text-text` token so dark/light\n  modes both render legibly.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "site"]
+  },
+  {
+    "hash": "4749a33155a32bd29053e5f884fc40cc3f40d7c8",
+    "date": "2026-04-26T19:17:42-05:00",
+    "type": "fix",
+    "scopes": ["site"],
+    "summary": "Cattle Logic + 4-papers references uncovered by playwright walk",
+    "body": "Walked every page after the coursework launch and caught straggling references:\n\n- Hero stat: '4 PAPERS' → '3 PAPERS'\n- Hero copy: 'four published papers, the Cattle Logic operating system…' →\n  'three published papers including SpatialDINO…'\n- HeroDemo: drop the 'Cattle Logic launched' step; promote Head of FDE to active.\n- Home page: 'Research — 4 published papers' → '3 published papers'.\n- /research metadata title + description + visible H1: 'Four' → 'Three'.\n- /projects metadata title + description + keywords + accent copy: drop\n  Cattle Logic; lead with SpatialDINO + Raft.\n- /research opengraph-image subtitle: 'Four' → 'Three'.\n- /projects opengraph-image subtitle: drop Cattle Logic; add Raft.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "site"]
+  },
+  {
+    "hash": "4f2fdd464f98f7001a108293627a690c99be013f",
+    "date": "2026-04-26T19:03:21-05:00",
+    "type": "feat",
+    "scopes": ["site"],
+    "summary": "coursework hub, institution logos, credentials, paper cleanup",
+    "body": "- /coursework/* — 9-class hub with per-class deep-dive MDX (Spring 2023:\n  CS 350 Raft, CS 611 Monsters & Heroes, CS 611 Trading System; Fall 2023:\n  CS 320 OCaml interpreter + parser/evaluator subpages, DS 522 SGD variants,\n  CS 561 PageRank, CS 630 Gale-Shapley, MA 582, HI 151). 11 MDX files,\n  ~17k words, ≤30-line code excerpts, public-repo links, paper citations.\n- Coursework timeline hubs (Spring 2023, Fall 2023) injected at chronological\n  positions; both routable at /about/timeline/coursework-<sem>.\n- InstitutionLogo component + self-hosted SVGs (BU, Harvard, BCH, NSF) wired\n  as TimelineItem avatars when org matches. `org` field added to\n  TimelineEntry; backfilled across 16 entries.\n- Credentials: BA + MS + Harvard ID PDFs published under public/files/ with\n  SEO-friendly filenames; linked from BA/MS and Harvard timeline entries.\n- Papers: dropped the BioRxiv preprint duplicate of the JCB ER-Exit-Sites\n  paper. PAPERS now contains 3 entries (SpatialDINO, JCB, J. Chem. Phys.).\n- Cattle Logic stripped sitewide (timeline, projects, experience bullets,\n  hero copy, site description).\n- Tier 1-3 SEO: per-page metadata + keywords, JSON-LD (Person, WebSite,\n  BreadcrumbList, Article, ScholarlyArticle with DOI/identifier), AI bots\n  allow-listed in robots.txt, llms.txt + llms-full.txt, manifest +\n  apple-icon, viewport, dual-CDN TechBadge for tech icons.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "site"]
+  },
+  {
+    "hash": "e688908a67baf516215ab4b440b80a271405b372",
+    "date": "2026-04-26T12:40:52-05:00",
+    "type": "feat",
+    "scopes": ["docs"],
+    "summary": "/docs route renders project markdown · refresh README + CHANGELOG (#12)",
+    "body": "WHY NOT SWAGGER\nThis is a static content site, not an API. Swagger/Redoc document\nOpenAPI specs — there is no API surface to document. The right analog\nis rendering the project's own markdown docs as a polished in-site\nreading experience.\n\nNEW /docs ROUTE\n- /docs hub page: cards grouped by category (Getting Started · Reference · Planning · Releases)\n- /docs/[slug] detail: sticky sidebar + themed markdown rendering\n- lib/docs.ts curates which markdown files appear; reads from filesystem at build time\n- components/docs/MarkdownView.tsx — themed react-markdown with GFM tables\n- components/docs/DocsSidebar.tsx\n- Renders: README, HANDOFF, TODO, site-architecture, design spec, foundation plan, CHANGELOG\n- Added /docs to NAV_LINKS\n\nREFRESHED README\n- Comprehensive shields.io badge row (license, version 2.2.0, status, CI, stack badges, tooling)\n- Stack table updated to current Next 15 / React 19 / TS strict reality\n- Pages enumeration shows all 14 routes\n- Common commands cheatsheet\n- Adding-content lookup table\n- MDX embed examples\n- ffmpeg recipes\n- Custom domain instructions\n\nREFRESHED CHANGELOG\n- v2.2.0 entry — Metior visual identity, hero overhaul, theme system, /stack, /learnings, /media, /architecture diagrams, real links, MDX embeds, docs\n- v2.1.0 entry — App Router + TypeScript migration, dynamic OG, more MDX\n- v1.x history preserved\n- Roadmap pointer to TODO.md\n\nBuild clean. /docs renders all 7 catalogued markdown files as static SSG pages.\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "docs"]
+  },
+  {
+    "hash": "4b7179a6248eb3c0eb43abfa4cf113f67cad6901",
+    "date": "2026-04-26T12:36:53-05:00",
+    "type": "docs",
+    "scopes": [],
+    "summary": "add TODO.md handoff for open work + cheatsheet",
+    "body": "",
+    "tags": ["docs"]
+  },
+  {
+    "hash": "3a92dfc91af22432755340cd2afee947a4e89dd3",
+    "date": "2026-04-26T12:33:44-05:00",
+    "type": "feat",
+    "scopes": ["about"],
+    "summary": "visual hierarchy on Life Changelog timeline (#11)",
+    "body": "The timeline now distinguishes major milestones from completed routine entries:\n- Major (Published / Current / Live): primary teal node with ring shadow,\n  brighter card border, larger title, gradient bottom rule\n- Routine (Completed): subtle dark border, smaller title, no rule\n- Reverse-chronological order (most-recent first)\n- Stagger fade-up animation on entry\n\nReads as a real timeline now, not a wall of identical cards.",
+    "tags": ["feat", "about"]
+  },
+  {
+    "hash": "6904882ba4f94da66959d64477e077b7acc3d3a6",
+    "date": "2026-04-26T12:30:55-05:00",
+    "type": "feat",
+    "scopes": ["design"],
+    "summary": "consistent Pill+italic-accent page headers across all pages (#10)",
+    "body": "SectionHeader rebuilt:\n- Uses Pill component (animated dot) for the eyebrow\n- New optional italicAccent prop renders a warm-tan italic display under the title\n- Larger title scale (3xl/4xl), tighter leading\n- Bigger bottom border breathing room\n\nApplied across:\n- /about       → \"Life Changelog. / In order. Real dates.\"\n- /research    → \"Four published papers. / One thesis.\"\n- /experience  → \"Where I've worked. / And what I shipped.\"\n- /projects    → \"Things I've built. / Research code, internal tooling, open source.\"\n- /work        → \"Tools & CLIs. / Used every day.\"\n- /writing     → \"Essays, notes, theses. / What I'm learning, in public.\"\n- /knowledge   → \"Second brain. / In public.\"\n- /media       → \"Podcasts, videos, articles. / The public footprint.\"\n- /stack       → \"What I use. / Updated when something earns it.\"\n- /learnings   → \"Lessons learned the hard way. / No platitudes.\"\n- /architecture → \"How this site is built. / Six diagrams.\"\n\nKnowledge hub also got stagger animation on the domain card grid.\n\nVisual treatment matches the Hero (Metior-Pro inspired) so every page has the\nsame restrained pill → bold title → italic-tan accent → muted description rhythm.\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "design"]
+  },
+  {
+    "hash": "4667ef1d551df6487ad96a2aa1d66ca9b9b8fe7c",
+    "date": "2026-04-26T12:26:47-05:00",
+    "type": "feat",
+    "scopes": ["design"],
+    "summary": "Metior-Pro inspired hero — navy bg, full grid, italic tan accent, demo card (#9)",
+    "body": "PALETTE\n- bg #0A1628 (deep navy, not pure black)\n- surface #0E1B30, elevated #14233A, border #1C2D48\n- primary #5EEAD4 (mint), accent #F4A66A (warm tan for italic display)\n- text #F4F6FB, muted #9BA8BF, subtle #6C7A93\n\nGRID\n- Full-coverage faint grid (was radial-masked → now visible everywhere)\n- Secondary 256px grid layer with subtle teal tint, masked to top-right\n- Theme-aware grid line color via CSS var\n\nHERO\n- Two-column layout: copy left, animated career-arc demo card right\n- Pill eyebrow with pulsing teal dot\n- Italic warm-tan display \"Build, ship, compound.\" (the Metior treatment)\n- Tag pill row below CTAs (AI Researcher · Forward Deployed · etc.)\n\nNEW COMPONENT — HeroDemo\n- Floating card with 5 career milestone steps\n- Status icons: done (filled mint check), active (tan square + pulse dot), pending\n- Soft mint glow shadow + connector lines + \"5/5\" counter footer\n\nANIMATIONS\n- Page entrance fade-up on main children (320ms ease-out)\n- Stagger animation utility (.stagger > * with nth-child delays)\n- dot-pulse keyframe for status indicators\n- All respect prefers-reduced-motion\n\nPOLISH\n- Card hover: subtle -translate-y-0.5 + mint glow shadow\n- Pill component (sharp Badge alternative with rounded-full + dot)\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "design"]
+  },
+  {
+    "hash": "8b5b21bae6a09a4cde7611387e78bec3111cc9b8",
+    "date": "2026-04-26T12:22:14-05:00",
+    "type": "feat",
+    "scopes": ["v2.1"],
+    "summary": "light/dark theme, /stack, /learnings, real architecture diagrams, HANDOFF (#8)",
+    "body": "THEME SYSTEM\n- next-themes wired through ThemeProvider in root layout\n- All Tailwind colors are CSS variables (defined in globals.css)\n- Light theme: zinc/teal-600 palette; Dark theme: graphite/teal-300 palette\n- ThemeToggle (Sun/Moon icons via lucide-react) in nav, mobile + desktop\n- Grid background uses theme-aware grid-line color\n- Reduced-motion respected; smooth color transitions\n\nNEW PAGES (parallel agent work)\n- /stack — uses.tech-style page; 7 categories, 36 entries (real hardware/editor/frameworks/AI/infra/services)\n- /learnings — 12 hard-won lessons in reverse-chronological card layout\n- Both surfaced in NAV_LINKS\n\nARCHITECTURE (parallel agent work)\n- Replaced 6 ASCII flow diagrams with proper React/SVG diagrams\n- Site map, navigation flow, content pipeline, SEO, CI/CD, component tree\n- Pure HTML+Tailwind+inline SVG; responsive; sharp edges; restrained palette\n- Removed dead AsciiDiagram component + flows.ts\n\nANIMATIONS\n- Page entrance fade-up animation (280ms ease-out, restrained)\n- @media (prefers-reduced-motion) honored\n\nHANDOFF DOC (parallel agent work)\n- docs/HANDOFF.md — comprehensive ~1900-word handoff covering project goal,\n  current state, repo layout, content workflow, embeds, design system, SEO,\n  commands, open work, planning docs, onboarding checklist\n\nICONS\n- lucide-react installed for theme toggle icons\n- Foundation for further icon use across components\n\nVERIFIED\n- npm run build clean; 65+ static pages\n- Vercel auto-deploys on push to main (Vercel bot connected via GitHub integration)\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "v2.1"]
+  },
+  {
+    "hash": "92d2cf2ee658559ba9d44fcf27f16bce72548535",
+    "date": "2026-04-26T12:15:44-05:00",
+    "type": "feat",
+    "scopes": ["design+content"],
+    "summary": "pro dark palette, sharp edges, grid bg, mobile nav, /media page, real links (#7)",
+    "body": "DESIGN OVERHAUL\n- Palette: graphite/charcoal (bg #0A0A0A, surface #111, elevated #171717, border #262626)\n- Text: #FAFAFA primary, #A1A1AA muted, #71717A subtle\n- Accents: teal-300 #5EEAD4 primary, cyan-400 #22D3EE accent, emerald success\n- Sharp edges everywhere: tailwind borderRadius all → 0\n- Infinite grid background (radial-mask faded edges, fixed position)\n- Geist Sans + Geist Mono via geist package, CSS vars wired through Tailwind\n- Selection + focus-visible rings + dark scrollbar\n\nNAVIGATION\n- Mobile hamburger menu with animated icon + drawer\n- Active link uses primary teal (not neon)\n- Sticky bg matches body color (no nav/page mismatch)\n\nMEDIA PAGE (new /media)\n- STU STREET podcast: 4 real episode YouTube embeds\n- Medium articles: 7 distributed-systems posts (@arkjain)\n- Substack: 3 most recent weekly posts\n- Press: Harvard Kirchhausen lab page, BU Today, BU CS alumni dir\n- All real links from web research\n\nREAL LINKS UPDATED\n- Papers: real BioRxiv FIB-SEM URL, real JCB URL, real JCP 2022 URL with full title\n- Projects: 6 real GitHub repos (Raft, CloudComputing, NEXMARK, Implicit-SGD, CS411, etc.)\n- Footer: added Medium + Harvard lab page + uses target=_blank\n\nUI POLISH\n- PaperCard: link always present (real link OR \"Link forthcoming\")\n- ProjectCard: link always present (URL OR \"Internal / private\")\n- Work page: removed all \"Demo coming\" placeholders (the \"garbage\" cards)\n- Knowledge[domain]: grid adapts to single-article (no more empty column)\n- Architecture page: dropped redundant bg wrapper, added back link + section header\n- StatBadge: left border accent, monospace tracking\n- Hero: 3 CTA buttons, larger headline, tighter tracking\n\nVERIFIED\n- npm run build: clean, 33+ routes including /media + 4 YouTube embeds\n- All real URLs verified by web research agent\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "design+content"]
+  },
+  {
+    "hash": "28479c5204f2b78adc9ce545102161fab4e50fc4",
+    "date": "2026-04-26T12:03:13-05:00",
+    "type": "feat",
+    "scopes": ["og+content"],
+    "summary": "dynamic Open Graph images for every route + 6 new MDX articles (#6)",
+    "body": "DYNAMIC OG IMAGES (Next.js ImageResponse, 1200×630)\n- lib/og.tsx: shared dark-slate + neon-cyan card renderer\n- Static OG for /, /about, /research, /experience, /projects, /work,\n  /writing, /knowledge, /architecture\n- Dynamic per-post OG for /writing/[slug], /knowledge/[domain],\n  /knowledge/[domain]/[slug] — title + description rendered\n\nCONTENT\n- writing/the-fde-feedback-loop.mdx\n- knowledge/distributed-systems/raft-in-five-minutes.mdx\n- knowledge/distributed-systems/rocksdb-write-amplification.mdx\n- knowledge/math/convergence-intuition.mdx\n- knowledge/software/why-typescript-strict.mdx\n- knowledge/ai/fsdp-vs-tensor-parallel.mdx\n\nVERIFIED\n- npm run build: clean; OG endpoints serve 1200×630 PNGs\n- Playwright: confirmed Why-FDE OG renders with full design system\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "og+content"]
+  },
+  {
+    "hash": "9aeddf912830626a871c812c7f23e07efed711e1",
+    "date": "2026-04-26T11:42:26-05:00",
+    "type": "feat",
+    "scopes": ["v2"],
+    "summary": "Next.js 15 App Router + TypeScript strict migration (#5)",
+    "body": "FRAMEWORK\n- Next.js 13 → 15.5\n- React 18 → 19\n- Pages Router → App Router (app/)\n- Plain JS → TypeScript strict\n\nNEW APP TREE\n- app/layout.tsx (Person JSON-LD, Nav, Footer, OG metadataBase)\n- app/page.tsx (homepage)\n- app/about, /research, /experience, /projects, /work\n- app/writing/page + [slug]/page (server components, generateStaticParams)\n- app/knowledge/page + [domain]/page + [domain]/[slug]/page\n- app/architecture/page + flows.ts\n- app/sitemap.ts (native MetadataRoute, dynamic MDX routes)\n- app/robots.ts (native MetadataRoute)\n- app/not-found.tsx\n- app/VC, /Volunteering — server-side redirects\n\nMDX\n- Switched MdxContent.tsx to next-mdx-remote/rsc (server component)\n- lib/content.ts returns raw MDX source (RSC compiles at request time)\n\nLIB\n- lib/site.ts, lib/data.ts, lib/finance.ts, lib/content.ts → typed\n- lib/structured-data.ts (Person, Article, ScholarlyArticle factories)\n- lib/metadata.ts buildMetadata() factory typed against next/Metadata\n\nCOMPONENTS\n- components/{ui, layout, sections, seo, architecture}/*.tsx — all typed\n- Nav uses usePathname() hook with 'use client'\n- Removed unused legacy mainPage/, battery/, volunteer/ component dirs\n\nCONFIG\n- tsconfig.json with strict mode + paths alias @/*\n- types/css.d.ts for CSS side-effect imports\n- tailwind.config.js content globs updated for app/ + ts/tsx\n- .eslintrc.json disables no-html-link-for-pages (no pages/ dir)\n\nDELETED\n- pages/ (entire dir)\n- styles/*.module.css\n- styles/globals.css (moved to app/globals.css)\n\nVERIFIED\n- npm run build: 33 routes generated; static + SSG mix\n- All routes return 200 in dev (curl + Playwright)\n- Person JSON-LD on every page; ScholarlyArticle on /research\n- MDX renders identically to v1 via RSC\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "v2"]
+  },
+  {
+    "hash": "881b4e92e4a1cac11b86cf013b92f9ca40d21afe",
+    "date": "2026-04-26T11:30:02-05:00",
+    "type": "feat",
+    "scopes": ["content"],
+    "summary": "7 new MDX articles + sitemap rewrite for dynamic routes (#4)",
+    "body": "CONTENT\n- writing/o1-visa-evidence-hub.mdx (the site's mission, in public)\n- knowledge/finance/{aggregation-theory, index}.mdx\n- knowledge/physics/{why-i-left-physics, supercritical-fluids-paper}.mdx\n- knowledge/software/claude-code-as-an-os.mdx\n- knowledge/math/optimizers.mdx\n\nSITEMAP\n- pages/sitemap.xml.js now enumerates every dynamic MDX route\n- Per-file lastmod dates from frontmatter\n- Knowledge domains added as their own routes\n\nUI\n- /knowledge hub shows real per-domain article counts (filesystem-driven)\n\nBuild SSGs 4 writing posts + 7 knowledge MDX files.\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "content"]
+  },
+  {
+    "hash": "aef69506a6e0c5fb90ec083297175d2bcd5165f2",
+    "date": "2026-04-26T11:27:38-05:00",
+    "type": "feat",
+    "scopes": ["v2"],
+    "summary": "MDX content pipeline + real essays (#3)",
+    "body": "CONTENT\n- content/writing/{why-fde, sample-ai-hardware, distributed-checkpointing}.mdx\n- content/knowledge/ai/{index, spatialdino-lessons}.mdx\n- content/knowledge/distributed-systems/flink-checkpointing.mdx\n\nPIPELINE\n- lib/content.js: filesystem-backed loaders with frontmatter parsing\n- components/MdxContent.js: themed MDX renderer (headings, lists, code, blockquotes)\n- pages/writing/[slug].js → SSG via getStaticProps + getStaticPaths\n- pages/knowledge/[domain]/index.js + [slug].js for nested MDX routes\n- Homepage reads real posts (not the stubbed WRITING array)\n\nDEPS\n- gray-matter, next-mdx-remote\n\nVERIFIED\n- Build passes; 3 writing posts and 2 knowledge posts SSG'd\n- All MDX routes return 200; visual check via Playwright\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "v2"]
+  },
+  {
+    "hash": "7fee80278f62f32d0ea6050de94dab3f395f12b2",
+    "date": "2026-04-26T11:23:54-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "Foundation + v2 site overhaul (#2)",
+    "body": "* feat: foundation quick wins — license, tooling, CI, /architecture page\n\n- Apache 2.0 LICENSE, package.json → v1.0.0, project renamed arkashj-com\n- README rewritten with shields.io badges, ffmpeg recipes\n- CHANGELOG.md (Keep-a-Changelog) with v1.0.0 + v2.0.0 roadmap\n- Dependabot config (security scanning, no auto-PRs)\n- Prettier + .prettierignore + .editorconfig\n- ESLint stricter rules with Prettier integration\n- Husky + lint-staged pre-commit hook\n- next.config.js: security headers, removed ignoreDuringBuilds\n- vercel.json with caching + security headers\n- GitHub Actions CI (lint + format:check + build)\n- ASCII architecture flows in docs/architecture/site-architecture.md\n- Public /architecture page rendering all 6 flows\n- Fixed legacy unescaped apostrophes (lint errors now block builds)\n- Prettier-formatted entire codebase\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>\n\n* feat(v2): full site overhaul — pages, design system, SEO infra\n\nPAGES\n- /         home with Hero, Arc, Now, Research, Work, Projects, Knowledge, Writing\n- /about    Life Changelog timeline (17 real milestones)\n- /research 4 papers with ScholarlyArticle JSON-LD + ML stack + PyTorch issue\n- /experience 8 reverse-chrono work entries (Benmore, Harvard, ZeroSync, BCH, BU, Battery)\n- /projects 9 projects (Cattle Logic, SpatialDINO, Foundry CLI, Flink, etc.)\n- /work     4 internal tools/CLIs (Foundry, RTK, Skills, Excalidraw)\n- /writing  + [slug] index with tag filters, post page with Article JSON-LD\n- /knowledge + [domain] 6-domain hub (AI, Finance, Distributed Systems, Math, Physics, Software)\n- /404      branded not-found\n- /VC, /Volunteering → redirect to /experience and /about\n\nDESIGN SYSTEM\n- Tailwind theme: bg, surface, border, primary teal, accent neon cyan, muted\n- UI: Button, Card (glow), Badge, StatBadge\n- Sections: Hero, SectionHeader, PaperCard, ProjectCard, ExperienceCard, TimelineItem\n\nSEO\n- JsonLd component with Person/Article/ScholarlyArticle schemas\n- Meta with OG + Twitter cards + canonical URLs + <link rel=\"me\">\n- pages/sitemap.xml.js server-rendered sitemap with priority + changefreq\n- pages/robots.txt.js with sitemap pointer\n- Person JSON-LD on every page via Layout\n\nLAYOUT\n- Sticky Nav with active-route highlight + 7 links\n- Footer with site map, social, /architecture link\n- Dark theme everywhere; custom scrollbar; smooth scrolling\n\nDATA\n- lib/data.js: PAPERS, EXPERIENCE, PROJECTS, WORK_TOOLS, TIMELINE (17), KNOWLEDGE_DOMAINS, WRITING\n- lib/site.js: SITE constants, NAV_LINKS\n- Bio updated: junior at BU → Head of FDE at Benmore, Harvard Kirchhausen, 4 papers\n\nBuild passes (15 routes), lint clean (2 pre-existing legacy warnings).\nCHANGELOG updated.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>\n\n* feat(v2): finance Thesis Tracker + Trade Log, SVG favicon, screenshot ignore\n\n- /knowledge/finance now renders ThesisTracker (5 theses) + TradeLog (4 trades)\n- New components: ThesisTracker, TradeLog\n- New data module: lib/finance.js (THESES, TRADES)\n- SVG favicon (teal \"a\" on dark slate) wired through Meta\n- gitignore root-level *.png screenshots\n- All 11 routes verified live; CHANGELOG updated\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>\n\n---------\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": []
+  },
+  {
+    "hash": "3df6b13bab50990be4125fe5019ecee10741cbfb",
+    "date": "2026-04-26T11:04:25-05:00",
+    "type": "docs",
+    "scopes": [],
+    "summary": "add foundation quick-wins implementation plan",
+    "body": "",
+    "tags": ["docs"]
+  },
+  {
+    "hash": "e2c3e36c37cebad682f667d136016880d19a85e8",
+    "date": "2026-04-26T10:58:06-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "Add design spec for full website revamp",
+    "body": "Complete architecture, page inventory, SEO strategy, design system,\nand content schema for arkashj.com v2 rebuild.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": []
+  },
+  {
+    "hash": "bd6e65681566ec16abf2f3d093f132fa7e6eec7e",
+    "date": "2023-03-13T15:54:16-04:00",
+    "type": null,
+    "scopes": [],
+    "summary": "styles",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "2a3dff55f3be6ea84c7e77711e310b8c97c35c00",
+    "date": "2023-03-13T15:49:56-04:00",
+    "type": null,
+    "scopes": [],
+    "summary": "adding new projects",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "b09ce058e27141dddb1955f5debd6cbe6c38b2a8",
+    "date": "2022-12-30T15:46:34+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "Versioning untracked files",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "ab7edbd512f945e75c034f4339fd91065f98ae84",
+    "date": "2022-12-30T15:35:44+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "Versioning untracked files",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "c98086e8fc4cb56586b95be96e4090d5ab379e9e",
+    "date": "2022-12-30T15:32:02+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "Versioning untracked files",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "17be422ee20418aee7cf8644af37a70a7aecb980",
+    "date": "2022-12-30T15:05:29+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "done!",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "11123751655f58f71f522dd32d2663c9ad4f6a89",
+    "date": "2022-12-30T14:40:49+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "work experience page added",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "883df4ab2035ac6a3cb674c628e1f5d14b85bb15",
+    "date": "2022-12-30T13:59:56+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "making the VC page",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "f681be0486e8af43a06d9835fe8dd92002a3552b",
+    "date": "2022-12-30T13:51:01+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "volunteering page made as well",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "6b47003f0824c012ca6038ca87c93323f502f408",
+    "date": "2022-12-30T13:22:45+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "making the boilerplate for the volunteering page",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "14355577b84a67db0516604579b874e601408124",
+    "date": "2022-12-29T23:01:29+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "working on the volunteering page",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "ac117ea10aaaad65ea3835944b5e6689700fda14",
+    "date": "2022-12-29T17:37:07+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "debugging",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "3f3874dacf91ef9921da2bb986fc51f64e28f4b7",
+    "date": "2022-12-29T14:09:20+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "front page done",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "8b337440d3348e121ca6556684fc6911a1e1ee75",
+    "date": "2022-12-29T14:06:24+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "first page of the website is done",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "bea49172f35b250ee6bdb87914a9fddc2add02be",
+    "date": "2022-12-29T13:27:14+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "made a box for skills",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "f1d99fca509d082d88d2b8f2aa7c05a6b2216611",
+    "date": "2022-12-29T13:11:44+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "added pictures, rearranged folders",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "09e1cbdebd394c91725decbcd6c91aa7b3b1a252",
+    "date": "2022-12-29T12:53:25+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "adding skills section",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "b0c7e66bf22aca7c578c8658c40ad51b556ff8ef",
+    "date": "2022-12-29T12:00:29+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "adding headers to sections",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "bb63c2386cc4358e210bbaf444506d1bd3ac4c5c",
+    "date": "2022-12-29T11:49:54+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "added a projects section to the webiste",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "183d07781a5156f0109222bf48c7576e49e1d0ab",
+    "date": "2022-12-29T10:30:01+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "making projects card",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "1fcdfbec98574e34e186da3a0c4ed87d33f646c1",
+    "date": "2022-12-29T10:05:09+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "added pictures to the folder, making a widget for the projects section of the website",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "04278611ddcee49c0588a8d85e94e558a0fbcfd4",
+    "date": "2022-12-28T22:58:57+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "adding my project data to this page, going to make a widget tomorrow",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "f944df0d1f4623b0acc58db99d0b5be37210907f",
+    "date": "2022-12-28T20:30:37+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "adding a projects section",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "63ea996c8ed889cac44a496601c70acc3167d32d",
+    "date": "2022-12-28T20:29:54+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "finishing descripting section, adding projects now",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "848a3f1a63148c8fd6db6296169d7c0ffd791558",
+    "date": "2022-12-28T20:20:18+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "adding my picture and description on the website",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "b950360cefe21a299b4a0defd1779dc6d6b7145a",
+    "date": "2022-12-28T19:44:58+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "making a border",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "3c035f3c841dbc41cbce8bec8039f75207c08ced",
+    "date": "2022-12-28T19:39:22+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "making a border",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "417f74c54b1853a1ac07946d6feaa9ad4ca59abc",
+    "date": "2022-12-28T19:27:55+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "my picture",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "45e298b05d3935875f1c8c24ecae33bb98f07c6e",
+    "date": "2022-12-28T12:49:46+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "add code",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "f7c9aeaadbe7024124296db0dcc344da2aa3717a",
+    "date": "2022-12-28T12:49:29+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "first commit",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "21733abbb401e8fa8cbf8469e426e9ec2cd3eba6",
+    "date": "2022-12-27T12:10:28+05:30",
+    "type": null,
+    "scopes": [],
+    "summary": "Initial commit from Create Next App",
+    "body": "",
+    "tags": []
+  }
+]
