@@ -88,6 +88,10 @@ function RailItemBody({ resolved }: { resolved: ResolvedItem }) {
   )
 }
 
+const MODAL_EASE = 'cubic-bezier(0.23, 1, 0.32, 1)'
+const MODAL_ENTER_MS = 220
+const MODAL_EXIT_MS = 160
+
 function DetailModal({
   modal,
   onClose,
@@ -98,24 +102,54 @@ function DetailModal({
   weekStart: string
 }) {
   const { resolved, content, hasContent } = modal
+  const [entered, setEntered] = useState(false)
+
+  const requestClose = useCallback(() => {
+    setEntered(false)
+    window.setTimeout(onClose, MODAL_EXIT_MS)
+  }, [onClose])
+
+  useEffect(() => {
+    if (!resolved) return
+    const raf = requestAnimationFrame(() => setEntered(true))
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') requestClose()
+    }
+    document.addEventListener('keydown', handler)
+    return () => {
+      cancelAnimationFrame(raf)
+      document.removeEventListener('keydown', handler)
+    }
+  }, [resolved, requestClose])
+
   if (!resolved) return null
 
   const isYouTubeThumb = resolved.image?.includes('ytimg.com')
 
   return (
-    <>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/70 z-40 backdrop-blur-sm"
-        onClick={onClose}
+        onClick={requestClose}
         aria-hidden="true"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+        style={{
+          opacity: entered ? 1 : 0,
+          transition: `opacity ${entered ? MODAL_ENTER_MS : MODAL_EXIT_MS}ms ease-out`,
+        }}
       />
 
       {/* Modal */}
       <div
         role="dialog"
         aria-modal="true"
-        className="fixed inset-x-4 top-[5vh] bottom-[5vh] z-50 max-w-2xl mx-auto flex flex-col border border-border bg-background shadow-2xl"
+        className="relative w-full max-w-lg max-h-[78vh] flex flex-col border border-border bg-background shadow-2xl will-change-transform motion-reduce:!transform-none motion-reduce:!transition-opacity"
+        style={{
+          transformOrigin: 'center',
+          transform: entered ? 'scale(1) translateY(0)' : 'scale(0.96) translateY(8px)',
+          opacity: entered ? 1 : 0,
+          transition: `transform ${entered ? MODAL_ENTER_MS : MODAL_EXIT_MS}ms ${MODAL_EASE}, opacity ${entered ? MODAL_ENTER_MS : MODAL_EXIT_MS}ms ${MODAL_EASE}`,
+        }}
       >
         {/* Header */}
         <div className="flex items-start gap-3 p-5 border-b border-border flex-shrink-0">
@@ -150,8 +184,8 @@ function DetailModal({
             </div>
           </div>
           <button
-            onClick={onClose}
-            className="flex-shrink-0 text-subtle hover:text-text transition-colors p-1 -mr-1 -mt-1"
+            onClick={requestClose}
+            className="flex-shrink-0 text-subtle hover:text-text active:scale-[0.92] transition-[color,transform] duration-150 p-1 -mr-1 -mt-1"
             aria-label="Close"
           >
             <svg
@@ -169,7 +203,10 @@ function DetailModal({
         </div>
 
         {/* Scrollable body */}
-        <div className="overflow-y-auto flex-1 p-5 prose-modal">
+        <div
+          className="overflow-y-auto flex-1 p-5 prose-modal scroll-smooth"
+          style={{ overscrollBehavior: 'contain' }}
+        >
           {content ? (
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
@@ -245,7 +282,7 @@ function DetailModal({
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -267,16 +304,11 @@ export function WeeklyRails({
 
   useEffect(() => {
     if (!modal.open) return
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close()
-    }
-    document.addEventListener('keydown', handler)
     document.body.style.overflow = 'hidden'
     return () => {
-      document.removeEventListener('keydown', handler)
       document.body.style.overflow = ''
     }
-  }, [modal.open, close])
+  }, [modal.open])
 
   function openModal(resolved: ResolvedItem) {
     // Priority: anchor section markdown → bodyMarkdown (notes / pure-string text) → empty

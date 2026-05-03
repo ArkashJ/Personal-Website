@@ -1,9 +1,13 @@
 'use client'
 
-import { useEffect, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import type { Project, WorkTool } from '@/lib/data'
 
 type ProjectLike = Project | WorkTool
+
+const EASE = 'cubic-bezier(0.23, 1, 0.32, 1)'
+const ENTER_MS = 220
+const EXIT_MS = 160
 
 function ExternalLinkIcon() {
   return (
@@ -32,20 +36,27 @@ export default function ProjectDetailModal({
   project: ProjectLike | null
   onClose: () => void
 }) {
-  const close = useCallback(() => onClose(), [onClose])
+  const [entered, setEntered] = useState(false)
+
+  const requestClose = useCallback(() => {
+    setEntered(false)
+    window.setTimeout(onClose, EXIT_MS)
+  }, [onClose])
 
   useEffect(() => {
     if (!project) return
+    const raf = requestAnimationFrame(() => setEntered(true))
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close()
+      if (e.key === 'Escape') requestClose()
     }
     document.addEventListener('keydown', handler)
     document.body.style.overflow = 'hidden'
     return () => {
+      cancelAnimationFrame(raf)
       document.removeEventListener('keydown', handler)
       document.body.style.overflow = ''
     }
-  }, [project, close])
+  }, [project, requestClose])
 
   if (!project) return null
 
@@ -55,12 +66,16 @@ export default function ProjectDetailModal({
   const isExternal = project.href ? /^https?:\/\//.test(project.href) : false
 
   return (
-    <>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/70 z-40 backdrop-blur-sm"
-        onClick={close}
+        onClick={requestClose}
         aria-hidden="true"
+        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+        style={{
+          opacity: entered ? 1 : 0,
+          transition: `opacity ${entered ? ENTER_MS : EXIT_MS}ms ease-out`,
+        }}
       />
 
       {/* Modal */}
@@ -68,10 +83,16 @@ export default function ProjectDetailModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
-        className="fixed inset-x-4 top-[5vh] bottom-[5vh] z-50 max-w-2xl mx-auto flex flex-col border border-border bg-background shadow-2xl"
+        className="relative w-full max-w-lg max-h-[78vh] flex flex-col border border-border bg-background shadow-2xl will-change-transform motion-reduce:!transform-none motion-reduce:!transition-opacity"
+        style={{
+          transformOrigin: 'center',
+          transform: entered ? 'scale(1) translateY(0)' : 'scale(0.96) translateY(8px)',
+          opacity: entered ? 1 : 0,
+          transition: `transform ${entered ? ENTER_MS : EXIT_MS}ms ${EASE}, opacity ${entered ? ENTER_MS : EXIT_MS}ms ${EASE}`,
+        }}
       >
         {/* Header */}
-        <div className="flex items-start gap-3 p-5 border-b border-border flex-shrink-0">
+        <div className="flex items-start gap-3 px-5 py-4 border-b border-border flex-shrink-0">
           <div className="min-w-0 flex-1">
             <h2
               id="project-modal-title"
@@ -90,7 +111,7 @@ export default function ProjectDetailModal({
                   href={project.href}
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noopener noreferrer' : undefined}
-                  className="font-mono text-[10px] uppercase tracking-wider text-primary hover:text-accent flex items-center gap-1 transition-colors"
+                  className="font-mono text-[10px] uppercase tracking-wider text-primary hover:text-accent flex items-center gap-1 transition-colors duration-150"
                 >
                   View on GitHub <ExternalLinkIcon />
                 </a>
@@ -98,8 +119,8 @@ export default function ProjectDetailModal({
             </div>
           </div>
           <button
-            onClick={close}
-            className="flex-shrink-0 text-subtle hover:text-text transition-colors p-1 -mr-1 -mt-1"
+            onClick={requestClose}
+            className="flex-shrink-0 text-subtle hover:text-text active:scale-[0.92] transition-[color,transform] duration-150 p-1 -mr-1 -mt-1"
             aria-label="Close"
           >
             <svg
@@ -117,7 +138,10 @@ export default function ProjectDetailModal({
         </div>
 
         {/* Scrollable body */}
-        <div className="overflow-y-auto flex-1 p-5 space-y-5">
+        <div
+          className="overflow-y-auto flex-1 px-5 py-5 space-y-5 scroll-smooth"
+          style={{ overscrollBehavior: 'contain' }}
+        >
           {project.description && (
             <p className="text-sm text-muted leading-relaxed whitespace-pre-line">
               {project.description}
@@ -176,12 +200,12 @@ export default function ProjectDetailModal({
           )}
 
           {project.href && (
-            <div className="pt-2">
+            <div className="pt-1">
               <a
                 href={project.href}
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
-                className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary hover:text-accent border border-primary/60 hover:border-accent px-3 py-2 transition-colors"
+                className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary hover:text-accent active:scale-[0.97] border border-primary/60 hover:border-accent px-3 py-2 transition-[color,border-color,transform] duration-150"
               >
                 View on GitHub <ExternalLinkIcon />
               </a>
@@ -195,6 +219,6 @@ export default function ProjectDetailModal({
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
