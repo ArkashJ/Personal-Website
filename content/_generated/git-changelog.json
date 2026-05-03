@@ -1,5 +1,14 @@
 [
   {
+    "hash": "1067268f7086dd79a74865ce5adacfbae8db406e",
+    "date": "2026-05-03T13:28:37-05:00",
+    "type": "refactor",
+    "scopes": [],
+    "summary": "dedupe overhaul code (cache weekly logs, share ExternalLinkIcon, extract ISO-week math)",
+    "body": "Applied from /ce-simplify-code review:\n- Cache getAllWeeklyLogs() at module scope (eliminates ~3 redundant FS scans\n  per /weekly + /changelog render)\n- Memoize getAllItems() per log in app/weekly/page.tsx (was called 3x per log)\n- Extract components/ui/ExternalLinkIcon.tsx; remove inline copies in\n  CommitsSidebar + GitChangelog\n- Extract lib/weekly-dates.ts (getIsoWeek, isoWeekSlug, weekToRange);\n  remove duplicate copy in admin/weekly/actions.ts\n- Export RAIL_ORDER + RAIL_DEFAULT_KIND from lib/weekly-types.ts; admin\n  form imports instead of redeclaring\n- Add CommitType union + 'weekly' to KNOWN_TYPES in lib/git-commit.ts;\n  CommitsSidebar imports it\n- Replace TOCTOU existsSync->read with try/read/catch ENOENT in actions.ts\n- Add instanceof Error guard for EROFS check + changelog-md catch blocks\n- Drop redundant sessionClaims['email'] fallback (identical to .email)\n- Drop dead WHAT-comments + no-op divide-y-0 + unused flex-shrink-0 from\n  CommitsSidebar",
+    "tags": ["refactor"]
+  },
+  {
     "hash": "195d2c4531f3c69367d95bc45121bd5849088bd1",
     "date": "2026-05-03T13:20:13-05:00",
     "type": "chore",
