@@ -1,5 +1,14 @@
 [
   {
+    "hash": "e795210f06f0d53c9bbc3c7fbf87c5cec7683a20",
+    "date": "2026-05-03T18:11:31-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "move TL;DR bullets out of modal onto slug + day pages",
+    "body": "Per-item bullets now render in a single TL;DR section above the search/grid\non /weekly/<slug> and /weekly/<slug>/<date>, instead of inside the click-\nthrough modal. Each item shows its date, source, and title with its bullets\nvisible at a glance — no click required.\n\n- New WeeklyBullets server component (components/weekly/WeeklyBullets.tsx)\n  renders the digest, supports an optional filterDate for the day pages.\n- WeeklyGrid drops the in-modal TL;DR block; modal returns to anchor +\n  notes content only.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
     "hash": "8a99c26c638908a1e4b5da1fa98a9d88342fe137",
     "date": "2026-05-03T18:04:00-05:00",
     "type": "chore",

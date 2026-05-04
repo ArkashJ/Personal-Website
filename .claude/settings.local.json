@@ -44,7 +44,11 @@
       "Bash(mv ~/.claude/settings.json.tmp ~/.claude/settings.json)",
       "Bash(rtk tsc *)",
       "Bash(rtk prettier *)",
-      "mcp__playwright__browser_click"
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_console_messages",
+      "Bash(node *)",
+      "Bash(chmod +x /Users/arkashjain/.claude/statusline.sh)",
+      "Bash(/Users/arkashjain/.claude/statusline.sh)"
     ]
   }
 }
