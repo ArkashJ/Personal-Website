@@ -1,5 +1,14 @@
 [
   {
+    "hash": "fa158712195fae4f4fde5404e3468bb3e272764f",
+    "date": "2026-05-07T16:47:15-05:00",
+    "type": "refactor",
+    "scopes": [],
+    "summary": "rename public/images → public/assets; relocate dev screenshots",
+    "body": "Move all site media (logos, files, profile, weekly, receipts, legacy) from\npublic/images/ to public/assets/ and update every reference across lib/,\ncomponents/, app/, content/, plus CLAUDE.md and README.md conventions.\nAlso relocate 19 orphan root-level JPG dev screenshots into docs/screenshots/.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["refactor"]
+  },
+  {
     "hash": "b9efdfc0f9639e51579b27530d9bdb181fb12228",
     "date": "2026-05-07T16:39:51-05:00",
     "type": "chore",
@@ -23,6 +32,15 @@
     "type": null,
     "scopes": [],
     "summary": "bun",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "2d4af33d176cfd0d0e59db428ecc989f25cbc5bd",
+    "date": "2026-05-07T14:18:51-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "more docs",
     "body": "",
     "tags": []
   },
