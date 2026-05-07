@@ -15,6 +15,11 @@ const nextConfig = {
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
+  productionBrowserSourceMaps: false,
+  experimental: {
+    // Tree-shake heavy barrel packages (smaller Server/Client bundles)
+    optimizePackageImports: ['lucide-react', 'cmdk', '@clerk/nextjs'],
+  },
   async headers() {
     return [
       {
@@ -25,6 +30,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Loose PDF at repo root (pre–image consolidation) — keep old URL working
+      {
+        source: '/2025.12.31.697247.full.pdf',
+        destination: '/images/files/papers/2025.12.31.697247.full.pdf',
+        permanent: true,
+      },
       {
         source: '/experience',
         destination: '/about#career',

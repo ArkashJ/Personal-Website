@@ -335,11 +335,11 @@ Also active on **[Medium @arkjain](https://medium.com/@arkjain)** — 7 distribu
 
 ## Verifiable credentials
 
-PDF originals are committed to the repository under `public/images/files/` and served from the website at `/credentials`:
+PDF originals are committed to the repository under `public/assets/files/` and served from the website at `/credentials`:
 
-- **[BA — Mathematics & CS, Boston University](https://www.arkashj.com/images/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf)**
-- **[MS — Computer Science, Boston University](https://www.arkashj.com/images/files/arkash-jain-master-of-science-computer-science.pdf)**
-- **[Harvard University ID](https://www.arkashj.com/images/files/arkash-jain-harvard-university-id.pdf)**
+- **[BA — Mathematics & CS, Boston University](https://www.arkashj.com/assets/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf)**
+- **[MS — Computer Science, Boston University](https://www.arkashj.com/assets/files/arkash-jain-master-of-science-computer-science.pdf)**
+- **[Harvard University ID](https://www.arkashj.com/assets/files/arkash-jain-harvard-university-id.pdf)**
 
 The full credentials page including external profile cross-references (BU CS, Kirchhausen Lab, ORCID, PubMed) lives at [arkashj.com/credentials](https://www.arkashj.com/credentials).
 
@@ -354,14 +354,14 @@ The remainder of this README is for engineers reading the source. Skip if you on
 ```bash
 git clone https://github.com/ArkashJ/Personal-Website.git
 cd Personal-Website
-npm install
-npm run dev          # http://localhost:3000
+bun install
+bun run dev          # http://localhost:3000 (Turbopack)
 ```
 
 Production build:
 
 ```bash
-npm run build && npm run start
+bun run build && bun run start
 ```
 
 ### Stack
@@ -563,13 +563,13 @@ A Clerk-gated owner-only editor at `/admin/weekly` (allowlisted to `process.env.
 ### Common commands
 
 ```bash
-npm run dev                # Dev server
-npm run build              # Production build (must pass before push)
-npm run start              # Serve the built output
-npm run lint               # ESLint
-npm run lint:fix           # ESLint --fix
-npm run format             # Prettier write
-npm run format:check       # Prettier check (CI uses this)
+bun run dev                # Dev server (Turbopack)
+bun run build              # Production build (must pass before push)
+bun run start              # Serve the built output
+bun run lint               # ESLint
+bun run lint:fix           # ESLint --fix
+bun run format             # Prettier write
+bun run format:check       # Prettier check (CI uses this)
 
 vercel deploy --prod --yes # Manual production deploy
 
@@ -594,7 +594,7 @@ gh pr merge --squash --delete-branch
 | New learning                                     | `lib/learnings.ts`.                                                                                                    |
 | New nav link                                     | `NAV_LINKS` in `lib/site.ts`.                                                                                          |
 | New course                                       | `lib/coursework.ts` + optional MDX in `content/coursework/`.                                                           |
-| New verifiable credential                        | Drop PDF in `public/images/files/` + entry in `app/credentials/page.tsx`.                                              |
+| New verifiable credential                        | Drop PDF in `public/assets/files/` + entry in `app/credentials/page.tsx`.                                              |
 
 ### Embedding social posts in MDX
 
@@ -624,10 +624,10 @@ Because this site is the central evidence hub for an O-1 visa application, SEO i
 
 ### Image conventions
 
-All site images live under **`public/images/`** as of v2.3.0. References:
+All site images live under **`public/assets/`**. References:
 
-- Static assets in MDX or JSX: `/images/<subpath>/<file>`.
-- TypeScript imports for static optimization: `import x from '@/public/images/...'`.
+- Static assets in MDX or JSX: `/assets/<subpath>/<file>`.
+- TypeScript imports for static optimization: `import x from '@/public/assets/...'`.
 - Dev / exploratory captures go in `docs/screenshots/` (gitignored except docs/).
 
 ### ffmpeg demo recipes

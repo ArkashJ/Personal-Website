@@ -10,6 +10,11 @@ node_modules
 /.pnp
 .pnp.js
 
+# Lockfiles from other package managers (this repo is Bun-only; canonical lock is bun.lock)
+/package-lock.json
+/pnpm-lock.yaml
+/yarn.lock
+
 # testing
 /coverage
 

@@ -88,7 +88,7 @@ const GitHubActivity = () => (
           Commit-tracker · 60d
         </p>
         <Image
-          src="/images/receipts/github-activity.png"
+          src="/assets/receipts/github-activity.png"
           alt="Personal GitHub commit-tracker showing 624 commits in 30 days, 186 in the last 7"
           width={794}
           height={714}

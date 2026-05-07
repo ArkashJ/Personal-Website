@@ -2,31 +2,31 @@ import Image from 'next/image'
 
 const LOGO_MAP: Record<string, { src: string; alt: string }> = {
   'Boston University': {
-    src: '/images/logos/boston-university.svg',
+    src: '/assets/logos/boston-university.svg',
     alt: 'Boston University seal',
   },
   Harvard: {
-    src: '/images/logos/harvard.svg',
+    src: '/assets/logos/harvard.svg',
     alt: 'Harvard University coat of arms',
   },
   "Boston Children's Hospital": {
-    src: '/images/logos/boston-childrens-hospital.svg',
+    src: '/assets/logos/boston-childrens-hospital.svg',
     alt: "Boston Children's Hospital logo",
   },
   NSF: {
-    src: '/images/logos/nsf.svg',
+    src: '/assets/logos/nsf.svg',
     alt: 'National Science Foundation logo',
   },
   'Battery Ventures': {
-    src: '/images/logos/battery-ventures.png',
+    src: '/assets/logos/battery-ventures.png',
     alt: 'Battery Ventures logo',
   },
   Benmore: {
-    src: '/images/logos/benmore.png',
+    src: '/assets/logos/benmore.png',
     alt: 'Benmore Technologies logo',
   },
   ZeroSync: {
-    src: '/images/logos/zerosync.svg',
+    src: '/assets/logos/zerosync.svg',
     alt: 'ZeroSync logo',
   },
 }

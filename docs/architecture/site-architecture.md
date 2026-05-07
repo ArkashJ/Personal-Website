@@ -200,7 +200,7 @@ Live at: https://www.arkashj.com/architecture
               │
               └─► .husky/pre-commit
                        │
-                       └─► lint-staged
+                       └─► bunx lint-staged
                               ├─ ESLint --fix  (*.ts, *.tsx, *.js, *.jsx)
                               ├─ Prettier      (*.ts, *.tsx, *.js, *.jsx,
                               │                 *.json, *.md, *.mdx)
@@ -215,14 +215,14 @@ Live at: https://www.arkashj.com/architecture
                                   Pull Request              Push to main
                                          │                        │
                                   ci.yml runs           Vercel webhook
-                                  ┌──────────────┐      ┌──────────────────┐
-                                  │ 1. npm ci    │      │ next build       │
-                                  │ 2. eslint    │      │ Static → SSG     │
-                                  │ 3. prettier  │      │ Dynamic → ISR    │
-                                  │ 4. build     │      │ Deploy to Edge   │
-                                  │ 5. [PASS/   │      └──────────────────┘
-                                  │    BLOCK PR]│
-                                  └──────────────┘
+                                  ┌──────────────────┐      ┌──────────────────┐
+                                  │ 1. bun install   │      │ next build       │
+                                  │    --frozen-lock │      │ Static → SSG     │
+                                  │ 2. eslint        │      │ Dynamic → ISR    │
+                                  │ 3. prettier      │      │ Deploy to Edge   │
+                                  │ 4. build         │      └──────────────────┘
+                                  │ 5. [PASS/BLOCK PR]│
+                                  └──────────────────┘
 ```
 
 ## Flow 6 — Component Hierarchy

@@ -1,5 +1,50 @@
 [
   {
+    "hash": "b9efdfc0f9639e51579b27530d9bdb181fb12228",
+    "date": "2026-05-07T16:39:51-05:00",
+    "type": "chore",
+    "scopes": [],
+    "summary": "document Bun-only toolchain and ignore foreign lockfiles",
+    "body": "- Gitignore root package-lock, pnpm-lock, and yarn.lock beside bun.lock\n- CLAUDE: note ignored lockfiles for non-Bun installs\n- HANDOFF, TODO, HANDOFF-NEXT-SESSION, site-architecture: bun commands\n- Foundation plan: Bun CI/Vercel/Husky snippets + Flow 5 diagrams\n- Build scripts: clarify Bun-driven predev/prebuild hooks\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+    "tags": ["chore"]
+  },
+  {
+    "hash": "0fce065ab69443e25c24a7799f70dd88bd968708",
+    "date": "2026-05-07T16:35:42-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "bun",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "adf0326cc2799035be65b5a78dfa6823ad7c8d87",
+    "date": "2026-05-07T16:35:30-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "bun",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "d5779b890fb19b491b0ac26bb4c4c6dd80599ef5",
+    "date": "2026-05-03T18:30:18-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "reorder slug pages — cards → TL;DR → timeline; add May 2 bullets",
+    "body": "- New WeeklyTimeline component merges per-week git commits with the\n  hand-curated `changelog` frontmatter into one date-sorted timeline\n  rail. Smaller font (text-[11px]) and a left-rule with dot markers.\n- Slug + day pages now render: cards first, TL;DR after, timeline at\n  the bottom. The standalone Notes-from-this-week list is gone.\n- Added 25 TL;DR bullets across the five W18 May-2 items (Stripe\n  Sessions keynote, Odd Lots Taiwan/METR/Dinosaurs, Ackman PSUS) so the\n  digest covers the whole week, not just May 3.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
+    "hash": "881a3e8668da1e7180094f59d43e78a2927b568d",
+    "date": "2026-05-03T18:26:09-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "May 4 finds — RTK token killer, context-mode, Compound Engineering plugin",
+    "body": "Three additions to W19 (2026-05-04) under the built rail with anchored\nprose, bullets, and inline images, plus a featured banner on the home\nlinking to the day page.\n\n- RTK (rust-token-killer): real stats from running it across this codebase\n  — 13,454 commands, 17.9M tokens saved (35.9%), avg 4.0s. rtk.png moved\n  to /public/images/weekly/rtk-stats.png and surfaced as the card image.\n- context-mode (mksglu): MCP sandbox + per-project SQLite, hooks into\n  PreToolUse/PostToolUse/PreCompact/SessionStart, 11 MCP tools, 98%\n  context reduction (315 KB → 5.4 KB). Install via /plugin marketplace.\n- Compound Engineering plugin (Every): 37 skills + 51 agents, /ce-setup\n  reports v3.4.1 green across 7/7 tools and 1/1 skills.\n\nNew tags added to W19 frontmatter for each. Banner pinned with priority 8\nthrough 2026-06-15.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
     "hash": "e795210f06f0d53c9bbc3c7fbf87c5cec7683a20",
     "date": "2026-05-03T18:11:31-05:00",
     "type": "feat",

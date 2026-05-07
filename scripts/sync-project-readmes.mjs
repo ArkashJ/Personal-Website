@@ -1,10 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 // Build-time generator: fetches each public-project README from GitHub via the
 // `gh` CLI and snapshots it under content/projects/<slug>.md so the per-project
 // detail page can render the canonical README at the bottom without runtime
 // network access.
 //
-// Run automatically via the `prebuild` hook in package.json after the
+// Run automatically via Bun-driven `prebuild` in package.json after the
 // changelog sync. Failures are logged and skipped — never fatal — so a
 // missing repo, rate-limit, or offline build still produces a green build.
 
@@ -33,11 +33,11 @@ const REPOS = {
 }
 
 function fetchReadme(ownerRepo) {
-  const b64 = execFileSync(
-    'gh',
-    ['api', `repos/${ownerRepo}/readme`, '--jq', '.content'],
-    { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] }
-  )
+  const b64 = execFileSync('gh', ['api', `repos/${ownerRepo}/readme`, '--jq', '.content'], {
+    encoding: 'utf8',
+    maxBuffer: 16 * 1024 * 1024,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
   // The .content field is base64 with embedded newlines — Buffer handles those.
   return Buffer.from(b64.trim(), 'base64').toString('utf8')
 }
