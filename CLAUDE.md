@@ -137,12 +137,12 @@ MDX files are picked up automatically via `lib/content.ts`. Frontmatter contract
 
 ## Image conventions
 
-**All site images and downloadable PDFs served as static media live under `public/images/`** — do not add loose image/PDF files at `public/` root (favicon, crawler manifests, and verification/HTML decks excepted).
+**All site images and downloadable PDFs served as static media live under `public/assets/`** — do not add loose image/PDF files at `public/` root (favicon, crawler manifests, and verification/HTML decks excepted).
 
 ```
 public/
 ├── favicon.svg               # Next.js favicon convention — stays at root
-├── images/
+├── assets/
 │   ├── profile.jpeg          # Author photo (used in <TimelineItem> + Person JSON-LD only — NOT the OG share image)
 │   ├── logos/                # Institution SVGs (BU, Harvard, BCH, NSF)
 │   ├── files/                # Verifiable PDF credentials
@@ -159,8 +159,8 @@ public/
 
 Reference rules:
 
-- Static assets in MDX or JSX: `/images/<subpath>/<file>`.
-- TypeScript imports for static optimization: `import x from '@/public/images/...'`.
+- Static assets in MDX or JSX: `/assets/<subpath>/<file>`.
+- TypeScript imports for static optimization: `import x from '@/public/assets/...'`.
 - Dev screenshots and exploratory captures go in `docs/screenshots/` (gitignored except docs/).
 
 ## Adding content (cheatsheet)
@@ -180,8 +180,8 @@ Reference rules:
 | New learning                                     | `lib/learnings.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | New nav link                                     | `NAV_LINKS` in `lib/site.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | New course                                       | `lib/coursework.ts` + optional MDX in `content/coursework/`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| New verifiable credential                        | Drop PDF in `public/images/files/` + entry in `app/credentials/page.tsx`.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Supplementary paper / journal PDF                | `public/images/files/papers/` — link from MDX or `lib/data.ts` as `/images/files/papers/<file>.pdf`.                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| New verifiable credential                        | Drop PDF in `public/assets/files/` + entry in `app/credentials/page.tsx`.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Supplementary paper / journal PDF                | `public/assets/files/papers/` — link from MDX or `lib/data.ts` as `/assets/files/papers/<file>.pdf`.                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ## SEO infrastructure
 

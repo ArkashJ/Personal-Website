@@ -1,5 +1,32 @@
 [
   {
+    "hash": "b9efdfc0f9639e51579b27530d9bdb181fb12228",
+    "date": "2026-05-07T16:39:51-05:00",
+    "type": "chore",
+    "scopes": [],
+    "summary": "document Bun-only toolchain and ignore foreign lockfiles",
+    "body": "- Gitignore root package-lock, pnpm-lock, and yarn.lock beside bun.lock\n- CLAUDE: note ignored lockfiles for non-Bun installs\n- HANDOFF, TODO, HANDOFF-NEXT-SESSION, site-architecture: bun commands\n- Foundation plan: Bun CI/Vercel/Husky snippets + Flow 5 diagrams\n- Build scripts: clarify Bun-driven predev/prebuild hooks\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+    "tags": ["chore"]
+  },
+  {
+    "hash": "0fce065ab69443e25c24a7799f70dd88bd968708",
+    "date": "2026-05-07T16:35:42-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "bun",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "adf0326cc2799035be65b5a78dfa6823ad7c8d87",
+    "date": "2026-05-07T16:35:30-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "bun",
+    "body": "",
+    "tags": []
+  },
+  {
     "hash": "d5779b890fb19b491b0ac26bb4c4c6dd80599ef5",
     "date": "2026-05-03T18:30:18-05:00",
     "type": "feat",

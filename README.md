@@ -335,11 +335,11 @@ Also active on **[Medium @arkjain](https://medium.com/@arkjain)** — 7 distribu
 
 ## Verifiable credentials
 
-PDF originals are committed to the repository under `public/images/files/` and served from the website at `/credentials`:
+PDF originals are committed to the repository under `public/assets/files/` and served from the website at `/credentials`:
 
-- **[BA — Mathematics & CS, Boston University](https://www.arkashj.com/images/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf)**
-- **[MS — Computer Science, Boston University](https://www.arkashj.com/images/files/arkash-jain-master-of-science-computer-science.pdf)**
-- **[Harvard University ID](https://www.arkashj.com/images/files/arkash-jain-harvard-university-id.pdf)**
+- **[BA — Mathematics & CS, Boston University](https://www.arkashj.com/assets/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf)**
+- **[MS — Computer Science, Boston University](https://www.arkashj.com/assets/files/arkash-jain-master-of-science-computer-science.pdf)**
+- **[Harvard University ID](https://www.arkashj.com/assets/files/arkash-jain-harvard-university-id.pdf)**
 
 The full credentials page including external profile cross-references (BU CS, Kirchhausen Lab, ORCID, PubMed) lives at [arkashj.com/credentials](https://www.arkashj.com/credentials).
 
@@ -594,7 +594,7 @@ gh pr merge --squash --delete-branch
 | New learning                                     | `lib/learnings.ts`.                                                                                                    |
 | New nav link                                     | `NAV_LINKS` in `lib/site.ts`.                                                                                          |
 | New course                                       | `lib/coursework.ts` + optional MDX in `content/coursework/`.                                                           |
-| New verifiable credential                        | Drop PDF in `public/images/files/` + entry in `app/credentials/page.tsx`.                                              |
+| New verifiable credential                        | Drop PDF in `public/assets/files/` + entry in `app/credentials/page.tsx`.                                              |
 
 ### Embedding social posts in MDX
 
@@ -624,10 +624,10 @@ Because this site is the central evidence hub for an O-1 visa application, SEO i
 
 ### Image conventions
 
-All site images live under **`public/images/`** as of v2.3.0. References:
+All site images live under **`public/assets/`**. References:
 
-- Static assets in MDX or JSX: `/images/<subpath>/<file>`.
-- TypeScript imports for static optimization: `import x from '@/public/images/...'`.
+- Static assets in MDX or JSX: `/assets/<subpath>/<file>`.
+- TypeScript imports for static optimization: `import x from '@/public/assets/...'`.
 - Dev / exploratory captures go in `docs/screenshots/` (gitignored except docs/).
 
 ### ffmpeg demo recipes

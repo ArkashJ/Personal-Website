@@ -859,11 +859,11 @@ export const TIMELINE: TimelineEntry[] = [
     links: [
       {
         label: 'BA degree (PDF)',
-        href: '/images/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf',
+        href: '/assets/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf',
       },
       {
         label: 'MS degree (PDF)',
-        href: '/images/files/arkash-jain-master-of-science-computer-science.pdf',
+        href: '/assets/files/arkash-jain-master-of-science-computer-science.pdf',
       },
       {
         label: 'Graduation post (LinkedIn)',
@@ -893,7 +893,7 @@ export const TIMELINE: TimelineEntry[] = [
         label: 'Kirchhausen Lab profile',
         href: 'https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs',
       },
-      { label: 'Harvard ID (PDF)', href: '/images/files/arkash-jain-harvard-university-id.pdf' },
+      { label: 'Harvard ID (PDF)', href: '/assets/files/arkash-jain-harvard-university-id.pdf' },
     ],
     slug: 'harvard-kirchhausen',
   },
