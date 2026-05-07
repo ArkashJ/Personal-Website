@@ -1,6 +1,6 @@
 # HANDOFF — arkashj.com
 
-> Last updated: 2026-04-26
+> Last updated: 2026-05-07
 > Owner: Arkash Jain (`arkash@benmore.tech`)
 > Repo: `Personal-Website` · Live: https://www.arkashj.com
 
@@ -21,15 +21,15 @@ Design and SEO decisions are made through that lens. If a page can't be defended
 
 ## 2. Current state at a glance
 
-|              |                                                                                                                                  |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| Live URL     | https://www.arkashj.com (custom domain)                                                                                          |
-| Preview URLs | Vercel auto-generates per branch                                                                                                 |
-| Stack        | Next.js **15** App Router · React **19** · TypeScript strict · Tailwind **v3** · MDX (`next-mdx-remote/rsc`) · Geist Sans + Mono |
-| Routes       | ~50 (static + dynamic MDX + per-route OG image endpoints)                                                                        |
-| Deploy       | Vercel auto-deploys `main` via GitHub integration                                                                                |
-| Tests        | None configured (build + lint gate only)                                                                                         |
-| License      | Apache 2.0                                                                                                                       |
+|              |                                                                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Live URL     | https://www.arkashj.com (custom domain)                                                                                                                                               |
+| Preview URLs | Vercel auto-generates per branch                                                                                                                                                      |
+| Stack        | Next.js **15** App Router · React **19** · TypeScript strict · Tailwind **v3** · MDX (`next-mdx-remote/rsc`) · Geist Sans + Mono · **Bun** (installs + scripts; committed `bun.lock`) |
+| Routes       | ~50 (static + dynamic MDX + per-route OG image endpoints)                                                                                                                             |
+| Deploy       | Vercel auto-deploys `main` via GitHub integration                                                                                                                                     |
+| Tests        | None configured (build + lint gate only)                                                                                                                                              |
+| License      | Apache 2.0                                                                                                                                                                            |
 
 Tagged `v1.0.0` is the legacy Pages Router snapshot. Everything since is the v2 App Router rebuild — see `CHANGELOG.md` for the full ship log.
 
@@ -48,7 +48,7 @@ Personal-Website/
 └── types/          # Shared TypeScript types.
 ```
 
-Top-level config: `next.config.js`, `tailwind.config.js`, `tsconfig.json`, `vercel.json`, `.eslintrc.json`, `.prettierrc`.
+Top-level config: `next.config.js`, `tailwind.config.js`, `tsconfig.json`, `vercel.json`, `bunfig.toml`, `bun.lock`, `.eslintrc.json`, `.prettierrc`.
 
 ### `app/` — routes
 
@@ -189,12 +189,13 @@ The site is engineered to be the canonical answer for "Arkash Jain" across both 
 ## 8. Common commands
 
 ```bash
-npm run dev              # http://localhost:3000
-npm run build            # Production build (must pass — no ignoreDuringBuilds anymore)
-npm run lint             # ESLint
-npm run lint:fix         # ESLint --fix
-npm run format           # Prettier write
-npm run format:check     # Prettier check (CI gate)
+bun install              # once per clone / after dependency changes
+bun run dev              # http://localhost:3000 (Turbopack)
+bun run build            # Production build (must pass — no ignoreDuringBuilds anymore)
+bun run lint             # ESLint
+bun run lint:fix         # ESLint --fix
+bun run format           # Prettier write
+bun run format:check     # Prettier check (CI gate)
 
 vercel deploy            # Preview deploy
 vercel deploy --prod     # Production deploy (Vercel bot also auto-deploys main)
@@ -203,7 +204,7 @@ gh pr create             # Open PR
 gh pr merge --squash     # Merge
 ```
 
-Pre-commit: Husky + lint-staged runs `next lint --fix --file` and `prettier --write` on staged files.
+Pre-commit: Husky + **bunx** lint-staged runs `next lint --fix --file` and `prettier --write` on staged files.
 
 ---
 

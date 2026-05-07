@@ -1,0 +1,7 @@
+# Bun configuration — https://bun.sh/docs/runtime/bunfig
+#
+# Keep install behavior predictable across dev machines, CI, and Vercel.
+
+[install]
+# Husky registers git hooks via postinstall; allow only packages that need it.
+trustedDependencies = ["husky"]

@@ -6,7 +6,7 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 - **Site**: [arkashj.com](https://www.arkashj.com) — Arkash Jain's personal website + O-1 visa evidence hub.
 - **Stack**: Next.js 15.5 App Router · React 19 · TypeScript strict · Tailwind CSS 3 · MDX (RSC).
-- **Toolchain**: **Bun** for installs and repo scripts (`bun install`, `bun run …`). Vercel and CI use the committed `bun.lock`; the Node.js runtime still executes the built Next.js app.
+- **Toolchain**: **Bun** for installs and repo scripts (`bun install`, `bun run …`, `bunx …`). Vercel and CI consume the committed **`bun.lock`** (regenerate with `bun install` after any `package.json` edit). The **Node.js 22** runtime still executes the built Next.js app on Vercel. Repo root **`bunfig.toml`** sets `trustedDependencies` so Husky’s lifecycle scripts can run; CI caches `~/.bun/install/cache` for faster installs.
 - **Deployment**: Vercel (auto-deploy from `main`).
 - **Lint errors are NOT ignored** during builds (was true on legacy v1; current `next.config.js` does not set `ignoreDuringBuilds`).
 - **No test runner is configured.** CI runs `lint` + `format:check` + `build` only.
@@ -25,7 +25,9 @@ bun run format          # Prettier write
 bun run format:check    # Prettier check (CI uses this)
 ```
 
-A Husky pre-commit hook runs `lint-staged` (Prettier + ESLint on staged files).
+A Husky pre-commit hook runs **`bunx lint-staged`** (Prettier + ESLint on staged files).
+
+**Dependabot / manual dependency bumps:** merge the version change, then run **`bun install`** and commit the updated **`bun.lock`** — do not hand-edit the lockfile.
 
 ## Architecture
 
