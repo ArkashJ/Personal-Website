@@ -201,9 +201,9 @@ and returns the same static file → must still 200.
 
 ## E. Known issues / build quirks
 
-- **`app/api/ce-plan/posts/`** exists in the working tree. It is a leftover from an older session and is not part of the three upgrades above. Confirm with `ls app/api/ce-plan/posts/`. Read its contents before touching — if it is partial / unused and breaks `npm run build`, delete it and note the deletion. Do not delete blindly.
-- **OpenGraph image for `/ai-hardware-stack`** — there is no `app/ai-hardware-stack/opengraph-image.tsx` yet. If `npm run build` complains about a missing OG route or fails to prerender the new page, that is the cause. Fix or note depending on severity.
-- **Dev server port** — the user's dev server runs on port 3000. Use a different port (e.g. `npm run dev -- -p 3030`) for verification so you do not collide.
+- **`app/api/ce-plan/posts/`** exists in the working tree. It is a leftover from an older session and is not part of the three upgrades above. Confirm with `ls app/api/ce-plan/posts/`. Read its contents before touching — if it is partial / unused and breaks **`bun run build`**, delete it and note the deletion. Do not delete blindly.
+- **OpenGraph image for `/ai-hardware-stack`** — there is no `app/ai-hardware-stack/opengraph-image.tsx` yet. If **`bun run build`** complains about a missing OG route or fails to prerender the new page, that is the cause. Fix or note depending on severity.
+- **Dev server port** — the user's dev server runs on port 3000. Use a different port (e.g. **`bun run dev -- -p 3030`**) for verification so you do not collide.
 - **Untracked files** — `app/ai-hardware-stack/page.tsx` and `components/sections/ProjectDetailModal.tsx` are NOT yet committed. They show up under `git status` as untracked. Do not stash or delete them.
 
 ---
@@ -215,11 +215,11 @@ Run these before doing anything else, in this order:
 ```
 git status
 git log --oneline -10
-npm run lint
-npm run build
+bun run lint
+bun run build
 ```
 
-If `npm run build` fails, the most likely culprits are listed in section E. Triage in this order: (1) `app/api/ce-plan/posts/` stray files, (2) missing OG image route for `/ai-hardware-stack`, (3) anything else surfaced by the error.
+If **`bun run build`** fails, the most likely culprits are listed in section E. Triage in this order: (1) `app/api/ce-plan/posts/` stray files, (2) missing OG image route for `/ai-hardware-stack`, (3) anything else surfaced by the error.
 
 ---
 

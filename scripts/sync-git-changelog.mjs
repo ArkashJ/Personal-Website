@@ -5,7 +5,7 @@
 //
 // Output: content/_generated/git-changelog.json
 //
-// Run automatically via the `predev` and `prebuild` hooks in package.json.
+// Run automatically via Bun-driven `predev` and `prebuild` hooks in package.json.
 
 import { execSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'

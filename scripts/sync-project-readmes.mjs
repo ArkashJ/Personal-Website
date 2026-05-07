@@ -4,7 +4,7 @@
 // detail page can render the canonical README at the bottom without runtime
 // network access.
 //
-// Run automatically via the `prebuild` hook in package.json after the
+// Run automatically via Bun-driven `prebuild` in package.json after the
 // changelog sync. Failures are logged and skipped — never fatal — so a
 // missing repo, rate-limit, or offline build still produces a green build.
 

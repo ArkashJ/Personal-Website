@@ -8,6 +8,8 @@
 
 **Tech Stack:** Next.js 13, React 18, Tailwind CSS, ESLint, Prettier, Husky, lint-staged, GitHub Actions, Vercel CLI
 
+**Current repo (post-foundation):** Installs and scripts use **Bun** — committed **`bun.lock`**, **`bun install`**, **`bun run …`**, **`bunx …`**. Tasks below retain original **`npm`** / **`npx`** / **`pnpm`** wording where it matches the 2026-04 session; prefer Bun equivalents when reproducing today. CI and `vercel.json` in the live tree match **`.github/workflows/ci.yml`** and root **`vercel.json`** (Bun).
+
 ---
 
 ## ASCII Architecture Flows
@@ -225,14 +227,14 @@ These diagrams are the canonical reference for the site. They live in `docs/arch
                     Pull Request              Push to main
                            │                      │
                     ci.yml runs           Vercel webhook
-                    ┌──────────────┐      ┌──────────────────┐
-                    │ 1. pnpm i    │      │ next build       │
-                    │ 2. tsc       │      │ Static pages →   │
-                    │ 3. eslint    │      │   SSG            │
-                    │ 4. vitest    │      │ Dynamic routes → │
-                    │ 5. [PASS/   │      │   ISR            │
-                    │    BLOCK PR]│      │ Deploy to Edge   │
-                    └──────────────┘      └──────────────────┘
+                    ┌──────────────────┐      ┌──────────────────┐
+                    │ 1. bun install   │      │ next build       │
+                    │    --frozen-lock │      │ Static → SSG     │
+                    │ 2. eslint        │      │ Dynamic → ISR    │
+                    │ 3. prettier      │      │ Deploy to Edge   │
+                    │ 4. build         │      └──────────────────┘
+                    │ 5. [PASS/BLOCK PR]│
+                    └──────────────────┘
 ```
 
 ### Flow 6 — Component Hierarchy
@@ -916,18 +918,18 @@ git commit -m "chore: tighten ESLint rules, add Prettier integration"
 - [ ] **Initialize Husky**
 
 ```bash
-npx husky init
+bunx husky init
 ```
 
-Expected: creates `.husky/pre-commit` with `npm test` content.
+Expected: creates `.husky/pre-commit` with placeholder content.
 
 - [ ] **Replace `.husky/pre-commit` content**
 
 ```bash
-npx lint-staged
+bunx lint-staged
 ```
 
-The file should contain exactly one line: `npx lint-staged`
+The file should contain exactly one line: `bunx lint-staged`
 
 - [ ] **Test the hook works**
 
@@ -1016,7 +1018,8 @@ git commit -m "chore: security headers, remove ignoreDuringBuilds, enable avif/w
 - [ ] **Install Vercel CLI globally (if not already installed)**
 
 ```bash
-npm i -g vercel
+bunx vercel --version
+# or: npm i -g vercel  (any global installer)
 vercel --version
 ```
 
@@ -1028,9 +1031,9 @@ Expected output: `Vercel CLI X.Y.Z`
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
+  "buildCommand": "bun run build",
+  "devCommand": "bun run dev",
+  "installCommand": "bun install",
   "headers": [
     {
       "source": "/(.*)",
@@ -1095,22 +1098,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Cache Bun install cache
+        uses: actions/cache@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.13'
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
+        run: bun run lint
 
       - name: Check formatting
-        run: npm run format:check
+        run: bun run format:check
 
       - name: Build
-        run: npm run build
+        run: bun run build
 ```
 
 - [ ] **Commit and push to trigger the workflow**
@@ -1378,7 +1388,7 @@ const FLOW_5 = `
               │
               └─► .husky/pre-commit
                        │
-                       └─► lint-staged
+                       └─► bunx lint-staged
                               ├─ ESLint --fix  (*.ts, *.tsx, *.js, *.jsx)
                               ├─ Prettier      (*.ts, *.tsx, *.js, *.jsx,
                               │                 *.json, *.md, *.mdx)
@@ -1393,14 +1403,14 @@ const FLOW_5 = `
                                   Pull Request              Push to main
                                          │                        │
                                   ci.yml runs           Vercel webhook
-                                  ┌──────────────┐      ┌──────────────────┐
-                                  │ 1. npm ci    │      │ next build       │
-                                  │ 2. eslint    │      │ Static → SSG     │
-                                  │ 3. prettier  │      │ Dynamic → ISR    │
-                                  │ 4. build     │      │ Deploy to Edge   │
-                                  │ 5. [PASS/   │      └──────────────────┘
-                                  │    BLOCK PR]│
-                                  └──────────────┘
+                                  ┌──────────────────┐      ┌──────────────────┐
+                                  │ 1. bun install   │      │ next build       │
+                                  │    --frozen-lock │      │ Static → SSG     │
+                                  │ 2. eslint        │      │ Dynamic → ISR    │
+                                  │ 3. prettier      │      │ Deploy to Edge   │
+                                  │ 4. build         │      └──────────────────┘
+                                  │ 5. [PASS/BLOCK PR]│
+                                  └──────────────────┘
 `.trim()
 
 const FLOW_6 = `

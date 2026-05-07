@@ -1,6 +1,6 @@
 # arkashj.com — Open Work
 
-> Companion to [`HANDOFF.md`](./HANDOFF.md). That doc explains _how the site works_; this one says _what's left to ship_. Updated 2026-04-26.
+> Companion to [`HANDOFF.md`](./HANDOFF.md). That doc explains _how the site works_; this one says _what's left to ship_. Updated 2026-05-07.
 
 ---
 
@@ -139,14 +139,15 @@ Hero stat labels still wrap awkwardly on narrow viewports (`Harvard + BU` become
 
 ```bash
 # Local dev
-npm run dev
+bun install   # if you haven't yet
+bun run dev
 
 # Production build (must pass before push)
-npm run build
+bun run build
 
 # Format + lint
-npm run format
-npm run lint
+bun run format
+bun run lint
 
 # Deploy to Vercel production manually (Vercel bot also deploys on every main push)
 vercel deploy --prod --yes

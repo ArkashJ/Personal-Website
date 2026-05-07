@@ -235,12 +235,12 @@ Pre-commit: Husky + **bunx** lint-staged runs `next lint --fix --file` and `pret
 
 For someone new to the repo:
 
-1. **Clone and install** — `git clone` then `npm install`. Node 20+.
-2. **Run dev** — `npm run dev` → open http://localhost:3000. Verify the homepage loads with the grid background and teal accents.
+1. **Clone and install** — `git clone` then **`bun install`**. Node **22** (see `.nvmrc`) for editor tooling and any script that assumes Node; Bun drives installs and `package.json` scripts.
+2. **Run dev** — **`bun run dev`** → open http://localhost:3000. Verify the homepage loads with the grid background and teal accents.
 3. **Skim the data layer** — open `lib/site.ts`, `lib/data.ts`, `lib/media.ts`. Most edits start here.
 4. **Read this file end-to-end**, then `CHANGELOG.md`, then the foundation plan in `docs/superpowers/plans/`.
 5. **Make a trivial content edit** — add a tag to a paper in `lib/data.ts` or fix a typo in `content/writing/why-fde.mdx`. Confirm hot reload works.
-6. **Run the gates** — `npm run build && npm run lint && npm run format:check`. All three must pass before opening a PR.
+6. **Run the gates** — **`bun run build && bun run lint && bun run format:check`**. All three must pass before opening a PR.
 7. **Open a PR to `main`** — Vercel posts a preview URL automatically. Verify your change on the preview before requesting review.
 8. **Merge** — Vercel auto-deploys to production within ~60s.
 
