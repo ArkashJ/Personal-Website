@@ -1,6 +1,9 @@
 {
   "permissions": {
     "allow": [
+      "Bash(rtk:*)",
+      "Bash(ast-grep:*)",
+      "Bash(sg:*)",
       "Bash(rtk ls *)",
       "Bash(rtk read *)",
       "Bash(rtk npm *)",
