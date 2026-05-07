@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 // Build-time generator: snapshots the last N git commits to JSON so the
 // website can render a tag-filterable changelog at request time without
 // shelling out (and without git access at runtime on Vercel).
@@ -24,10 +24,11 @@ const FORMAT = ['%H', '%aI', '%s', '%b'].join(SEP_FIELD) + SEP_RECORD
 
 function readGitLog() {
   try {
-    const raw = execSync(
-      `git log --no-merges -n ${COMMIT_LIMIT} --pretty=format:"${FORMAT}"`,
-      { cwd: ROOT, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }
-    )
+    const raw = execSync(`git log --no-merges -n ${COMMIT_LIMIT} --pretty=format:"${FORMAT}"`, {
+      cwd: ROOT,
+      encoding: 'utf8',
+      maxBuffer: 16 * 1024 * 1024,
+    })
     return raw
       .split(SEP_RECORD)
       .map((s) => s.trim())
@@ -64,9 +65,7 @@ function main() {
   const commits = records.map(parseCommit)
 
   // Strip trivial single-dot commits ('.', ',.') the user uses as WIP.
-  const cleaned = commits.filter(
-    (c) => c.summary && c.summary.replace(/[.\s,]/g, '').length > 0
-  )
+  const cleaned = commits.filter((c) => c.summary && c.summary.replace(/[.\s,]/g, '').length > 0)
 
   mkdirSync(OUT_DIR, { recursive: true })
   writeFileSync(OUT_FILE, JSON.stringify(cleaned, null, 2) + '\n', 'utf8')

@@ -6,6 +6,7 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 - **Site**: [arkashj.com](https://www.arkashj.com) — Arkash Jain's personal website + O-1 visa evidence hub.
 - **Stack**: Next.js 15.5 App Router · React 19 · TypeScript strict · Tailwind CSS 3 · MDX (RSC).
+- **Toolchain**: **Bun** for installs and repo scripts (`bun install`, `bun run …`). Vercel and CI use the committed `bun.lock`; the Node.js runtime still executes the built Next.js app.
 - **Deployment**: Vercel (auto-deploy from `main`).
 - **Lint errors are NOT ignored** during builds (was true on legacy v1; current `next.config.js` does not set `ignoreDuringBuilds`).
 - **No test runner is configured.** CI runs `lint` + `format:check` + `build` only.
@@ -13,14 +14,15 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 ## Commands
 
 ```bash
-npm run dev               # Dev server at http://localhost:3000
-npm run build             # Production build (must pass before push)
-npm run start             # Serve the built output
+bun install             # Install deps (creates/uses bun.lock — commit it)
+bun run dev             # Dev server + Turbopack at http://localhost:3000
+bun run build           # Production build (must pass before push)
+bun run start           # Serve the built output
 
-npm run lint              # ESLint
-npm run lint:fix          # ESLint --fix
-npm run format            # Prettier write
-npm run format:check      # Prettier check (CI uses this)
+bun run lint            # ESLint
+bun run lint:fix        # ESLint --fix
+bun run format          # Prettier write
+bun run format:check    # Prettier check (CI uses this)
 ```
 
 A Husky pre-commit hook runs `lint-staged` (Prettier + ESLint on staged files).
@@ -115,13 +117,25 @@ MDX files are picked up automatically via `lib/content.ts`. Frontmatter contract
 - Theme: dark + light via `next-themes`, `data-theme` attribute on `<html>`.
 - Restrained animations, all honor `prefers-reduced-motion`.
 
+### Build performance (local + CI)
+
+- **Dev**: `bun run dev` runs `next dev --turbo` (Turbopack) after the git-changelog sync.
+- **Prod bundles**: `next.config.js` sets `experimental.optimizePackageImports` for barrel-heavy packages (`lucide-react`, `cmdk`, `@clerk/nextjs`) and `productionBrowserSourceMaps: false` to shorten build time and output size.
+- **Images**: `images.formats` prefers AVIF/WebP; remote hosts are allowlisted in `images.remotePatterns`.
+
+### Web research (when facts must be current or external)
+
+- Prefer **primary sources** (vendor docs, RFCs, GitHub releases, official pricing) over SEO blogs.
+- Use **specific queries** (`<product> <version> breaking change <year>`, exact error strings) and cross-check **two independent** pages before stating numbers or dates.
+- **Time-bound** answers: this repo’s “today” for copy and research defaults to **2026** when not specified; do not trust undated third-party summaries for API shapes or limits.
+
 ### Path aliases
 
 `tsconfig.json` defines `@/*` → repo root. Always prefer `@/lib/...`, `@/components/...`, `@/public/...` over relative paths.
 
 ## Image conventions
 
-**All site images live under `public/images/`** (consolidated 2026-04-26).
+**All site images and downloadable PDFs served as static media live under `public/images/`** — do not add loose image/PDF files at `public/` root (favicon, crawler manifests, and verification/HTML decks excepted).
 
 ```
 public/
@@ -130,7 +144,11 @@ public/
 │   ├── profile.jpeg          # Author photo (used in <TimelineItem> + Person JSON-LD only — NOT the OG share image)
 │   ├── logos/                # Institution SVGs (BU, Harvard, BCH, NSF)
 │   ├── files/                # Verifiable PDF credentials
-│   └── legacy/               # Pre-revamp assets, kept for archival reference; do NOT add new content here
+│   │   └── papers/           # Supplementary paper PDFs (not the primary credential PDFs)
+│   ├── weekly/               # Week-log screenshots referenced from MDX
+│   ├── receipts/             # Screenshots / social proof captures
+│   └── legacy/               # Pre-revamp assets; do NOT add new content here
+├── ai-hardware-stack.html    # Same-origin iframe deck (linked from /ai-hardware-stack + writing)
 ├── timeline/                 # Reserved for per-milestone hero images (currently empty)
 ├── llms.txt · llms-full.txt  # AI crawler guidance
 ├── humans.txt · robots.txt   # Crawler manifests
@@ -161,6 +179,7 @@ Reference rules:
 | New nav link                                     | `NAV_LINKS` in `lib/site.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | New course                                       | `lib/coursework.ts` + optional MDX in `content/coursework/`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | New verifiable credential                        | Drop PDF in `public/images/files/` + entry in `app/credentials/page.tsx`.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Supplementary paper / journal PDF                | `public/images/files/papers/` — link from MDX or `lib/data.ts` as `/images/files/papers/<file>.pdf`.                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ## SEO infrastructure
 
@@ -178,7 +197,7 @@ This site is the central evidence hub for Arkash's O-1 visa application — SEO 
 - The legacy `pages/` directory is gone — `.eslintrc.json` disables `no-html-link-for-pages` to reflect that.
 - `app/about/archive/page.tsx` is the snapshot of the pre-revamp bio. Don't accidentally edit it as the canonical about page.
 - `next.config.js` whitelists exact remote image hosts. New external image hosts require a `remotePatterns` entry.
-- `npm run build` must pass before push — CI also runs it. Lint errors fail the build.
+- `bun run build` must pass before push — CI also runs it. Lint errors fail the build.
 
 ## See also
 

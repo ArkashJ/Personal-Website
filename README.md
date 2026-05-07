@@ -354,14 +354,14 @@ The remainder of this README is for engineers reading the source. Skip if you on
 ```bash
 git clone https://github.com/ArkashJ/Personal-Website.git
 cd Personal-Website
-npm install
-npm run dev          # http://localhost:3000
+bun install
+bun run dev          # http://localhost:3000 (Turbopack)
 ```
 
 Production build:
 
 ```bash
-npm run build && npm run start
+bun run build && bun run start
 ```
 
 ### Stack
@@ -563,13 +563,13 @@ A Clerk-gated owner-only editor at `/admin/weekly` (allowlisted to `process.env.
 ### Common commands
 
 ```bash
-npm run dev                # Dev server
-npm run build              # Production build (must pass before push)
-npm run start              # Serve the built output
-npm run lint               # ESLint
-npm run lint:fix           # ESLint --fix
-npm run format             # Prettier write
-npm run format:check       # Prettier check (CI uses this)
+bun run dev                # Dev server (Turbopack)
+bun run build              # Production build (must pass before push)
+bun run start              # Serve the built output
+bun run lint               # ESLint
+bun run lint:fix           # ESLint --fix
+bun run format             # Prettier write
+bun run format:check       # Prettier check (CI uses this)
 
 vercel deploy --prod --yes # Manual production deploy
 
