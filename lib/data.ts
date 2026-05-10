@@ -509,11 +509,11 @@ export const WORK_TOOLS: WorkTool[] = [
     name: 'Compound Engineering Skills',
     year: '2026',
     description:
-      '71+ Claude Code skills authored for forward-deployed engineering — production-ready playbooks for Django, FastAPI, Stripe, HIPAA/GDPR/SOC 2 compliance, mobile (Expo/React Native), SEO, and deployment (Heroku/DigitalOcean/Vercel). Symlinked into ~/.claude/skills/ via one command so every Claude session reflects the latest versions; git pull is the only update step. Public on GitHub, copy-ready on /skills.',
+      '75+ Claude Code skills authored for forward-deployed engineering — production-ready playbooks for Django, FastAPI, Stripe, HIPAA/GDPR/SOC 2 compliance, mobile (Expo/React Native), SEO, and deployment (Heroku/DigitalOcean/Vercel). Symlinked into ~/.claude/skills/ via one command so every Claude session reflects the latest versions; git pull is the only update step. Public on GitHub, copy-ready on /skills.',
     tech: ['Markdown', 'Claude Code Skills', 'Python'],
     href: 'https://github.com/Benmore-Studio/Benmore-Meridian',
     highlights: [
-      '71+ skills covering Django, FastAPI, Stripe, mobile, SEO, deployment, compliance',
+      '75+ skills covering Django, FastAPI, Stripe, mobile, SEO, deployment, compliance',
       'Symlink-first install — edit a skill once, every session reflects it',
       'Git hooks auto-run install on pull/checkout when skills change',
       'Project-aware skill suggestions from static stack detection',
