@@ -1,5 +1,14 @@
 [
   {
+    "hash": "74cadc34d47eb87e0fb8412f6732402c2214abde",
+    "date": "2026-05-10T12:51:57-05:00",
+    "type": "content",
+    "scopes": ["skills"],
+    "summary": "add build-a-chatbot, playwright-doc-generator, playwright-cli, full-app-test",
+    "body": "Sync four skills into /skills (71 -> 75): build-a-chatbot and\nplaywright-doc-generator from Benmore-Meridian, full-app-test from\nprompts, playwright-cli from global. Update skill counts in metadata\nand Compound Engineering Skills entry.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["content", "skills"]
+  },
+  {
     "hash": "fa158712195fae4f4fde5404e3468bb3e272764f",
     "date": "2026-05-07T16:47:15-05:00",
     "type": "refactor",

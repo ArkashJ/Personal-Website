@@ -10,6 +10,15 @@ export type FeaturedBanner = {
 
 export const BANNERS: FeaturedBanner[] = [
   {
+    id: 'w19-tuesday-reads-2026-05-05',
+    headline: 'May 5',
+    body: 'Tuesday reading log: Levine on the Avis short squeeze (108% ownership via swaps + Section 16(b) matching), SemiAnalysis on AI value capture migrating to the labs, TBPN/Stratechery on hyperscaler earnings.',
+    href: '/weekly/2026-W19-tuesday-reads',
+    ctaLabel: 'Read the notes',
+    expires: '2026-06-15',
+    priority: 9,
+  },
+  {
     id: 'w19-claude-tooling-2026-05-04',
     headline: 'May 4',
     body: 'New stack picks: RTK token-killer (35.9% saved · 17.9M tokens), context-mode (98% MCP context reduction), Compound Engineering v3.4.1 — all green.',
