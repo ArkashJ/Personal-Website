@@ -204,6 +204,22 @@ The piece is long; this is what I'm taking forward.
 
 ### The migration (2023–25 → 2026)
 
+```
+        2023–2025                        2026 (NOW)
+   ┌────────────────┐              ┌────────────────┐
+   │ INFRASTRUCTURE │              │   MODEL LABS   │
+   │  CAPTURES ALL  │    ══════>   │  CAPTURE ALL   │
+   │   THE VALUE    │              │   THE VALUE    │
+   └────────────────┘              └────────────────┘
+           │                                │
+           ▼                                ▼
+   • Nvidia (+25% AH May'23)       • Anthropic ARR:
+   • Vistra +265% (2024)             $9B → $44B+
+   • GE Vernova +146% (2024)       • Inference margins:
+   • SanDisk/WDC/Seagate/            38% → 70%+
+     Micron all +200% (2025)
+```
+
 Through 2025 the value flowed to **picks-and-shovels**:
 
 - Nvidia (the AH +25% print after May '23 was the kickoff).
@@ -225,6 +241,19 @@ Power-law usage: top users above 100B tokens/month.
 
 ### The Opus pricing paradox
 
+```
+STICKER PRICE              TRUE BLENDED PRICE
+$5 / $25 per MTok    →     ~$0.99 per MTok
+(input / output)           on agentic tasks
+        ▲
+        │
+   WHY? Agentic workloads have:
+   • Input:Output ratio of 300:1 (Claude Code)
+   • Cache hit rates of 90%+
+   • Cached tokens cost only $0.50/MTok
+   • Most tokens land in cheapest tier
+```
+
 Sticker is **$5 / $25 per MTok** input/output. **Blended price on real
 agentic workloads is ~$0.99/MTok.** Three reasons:
 
@@ -236,11 +265,21 @@ The headline price scares no one who actually uses it at scale.
 
 ### Throughput explosion
 
-B300 running DeepSeek R1 (8K in / 1K out):
+B300 running DeepSeek R1 (8K in → 1K out):
 
-- Baseline: ~1K tok/sec/GPU.
-- WideEP + disaggregation: ~8K tok/sec/GPU.
-- WideEP + disagg + MTP: ~14K tok/sec/GPU. **14x from software alone.**
+```
+No optimizations:             ████  ~1K tok/sec/GPU
+
++ wideEP + disagg:            ████████████████████  ~8K tok/sec/GPU
+
++ wideEP + disagg + MTP:      ████████████████████████████████  ~14K
+                               ↑ 14x just from SOFTWARE
+
+ADD HARDWARE:
+GB300 NVL72 vs H100 (FP8):  17x throughput
+GB300 NVL72 vs H100 (FP4):  32x throughput
+GB300 NVL72 TCO:             only ~70% higher than H100
+```
 
 Hardware on top: **GB300 NVL72 vs H100 — 17x at FP8, 32x at FP4.** Total
 cost of ownership only ~70% higher than H100. The cost-per-useful-FLOP
@@ -302,6 +341,22 @@ piece I keep going back to.
 
 ### Cost floor vs value ceiling
 
+```
+┌─────────────────────────┐   ┌─────────────────────────┐
+│   COST-BASED (FLOOR)    │   │  VALUE-BASED (CEILING)  │
+├─────────────────────────┤   ├─────────────────────────┤
+│ GB300 today:            │   │ Anchor: GB300 5-yr      │
+│ • 15.6% IRR over 5yr    │   │ rental ~$0.70/PFLOP     │
+│ • 15% prepay            │   │                         │
+│                         │   │ Implies VR NVL72        │
+│ VR NVL72 needs:         │   │ ceiling at parity:      │
+│ ≥ $4.92/GPU/hr          │   │ ~$12.25/GPU/hr          │
+└─────────────────────────┘   └─────────────────────────┘
+                  └──────────────────┘
+            HUGE GAP — unprecedented vs prior gens
+            Today: $0.28/PFLOP (60% below trend)
+```
+
 For VR NVL72:
 
 - **Floor (cost-based):** ~$4.92/GPU/hr to hit a 15.6% IRR over 5 years
@@ -315,6 +370,32 @@ Today's pricing is ~$0.28/PFLOP — a **60% drop vs GB300 NVL72** and
 below-trend cost improvements for customers.
 
 ### Where the value flows today
+
+```
+END USERS
+($1000s of human work → $ in tokens)
+        │  pays for tokens
+        ▼
+AI LABS ◄══════════════ CAPTURING MOST VALUE NOW
+(Anthropic 70%+ margins)
+        │  rents compute
+        ▼
+NEOCLOUDS / HYPERSCALERS ◄══ some value capture
+(inference providers: +40% from Oct '25 lows)
+        │  buys hardware
+        ▼
+┌───────────────────────────────────────┐
+│            HARDWARE STACK             │
+│  ┌──────────────┐  ┌───────────────┐  │
+│  │    NVIDIA    │  │ MEMORY (+6x)  │  │
+│  │  (UNDER-     │  │ ── repriced   │  │
+│  │   PRICED)    │  │   already     │  │
+│  └──────────────┘  └───────────────┘  │
+│  ┌──────────────┐                     │
+│  │     TSMC     │  (UNDER-PRICED)     │
+│  └──────────────┘                     │
+└───────────────────────────────────────┘
+```
 
 End users pay tokens → **AI labs at 70%+ margins** → neocloud/hyperscaler
 rentals (rising) → hardware stack where **Nvidia and TSMC are

@@ -11,21 +11,30 @@ function youtubeIdFromUrl(url: string): string | null {
 // "no logo" — render the rail item without a leading icon.
 function simpleIconSlugFor(
   source: string | undefined,
-  kind: string | undefined
+  kind: string | undefined,
+  href?: string
 ): string | undefined {
-  if (!source && !kind) return undefined
+  if (!source && !kind && !href) return undefined
   const s = (source ?? '').toLowerCase()
+  const h = (href ?? '').toLowerCase()
   // Fast-path well-known platforms.
   if (s.includes('youtube') || kind === 'youtube') return 'youtube'
-  if (s.includes('substack')) return 'substack'
-  if (s.includes('medium')) return 'medium'
-  if (s.includes('github') || kind === 'repo') return 'github'
-  if (s.includes('linkedin')) return 'linkedin'
-  if (s.includes('twitter') || s.includes('x.com') || kind === 'tweet') return 'x'
-  if (s.includes('arxiv') || kind === 'paper') return 'arxiv'
-  if (s.includes('spotify')) return 'spotify'
-  if (s.includes('apple podcast')) return 'applepodcasts'
-  if (s.includes('overcast')) return 'overcast'
+  if (s.includes('substack') || h.includes('substack.com')) return 'substack'
+  if (s.includes('medium') || h.includes('medium.com')) return 'medium'
+  if (s.includes('github') || kind === 'repo' || h.includes('github.com')) return 'github'
+  if (s.includes('linkedin') || h.includes('linkedin.com')) return 'linkedin'
+  if (
+    s.includes('twitter') ||
+    s.includes('x.com') ||
+    kind === 'tweet' ||
+    h.includes('x.com') ||
+    h.includes('twitter.com')
+  )
+    return 'x'
+  if (s.includes('arxiv') || kind === 'paper' || h.includes('arxiv.org')) return 'arxiv'
+  if (s.includes('spotify') || h.includes('spotify.com')) return 'spotify'
+  if (s.includes('apple podcast') || h.includes('podcasts.apple.com')) return 'applepodcasts'
+  if (s.includes('overcast') || h.includes('overcast.fm')) return 'overcast'
   if (s.includes('latent space') || s.includes('podcast') || kind === 'podcast') {
     return 'rss'
   }
@@ -69,8 +78,18 @@ export function resolveItem(item: WeeklyItem): ResolvedItem {
   }
 
   if (!image) {
-    const slug = simpleIconSlugFor(source, kind)
-    if (slug) image = `https://cdn.simpleicons.org/${slug}/9aa0a6`
+    const slug = simpleIconSlugFor(source, kind, href)
+    if (slug) {
+      image = `https://cdn.simpleicons.org/${slug}/9aa0a6`
+    } else if (href) {
+      // Fall back to the site's own favicon for any unrecognised source.
+      try {
+        const origin = new URL(href).origin
+        image = `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${origin}&size=64`
+      } catch {
+        // malformed href — skip
+      }
+    }
   }
 
   // Modal body falls back to notes when no anchor is provided. When neither
