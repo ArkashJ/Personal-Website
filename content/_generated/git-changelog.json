@@ -1,5 +1,14 @@
 [
   {
+    "hash": "24145835dd074dd6cac0dee36f15c23d3b0fdb7e",
+    "date": "2026-05-10T12:53:21-05:00",
+    "type": "content",
+    "scopes": ["skills"],
+    "summary": "update client-value-maximizer to latest",
+    "body": "Sync from Benmore-Meridian — 197 -> 428 lines.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["content", "skills"]
+  },
+  {
     "hash": "74cadc34d47eb87e0fb8412f6732402c2214abde",
     "date": "2026-05-10T12:51:57-05:00",
     "type": "content",
