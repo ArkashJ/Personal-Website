@@ -3,7 +3,7 @@ import PaperCard from '@/components/sections/PaperCard'
 import Card from '@/components/ui/Card'
 import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
-import { scholarlyArticleSchema, breadcrumbSchema } from '@/lib/structured-data'
+import { scholarlyArticleSchema, breadcrumbSchema, faqSchema } from '@/lib/structured-data'
 import { PAPERS } from '@/lib/data'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -34,6 +34,30 @@ export default function ResearchPage() {
       {PAPERS.map((p) => (
         <JsonLd key={p.title} data={scholarlyArticleSchema(p)} />
       ))}
+      <JsonLd
+        data={faqSchema([
+          {
+            q: 'What is SpatialDINO?',
+            a: 'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). First-author work from the Kirchhausen Lab at Harvard Medical School. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s with PyTorch DDP, bf16 mixed precision. Outperformed a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction. Released as a BioRxiv preprint.',
+          },
+          {
+            q: 'What is lattice light-sheet microscopy (LLSM)?',
+            a: "LLSM is a 4D live-cell imaging technique developed in the Betzig lab that uses a thin lattice-shaped light sheet to acquire volumetric data of subcellular dynamics at roughly 3 nm resolution. It's the imaging modality SpatialDINO was designed for.",
+          },
+          {
+            q: 'What hardware did you train SpatialDINO on?',
+            a: '24 NVIDIA A100 GPUs with PyTorch DDP, bf16 mixed precision, NVLink intra-node, and InfiniBand inter-node. The training also surfaced a Rendezvous backend bug in PyTorch that we contributed a fix for (PR #144779), which unblocked multi-node InfiniBand training for the broader community.',
+          },
+          {
+            q: 'What was the supercritical fluid paper about?',
+            a: 'Published in J. Chem. Phys. (Nov 2022), first-author work using ultrafast two-dimensional infrared spectroscopy to study rotational energy transfer, isolated binary collision breakdown, and near-critical fluctuations in Xe and SF6 solutions.',
+          },
+          {
+            q: 'Are the papers open-access?',
+            a: 'SpatialDINO is on BioRxiv (open-access). The Journal of Cell Biology paper is open at rupress.org. The J. Chem. Phys. paper is available via the AIP. Direct links and DOIs are on the research page.',
+          },
+        ])}
+      />
 
       <SectionHeader
         eyebrow="Research"

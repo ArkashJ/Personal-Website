@@ -32,6 +32,7 @@ export const NAV_LINKS: NavLink[] = [
   { href: '/skills', label: 'Claude Skills' },
   { href: '/writing', label: 'Writing' },
   { href: '/weekly', label: 'Weekly' },
+  { href: '/topics', label: 'Topics' },
   { href: '/media', label: 'Media' },
 ]
 

@@ -148,3 +148,52 @@ export const scholarlyArticleSchema = ({
     ...(sameAs && sameAs.length ? { sameAs } : {}),
   }
 }
+
+export const faqSchema = (faqs: { q: string; a: string }[]) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+})
+
+export const itemListSchema = (
+  name: string,
+  items: { name: string; path: string; description?: string }[]
+) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name,
+  numberOfItems: items.length,
+  itemListElement: items.map((item, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: item.name,
+    url: `${SITE.url}${item.path}`,
+    ...(item.description ? { description: item.description } : {}),
+  })),
+})
+
+export const collectionPageSchema = ({
+  title,
+  description,
+  path,
+  itemCount,
+}: {
+  title: string
+  description: string
+  path: string
+  itemCount: number
+}) => ({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: `${SITE.url}${path}`,
+  isPartOf: { '@id': `${SITE.url}#website` },
+  about: { '@id': `${SITE.url}#person` },
+  numberOfItems: itemCount,
+  inLanguage: 'en',
+})

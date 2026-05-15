@@ -7,6 +7,7 @@ import { COURSES, allCourseSubPages } from '@/lib/coursework'
 import { getAllSkills } from '@/lib/skills'
 import { getAllWeeklyLogs } from '@/lib/weekly'
 import { getAllProjects } from '@/lib/projects'
+import { TOPICS } from '@/lib/topics'
 
 const STATIC: {
   path: string
@@ -29,6 +30,7 @@ const STATIC: {
   { path: '/coursework', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/credentials', priority: 0.6, changeFrequency: 'yearly' },
   { path: '/ai-hardware-stack', priority: 0.7, changeFrequency: 'monthly' },
+  { path: '/topics', priority: 0.9, changeFrequency: 'monthly' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -88,6 +90,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  const topics = TOPICS.map((t) => ({
+    url: `${SITE.url}/topics/${t.slug}`,
+    lastModified: today,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
   return [
     ...STATIC.map((r) => ({
       url: `${SITE.url}${r.path}`,
@@ -103,5 +112,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...skills,
     ...weekly,
     ...projects,
+    ...topics,
   ]
 }

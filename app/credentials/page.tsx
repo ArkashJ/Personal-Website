@@ -4,7 +4,7 @@ import Badge from '@/components/ui/Badge'
 import BackLink from '@/components/ui/BackLink'
 import InstitutionLogo from '@/components/ui/InstitutionLogo'
 import JsonLd from '@/components/seo/JsonLd'
-import { breadcrumbSchema } from '@/lib/structured-data'
+import { breadcrumbSchema, faqSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
@@ -125,6 +125,26 @@ export default function CredentialsPage() {
         data={breadcrumbSchema([
           { name: 'Home', path: '/' },
           { name: 'Credentials', path: '/credentials' },
+        ])}
+      />
+      <JsonLd
+        data={faqSchema([
+          {
+            q: 'What degrees does Arkash Jain hold?',
+            a: 'BA in Mathematics & Computer Science and MS in Computer Science, both from Boston University. The BA was awarded Magna Cum Laude. Verifiable PDF transcripts and diploma copies are linked on this page.',
+          },
+          {
+            q: 'Is Arkash affiliated with Harvard?',
+            a: 'Yes — research affiliation as an ML Researcher at the Kirchhausen Lab at Harvard Medical School, May 2024 to August 2025. The Harvard University ID is linked as a verifiable credential.',
+          },
+          {
+            q: 'What awards has Arkash received?',
+            a: 'NSF UROP Scholar, Marvin Freedman Math Scholar, and Boston University Magna Cum Laude. Award certificates are linked as verifiable PDFs on this page.',
+          },
+          {
+            q: 'Are these credentials verifiable independently?',
+            a: 'Yes. Each credential links to a PDF copy of the original document (diploma, transcript, award letter, ID). For the academic credentials, the issuing institutions can independently verify via the National Student Clearinghouse or the registrar.',
+          },
         ])}
       />
       <BackLink href="/about" label="About" />
