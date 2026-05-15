@@ -41,6 +41,7 @@ yarn-error.log*
 # vercel
 .vercel
 .playwright-mcp/
+.playwright-cli/
 
 # claude code session artifacts + dev audit dumps
 .claude/

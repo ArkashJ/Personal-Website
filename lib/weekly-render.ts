@@ -7,14 +7,14 @@ function youtubeIdFromUrl(url: string): string | null {
   return m ? m[1] : null
 }
 
-// Branded SVGs for sources that aren't in SimpleIcons (or whose gstatic
-// favicons render poorly at small sizes). Add a new entry here + drop an SVG
-// in public/assets/weekly/icons/ to onboard a new source.
+// Real branded favicons fetched from each publisher (apple-touch-icon or
+// favicon.ico). Add a new entry here and drop the icon file at the listed
+// path; scripts/fetch-icons.ts will pull a fresh copy on demand.
 const LOCAL_ICON_MAP: Record<string, string> = {
-  bloomberg: '/assets/weekly/icons/bloomberg.svg',
-  semianalysis: '/assets/weekly/icons/semianalysis.svg',
-  stratechery: '/assets/weekly/icons/stratechery.svg',
-  tbpn: '/assets/weekly/icons/tbpn.svg',
+  bloomberg: '/assets/weekly/icons/bloomberg.ico',
+  semianalysis: '/assets/weekly/icons/semianalysis.png',
+  stratechery: '/assets/weekly/icons/stratechery.png',
+  tbpn: '/assets/weekly/icons/tbpn.png',
 }
 
 function localIconFor(source?: string, href?: string): string | undefined {

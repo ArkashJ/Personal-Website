@@ -1,35 +1,45 @@
 # vhs tape — records a /playwright-cli skill demo as a GIF.
-# Install: brew install charmbracelet/tap/vhs
-# Run:     bun run demo:cli   (or: vhs scripts/cli-demo.tape)
+# Run: bun run demo:cli   (or: vhs scripts/cli-demo.tape)
 
 Output docs/screenshots/playwright-cli-demo.gif
 
-Set FontSize 14
+Set FontSize 16
 Set Width 1200
 Set Height 720
-Set Padding 20
-Set Theme "Tokyo Night"
-Set TypingSpeed 30ms
+Set Padding 24
+Set Theme "TokyoNight"
+Set TypingSpeed 40ms
+Set Shell "bash"
 
-Type "# /playwright-cli — capture arkashj.com/weekly in light + dark"
+Type "# playwright-cli skill — drive a browser like a human would"
+Sleep 600ms
 Enter
-Sleep 800ms
+Sleep 600ms
 
-Type "bun run capture:weekly"
-Sleep 400ms
+Type "playwright-cli --version"
+Sleep 300ms
 Enter
-Sleep 12s
+Sleep 1200ms
 
-Type "ls docs/screenshots/weekly-*.png | head"
+Type "playwright-cli -s=demo open https://arkashj.com/weekly/2026-W19 --browser=chrome"
+Sleep 300ms
+Enter
+Sleep 4s
+
+Type "playwright-cli -s=demo resize 1280 800"
+Sleep 200ms
+Enter
+Sleep 1200ms
+
+Type "playwright-cli -s=demo screenshot --filename=demo.png"
+Sleep 200ms
 Enter
 Sleep 2s
 
-Type "bun run demo:gif"
-Sleep 400ms
+Type "playwright-cli -s=demo close"
+Sleep 200ms
 Enter
-Sleep 6s
+Sleep 1200ms
 
-Type "open docs/screenshots/weekly-scroll.gif"
-Sleep 400ms
-Enter
-Sleep 2s
+Type "# done — pure CLI, no MCP, no @playwright/test"
+Sleep 1500ms

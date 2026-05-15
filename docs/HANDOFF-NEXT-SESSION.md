@@ -3,13 +3,13 @@
 > Date written: 2026-05-02
 > Author: previous Claude Code session
 > Repo: `Personal-Website` · Branch: `main`
-> For: the next Claude Code session, started fresh after a Claude Code restart so the Playwright MCP is loaded.
+> For: the next Claude Code session, started fresh so the `playwright-cli` skill (and its global `playwright-cli` binary) is loaded.
 
 ---
 
 ## A. Why you exist
 
-The previous session shipped three real upgrades but did not have the Playwright MCP available, so nothing was visually verified. Your job is to **visually verify every affected page** using `mcp__playwright__browser_navigate`, `mcp__playwright__browser_snapshot`, and `mcp__playwright__browser_take_screenshot`. Walk the verification checklist in section C, screenshot anything that looks off, and report back. You should not be writing new features — you are doing QA on what just shipped.
+The previous session shipped three real upgrades but did not visually verify them. Your job is to **visually verify every affected page** using the `playwright-cli` Claude skill — `playwright-cli open`, `playwright-cli snapshot`, `playwright-cli screenshot`. **Do not use the Playwright MCP (`mcp__playwright__*`) or `@playwright/test`** — see CLAUDE.md's "Visual verification (browser automation)" section. Walk the verification checklist in section C, screenshot anything that looks off, and report back. You should not be writing new features — you are doing QA on what just shipped.
 
 The user was previously frustrated because the home page made it look like content had been deleted. An audit confirmed nothing was actually removed from `content/` — the three upgrades below address the real underlying complaints. Treat this session as the proof step.
 
@@ -71,7 +71,7 @@ Plus untracked: `app/ai-hardware-stack/page.tsx`, `components/sections/ProjectDe
 
 ## C. Verification checklist for next session
 
-Use Playwright MCP for every step. Take a screenshot when something looks off; otherwise a snapshot is enough.
+Use the `playwright-cli` skill for every step (`playwright-cli open …`, `playwright-cli snapshot`, `playwright-cli screenshot --filename=…`). Take a screenshot when something looks off; otherwise a snapshot is enough.
 
 1. **`/`** — confirm the "This week" card renders, the weekly rail counters are gone from that card, and project descriptions are visible on the projects strip. No "missing content" feel.
 2. **`/weekly`** — confirm the index renders and the latest log surfaces.

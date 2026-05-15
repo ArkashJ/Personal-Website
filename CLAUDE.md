@@ -125,6 +125,21 @@ MDX files are picked up automatically via `lib/content.ts`. Frontmatter contract
 - **Prod bundles**: `next.config.js` sets `experimental.optimizePackageImports` for barrel-heavy packages (`lucide-react`, `cmdk`, `@clerk/nextjs`) and `productionBrowserSourceMaps: false` to shorten build time and output size.
 - **Images**: `images.formats` prefers AVIF/WebP; remote hosts are allowlisted in `images.remotePatterns`.
 
+### Visual verification (browser automation)
+
+**Use the `playwright-cli` Claude skill — not the Playwright MCP, not `@playwright/test`.** The skill ships a global `playwright-cli` binary that mirrors what a human would run from the terminal, so every capture pipeline is reproducible outside an agent session.
+
+```bash
+# capture the weekly page as 30 scrolling PNGs + stitch into a GIF
+bun run capture:weekly   # scripts/capture-weekly.sh — pure playwright-cli skill calls
+bun run demo:gif         # gifski stitch → docs/screenshots/weekly-scroll.gif
+bun run demo:cli         # vhs recording → docs/screenshots/playwright-cli-demo.gif
+```
+
+The capture script keeps a named browser session alive (`playwright-cli -s=weekly …`) so per-frame cost stays low. See `docs/playwright-cli-demo.md` for the full pipeline + tuning knobs.
+
+**Do not** introduce `@playwright/test`, Playwright MCP tools (`mcp__playwright__*`), or any ad-hoc Puppeteer setup. If a verification can't be expressed as a sequence of `playwright-cli` commands, write a wrapper bash script that runs `playwright-cli` — not a Node program that imports Playwright directly.
+
 ### Web research (when facts must be current or external)
 
 - Prefer **primary sources** (vendor docs, RFCs, GitHub releases, official pricing) over SEO blogs.

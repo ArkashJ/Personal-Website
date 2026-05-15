@@ -9,7 +9,7 @@ date: 2026-05-03
 
 ## Summary
 
-Eleven scoped changes to arkashj.com, executed across parallel git worktrees. Splits naturally into four independent worktree groups: **(A) SEO + nav cleanup** (remove face-as-logo, delete /experience), **(B) home page restructure** (paginated rolling log, merge Now+ThisWeek into one section, connect to changelog), **(C) weekly UX polish** (trim item bodies, fix sticky tags, clickable tag index + fzf, commits-sidebar grid, RSS), **(D) admin + content migration** (Clerk-gated weekly editor, move essay-shaped knowledge articles into writing). Each worktree gets a model recommendation (haiku/sonnet/opus) sized to the work, and each carries playwright-MCP screenshot verification through `/ce-frontend-design`.
+Eleven scoped changes to arkashj.com, executed across parallel git worktrees. Splits naturally into four independent worktree groups: **(A) SEO + nav cleanup** (remove face-as-logo, delete /experience), **(B) home page restructure** (paginated rolling log, merge Now+ThisWeek into one section, connect to changelog), **(C) weekly UX polish** (trim item bodies, fix sticky tags, clickable tag index + fzf, commits-sidebar grid, RSS), **(D) admin + content migration** (Clerk-gated weekly editor, move essay-shaped knowledge articles into writing). Each worktree gets a model recommendation (haiku/sonnet/opus) sized to the work, and each carries playwright-cli skill screenshot verification through `/ce-frontend-design`.
 
 ---
 
@@ -29,7 +29,7 @@ Eleven scoped changes to arkashj.com, executed across parallel git worktrees. Sp
 > - take articles from second brain and move them under essays
 > - be creative and recommend things
 >
-> Use /ce-work + /ce-strategy to set up worktrees per feature, plan each with the correct model (haiku/sonnet/opus), each using playwright MCP and /ce-frontend-design.
+> Use /ce-work + /ce-strategy to set up worktrees per feature, plan each with the correct model (haiku/sonnet/opus), each using playwright-cli skill and /ce-frontend-design.
 
 ---
 
@@ -52,7 +52,7 @@ The site is structurally sound but accumulating papercuts: link previews show a 
 - R9. `/weekly` global index has a clickable, fzf-style searchable tag index that filters across all weeks.
 - R10. The changelog surface (likely `/changelog` or a section on `/about`) renders the hand-written `CHANGELOG.md` plus a commits-and-history grid sidebar to the right.
 - R11. Essay-shaped articles in `content/knowledge/` (e.g. `why-i-left-physics`, `aggregation-theory`, `claude-code-as-an-os`, `why-typescript-strict`) move into `content/writing/` with redirects from old URLs.
-- R12. All changes are visually verified via Playwright MCP before merge.
+- R12. All changes are visually verified via playwright-cli skill before merge.
 
 ---
 
@@ -190,7 +190,7 @@ The site is structurally sound but accumulating papercuts: link previews show a 
 
 ## Worktree Grouping & Model Selection
 
-This plan executes across **four parallel git worktrees**. Each is independent enough to land as its own PR. `/ce-strategy` should set them up in order; `/ce-work` runs each. Each worktree includes a Playwright-MCP visual verification step via `/ce-frontend-design`.
+This plan executes across **four parallel git worktrees**. Each is independent enough to land as its own PR. `/ce-strategy` should set them up in order; `/ce-work` runs each. Each worktree includes a playwright-cli skill visual verification step via `/ce-frontend-design`.
 
 | Worktree                         | Branch                                     | Units          | Model                                                                                       | Why                                                                                    |
 | -------------------------------- | ------------------------------------------ | -------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -616,7 +616,7 @@ Worktrees A, B, C can run fully in parallel. D depends on nothing but should lan
 - **Error propagation:** Server-action failures in U10 must surface as user-visible toasts, not silent 500s. Changelog parser (U5) must degrade gracefully on malformed input.
 - **State lifecycle risks:** U10 writes files — ensure `revalidatePath` fires on all surfaces that read the affected weekly. Admin form must not race with concurrent file edits (acceptable for single-user; document).
 - **API surface parity:** No public API changes. Sitemap + robots.txt + redirects all need to reflect deletions and moves.
-- **Integration coverage:** Playwright MCP screenshot diffs after each worktree's last unit; visual review via `/ce-frontend-design` pass.
+- **Integration coverage:** playwright-cli skill screenshot diffs after each worktree's last unit; visual review via `/ce-frontend-design` pass.
 - **Unchanged invariants:** All lib/ data shapes, all writing/knowledge frontmatter contracts (other than the new `originalDomain` field added in U11), Clerk provider configuration in `app/layout.tsx`, theme tokens.
 
 ---
@@ -632,7 +632,7 @@ Worktrees A, B, C can run fully in parallel. D depends on nothing but should lan
 | Knowledge → writing migration breaks inbound external links.                                   | 308 redirects preserve them; sitemap update tells search engines.                                                                       |
 | Clerk session-claim email might not be populated on free-tier projects.                        | Verify in dev that `auth().sessionClaims?.email` exists; if not, switch to `auth().sessionClaims?.primaryEmail` or use `currentUser()`. |
 | Commits sidebar (U9) may visually crowd the changelog page.                                    | `/ce-ideate` step is a hard gate — don't ship until visual review passes.                                                               |
-| Playwright MCP requires browser install.                                                       | Already part of `/ce-frontend-design` workflow; should be available.                                                                    |
+| playwright-cli skill requires browser install.                                                 | Already part of `/ce-frontend-design` workflow; should be available.                                                                    |
 
 ---
 

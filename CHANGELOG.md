@@ -5,6 +5,24 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [Unreleased] — Weekly icon polish + `playwright-cli` skill pipeline + W19 merge
+
+### Added
+
+- **`LOCAL_ICON_MAP` in `lib/weekly-render.ts`** — branded SVGs for Bloomberg, SemiAnalysis, Stratechery, and TBPN, served from `public/assets/weekly/icons/`. Consulted before the SimpleIcons CDN and the gstatic favicon fallback so weekly entries no longer render washed-out gstatic icons.
+- **`playwright-cli` skill capture pipeline** — `scripts/capture-weekly.sh` drives the `playwright-cli` global binary (the Claude skill's CLI) through 30 scroll-position screenshots; `scripts/frames-to-gif.sh` stitches them with `gifski`; `scripts/cli-demo.tape` records the CLI session via `vhs`. New `bun run` scripts: `capture:weekly`, `demo:gif`, `demo:cli`. Setup + tuning in `docs/playwright-cli-demo.md`.
+- **CLAUDE.md visual-verification section** — documents the skill-only convention and explicitly rules out the Playwright MCP and `@playwright/test`.
+
+### Changed
+
+- **2026-W19 Tuesday reading log merged into `content/weekly/2026-W19.mdx`.** The standalone `content/weekly/2026-W19-tuesday-reads.mdx` file is gone; its 8 read entries, tags, prose sections (Avis squeeze + SemiAnalysis flows + LATAM/Stripe cross-currents), and changelog note now live under May 5 inside the main W19 page.
+
+### Removed
+
+- **`@playwright/test` devDependency.** The skill's binary covers every browser-automation need; no Node-side Playwright runtime is required.
+
+---
+
 ## [2.6.0] — 2026-05-03 — Site overhaul: branded share image, /experience removed, home rolling-log, /changelog page, Clerk-gated weekly admin, LLM-copyable everywhere, /knowledge collapsed into /writing
 
 ### Added — Round 2 (post-merge user followups)
