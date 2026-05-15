@@ -1,5 +1,23 @@
 [
   {
+    "hash": "7756542688591ddf0bce21751497b2f18c8554b7",
+    "date": "2026-05-15T01:17:34-05:00",
+    "type": "docs",
+    "scopes": [],
+    "summary": "Money Stuff W19/W20 concept notes (20 concepts, 6 themes)",
+    "body": "Companion notes to content/weekly/2026-W19.mdx and 2026-W20.mdx covering\nthe 7 Money Stuff columns from May 4-14: BDC mechanics (KKR/FSK synthesis,\nfake diversification, Blue Owl ouroboros), moonshot pay arithmetic,\ndisclosure rules going toothless (Section 16(b), Musk $1.5M, white-on-white\nprospectus, Adani), market microstructure (Bartlett-O'Hara prediction\nmaking, pre-hedging vs front-running, appraisal arb as a vol trade),\ncorporate control (real-to-fake takeover continuum, activism vs hostile\ntakeover, control-is-functional), and AI/gambling category blurring\n(ChatGPT Alpha Arena, CFTC sports-betting trap, Boredom Markets,\n\"promise nothing, get money, deliver nothing\").\n\nEach concept includes an ASCII flow diagram and a verified source link.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["docs"]
+  },
+  {
+    "hash": "36b2e6ea503238123f14e93efb3daf245b8b04e3",
+    "date": "2026-05-15T01:15:06-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "preview",
+    "body": "",
+    "tags": []
+  },
+  {
     "hash": "be5706276b66b38c06fa5a9855971fea69c51026",
     "date": "2026-05-15T01:09:14-05:00",
     "type": null,
