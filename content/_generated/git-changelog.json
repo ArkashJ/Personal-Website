@@ -1,5 +1,14 @@
 [
   {
+    "hash": "5f9b7a2db7ff0e819245f170f770f0fe068620ee",
+    "date": "2026-05-15T00:53:56-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "Money Stuff daily log W19 May 4-7 + new W20 ribbon",
+    "body": "W19 — added four Matt Levine columns to the read rail with TL;DR bullets\nand a dedicated prose section per day with ASCII flow diagrams:\n- May 4 GameStop/eBay ($56B financing waterfall, moonshot-pay continuum)\n- May 5 Investment Banking Without a License (Morgan Stanley Budapest,\n  PASPA -> Murphy -> Kalshi sports-betting jurisdiction trap)\n- May 6 ChatGPT Can't Pick the Stocks (Nof1 Alpha Arena, Apollo daily\n  pricing, Sklarov fake margin loan, TD3C-as-Libor)\n- May 7 Sell on eBay to Buy eBay (insider-ring pipeline, Blue Owl\n  ouroboros, HSBC/Atlas SP three-layer cake, Aave run)\n\nW20 — new ribbon for May 11-17 covering KKR/FSK preferred-at-NAV vs\ntender-at-discount split with the VA Kalshi timeline and OpenAI tender;\nthree Stratechery columns (SpaceXAI/Anthropic, deployment-company arc,\nMoffettNathanson interview); SemiAnalysis EDA Primer Part 1 with the\n13-stage chip-design waterfall, PDK tiers, Intel 18A timeline, FinFlex\nand DTCO/STCO; three TBPN episodes, All-In Koch interview, Uncapped 49\n(Hartz/A* Capital), and Invest Like the Best.\n\nCLAUDE.md - documented the valid weekly kind values, the editorial-only\njunk filter rule for inbox triage, and the ASCII-flows-as-fenced-code\nconvention. Noted that Project and WorkTool accept optional links for\nmulti-link surfaces (case study + walkthrough video).\n\nMoney Stuff May 8 podcast promo, TLDR AI marketing newsletter, and the\nGoogle OAuth security-alert email were intentionally excluded - only\neditorial-content surfaces on /weekly.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
     "hash": "55d8b70d18d801a095c7bcbbe9aacea67581cbd5",
     "date": "2026-05-15T00:36:11-05:00",
     "type": "feat",
