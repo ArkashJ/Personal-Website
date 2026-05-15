@@ -223,6 +223,28 @@ export default function ProjectDetailModal({
               Internal / private
             </p>
           )}
+
+          {project.links && project.links.length > 0 && (
+            <div className="pt-1">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-2">
+                References
+              </p>
+              <ul className="space-y-1">
+                {project.links.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-[11px] text-primary hover:text-accent inline-flex items-center gap-1 transition-colors duration-150"
+                    >
+                      {l.label} <ExternalLinkIcon />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>,

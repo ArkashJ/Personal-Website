@@ -1,1 +1,2 @@
+bash scripts/check-no-stray-root-assets.sh
 bunx lint-staged

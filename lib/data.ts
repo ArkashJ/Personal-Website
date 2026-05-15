@@ -32,6 +32,7 @@ export type Project = {
   highlights?: string[]
   commands?: string[]
   slug?: string
+  links?: { label: string; href: string }[]
 }
 
 export type WorkTool = {
@@ -43,6 +44,7 @@ export type WorkTool = {
   commands?: string[]
   year?: string
   slug?: string
+  links?: { label: string; href: string }[]
 }
 
 export type TimelineEntry = {
@@ -227,6 +229,91 @@ export const EXPERIENCE: ExperienceEntry[] = [
 ]
 
 export const PROJECTS: Project[] = [
+  {
+    name: 'Cattle Logic',
+    year: '2026',
+    description:
+      'Forward-deployed engagement at Benmore: end-to-end ranch operations platform for a Durham, KS cattle feedlot. Offline-first mobile (React Native / Expo) for cowboys in the pasture, Django + Postgres on the server side, multi-tenant scan flows for arrival/intake/sort, head-count invariants enforced through a HeadCountService, and Apple App Store-grade release discipline (purpose strings, account deletion, in-app disclosures). Currently piloting with the Texas ranch onboarding flow live; full case study and on-site walkthrough video below.',
+    tech: ['Django', 'Postgres', 'React Native', 'Expo', 'TypeScript', 'Stripe', 'Twilio'],
+    href: 'https://www.benmore.tech/case-studies/cattle-logic/',
+    highlights: [
+      'Offline-first mobile shell so cowboys can scan cattle in dead-zone pastures',
+      'HeadCountService invariant — every CattleInbound/Outbound flow routes through one service',
+      'Multi-tenant scan flows for arrival, intake, and sort — per-lot head counts always reconcile',
+      'Apple App Store release skill (purpose strings, account deletion, 5.1.2 data declarations) lives in /skills',
+      'Pilot live with a Texas ranch; first in-person walkthrough done in Amarillo (W18)',
+    ],
+    links: [
+      {
+        label: 'On-site walkthrough (YouTube)',
+        href: 'https://youtu.be/kfNiCBbhrBg?si=8JDubzbWa2po9fP2',
+      },
+      {
+        label: 'Case study — benmore.tech/cattle-logic',
+        href: 'https://www.benmore.tech/case-studies/cattle-logic/',
+      },
+    ],
+  },
+  {
+    name: 'Home Service Pass',
+    year: '2026',
+    description:
+      'Benmore engagement (Salt Lake City, UT): hospitality-side platform for a home-services pass program. Django backend with a desktop application surface, Stripe-billed memberships, and an operator console for routing service requests across a multi-vendor network. Application development + desktop application engagement across 8 tech surfaces; full write-up at benmore.tech.',
+    tech: ['Django', 'Postgres', 'Stripe', 'TypeScript', 'Electron', 'React'],
+    href: 'https://www.benmore.tech/case-studies/home-service-pass/',
+    highlights: [
+      'Membership billing on Stripe with service-pass entitlement checks at the API edge',
+      'Desktop operator console — request triage, dispatch, and SLA tracking',
+      'Multi-vendor routing with capacity-aware assignment',
+      'Application + desktop dual-surface engagement across 8 tooling areas',
+    ],
+    links: [
+      {
+        label: 'Case study — benmore.tech/home-service-pass',
+        href: 'https://www.benmore.tech/case-studies/home-service-pass/',
+      },
+    ],
+  },
+  {
+    name: 'Propurti',
+    year: '2026',
+    description:
+      'Benmore engagement (Calgary, AB): proptech platform for property management workflows. Django + Postgres core, desktop application for property managers, and integration surface for showings, applications, and tenant comms. Application Development + Desktop Application engagement across 8+ tooling areas — typed APIs, document workflows, and a tenant-portal interface.',
+    tech: ['Django', 'Postgres', 'TypeScript', 'React', 'Electron', 'Stripe'],
+    href: 'https://www.benmore.tech/case-studies/propurti/',
+    highlights: [
+      'Property-manager desktop console with showings, applications, and lease pipelines',
+      'Document workflow primitives — typed schemas for lease, application, and disclosure docs',
+      'Tenant-portal interface with payment + maintenance request flows',
+      'Application + desktop dual-surface engagement across 8+ tooling areas',
+    ],
+    links: [
+      {
+        label: 'Case study — benmore.tech/propurti',
+        href: 'https://www.benmore.tech/case-studies/propurti/',
+      },
+    ],
+  },
+  {
+    name: 'Noble Gas',
+    year: '2026',
+    description:
+      'Benmore engagement (Windsor, CT): automotive-industry application with enterprise LLM integration. Built the application development + enterprise LLM stack — structured extraction over service records, agent-mediated workflows for parts and procurement, and a typed backend that keeps the LLM grounded in real inventory state. Case study at benmore.tech.',
+    tech: ['Python', 'Django', 'Postgres', 'Anthropic API', 'OpenAI API', 'TypeScript'],
+    href: 'https://www.benmore.tech/case-studies/noble-gas/',
+    highlights: [
+      'Enterprise LLM layer wired to a typed inventory/service backend — grounded extraction, no hallucinated parts',
+      'Agent-mediated workflows for parts lookup, procurement, and service scheduling',
+      'Structured extraction over historical service records to seed the workflow agents',
+      'Automotive industry vertical — Windsor, CT engagement',
+    ],
+    links: [
+      {
+        label: 'Case study — benmore.tech/noble-gas',
+        href: 'https://www.benmore.tech/case-studies/noble-gas/',
+      },
+    ],
+  },
   {
     name: 'Benmore-Meridian (bm CLI)',
     year: '2026',

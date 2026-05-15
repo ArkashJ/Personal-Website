@@ -1,5 +1,14 @@
 [
   {
+    "hash": "15d66bd4f87198b5646fec4621e37f4b984653df",
+    "date": "2026-05-15T00:28:46-05:00",
+    "type": "feat",
+    "scopes": ["weekly"],
+    "summary": "real branded favicons + playwright-cli capture pipeline",
+    "body": "Replace hand-drawn SVG monograms for Bloomberg, SemiAnalysis, Stratechery, and\nTBPN with each publisher's actual favicon/apple-touch-icon. Add scripts/fetch-icons.ts\nas a single command (bun run icons:fetch) to refresh them and to onboard new\nsources by editing one array.\n\nStandardise browser automation on the playwright-cli Claude skill (no Playwright\nMCP, no @playwright/test). New scripts/capture-weekly.sh drives the skill's\nglobal binary through 30 scroll-position screenshots; scripts/frames-to-gif.sh\nstitches them with gifski; scripts/cli-demo.tape records the CLI via vhs.\nRemove @playwright/test devDependency.\n\nDocument the skill-only convention in CLAUDE.md and propagate it through\nHANDOFF-NEXT-SESSION.md + the historical overhaul plan. Drop the standalone\ndocs/playwright-cli-demo.md per request to stop adding doc-only markdowns.\n\nUntrack .playwright-cli/ runtime snapshots and add to .gitignore.\n\nCo-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>",
+    "tags": ["feat", "weekly"]
+  },
+  {
     "hash": "abf8a3e23b8b7501259b19d0bb06466200ffbe67",
     "date": "2026-05-10T22:01:01-05:00",
     "type": "fix",
