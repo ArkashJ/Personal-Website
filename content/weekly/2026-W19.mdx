@@ -701,6 +701,291 @@ to value delivered. This is the line I keep going back to.
 
 ---
 
+## Money Stuff — daily log (May 4 – May 7)
+
+Four daily Matt Levine columns this week, three of which braid into one story:
+**how does someone "buy" a company that is much bigger than them, and who is
+allowed to do it?** Money flow, regulatory licence, and "what counts as the
+real deal" all show up.
+
+<div id="ms-gamestop-ebay"></div>
+
+### Mon May 4 — GameStop Doesn't Have Enough Stock
+
+**[Read on Bloomberg ↗](https://www.bloomberg.com/opinion/articles/2026-05-04/gamestop-doesn-t-have-enough-stock)** · _Money Stuff_, Matt Levine
+
+GameStop ($12B market cap) proposed buying eBay (~$46B) for **$56B at $125/share, half cash / half stock**. They had already built ~5% via derivatives. The financing breakdown:
+
+```
+$56 BILLION DEAL — FINANCING WATERFALL
+══════════════════════════════════════════════
+├── $8B   GameStop balance-sheet cash
+├── $20B  TD Bank "highly confident letter" debt
+│         └─ secured against eBay's cash flow (LBO funded by target)
+└── $28B  New GameStop stock
+          └─ 1.05B shares at $26.53 each
+             └─ BUT only 1B shares authorised, 448M outstanding
+                = NOT ENOUGH AUTHORISED SHARES
+```
+
+Andrew Ross Sorkin tried to get Cohen to walk the math on Squawk Box. Cohen's answer was, in full: _"Yeah, we'll see what happens."_
+
+Four structural problems Levine flags:
+
+1. **GameStop can't borrow $20B itself** — Bloomberg estimates ~$469M EBITDA. The $20B is against eBay's own cash flow, i.e. it's an LBO funded by the target.
+2. **The new shares wouldn't trade at $26.53** the moment they were announced — so legacy eBay holders end up owning most of the combined company. **GameStop is being acquired, not acquiring.**
+3. **NYSE rules → GameStop shareholders vote.** They normally never get to, but they do when the target is bigger.
+4. **Authorised shares cap.** 1B authorised, 448M outstanding. Can't issue 1.05B more without a shareholder vote to expand authorisation.
+
+#### Tangent — moonshot pay packages
+
+Cohen's January 2026 pay package: **171.5M options at a $20.66 strike**, fully earned when GameStop hits **$100B market cap + $10B cumulative EBITDA in 10 years**. At full hit, ~$35B.
+
+The Musk lineage:
+
+```
+MOONSHOT PAY — EMPIRE-BUILDING INCENTIVE
+══════════════════════════════════════════
+Musk Tesla 2018      $56B   $59B  → $650B    (won)
+Musk Tesla 2025      ~$1T   target $8.5T
+Musk SpaceX          ~$6.6T  "data centers in space"
+Cohen GameStop 2026  ~$35B   $100B mkt cap + $10B EBITDA
+```
+
+The arithmetic favours M&A even when the package has an adjustment clause — growing $60B → $150B is mechanically easier than $10B → $100B, and a SpaceX/Tesla merger nets Musk ~$4.6T earlier than running both companies separately. _"In the governance literature this is called empire building and it's bad. But if you're a GameStop shareholder, don't you sort of want your CEO to build an empire?"_
+
+#### Tangent — play-money casinos
+
+Bloomberg Businessweek's Robison & Silver on social casinos (High 5, Jackpot Party, Slotomania). Industry revenue **>$11B in 2025**. Whales spending **>$1M**, mortgaging houses. High 5 staff discussed sending _"a box of wine or three"_ to one whale called Good ol' Patty to keep her playing _"Ciao, Roma!"_. Levine's Evil Business School framing: business model 3 = "promise nothing, get money, deliver nothing" — which is the social-casino model in one line.
+
+<div id="ms-banking-license"></div>
+
+### Tue May 5 — Investment Banking Without a License
+
+**[Read on Bloomberg ↗](https://www.bloomberg.com/opinion/articles/2026-05-05/investment-banking-without-a-license)** · _Money Stuff_, Matt Levine
+
+#### Morgan Stanley Budapest
+
+FINRA is investigating a Morgan Stanley program in Budapest after a whistleblower came forward. Allegations:
+
+- Analyst-style front-office IB work moved from NY/London to Budapest
+- Hours matched NY (Budapest analysts working 1pm – 7am local)
+- Pitch decks listed Budapest analysts with US/UK flags
+- One analyst travelled to meet a European client
+- A **2024 internal memo** explicitly stated _"Budapest analysts are not licensed to undertake any regulated activities"_ — but the rule wasn't enforced
+- Promised home-office transfers have been walked back
+
+Levine bridges to Anthropic shipping **10 AI agents for financial-services tasks** — pitch decks, statement review, compliance escalation. Joke: future pitchbooks will list _Morgana, our AI banker_ on the team page. Will Morgana need a Series 79?
+
+#### Sports betting → states have no jurisdiction
+
+The legal genealogy and where Kalshi blew it open:
+
+```
+SPORTS-BETTING JURISDICTION TRAP
+═══════════════════════════════════════════════════════
+1992  PASPA            Federal law: states can't legalise.
+                                │
+2018  Murphy v. NCAA   SCOTUS strikes PASPA.
+                       "Each state is free to act."
+                                │
+                                ▼
+2025  Kalshi wins      CFTC backs Kalshi's "event contracts"
+                       framing → sports bets = commodity swaps.
+                                │
+                                ▼
+2026  THE TRAP         If sports bets are swaps, then
+                       state-licensed sportsbooks are
+                       illegal off-exchange swaps under
+                       Section 2(e) of the CEA.
+                                │
+                                ▼
+                       States can't BAN sports betting (CFTC preempts)
+                       States can't LICENSE sports betting (illegal swaps)
+                       → STATES HAVE NO JURISDICTION OVER SPORTS GAMBLING
+```
+
+A **Lexicon Labs comment letter** to the CFTC spells this out. CFTC hasn't acted. The 2018 _Murphy v. NCAA_ "each state is free to act" line turned out to be wrong, because the CFTC quietly took jurisdiction by treating bets as event contracts.
+
+#### Two short tangents
+
+- **James Vorley** (ex-Deutsche Bank gold/silver trader, convicted of spoofing 2020) suing Deutsche for **£12M** alleging he was _taught_ spoofing on-desk by senior traders. Defence: training was "informal and not endorsed." Levine: every new trader gets two trainings — the compliance video on mute, and the senior trader next to her saying "lol compliance, watch me do it."
+- **Musk's $1.5M SEC settlement** for the 2022 Twitter 13D — missed the 10-day window, saved ~$150M at shareholder expense. SEC originally sought $200M+; new SEC settled for $1.5M with no admission. A reader's quip: _"If you're an economic activist with political connections, why would you ever file a 13D on time again?"_
+
+<div id="ms-chatgpt-stocks"></div>
+
+### Wed May 6 — ChatGPT Can't Pick the Stocks
+
+**[Read on Bloomberg ↗](https://www.bloomberg.com/opinion/articles/2026-05-06/chatgpt-can-t-pick-the-stocks)** · _Money Stuff_, Matt Levine
+
+Levine's split between the two models of AI-for-stocks:
+
+```
+TWO MODELS OF AI-FOR-STOCKS
+═══════════════════════════════════════════
+QUANT (Renaissance, et al.)        LLM (Chatbot picks)
+   │                                   │
+   ML on historical prices             "Hey ChatGPT, what stocks?"
+   │                                   │
+   Predict → trade                     Buy what it says
+   │                                   │
+   ↳ works                             ↳ shouldn't work, here's why:
+                                          • trained on Reddit, not prices
+                                          • $20/mo → any alpha arbitraged
+                                          • smartest PhD ≠ best picker
+                                          • optimises for engagement
+```
+
+**Nof1 "Alpha Arena":** pitted **Claude, Gemini, ChatGPT, Grok + 4 others** in 4 contests. Each got $10K to trade US tech stocks for 2 weeks.
+
+```
+ALPHA ARENA SCOREBOARD (Nof1)
+═══════════════════════════════════════════
+Contests run                       4
+Models                             8
+Total results                      32
+Profitable results                  6   (19%)
+Portfolio overall                  -⅓ of capital
+Failure modes                      over-trading,
+                                   wildly inconsistent
+                                   on identical prompts,
+                                   bad sizing, mis-timing
+```
+
+WSJ's **Gunjan Banerji** asked ChatGPT for picks — got Lockheed Martin among others — basket gained **~5.5%** while the S&P returned **~8%** in the same window. Underperformed by being too eager to _act_.
+
+Levine's deeper point: ChatGPT's reward function is **engagement** — like a retail financial adviser. The best advice (_"put the phone down, take a walk"_) doesn't get reward. So the bot gives action, not optimal portfolio behaviour.
+
+#### Tangent — daily private prices
+
+Cliff Asness's view: not having real-time prices is a **feature** of private markets, not a bug. Daily marks make you anxious. Private investments pay steady, rarely change price, cash out at the end — pleasant.
+
+Counter, this week: **Apollo announced >$830B of credit assets will be priced daily by end of September**. Marc Rowan: _"the totality of our credit business will be 100% daily pricing."_ Retail BDC investors win; institutional investors who liked the blissful ignorance lose it.
+
+#### Tangent — Val Sklarov fake margin loan
+
+SDNY indicted **Val Sklarov** for an "Astor"-branded loan scheme: lent cash against pledged shares, then immediately **sold the shares and used the proceeds to fund the loan**, keeping the rest.
+
+- Lead victim: **Ricardo Salinas Pliego** (Mexican billionaire) — pledged Elektra shares worth ~3× the $150M loan
+- _"The guy took my stock, sold it, and gave me the money as a loan."_
+
+#### Tangent — TD3C shipping benchmark gone Libor
+
+Mercuria is suing the Baltic Exchange over **TD3C**, the benchmark for shipping oil **Ras Tanura → China**. In March the Exchange told brokers to keep using Ras Tanura even though shipments had ceased due to war. Rates spiked from **$40-100K/day to $600K/day**. Hunter Group ASA: Mercuria paid $8.3M less than was due, refusing to honour TD3C-linked charters. Same shape as Libor — the market that set the rate became inactive, idiosyncratic, generically used.
+
+<div id="ms-ebay-ouroboros"></div>
+
+### Thu May 7 — Sell on eBay to Buy eBay
+
+**[Read on Bloomberg ↗](https://www.bloomberg.com/opinion/articles/2026-05-07/sell-on-ebay-to-buy-ebay)** · _Money Stuff_, Matt Levine
+
+Continuation of May 4. **Ryan Cohen listed personal items on eBay** (including a pair of socks, a Halo 2 statue, vintage Willie Mays cards, Windows 2000) to "raise money" for the bid. eBay then suspended his account.
+
+The Levine continuum:
+
+```
+REAL ←──────────── TAKEOVER FINANCING ───────────→ FAKE
+│                                                       │
+PE: "we don't have                "I have ancient
+the cash but can raise"           Mesopotamian bearer bonds"
+│                                                       │
+Musk: borrows                     "I'll dig up
+against Tesla                     Yamashita's gold"
+│                                                       │
+Cohen: $9B cash +                 "Money isn't real, man"
+TD highly-confident
+│                                                       │
+                                  "I'm gonna sell socks
+                                  on eBay"
+```
+
+If you do publicity stunts to "finance" your bid, the bid itself is the publicity stunt.
+
+#### Insider-trading ring — 30 indicted lawyers
+
+Boston federal prosecutors unsealed two indictments charging **30 people**. Firms not named, but the details point to **Wachtell Lipton, Latham & Watkins, Goodwin Procter**.
+
+Ringleaders:
+
+- **Nicolò Nourafchan** — 2011 Yale Law, worked at Goodwin and Latham 2013-2023.
+- **Robert Yadgarov** — college classmate, recruited the other tippers.
+
+```
+INSIDER-TRADING PIPELINE
+═══════════════════════════════════════════════
+Law firms (Wachtell · Latham · Goodwin)
+   │ MNPI
+   ▼
+NOURAFCHAN  (lawyer-source)
+   │
+   ▼
+YADGAROV  (recruiter / coordinator)
+   │
+   ├─→ Other corporate-lawyer tippers
+   │
+   ▼
+Outside traders  (Silverstein, Fensterszaub, Kavian, …)
+   │ short-dated OTM calls
+   ▼
+Profits → Zelle kickbacks → Yadgarov → Nourafchan
+        (rates 1% ─ >50% of profit)
+```
+
+- DOJ: tens of millions in profit; SEC chart (p.43): ~**$5.8M**.
+- Lawyers didn't trade themselves; tipped friends who did. Yadgarov collected **>$6.3M** from one trader 2014–2019.
+- Coded comms about _a "rabbi" needing surgery_ — slipped by referencing _the deal_ by name.
+- Latham partners average **$8.7M/year**. Risking prison for low-six-figure kickbacks is irrational. Levine has been writing this line for a decade and the indictments keep arriving.
+
+#### Blue Ouroboros
+
+**Blue Owl Capital** is launching a debut **credit secondaries fund**. The shape:
+
+```
+BLUE OWL OUROBOROS
+═══════════════════════════════════════════
+Blue Owl runs                  Saba (Boaz Weinstein)
+public + non-traded BDCs       tendering for Blue Owl
+trading at NAV discount        BDC shares at discount
+            │                              │
+            └──────────────┐  ┌────────────┘
+                           ▼  ▼
+                  Blue Owl's new credit
+                  secondaries fund
+                           │
+                           ▼
+                  could buy back its OWN
+                  discounted BDC shares
+                  at the discount.
+                  (Or anyone else's.)
+```
+
+Levine had previously joked: "what if Blackstone tendered for Blue Owl's BDCs and Blue Owl tendered for Blackstone's?" Getting closer. He discloses he owns one of Blue Owl's non-traded BDCs.
+
+#### HSBC $400M fraud charge — Atlas SP three-layer cake
+
+```
+LAYER 1   MFS (UK lender) makes ~525 mortgage loans     ← FRAUD
+              │ pledged as collateral
+              ▼
+LAYER 2   Apollo's Atlas SP lends MFS £1B (£400M net)
+              │ pledged as collateral
+              ▼
+LAYER 3   HSBC lends Atlas at 80% LTV (typical 60-70%)
+              │
+              ▼
+          MFS turns out fraudulent → HSBC eats $400M
+```
+
+Diversification at the MFS borrower level (525 properties) is an illusion when there's concentration at the Atlas middle layer (one borrower). Same pattern as First Brands, Tricolor — fake diversification that collapses when a middle layer is fraudulent or double-pledges collateral.
+
+#### Aave run
+
+**April 18:** North-Korea-linked hackers stole ~$290M of an ETH-linked token from **KelpDAO**, used it as collateral to borrow from **Aave**, leaving Aave with **up to $230M in bad debts**. Coordinators of the bailout: Joseph Lubin (Ethereum co-founder), Justin Sun, LayerZero, Mantle. Stani Kulechov (Aave CEO) framed it as preventing contagion.
+
+The Kaiko analyst line that lands: _"It's realistically 12 to 20 men who have been in crypto for 20 years who have a vested interest in keeping each other's thing alive."_ Levine: _"right, but that's the bull case for all of finance, really."_
+
+---
+
 ## What's next week
 
 Wrap-up of the W18 ranch-walkthrough learnings, Foundry v0.5 audit-log surface

@@ -5,7 +5,26 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
-## [Unreleased] — Weekly icon polish + `playwright-cli` skill pipeline + W19 merge
+## [Unreleased] — Money Stuff daily log (W19 May 4–7), new W20 ribbon, 4 Benmore case-study projects
+
+### Added
+
+- **2026-W19 Money Stuff daily log (May 4 – May 7).** Four daily Matt Levine columns added to the `read` rail with TL;DR bullets and Bloomberg-icon branding, plus a new prose section per day with ASCII flow diagrams:
+  - May 4 — _GameStop Doesn't Have Enough Stock_ ($56B financing waterfall + moonshot-pay continuum + social-casino tangent).
+  - May 5 — _Investment Banking Without a License_ (Morgan Stanley Budapest + the PASPA → Murphy → Kalshi → "states have no jurisdiction" trap diagram).
+  - May 6 — _ChatGPT Can't Pick the Stocks_ (Nof1 Alpha Arena scoreboard + Apollo daily-pricing + Sklarov fake-margin-loan + TD3C-as-Libor).
+  - May 7 — _Sell on eBay to Buy eBay_ (real-to-fake takeover continuum + 30-lawyer insider-ring pipeline + Blue Owl ouroboros + HSBC/Atlas SP three-layer cake + Aave run).
+- **`content/weekly/2026-W20.mdx` — new W20 ribbon (May 11 – May 17).** Money Stuff KKR/FSK column with the preferred-at-NAV / tender-at-discount split + VA Kalshi timeline + OpenAI tender; Stratechery × 3 (SpaceXAI/Anthropic, the deployment-company arc, MoffettNathanson interview); SemiAnalysis _EDA Primer Part 1_ with the 13-stage chip-design waterfall, PDK access tiers, Intel 18A timeline, FinFlex/NanoFlex, and DTCO/STCO; TBPN × 3 (Trump-Xi summit, Condé Nast CEO, AI-SPVs/BuzzFeed); All-In Koch interview; Uncapped #49 (Kevin Hartz / A\* Capital); _Invest Like the Best_ (Patrick O'Shaughnessy).
+- **4 new entries in `PROJECTS` (`lib/data.ts`).** _Cattle Logic_ (Durham, KS — agriculture, Texas pilot live with the on-site walkthrough video as a reference link), _Home Service Pass_ (SLC — hospitality), _Propurti_ (Calgary — proptech), _Noble Gas_ (Windsor, CT — automotive + enterprise LLM). Each links to its benmore.tech case study; Cattle Logic also surfaces the YouTube walkthrough at `youtu.be/kfNiCBbhrBg`.
+- **`links?: {label, href}[]` on `Project` and `WorkTool` types** (`lib/data.ts`). Renders as a new "References" section in `ProjectDetailModal` for projects that need multiple outbound links (case study + walkthrough video, etc.) without overloading the single `href`.
+
+### Filtered
+
+- Money Stuff May 8 podcast-only promo, the TLDR AI marketing newsletter, and the Google OAuth security-alert email were intentionally excluded — only editorial-content newsletters and podcasts surface on `/weekly`.
+
+---
+
+## [Earlier Unreleased] — Weekly icon polish + `playwright-cli` skill pipeline + W19 merge
 
 ### Added
 
