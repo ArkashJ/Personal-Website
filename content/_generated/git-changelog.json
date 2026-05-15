@@ -1,5 +1,32 @@
 [
   {
+    "hash": "68addf39ee14c1adf51e2fb4144483abaa0f6d12",
+    "date": "2026-05-15T02:18:52-05:00",
+    "type": "feat",
+    "scopes": ["seo"],
+    "summary": "programmatic-SEO topic hubs + FAQPage schema on About/Research/Credentials",
+    "body": "Four topic hubs added at /topics/[slug] with original 500-800 word primers,\nFAQPage JSON-LD, BreadcrumbList, CollectionPage, and ItemList schemas. Each\nhub clusters writing, weekly logs, projects, and Claude skills into a\nkeyword-targeted reading path:\n\n- /topics/forward-deployed-engineering — FDE role, Benmore Foundry, the 4\n  client case studies (Cattle Logic, Propurti, Home Service Pass, Noble Gas).\n  Keywords: forward deployed engineer, FDE, AI consulting engineer.\n- /topics/ai-engineering — SpatialDINO, the bm CLI's 77 production skills,\n  RTK, context-mode, Compound Engineering plugin.\n  Keywords: AI engineer, applied AI engineering, production ML.\n- /topics/pragmatic-engineering — agent operator role, Claude skills,\n  RTK / context-mode / Compound Engineering, boring-tool bias.\n  Keywords: pragmatic engineering, dev tooling, Claude Code workflow.\n- /topics/finance-and-markets — Money Stuff reading list, BDC mechanics,\n  prediction markets, disclosure-going-toothless arc.\n  Keywords: matt levine, money stuff, BDC, kalshi, fund formation.\n\nTopic index at /topics enumerates all four with keyword chips and links\ninto each hub.\n\nlib/structured-data.ts adds three new factories:\n- faqSchema(faqs[]) — FAQPage JSON-LD for Google rich results\n- itemListSchema(name, items[]) — ItemList for hub spoke listings\n- collectionPageSchema({...}) — CollectionPage type for hub + index\n\nFAQPage JSON-LD also injected on /about (5 questions about role and work),\n/research (5 questions about SpatialDINO and LLSM), and /credentials\n(4 questions about degrees, affiliations, and verifiability).\n\nWiring:\n- lib/site.ts adds /topics to NAV_LINKS between Weekly and Media\n- app/sitemap.ts registers /topics index + /topics/[slug] entries at\n  priority 0.9 and 0.8 respectively\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "seo"]
+  },
+  {
+    "hash": "2ef5e2c62daed2fef2c5c9b7a9451b61deda0d2b",
+    "date": "2026-05-15T02:08:14-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "analytics",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "324ae991555c31da950a05481a4fa2a07a2c3293",
+    "date": "2026-05-15T01:26:09-05:00",
+    "type": "feat",
+    "scopes": ["seo"],
+    "summary": "Vercel Analytics + Speed Insights, Bing/Yandex hooks, BreadcrumbList, alt-text sweep",
+    "body": "- Add @vercel/analytics + @vercel/speed-insights — drop-in <Analytics />\n  and <SpeedInsights /> in app/layout.tsx. Auto-wired on Vercel hobby tier.\n- Add Bing / Yandex verification meta-tag hooks (env-driven). Set\n  NEXT_PUBLIC_BING_VERIFICATION and NEXT_PUBLIC_YANDEX_VERIFICATION in Vercel\n  env after generating codes at bing.com/webmasters and webmaster.yandex.com.\n- Fix Twitter handles: @_arkash -> @ArkashJ__ on twitter.creator + twitter.site\n  in lib/metadata.ts (was wrong handle; live X profile is x.com/ArkashJ__).\n- Inject BreadcrumbList JSON-LD on /writing/[slug] and /weekly/[slug] using\n  the existing breadcrumbSchema factory in lib/structured-data.ts. Renders\n  the SERP breadcrumb trail for these high-priority dynamic routes.\n- Alt-text sweep on app/weekly/[slug]/WeeklyGrid.tsx — YouTube preview\n  thumbnails now get descriptive alt text combining source + entry title.\n  Small 16x16 favicon icons kept as alt=\"\" (decorative, adjacent label exists).\n- Alt-text fallback added to MDX <img> renderer in app/projects/[slug]/page.tsx\n  so untagged images don't render alt-less HTML.\n\nSitemap already has lastModified per route (writing uses post date, weekly\nuses weekEnd) — no change needed there.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "seo"]
+  },
+  {
     "hash": "7756542688591ddf0bce21751497b2f18c8554b7",
     "date": "2026-05-15T01:17:34-05:00",
     "type": "docs",
