@@ -192,7 +192,15 @@ watched:
       - 'Two new protocols: MPP (agent-to-agent payments via Link wallet) and UCP (cross-platform commerce standard).'
       - 'Stripe Treasury: multicurrency, FDIC-insured US balances, payouts to 160 countries, stablecoin rails.'
       - 'Public roadmap at stripe.com/roadmap through Q1 2027 — Meta, Amazon, Salesforce, Microsoft on UCP committee.'
-shipped: []
+shipped:
+  - text: 'playwright-cli capture pipeline — real branded favicons + 30-frame scroll GIF for every weekly entry'
+    href: 'https://github.com/ArkashJ/Personal-Website'
+    anchor: 'playwright-cli-pipeline'
+    image: '/assets/weekly/weekly-scroll.gif'
+    source: 'arkashj.com'
+    kind: 'repo'
+    date: '2026-05-10'
+    notes: 'Switched all browser automation on this site to the playwright-cli Claude skill — no MCP, no @playwright/test. scripts/capture-weekly.sh drives 30 scroll-position screenshots; gifski stitches the frames; vhs records the CLI session itself. scripts/fetch-icons.ts pulls real publisher favicons (Bloomberg, SemiAnalysis, Stratechery, TBPN) so weekly entries stop falling back to gstatic.'
 built:
   - text: 'RTK (Rust Token Killer): CLI proxy that compresses dev-command output before it hits the LLM context'
     href: 'https://github.com/rtk-ai/rtk'
@@ -643,3 +651,25 @@ to value delivered. This is the line I keep going back to.
 
 Wrap-up of the W18 ranch-walkthrough learnings, Foundry v0.5 audit-log surface
 landing, and likely follow-ups on MPP / UCP once the spec drops are public.
+
+---
+
+<div id="playwright-cli-pipeline"></div>
+
+## playwright-cli capture pipeline — this page on tape
+
+**[Skill page ↗](/skills/playwright-cli)** · `scripts/capture-weekly.sh` + `gifski` + `vhs`
+
+![Full scroll capture of /weekly/2026-W19](/assets/weekly/weekly-scroll.gif)
+
+The whole `/weekly/2026-W19` page, captured in 30 scroll frames by the `playwright-cli` Claude skill and stitched with `gifski`. Same pipeline used for every weekly screenshot on the site.
+
+### What changed this week
+
+- **Real branded favicons.** Bloomberg, SemiAnalysis, Stratechery, and TBPN now hit their actual publisher favicons via `LOCAL_ICON_MAP` in `lib/weekly-render.ts` — no more washed-out gstatic fallbacks. `bun run icons:fetch` refreshes them; add one line to `ICON_SOURCES` to onboard a new source.
+- **Skill-only browser automation.** Removed `@playwright/test`. `scripts/capture-weekly.sh` shells out to the `playwright-cli` binary the skill ships, so the pipeline runs identically inside or outside a Claude session.
+- **Tuesday reads merged into the main W19 entry.** No more separate `/weekly/2026-W19-tuesday-reads` route — the May 5 cards live under this page now.
+
+### CLI itself
+
+![playwright-cli session recorded with vhs](/assets/skills/playwright-cli-demo.gif)

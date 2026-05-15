@@ -6,6 +6,10 @@ allowed-tools: Bash(playwright-cli:*) Bash(npx:*) Bash(npm:*)
 
 # Browser Automation with playwright-cli
 
+![playwright-cli driving a real browser session against arkashj.com/weekly](/assets/skills/playwright-cli-demo.gif)
+
+> Live demo: this exact CLI captured every screenshot on this site's `/weekly` pages. The GIF above is `vhs` recording a real `playwright-cli` session. The full 30-frame scroll-capture of the rendered page lives at [`/assets/weekly/weekly-scroll.gif`](/assets/weekly/weekly-scroll.gif).
+
 ## Quick start
 
 ```bash
