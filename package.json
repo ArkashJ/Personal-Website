@@ -19,6 +19,9 @@
     "format:check": "prettier --check .",
     "sync:changelog": "bun scripts/sync-git-changelog.mjs",
     "sync:readmes": "bun scripts/sync-project-readmes.mjs",
+    "capture:weekly": "bun scripts/capture-weekly.ts",
+    "demo:gif": "scripts/frames-to-gif.sh",
+    "demo:cli": "vhs scripts/cli-demo.tape",
     "prepare": "husky"
   },
   "dependencies": {
@@ -40,6 +43,7 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

@@ -1,5 +1,14 @@
 [
   {
+    "hash": "abf8a3e23b8b7501259b19d0bb06466200ffbe67",
+    "date": "2026-05-10T22:01:01-05:00",
+    "type": "fix",
+    "scopes": ["weekly"],
+    "summary": "favicon fallback for unrecognised sources + SemiAnalysis ASCII flows",
+    "body": "weekly-render: when simpleicons has no slug, extract domain from href and use\ngstatic faviconV2 so Bloomberg, Stratechery, SemiAnalysis and any future source\nget their real site icon instead of rendering with no image.\n\nAlso adds href-based detection to simpleIconSlugFor (substack.com, medium.com,\ngithub.com, x.com, etc.) so TBPN and similar newsletter-on-substack items pick\nup the Substack icon automatically.\n\n2026-W19-tuesday-reads: adds ASCII flow diagrams from the SemiAnalysis piece\n(value migration, Opus pricing paradox, throughput bar chart, value-flow stack,\ncost-floor vs ceiling table) as monospace code blocks inside the modal anchor\nsection.\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+    "tags": ["fix", "weekly"]
+  },
+  {
     "hash": "24145835dd074dd6cac0dee36f15c23d3b0fdb7e",
     "date": "2026-05-10T12:53:21-05:00",
     "type": "content",

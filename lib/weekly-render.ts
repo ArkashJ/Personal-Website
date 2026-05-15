@@ -7,6 +7,35 @@ function youtubeIdFromUrl(url: string): string | null {
   return m ? m[1] : null
 }
 
+// Branded SVGs for sources that aren't in SimpleIcons (or whose gstatic
+// favicons render poorly at small sizes). Add a new entry here + drop an SVG
+// in public/assets/weekly/icons/ to onboard a new source.
+const LOCAL_ICON_MAP: Record<string, string> = {
+  bloomberg: '/assets/weekly/icons/bloomberg.svg',
+  semianalysis: '/assets/weekly/icons/semianalysis.svg',
+  stratechery: '/assets/weekly/icons/stratechery.svg',
+  tbpn: '/assets/weekly/icons/tbpn.svg',
+}
+
+function localIconFor(source?: string, href?: string): string | undefined {
+  const key = (source ?? '').toLowerCase().replace(/\s+/g, '')
+  if (key && LOCAL_ICON_MAP[key]) return LOCAL_ICON_MAP[key]
+  if (href) {
+    try {
+      const host = new URL(href).hostname.replace(/^www\./, '')
+      const first = host.split('.')[0]
+      if (LOCAL_ICON_MAP[first]) return LOCAL_ICON_MAP[first]
+      // also match e.g. "newsletter.semianalysis.com" → "semianalysis"
+      for (const slug of Object.keys(LOCAL_ICON_MAP)) {
+        if (host.includes(slug)) return LOCAL_ICON_MAP[slug]
+      }
+    } catch {
+      // malformed href — skip
+    }
+  }
+  return undefined
+}
+
 // Returns a simpleicons.org slug for known sources. Returning undefined means
 // "no logo" — render the rail item without a leading icon.
 function simpleIconSlugFor(
@@ -78,16 +107,21 @@ export function resolveItem(item: WeeklyItem): ResolvedItem {
   }
 
   if (!image) {
-    const slug = simpleIconSlugFor(source, kind, href)
-    if (slug) {
-      image = `https://cdn.simpleicons.org/${slug}/9aa0a6`
-    } else if (href) {
-      // Fall back to the site's own favicon for any unrecognised source.
-      try {
-        const origin = new URL(href).origin
-        image = `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${origin}&size=64`
-      } catch {
-        // malformed href — skip
+    const local = localIconFor(source, href)
+    if (local) {
+      image = local
+    } else {
+      const slug = simpleIconSlugFor(source, kind, href)
+      if (slug) {
+        image = `https://cdn.simpleicons.org/${slug}/9aa0a6`
+      } else if (href) {
+        // Fall back to the site's own favicon for any unrecognised source.
+        try {
+          const origin = new URL(href).origin
+          image = `https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${origin}&size=64`
+        } catch {
+          // malformed href — skip
+        }
       }
     }
   }
