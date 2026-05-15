@@ -1,0 +1,847 @@
+- generic [ref=e2]:
+  - generic:
+    - generic:
+      - tooltip "This user is the author of this issue"
+    - generic:
+      - tooltip "This user has previously committed to the pytorch repository."
+    - generic:
+      - tooltip "This user is a member of the pytorch organization."
+    - generic:
+      - tooltip "This user is the author of this issue"
+    - generic:
+      - tooltip "This user is a member of the pytorch organization."
+    - generic:
+      - tooltip "This user is the author of this issue"
+    - generic:
+      - tooltip "This user is a member of the pytorch organization."
+    - generic:
+      - tooltip "This user is a member of the pytorch organization."
+    - generic:
+      - tooltip "This user is the author of this issue"
+    - generic:
+      - tooltip "This user has previously committed to the pytorch repository."
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+              - generic [ref=e53]: Search or jump to...
+              - img [ref=e55]
+            - link "Sign in" [ref=e59] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fpytorch%2Fpytorch%2Fissues%2F144779
+            - link "Sign up" [ref=e60] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fvoltron%2Fissues_fragments%2Fissue_layout&source=header-repo&source_repo=pytorch%2Fpytorch
+            - button "Appearance settings" [ref=e63] [cursor=pointer]:
+              - img
+  - main [ref=e67]:
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e71]:
+          - img [ref=e72]
+          - link "pytorch" [ref=e75] [cursor=pointer]:
+            - /url: /pytorch
+          - generic [ref=e76]: /
+          - strong [ref=e77]:
+            - link "pytorch" [ref=e78] [cursor=pointer]:
+              - /url: /pytorch/pytorch
+          - generic [ref=e79]: Public
+        - generic [ref=e80]:
+          - list:
+            - listitem [ref=e81]:
+              - link "You must be signed in to change notification settings" [ref=e82] [cursor=pointer]:
+                - /url: /login?return_to=%2Fpytorch%2Fpytorch
+                - img [ref=e83]
+                - text: Notifications
+            - listitem [ref=e85]:
+              - link "Fork 27.8k" [ref=e86] [cursor=pointer]:
+                - /url: /login?return_to=%2Fpytorch%2Fpytorch
+                - img [ref=e87]
+                - text: Fork
+                - generic "27,778" [ref=e89]: 27.8k
+            - listitem [ref=e90]:
+              - link "You must be signed in to star a repository" [ref=e92] [cursor=pointer]:
+                - /url: /login?return_to=%2Fpytorch%2Fpytorch
+                - img [ref=e93]
+                - text: Star
+                - generic "99900 users starred this repository" [ref=e95]: 99.9k
+      - navigation "Repository" [ref=e96]:
+        - list [ref=e97]:
+          - listitem [ref=e98]:
+            - link "Code" [ref=e99] [cursor=pointer]:
+              - /url: /pytorch/pytorch
+              - img [ref=e100]
+              - generic [ref=e102]: Code
+          - listitem [ref=e103]:
+            - link "Issues 5k+" [ref=e104] [cursor=pointer]:
+              - /url: /pytorch/pytorch/issues
+              - img [ref=e105]
+              - generic [ref=e108]: Issues
+              - generic "5,000+" [ref=e109]: 5k+
+          - listitem [ref=e110]:
+            - link "Pull requests 2.3k" [ref=e111] [cursor=pointer]:
+              - /url: /pytorch/pytorch/pulls
+              - img [ref=e112]
+              - generic [ref=e114]: Pull requests
+              - generic "2,268" [ref=e115]: 2.3k
+          - listitem [ref=e116]:
+            - link "Actions" [ref=e117] [cursor=pointer]:
+              - /url: /pytorch/pytorch/actions
+              - img [ref=e118]
+              - generic [ref=e120]: Actions
+          - listitem [ref=e121]:
+            - link "Projects" [ref=e122] [cursor=pointer]:
+              - /url: /pytorch/pytorch/projects
+              - img [ref=e123]
+              - generic [ref=e125]: Projects
+          - listitem [ref=e126]:
+            - link "Wiki" [ref=e127] [cursor=pointer]:
+              - /url: /pytorch/pytorch/wiki
+              - img [ref=e128]
+              - generic [ref=e130]: Wiki
+          - listitem [ref=e131]:
+            - link "Security and quality 5" [ref=e132] [cursor=pointer]:
+              - /url: /pytorch/pytorch/security
+              - img [ref=e133]
+              - generic [ref=e135]: Security and quality
+              - generic "5" [ref=e136]
+          - listitem [ref=e137]:
+            - link "Insights" [ref=e138] [cursor=pointer]:
+              - /url: /pytorch/pytorch/pulse
+              - img [ref=e139]
+              - generic [ref=e141]: Insights
+    - generic [ref=e149]:
+      - region "Header" [ref=e151]:
+        - generic [ref=e152]:
+          - 'heading "Adding Infiniband to RDZV Backend for optimal torch run training #144779" [level=1] [ref=e154]'
+          - generic [ref=e156]:
+            - link "New issue" [ref=e158] [cursor=pointer]:
+              - /url: /login?return_to=https://github.com/pytorch/pytorch/issues/144779
+              - generic [ref=e160]: New issue
+            - button "Copy link" [ref=e161] [cursor=pointer]:
+              - img [ref=e162]
+      - generic [ref=e170]:
+        - img "Issue" [ref=e171]
+        - text: Open
+      - generic [ref=e175]:
+        - generic [ref=e176]:
+          - generic [ref=e178]:
+            - link "@ArkashJ's profile" [ref=e179] [cursor=pointer]:
+              - /url: https://github.com/ArkashJ
+              - img "@ArkashJ" [ref=e180]
+            - generic [ref=e181]:
+              - heading "Description" [level=2] [ref=e182]
+              - generic [ref=e184]:
+                - generic [ref=e186]:
+                  - generic [ref=e187]:
+                    - link "ArkashJ" [ref=e189] [cursor=pointer]:
+                      - /url: https://github.com/ArkashJ
+                    - generic [ref=e190]:
+                      - text: opened
+                      - link "on Jan 14, 2025on Jan 14, 2025" [ref=e191] [cursor=pointer]:
+                        - /url: https://github.com/pytorch/pytorch/issues/144779#issue-2787710102
+                        - generic "Jan 14, 2025, 10:37 AM CST" [ref=e192]: on Jan 14, 2025on Jan 14, 2025
+                      - generic [ref=e193]:
+                        - text: ·
+                        - generic [ref=e194]:
+                          - text: edited by
+                          - link "pytorch-bot" [ref=e195] [cursor=pointer]:
+                            - /url: https://github.com/apps/pytorch-bot
+                  - generic [ref=e196]:
+                    - button "Open edits" [ref=e199] [cursor=pointer]:
+                      - generic [ref=e201]: Edits
+                      - generic:
+                        - img
+                    - button "Issue body actions" [ref=e204] [cursor=pointer]:
+                      - img [ref=e205]
+                - generic [ref=e207]:
+                  - generic [ref=e209]:
+                    - heading "📚 The doc issue" [level=3] [ref=e210]
+                    - paragraph [ref=e211]:
+                      - text: The documentation can include more information on optimally using infiniband for running ML trainings using torchrun. It would be helpful to add the bash commands for users to see how to set the RDZV host to be the the infiniband url.
+                      - emphasis [ref=e212]: For Nvidia GPUs
+                    - paragraph [ref=e213]:
+                      - strong [ref=e214]: Infiniband URL
+                      - text: One can run
+                      - code [ref=e215]: ifconfig
+                      - text: and parse the list to look for a key starting with
+                      - code [ref=e216]: ib
+                      - text: (for example ib0 with inet of 10.1.0.12).
+                    - paragraph [ref=e217]:
+                      - strong [ref=e218]: Mellanox Ports and Link Layer
+                      - text: Run
+                      - code [ref=e219]: ibstat
+                      - text: to get the list of mellanox ports and the link layer they are using.
+                      - text: To verify the Mellanox ports being active or not, run
+                      - code [ref=e220]: ibv_devinfo
+                      - text: .
+                    - paragraph [ref=e221]:
+                      - strong [ref=e222]: Ping the port
+                      - text: If you do not have RDMA over Infiniband protocol set, run
+                      - code [ref=e223]: ping 10.x.0.y
+                      - text: to see if you can reach the infiniband connection. If you have RDMA installed you can verify the write latency by using
+                      - code [ref=e224]: ib_write_lat 10.x.0.y
+                      - text: (to verify write run
+                      - code [ref=e225]: ib_write_bw 10.x.0.y
+                      - text: ).
+                    - paragraph [ref=e226]:
+                      - strong [ref=e227]: Understanding Mellanox configs
+                      - text: Section 7.7.1 of the A100 manual states(
+                      - link "https://docs.nvidia.com/dgx/pdf/dgxa100-user-guide.pdf" [ref=e228] [cursor=pointer]:
+                        - /url: https://docs.nvidia.com/dgx/pdf/dgxa100-user-guide.pdf
+                      - text: ) using mlx start and run
+                      - code [ref=e229]: sudo mlxconfig -e query | egrep -e Device\|LINK_TYPE
+                      - text: to see if you're using Infiniband or Ethernet.
+                      - text: Run
+                      - code [ref=e230]: sudo mlxconfig -y -d <device-path> set LINK_TYPE_P1=<config-number>
+                      - text: to change the link type to IB.
+                    - paragraph [ref=e231]:
+                      - text: Finally, in your
+                      - code [ref=e232]: ~/.bashrc
+                      - text: ","
+                      - code [ref=e233]: export MASTER_ADDR="10.x.0.y"
+                      - text: . and set your RDZV_BACKEND to be $MASTER_ADDR:$MASTER_PORT. Our master port values are usually 8001, 5001 (similar to ones a react dev would use, just a personal preference).
+                    - generic [ref=e234]:
+                      - generic [ref=e235]: torchrun \ --nnodes 3 \ --nproc_per_node 8 \ --node_rank $NODE_RANK \ --max-restarts $NUM_ALLOWED_FAILURES \ --rdzv-id $RDZV_ID \ --rdzv-backend $RDZV_BACKEND \ --rdzv-endpoint $RDZV_ENDPOINT \ scripts/train/pretrain.py \
+                      - button "Copy code to clipboard" [ref=e237] [cursor=pointer]:
+                        - img [ref=e238]
+                    - paragraph [ref=e241]: Maybe these can be incorporated into the documentation? Feel free to reach out to me personally to talk more about optimized trainings including setting FlashAttention, BFloat16, Webdatasets, reading directly from raid, FSDP etc.
+                    - link "Image" [ref=e242] [cursor=pointer]:
+                      - /url: https://private-user-images.githubusercontent.com/86805856/403028647-919664b1-ba40-4c6f-a7c9-280a8c3d275a.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Nzg3Njk4MTUsIm5iZiI6MTc3ODc2OTUxNSwicGF0aCI6Ii84NjgwNTg1Ni80MDMwMjg2NDctOTE5NjY0YjEtYmE0MC00YzZmLWE3YzktMjgwYThjM2QyNzVhLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjA1MTQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwNTE0VDE0MzgzNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTljNjEzODgzOWU2YjU0YTIyYzgxNWUzYjc2OWMwYzc1OTk1MDhkY2VmZDNjM2IzNGU2NDFjNTBkOWYyMWU1N2QmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JnJlc3BvbnNlLWNvbnRlbnQtdHlwZT1pbWFnZSUyRnBuZyJ9.XIjpiWmHDNIQ7HXrzRu1-5IocWj0T8OGd5iUJFD5fwE
+                      - img "Image" [ref=e243]
+                    - paragraph [ref=e244]:
+                      - code [ref=e245]: https://pytorch.org/docs/stable/elastic/run.html
+                    - heading "Suggest a potential alternative/fix" [level=3] [ref=e246]
+                    - paragraph [ref=e247]:
+                      - emphasis [ref=e248]: No response
+                    - paragraph [ref=e249]:
+                      - text: cc
+                      - link "@awgu" [ref=e250] [cursor=pointer]:
+                        - /url: https://github.com/awgu
+                      - link "@wanchaol" [ref=e251] [cursor=pointer]:
+                        - /url: https://github.com/wanchaol
+                      - link "@fegin" [ref=e252] [cursor=pointer]:
+                        - /url: https://github.com/fegin
+                      - link "@fduwjj" [ref=e253] [cursor=pointer]:
+                        - /url: https://github.com/fduwjj
+                      - link "@wz337" [ref=e254] [cursor=pointer]:
+                        - /url: https://github.com/wz337
+                      - link "@wconstab" [ref=e255] [cursor=pointer]:
+                        - /url: https://github.com/wconstab
+                      - link "@d4l3k" [ref=e256] [cursor=pointer]:
+                        - /url: https://github.com/d4l3k
+                      - link "@pragupta" [ref=e257] [cursor=pointer]:
+                        - /url: https://github.com/pragupta
+                      - link "@msaroufim" [ref=e258] [cursor=pointer]:
+                        - /url: https://github.com/msaroufim
+                      - link "@dcci" [ref=e259] [cursor=pointer]:
+                        - /url: https://github.com/dcci
+                      - link "@aditvenk" [ref=e260] [cursor=pointer]:
+                        - /url: https://github.com/aditvenk
+                      - link "@weifengpy" [ref=e261] [cursor=pointer]:
+                        - /url: https://github.com/weifengpy
+                      - link "@svekars" [ref=e262] [cursor=pointer]:
+                        - /url: https://github.com/svekars
+                      - link "@sekyondaMeta" [ref=e263] [cursor=pointer]:
+                        - /url: https://github.com/sekyondaMeta
+                      - link "@AlannaBurke" [ref=e264] [cursor=pointer]:
+                        - /url: https://github.com/AlannaBurke
+                      - link "@H-Huang" [ref=e265] [cursor=pointer]:
+                        - /url: https://github.com/H-Huang
+                      - link "@kwen2501" [ref=e266] [cursor=pointer]:
+                        - /url: https://github.com/kwen2501
+                      - link "@c-p-i-o" [ref=e267] [cursor=pointer]:
+                        - /url: https://github.com/c-p-i-o
+                      - link "@brycebortree" [ref=e268] [cursor=pointer]:
+                        - /url: https://github.com/brycebortree
+                  - generic:
+                    - toolbar "Reactions"
+          - generic [ref=e270]:
+            - generic [ref=e271]:
+              - heading "Activity" [level=2] [ref=e272]
+              - generic [ref=e273]:
+                - region "Events" [ref=e274]:
+                  - generic [ref=e281]:
+                    - img [ref=e285]
+                    - generic [ref=e289]:
+                      - link "bdhirsh" [ref=e291] [cursor=pointer]:
+                        - /url: /bdhirsh
+                        - generic [ref=e292]: bdhirsh
+                      - text: added
+                      - 'link "oncall: distributed Add this issue/PR to distributed oncall triage queue" [ref=e294] [cursor=pointer]':
+                        - /url: /pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22oncall%3A%20distributed%22
+                        - generic [ref=e296]: "oncall: distributed"
+                        - generic [ref=e297]: Add this issue/PR to distributed oncall triage queue
+                      - link "on Jan 15, 2025on Jan 15, 2025" [ref=e298] [cursor=pointer]:
+                        - /url: https://github.com/pytorch/pytorch/issues/144779#event-15942888568
+                        - generic "Jan 15, 2025, 9:32 AM CST" [ref=e299]: on Jan 15, 2025on Jan 15, 2025
+                - generic [ref=e300]:
+                  - link "@ArkashJ's profile" [ref=e301] [cursor=pointer]:
+                    - /url: https://github.com/ArkashJ
+                    - img "ArkashJ" [ref=e302]
+                  - generic [ref=e309]:
+                    - generic [ref=e311]:
+                      - heading "ArkashJ commented on Jan 16, 2025 on Jan 16, 2025" [level=3] [ref=e312]:
+                        - text: ArkashJ commented
+                        - generic "Jan 16, 2025, 3:50 PM CST" [ref=e313]: on Jan 16, 2025 on Jan 16, 2025
+                      - generic [ref=e314]:
+                        - link "ArkashJ" [ref=e316] [cursor=pointer]:
+                          - /url: /ArkashJ
+                        - link "on Jan 16, 2025on Jan 16, 2025" [ref=e319] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2596971921
+                          - generic "Jan 16, 2025, 3:50 PM CST" [ref=e320]: on Jan 16, 2025on Jan 16, 2025
+                      - generic [ref=e322]:
+                        - generic "This user is the author of this issue" [ref=e324]: Author
+                        - button "Actions for ArkashJ's comment, 3:50 PM on January 16, 2025" [ref=e326] [cursor=pointer]:
+                          - img [ref=e327]
+                    - generic [ref=e329]:
+                      - generic [ref=e331]:
+                        - paragraph [ref=e332]: "Incase of infiniband issues, here's steps to make sure that IP over InfiniBand (IPoIB) is set up correctly:"
+                        - list [ref=e333]:
+                          - listitem [ref=e334]:
+                            - paragraph [ref=e335]:
+                              - text: "Verify IPoIB Devices:"
+                              - code [ref=e336]: /etc/init.d/openibd status
+                              - text: Ensure that the devices are correctly listed (shows IPoIB devices)
+                          - listitem [ref=e337]:
+                            - paragraph [ref=e338]: "Check Permissions: Make sure you have the required root permissions for /dev/infiniband/umad0 before running InfiniBand-specific tools like ibping."
+                          - listitem [ref=e339]:
+                            - paragraph [ref=e340]:
+                              - text: "Driver Verification: Ensure that the necessary Mellanox drivers are installed."
+                              - code [ref=e341]: ofed_info -s
+                          - listitem [ref=e342]:
+                            - paragraph [ref=e343]:
+                              - text: "Network Interfaces Configuration: Verify the"
+                              - code [ref=e344]: /etc/network/interfaces
+                              - text: file to ensure that your InfiniBand interfaces are correctly configured.
+                          - listitem [ref=e345]:
+                            - paragraph [ref=e346]:
+                              - text: "Connection Status: run"
+                              - code [ref=e347]: ip link show ibx
+                              - text: to see infiniband link layer is still up
+                              - text: List of useful pages
+                        - list [ref=e348]:
+                          - listitem [ref=e349]:
+                            - link "https://network.nvidia.com/products/infiniband-drivers/linux/mlnx_ofed/" [ref=e350] [cursor=pointer]:
+                              - /url: https://network.nvidia.com/products/infiniband-drivers/linux/mlnx_ofed/
+                          - listitem [ref=e351]:
+                            - link "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/sec-configuring_the_base_rdma_subsystem#sec-Configuring_the_Base_RDMA_Subsystem" [ref=e352] [cursor=pointer]:
+                              - /url: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/networking_guide/sec-configuring_the_base_rdma_subsystem#sec-Configuring_the_Base_RDMA_Subsystem
+                          - listitem [ref=e353]:
+                            - link "https://docs.oracle.com/cd/E19436-01/820-3522-10/ch4-linux.html" [ref=e354] [cursor=pointer]:
+                              - /url: https://docs.oracle.com/cd/E19436-01/820-3522-10/ch4-linux.html
+                            - text: "-"
+                            - link "https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_infiniband_and_rdma_networks/configuring-ipoib_configuring-infiniband-and-rdma-networks#configuring-an-ipoib-connection-by-using-the-network-system-role_configuring-ipoib" [ref=e355] [cursor=pointer]:
+                              - /url: https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_infiniband_and_rdma_networks/configuring-ipoib_configuring-infiniband-and-rdma-networks#configuring-an-ipoib-connection-by-using-the-network-system-role_configuring-ipoib
+                      - toolbar "Reactions"
+                - region "Events" [ref=e356]:
+                  - generic [ref=e363]:
+                    - img [ref=e367]
+                    - generic [ref=e369]:
+                      - generic [ref=e371]:
+                        - link "ArkashJ" [ref=e373] [cursor=pointer]:
+                          - /url: /ArkashJ
+                          - generic [ref=e374]: ArkashJ
+                        - text: mentioned this
+                        - link "on Jan 16, 2025on Jan 16, 2025" [ref=e375] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#event-1933227219
+                          - generic "Jan 16, 2025, 3:52 PM CST" [ref=e376]: on Jan 16, 2025on Jan 16, 2025
+                      - region "Issues mentioned" [ref=e379]:
+                        - list [ref=e380]:
+                          - listitem [ref=e381]:
+                            - generic [ref=e382]:
+                              - img "Duplicate" [ref=e383]
+                              - 'link "Ensuring Infiniband is setup for torch run trainings and debugging it #145009" [ref=e385] [cursor=pointer]':
+                                - /url: https://github.com/pytorch/pytorch/issues/145009
+                                - text: Ensuring Infiniband is setup for torch run trainings and debugging it
+                                - generic [ref=e386]: "#145009"
+                  - generic [ref=e393]:
+                    - img [ref=e397]
+                    - generic [ref=e401]:
+                      - link "malfet" [ref=e403] [cursor=pointer]:
+                        - /url: /malfet
+                        - generic [ref=e404]: malfet
+                      - text: added
+                      - 'link "module: docs Related to our documentation, both in docs/ and docblocks" [ref=e406] [cursor=pointer]':
+                        - /url: /pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22module%3A%20docs%22
+                        - generic [ref=e408]: "module: docs"
+                        - generic [ref=e409]: Related to our documentation, both in docs/ and docblocks
+                      - link "on Jan 16, 2025on Jan 16, 2025" [ref=e410] [cursor=pointer]:
+                        - /url: https://github.com/pytorch/pytorch/issues/144779#event-15968614586
+                        - generic "Jan 16, 2025, 4:44 PM CST" [ref=e411]: on Jan 16, 2025on Jan 16, 2025
+                  - generic [ref=e415]:
+                    - img [ref=e419]
+                    - generic [ref=e425]:
+                      - link "malfet" [ref=e427] [cursor=pointer]:
+                        - /url: /malfet
+                        - generic [ref=e428]: malfet
+                      - text: marked
+                      - img "Duplicate" [ref=e429]
+                      - 'link "Ensuring Infiniband is setup for torch run trainings and debugging it #145009" [ref=e431] [cursor=pointer]':
+                        - /url: https://github.com/pytorch/pytorch/issues/145009
+                        - text: Ensuring Infiniband is setup for torch run trainings and debugging it
+                        - generic [ref=e432]: "#145009"
+                      - text: as a duplicate of this issue
+                      - link "on Jan 16, 2025on Jan 16, 2025" [ref=e433] [cursor=pointer]:
+                        - /url: https://github.com/pytorch/pytorch/issues/144779#event-15968687506
+                        - generic "Jan 16, 2025, 4:54 PM CST" [ref=e434]: on Jan 16, 2025on Jan 16, 2025
+                - generic [ref=e435]:
+                  - link "@wz337's profile" [ref=e436] [cursor=pointer]:
+                    - /url: https://github.com/wz337
+                    - img "wz337" [ref=e437]
+                  - generic [ref=e444]:
+                    - generic [ref=e446]:
+                      - heading "wz337 commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e447]:
+                        - text: wz337 commented
+                        - generic "Jan 21, 2025, 3:56 PM CST" [ref=e448]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e449]:
+                        - link "wz337" [ref=e451] [cursor=pointer]:
+                          - /url: /wz337
+                        - link "on Jan 21, 2025on Jan 21, 2025" [ref=e454] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605820971
+                          - generic "Jan 21, 2025, 3:56 PM CST" [ref=e455]: on Jan 21, 2025on Jan 21, 2025
+                      - generic [ref=e457]:
+                        - generic "This user has previously committed to the pytorch repository." [ref=e459]: Contributor
+                        - button "Actions for wz337's comment, 3:56 PM on January 21, 2025" [ref=e461] [cursor=pointer]:
+                          - img [ref=e462]
+                    - generic [ref=e464]:
+                      - paragraph [ref=e467]:
+                        - text: cc.
+                        - link "@d4l3k" [ref=e468] [cursor=pointer]:
+                          - /url: https://github.com/d4l3k
+                        - text: ","
+                        - link "@kwen2501" [ref=e469] [cursor=pointer]:
+                          - /url: https://github.com/kwen2501
+                      - toolbar "Reactions"
+                - generic [ref=e470]:
+                  - link "@d4l3k's profile" [ref=e471] [cursor=pointer]:
+                    - /url: https://github.com/d4l3k
+                    - img "d4l3k" [ref=e472]
+                  - generic [ref=e479]:
+                    - generic [ref=e481]:
+                      - heading "d4l3k commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e482]:
+                        - text: d4l3k commented
+                        - generic "Jan 21, 2025, 4:08 PM CST" [ref=e483]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e484]:
+                        - link "d4l3k" [ref=e486] [cursor=pointer]:
+                          - /url: /d4l3k
+                        - link "on Jan 21, 2025on Jan 21, 2025" [ref=e489] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605839521
+                          - generic "Jan 21, 2025, 4:08 PM CST" [ref=e490]: on Jan 21, 2025on Jan 21, 2025
+                      - generic [ref=e492]:
+                        - generic "This user is a member of the pytorch organization." [ref=e494]: Member
+                        - button "Actions for d4l3k's comment, 4:08 PM on January 21, 2025" [ref=e496] [cursor=pointer]:
+                          - img [ref=e497]
+                    - generic [ref=e499]:
+                      - generic [ref=e501]:
+                        - paragraph [ref=e502]:
+                          - link "@ArkashJ" [ref=e503] [cursor=pointer]:
+                            - /url: https://github.com/ArkashJ
+                          - text: is the ask here to improve documentation on this? It seems all that's required here is to set the rendezvous endpoint (and maybe
+                          - code [ref=e504]: "--local-addr"
+                          - text: )
+                        - paragraph [ref=e505]: Since this is TCP based it should work as expected as long as the configuration is correct
+                        - paragraph [ref=e506]:
+                          - text: If it's a documentation issue, would you mind writing this up as a PyTorch tutorial and we can potentially include it as part of the PTD docs? cc
+                          - link "@brianjo" [ref=e507] [cursor=pointer]:
+                            - /url: https://github.com/brianjo
+                      - toolbar "Reactions"
+                - generic [ref=e508]:
+                  - link "@ArkashJ's profile" [ref=e509] [cursor=pointer]:
+                    - /url: https://github.com/ArkashJ
+                    - img "ArkashJ" [ref=e510]
+                  - generic [ref=e517]:
+                    - generic [ref=e519]:
+                      - heading "ArkashJ commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e520]:
+                        - text: ArkashJ commented
+                        - generic "Jan 21, 2025, 4:25 PM CST" [ref=e521]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e522]:
+                        - link "ArkashJ" [ref=e524] [cursor=pointer]:
+                          - /url: /ArkashJ
+                        - generic [ref=e525]:
+                          - link "on Jan 21, 2025on Jan 21, 2025" [ref=e527] [cursor=pointer]:
+                            - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605864421
+                            - generic "Jan 21, 2025, 4:25 PM CST" [ref=e528]: on Jan 21, 2025on Jan 21, 2025
+                          - generic [ref=e529]:
+                            - text: ·
+                            - generic [ref=e530]:
+                              - text: edited by
+                              - link "ArkashJ" [ref=e531] [cursor=pointer]:
+                                - /url: https://github.com/ArkashJ
+                      - generic [ref=e532]:
+                        - button "Open edits" [ref=e535] [cursor=pointer]:
+                          - generic [ref=e537]: Edits
+                          - generic:
+                            - img
+                        - generic [ref=e538]:
+                          - generic "This user is the author of this issue" [ref=e540]: Author
+                          - button "Actions for ArkashJ's comment, 4:25 PM on January 21, 2025" [ref=e542] [cursor=pointer]:
+                            - img [ref=e543]
+                    - generic [ref=e545]:
+                      - generic [ref=e547]:
+                        - paragraph [ref=e548]:
+                          - text: There is little to no documentation out there on using infiniband for torch run properly. Our lab at Harvard spent a lot of time figuring this out and the above is a collection of our experiences. Its a bit more complicated to get to this point because although its as simple as using the
+                          - code [ref=e549]: master_port
+                          - text: and setting the
+                          - code [ref=e550]: rdvz_endpoint
+                          - text: ", one needs to understand the following:"
+                        - list [ref=e551]:
+                          - listitem [ref=e552]:
+                            - text: see if they have infiniband working or not because using
+                            - code [ref=e553]: ib
+                            - text: for the
+                            - code [ref=e554]: master_addr
+                            - text: over localhost for torchrun makes trainings visibly faster because of better I/O ingestion.
+                          - listitem [ref=e555]: Infiniband ports can be set to ethernet and we discovered that ours were defaulting to ETH instead of IB, thus knowing how to switch to IB is imperative. Doing so is very hard because minimal documentation on Nvidia and RedHat websites doesn't point to specific directions on how to do so. This debugging analysis came after hours and days of looking into every possible way to improve our training speeds. We found the command to switch to IB from ETH on the Nvidia A100 manual pertaining to the Mellanox switch.
+                          - listitem [ref=e556]: Switching to RDMA over IB is drastically better because this protocol is designed to go directly to GPU while TCP/IP struggles with back-pressure or TCP congestion leading to packets being dropped and slowing downstream operations. So even if you have top of the line GPUs, if the I/O is poor, the trainings will be slow.
+                          - listitem [ref=e557]: Once you have all that setup, knowing how to get the infiniband port and checking if its working or not by pinging it is important
+                        - paragraph [ref=e558]:
+                          - text: We discovered this over the last few months. We wanted to keep up with Meta's
+                          - emphasis [ref=e559]: builder
+                          - text: spirit of "work fast and breaking things" and decided to share our findings in an open source format. Many labs and academic environments need to squeeze the most performance they can get from their systems given budget constraints, thus we want to assist small scale ML projects to do so, and by implementing small networking changes they can see drastic improvements.
+                        - paragraph [ref=e560]: I'd like for this to be added into the documentation rather than it being an issue and am happy to make a tutorial for it. Is there a template for making a pytorch tutorial. I can make a professional one with gifs and detailed instructions for users if this shall be added to the documentation officially. Please reach out to me via GitHub/email privately and we can share some of other findings that are we found were sparsely documented.
+                      - toolbar "Reactions"
+                - generic [ref=e561]:
+                  - link "@d4l3k's profile" [ref=e562] [cursor=pointer]:
+                    - /url: https://github.com/d4l3k
+                    - img "d4l3k" [ref=e563]
+                  - generic [ref=e570]:
+                    - generic [ref=e572]:
+                      - heading "d4l3k commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e573]:
+                        - text: d4l3k commented
+                        - generic "Jan 21, 2025, 4:35 PM CST" [ref=e574]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e575]:
+                        - link "d4l3k" [ref=e577] [cursor=pointer]:
+                          - /url: /d4l3k
+                        - generic [ref=e578]:
+                          - link "on Jan 21, 2025on Jan 21, 2025" [ref=e580] [cursor=pointer]:
+                            - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605880108
+                            - generic "Jan 21, 2025, 4:35 PM CST" [ref=e581]: on Jan 21, 2025on Jan 21, 2025
+                          - generic [ref=e582]:
+                            - text: ·
+                            - generic [ref=e583]:
+                              - text: edited by
+                              - link "d4l3k" [ref=e584] [cursor=pointer]:
+                                - /url: https://github.com/d4l3k
+                      - generic [ref=e585]:
+                        - button "Open edits" [ref=e588] [cursor=pointer]:
+                          - generic [ref=e590]: Edits
+                          - generic:
+                            - img
+                        - generic [ref=e591]:
+                          - generic "This user is a member of the pytorch organization." [ref=e593]: Member
+                          - button "Actions for d4l3k's comment, 4:35 PM on January 21, 2025" [ref=e595] [cursor=pointer]:
+                            - img [ref=e596]
+                    - generic [ref=e598]:
+                      - generic [ref=e600]:
+                        - paragraph [ref=e601]:
+                          - link "@ArkashJ" [ref=e602] [cursor=pointer]:
+                            - /url: https://github.com/ArkashJ
+                          - text: are you finding rendezvous is a bottleneck for training? Typically this happens once at the beginning of training and generally is not the bottleneck
+                        - paragraph [ref=e603]: How many hosts are you using? What's the timing of rendezvous on TCP vs IB?
+                        - paragraph [ref=e604]: No tensors are sent over torchelastic/rendezvous so I'm very surprised you are finding you need to run it over IB
+                      - toolbar "Reactions"
+                - generic [ref=e605]:
+                  - link "@ArkashJ's profile" [ref=e606] [cursor=pointer]:
+                    - /url: https://github.com/ArkashJ
+                    - img "ArkashJ" [ref=e607]
+                  - generic [ref=e614]:
+                    - generic [ref=e616]:
+                      - heading "ArkashJ commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e617]:
+                        - text: ArkashJ commented
+                        - generic "Jan 21, 2025, 4:39 PM CST" [ref=e618]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e619]:
+                        - link "ArkashJ" [ref=e621] [cursor=pointer]:
+                          - /url: /ArkashJ
+                        - link "on Jan 21, 2025on Jan 21, 2025" [ref=e624] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605884910
+                          - generic "Jan 21, 2025, 4:39 PM CST" [ref=e625]: on Jan 21, 2025on Jan 21, 2025
+                      - generic [ref=e627]:
+                        - generic "This user is the author of this issue" [ref=e629]: Author
+                        - button "Actions for ArkashJ's comment, 4:39 PM on January 21, 2025" [ref=e631] [cursor=pointer]:
+                          - img [ref=e632]
+                    - generic [ref=e634]:
+                      - paragraph [ref=e637]: Quite the opposite, rendezvous is improving our I/O speeds. We set the RDZV_BACKEND to go over IB by giving it the IB port and it became better. I was using one ib host with 8 gpus on an A100 initially and then we did multi-node training, we were using 24 gpus on 3 nodes of A100s (each A100 has an IB host).
+                      - toolbar "Reactions"
+                - generic [ref=e638]:
+                  - link "@d4l3k's profile" [ref=e639] [cursor=pointer]:
+                    - /url: https://github.com/d4l3k
+                    - img "d4l3k" [ref=e640]
+                  - generic [ref=e647]:
+                    - generic [ref=e649]:
+                      - heading "d4l3k commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e650]:
+                        - text: d4l3k commented
+                        - generic "Jan 21, 2025, 4:42 PM CST" [ref=e651]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e652]:
+                        - link "d4l3k" [ref=e654] [cursor=pointer]:
+                          - /url: /d4l3k
+                        - link "on Jan 21, 2025on Jan 21, 2025" [ref=e657] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605889281
+                          - generic "Jan 21, 2025, 4:42 PM CST" [ref=e658]: on Jan 21, 2025on Jan 21, 2025
+                      - generic [ref=e660]:
+                        - generic "This user is a member of the pytorch organization." [ref=e662]: Member
+                        - button "Actions for d4l3k's comment, 4:42 PM on January 21, 2025" [ref=e664] [cursor=pointer]:
+                          - img [ref=e665]
+                    - generic [ref=e667]:
+                      - generic [ref=e669]:
+                        - paragraph [ref=e670]:
+                          - link "@ArkashJ" [ref=e671] [cursor=pointer]:
+                            - /url: https://github.com/ArkashJ
+                          - text: what do you mean by "rendezvous is improving our I/O speeds"? Are you doing a lot of tcpstore based operations?
+                        - paragraph [ref=e672]: How long does rendezvous take?
+                        - paragraph [ref=e673]: With 3 hosts I'd expect rendezvous to complete almost instantaneously over TCP. We have tested this to 10k+ hosts so 3 should have negligible overhead
+                      - toolbar "Reactions"
+                - generic [ref=e674]:
+                  - link "@d4l3k's profile" [ref=e675] [cursor=pointer]:
+                    - /url: https://github.com/d4l3k
+                    - img "d4l3k" [ref=e676]
+                  - generic [ref=e683]:
+                    - generic [ref=e685]:
+                      - heading "d4l3k commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e686]:
+                        - text: d4l3k commented
+                        - generic "Jan 21, 2025, 4:49 PM CST" [ref=e687]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e688]:
+                        - link "d4l3k" [ref=e690] [cursor=pointer]:
+                          - /url: /d4l3k
+                        - link "on Jan 21, 2025on Jan 21, 2025" [ref=e693] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605898996
+                          - generic "Jan 21, 2025, 4:49 PM CST" [ref=e694]: on Jan 21, 2025on Jan 21, 2025
+                      - generic [ref=e696]:
+                        - generic "This user is a member of the pytorch organization." [ref=e698]: Member
+                        - button "Actions for d4l3k's comment, 4:49 PM on January 21, 2025" [ref=e700] [cursor=pointer]:
+                          - img [ref=e701]
+                    - generic [ref=e703]:
+                      - generic [ref=e705]:
+                        - paragraph [ref=e706]:
+                          - link "@ArkashJ" [ref=e707] [cursor=pointer]:
+                            - /url: https://github.com/ArkashJ
+                          - text: maybe I'm misunderstanding the ask
+                        - paragraph [ref=e708]: Are you wanting to add a tutorial on how to configure IB so NCCL will use it for PyTorch training?
+                        - paragraph [ref=e709]: I think that's a separate topic from using IB as a rendezvous backend. Rendezvous is purely a control plane behavior that is used to setup NCCL but certainly isn't I/O bound so running rendezvous itself over IB vs TCP shouldn't make any significant difference.
+                        - paragraph [ref=e710]: If the tutorial is on how to configure IB so NCCL will use it for the data plane, that makes a lot more sense though I'm not quite sure where that tutorial should live. Generally PT doesn't directly interact with IB and instead provided through NCCL
+                      - toolbar "Reactions"
+                - generic [ref=e711]:
+                  - link "@ArkashJ's profile" [ref=e712] [cursor=pointer]:
+                    - /url: https://github.com/ArkashJ
+                    - img "ArkashJ" [ref=e713]
+                  - generic [ref=e720]:
+                    - generic [ref=e722]:
+                      - heading "ArkashJ commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e723]:
+                        - text: ArkashJ commented
+                        - generic "Jan 21, 2025, 4:54 PM CST" [ref=e724]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e725]:
+                        - link "ArkashJ" [ref=e727] [cursor=pointer]:
+                          - /url: /ArkashJ
+                        - link "on Jan 21, 2025on Jan 21, 2025" [ref=e730] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605905918
+                          - generic "Jan 21, 2025, 4:54 PM CST" [ref=e731]: on Jan 21, 2025on Jan 21, 2025
+                      - generic [ref=e733]:
+                        - generic "This user is the author of this issue" [ref=e735]: Author
+                        - button "Actions for ArkashJ's comment, 4:54 PM on January 21, 2025" [ref=e737] [cursor=pointer]:
+                          - img [ref=e738]
+                    - generic [ref=e740]:
+                      - paragraph [ref=e743]: Hi Tristan, I wanted to add a tutorial on configuring IB yes and thought that setting it on rendezvous helps. We noticed our ML speed for every 10 iterations decrease from 0.8s to 0.5s for a batch size of 32 on 8 A100 GPUs with 40GB VRAM when we switched to RDZV. I believed that adding RDZV helped us and the above discussion was a detailed analysis of how I got to that point. It seems like the speedup was just from simply setting up Rendezvous.
+                      - toolbar "Reactions"
+                - generic [ref=e744]:
+                  - link "@c-p-i-o's profile" [ref=e745] [cursor=pointer]:
+                    - /url: https://github.com/c-p-i-o
+                    - img "c-p-i-o" [ref=e746]
+                  - generic [ref=e753]:
+                    - generic [ref=e755]:
+                      - heading "c-p-i-o commented on Jan 21, 2025 on Jan 21, 2025" [level=3] [ref=e756]:
+                        - text: c-p-i-o commented
+                        - generic "Jan 21, 2025, 5:10 PM CST" [ref=e757]: on Jan 21, 2025 on Jan 21, 2025
+                      - generic [ref=e758]:
+                        - link "c-p-i-o" [ref=e760] [cursor=pointer]:
+                          - /url: /c-p-i-o
+                        - link "on Jan 21, 2025on Jan 21, 2025" [ref=e763] [cursor=pointer]:
+                          - /url: https://github.com/pytorch/pytorch/issues/144779#issuecomment-2605927518
+                          - generic "Jan 21, 2025, 5:10 PM CST" [ref=e764]: on Jan 21, 2025on Jan 21, 2025
+                      - generic [ref=e766]:
+                        - generic "This user has previously committed to the pytorch repository." [ref=e768]: Contributor
+                        - button "Actions for c-p-i-o's comment, 5:10 PM on January 21, 2025" [ref=e770] [cursor=pointer]:
+                          - img [ref=e771]
+                    - generic [ref=e773]:
+                      - generic [ref=e775]:
+                        - blockquote [ref=e776]:
+                          - paragraph [ref=e777]: Hi Tristan, I wanted to add a tutorial on configuring IB yes and thought that setting it on rendezvous helps. We noticed our ML speed for every 10 iterations decrease from 0.8s to 0.5s for a batch size of 32 on 8 A100 GPUs with 40GB VRAM when we switched to RDZV. I believed that adding RDZV helped us and the above discussion was a detailed analysis of how I got to that point. It seems like the speedup was just from simply setting up Rendezvous.
+                        - paragraph [ref=e778]:
+                          - text: We usually have tutorials in
+                          - link "https://github.com/pytorch/tutorials" [ref=e779] [cursor=pointer]:
+                            - /url: https://github.com/pytorch/tutorials
+                          - text: repository.
+                          - text: "These tutorials get rendered on PyTorch.org website:"
+                          - link "https://pytorch.org/tutorials/" [ref=e780] [cursor=pointer]:
+                            - /url: https://pytorch.org/tutorials/
+                        - paragraph [ref=e781]:
+                          - text: Tutorials typically follow a recipe/template <pre-requisites/what you will learn/examples etc>
+                          - text: It should be easy to see the recipe/template by looking at a few of the tutorials.
+                      - toolbar "Reactions"
+                - region "Events" [ref=e782]:
+                  - generic [ref=e789]:
+                    - img [ref=e793]
+                    - generic [ref=e797]:
+                      - link "github-actions" [ref=e799] [cursor=pointer]:
+                        - /url: /apps/github-actions
+                        - generic [ref=e800]: github-actions
+                      - text: added
+                      - 'link "oncall: distributed infra Add this issue/PR to distributed infra oncall triage queue" [ref=e802] [cursor=pointer]':
+                        - /url: /pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22oncall%3A%20distributed%20infra%22
+                        - generic [ref=e804]: "oncall: distributed infra"
+                        - generic [ref=e805]: Add this issue/PR to distributed infra oncall triage queue
+                      - link "ptd-bot-triaged" [ref=e807] [cursor=pointer]:
+                        - /url: /pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22ptd-bot-triaged%22
+                        - generic [ref=e809]: ptd-bot-triaged
+                      - link "on May 12, 20262 days ago" [ref=e811] [cursor=pointer]:
+                        - /url: https://github.com/pytorch/pytorch/issues/144779#event-25441121554
+                        - generic "May 12, 2026, 11:51 AM CDT" [ref=e812]: on May 12, 20262 days ago
+            - generic [ref=e813]:
+              - link "Sign up for free" [ref=e814] [cursor=pointer]:
+                - /url: /signup?return_to=https://github.com/pytorch/pytorch/issues/144779
+                - generic [ref=e816]: Sign up for free
+              - generic [ref=e817]:
+                - strong [ref=e818]: to join this conversation on GitHub.
+                - text: Already have an account?
+              - link "Sign in to comment" [ref=e819] [cursor=pointer]:
+                - /url: /login?return_to=https://github.com/pytorch/pytorch/issues/144779
+        - generic [ref=e821]:
+          - heading "Metadata" [level=2] [ref=e822]
+          - generic [ref=e824]:
+            - generic [ref=e826]:
+              - generic [ref=e827]:
+                - heading "Assignees" [level=3]
+              - generic [ref=e828]: No one assigned
+            - generic [ref=e829]:
+              - generic [ref=e831]:
+                - heading "Labels" [level=3]
+              - generic [ref=e833]:
+                - 'link "module: docs Related to our documentation, both in docs/ and docblocks" [ref=e834] [cursor=pointer]':
+                  - /url: https://github.com/pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22module%3A%20docs%22
+                  - generic [ref=e836]: "module: docs"
+                  - generic [ref=e837]: Related to our documentation, both in docs/ and docblocks
+                - 'link "oncall: distributed Add this issue/PR to distributed oncall triage queue" [ref=e838] [cursor=pointer]':
+                  - /url: https://github.com/pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22oncall%3A%20distributed%22
+                  - generic [ref=e840]: "oncall: distributed"
+                  - generic [ref=e841]: Add this issue/PR to distributed oncall triage queue
+                - 'link "oncall: distributed infra Add this issue/PR to distributed infra oncall triage queue" [ref=e842] [cursor=pointer]':
+                  - /url: https://github.com/pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22oncall%3A%20distributed%20infra%22
+                  - generic [ref=e844]: "oncall: distributed infra"
+                  - generic [ref=e845]: Add this issue/PR to distributed infra oncall triage queue
+                - link "ptd-bot-triaged" [ref=e846] [cursor=pointer]:
+                  - /url: https://github.com/pytorch/pytorch/issues?q=state%3Aopen%20label%3A%22ptd-bot-triaged%22
+                  - generic [ref=e848]: ptd-bot-triaged
+            - generic [ref=e851]:
+              - generic [ref=e852]:
+                - heading "Type" [level=3]
+              - generic [ref=e853]: No type
+            - generic [ref=e855]:
+              - generic [ref=e856]:
+                - heading "Projects" [level=3]
+              - generic [ref=e857]: No projects
+            - generic [ref=e859]:
+              - generic [ref=e860]:
+                - heading "Milestone" [level=3]
+              - generic [ref=e861]: No milestone
+            - generic [ref=e863]:
+              - generic [ref=e864]:
+                - heading "Relationships" [level=3]
+              - generic [ref=e865]: None yet
+            - generic [ref=e866]:
+              - generic [ref=e868]:
+                - heading "Development" [level=3]
+              - generic [ref=e869]:
+                - generic [ref=e870]: No branches or pull requests
+                - list
+            - generic [ref=e871]:
+              - generic [ref=e873]:
+                - heading "Participants" [level=3]
+              - generic [ref=e875]:
+                - generic [ref=e876]:
+                  - link "@d4l3k" [ref=e877] [cursor=pointer]:
+                    - /url: /d4l3k
+                    - img "@d4l3k" [ref=e878]
+                  - link "@malfet" [ref=e879] [cursor=pointer]:
+                    - /url: /malfet
+                    - img "@malfet" [ref=e880]
+                  - link "@c-p-i-o" [ref=e881] [cursor=pointer]:
+                    - /url: /c-p-i-o
+                    - img "@c-p-i-o" [ref=e882]
+                  - link "@bdhirsh" [ref=e883] [cursor=pointer]:
+                    - /url: /bdhirsh
+                    - img "@bdhirsh" [ref=e884]
+                  - link "@wz337" [ref=e885] [cursor=pointer]:
+                    - /url: /wz337
+                    - img "@wz337" [ref=e886]
+                - button "and 1 other participants, click to see the full list" [ref=e887] [cursor=pointer]:
+                  - generic [ref=e889]: "+1"
+            - heading "Issue actions" [level=2] [ref=e890]
+            - list
+  - contentinfo [ref=e891]:
+    - heading "Footer" [level=2] [ref=e892]
+    - generic [ref=e893]:
+      - generic [ref=e894]:
+        - link "GitHub Homepage" [ref=e895] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e896]
+        - generic [ref=e898]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e899]:
+        - heading "Footer navigation" [level=3] [ref=e900]
+        - list "Footer navigation" [ref=e901]:
+          - listitem [ref=e902]:
+            - link "Terms" [ref=e903] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e904]:
+            - link "Privacy" [ref=e905] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e906]:
+            - link "Security" [ref=e907] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e908]:
+            - link "Status" [ref=e909] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e910]:
+            - link "Community" [ref=e911] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e912]:
+            - link "Docs" [ref=e913] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e914]:
+            - link "Contact" [ref=e915] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e916]:
+            - button "Manage cookies" [ref=e918] [cursor=pointer]
+          - listitem [ref=e919]:
+            - button "Do not share my personal information" [ref=e921] [cursor=pointer]

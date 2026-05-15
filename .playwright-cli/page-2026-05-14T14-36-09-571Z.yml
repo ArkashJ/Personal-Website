@@ -1,0 +1,274 @@
+- generic [active] [ref=e1]:
+  - navigation "Resources Menu" [ref=e5]:
+    - button "Open Sub Menu" [ref=e6] [cursor=pointer]:
+      - strong [ref=e7]:
+        - emphasis [ref=e8]: "Resources For:"
+    - menubar [ref=e10]:
+      - listitem [ref=e11]:
+        - link "Undergraduate Students" [ref=e12] [cursor=pointer]:
+          - /url: https://www.bu.edu/cas/undergraduate-resources-for-students/
+      - listitem [ref=e13]:
+        - link "Graduate Students" [ref=e14] [cursor=pointer]:
+          - /url: https://www.bu.edu/cas/graduate-student-resources/
+      - listitem [ref=e15]:
+        - link "Faculty & Staff" [ref=e16] [cursor=pointer]:
+          - /url: https://www.bu.edu/cas/faculty-staff/
+      - listitem [ref=e17]:
+        - link "Alumni" [ref=e18] [cursor=pointer]:
+          - /url: https://www.bu.edu/cas/alumni/
+      - listitem [ref=e19]:
+        - link "Find All Programs" [ref=e20] [cursor=pointer]:
+          - /url: https://www.bu.edu/cas/departments/
+      - listitem [ref=e21]:
+        - link "Contact" [ref=e22] [cursor=pointer]:
+          - /url: https://www.bu.edu/cas/contact-information/
+      - listitem [ref=e23]:
+        - link "Giving" [ref=e24] [cursor=pointer]:
+          - /url: https://www.bu.edu/cas/alumni/give/
+  - banner [ref=e25]:
+    - generic [ref=e26]:
+      - link "Arts & Sciences" [ref=e28] [cursor=pointer]:
+        - /url: https://www.bu.edu/cas/
+        - generic [ref=e29]: Arts & Sciences
+      - navigation [ref=e30]:
+        - list [ref=e31]:
+          - listitem [ref=e32]:
+            - link "Admissions" [ref=e33] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/admissions/
+          - listitem [ref=e34]:
+            - link "Academics" [ref=e35] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/academics/
+          - listitem [ref=e36]:
+            - link "Student Life" [ref=e37] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/student-life/
+          - listitem [ref=e38]:
+            - link "About" [ref=e39] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/about/
+      - navigation [ref=e40]:
+        - button "Open full menu" [ref=e41] [cursor=pointer]:
+          - emphasis [ref=e42]: Full Menu
+          - text: 🔎
+      - generic:
+        - search [ref=e43]:
+          - group "Search" [ref=e44]:
+            - generic [ref=e46]: Search
+            - generic [ref=e47]:
+              - generic [ref=e48]: "Search for:"
+              - textbox "Search" [ref=e49]:
+                - /placeholder: Search site…
+            - button "Search" [ref=e50] [cursor=pointer]
+        - navigation [ref=e51]:
+          - list [ref=e52]:
+            - listitem [ref=e53]:
+              - link "Admissions" [ref=e54] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/admissions/
+              - list [ref=e55]:
+                - listitem [ref=e56]:
+                  - link "Undergraduate Admissions" [ref=e57] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/admissions/undergraduate/
+                - listitem [ref=e58]:
+                  - link "Undergraduate Transfer" [ref=e59] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/admissions/undergraduate-transfer/
+                - listitem [ref=e60]:
+                  - link "MA and MS Admissions" [ref=e61] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/admissions/ma-ms/
+                - listitem [ref=e62]:
+                  - link "PhD and MFA Admissions" [ref=e63] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/admissions/phd-mfa/
+            - listitem [ref=e64]:
+              - link "Academics" [ref=e65] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/academics/
+              - list [ref=e66]:
+                - listitem [ref=e67]:
+                  - link "Undergraduate Programs" [ref=e68] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/academics/undergraduate-education/
+                - listitem [ref=e69]:
+                  - link "MA and MS Programs" [ref=e70] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/academics/ma-ms-academics/
+                - listitem [ref=e71]:
+                  - link "PhD and MFA Programs" [ref=e72] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/academics/phd-and-mfa-academics/
+                - listitem [ref=e73]:
+                  - link "Browse All Departments & Programs" [ref=e74] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/departments/
+            - listitem [ref=e75]:
+              - link "Career Development" [ref=e76] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/career-development-resources/
+              - list [ref=e77]:
+                - listitem [ref=e78]:
+                  - link "Undergraduate Career Development" [ref=e79] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/career-development-resources/undergraduate-career-development/
+                - listitem [ref=e80]:
+                  - link "Graduate Career Development" [ref=e81] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/career-development-resources/graduate-career-development/
+                - listitem [ref=e82]:
+                  - link "Society of Fellows" [ref=e83] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/career-development-resources/society-of-fellows/
+            - listitem [ref=e84]:
+              - link "Student Life" [ref=e85] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/student-life/
+              - list [ref=e86]:
+                - listitem [ref=e87]:
+                  - link "Undergraduate Student Life" [ref=e88] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/student-life/undergraduate-students/
+                - listitem [ref=e89]:
+                  - link "Graduate Student Life" [ref=e90] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/student-life/graduate-student-life/
+            - listitem [ref=e91]:
+              - link "About" [ref=e92] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/about/
+              - list [ref=e93]:
+                - listitem [ref=e94]:
+                  - link "Office of the Dean" [ref=e95] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/dean-of-arts-sciences/
+                - listitem [ref=e96]:
+                  - link "Diversity & Inclusion" [ref=e97] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/diversity-inclusion-cas/
+                - listitem [ref=e98]:
+                  - link "Celebrating 150 Years of Arts & Sciences" [ref=e99] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/celebrating-150-years-of-arts-sciences/
+                - listitem [ref=e100]:
+                  - link "Arts & Sciences in the News" [ref=e101] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/arts-sciences-in-the-news/
+                - listitem [ref=e102]:
+                  - link "About the Graduate School" [ref=e103] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/about-grs/
+                - listitem [ref=e104]:
+                  - link "Social Media Directory" [ref=e105] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/social-media-directory/
+                - listitem [ref=e106]:
+                  - link "Strategic Planning" [ref=e107] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/strategic-planning/
+                - listitem [ref=e108]:
+                  - link "Annual Report" [ref=e109] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cas/about/annual-report/
+        - generic [ref=e110]:
+          - generic [ref=e112]:
+            - heading "Undergraduate Admissions" [level=3] [ref=e113]
+            - paragraph [ref=e114]: Find endless opportunities to explore your interests and make new connections.
+            - list [ref=e115]:
+              - listitem [ref=e116]:
+                - link "Information for Prospective Students" [ref=e117] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cas/admissions/undergraduate/information-for-prospective-students/
+              - listitem [ref=e118]:
+                - link "The CAS Advantage" [ref=e119] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cas/admissions/undergraduate/the-cas-advantage/
+              - listitem [ref=e120]:
+                - link "Plan Your Visit" [ref=e121] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cas/admissions/undergraduate/plan-your-visit/
+              - listitem [ref=e122]:
+                - link "Apply to BU" [ref=e123] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cas/admissions/undergraduate/apply-to-bu/
+          - generic [ref=e125]:
+            - heading "Graduate Admissions" [level=3] [ref=e126]
+            - paragraph [ref=e127]: Learn about requirements, deadlines, financial aid, and opportunities for professional preparation in our world-class programs.
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - heading "MA & MS Applicants" [level=4] [ref=e130]
+                - list [ref=e131]:
+                  - list [ref=e132]:
+                    - listitem [ref=e133]:
+                      - link "Requirements & Deadlines" [ref=e134] [cursor=pointer]:
+                        - /url: https://www.bu.edu/cas/admissions/ma-ms/apply/
+                    - listitem [ref=e135]:
+                      - link "Tuition & Fees" [ref=e136] [cursor=pointer]:
+                        - /url: https://www.bu.edu/cas/admissions/ma-ms/tuition-mandatory-fees-for-2021-2022/
+                    - listitem [ref=e137]:
+                      - link "Visit Us Virtually" [ref=e138] [cursor=pointer]:
+                        - /url: https://www.bu.edu/cas/admissions/ma-ms/grs-visit-us/
+                    - listitem [ref=e139]:
+                      - link "MA & MS Apply" [ref=e140] [cursor=pointer]:
+                        - /url: https://bu-grs.liaisoncas.com/applicant-ux/#/login
+              - generic [ref=e141]:
+                - heading "PhD & MFA Applicants" [level=4] [ref=e142]
+                - list [ref=e143]:
+                  - list [ref=e144]:
+                    - listitem [ref=e145]:
+                      - link "Requirements & Deadlines" [ref=e146] [cursor=pointer]:
+                        - /url: https://www.bu.edu/cas/admissions/phd-mfa/apply/
+                    - listitem [ref=e147]:
+                      - link "Fellowship Aid" [ref=e148] [cursor=pointer]:
+                        - /url: https://www.bu.edu/cas/admissions/phd-mfa/fellowship-aid/
+                    - listitem [ref=e149]:
+                      - link "Contact GRS PhD Admissions" [ref=e150] [cursor=pointer]:
+                        - /url: https://www.bu.edu/cas/admissions/phd-mfa/contact-us/
+                    - listitem [ref=e151]:
+                      - link "PhD & MFA Apply" [ref=e152] [cursor=pointer]:
+                        - /url: https://bu-grs.liaisoncas.com/applicant-ux/#/login
+        - text: What's New
+        - list [ref=e154]:
+          - listitem [ref=e155]:
+            - link "Dean’s Corner" [ref=e156] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/arts-sciences/fall-2020/deans-message-2020/
+          - listitem [ref=e157]:
+            - link "Arts × Sciences Magazine" [ref=e158] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/arts-sciences
+          - listitem [ref=e159]:
+            - link "Community" [ref=e160] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/community/
+          - listitem [ref=e161]:
+            - link "Stories" [ref=e162] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/learning/
+          - listitem [ref=e163]:
+            - link "Research & Discovery" [ref=e164] [cursor=pointer]:
+              - /url: https://www.bu.edu/cas/discovery/
+        - navigation
+        - navigation [ref=e165]:
+          - list [ref=e166]:
+            - listitem [ref=e167]:
+              - link "Events" [ref=e168] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/community/calendar/
+            - listitem [ref=e169]:
+              - link "Contact" [ref=e170] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/contact-information/
+            - listitem [ref=e171]:
+              - link "Directory" [ref=e172] [cursor=pointer]:
+                - /url: https://www.bu.edu/cas/senioradmins/
+            - listitem [ref=e173]:
+              - link "Give" [ref=e174] [cursor=pointer]:
+                - /url: https://trusted.bu.edu/s/1759/22/form.aspx?sid=1759&gid=2&pgid=481&cid=1146&appealcode=WEBCAS
+  - generic [ref=e176]:
+    - heading "Margarita Guillory named C. Allyn and Elizabeth V. Russell Professor" [level=1] [ref=e178]
+    - generic [ref=e180]:
+      - heading "Yikes! We couldn't find that." [level=1] [ref=e182]
+      - generic [ref=e183]:
+        - paragraph [ref=e184]: Looks like that page might not be here anymore. Want to give search a try?
+        - search [ref=e185]:
+          - group "Search" [ref=e186]:
+            - generic [ref=e188]: Search
+            - generic [ref=e189]:
+              - generic [ref=e190]: "Search for:"
+              - textbox "Search" [ref=e191]:
+                - /placeholder: Search site…
+            - button "Search" [ref=e192] [cursor=pointer]
+  - contentinfo [ref=e193]:
+    - generic [ref=e194]:
+      - generic [ref=e195]:
+        - heading "Boston University Arts & Sciences" [level=2] [ref=e196]
+        - paragraph [ref=e197]: 725 Commonwealth Ave, Boston, MA
+      - navigation [ref=e199]:
+        - list [ref=e200]:
+          - listitem [ref=e201]:
+            - link "Facebook" [ref=e202] [cursor=pointer]:
+              - /url: http://www.facebook.com/bostonuniversitycas
+              - generic [ref=e203]: 
+          - listitem [ref=e204]:
+            - link "Twitter" [ref=e205] [cursor=pointer]:
+              - /url: https://twitter.com/BU_CAS
+              - generic [ref=e206]: 
+          - listitem [ref=e207]:
+            - link "Instagram" [ref=e208] [cursor=pointer]:
+              - /url: http://instagram.com/bu_cas/
+              - generic [ref=e209]: 
+          - listitem [ref=e210]:
+            - link "LinkedIn" [ref=e211] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/boston-university-college-of-arts-sciences/
+              - generic [ref=e212]: 
+      - generic [ref=e213]:
+        - heading "Giving to CAS" [level=2] [ref=e214]
+        - paragraph [ref=e215]: Your generosity ensures that today’s students enjoy opportunities that are continually expanding.
+        - navigation [ref=e216]:
+          - list [ref=e217]:
+            - listitem [ref=e218]:
+              - link "Give Now" [ref=e219] [cursor=pointer]:
+                - /url: https://trusted.bu.edu/s/1759/22/form.aspx?sid=1759&gid=2&pgid=481&cid=1146&appealcode=WEBCAS

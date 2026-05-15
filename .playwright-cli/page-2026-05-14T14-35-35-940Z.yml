@@ -1,0 +1,210 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Skip to Main Content" [ref=e4] [cursor=pointer]:
+        - /url: "#main"
+      - generic [ref=e5]:
+        - link "Arts & Sciences Mathematics & Statistics" [ref=e7] [cursor=pointer]:
+          - /url: https://www.bu.edu/math/
+          - text: Arts & Sciences
+          - generic [ref=e8]: Mathematics & Statistics
+        - navigation:
+          - button "Open search" [ref=e9] [cursor=pointer]: 🔎
+          - list [ref=e10]:
+            - listitem [ref=e11]:
+              - link "About" [ref=e12] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/about/
+              - list [ref=e13]:
+                - listitem [ref=e14]:
+                  - link "Antiracism and Social Justice" [ref=e15] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/about/antiracism-and-social-justice/
+                - listitem [ref=e16]:
+                  - link "Collegiality Statement" [ref=e17] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/about/collegiality-statement/
+                - listitem [ref=e18]:
+                  - link "Departmental Mission Statement" [ref=e19] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/about/departmental-mission-statement/
+                - listitem [ref=e20]:
+                  - link "Directions" [ref=e21] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/about/directions/
+                - listitem [ref=e22]:
+                  - link "Contact Us" [ref=e23] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/about/contact-us/
+                - listitem [ref=e24]:
+                  - link "Faculty and Student Recognition" [ref=e25] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/about/faculty-and-student-recognition/
+            - listitem [ref=e26]:
+              - link "People" [ref=e27] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/people/
+              - list [ref=e28]:
+                - listitem [ref=e29]:
+                  - link "Complete Directory" [ref=e30] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/complete-directory/
+                - listitem [ref=e31]:
+                  - link "Emeritus Faculty" [ref=e32] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/emeritus-faculty/
+                - listitem [ref=e33]:
+                  - link "Faculty" [ref=e34] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/faculty/
+                - listitem [ref=e35]:
+                  - link "Faculty Administrative Positions" [ref=e36] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/faculty-administrative-positions/
+                - listitem [ref=e37]:
+                  - link "PhD Students" [ref=e38] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/phd-students/
+                - listitem [ref=e39]:
+                  - link "Postdocs" [ref=e40] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/postdocs/
+                - listitem [ref=e41]:
+                  - link "Staff" [ref=e42] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/staff/
+                - listitem [ref=e43]:
+                  - link "Visiting Faculty" [ref=e44] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/visiting-faculty/
+                - listitem [ref=e45]:
+                  - link "Faculty History 1968-present" [ref=e46] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/faculty-history-1968-present/
+                - listitem [ref=e47]:
+                  - link "In Memoriam" [ref=e48] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/people/in-memoriam/
+            - listitem [ref=e49]:
+              - link "Undergraduate" [ref=e50] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/undergraduate/
+              - list [ref=e51]:
+                - listitem [ref=e52]:
+                  - link "Academic Help and Wellness" [ref=e53] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/academic-help-and-wellness/
+                - listitem [ref=e54]:
+                  - link "Advising" [ref=e55] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/advising/
+                - listitem [ref=e56]:
+                  - link "Awards and Grants" [ref=e57] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/awards-and-grants/
+                - listitem [ref=e58]:
+                  - link "Careers and Graduate School" [ref=e59] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/careers-and-graduate-school/
+                - listitem [ref=e60]:
+                  - link "Courses and Registration" [ref=e61] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/courses-and-registration/
+                - listitem [ref=e62]:
+                  - link "Degree Programs" [ref=e63] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/degree-programs/
+                - listitem [ref=e64]:
+                  - link "FAQs and Forms" [ref=e65] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/faqs-and-forms/
+                - listitem [ref=e66]:
+                  - link "Research and Opportunities Beyond the Classroom" [ref=e67] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/research-and-opportunities-beyond-the-classroom/
+                - listitem [ref=e68]:
+                  - link "Student Groups" [ref=e69] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/undergraduate/student-groups/
+            - listitem [ref=e70]:
+              - link "Graduate" [ref=e71] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/graduate/
+              - list [ref=e72]:
+                - listitem [ref=e73]:
+                  - link "Admissions" [ref=e74] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/graduate/admissions/
+                - listitem [ref=e75]:
+                  - link "Awards and Grants" [ref=e76] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/graduate/graduate-awards-and-grants/
+                - listitem [ref=e77]:
+                  - link "Careers" [ref=e78] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/graduate/careers/
+                - listitem [ref=e79]:
+                  - link "Courses and Registration" [ref=e80] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/graduate/courses-and-registration/
+                - listitem [ref=e81]:
+                  - link "Degree Programs" [ref=e82] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/graduate/graduate-degree-programs/
+                - listitem [ref=e83]:
+                  - link "Student Groups" [ref=e84] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/graduate/graduate-student-groups/
+                - listitem [ref=e85]:
+                  - link "Support and Wellness" [ref=e86] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/graduate/support-and-wellness/
+            - listitem [ref=e87]:
+              - link "Research" [ref=e88] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/research/
+              - list [ref=e89]:
+                - listitem [ref=e90]:
+                  - link "Applied Mathematics" [ref=e91] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/research/applied-mathematics/
+                - listitem [ref=e92]:
+                  - link "Dynamical Systems" [ref=e93] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/research/dynamical-systems/
+                - listitem [ref=e94]:
+                  - link "Geometry and Physics" [ref=e95] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/research/geometry-and-physics/
+                - listitem [ref=e96]:
+                  - link "Number Theory" [ref=e97] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/research/number-theory/
+                - listitem [ref=e98]:
+                  - link "Probability and Statistics" [ref=e99] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/research/probability-and-statistics/
+                - listitem [ref=e100]:
+                  - link "Seminars" [ref=e101] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/research/seminars/
+            - listitem [ref=e102]:
+              - link "Resources" [ref=e103] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/resources/
+              - list [ref=e104]:
+                - listitem [ref=e105]:
+                  - link "Jobs" [ref=e106] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/current-job-opportunities/
+                - listitem [ref=e107]:
+                  - link "Computing Resources" [ref=e108] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/computing-resources/
+                - listitem [ref=e109]:
+                  - link "Forms and Informational Documents" [ref=e110] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/forms/
+                - listitem [ref=e111]:
+                  - link "Expenses" [ref=e112] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/expenses/
+                - listitem [ref=e113]:
+                  - link "Room Reservations" [ref=e114] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/room-reservations/
+                - listitem [ref=e115]:
+                  - link "Internal Department Library" [ref=e116] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/department-library/
+                - listitem [ref=e117]:
+                  - link "Grant Proposals" [ref=e118] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/grantsproposals/
+                - listitem [ref=e119]:
+                  - link "Teaching Writing in Mathematics and Statistics" [ref=e120] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/teaching-writing-in-mathematics-and-statistics/
+                - listitem [ref=e121]:
+                  - link "Mathematics and Statistics Convocation" [ref=e122] [cursor=pointer]:
+                    - /url: https://www.bu.edu/math/resources/mathematics-and-statistics-convocation/
+            - listitem [ref=e123]:
+              - link "Community" [ref=e124] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/community/
+            - listitem [ref=e125]:
+              - link "Calendar" [ref=e126] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/calendar/
+            - listitem [ref=e127]:
+              - link "Donate" [ref=e128] [cursor=pointer]:
+                - /url: https://www.bu.edu/math/giving/
+  - generic [ref=e129]:
+    - generic [ref=e130]:
+      - heading "Yikes! We couldn't find that." [level=1] [ref=e131]
+      - img [ref=e132]
+    - main [ref=e134]:
+      - article [ref=e136]:
+        - paragraph [ref=e137]: Looks like that page might not be here anymore. Want to give search a try?
+        - search [ref=e138]:
+          - group "Search" [ref=e139]:
+            - generic [ref=e141]: Search
+            - generic [ref=e142]:
+              - generic [ref=e143]: "Search for:"
+              - textbox "Search" [ref=e144]:
+                - /placeholder: Search site…
+            - button "Search" [ref=e145] [cursor=pointer]
+  - contentinfo [ref=e146]:
+    - navigation [ref=e147]:
+      - list [ref=e148]:
+        - listitem [ref=e149]:
+          - link "Directory" [ref=e150] [cursor=pointer]:
+            - /url: https://www.bu.edu/math/people/
+    - link "Boston University Arts & Sciences" [ref=e152] [cursor=pointer]:
+      - /url: https://www.bu.edu/cas/

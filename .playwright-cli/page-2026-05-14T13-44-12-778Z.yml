@@ -1,0 +1,714 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link "arkash.jain" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - text: arkash.jain
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - link "About" [ref=e10] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e11]:
+          - link "Research" [ref=e12] [cursor=pointer]:
+            - /url: /research
+        - listitem [ref=e13]:
+          - link "Projects" [ref=e14] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e15]:
+          - link "Claude Skills" [ref=e16] [cursor=pointer]:
+            - /url: /skills
+        - listitem [ref=e17]:
+          - link "Writing" [ref=e18] [cursor=pointer]:
+            - /url: /writing
+        - listitem [ref=e19]:
+          - link "Weekly" [ref=e20] [cursor=pointer]:
+            - /url: /weekly
+        - listitem [ref=e21]:
+          - link "Media" [ref=e22] [cursor=pointer]:
+            - /url: /media
+      - generic [ref=e23]:
+        - button "Quick navigation (Cmd+K)" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - generic [ref=e28]: Search
+          - generic [ref=e29]: ⌘K
+        - button "Site menu" [ref=e31] [cursor=pointer]:
+          - img [ref=e32]
+  - main [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e39]:
+        - generic [ref=e40]: About
+        - heading "Life Changelog & Experience." [level=1] [ref=e42]
+        - paragraph [ref=e43]: In order. Real dates. The full arc.
+        - paragraph [ref=e44]: Every meaningful milestone — arrival in the US, first paper, Harvard, Benmore — followed by a reverse-chronological work history and the internal tooling that came out of it.
+      - navigation "On this page" [ref=e45]:
+        - link "● Timeline" [ref=e46] [cursor=pointer]:
+          - /url: "#timeline"
+        - link "● Career" [ref=e47] [cursor=pointer]:
+          - /url: "#career"
+      - generic [ref=e48]:
+        - heading "● Life changelog" [level=2] [ref=e49]
+        - list [ref=e50]:
+          - listitem [ref=e51]:
+            - generic [ref=e53]: KN
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - heading "The Complete AI Hardware Stack — Layer by Layer" [level=3] [ref=e56]
+                - generic [ref=e57]: Apr 2026
+              - generic [ref=e58]:
+                - generic [ref=e59]: Knowledge
+                - generic [ref=e60]: ● Published
+              - paragraph [ref=e61]: From silicon atoms to generated tokens — every layer that makes modern AI inference possible. L7 silicon & packaging, HBM, NVLink, CUDA kernels, disaggregated serving, and deep dives on SRAM vs HBM, CPO, and EDA.
+              - link "Deep dive →" [ref=e62] [cursor=pointer]:
+                - /url: /about/timeline/ai-hardware-stack
+              - list [ref=e63]:
+                - listitem [ref=e64]:
+                  - link "→ Read the deep dive ->" [ref=e65] [cursor=pointer]:
+                    - /url: /writing/ai-hardware-stack
+                - listitem [ref=e66]:
+                  - link "→ Interactive version ->" [ref=e67] [cursor=pointer]:
+                    - /url: /ai-hardware-stack.html
+          - listitem [ref=e69]:
+            - img "Benmore Technologies logo" [ref=e71]
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - heading "Head of FDE, Benmore" [level=3] [ref=e74]
+                - generic [ref=e75]: Apr 2026
+              - generic [ref=e76]:
+                - generic [ref=e77]: Work
+                - generic [ref=e78]: ● Current
+              - paragraph [ref=e79]: Leading the forward deployed engineering practice across all client engagements.
+              - list [ref=e80]:
+                - listitem [ref=e81]:
+                  - link "→ Experience & work ->" [ref=e82] [cursor=pointer]:
+                    - /url: /about#career
+          - listitem [ref=e84]:
+            - generic [ref=e86]: MI
+            - generic [ref=e87]:
+              - generic [ref=e88]:
+                - heading "$150k total -> $150k every 15 days" [level=3] [ref=e89]
+                - generic [ref=e90]: 2025-2026
+              - generic [ref=e91]:
+                - generic [ref=e92]: Milestone
+                - generic [ref=e93]: Completed
+              - paragraph [ref=e94]: 887% revenue acceleration through repeatable forward-deployed engagement model.
+              - list [ref=e95]:
+                - listitem [ref=e96]:
+                  - link "→ FDE feedback loop ->" [ref=e97] [cursor=pointer]:
+                    - /url: /writing/the-fde-feedback-loop
+          - listitem [ref=e98]:
+            - img "Benmore Technologies logo" [ref=e100]
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - 'heading "Joined Benmore Technologies - Employee #2" [level=3] [ref=e103]'
+                - generic [ref=e104]: Aug 2025
+              - generic [ref=e105]:
+                - generic [ref=e106]: Work
+                - generic [ref=e107]: Completed
+              - paragraph [ref=e108]: "Joined Benmore as Employee #2 — Forward Deployed Strategist & Engineer. Embedded into client engineering teams, scoped systems end-to-end, and shipped production code from day one."
+              - list [ref=e109]:
+                - listitem [ref=e110]: Onboarded the first ten clients across SaaS, healthcare, and consumer verticals.
+                - listitem [ref=e112]: Authored the Benmore Foundry CLI — internal orchestration layer for SMB AI consulting engagements.
+                - listitem [ref=e114]: "Cross-stack: Stripe, Django, Next.js, FastAPI, React Native, plus Claude Code skill systems."
+              - generic [ref=e116]:
+                - generic [ref=e118]: Python
+                - generic [ref=e120]: Typer
+                - generic [ref=e122]: Django
+                - generic [ref=e124]: FastAPI
+                - generic [ref=e126]: Next.js
+                - generic [ref=e128]: React Native
+                - generic [ref=e130]: Stripe
+                - generic [ref=e132]: Claude Code
+              - link "Deep dive →" [ref=e133] [cursor=pointer]:
+                - /url: /about/timeline/benmore-fde
+              - list [ref=e134]:
+                - listitem [ref=e135]:
+                  - link "→ Experience & work ->" [ref=e136] [cursor=pointer]:
+                    - /url: /about#career
+                - listitem [ref=e137]:
+                  - link "→ Why FDE ->" [ref=e138] [cursor=pointer]:
+                    - /url: /writing/why-fde
+          - listitem [ref=e139]:
+            - img "Harvard University coat of arms" [ref=e141]
+            - generic [ref=e142]:
+              - generic [ref=e143]:
+                - heading "SpatialDINO - 3D self-supervised vision transformer for LLSM" [level=3] [ref=e144]
+                - generic [ref=e145]: "2025"
+              - generic [ref=e146]:
+                - generic [ref=e147]: Research
+                - generic [ref=e148]: Completed
+              - paragraph [ref=e149]: Designed and trained a 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy — pre-trained on 2.4 TB / 180k volumes across 24 A100s. Beat a prior approach co-led by Nobel laureate Eric Betzig on downstream evaluation.
+              - list [ref=e150]:
+                - listitem [ref=e151]: Adapted DINO-style self-supervised contrastive learning into 3D — student/teacher ViTs over LLSM volumes with native 3D iBOT block masking.
+                - listitem [ref=e153]: Introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), and a 3D adaptation of SINDER for singular-defect repair.
+                - listitem [ref=e155]: Built a streaming encoder with token-store + online softmax for full-volume inference at million-token sequence lengths.
+                - listitem [ref=e157]: Beat the prior SOTA — including the Nobel-laureate-led approach — on downstream subcellular structure prediction.
+                - listitem [ref=e159]: Released as a BioRxiv preprint, first-author; engineering log at /writing/spatialdino-lessons.
+              - generic [ref=e161]:
+                - generic [ref=e163]: PyTorch
+                - generic [ref=e165]: DINO
+                - generic [ref=e167]: 3D ViT
+                - generic [ref=e169]: Self-Supervised Learning
+                - generic [ref=e171]: LLSM
+                - generic [ref=e173]: DDP
+                - generic [ref=e175]: Triton
+              - link "Deep dive →" [ref=e176] [cursor=pointer]:
+                - /url: /about/timeline/spatialdino
+              - list [ref=e177]:
+                - listitem [ref=e178]:
+                  - link "→ BioArxiv preprint" [ref=e179] [cursor=pointer]:
+                    - /url: https://www.biorxiv.org/content/10.1101/2025.02.04.636474
+                - listitem [ref=e180]:
+                  - link "→ SpatialDINO lessons ->" [ref=e181] [cursor=pointer]:
+                    - /url: /writing/spatialdino-lessons
+                - listitem [ref=e182]:
+                  - link "→ View papers ->" [ref=e183] [cursor=pointer]:
+                    - /url: /research
+          - listitem [ref=e184]:
+            - img "Harvard University coat of arms" [ref=e186]
+            - generic [ref=e187]:
+              - generic [ref=e188]:
+                - heading "Joined Harvard Kirchhausen Lab" [level=3] [ref=e189]
+                - generic [ref=e190]: May 2024
+              - generic [ref=e191]:
+                - generic [ref=e192]: Research
+                - generic [ref=e193]: Completed
+              - paragraph [ref=e194]: ML researcher at Harvard Medical School applying 3D vision transformers to lattice light-sheet microscopy. The lab images live-cell subcellular dynamics at ~3 nm; my job was to make the resulting 4D volumes interpretable at scale.
+              - list [ref=e195]:
+                - listitem [ref=e196]: "Trained on multi-node DGX clusters: A100 / H100, NVLink intra-node, Infiniband inter-node, RAID + NVMe storage tier."
+                - listitem [ref=e198]: PyTorch DDP with bf16 mixed precision and activation checkpointing to fit large 3D ViTs.
+                - listitem [ref=e200]: "Diagnosed a Rendezvous (RDZV) backend issue affecting Infiniband multi-node training — filed PyTorch issue #144779."
+              - generic [ref=e202]:
+                - generic [ref=e204]: PyTorch
+                - generic [ref=e206]: DDP
+                - generic [ref=e208]: CUDA
+                - generic [ref=e210]: Infiniband
+                - generic [ref=e212]: NCCL
+                - generic [ref=e214]: DGX
+                - generic [ref=e216]: LLSM
+                - generic [ref=e218]: 3D ViT
+              - link "Deep dive →" [ref=e219] [cursor=pointer]:
+                - /url: /about/timeline/harvard-kirchhausen
+              - list [ref=e220]:
+                - listitem [ref=e221]:
+                  - link "→ View research ->" [ref=e222] [cursor=pointer]:
+                    - /url: /research
+                - listitem [ref=e223]:
+                  - 'link "→ PyTorch #144779" [ref=e224] [cursor=pointer]':
+                    - /url: https://github.com/pytorch/pytorch/issues/144779
+                - listitem [ref=e225]:
+                  - link "→ Kirchhausen Lab profile" [ref=e226] [cursor=pointer]:
+                    - /url: https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs
+                - listitem [ref=e227]:
+                  - link "→ Harvard ID (PDF)" [ref=e228] [cursor=pointer]:
+                    - /url: /assets/files/arkash-jain-harvard-university-id.pdf
+          - listitem [ref=e229]:
+            - img "Boston University seal" [ref=e231]
+            - generic [ref=e232]:
+              - generic [ref=e233]:
+                - heading "BA/MS Boston University - Magna Cum Laude" [level=3] [ref=e234]
+                - generic [ref=e235]: May 2024
+              - generic [ref=e236]:
+                - generic [ref=e237]: Education
+                - generic [ref=e238]: Completed
+              - paragraph [ref=e239]: BA in Math & CS, MS in CS, completed in four years.
+              - list [ref=e240]:
+                - listitem [ref=e241]:
+                  - link "→ BA degree (PDF)" [ref=e242] [cursor=pointer]:
+                    - /url: /assets/files/arkash-jain-bachelor-of-arts-mathematics-cs.pdf
+                - listitem [ref=e243]:
+                  - link "→ MS degree (PDF)" [ref=e244] [cursor=pointer]:
+                    - /url: /assets/files/arkash-jain-master-of-science-computer-science.pdf
+                - listitem [ref=e245]:
+                  - link "→ Graduation post (LinkedIn)" [ref=e246] [cursor=pointer]:
+                    - /url: https://www.linkedin.com/posts/arkashj_a-huge-chapter-of-my-life-came-to-an-end-ugcPost-7198500677231198208-pDtI
+          - listitem [ref=e247]:
+            - img "Boston University seal" [ref=e249]
+            - generic [ref=e250]:
+              - generic [ref=e251]:
+                - heading "Distributed Systems Research at BU" [level=3] [ref=e252]
+                - generic [ref=e253]: "2023"
+              - generic [ref=e254]:
+                - generic [ref=e255]: Research
+                - generic [ref=e256]: Completed
+              - paragraph [ref=e257]: "BU Master's thesis: dynamic checkpointing for Apache Flink. Static checkpoint intervals are a tax in idle periods and a stall during bursts; I built a controller that adapted cadence from live backpressure signals."
+              - list [ref=e258]:
+                - listitem [ref=e259]: Instrumented Flink JobManager to surface per-operator backpressure ratios as a control signal.
+                - listitem [ref=e261]: "Adaptive checkpoint cadence: shorten when load is low, lengthen under sustained backpressure to avoid amplifying stalls."
+                - listitem [ref=e263]: RocksDB state backend benchmarked against in-memory; quantified write-amplification tradeoffs.
+                - listitem [ref=e265]: Validated on the NEXMARK streaming benchmark — measured tail-latency wins on bursty workloads.
+              - generic [ref=e267]:
+                - generic [ref=e269]: Java
+                - generic [ref=e271]: Apache Flink
+                - generic [ref=e273]: RocksDB
+                - generic [ref=e275]: NEXMARK
+                - generic [ref=e277]: JVM
+              - link "Deep dive →" [ref=e278] [cursor=pointer]:
+                - /url: /about/timeline/flink-dynamic-checkpointing
+          - listitem [ref=e279]:
+            - img "Boston University seal" [ref=e281]
+            - generic [ref=e282]:
+              - generic [ref=e283]:
+                - 'heading "Fall 2023 — BU coursework: CS 320, DS 522, CS 561, CS 630, MA 582, HI 151" [level=3] [ref=e284]'
+                - generic [ref=e285]: Fall 2023
+              - generic [ref=e286]:
+                - generic [ref=e287]: Education
+                - generic [ref=e288]: Completed
+              - paragraph [ref=e289]: Six classes spanning programming-language theory (CS 320 — OCaml interpreter from scratch), optimization (DS 522 — SGD variants & implicit SGD), cloud (CS 561 — PageRank on a synthetic mini-internet), graduate algorithms (CS 630 — Gale-Shapley average-case analysis over 331,776 instances, reservoir sampling), mathematical statistics (MA 582), and a liberal-arts elective (HI 151).
+              - list [ref=e290]:
+                - listitem [ref=e291]: "CS 320: hand-written lexer, parser, and stack-machine evaluator for a BNF language in OCaml."
+                - listitem [ref=e293]: "DS 522: Adam / AMSGrad / RMSProp comparison, plus article evaluations of Reddi 2018 and Toulis 2016."
+                - listitem [ref=e295]: "CS 561: built a generated-HTML mini-internet and ran PageRank locally vs. on GCP."
+                - listitem [ref=e297]: "CS 630: 331,776-instance enumeration of Gale-Shapley to study average-case behavior."
+                - listitem [ref=e299]: "MA 582: rigorous graduate inference — MLE, sufficient statistics, MGF, asymptotics."
+              - generic [ref=e301]:
+                - generic [ref=e303]: OCaml
+                - generic [ref=e305]: Python
+                - generic [ref=e307]: R
+                - generic [ref=e309]: GCP
+                - generic [ref=e311]: Optimization
+                - generic [ref=e313]: Statistics
+              - link "Deep dive →" [ref=e314] [cursor=pointer]:
+                - /url: /about/timeline/coursework-fall-2023
+              - list [ref=e315]:
+                - listitem [ref=e316]:
+                  - link "→ CS 320 OCaml interpreter" [ref=e317] [cursor=pointer]:
+                    - /url: /coursework/cs320-ocaml
+                - listitem [ref=e318]:
+                  - link "→ DS 522 SGD variants" [ref=e319] [cursor=pointer]:
+                    - /url: /coursework/ds522-sgd-variants
+                - listitem [ref=e320]:
+                  - link "→ CS 561 PageRank" [ref=e321] [cursor=pointer]:
+                    - /url: /coursework/cs561-pagerank
+                - listitem [ref=e322]:
+                  - link "→ CS 630 Gale-Shapley" [ref=e323] [cursor=pointer]:
+                    - /url: /coursework/cs630-gale-shapley
+                - listitem [ref=e324]:
+                  - link "→ MA 582 Mathematical Statistics" [ref=e325] [cursor=pointer]:
+                    - /url: /coursework/ma582-mathematical-statistics
+                - listitem [ref=e326]:
+                  - link "→ All coursework" [ref=e327] [cursor=pointer]:
+                    - /url: /coursework
+          - listitem [ref=e328]:
+            - img "ZeroSync logo" [ref=e330]
+            - generic [ref=e331]:
+              - generic [ref=e332]:
+                - heading "ZeroSync - Rust Engineering Intern" [level=3] [ref=e333]
+                - generic [ref=e334]: Summer 2023
+              - generic [ref=e335]:
+                - generic [ref=e336]: Engineering
+                - generic [ref=e337]: Completed
+              - paragraph [ref=e338]: My first production-grade Rust. Built an Excel-side marketplace + a server-side ingestion pipeline that converted unstructured data (CSVs, JSON dumps, free-form Excel) into structured records flowing through NATS JetStreams. Spent the first two weeks deep in The Rust Book — the borrow checker forces you to internalize ownership, lifetimes, and Send/Sync before you can ship anything async.
+              - list [ref=e339]:
+                - listitem [ref=e340]: tokio + async-trait for concurrent I/O across hundreds of NATS subjects.
+                - listitem [ref=e342]: NATS JetStream for at-least-once delivery, persistent streams, and replay.
+                - listitem [ref=e344]: Merkle-tree POC (SHA-256 + canonical JSON hashing + sorted pairwise concat) for tamper-evident sync of records across the pipeline.
+                - listitem [ref=e346]: "Excel side: JavaScript Office Add-in scaffolded with Yeoman (`yo generator-office`)."
+                - listitem [ref=e348]: "Generated TLS dev certificates with `office-addin-dev-certs`, trusted them in macOS Keychain, wired their paths into `nats.conf` so the add-in published over TLS."
+                - listitem [ref=e350]: "Borrow checker lessons: `&str` vs `String`, ownership over defensive `.clone()`, Send + 'static for futures."
+              - generic [ref=e352]:
+                - generic [ref=e354]: Rust
+                - generic [ref=e356]: tokio
+                - generic [ref=e358]: async-trait
+                - generic [ref=e360]: serde
+                - generic [ref=e362]: sha2
+                - generic [ref=e364]: NATS JetStream
+                - generic [ref=e366]: Yeoman
+                - generic [ref=e368]: JavaScript
+                - generic [ref=e370]: Office Add-ins
+              - link "Deep dive →" [ref=e371] [cursor=pointer]:
+                - /url: /about/timeline/zerosync-rust
+              - list [ref=e372]:
+                - listitem [ref=e373]:
+                  - link "→ merkle_tree (Rust POC)" [ref=e374] [cursor=pointer]:
+                    - /url: https://github.com/ArkashJ/merkle_tree
+                - listitem [ref=e375]:
+                  - link "→ Merkle tree write-up" [ref=e376] [cursor=pointer]:
+                    - /url: /writing/merkle-tree-rust-poc
+                - listitem [ref=e377]:
+                  - link "→ excel_connector (Yeoman + NATS)" [ref=e378] [cursor=pointer]:
+                    - /url: https://github.com/ArkashJ/excel_connector
+                - listitem [ref=e379]:
+                  - link "→ The Rust Book" [ref=e380] [cursor=pointer]:
+                    - /url: https://doc.rust-lang.org/book/
+          - listitem [ref=e381]:
+            - img "Boston University seal" [ref=e383]
+            - generic [ref=e384]:
+              - generic [ref=e385]:
+                - 'heading "Spring 2023 — BU coursework: CS 350 (Raft) & CS 611 (OOP)" [level=3] [ref=e386]'
+                - generic [ref=e387]: Spring 2023
+              - generic [ref=e388]:
+                - generic [ref=e389]: Education
+                - generic [ref=e390]: Completed
+              - paragraph [ref=e391]: Distributed Systems (CS 350) — Raft consensus from scratch in Go, plus a MapReduce coordinator/worker. OOP & Design Patterns (CS 611) — Monsters & Heroes turn-based RPG plus a final Java Swing trading platform.
+              - list [ref=e392]:
+                - listitem [ref=e393]: "CS 350: full Raft state machine with leader election, log replication, and snapshot install RPC."
+                - listitem [ref=e395]: "CS 350: MapReduce coordinator + worker with plugin-loaded map/reduce functions."
+                - listitem [ref=e397]: "CS 611: Monsters & Heroes — battle, market, inventory, 2D grid world."
+                - listitem [ref=e399]: "CS 611: group capstone trading platform with Java Swing GUI and singleton persistence."
+              - generic [ref=e401]:
+                - generic [ref=e403]: Go
+                - generic [ref=e405]: Raft
+                - generic [ref=e407]: Java
+                - generic [ref=e409]: OOP
+                - generic [ref=e411]: Design Patterns
+              - link "Deep dive →" [ref=e412] [cursor=pointer]:
+                - /url: /about/timeline/coursework-spring-2023
+              - list [ref=e413]:
+                - listitem [ref=e414]:
+                  - link "→ CS 350 deep dive" [ref=e415] [cursor=pointer]:
+                    - /url: /coursework/cs350-raft
+                - listitem [ref=e416]:
+                  - link "→ CS 611 Monsters & Heroes" [ref=e417] [cursor=pointer]:
+                    - /url: /coursework/cs611-monsters-and-heroes
+                - listitem [ref=e418]:
+                  - link "→ CS 611 Trading System" [ref=e419] [cursor=pointer]:
+                    - /url: /coursework/cs611-trading-system
+                - listitem [ref=e420]:
+                  - link "→ All coursework" [ref=e421] [cursor=pointer]:
+                    - /url: /coursework
+          - listitem [ref=e422]:
+            - generic [ref=e424]: PU
+            - generic [ref=e425]:
+              - generic [ref=e426]:
+                - 'heading "First Paper: Supercritical Fluids in Chemical Physics" [level=3] [ref=e427]'
+                - generic [ref=e428]: Nov 2022
+              - generic [ref=e429]:
+                - generic [ref=e430]: Publication
+                - generic [ref=e431]: ● Published
+              - paragraph [ref=e432]: Co-authored ultrafast 2DIR study of N2O rotational and vibrational energy relaxation in supercritical Xe and SF6 - IBC breakdown and critical slowing near the critical point.
+              - list [ref=e433]:
+                - listitem [ref=e434]:
+                  - link "→ J. Chem. Phys. 157, 174305 (2022)" [ref=e435] [cursor=pointer]:
+                    - /url: https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177/Ultrafast-2DIR-comparison-of-rotational-energy?redirectedFrom=fulltext
+                - listitem [ref=e436]:
+                  - link "→ PubMed" [ref=e437] [cursor=pointer]:
+                    - /url: https://pubmed.ncbi.nlm.nih.gov/36347695/
+                - listitem [ref=e438]:
+                  - link "→ J. Phys. Chem. Lett. (ACS)" [ref=e439] [cursor=pointer]:
+                    - /url: https://pubs.acs.org/doi/10.1021/acs.jpclett.2c03331
+          - listitem [ref=e441]:
+            - img "Battery Ventures logo" [ref=e443]
+            - generic [ref=e444]:
+              - generic [ref=e445]:
+                - heading "Battery Ventures - Sourcing Intern" [level=3] [ref=e446]
+                - generic [ref=e447]: Dec 2021
+              - generic [ref=e448]:
+                - generic [ref=e449]: VC
+                - generic [ref=e450]: Completed
+              - paragraph [ref=e451]: "Battery taught me VC end-to-end. Worked under Dallin Bills sourcing early-stage B2B software - learned the difference between vertical and horizontal SaaS, fintech investment theses (payments, infra, embedded, neobanks), and how Battery sized markets across verticals. Got fluent in the financial bar: Rule of 40, ARR growth vs. burn multiples, gross retention vs. logo churn vs. net dollar retention, magic number, and CAC payback. Sourced 3 deals to partner-meeting stage, including CarNow."
+              - list [ref=e452]:
+                - listitem [ref=e453]:
+                  - link "→ Battery Ventures" [ref=e454] [cursor=pointer]:
+                    - /url: https://www.battery.com/
+                - listitem [ref=e455]:
+                  - link "→ CarNow (Battery portfolio)" [ref=e456] [cursor=pointer]:
+                    - /url: https://www.battery.com/company/carnow/
+                - listitem [ref=e457]:
+                  - link "→ Michael Brown - GP" [ref=e458] [cursor=pointer]:
+                    - /url: https://www.battery.com/people/michael-brown/
+                - listitem [ref=e459]:
+                  - link "→ Dallin Bills (LinkedIn)" [ref=e460] [cursor=pointer]:
+                    - /url: https://www.linkedin.com/in/dallinbills/
+          - listitem [ref=e461]:
+            - img "National Science Foundation logo" [ref=e463]
+            - generic [ref=e464]:
+              - generic [ref=e465]:
+                - heading "UROP Scholar - 1 of 5 freshmen selected university-wide" [level=3] [ref=e466]
+                - generic [ref=e467]: "2021"
+              - generic [ref=e468]:
+                - generic [ref=e469]: Award
+                - generic [ref=e470]: Completed
+              - paragraph [ref=e471]: "\"Ultrafast Two Dimensional Infrared Spectroscopy of Supercritical Fluids: Energy Relaxation and Local Critical Slowing Effects.\" NSF-funded UROP under Lawrence Ziegler (CAS Chemistry)."
+              - list [ref=e472]:
+                - listitem [ref=e473]:
+                  - link "→ BU CS profile" [ref=e474] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/profiles/arkash-jain/
+                - listitem [ref=e475]:
+                  - link "→ UROP Symposium 2021 brochure (PDF)" [ref=e476] [cursor=pointer]:
+                    - /url: https://www.bu.edu/urop/files/2021/10/UROP-Symposium-2021-Brochure-v5.pdf
+                - listitem [ref=e477]:
+                  - link "→ UROP 2020-2021 awarded students" [ref=e478] [cursor=pointer]:
+                    - /url: https://www.bu.edu/urop/achievements/award-recipients/2020-2021-awarded-students/
+          - listitem [ref=e479]:
+            - generic [ref=e481]: LI
+            - generic [ref=e482]:
+              - generic [ref=e483]:
+                - heading "Arrived in the US from India" [level=3] [ref=e484]
+                - generic [ref=e485]: Sep 2020
+              - generic [ref=e486]:
+                - generic [ref=e487]: Life
+                - generic [ref=e488]: Completed
+              - paragraph [ref=e489]: Left Chandigarh for Boston University as an undergraduate.
+          - listitem [ref=e490]:
+            - generic [ref=e492]: LI
+            - generic [ref=e493]:
+              - generic [ref=e494]:
+                - heading "Wanted to be a physicist - prepped for JEE Advanced" [level=3] [ref=e495]
+                - generic [ref=e496]: 2018-2019
+              - generic [ref=e497]:
+                - generic [ref=e498]: Life
+                - generic [ref=e499]: Completed
+              - paragraph [ref=e500]: "Two years of E&M, particle physics, organic and physical chemistry, and optics - the standard JEE Advanced gauntlet for kids who wanted to do physics in India. Also sat AP Calculus, AP Physics C: Mechanics, and AP Physics C: E&M."
+        - paragraph [ref=e502]:
+          - text: Showing 16 curated milestones.
+          - link "See the full archive (27) →" [ref=e503] [cursor=pointer]:
+            - /url: /about/archive
+      - generic [ref=e504]:
+        - heading "● Career" [level=2] [ref=e505]
+        - paragraph [ref=e506]: Reverse-chronological — from Battery Ventures and BU to Harvard Medical School and Benmore.
+        - generic [ref=e507]:
+          - generic [ref=e508]:
+            - generic [ref=e509]:
+              - generic [ref=e510]:
+                - img "Benmore Technologies logo" [ref=e512]
+                - generic [ref=e513]:
+                  - heading "Head of FDE - Forward Deployed Strategist & Engineer" [level=3] [ref=e514]
+                  - paragraph [ref=e515]: Benmore Technologies
+              - generic [ref=e516]:
+                - generic [ref=e517]: Aug 2025 - Present
+                - generic [ref=e518]: Remote
+            - list [ref=e519]:
+              - listitem [ref=e520]:
+                - generic [ref=e521]: ›
+                - generic [ref=e522]: "Employee #2; scaled revenue 887% across 2025-2026."
+              - listitem [ref=e523]:
+                - generic [ref=e524]: ›
+                - generic [ref=e525]: Forward-deployed lead engineer across the Benmore portfolio of SMB AI engagements.
+            - generic [ref=e526]:
+              - list [ref=e528]:
+                - listitem [ref=e529]:
+                  - generic [ref=e530]: ›
+                  - generic [ref=e531]: Built Benmore Foundry CLI for orchestrating SMB AI consulting engagements.
+                - listitem [ref=e532]:
+                  - generic [ref=e533]: ›
+                  - generic [ref=e534]: Forward-deployed across Stripe, Django, Next.js, FastAPI, React Native, and Claude Code skill systems.
+              - button "Show 2 more" [ref=e535] [cursor=pointer]:
+                - text: Show 2 more
+                - img [ref=e536]
+          - generic [ref=e538]:
+            - generic [ref=e539]:
+              - generic [ref=e540]:
+                - img "Harvard University coat of arms" [ref=e542]
+                - generic [ref=e543]:
+                  - heading "ML Researcher" [level=3] [ref=e544]
+                  - paragraph [ref=e545]: Harvard Medical School - Kirchhausen Lab
+              - generic [ref=e546]:
+                - generic [ref=e547]: May 2024 - Aug 2025
+                - generic [ref=e548]: Boston, MA
+            - list [ref=e549]:
+              - listitem [ref=e550]:
+                - generic [ref=e551]: ›
+                - generic [ref=e552]: Authored SpatialDINO - 3D self-supervised vision transformer for label-free segmentation and tracking in lattice light-sheet microscopy.
+              - listitem [ref=e553]:
+                - generic [ref=e554]: ›
+                - generic [ref=e555]: Pre-trained on 2.4 TB / 180k volumes on DGX A100 nodes with DDP, bf16, NVLink, InfiniBand; contributed Rendezvous backend fix to PyTorch (#144779).
+            - generic [ref=e556]:
+              - list [ref=e558]:
+                - listitem [ref=e559]:
+                  - generic [ref=e560]: ›
+                  - generic [ref=e561]: Co-authored two follow-on papers in Journal of Cell Biology.
+              - button "Show 1 more" [ref=e562] [cursor=pointer]:
+                - text: Show 1 more
+                - img [ref=e563]
+          - generic [ref=e565]:
+            - generic [ref=e566]:
+              - generic [ref=e567]:
+                - img "ZeroSync logo" [ref=e569]
+                - generic [ref=e570]:
+                  - heading "SWE Intern" [level=3] [ref=e571]
+                  - paragraph [ref=e572]: ZeroSync
+              - generic [ref=e573]:
+                - generic [ref=e574]: May 2023 - Aug 2023
+                - generic [ref=e575]: Remote
+            - list [ref=e576]:
+              - listitem [ref=e577]:
+                - generic [ref=e578]: ›
+                - generic [ref=e579]: Worked on Bitcoin STARK proof systems - recursive STARK aggregation tooling.
+          - generic [ref=e580]:
+            - generic [ref=e581]:
+              - generic [ref=e582]:
+                - img "Boston Children's Hospital logo" [ref=e584]
+                - generic [ref=e585]:
+                  - heading "SWE Intern" [level=3] [ref=e586]
+                  - paragraph [ref=e587]: Boston Children's Hospital
+              - generic [ref=e588]:
+                - generic [ref=e589]: Jan 2023 - May 2023
+                - generic [ref=e590]: Boston, MA
+            - list [ref=e591]:
+              - listitem [ref=e592]:
+                - generic [ref=e593]: ›
+                - generic [ref=e594]: Built ALS resource discovery tool used by clinicians and patients.
+          - generic [ref=e595]:
+            - generic [ref=e596]:
+              - generic [ref=e597]:
+                - img "Boston University seal" [ref=e599]
+                - generic [ref=e600]:
+                  - heading "TA + Distributed Systems Researcher" [level=3] [ref=e601]
+                  - paragraph [ref=e602]: Boston University
+              - generic [ref=e603]:
+                - generic [ref=e604]: 2021 - 2024
+                - generic [ref=e605]: Boston, MA
+            - list [ref=e606]:
+              - listitem [ref=e607]:
+                - generic [ref=e608]: ›
+                - generic [ref=e609]: TA across systems and CS theory courses.
+              - listitem [ref=e610]:
+                - generic [ref=e611]: ›
+                - generic [ref=e612]: "Thesis: dynamic checkpointing for Apache Flink - adaptive checkpoint cadence based on backpressure signals."
+          - generic [ref=e613]:
+            - generic [ref=e614]:
+              - generic [ref=e615]:
+                - img "Battery Ventures logo" [ref=e617]
+                - generic [ref=e618]:
+                  - heading "Analyst - Diligence Extern" [level=3] [ref=e619]
+                  - paragraph [ref=e620]: Battery Ventures
+              - generic [ref=e621]:
+                - generic [ref=e622]: May 2022 - Aug 2022
+                - generic [ref=e623]: Boston, MA
+            - list [ref=e624]:
+              - listitem [ref=e625]:
+                - generic [ref=e626]: ›
+                - generic [ref=e627]: Vertical-deep diligence on early-stage B2B SaaS investments.
+          - generic [ref=e628]:
+            - generic [ref=e629]:
+              - generic [ref=e630]:
+                - img "Battery Ventures logo" [ref=e632]
+                - generic [ref=e633]:
+                  - heading "Analyst - Sourcing Extern" [level=3] [ref=e634]
+                  - paragraph [ref=e635]: Battery Ventures
+              - generic [ref=e636]:
+                - generic [ref=e637]: Dec 2021 - Apr 2022
+                - generic [ref=e638]: Boston, MA
+            - list [ref=e639]:
+              - listitem [ref=e640]:
+                - generic [ref=e641]: ›
+                - generic [ref=e642]: Sourced early-stage B2B SaaS deals across multiple verticals.
+          - generic [ref=e643]:
+            - generic [ref=e644]:
+              - generic [ref=e645]:
+                - img "National Science Foundation logo" [ref=e647]
+                - generic [ref=e648]:
+                  - heading "Undergraduate Researcher" [level=3] [ref=e649]
+                  - paragraph [ref=e650]: BU Chemistry / NSF UROP
+              - generic [ref=e651]:
+                - generic [ref=e652]: Jan 2021 - Aug 2021
+                - generic [ref=e653]: Boston, MA
+            - list [ref=e654]:
+              - listitem [ref=e655]:
+                - generic [ref=e656]: ›
+                - generic [ref=e657]: 1 of 5 UROP scholars selected university-wide as a freshman; led to first-author paper in chemical physics.
+  - contentinfo [ref=e658]:
+    - generic [ref=e659]:
+      - generic [ref=e660]:
+        - heading "Arkash Jain" [level=3] [ref=e661]
+        - paragraph [ref=e662]:
+          - text: Forward Deployed Engineer & AI Researcher at
+          - link "Benmore Technologies" [ref=e663] [cursor=pointer]:
+            - /url: https://benmore.tech
+          - text: .
+        - paragraph [ref=e664]: AI researcher (Harvard Kirchhausen Lab), forward deployed engineer at Benmore Technologies, three published papers including SpatialDINO — a 3D self-supervised vision transformer for lattice light-sheet microscopy.
+      - generic [ref=e665]:
+        - heading "Pages" [level=4] [ref=e666]
+        - list [ref=e667]:
+          - listitem [ref=e668]:
+            - link "About" [ref=e669] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e670]:
+            - link "Research" [ref=e671] [cursor=pointer]:
+              - /url: /research
+          - listitem [ref=e672]:
+            - link "Projects" [ref=e673] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=e674]:
+            - link "Claude Skills" [ref=e675] [cursor=pointer]:
+              - /url: /skills
+          - listitem [ref=e676]:
+            - link "Writing" [ref=e677] [cursor=pointer]:
+              - /url: /writing
+          - listitem [ref=e678]:
+            - link "Weekly" [ref=e679] [cursor=pointer]:
+              - /url: /weekly
+          - listitem [ref=e680]:
+            - link "Media" [ref=e681] [cursor=pointer]:
+              - /url: /media
+          - listitem [ref=e682]:
+            - link "Knowledge" [ref=e683] [cursor=pointer]:
+              - /url: /knowledge
+          - listitem [ref=e684]:
+            - link "Credentials" [ref=e685] [cursor=pointer]:
+              - /url: /credentials
+          - listitem [ref=e686]:
+            - link "Stack" [ref=e687] [cursor=pointer]:
+              - /url: /stack
+          - listitem [ref=e688]:
+            - link "Architecture (legacy)" [ref=e689] [cursor=pointer]:
+              - /url: /architecture
+          - listitem [ref=e690]:
+            - link "Coursework" [ref=e691] [cursor=pointer]:
+              - /url: /coursework
+          - listitem [ref=e692]:
+            - link "Docs" [ref=e693] [cursor=pointer]:
+              - /url: /docs
+          - listitem [ref=e694]:
+            - link "About archive" [ref=e695] [cursor=pointer]:
+              - /url: /about/archive
+      - generic [ref=e696]:
+        - heading "Elsewhere" [level=4] [ref=e697]
+        - list [ref=e698]:
+          - listitem [ref=e699]:
+            - link "GitHub" [ref=e700] [cursor=pointer]:
+              - /url: https://github.com/ArkashJ
+              - generic [ref=e701]: GitHub
+          - listitem [ref=e702]:
+            - link "LinkedIn" [ref=e703] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/arkashj/
+              - img [ref=e704]
+              - generic [ref=e707]: LinkedIn
+          - listitem [ref=e708]:
+            - link "X" [ref=e709] [cursor=pointer]:
+              - /url: https://x.com/ArkashJ__
+              - generic [ref=e710]: X
+          - listitem [ref=e711]:
+            - link "Substack" [ref=e712] [cursor=pointer]:
+              - /url: https://arkash.substack.com
+              - generic [ref=e713]: Substack
+          - listitem [ref=e714]:
+            - link "Medium" [ref=e715] [cursor=pointer]:
+              - /url: https://medium.com/@arkjain
+              - generic [ref=e716]: Medium
+          - listitem [ref=e717]:
+            - link "Harvard" [ref=e718] [cursor=pointer]:
+              - /url: https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs
+              - img [ref=e719]
+              - generic [ref=e722]: Harvard
+          - listitem [ref=e723]:
+            - link "Scholar" [ref=e724] [cursor=pointer]:
+              - /url: https://scholar.google.com/scholar?q=arkash+jain
+              - generic [ref=e725]: Scholar
+          - listitem [ref=e726]:
+            - link "ORCID" [ref=e727] [cursor=pointer]:
+              - /url: https://orcid.org/0000-0003-2692-7472
+              - generic [ref=e728]: ORCID
+          - listitem [ref=e729]:
+            - link "Email" [ref=e730] [cursor=pointer]:
+              - /url: mailto:arkash@benmore.tech
+              - img [ref=e731]
+              - generic [ref=e734]: Email
+        - paragraph [ref=e735]:
+          - link "arkash@benmore.tech" [ref=e736] [cursor=pointer]:
+            - /url: mailto:arkash@benmore.tech
+    - generic [ref=e738]:
+      - generic [ref=e739]:
+        - text: © 2026 Arkash Jain — built & maintained by
+        - link "arkashj.com" [ref=e740] [cursor=pointer]:
+          - /url: https://www.arkashj.com
+      - generic [ref=e741]:
+        - generic [ref=e742]: Next.js · Vercel
+        - link "/architecture" [ref=e743] [cursor=pointer]:
+          - /url: /architecture
+          - text: /architecture
+          - img [ref=e744]
+        - link "humans.txt" [ref=e748] [cursor=pointer]:
+          - /url: /humans.txt
+          - text: humans.txt
+          - img [ref=e749]

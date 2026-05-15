@@ -1,0 +1,84 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e7]:
+        - link "Kirchhausen Lab" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=e11]:
+          - menubar [ref=e14]:
+            - menuitem "Research" [ref=e15] [cursor=pointer]
+            - menuitem "Highlights" [ref=e16] [cursor=pointer]
+            - menuitem "Publications" [ref=e17] [cursor=pointer]
+            - menuitem "People" [ref=e18] [cursor=pointer]
+            - menuitem "Intranet" [ref=e19] [cursor=pointer]
+            - menuitem "News" [ref=e20] [cursor=pointer]
+    - generic [ref=e21]:
+      - banner [ref=e23]:
+        - heading "Arkash Jain, M.S., , B.S." [level=1] [ref=e24]
+      - main [ref=e25]:
+        - article [ref=e30]:
+          - generic [ref=e31]:
+            - img "Arkash Jain" [ref=e33]
+            - generic [ref=e34]: Software Engineer
+            - generic [ref=e35]: I graduated with a combined BA [Mathematics and Computer Science] and MS [Computer Science] from Boston University bringing with me experience from a Venture Capital Firm [Battery Ventures 2x sourcing intern, diligence intern - https://www.battery.com], BCH (through BU Spark] and a tech startup [Zerosync - https://www.zerosync.co]. My master's theses focused on Streaming & Event driven systems [more specifically, adaptive checkpointing in Flink] and Numerically Stable Momentum Based SGD Algorithms. My core passion lies System Design on which I write a monthly blog, [https://medium.com/@arkjain] highlighting various online algorithms for Stream Processing Engines, Sorting Algorithms, KV and Columnar Stores, Adaptive Techniques for Task Placement on the Cloud, ML etc.
+            - generic [ref=e36]: Warren Alpert Building, Room 138
+            - generic [ref=e37]: 617.713.8684
+            - link "Arkash.Jain@childrens.harvard.edu" [ref=e39] [cursor=pointer]:
+              - /url: mailto:Arkash.Jain@childrens.harvard.edu
+            - generic [ref=e40]:
+              - generic [ref=e41]: "Current Projects:"
+              - generic [ref=e42]:
+                - paragraph [ref=e43]:
+                  - text: Here at the Kirchhausen Lab, I've worked on the Incasem [
+                  - link "https://github.com/kirchhausenlab/incasem" [ref=e44] [cursor=pointer]:
+                    - /url: https://github.com/kirchhausenlab/incasem
+                  - text: "] and CryoSamba ["
+                  - link "https://x.com/KirchhausenLab/status/1813651584427184490" [ref=e45] [cursor=pointer]:
+                    - /url: https://x.com/KirchhausenLab/status/1813651584427184490
+                  - text: "] projects so far, automating the entire workflows, introducing vanilla architectural decisions such as local config and runtime managers, custom loggers, end to end tests, benchmarks, scripts and lightweight APIs for ease-to-use GUIs."
+                - paragraph [ref=e46]:
+                  - text: I built one of the world's first completely unsupervised, annotation-free 3D native segmentation model by modifying DinoV2, an open source 2D model from Meta for natural images to be translated to highly convoluted biological data. Biologists collect data of viruses interacting with cells using novel microscopes however the data is noisy to the extent one cannot discern the foreground from the background. The intensity of the particles is close to that of the background and it fluctuates, making it hard to use simple thresholding techniques across time and even across the single volume. Understanding how the viruses interact with the cells helps biologists come up with techniques to prevent diseases like Alzheimer's and Parkison's. Until now, no such method existing to segment such data using supervised or existing ML techniques, especially cross-domain for multiple types of viruses and cells. Our model, once pretrained, allows biologists to segment any viral data with an extremely high accuracy, uncovering interesting biology. Throw on tracking of these objects, we have built a pathway to solve every viral borne disease on the planet.
+                  - text: ":small_orange_diamond: Co-authored 3 Deep Learning Papers, 𝐛𝐞𝐢𝐧𝐠 𝐭𝐡𝐞 𝐟𝐢𝐫𝐬𝐭 𝐚𝐮𝐭𝐡𝐨𝐫 𝐨𝐧 𝐒𝐩𝐚𝐭𝐢𝐚𝐥𝐃𝐈𝐍𝐎 one of the world's first 3D Self-Supervised, Annotation Free Deep Learning Model. Relevance - allows a deeper understanding of how viruses interact with cells and track them, allowing biologists to study pathways of entry/exit."
+                  - text: ":small_blue_diamond: Key Contributions: Feature pyramid based encoder, 3D Native transformations, patch-token augmented segmentation, optimization of networking stack to using streaming datasets, multi-node training/inference, hardware acceleration using diverse datatypes (bfloat16), model quantizations."
+                  - text: ":small_blue_diamond: Papers: Dinov2, DesD Loss, ADOPT optimizer, FeatUP, LiFT, SINDER, NoPE"
+                  - generic [ref=e47]:
+                    - text: ":small_blue_diamond:"
+                    - link "https://kirchhausen.hms.harvard.edu/publications" [ref=e48] [cursor=pointer]:
+                      - /url: https://kirchhausen.hms.harvard.edu/publications
+            - generic [ref=e49]:
+              - generic [ref=e50]: "Alumni Graduation Year:"
+              - generic [ref=e51]: "2025"
+            - generic [ref=e52]:
+              - generic [ref=e53]: Alumni Present Position
+              - paragraph [ref=e55]: Machine Learning Engineer at Benmore Technologies / Dakota Systems
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - heading "Contact" [level=2] [ref=e59]
+          - separator
+          - generic [ref=e60]:
+            - paragraph [ref=e61]:
+              - text: "Administrative Assistant: Catherine Swan"
+              - text: "Email:"
+              - link "Catherine.Swan@childrens.harvard.edu" [ref=e62] [cursor=pointer]:
+                - /url: mailto:Catherine.Swan@childrens.harvard.edu
+              - text: "Phone: 617.713.8889"
+            - paragraph:
+              - link "Tweeter":
+                - /url: https://twitter.com/kirchhausenlab
+                - img "Tweeter" [ref=e63] [cursor=pointer]
+            - paragraph [ref=e64]
+            - paragraph [ref=e65]:
+              - link "Accessibility Policy" [ref=e66] [cursor=pointer]:
+                - /url: https://accessibility.huit.harvard.edu/digital-accessibility-policy
+        - generic [ref=e67]:
+          - heading "Address" [level=2] [ref=e68]
+          - separator
+          - paragraph [ref=e70]:
+            - text: "Mailing Address: 200 Longwood Avenue, Boston MA, 02115, USA"
+            - text: "Location: Warren Alpert Building, Room 133"
+            - link "Directions and maps" [ref=e71] [cursor=pointer]:
+              - /url: /directions-and-maps
+    - contentinfo [ref=e72]:
+      - generic [ref=e76]: Copyright © The President and Fellows of Harvard College

@@ -1,0 +1,233 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - 'link "Boston University Office of the Provost: Undergraduate Research Opportunities Program" [ref=e5] [cursor=pointer]':
+        - /url: https://www.bu.edu/urop/
+        - text: "Boston University Office of the Provost:"
+        - generic [ref=e6]: Undergraduate Research Opportunities Program
+      - navigation [ref=e7]:
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "Symposium" [ref=e10] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/symposium/
+          - listitem [ref=e11]:
+            - link "Apply" [ref=e12] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/get-involved/application/
+          - listitem [ref=e13]:
+            - link "Calendar" [ref=e14] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/current-participants/calendar/
+          - listitem [ref=e15]:
+            - link "Contact" [ref=e16] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/about/contact/
+          - listitem [ref=e17]:
+            - link "Give" [ref=e18] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/about/giving/
+              - paragraph [ref=e19]: Give
+      - navigation [ref=e20]:
+        - link "🔎" [ref=e21] [cursor=pointer]:
+          - /url: "#quicksearch"
+        - list [ref=e22]:
+          - listitem [ref=e23]:
+            - link "About" [ref=e24] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/about/
+            - list [ref=e25]:
+              - listitem [ref=e26]:
+                - link "What is UROP?" [ref=e27] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/about/what-is-urop/
+              - listitem [ref=e28]:
+                - link "Meet the Team" [ref=e29] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/about/meet-the-team/
+              - listitem [ref=e30]:
+                - link "Contact" [ref=e31] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/about/contact/
+              - listitem [ref=e32]:
+                - link "Giving to UROP" [ref=e33] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/about/giving/
+              - listitem [ref=e34]:
+                - link "FAQs" [ref=e35] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/about/frequently-asked-questions/
+          - listitem [ref=e36]:
+            - link "Opportunities" [ref=e37] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/opportunities/
+            - list [ref=e38]:
+              - listitem [ref=e39]:
+                - link "On-campus Research" [ref=e40] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/opportunities/on-campus-research/
+              - listitem [ref=e41]:
+                - link "Special Awards" [ref=e42] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/opportunities/special-awards/
+              - listitem [ref=e43]:
+                - link "Travel & Supplies Awards" [ref=e44] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/opportunities/travel-awards/
+              - listitem [ref=e45]:
+                - link "Other BU research opportunities" [ref=e46] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/opportunities/other-research-opportunities-at-boston-university/
+          - listitem [ref=e47]:
+            - link "Get Involved" [ref=e48] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/get-involved/
+            - list [ref=e49]:
+              - listitem [ref=e50]:
+                - link "Finding a Mentor" [ref=e51] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/get-involved/getting-started/
+              - listitem [ref=e52]:
+                - link "Application" [ref=e53] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/get-involved/application-2/
+              - listitem [ref=e54]:
+                - link "Application Tips" [ref=e55] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/get-involved/application-tips/
+              - listitem [ref=e56]:
+                - link "Deadlines" [ref=e57] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/get-involved/deadlines/
+              - listitem [ref=e58]:
+                - link "Funding & Eligibility" [ref=e59] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/get-involved/funding-eligibility/
+          - listitem [ref=e60]:
+            - link "For Current Participants" [ref=e61] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/current-participants/
+            - list [ref=e62]:
+              - listitem [ref=e63]:
+                - link "Important Information" [ref=e64] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/current-participants/important-information/
+              - listitem [ref=e65]:
+                - link "Calendar" [ref=e66] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/current-participants/calendar/
+              - listitem [ref=e67]:
+                - link "Ethical Conduct in Research" [ref=e68] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/current-participants/ethical-conduct-in-research/
+              - listitem [ref=e69]:
+                - link "Abstract Writing" [ref=e70] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/current-participants/abstract-writing/
+              - listitem [ref=e71]:
+                - link "Summer Housing" [ref=e72] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/current-participants/summer-housing/
+              - listitem [ref=e73]:
+                - link "Posters" [ref=e74] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/current-participants/posters/
+          - listitem [ref=e75]:
+            - link "For Mentors" [ref=e76] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/mentors/
+            - list [ref=e77]:
+              - listitem [ref=e78]:
+                - link "Mentoring Resources" [ref=e79] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/mentors/mentoring-resources/
+              - listitem [ref=e80]:
+                - link "Why Mentor?" [ref=e81] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/mentors/why-mentor/
+              - listitem [ref=e82]:
+                - link "Working with Students" [ref=e83] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/mentors/working-with-students/
+              - listitem [ref=e84]:
+                - link "Post an Opportunity" [ref=e85] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/mentors/post-an-opportunity/
+              - listitem [ref=e86]:
+                - link "Recommendation & Approval Forms" [ref=e87] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/mentors/recommendation-forms/
+          - listitem [ref=e88]:
+            - link "Student Achievements" [ref=e89] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/achievements/
+            - list [ref=e90]:
+              - listitem [ref=e91]:
+                - link "Share your success" [ref=e92] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/share-your-success/
+              - listitem [ref=e93]:
+                - link "Student Spotlight" [ref=e94] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/student-spotlight/
+              - listitem [ref=e95]:
+                - link "Award Recipients" [ref=e96] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/
+              - listitem [ref=e97]:
+                - link "Alumni Connection" [ref=e98] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/alumni-connection/
+              - listitem [ref=e99]:
+                - link "Publications" [ref=e100] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/2011-2/
+      - text: ▻
+  - generic [ref=e103]:
+    - main [ref=e104]:
+      - heading "2020-2021 Awarded Students" [level=1] [ref=e105]
+      - paragraph
+      - button "Fall 2020 Award Recipients" [ref=e107] [cursor=pointer]
+      - paragraph
+      - paragraph
+      - button "Spring 2021 Award Recipients" [ref=e109] [cursor=pointer]
+      - paragraph
+      - paragraph
+      - button "Summer 2021 Award Recipients" [ref=e111] [cursor=pointer]
+      - paragraph
+    - complementary [ref=e112]:
+      - generic [ref=e114]:
+        - heading "Student Achievements" [level=3] [ref=e115]:
+          - link "Student Achievements" [ref=e116] [cursor=pointer]:
+            - /url: https://www.bu.edu/urop/achievements/
+        - list [ref=e117]:
+          - listitem [ref=e118]:
+            - link "Share your success" [ref=e119] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/achievements/share-your-success/
+          - listitem [ref=e120]:
+            - link "Student Spotlight" [ref=e121] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/achievements/student-spotlight/
+          - listitem [ref=e122]:
+            - link "Award Recipients" [ref=e123] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/achievements/award-recipients/
+            - list [ref=e124]:
+              - listitem [ref=e125]:
+                - link "2025 – 2026 Awarded Students" [ref=e126] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/2025-2026-awarded-students/
+              - listitem [ref=e127]:
+                - link "2024 – 2025 Awarded Students" [ref=e128] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/2024-2025-awarded-students/
+              - listitem [ref=e129]:
+                - link "2023 – 2024 Awarded Students" [ref=e130] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/2023-2024-awarded-students/
+              - listitem [ref=e131]:
+                - link "2022 – 2023 Awarded Students" [ref=e132] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/2022-2023-awarded-students/
+              - listitem [ref=e133]:
+                - link "2021-2022 Awarded Students" [ref=e134] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/2021-2022-awarded-students/
+              - listitem [ref=e135]:
+                - link "2020-2021 Awarded Students" [ref=e136] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/2020-2021-awarded-students/
+              - listitem [ref=e137]:
+                - link "2019 – 2020 Award Recipients" [ref=e138] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/fall-2019-summer-2020/
+              - listitem [ref=e139]:
+                - link "2018 – 2019 Award Recipients" [ref=e140] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/fall-2018-summer-2019-award-recipients/
+              - listitem [ref=e141]:
+                - link "2017 – 2018 Award Recipients" [ref=e142] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/fall-2017-summer-2018-award-recipients/
+              - listitem [ref=e143]:
+                - link "2016-2017 Award Recipients" [ref=e144] [cursor=pointer]:
+                  - /url: https://www.bu.edu/urop/achievements/award-recipients/fall-2016-summer-2017-award-recipients/
+          - listitem [ref=e145]:
+            - link "Alumni Connection" [ref=e146] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/achievements/alumni-connection/
+          - listitem [ref=e147]:
+            - link "Publications" [ref=e148] [cursor=pointer]:
+              - /url: https://www.bu.edu/urop/achievements/2011-2/
+  - contentinfo [ref=e149]:
+    - link "Boston University" [ref=e151] [cursor=pointer]:
+      - /url: http://www.bu.edu
+    - generic:
+      - paragraph [ref=e153]: 5th floor, 775 Commonwealth Avenue, Boston MA 02215
+      - navigation [ref=e154]:
+        - list [ref=e155]:
+          - listitem [ref=e156]:
+            - link "urop@bu.edu" [ref=e157] [cursor=pointer]:
+              - /url: mailto:urop@bu.edu
+          - listitem [ref=e158]:
+            - link "Follow us on Instagram" [ref=e159] [cursor=pointer]:
+              - /url: https://www.instagram.com/bu_studentsuccess
+              - generic [ref=e160]: 
+          - listitem [ref=e161]:
+            - link "Follow us on Twitter" [ref=e162] [cursor=pointer]:
+              - /url: https://twitter.com/BU_UROP
+              - generic [ref=e163]: 
+          - listitem [ref=e164]:
+            - link "Like us on Facebook" [ref=e165] [cursor=pointer]:
+              - /url: https://www.facebook.com/BU.UROP
+              - generic [ref=e166]: 
+          - listitem [ref=e167]:
+            - link "617 353 2020" [ref=e168] [cursor=pointer]:
+              - /url: tel:+16173532020

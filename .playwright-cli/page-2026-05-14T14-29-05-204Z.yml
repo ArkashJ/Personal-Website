@@ -1,0 +1,240 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Skip to Main Content" [ref=e4] [cursor=pointer]:
+        - /url: "#main"
+      - generic [ref=e5]:
+        - link "Arts & Sciences Computer Science" [ref=e7] [cursor=pointer]:
+          - /url: https://www.bu.edu/cs/
+          - text: Arts & Sciences
+          - generic [ref=e8]: Computer Science
+        - navigation:
+          - button "Open search" [ref=e9] [cursor=pointer]: 🔎
+          - list [ref=e10]:
+            - listitem [ref=e11]:
+              - link "About" [ref=e12] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/about/
+              - list [ref=e13]:
+                - listitem [ref=e14]:
+                  - link "People" [ref=e15] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/about/people/
+                - listitem [ref=e16]:
+                  - link "Events" [ref=e17] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/about/events/
+                - listitem [ref=e18]:
+                  - link "Directions" [ref=e19] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/about/directions/
+            - listitem [ref=e20]:
+              - link "Research" [ref=e21] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/research-groups/
+              - list [ref=e22]:
+                - listitem [ref=e23]:
+                  - link "Grants" [ref=e24] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/grants-2/
+                - listitem [ref=e25]:
+                  - link "Networks" [ref=e26] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/networks/
+                - listitem [ref=e27]:
+                  - link "Data Mining & Data Management" [ref=e28] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/data-group/
+                - listitem [ref=e29]:
+                  - link "Machine Learning" [ref=e30] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/ml/
+                - listitem [ref=e31]:
+                  - link "Vision & Graphics" [ref=e32] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/vg/
+                - listitem [ref=e33]:
+                  - link "Algorithms & Theory" [ref=e34] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/theory/
+                - listitem [ref=e35]:
+                  - link "Programming & Verification" [ref=e36] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/popv/
+                - listitem [ref=e37]:
+                  - link "Security" [ref=e38] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/security/
+                - listitem [ref=e39]:
+                  - link "Systems" [ref=e40] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/research-groups/systems/
+            - listitem [ref=e41]:
+              - link "Undergrad" [ref=e42] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/undergraduate/
+              - list [ref=e43]:
+                - listitem [ref=e44]:
+                  - link "Academic Resources" [ref=e45] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/undergraduate/academic-resources/
+                - listitem [ref=e46]:
+                  - link "Academic Programs" [ref=e47] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/undergraduate/academic-programs/
+                - listitem [ref=e48]:
+                  - link "Courses" [ref=e49] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/undergraduate/courses/
+                - listitem [ref=e50]:
+                  - link "Academic Advising" [ref=e51] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/undergraduate/undergraduate-life/
+            - listitem [ref=e52]:
+              - link "Master’s" [ref=e53] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/masters/
+              - list [ref=e54]:
+                - listitem [ref=e55]:
+                  - link "MS Admissions" [ref=e56] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/masters/ms-admissions/
+                - listitem [ref=e57]:
+                  - link "Program Details" [ref=e58] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/masters/program/
+                - listitem [ref=e59]:
+                  - link "Student Resources" [ref=e60] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/masters/resources/
+            - listitem [ref=e61]:
+              - link "PhD" [ref=e62] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/phd-program/
+              - list [ref=e63]:
+                - listitem [ref=e64]:
+                  - link "Admissions" [ref=e65] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/phd-program/admissions/
+                - listitem [ref=e66]:
+                  - link "Program Details" [ref=e67] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/phd-program/phd-program-milestones/
+                - listitem [ref=e68]:
+                  - link "Student Resources" [ref=e69] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/phd-program/resources/
+            - listitem [ref=e70]:
+              - link "Engage" [ref=e71] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/engage/
+              - list [ref=e72]:
+                - listitem [ref=e73]:
+                  - link "Career Fairs and Programming" [ref=e74] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/engage/careers/
+                - listitem [ref=e75]:
+                  - link "UR2PhD" [ref=e76] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/engage/ur2phd/
+                - listitem [ref=e77]:
+                  - link "CS News Tip" [ref=e78] [cursor=pointer]:
+                    - /url: https://www.bu.edu/cs/engage/news-tip/
+            - listitem [ref=e79]:
+              - link "Donate" [ref=e80] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/give-back/
+            - listitem [ref=e81]:
+              - link "| Faculty & Staff Resources" [ref=e82] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/fsrp/
+          - navigation [ref=e84]:
+            - list [ref=e85]:
+              - listitem [ref=e86]:
+                - link " Instagram" [ref=e87] [cursor=pointer]:
+                  - /url: https://www.instagram.com/bucompsci/
+              - listitem [ref=e88]:
+                - link " Facebook" [ref=e89] [cursor=pointer]:
+                  - /url: https://www.facebook.com/BUCompSci/
+              - listitem [ref=e90]:
+                - link " Twitter" [ref=e91] [cursor=pointer]:
+                  - /url: https://twitter.com/bucompsci
+              - listitem [ref=e92]:
+                - link " LinkedIn" [ref=e93] [cursor=pointer]:
+                  - /url: https://www.linkedin.com/groups/9156452/
+              - listitem [ref=e94]:
+                - link " YouTube" [ref=e95] [cursor=pointer]:
+                  - /url: https://www.youtube.com/channel/UC6HcZ8GwqCIHsMmerZhvtqw
+  - generic [ref=e96]:
+    - generic [ref=e97]:
+      - heading "MS Alumni" [level=1] [ref=e98]
+      - img [ref=e99]
+    - main [ref=e101]:
+      - generic [ref=e102]:
+        - article [ref=e103]:
+          - button "+ Masters Alumni 2015" [ref=e105] [cursor=pointer]
+          - button "+ Masters Alumni 2016" [ref=e107] [cursor=pointer]
+          - button "+ Masters Alumni 2017" [ref=e109] [cursor=pointer]
+          - button "+ Masters Alumni 2018" [ref=e111] [cursor=pointer]
+          - button "+ Masters Alumni 2019" [ref=e113] [cursor=pointer]
+          - button "+ Masters Alumni 2020" [ref=e115] [cursor=pointer]
+          - button "+ Masters Alumni 2021" [ref=e117] [cursor=pointer]
+          - button "+ Masters Alumni 2022" [ref=e119] [cursor=pointer]
+          - button "+ Masters Alumni 2023" [ref=e121] [cursor=pointer]
+          - button "+ Masters Alumni 2024" [ref=e123] [cursor=pointer]
+          - button "+ Masters Alumni 2025" [ref=e125] [cursor=pointer]
+        - complementary [ref=e126]:
+          - heading "Related to MS Alumni" [level=2] [ref=e127]
+          - generic [ref=e129]:
+            - heading "About" [level=3] [ref=e130]:
+              - link "About" [ref=e131] [cursor=pointer]:
+                - /url: https://www.bu.edu/cs/about/
+            - list [ref=e132]:
+              - listitem [ref=e133]:
+                - link "People" [ref=e134] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/about/people/
+                - list [ref=e135]:
+                  - listitem [ref=e136]:
+                    - link "Faculty" [ref=e137] [cursor=pointer]:
+                      - /url: https://www.bu.edu/cs/about/people/faculty/
+                  - listitem [ref=e138]:
+                    - link "Faculty Leadership" [ref=e139] [cursor=pointer]:
+                      - /url: https://www.bu.edu/cs/about/people/faculty-leadership/
+                  - listitem [ref=e140]:
+                    - link "Department Staff" [ref=e141] [cursor=pointer]:
+                      - /url: https://www.bu.edu/cs/about/people/department-staff/
+                  - listitem [ref=e142]:
+                    - link "Researchers & PhD Students" [ref=e143] [cursor=pointer]:
+                      - /url: https://www.bu.edu/cs/about/people/researchers/
+                  - listitem [ref=e144]:
+                    - link "Alumni" [ref=e145] [cursor=pointer]:
+                      - /url: https://www.bu.edu/cs/about/people/alumni/
+                    - list [ref=e146]:
+                      - listitem [ref=e147]:
+                        - link "PhD Alumni" [ref=e148] [cursor=pointer]:
+                          - /url: https://www.bu.edu/cs/about/people/alumni/phd-alumni/
+                      - listitem [ref=e149]:
+                        - link "Alumni Contact List" [ref=e150] [cursor=pointer]:
+                          - /url: https://www.bu.edu/cs/about/people/alumni/alumni-contact-list/
+                  - listitem [ref=e151]:
+                    - link "Diversity" [ref=e152] [cursor=pointer]:
+                      - /url: https://www.bu.edu/cs/about/people/diversity/
+              - listitem [ref=e153]:
+                - link "Events" [ref=e154] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/about/events/
+              - listitem [ref=e155]:
+                - link "Directions" [ref=e156] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/about/directions/
+          - generic [ref=e157]:
+            - heading "Recent News" [level=3] [ref=e158]
+            - list [ref=e159]:
+              - listitem [ref=e160]:
+                - link "What is Machine Learning? The Foundations of ML in Practice" [ref=e161] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/2026/05/08/what-is-machine-learning/
+              - listitem [ref=e162]:
+                - link "Who is the Online MS in Computer Science & Artificial Intelligence Designed For?" [ref=e163] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/2026/04/29/who-is-the-online-ms-in-computer-science-artificial-intelligence-designed-for/
+              - listitem [ref=e164]:
+                - link "Computational Fabrication hosts Final Project Demo Session" [ref=e165] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/2026/04/24/computational-fabrication-hosts-final-project-demo-session/
+              - listitem [ref=e166]:
+                - link "Ephraim Linder is awarded a 2026 Apple Scholars in AIML PhD fellowship" [ref=e167] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/2026/04/23/ephraim-linder-is-awarded-a-2026-apple-scholars-in-aiml-phd-fellowship/
+              - listitem [ref=e168]:
+                - link "Faculty of Computing & Data Sciences and Computer Science Department Hosts Industry Connections Event" [ref=e169] [cursor=pointer]:
+                  - /url: https://www.bu.edu/cs/2026/04/17/faculty-of-computing-data-sciences-and-computer-science-department-hosts-industry-connections-event/
+  - contentinfo [ref=e170]:
+    - generic [ref=e171]:
+      - link "Boston University Arts & Sciences" [ref=e172] [cursor=pointer]:
+        - /url: https://www.bu.edu/cas/
+      - generic [ref=e174]:
+        - strong [ref=e175]: Department of Computer Science
+        - generic [ref=e176]:
+          - text: 665 Commonwealth Avenue
+          - text: Boston, MA 02215
+          - text: "P: 617-353-8919"
+    - navigation [ref=e178]:
+      - list [ref=e179]:
+        - listitem [ref=e180]:
+          - link "" [ref=e181] [cursor=pointer]:
+            - /url: https://www.instagram.com/bucompsci/
+        - listitem [ref=e182]:
+          - link "" [ref=e183] [cursor=pointer]:
+            - /url: https://www.facebook.com/BUCompSci/
+        - listitem [ref=e184]:
+          - link "" [ref=e185] [cursor=pointer]:
+            - /url: https://twitter.com/bucompsci
+        - listitem [ref=e186]:
+          - link "" [ref=e187] [cursor=pointer]:
+            - /url: https://www.linkedin.com/groups/9156452/
+        - listitem [ref=e188]:
+          - link "" [ref=e189] [cursor=pointer]:
+            - /url: https://www.youtube.com/channel/UC6HcZ8GwqCIHsMmerZhvtqw

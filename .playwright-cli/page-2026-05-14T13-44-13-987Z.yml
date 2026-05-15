@@ -1,0 +1,335 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link "arkash.jain" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - text: arkash.jain
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - link "About" [ref=e10] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e11]:
+          - link "Research" [ref=e12] [cursor=pointer]:
+            - /url: /research
+        - listitem [ref=e13]:
+          - link "Projects" [ref=e14] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e15]:
+          - link "Claude Skills" [ref=e16] [cursor=pointer]:
+            - /url: /skills
+        - listitem [ref=e17]:
+          - link "Writing" [ref=e18] [cursor=pointer]:
+            - /url: /writing
+        - listitem [ref=e19]:
+          - link "Weekly" [ref=e20] [cursor=pointer]:
+            - /url: /weekly
+        - listitem [ref=e21]:
+          - link "Media" [ref=e22] [cursor=pointer]:
+            - /url: /media
+      - generic [ref=e23]:
+        - button "Quick navigation (Cmd+K)" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - generic [ref=e28]: Search
+          - generic [ref=e29]: ⌘K
+        - button "Site menu" [ref=e31] [cursor=pointer]:
+          - img [ref=e32]
+        - button "Switch to light mode" [ref=e35] [cursor=pointer]:
+          - img [ref=e36]
+  - main [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e45]:
+        - generic [ref=e46]: Writing
+        - heading "Essays, notes, lessons." [level=1] [ref=e48]
+        - paragraph [ref=e49]: What I'm learning, in public.
+        - paragraph [ref=e50]: Curated long-form on AI, finance, distributed systems, and forward-deployed engineering — sorted newest first.
+      - paragraph [ref=e51]: Essays · 20
+      - generic [ref=e52]:
+        - img
+        - textbox "Search essays by title, tag…" [ref=e53]
+      - generic [ref=e54]:
+        - button "All" [ref=e55] [cursor=pointer]
+        - button "AI" [ref=e56] [cursor=pointer]
+        - button "Distributed Systems" [ref=e57] [cursor=pointer]
+        - button "Engineering" [ref=e58] [cursor=pointer]
+        - button "Hardware" [ref=e59] [cursor=pointer]
+        - button "Meta" [ref=e60] [cursor=pointer]
+        - button "Neovim" [ref=e61] [cursor=pointer]
+        - button "Tools" [ref=e62] [cursor=pointer]
+        - button "Venture" [ref=e63] [cursor=pointer]
+        - button "career" [ref=e64] [cursor=pointer]
+        - button "finance" [ref=e65] [cursor=pointer]
+        - button "physics" [ref=e66] [cursor=pointer]
+        - button "research" [ref=e67] [cursor=pointer]
+        - button "software" [ref=e68] [cursor=pointer]
+        - button "strategy" [ref=e69] [cursor=pointer]
+        - button "tools" [ref=e70] [cursor=pointer]
+        - button "typescript" [ref=e71] [cursor=pointer]
+      - generic [ref=e72]:
+        - link "2026-05-02 Writing my Neovim config from scratch A two-part Medium series on building a Neovim setup from a blank init.lua — bootstrap, options, keymaps, lazy.nvim, then the plugin layer that makes it a real editor. Tools Engineering Neovim" [ref=e73] [cursor=pointer]:
+          - /url: /writing/neovim-config-from-scratch
+          - generic [ref=e74]:
+            - paragraph [ref=e75]: 2026-05-02
+            - heading "Writing my Neovim config from scratch" [level=3] [ref=e76]
+            - paragraph [ref=e77]: A two-part Medium series on building a Neovim setup from a blank init.lua — bootstrap, options, keymaps, lazy.nvim, then the plugin layer that makes it a real editor.
+            - generic [ref=e78]:
+              - generic [ref=e80]: Tools
+              - generic [ref=e82]: Engineering
+              - generic [ref=e84]: Neovim
+        - link "2026-04-28 The Complete AI Hardware Stack — Layer by Layer From silicon atoms to generated tokens — every layer that makes modern AI inference possible, and where the bottlenecks hide. With deep dives on SRAM vs HBM, co-packaged optics, and EDA." [ref=e85] [cursor=pointer]:
+          - /url: /writing/ai-hardware-stack
+          - generic [ref=e86]:
+            - paragraph [ref=e87]: 2026-04-28
+            - heading "The Complete AI Hardware Stack — Layer by Layer" [level=3] [ref=e88]
+            - paragraph [ref=e89]: From silicon atoms to generated tokens — every layer that makes modern AI inference possible, and where the bottlenecks hide. With deep dives on SRAM vs HBM, co-packaged optics, and EDA.
+        - link "2026-04-26 Why TypeScript Strict (Even for a Personal Site) The argument for TypeScript strict mode in projects that 'don't need it,' from someone who just migrated a personal site. software TypeScript" [ref=e90] [cursor=pointer]:
+          - /url: /writing/why-typescript-strict
+          - generic [ref=e91]:
+            - paragraph [ref=e92]: 2026-04-26
+            - heading "Why TypeScript Strict (Even for a Personal Site)" [level=3] [ref=e93]
+            - paragraph [ref=e94]: The argument for TypeScript strict mode in projects that 'don't need it,' from someone who just migrated a personal site.
+            - generic [ref=e95]:
+              - generic [ref=e97]: software
+              - generic [ref=e98]:
+                - img [ref=e99]
+                - generic [ref=e100]: TypeScript
+        - 'link "2026-04-26 Why This Site Exists: O-1 Evidence Hub The site is a personal portfolio, but it is also a deliberately built canonical evidence hub for an O-1 extraordinary-ability visa application. Meta" [ref=e101] [cursor=pointer]':
+          - /url: /writing/o1-visa-evidence-hub
+          - generic [ref=e102]:
+            - paragraph [ref=e103]: 2026-04-26
+            - 'heading "Why This Site Exists: O-1 Evidence Hub" [level=3] [ref=e104]'
+            - paragraph [ref=e105]: The site is a personal portfolio, but it is also a deliberately built canonical evidence hub for an O-1 extraordinary-ability visa application.
+            - generic [ref=e108]: Meta
+        - link "2026-04-15 The FDE Feedback Loop Forward deployed engineering compounds when each engagement makes the next one easier. The loop has four steps. AI Venture" [ref=e109] [cursor=pointer]:
+          - /url: /writing/the-fde-feedback-loop
+          - generic [ref=e110]:
+            - paragraph [ref=e111]: 2026-04-15
+            - heading "The FDE Feedback Loop" [level=3] [ref=e112]
+            - paragraph [ref=e113]: Forward deployed engineering compounds when each engagement makes the next one easier. The loop has four steps.
+            - generic [ref=e114]:
+              - generic [ref=e116]: AI
+              - generic [ref=e118]: Venture
+        - link "2026-04-10 Claude Code as an Operating System Why I think of Claude Code as an OS for engineering work — skills as installed apps, hooks as services, MCP as syscalls. software tools" [ref=e119] [cursor=pointer]:
+          - /url: /writing/claude-code-as-an-os
+          - generic [ref=e120]:
+            - paragraph [ref=e121]: 2026-04-10
+            - heading "Claude Code as an Operating System" [level=3] [ref=e122]
+            - paragraph [ref=e123]: Why I think of Claude Code as an OS for engineering work — skills as installed apps, hooks as services, MCP as syscalls.
+            - generic [ref=e124]:
+              - generic [ref=e126]: software
+              - generic [ref=e128]: tools
+        - link "2026-03-09 AI Hardware Stack Deep Dive From TSMC N3 shortages to HBM constraints — what the silicon shortage means for frontier AI. AI Hardware" [ref=e129] [cursor=pointer]:
+          - /url: /writing/sample-ai-hardware
+          - generic [ref=e130]:
+            - paragraph [ref=e131]: 2026-03-09
+            - heading "AI Hardware Stack Deep Dive" [level=3] [ref=e132]
+            - paragraph [ref=e133]: From TSMC N3 shortages to HBM constraints — what the silicon shortage means for frontier AI.
+            - generic [ref=e134]:
+              - generic [ref=e136]: AI
+              - generic [ref=e138]: Hardware
+        - link "2026-02-14 Why Forward Deployed Engineering Beats Consulting The unit economics of FDE vs. traditional consulting, and why Palantir cracked it before anyone else. Venture AI" [ref=e139] [cursor=pointer]:
+          - /url: /writing/why-fde
+          - generic [ref=e140]:
+            - paragraph [ref=e141]: 2026-02-14
+            - heading "Why Forward Deployed Engineering Beats Consulting" [level=3] [ref=e142]
+            - paragraph [ref=e143]: The unit economics of FDE vs. traditional consulting, and why Palantir cracked it before anyone else.
+            - generic [ref=e144]:
+              - generic [ref=e146]: Venture
+              - generic [ref=e148]: AI
+        - link "2026-01-18 Aggregation Theory in 2026 Ben Thompson's aggregation theory, applied to AI dev tools, CRM, and the next category of platform consolidation. finance strategy" [ref=e149] [cursor=pointer]:
+          - /url: /writing/aggregation-theory
+          - generic [ref=e150]:
+            - paragraph [ref=e151]: 2026-01-18
+            - heading "Aggregation Theory in 2026" [level=3] [ref=e152]
+            - paragraph [ref=e153]: Ben Thompson's aggregation theory, applied to AI dev tools, CRM, and the next category of platform consolidation.
+            - generic [ref=e154]:
+              - generic [ref=e156]: finance
+              - generic [ref=e158]: strategy
+        - 'link "2025-12-04 Optimizer Intuition: SGD → Adam → Lion The 60-second mental model for the optimizer ladder you actually need to know." [ref=e159] [cursor=pointer]':
+          - /url: /writing/optimizers
+          - generic [ref=e160]:
+            - paragraph [ref=e161]: 2025-12-04
+            - 'heading "Optimizer Intuition: SGD → Adam → Lion" [level=3] [ref=e162]'
+            - paragraph [ref=e163]: The 60-second mental model for the optimizer ladder you actually need to know.
+        - 'link "2025-09-01 SpatialDINO Lessons: 3D SSL on Lattice Light-Sheet Microscopy A detailed log from building SpatialDINO — a 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy." [ref=e164] [cursor=pointer]':
+          - /url: /writing/spatialdino-lessons
+          - generic [ref=e165]:
+            - paragraph [ref=e166]: 2025-09-01
+            - 'heading "SpatialDINO Lessons: 3D SSL on Lattice Light-Sheet Microscopy" [level=3] [ref=e167]'
+            - paragraph [ref=e168]: A detailed log from building SpatialDINO — a 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy.
+        - 'link "2025-08-30 Convergence Intuition: Why Adam Works The geometry of why per-parameter learning rates dominate vanilla SGD on transformers." [ref=e169] [cursor=pointer]':
+          - /url: /writing/convergence-intuition
+          - generic [ref=e170]:
+            - paragraph [ref=e171]: 2025-08-30
+            - 'heading "Convergence Intuition: Why Adam Works" [level=3] [ref=e172]'
+            - paragraph [ref=e173]: The geometry of why per-parameter learning rates dominate vanilla SGD on transformers.
+        - 'link "2025-06-10 FSDP vs Tensor Parallel: Which Sharding Strategy When to reach for FSDP, when to reach for tensor parallelism, and why the answer depends entirely on your interconnect." [ref=e174] [cursor=pointer]':
+          - /url: /writing/fsdp-vs-tensor-parallel
+          - generic [ref=e175]:
+            - paragraph [ref=e176]: 2025-06-10
+            - 'heading "FSDP vs Tensor Parallel: Which Sharding Strategy" [level=3] [ref=e177]'
+            - paragraph [ref=e178]: When to reach for FSDP, when to reach for tensor parallelism, and why the answer depends entirely on your interconnect.
+        - link "2025-03-15 Raft in Five Minutes Raft is Paxos that you can actually explain at a whiteboard. The mental model in five minutes." [ref=e179] [cursor=pointer]:
+          - /url: /writing/raft-in-five-minutes
+          - generic [ref=e180]:
+            - paragraph [ref=e181]: 2025-03-15
+            - heading "Raft in Five Minutes" [level=3] [ref=e182]
+            - paragraph [ref=e183]: Raft is Paxos that you can actually explain at a whiteboard. The mental model in five minutes.
+        - link "2024-10-22 RocksDB Write Amplification Why your RocksDB-backed database writes 10× the bytes you asked it to, and what the levers are." [ref=e184] [cursor=pointer]:
+          - /url: /writing/rocksdb-write-amplification
+          - generic [ref=e185]:
+            - paragraph [ref=e186]: 2024-10-22
+            - heading "RocksDB Write Amplification" [level=3] [ref=e187]
+            - paragraph [ref=e188]: Why your RocksDB-backed database writes 10× the bytes you asked it to, and what the levers are.
+        - link "2024-09-01 Why I Left Physics After my first paper in chemical physics I didn't pursue a PhD. Here's the honest reason. physics career" [ref=e189] [cursor=pointer]:
+          - /url: /writing/why-i-left-physics
+          - generic [ref=e190]:
+            - paragraph [ref=e191]: 2024-09-01
+            - heading "Why I Left Physics" [level=3] [ref=e192]
+            - paragraph [ref=e193]: After my first paper in chemical physics I didn't pursue a PhD. Here's the honest reason.
+            - generic [ref=e194]:
+              - generic [ref=e196]: physics
+              - generic [ref=e198]: career
+        - link "2024-08-12 Flink Checkpointing — What Actually Goes Wrong A field guide to the failure modes I hit during my BU thesis on adaptive Flink checkpointing." [ref=e199] [cursor=pointer]:
+          - /url: /writing/flink-checkpointing
+          - generic [ref=e200]:
+            - paragraph [ref=e201]: 2024-08-12
+            - heading "Flink Checkpointing — What Actually Goes Wrong" [level=3] [ref=e202]
+            - paragraph [ref=e203]: A field guide to the failure modes I hit during my BU thesis on adaptive Flink checkpointing.
+        - link "2024-05-02 Adaptive Checkpointing in Apache Flink A summary of my undergraduate thesis on driving checkpoint cadence from backpressure signals. Distributed Systems" [ref=e204] [cursor=pointer]:
+          - /url: /writing/distributed-checkpointing
+          - generic [ref=e205]:
+            - paragraph [ref=e206]: 2024-05-02
+            - heading "Adaptive Checkpointing in Apache Flink" [level=3] [ref=e207]
+            - paragraph [ref=e208]: A summary of my undergraduate thesis on driving checkpoint cadence from backpressure signals.
+            - generic [ref=e211]: Distributed Systems
+        - link "2023-08-21 A Merkle Tree POC in Rust — ZeroSync, 2023 A from-scratch Merkle tree in Rust over JSON records, built as a proof-of-concept for tamper-evident sync at ZeroSync. SHA-256, deterministic field hashing, and what the borrow checker forced me to learn." [ref=e212] [cursor=pointer]:
+          - /url: /writing/merkle-tree-rust-poc
+          - generic [ref=e213]:
+            - paragraph [ref=e214]: 2023-08-21
+            - heading "A Merkle Tree POC in Rust — ZeroSync, 2023" [level=3] [ref=e215]
+            - paragraph [ref=e216]: A from-scratch Merkle tree in Rust over JSON records, built as a proof-of-concept for tamper-evident sync at ZeroSync. SHA-256, deterministic field hashing, and what the borrow checker forced me to learn.
+        - 'link "2022-11-15 Supercritical Fluids: First Paper, in Plain English What we actually did in the 2022 Journal of Chemical Physics paper, without the jargon. physics research" [ref=e217] [cursor=pointer]':
+          - /url: /writing/supercritical-fluids-paper
+          - generic [ref=e218]:
+            - paragraph [ref=e219]: 2022-11-15
+            - 'heading "Supercritical Fluids: First Paper, in Plain English" [level=3] [ref=e220]'
+            - paragraph [ref=e221]: What we actually did in the 2022 Journal of Chemical Physics paper, without the jargon.
+            - generic [ref=e222]:
+              - generic [ref=e224]: physics
+              - generic [ref=e226]: research
+  - contentinfo [ref=e227]:
+    - generic [ref=e228]:
+      - generic [ref=e229]:
+        - heading "Arkash Jain" [level=3] [ref=e230]
+        - paragraph [ref=e231]:
+          - text: Forward Deployed Engineer & AI Researcher at
+          - link "Benmore Technologies" [ref=e232] [cursor=pointer]:
+            - /url: https://benmore.tech
+          - text: .
+        - paragraph [ref=e233]: AI researcher (Harvard Kirchhausen Lab), forward deployed engineer at Benmore Technologies, three published papers including SpatialDINO — a 3D self-supervised vision transformer for lattice light-sheet microscopy.
+      - generic [ref=e234]:
+        - heading "Pages" [level=4] [ref=e235]
+        - list [ref=e236]:
+          - listitem [ref=e237]:
+            - link "About" [ref=e238] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e239]:
+            - link "Research" [ref=e240] [cursor=pointer]:
+              - /url: /research
+          - listitem [ref=e241]:
+            - link "Projects" [ref=e242] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=e243]:
+            - link "Claude Skills" [ref=e244] [cursor=pointer]:
+              - /url: /skills
+          - listitem [ref=e245]:
+            - link "Writing" [ref=e246] [cursor=pointer]:
+              - /url: /writing
+          - listitem [ref=e247]:
+            - link "Weekly" [ref=e248] [cursor=pointer]:
+              - /url: /weekly
+          - listitem [ref=e249]:
+            - link "Media" [ref=e250] [cursor=pointer]:
+              - /url: /media
+          - listitem [ref=e251]:
+            - link "Knowledge" [ref=e252] [cursor=pointer]:
+              - /url: /knowledge
+          - listitem [ref=e253]:
+            - link "Credentials" [ref=e254] [cursor=pointer]:
+              - /url: /credentials
+          - listitem [ref=e255]:
+            - link "Stack" [ref=e256] [cursor=pointer]:
+              - /url: /stack
+          - listitem [ref=e257]:
+            - link "Architecture (legacy)" [ref=e258] [cursor=pointer]:
+              - /url: /architecture
+          - listitem [ref=e259]:
+            - link "Coursework" [ref=e260] [cursor=pointer]:
+              - /url: /coursework
+          - listitem [ref=e261]:
+            - link "Docs" [ref=e262] [cursor=pointer]:
+              - /url: /docs
+          - listitem [ref=e263]:
+            - link "About archive" [ref=e264] [cursor=pointer]:
+              - /url: /about/archive
+      - generic [ref=e265]:
+        - heading "Elsewhere" [level=4] [ref=e266]
+        - list [ref=e267]:
+          - listitem [ref=e268]:
+            - link "GitHub" [ref=e269] [cursor=pointer]:
+              - /url: https://github.com/ArkashJ
+              - generic [ref=e270]: GitHub
+          - listitem [ref=e271]:
+            - link "LinkedIn" [ref=e272] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/arkashj/
+              - img [ref=e273]
+              - generic [ref=e276]: LinkedIn
+          - listitem [ref=e277]:
+            - link "X" [ref=e278] [cursor=pointer]:
+              - /url: https://x.com/ArkashJ__
+              - generic [ref=e279]: X
+          - listitem [ref=e280]:
+            - link "Substack" [ref=e281] [cursor=pointer]:
+              - /url: https://arkash.substack.com
+              - generic [ref=e282]: Substack
+          - listitem [ref=e283]:
+            - link "Medium" [ref=e284] [cursor=pointer]:
+              - /url: https://medium.com/@arkjain
+              - generic [ref=e285]: Medium
+          - listitem [ref=e286]:
+            - link "Harvard" [ref=e287] [cursor=pointer]:
+              - /url: https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs
+              - img [ref=e288]
+              - generic [ref=e291]: Harvard
+          - listitem [ref=e292]:
+            - link "Scholar" [ref=e293] [cursor=pointer]:
+              - /url: https://scholar.google.com/scholar?q=arkash+jain
+              - generic [ref=e294]: Scholar
+          - listitem [ref=e295]:
+            - link "ORCID" [ref=e296] [cursor=pointer]:
+              - /url: https://orcid.org/0000-0003-2692-7472
+              - generic [ref=e297]: ORCID
+          - listitem [ref=e298]:
+            - link "Email" [ref=e299] [cursor=pointer]:
+              - /url: mailto:arkash@benmore.tech
+              - img [ref=e300]
+              - generic [ref=e303]: Email
+        - paragraph [ref=e304]:
+          - link "arkash@benmore.tech" [ref=e305] [cursor=pointer]:
+            - /url: mailto:arkash@benmore.tech
+    - generic [ref=e307]:
+      - generic [ref=e308]:
+        - text: © 2026 Arkash Jain — built & maintained by
+        - link "arkashj.com" [ref=e309] [cursor=pointer]:
+          - /url: https://www.arkashj.com
+      - generic [ref=e310]:
+        - generic [ref=e311]: Next.js · Vercel
+        - link "/architecture" [ref=e312] [cursor=pointer]:
+          - /url: /architecture
+          - text: /architecture
+          - img [ref=e313]
+        - link "humans.txt" [ref=e317] [cursor=pointer]:
+          - /url: /humans.txt
+          - text: humans.txt
+          - img [ref=e318]
+  - alert [ref=e322]

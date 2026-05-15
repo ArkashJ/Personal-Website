@@ -1,0 +1,273 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Nobel Prize" [level=1] [ref=e7]:
+        - link "Nobel Prize" [ref=e8] [cursor=pointer]:
+          - /url: https://www.nobelprize.org
+          - generic [ref=e9]: Nobel Prize
+          - img [ref=e10]
+      - navigation "Main menu" [ref=e12]:
+        - menu [ref=e13]:
+          - menuitem "Nobel Prizes & laureates" [ref=e14]:
+            - link "Nobel Prizes & laureates" [ref=e15] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - menuitem "About" [ref=e16]:
+            - link "About" [ref=e17] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - menuitem "Stories" [ref=e18]:
+            - link "Stories" [ref=e19] [cursor=pointer]:
+              - /url: /stories/
+          - menuitem "Educational" [ref=e20]:
+            - link "Educational" [ref=e21] [cursor=pointer]:
+              - /url: /educational/
+          - menuitem "Events & museums" [ref=e22]:
+            - link "Events & museums" [ref=e23] [cursor=pointer]:
+              - /url: /events-museums/
+          - menuitem "Open the search menu" [ref=e24]:
+            - button "Open the search menu" [ref=e25] [cursor=pointer]:
+              - img "Open the search menu" [ref=e26]
+  - main [ref=e28]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - complementary [ref=e32]:
+          - generic [ref=e33]:
+            - heading "Nobel Prize in Chemistry 2014" [level=2] [ref=e35]:
+              - link "Nobel Prize in Chemistry 2014" [ref=e36] [cursor=pointer]:
+                - /url: https://www.nobelprize.org/prizes/chemistry/2014/summary/
+            - navigation "In Page Navigation" [ref=e37]:
+              - list [ref=e38]:
+                - listitem [ref=e39]:
+                  - link "Summary" [ref=e40] [cursor=pointer]:
+                    - /url: https://www.nobelprize.org/prizes/chemistry/2014/summary/
+                - listitem [ref=e41]:
+                  - text: Laureates
+                  - list [ref=e42]:
+                    - listitem [ref=e43]:
+                      - text: Eric Betzig
+                      - list [ref=e44]:
+                        - listitem [ref=e45]:
+                          - link "Facts" [ref=e46] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/facts/
+                        - listitem [ref=e47]:
+                          - link "Biographical" [ref=e48] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/biographical/
+                        - listitem [ref=e49]:
+                          - link "Nobel Prize lecture" [ref=e50] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/lecture/
+                        - listitem [ref=e51]:
+                          - link "Prize presentation" [ref=e52] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/prize-presentation/
+                        - listitem [ref=e53]:
+                          - link "Interview" [ref=e54] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/interview/
+                        - listitem [ref=e55]:
+                          - link "Nobel diploma" [ref=e56] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/diploma/
+                        - listitem [ref=e57]:
+                          - link "Photo gallery" [ref=e58] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/photo-gallery/
+                        - listitem [ref=e59]:
+                          - link "Other resources" [ref=e60] [cursor=pointer]:
+                            - /url: https://www.nobelprize.org/prizes/chemistry/2014/betzig/other-resources/
+                    - listitem [ref=e61]:
+                      - link "Stefan W. Hell" [ref=e62] [cursor=pointer]:
+                        - /url: https://www.nobelprize.org/prizes/chemistry/2014/hell/facts/
+                    - listitem [ref=e63]:
+                      - link "William E. Moerner" [ref=e64] [cursor=pointer]:
+                        - /url: https://www.nobelprize.org/prizes/chemistry/2014/moerner/facts/
+                - listitem [ref=e65]:
+                  - link "Prize announcement" [ref=e66] [cursor=pointer]:
+                    - /url: https://www.nobelprize.org/prizes/chemistry/2014/prize-announcement/
+                - listitem [ref=e67]:
+                  - link "Press release" [ref=e68] [cursor=pointer]:
+                    - /url: https://www.nobelprize.org/prizes/chemistry/2014/press-release/
+                - listitem [ref=e69]:
+                  - link "Popular information" [ref=e70] [cursor=pointer]:
+                    - /url: https://www.nobelprize.org/prizes/chemistry/2014/popular-information/
+                - listitem [ref=e71]:
+                  - link "Advanced information" [ref=e72] [cursor=pointer]:
+                    - /url: https://www.nobelprize.org/prizes/chemistry/2014/advanced-information/
+                - listitem [ref=e73]:
+                  - link "Award ceremony video" [ref=e74] [cursor=pointer]:
+                    - /url: https://www.nobelprize.org/prizes/chemistry/2014/award-video/
+                - listitem [ref=e75]:
+                  - link "Award ceremony speech" [ref=e76] [cursor=pointer]:
+                    - /url: https://www.nobelprize.org/prizes/chemistry/2014/ceremony-speech/
+            - generic [ref=e78]:
+              - heading "Share this" [level=2] [ref=e79]
+              - list "Social sharing links" [ref=e80]:
+                - listitem [ref=e81]:
+                  - link "Facebook" [ref=e82] [cursor=pointer]:
+                    - /url: https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.nobelprize.org%2Fprizes%2Fchemistry%2F2014%2Fbetzig%2Ffacts%2F&t=Eric+Betzig+%E2%80%93+Facts
+                    - img [ref=e83]
+                    - generic [ref=e85]: Facebook
+                - listitem [ref=e86]:
+                  - link "X" [ref=e87] [cursor=pointer]:
+                    - /url: https://twitter.com/intent/tweet?text=Eric+Betzig+%E2%80%93+Facts&url=https%3A%2F%2Fwww.nobelprize.org%2Fprizes%2Fchemistry%2F2014%2Fbetzig%2Ffacts%2F
+                    - img [ref=e88]
+                    - generic [ref=e90]: X
+                - listitem [ref=e91]:
+                  - link "LinkedIn" [ref=e92] [cursor=pointer]:
+                    - /url: https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.nobelprize.org%2Fprizes%2Fchemistry%2F2014%2Fbetzig%2Ffacts%2F&title=Eric+Betzig+%E2%80%93+Facts
+                    - img [ref=e93]
+                    - generic [ref=e98]: LinkedIn
+                - listitem [ref=e99]:
+                  - link "Email this page" [ref=e100] [cursor=pointer]:
+                    - /url: mailto:?subject=From%20NobelPrize.org:%20Eric%20Betzig%20–%20Facts&body=https://www.nobelprize.org/prizes/chemistry/2014/betzig/facts/
+                    - img [ref=e101]
+                    - generic [ref=e104]: Email this page
+        - article [ref=e105]:
+          - generic [ref=e106]:
+            - heading "Eric Betzig" [level=1] [ref=e107]
+            - heading "Facts" [level=2] [ref=e108]
+          - generic [ref=e109]:
+            - img "Eric Betzig" [ref=e111]
+            - paragraph [ref=e113]: "© Nobel Prize Outreach. Photo: A. Mahmoud"
+          - generic [ref=e114]:
+            - paragraph [ref=e115]:
+              - text: Eric Betzig
+              - text: Nobel Prize in Chemistry 2014
+            - paragraph [ref=e116]: "Born: 13 January 1960, Ann Arbor, MI, USA"
+            - paragraph [ref=e117]: "Affiliation at the time of the award: Janelia Research Campus, Howard Hughes Medical Institute, Ashburn, VA, USA"
+            - paragraph [ref=e118]: "Prize motivation: “for the development of super-resolved fluorescence microscopy”"
+            - paragraph [ref=e119]: "Prize share: 1/3"
+          - generic [ref=e120]:
+            - heading "Life" [level=3] [ref=e121]
+            - paragraph
+            - paragraph [ref=e122]: Eric Betzig was born in Ann Arbor, Michigan in the United States. After first studying physics at the California Institute of Technology in Pasadena, he completed his doctoral studies at Cornell University in Ithaca, New York. He then worked at AT&T Bell Labs in Murray Hill, NJ. After having grown tired of the academic system, he began working for his father’s company, Ann Arbor Machine Company. After commercial setbacks, he returned to science through research at his own company. Since 2005 he has been working at the Janelia Farm Research Campus, a part of the Howard Hughes Medical Institute in Ashburn, Virginia.
+          - generic [ref=e123]:
+            - heading "Work" [level=3] [ref=e124]
+            - paragraph
+            - paragraph [ref=e125]: In normal microscopes the wavelength of light sets a limit to the level of detail possible. However this limitation can be circumvented by methods that make use of fluorescence, a phenomenon in which certain substances become luminous after having been exposed to light. Around 2000, Eric Betzig and William E. Moerner helped create a method in which fluorescence in individual molecules is steered by light. An image of very high resolution is achieved by combining images in which different molecules are activated. This makes it possible to track processes occurring inside living cells.
+          - paragraph [ref=e127]:
+            - text: To cite this section
+            - text: "MLA style: Eric Betzig – Facts. NobelPrize.org. Nobel Prize Outreach 2026. Thu. 14 May 2026. <https://www.nobelprize.org/prizes/chemistry/2014/betzig/facts/>"
+          - generic [ref=e128]:
+            - link "Go to the top of the page" [ref=e129] [cursor=pointer]:
+              - /url: "#content"
+            - img [ref=e130]
+      - generic [ref=e138]:
+        - heading "Nobel Prizes and laureates" [level=2] [ref=e140]
+        - article [ref=e141]:
+          - generic [ref=e142]:
+            - heading "Nobel Prizes 2025" [level=3] [ref=e145]:
+              - link "Nobel Prizes 2025" [ref=e146] [cursor=pointer]:
+                - /url: https://www.nobelprize.org/all-nobel-prizes-2025/
+                - paragraph [ref=e147]: Nobel Prizes 2025
+            - generic [ref=e148]:
+              - paragraph [ref=e149]: Six prizes were awarded for achievements that have conferred the greatest benefit to humankind. The 14 laureates' work and discoveries range from quantum tunnelling to promoting democratic rights.
+              - paragraph [ref=e150]: See them all presented here.
+          - figure [ref=e151]:
+            - link "Nobel Prizes 2025" [ref=e152] [cursor=pointer]:
+              - /url: https://www.nobelprize.org/all-nobel-prizes-2025/
+              - img "Illustration" [ref=e154]
+      - generic [ref=e155]:
+        - generic [ref=e156]:
+          - heading "Explore prizes and laureates" [level=3] [ref=e157]
+          - generic [ref=e158]: Look for popular awards and laureates in different fields, and discover the history of the Nobel Prize.
+        - generic [ref=e159]:
+          - text: ▼
+          - generic [ref=e160]:
+            - generic [ref=e161]: Select the category or categories you would like to filter by
+            - generic [ref=e164] [cursor=pointer]: Physics
+            - generic [ref=e167] [cursor=pointer]: Chemistry
+            - generic [ref=e170] [cursor=pointer]: Medicine
+            - generic [ref=e173] [cursor=pointer]: Literature
+            - generic [ref=e176] [cursor=pointer]: Peace
+            - generic [ref=e179] [cursor=pointer]: Economic Sciences
+          - generic [ref=e180]:
+            - button "Decrease the year by one" [ref=e181] [cursor=pointer]: "-"
+            - generic [ref=e182]: Choose a year you would like to search in
+            - textbox "Choose a year you would like to search in" [ref=e183]:
+              - /placeholder: "2025"
+              - text: "2014"
+            - button "Increase the year by one" [ref=e184] [cursor=pointer]: +
+          - button "Explore" [ref=e186] [cursor=pointer]
+  - contentinfo [ref=e187]:
+    - generic [ref=e188]:
+      - generic [ref=e189]:
+        - heading "About the Nobel Prize organisation" [level=4] [ref=e190]:
+          - link "About the Nobel Prize organisation" [ref=e191] [cursor=pointer]:
+            - /url: /the-nobel-prize-organisation/
+        - generic [ref=e192]:
+          - generic [ref=e193]:
+            - heading "The Nobel Foundation" [level=5] [ref=e194]:
+              - link "The Nobel Foundation" [ref=e195] [cursor=pointer]:
+                - /url: /the-nobel-prize-organisation/the-nobel-foundation/
+            - paragraph [ref=e196]: Tasked with a mission to manage Alfred Nobel's fortune and has ultimate responsibility for fulfilling the intentions of Nobel's will.
+          - generic [ref=e197]:
+            - heading "The prize-awarding institutions" [level=5] [ref=e198]:
+              - link "The prize-awarding institutions" [ref=e199] [cursor=pointer]:
+                - /url: /the-nobel-prize-organisation/prize-awarding-institutions/
+            - paragraph [ref=e200]: For more than a century, these academic institutions have worked independently to select Nobel Prize laureates.
+          - generic [ref=e201]:
+            - heading "Outreach organisations" [level=5] [ref=e202]:
+              - link "Outreach organisations" [ref=e203] [cursor=pointer]:
+                - /url: /the-nobel-prize-organisation/outreach-organisations/
+            - paragraph [ref=e204]: Several outreach organisations and activities have been developed to inspire generations and disseminate knowledge about the Nobel Prize.
+      - generic [ref=e205]:
+        - navigation [ref=e206]:
+          - menu [ref=e207]:
+            - menuitem "Press" [ref=e208]:
+              - link "Press" [ref=e209] [cursor=pointer]:
+                - /url: https://www.nobelprize.org/press-room/
+            - menuitem "Contact" [ref=e210]:
+              - link "Contact" [ref=e211] [cursor=pointer]:
+                - /url: https://www.nobelprize.org/contact
+            - menuitem "FAQ" [ref=e212]:
+              - link "FAQ" [ref=e213] [cursor=pointer]:
+                - /url: https://www.nobelprize.org/frequently-asked-questions/
+        - navigation [ref=e214]:
+          - menu [ref=e215]:
+            - menuitem "Privacy policy" [ref=e216]:
+              - link "Privacy policy" [ref=e217] [cursor=pointer]:
+                - /url: /about/privacy-policy/
+            - menuitem "Terms of use" [ref=e218]:
+              - link "Terms of use" [ref=e219] [cursor=pointer]:
+                - /url: /about/terms-of-use/
+        - navigation [ref=e220]:
+          - menu [ref=e221]:
+            - menuitem "For developers" [ref=e222]:
+              - link "For developers" [ref=e223] [cursor=pointer]:
+                - /url: /about/developer-zone/
+            - menuitem "Media player" [ref=e224]:
+              - link "Media player" [ref=e225] [cursor=pointer]:
+                - /url: /mediaplayer/
+            - menuitem "Careers" [ref=e226]:
+              - link "Careers" [ref=e227] [cursor=pointer]:
+                - /url: https://careers.nobelprize.org
+        - navigation [ref=e228]:
+          - heading "Join us" [level=6] [ref=e229]
+          - menu [ref=e230]:
+            - menuitem "Facebook" [ref=e231]:
+              - link "Facebook" [ref=e232] [cursor=pointer]:
+                - /url: https://www.facebook.com/nobelprize/
+                - img [ref=e233]
+                - generic [ref=e235]: Facebook
+            - menuitem "Twitter" [ref=e236]:
+              - link "Twitter" [ref=e237] [cursor=pointer]:
+                - /url: https://twitter.com/NobelPrize
+                - img [ref=e238]
+                - generic [ref=e240]: Twitter
+            - menuitem "Instagram" [ref=e241]:
+              - link "Instagram" [ref=e242] [cursor=pointer]:
+                - /url: https://www.instagram.com/nobelprize
+                - img [ref=e243]
+                - generic [ref=e245]: Instagram
+            - menuitem "Youtube" [ref=e246]:
+              - link "Youtube" [ref=e247] [cursor=pointer]:
+                - /url: https://www.youtube.com/thenobelprize
+                - img [ref=e248]
+                - generic [ref=e250]: Youtube
+            - menuitem "LinkedIn" [ref=e251]:
+              - link "LinkedIn" [ref=e252] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/nobelprize/
+                - img [ref=e253]
+                - generic [ref=e258]: LinkedIn
+      - generic [ref=e259]:
+        - paragraph [ref=e261]:
+          - link "Nobel Prize" [ref=e262] [cursor=pointer]:
+            - /url: https://www.nobelprize.org
+        - generic [ref=e263]: Copyright © Nobel Prize Outreach 2026
