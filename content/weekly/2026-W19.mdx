@@ -55,7 +55,100 @@ tags:
     'Plugin',
     'Every',
     'Dev Tooling',
+    'Reading Log',
+    'Matt Levine',
+    'Money Stuff',
+    'AVIS',
+    'Short Squeeze',
+    'Pentwater',
+    'Section 16(b)',
+    'Total Return Swaps',
+    'Archegos',
+    'SemiAnalysis',
+    'AI Value Capture',
+    'Anthropic',
+    'Nvidia',
+    'TSMC',
+    'SOCAMM2',
+    'VR NVL72',
+    'GB300',
+    'Inference Margins',
+    'TBPN',
+    'Earnings',
+    'Stratechery',
+    'Ben Thompson',
+    'Amazon',
+    'Annapurna',
+    'Graviton',
+    'Google',
+    'Meta',
+    'LATAM Payments',
+    'Bridge',
+    'Privy',
   ]
+read:
+  - text: 'Money Stuff (Matt Levine): the Avis short squeeze — Pentwater + SRS owned 108% of the float via swaps, Section 16(b) caught a different fund'
+    href: 'https://www.bloomberg.com/opinion/newsletters/2026-04-29/short-swing-short-squeeze'
+    anchor: 'avis-short-squeeze'
+    source: 'Bloomberg'
+    kind: 'article'
+    date: '2026-05-05'
+    notes: "Avis ran from $99 on Mar 20 to $713 on Apr 21 and crashed back to $182. Pentwater and SRS held 69% of stock and 108% of economic ownership counting cash-settled total return swaps. SRS had a board seat (insider blackout); Pentwater spread its position across funds and got hit by Section 16(b) on the directly-held bucket — but sold 4.3M shares in a different fund for $1.75B in proceeds. The Section 16(b) twist is that 'matchable profit' uses lowest-buy-against-highest-sell pairing, so your statutory disgorgement can be huge even when your real P&L is zero. Levine flags the structural mispricing this creates and (half-jokingly) the 'short-squeeze-as-a-service' strategy hiding in plain sight."
+    bullets:
+      - 'Avis: $99 (Mar 20) → $713 (Apr 21) → $182. Pentwater + SRS at 108% economic ownership via cash-settled swaps.'
+      - 'Total return swaps post-Archegos: still off-balance-sheet for the fund, banks hedge by buying the shares themselves.'
+      - 'Section 16(b) matches lowest-buy with highest-sell — statutory profit decouples from actual P&L.'
+      - 'Pentwater dodged 16(b) on a parallel fund; sold 4.3M shares for $1.75B in proceeds.'
+      - 'The arb idea: short interest >30% + creeping past the 16(b) disclosure threshold = self-reinforcing squeeze, no dilution to existing holders.'
+  - text: 'SemiAnalysis: AI Value Capture — the shift to model labs'
+    href: 'https://newsletter.semianalysis.com/p/ai-value-capture-the-shift-to-model'
+    anchor: 'semianalysis-value-capture'
+    source: 'SemiAnalysis'
+    kind: 'article'
+    date: '2026-05-05'
+    notes: 'Through 2025 the value flowed to picks-and-shovels — Nvidia, memory (SanDisk/WDC/Micron all up 200%+), power names like Vistra (+265%) and GE Vernova (+146%). 2026 is the inversion: Anthropic ARR $9B → $44B+, inference gross margins 38% → 70%+, and the formerly-starved labs are vacuuming up the value. The Opus headline price ($5/$25 per MTok) blends down to ~$0.99 per MTok in practice because agentic workloads run 300:1 input:output with 90%+ cache hit rates. On the hardware side the smoking gun is that GB300 → VR NVL72 capex/W is essentially flat ($37.4 → $38.1) despite a 2x perf/W improvement — Nvidia is leaving money on the table on purpose, playing the TSMC long game and dodging antitrust heat. SOCAMM2 is the hidden pricing lever: memory becomes a socketed, repriceable line item at ~60% GM. The thesis: cost-based pricing (floor) and value-based pricing (ceiling) have unprecedented gap; eventually Nvidia repricies and value flows back upstream.'
+    bullets:
+      - 'Anthropic ARR $9B → $44B+; inference GM 38% → 70%+. Labs are now the value capture layer.'
+      - 'Opus blended price ~$0.99/MTok on agentic workloads (300:1 input:output, 90%+ cache hits).'
+      - 'GB300 → VR NVL72 capex/W: $37.4 → $38.1 — flat despite 2x perf/W. Nvidia is intentionally under-pricing.'
+      - 'SOCAMM2 = socketed, repriceable memory at ~60% GM. Hidden pricing lever for Rubin.'
+      - 'Two moats keep lab margins: real frontier quality gap (Kimi K2.6 at $0.95/$4 barely dents Opus) + structural compute scarcity.'
+  - text: 'TBPN: the tech earnings quad-kill recap — AMZN, GOOG, META, AAPL'
+    href: 'https://tbpn.substack.com/p/the-tech-earnings-quad-kill-recap'
+    anchor: 'tbpn-quad-kill'
+    source: 'TBPN'
+    kind: 'article'
+    date: '2026-05-05'
+    notes: "Ben on Amazon's moat — Graviton + Annapurna Labs putting Amazon in direct competition with Nvidia at the silicon layer. Aside from AMZN: Intel and Micron at highs (MU up 2x since March, government position up 460% on Intel), Anthropic and OpenAI working with PE firms on releases, Anthropic shipping 10 finance-specific tools, DeepSeek v4 close to frontier at a fraction of the cost, and xAI's compute storage as an interesting case study in scarcity. GPT-5.5 priced 2x GPT-5.4, Claude still 10x more expensive — devs shifting back to OpenAI for cost. Trump admin reportedly drafting an EO requiring pre-release model review."
+  - text: "Stratechery: Amazon's Durability"
+    href: 'https://stratechery.com/2026/amazons-durability/'
+    source: 'Stratechery'
+    kind: 'article'
+    date: '2026-05-05'
+    notes: "Ben Thompson's read on AWS's structural advantages — Graviton/Annapurna vertical integration meaning Amazon competes with Nvidia at the chip layer, not just resells it. OpenAI is the best in the industry at squeezing utilization out of clusters; Nvidia's own framing is that Anthropic had no option but to spread compute across Google and Amazon."
+  - text: 'Stratechery: Google Earnings, Meta Earnings'
+    href: 'https://stratechery.com/2026/google-earnings-meta-earnings/'
+    source: 'Stratechery'
+    kind: 'article'
+    date: '2026-05-05'
+    notes: 'Paired earnings read — Google search holding up better than the AI-disruption narrative suggested, Meta capex still climbing, ad businesses on both sides absorbing AI compute spend without margin damage so far.'
+  - text: 'Reuters Tech on X — headline thread worth saving'
+    href: 'https://x.com/ReutersTech/status/2049340467649667361'
+    source: 'X'
+    kind: 'tweet'
+    date: '2026-05-05'
+  - text: '@0x_claudia on LATAM payments — 40s/50s sending money to mom, not crypto bros'
+    href: 'https://x.com/0x_claudia/status/2050888986030375117'
+    source: 'X'
+    kind: 'tweet'
+    date: '2026-05-05'
+    notes: '1/3 of LATAM remittance use is groceries, $300 average ticket. Mexico is the wrong wedge — too documented, too diverse a diaspora. Spanish + Portuguese is non-negotiable; regulatory friction is highest in Colombia and Brazil. Argentina users treat the rail as a savings reserve, not a payment channel. UI quality matters more than yield.'
+  - text: '@Snapcrackle on Stripe + crypto — Bridge and Privy as the stack'
+    href: 'https://x.com/Snapcrackle/status/2050910293597856077'
+    source: 'X'
+    kind: 'tweet'
+    date: '2026-05-05'
+    notes: "Stripe's crypto position is Bridge (stablecoin issuance/orchestration) + Privy (embedded wallets) — the same MPP/UCP substrate from Stripe Sessions 2026, just on stablecoin rails."
 watched:
   - text: 'Uncapped (Jack Altman): Tarek Mansour on building Kalshi — hackathon → CFTC fight → landmark 2024 win'
     href: 'https://youtu.be/Tt6ozrcjLyQ'
@@ -148,6 +241,8 @@ changelog:
     note: 'Initial publish — three watched entries (Kalshi, Spiegel, Stripe Sessions 2026 keynote) with anchored prose sections.'
   - date: '2026-05-04'
     note: 'Added 3 dev-tooling finds to built rail: RTK (token killer), context-mode (MCP sandbox + SQLite session continuity), Compound Engineering plugin v3.4.1.'
+  - date: '2026-05-05'
+    note: 'Tuesday reading log merged in — Avis short squeeze (Levine), SemiAnalysis AI value-capture flows, TBPN earnings quad-kill, two Stratechery posts, LATAM-payments and Stripe-crypto tweets.'
 ---
 
 ## What actually shipped
@@ -402,6 +497,145 @@ Skills  1/1
 
 ✅  All clear  7/7 tools  1/1 skills
 ```
+
+---
+
+---
+
+## Tuesday May 5 — what I read
+
+Six pieces and three tweets. The through-line was **where value is settling
+right now** — equity-market structure (Avis), AI compute economics
+(SemiAnalysis), and the four hyperscaler earnings prints (TBPN + Stratechery).
+The LATAM and Stripe tweets were the cross-current: payments plumbing that
+the public narrative still gets wrong.
+
+<div id="avis-short-squeeze"></div>
+
+### Money Stuff — the Avis short squeeze
+
+**[Read on Bloomberg ↗](https://www.bloomberg.com/opinion/newsletters/2026-04-29/short-swing-short-squeeze)** · Matt Levine, _Money Stuff_
+
+Avis went **$99 (Mar 20) → $713 (Apr 21) → $182**. Pentwater + SRS held 69% of
+stock and **108% of economic ownership** counting cash-settled total return
+swaps. SRS held a board seat (insider blackout). Pentwater spread their
+exposure across multiple funds — which is what made the unwind legally
+interesting.
+
+A squeeze self-reinforces through three loops: margin requirements rise,
+recall risk forces buy-ins, borrow costs spike from 0.5–2% to 200%+
+annualized. **Cash-settled total return swaps** did the structural lifting —
+no shares change hands, banks buy the underlying for their own hedging, so
+the position sits on **bank** balance sheets, not the fund's. This is the
+Archegos structure; the SEC tightened swap-disclosure rules in 2023 and
+didn't close the gap.
+
+**Section 16(b)** is the punchline. The 1943 _Smolowe v. Delendo_ rule
+matches **lowest buy** against **highest sell** for anyone with >10%
+beneficial ownership trading within six months — statutory profit decouples
+from real P&L. Levine's example: buy 100 shares each at $50–$140 and sell
+100 at the same prices. Actual P&L: zero. Matchable "profit": $90/share on
+the worst pairing, then $60 vs $130, and so on. Disgorgement can be enormous
+even on a flat book.
+
+Pentwater dodged matching on a parallel fund and sold 4.3M shares for ~$1.75B
+in proceeds. Avis (the issuer) got a windfall on the directly-held bucket —
+no dilution. The arb idea Levine doesn't quite endorse: find names with
+short interest >30%, build to >50% holder ownership, creep up against the
+Section 16 disclosure threshold, let the squeeze do the rest.
+
+<div id="semianalysis-value-capture"></div>
+
+### SemiAnalysis — AI value capture is migrating to the model labs
+
+**[Read on SemiAnalysis ↗](https://newsletter.semianalysis.com/p/ai-value-capture-the-shift-to-model)** · May 1, 2026
+
+```
+        2023–2025                        2026 (NOW)
+   ┌────────────────┐              ┌────────────────┐
+   │ INFRASTRUCTURE │              │   MODEL LABS   │
+   │  CAPTURES ALL  │    ══════>   │  CAPTURE ALL   │
+   │   THE VALUE    │              │   THE VALUE    │
+   └────────────────┘              └────────────────┘
+           │                                │
+           ▼                                ▼
+   • Nvidia (+25% AH May'23)       • Anthropic ARR:
+   • Vistra +265% (2024)             $9B → $44B+
+   • GE Vernova +146% (2024)       • Inference margins:
+   • SanDisk/WDC/Seagate/            38% → 70%+
+     Micron all +200% (2025)
+```
+
+Through 2025 the value flowed to picks-and-shovels: Nvidia (the AH +25%
+print after May '23 was the kickoff), memory cycle (SanDisk/WDC/Seagate/
+Micron all up >200% in 2025), power names (Vistra +265%, GE Vernova +146%
+in 2024).
+
+2026 is the inversion. **Anthropic ARR went from $9B to $44B+. Inference
+gross margins from 38% to 70%+.** SemiAnalysis discloses its own run-rate:
+**$10.95M annual on Claude tokens, ~30% of employee comp, ~5B tokens per
+employee per month** — 5x Meta's reported number. Power-law usage with top
+users above 100B tokens/month.
+
+```
+STICKER PRICE              TRUE BLENDED PRICE
+$5 / $25 per MTok    →     ~$0.99 per MTok
+(input / output)           on agentic tasks
+```
+
+Sticker is $5/$25 per MTok. **Blended price on agentic workloads is
+~$0.99/MTok** because of 300:1 input:output ratios on Claude Code, 90%+
+cache hit rates, and $0.50/MTok cached tokens dominating the mix. The
+headline price scares nobody who actually runs at scale.
+
+**B300 throughput on DeepSeek R1** (8K in → 1K out): ~1K tok/sec/GPU
+baseline → ~8K with wideEP + disagg → **~14K with MTP** — 14x just from
+software. Then **GB300 NVL72 vs H100: 17x at FP8, 32x at FP4** with TCO
+only ~70% higher.
+
+**Two moats** keep lab margins:
+
+1. **Real frontier quality gap.** Open source (Kimi K2.6 at $0.95/$4 per
+   MTok) barely dents Opus. Production knowledge work needs closed models.
+2. **Compute scarcity.** Demand >> supply. Anthropic is gating Claude Code
+   behind $100+/mo tiers and blocking third-party harnesses.
+
+**Pricing power paradox:** memory raised 6x in a year, neoclouds +40% off
+the Oct 2025 lows, inference providers (Fireworks, Baseten, Fal) raised.
+Nvidia and TSMC — the two with the most pricing power — did not. Antitrust
+heat plus the TSMC long-term-relationships playbook plus Jensen's literal
+"_TSMC should charge more_" line from 2024.
+
+**SOCAMM2 is the hidden lever.** GB300 used soldered LPDDR5X bundled at
+~75% GM. VR NVL72 / Rubin moves to socketed, modular, repriceable memory.
+1Q26 cost ~$8/GB, exit 2026 ~$13/GB, target GM ~60%. Memory becomes the
+cartridge; Nvidia becomes the printer.
+
+|          | GB300    | VR NVL72         |
+| -------- | -------- | ---------------- |
+| Capex/W  | $37.4/W  | $38.1/W (≈ flat) |
+| TDP/chip | 1400W    | 2300W (+64%)     |
+| Perf/W   | baseline | >2x improvement  |
+
+Capex/W has historically risen gen-over-gen as perf/W gains let vendors
+capture more of the value created. Going **flat** is under-pricing relative
+to value delivered. This is the line I keep going back to.
+
+> Demand for AI compute is compounding. Supply is structurally constrained.
+> Yet the bottleneck holders are pricing like it's still 2024.
+
+### Cross-currents — LATAM payments and Stripe's crypto stack
+
+- **LATAM remittance reality**: the wedge is people in their 40s and 50s
+  sending money to family, not crypto traders. **One-third of usage is
+  groceries**, **$300 average ticket**. Mexico is the wrong starting
+  market — too documented, too diverse a diaspora. Spanish + Portuguese is
+  mandatory; regulatory friction is highest in Colombia and Brazil.
+  Argentina treats the rail as a **savings reserve**, not a payment
+  channel. UI quality wins.
+- **Stripe's crypto stack** is **Bridge** (stablecoin orchestration) +
+  **Privy** (embedded wallets) — the same MPP/UCP substrate from
+  Sessions 2026, just on stablecoin rails.
 
 ---
 

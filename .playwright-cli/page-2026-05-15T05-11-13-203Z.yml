@@ -1,0 +1,540 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link "arkash.jain" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - text: arkash.jain
+      - list [ref=e8]:
+        - listitem [ref=e9]:
+          - link "About" [ref=e10] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e11]:
+          - link "Research" [ref=e12] [cursor=pointer]:
+            - /url: /research
+        - listitem [ref=e13]:
+          - link "Projects" [ref=e14] [cursor=pointer]:
+            - /url: /projects
+        - listitem [ref=e15]:
+          - link "Claude Skills" [ref=e16] [cursor=pointer]:
+            - /url: /skills
+        - listitem [ref=e17]:
+          - link "Writing" [ref=e18] [cursor=pointer]:
+            - /url: /writing
+        - listitem [ref=e19]:
+          - link "Weekly" [ref=e20] [cursor=pointer]:
+            - /url: /weekly
+        - listitem [ref=e21]:
+          - link "Media" [ref=e22] [cursor=pointer]:
+            - /url: /media
+      - generic [ref=e23]:
+        - button "Quick navigation (Cmd+K)" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+          - generic [ref=e28]: Search
+          - generic [ref=e29]: ⌘K
+        - button "Site menu" [ref=e31] [cursor=pointer]:
+          - img [ref=e32]
+  - main [ref=e36]:
+    - article [ref=e37]:
+      - generic [ref=e38]:
+        - link "← Weekly" [ref=e39] [cursor=pointer]:
+          - /url: /weekly
+        - button "Copy for LLM" [ref=e40] [cursor=pointer]:
+          - img [ref=e41]
+          - text: Copy for LLM
+      - paragraph [ref=e44]: 2026-W19
+      - heading "Kalshi, Spectacles, and Stripe Sessions 2026 — agentic commerce gets its protocols" [level=1] [ref=e45]
+      - paragraph [ref=e46]: 2026-05-04 → 2026-05-10
+      - paragraph [ref=e47]: Tarek Mansour on building Kalshi against the regulators, Evan Spiegel on Spectacles and the post-feed internet, and the Stripe Sessions 2026 keynote with MPP, UCP, Stripe Database, Treasury, and the agentic commerce stack.
+      - generic [ref=e48]:
+        - generic [ref=e49]:
+          - img
+          - textbox "Search items by name, source, notes, tag…" [ref=e50]
+        - generic [ref=e51]:
+          - button "All kinds" [ref=e52] [cursor=pointer]
+          - button "Video" [ref=e53] [cursor=pointer]
+          - button "Article" [ref=e54] [cursor=pointer]
+          - button "Repo" [ref=e55] [cursor=pointer]
+          - button "Tweet" [ref=e56] [cursor=pointer]
+        - generic [ref=e57]:
+          - button "All days" [ref=e58] [cursor=pointer]
+          - button "May 4" [ref=e59] [cursor=pointer]
+          - button "May 5" [ref=e60] [cursor=pointer]
+        - generic [ref=e62]: 14 items
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: May 4 · 6 items
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - 'button "Uncapped (Jack Altman): Tarek Mansour on building Kalshi — hackathon → CFTC fight → landmark 2024 win" [ref=e68] [cursor=pointer]':
+                - generic [ref=e70]:
+                  - paragraph [ref=e72]: "Uncapped (Jack Altman): Tarek Mansour on building Kalshi — hackathon → CFTC fight → landmark 2024 win"
+                  - generic [ref=e73]:
+                    - generic [ref=e74]: Uncapped
+                    - generic [ref=e75]: · Watched
+                  - generic [ref=e76]: Click to read →
+              - generic [ref=e77]:
+                - generic [ref=e78]: Video
+                - 'link "Open Uncapped (Jack Altman): Tarek Mansour on building Kalshi — hackathon → CFTC fight → landmark 2024 win in a new tab" [ref=e79] [cursor=pointer]':
+                  - /url: https://youtu.be/Tt6ozrcjLyQ
+                  - img [ref=e80]
+            - generic [ref=e84]:
+              - 'button "Cheeky Pint: Evan Spiegel on Spectacles, the post-feed internet, and AI-written code at Snap" [ref=e85] [cursor=pointer]':
+                - generic [ref=e87]:
+                  - paragraph [ref=e89]: "Cheeky Pint: Evan Spiegel on Spectacles, the post-feed internet, and AI-written code at Snap"
+                  - generic [ref=e90]:
+                    - generic [ref=e91]: Cheeky Pint
+                    - generic [ref=e92]: · Watched
+                  - generic [ref=e93]: Click to read →
+              - generic [ref=e94]:
+                - generic [ref=e95]: Video
+                - 'link "Open Cheeky Pint: Evan Spiegel on Spectacles, the post-feed internet, and AI-written code at Snap in a new tab" [ref=e96] [cursor=pointer]':
+                  - /url: https://youtu.be/8fZNK-M-77I
+                  - img [ref=e97]
+            - generic [ref=e101]:
+              - 'button "Stripe Sessions 2026 Keynote: Projects, Database, Checkout Studio, Treasury, Signals + MPP and UCP protocols" [ref=e102] [cursor=pointer]':
+                - generic [ref=e104]:
+                  - paragraph [ref=e106]: "Stripe Sessions 2026 Keynote: Projects, Database, Checkout Studio, Treasury, Signals + MPP and UCP protocols"
+                  - generic [ref=e107]:
+                    - generic [ref=e108]: Stripe Sessions
+                    - generic [ref=e109]: · Watched
+                  - generic [ref=e110]: Click to read →
+              - generic [ref=e111]:
+                - generic [ref=e112]: Video
+                - 'link "Open Stripe Sessions 2026 Keynote: Projects, Database, Checkout Studio, Treasury, Signals + MPP and UCP protocols in a new tab" [ref=e113] [cursor=pointer]':
+                  - /url: https://www.youtube.com/live/e13-s0p1tfE
+                  - img [ref=e114]
+            - generic [ref=e118]:
+              - 'button "RTK (Rust Token Killer): CLI proxy that compresses dev-command output before it hits the LLM context" [ref=e119] [cursor=pointer]':
+                - generic [ref=e120]:
+                  - paragraph [ref=e122]: "RTK (Rust Token Killer): CLI proxy that compresses dev-command output before it hits the LLM context"
+                  - generic [ref=e123]:
+                    - generic [ref=e124]: GitHub
+                    - generic [ref=e125]: · Built
+                  - generic [ref=e126]: Click to read →
+              - generic [ref=e127]:
+                - generic [ref=e128]: Repo
+                - 'link "Open RTK (Rust Token Killer): CLI proxy that compresses dev-command output before it hits the LLM context in a new tab" [ref=e129] [cursor=pointer]':
+                  - /url: https://github.com/rtk-ai/rtk
+                  - img [ref=e130]
+            - generic [ref=e134]:
+              - 'button "context-mode: MCP sandbox + per-project SQLite that gives Claude Code session continuity (98% context reduction)" [ref=e135] [cursor=pointer]':
+                - generic [ref=e136]:
+                  - paragraph [ref=e138]: "context-mode: MCP sandbox + per-project SQLite that gives Claude Code session continuity (98% context reduction)"
+                  - generic [ref=e139]:
+                    - generic [ref=e140]: GitHub
+                    - generic [ref=e141]: · Built
+                  - generic [ref=e142]: Click to read →
+              - generic [ref=e143]:
+                - generic [ref=e144]: Repo
+                - 'link "Open context-mode: MCP sandbox + per-project SQLite that gives Claude Code session continuity (98% context reduction) in a new tab" [ref=e145] [cursor=pointer]':
+                  - /url: https://github.com/mksglu/context-mode
+                  - img [ref=e146]
+            - generic [ref=e150]:
+              - 'button "Compound Engineering plugin (Every): 37 skills + 51 agents — /ce-setup green across 7/7 tools" [ref=e151] [cursor=pointer]':
+                - generic [ref=e152]:
+                  - paragraph [ref=e154]: "Compound Engineering plugin (Every): 37 skills + 51 agents — /ce-setup green across 7/7 tools"
+                  - generic [ref=e155]:
+                    - generic [ref=e156]: GitHub
+                    - generic [ref=e157]: · Built
+                  - generic [ref=e158]: Click to read →
+              - generic [ref=e159]:
+                - generic [ref=e160]: Repo
+                - 'link "Open Compound Engineering plugin (Every): 37 skills + 51 agents — /ce-setup green across 7/7 tools in a new tab" [ref=e161] [cursor=pointer]':
+                  - /url: https://github.com/EveryInc/compound-engineering-plugin
+                  - img [ref=e162]
+        - generic [ref=e166]:
+          - paragraph [ref=e167]: May 5 · 8 items
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - 'button "Money Stuff (Matt Levine): the Avis short squeeze — Pentwater + SRS owned 108% of the float via swaps, Section 16(b) caught a different fund" [ref=e170] [cursor=pointer]':
+                - generic [ref=e171]:
+                  - paragraph [ref=e173]: "Money Stuff (Matt Levine): the Avis short squeeze — Pentwater + SRS owned 108% of the float via swaps, Section 16(b) caught a different fund"
+                  - generic [ref=e174]:
+                    - generic [ref=e175]: Bloomberg
+                    - generic [ref=e176]: · Read
+                  - generic [ref=e177]: Click to read →
+              - generic [ref=e178]:
+                - generic [ref=e179]: Article
+                - 'link "Open Money Stuff (Matt Levine): the Avis short squeeze — Pentwater + SRS owned 108% of the float via swaps, Section 16(b) caught a different fund in a new tab" [ref=e180] [cursor=pointer]':
+                  - /url: https://www.bloomberg.com/opinion/newsletters/2026-04-29/short-swing-short-squeeze
+                  - img [ref=e181]
+            - generic [ref=e185]:
+              - 'button "SemiAnalysis: AI Value Capture — the shift to model labs" [ref=e186] [cursor=pointer]':
+                - generic [ref=e187]:
+                  - paragraph [ref=e189]: "SemiAnalysis: AI Value Capture — the shift to model labs"
+                  - generic [ref=e190]:
+                    - generic [ref=e191]: SemiAnalysis
+                    - generic [ref=e192]: · Read
+                  - generic [ref=e193]: Click to read →
+              - generic [ref=e194]:
+                - generic [ref=e195]: Article
+                - 'link "Open SemiAnalysis: AI Value Capture — the shift to model labs in a new tab" [ref=e196] [cursor=pointer]':
+                  - /url: https://newsletter.semianalysis.com/p/ai-value-capture-the-shift-to-model
+                  - img [ref=e197]
+            - generic [ref=e201]:
+              - 'button "TBPN: the tech earnings quad-kill recap — AMZN, GOOG, META, AAPL" [ref=e202] [cursor=pointer]':
+                - generic [ref=e203]:
+                  - paragraph [ref=e205]: "TBPN: the tech earnings quad-kill recap — AMZN, GOOG, META, AAPL"
+                  - generic [ref=e206]:
+                    - generic [ref=e207]: TBPN
+                    - generic [ref=e208]: · Read
+                  - generic [ref=e209]: Click to read →
+              - generic [ref=e210]:
+                - generic [ref=e211]: Article
+                - 'link "Open TBPN: the tech earnings quad-kill recap — AMZN, GOOG, META, AAPL in a new tab" [ref=e212] [cursor=pointer]':
+                  - /url: https://tbpn.substack.com/p/the-tech-earnings-quad-kill-recap
+                  - img [ref=e213]
+            - generic [ref=e217]:
+              - 'button "Stratechery: Amazon''s Durability" [ref=e218] [cursor=pointer]':
+                - generic [ref=e219]:
+                  - paragraph [ref=e221]: "Stratechery: Amazon's Durability"
+                  - generic [ref=e222]:
+                    - generic [ref=e223]: Stratechery
+                    - generic [ref=e224]: · Read
+                  - generic [ref=e225]: Click to read →
+              - generic [ref=e226]:
+                - generic [ref=e227]: Article
+                - 'link "Open Stratechery: Amazon''s Durability in a new tab" [ref=e228] [cursor=pointer]':
+                  - /url: https://stratechery.com/2026/amazons-durability/
+                  - img [ref=e229]
+            - generic [ref=e233]:
+              - 'button "Stratechery: Google Earnings, Meta Earnings" [ref=e234] [cursor=pointer]':
+                - generic [ref=e235]:
+                  - paragraph [ref=e237]: "Stratechery: Google Earnings, Meta Earnings"
+                  - generic [ref=e238]:
+                    - generic [ref=e239]: Stratechery
+                    - generic [ref=e240]: · Read
+                  - generic [ref=e241]: Click to read →
+              - generic [ref=e242]:
+                - generic [ref=e243]: Article
+                - 'link "Open Stratechery: Google Earnings, Meta Earnings in a new tab" [ref=e244] [cursor=pointer]':
+                  - /url: https://stratechery.com/2026/google-earnings-meta-earnings/
+                  - img [ref=e245]
+            - generic [ref=e249]:
+              - button "Reuters Tech on X — headline thread worth saving" [ref=e250] [cursor=pointer]:
+                - generic [ref=e251]:
+                  - paragraph [ref=e253]: Reuters Tech on X — headline thread worth saving
+                  - generic [ref=e254]:
+                    - generic [ref=e255]: X
+                    - generic [ref=e256]: · Read
+                  - generic [ref=e257]: Click to read →
+              - generic [ref=e258]:
+                - generic [ref=e259]: Tweet
+                - link "Open Reuters Tech on X — headline thread worth saving in a new tab" [ref=e260] [cursor=pointer]:
+                  - /url: https://x.com/ReutersTech/status/2049340467649667361
+                  - img [ref=e261]
+            - generic [ref=e265]:
+              - button "@0x_claudia on LATAM payments — 40s/50s sending money to mom, not crypto bros" [ref=e266] [cursor=pointer]:
+                - generic [ref=e267]:
+                  - paragraph [ref=e269]: "@0x_claudia on LATAM payments — 40s/50s sending money to mom, not crypto bros"
+                  - generic [ref=e270]:
+                    - generic [ref=e271]: X
+                    - generic [ref=e272]: · Read
+                  - generic [ref=e273]: Click to read →
+              - generic [ref=e274]:
+                - generic [ref=e275]: Tweet
+                - link "Open @0x_claudia on LATAM payments — 40s/50s sending money to mom, not crypto bros in a new tab" [ref=e276] [cursor=pointer]:
+                  - /url: https://x.com/0x_claudia/status/2050888986030375117
+                  - img [ref=e277]
+            - generic [ref=e281]:
+              - button "@Snapcrackle on Stripe + crypto — Bridge and Privy as the stack" [ref=e282] [cursor=pointer]:
+                - generic [ref=e283]:
+                  - paragraph [ref=e285]: "@Snapcrackle on Stripe + crypto — Bridge and Privy as the stack"
+                  - generic [ref=e286]:
+                    - generic [ref=e287]: X
+                    - generic [ref=e288]: · Read
+                  - generic [ref=e289]: Click to read →
+              - generic [ref=e290]:
+                - generic [ref=e291]: Tweet
+                - link "Open @Snapcrackle on Stripe + crypto — Bridge and Privy as the stack in a new tab" [ref=e292] [cursor=pointer]:
+                  - /url: https://x.com/Snapcrackle/status/2050910293597856077
+                  - img [ref=e293]
+      - generic [ref=e297]:
+        - generic [ref=e298]:
+          - paragraph [ref=e299]: TL;DR · the week in 40 points
+          - paragraph [ref=e300]: 8 items
+        - generic [ref=e301]:
+          - generic [ref=e302]:
+            - generic [ref=e303]:
+              - generic [ref=e304]: May 5
+              - generic [ref=e305]: Bloomberg
+              - paragraph [ref=e306]: "Money Stuff (Matt Levine): the Avis short squeeze — Pentwater + SRS owned 108% of the float via swaps, Section 16(b) caught a different fund"
+            - list [ref=e307]:
+              - listitem [ref=e308]: "Avis: $99 (Mar 20) → $713 (Apr 21) → $182. Pentwater + SRS at 108% economic ownership via cash-settled swaps."
+              - listitem [ref=e309]: "Total return swaps post-Archegos: still off-balance-sheet for the fund, banks hedge by buying the shares themselves."
+              - listitem [ref=e310]: Section 16(b) matches lowest-buy with highest-sell — statutory profit decouples from actual P&L.
+              - listitem [ref=e311]: Pentwater dodged 16(b) on a parallel fund; sold 4.3M shares for $1.75B in proceeds.
+              - listitem [ref=e312]: "The arb idea: short interest >30% + creeping past the 16(b) disclosure threshold = self-reinforcing squeeze, no dilution to existing holders."
+          - generic [ref=e313]:
+            - generic [ref=e314]:
+              - generic [ref=e315]: May 5
+              - generic [ref=e316]: SemiAnalysis
+              - paragraph [ref=e317]: "SemiAnalysis: AI Value Capture — the shift to model labs"
+            - list [ref=e318]:
+              - listitem [ref=e319]: Anthropic ARR $9B → $44B+; inference GM 38% → 70%+. Labs are now the value capture layer.
+              - listitem [ref=e320]: Opus blended price ~$0.99/MTok on agentic workloads (300:1 input:output, 90%+ cache hits).
+              - listitem [ref=e321]: "GB300 → VR NVL72 capex/W: $37.4 → $38.1 — flat despite 2x perf/W. Nvidia is intentionally under-pricing."
+              - listitem [ref=e322]: SOCAMM2 = socketed, repriceable memory at ~60% GM. Hidden pricing lever for Rubin.
+              - listitem [ref=e323]: "Two moats keep lab margins: real frontier quality gap (Kimi K2.6 at $0.95/$4 barely dents Opus) + structural compute scarcity."
+          - generic [ref=e324]:
+            - generic [ref=e325]:
+              - generic [ref=e326]: May 4
+              - generic [ref=e327]: Uncapped
+              - paragraph [ref=e328]: "Uncapped (Jack Altman): Tarek Mansour on building Kalshi — hackathon → CFTC fight → landmark 2024 win"
+            - list [ref=e329]:
+              - listitem [ref=e330]: "YC hackathon Oct 2018: judges said the idea was \"not allowed in the US\" — they won anyway."
+              - listitem [ref=e331]: CFTC approved Kalshi as a regulated exchange Nov 2020; Kalshi sued the government in 2023 over a blocked election market.
+              - listitem [ref=e332]: Landmark Oct 2024 ruling redefined gambling vs financial markets — Kalshi is a regulated exchange + clearing house.
+              - listitem [ref=e333]: "Open book: users trade against each other, Kalshi takes a transaction fee — no house."
+              - listitem [ref=e334]: ~127 people, no managerial layers, self-organizing around the company's most critical problem at any time.
+          - generic [ref=e335]:
+            - generic [ref=e336]:
+              - generic [ref=e337]: May 4
+              - generic [ref=e338]: Cheeky Pint
+              - paragraph [ref=e339]: "Cheeky Pint: Evan Spiegel on Spectacles, the post-feed internet, and AI-written code at Snap"
+            - list [ref=e340]:
+              - listitem [ref=e341]: "Spectacles thesis: phones isolate, see-through glasses are social by default — opposite of VR headsets."
+              - listitem [ref=e342]: Snap built its own Linux-based OS to escape Android bloat at glasses weight.
+              - listitem [ref=e343]: ">2/3 of new code at Snap is now AI-written."
+              - listitem [ref=e344]: Snapchat separates social (private messaging) from media (Discover) — sidesteps endless-feed incentives.
+              - listitem [ref=e345]: Snapchat+ at 25M subscribers; Norway was the first country to embrace Snap.
+          - generic [ref=e346]:
+            - generic [ref=e347]:
+              - generic [ref=e348]: May 4
+              - generic [ref=e349]: Stripe Sessions
+              - paragraph [ref=e350]: "Stripe Sessions 2026 Keynote: Projects, Database, Checkout Studio, Treasury, Signals + MPP and UCP protocols"
+            - list [ref=e351]:
+              - listitem [ref=e352]: "Stripe Projects: agents deploy services, DBs (Supabase), hosting (Vercel) programmatically."
+              - listitem [ref=e353]: Stripe Database = Postgres-shaped read API over your business data, queryable by agents.
+              - listitem [ref=e354]: "Two new protocols: MPP (agent-to-agent payments via Link wallet) and UCP (cross-platform commerce standard)."
+              - listitem [ref=e355]: "Stripe Treasury: multicurrency, FDIC-insured US balances, payouts to 160 countries, stablecoin rails."
+              - listitem [ref=e356]: Public roadmap at stripe.com/roadmap through Q1 2027 — Meta, Amazon, Salesforce, Microsoft on UCP committee.
+          - generic [ref=e357]:
+            - generic [ref=e358]:
+              - generic [ref=e359]: May 4
+              - generic [ref=e360]: GitHub
+              - paragraph [ref=e361]: "RTK (Rust Token Killer): CLI proxy that compresses dev-command output before it hits the LLM context"
+            - list [ref=e362]:
+              - listitem [ref=e363]: 13,454 commands run · 17.9M tokens saved (35.9%) on my Claude Code sessions.
+              - listitem [ref=e364]: Single Rust binary, zero deps, <10ms overhead — drop-in CLI proxy that compresses tool output.
+              - listitem [ref=e365]: Hook rewrites bash commands transparently (git status → rtk git status); the model only sees compressed output.
+              - listitem [ref=e366]: Best savings on lint (~98%), gh pr/issue calls (~99%), and curl-style fetches (~95–98%).
+              - listitem [ref=e367]: Works with Claude Code, Cursor, Gemini CLI, Aider, Codex, Windsurf, Cline.
+          - generic [ref=e368]:
+            - generic [ref=e369]:
+              - generic [ref=e370]: May 4
+              - generic [ref=e371]: GitHub
+              - paragraph [ref=e372]: "context-mode: MCP sandbox + per-project SQLite that gives Claude Code session continuity (98% context reduction)"
+            - list [ref=e373]:
+              - listitem [ref=e374]: 98% context reduction on tool output (e.g., 315 KB → 5.4 KB) by sandboxing execution.
+              - listitem [ref=e375]: Per-project SQLite captures every meaningful event so /compact and --continue rebuild your working state automatically.
+              - listitem [ref=e376]: Registers PreToolUse / PostToolUse / PreCompact / SessionStart hooks + 11 MCP tools (6 sandbox, 5 meta).
+              - listitem [ref=e377]: "Install via Claude Code: /plugin marketplace add mksglu/context-mode → /plugin install context-mode@context-mode."
+              - listitem [ref=e378]: Full continuity on Claude Code, Gemini CLI, VS Code Copilot, JetBrains Copilot — 14 platforms supported.
+          - generic [ref=e379]:
+            - generic [ref=e380]:
+              - generic [ref=e381]: May 4
+              - generic [ref=e382]: GitHub
+              - paragraph [ref=e383]: "Compound Engineering plugin (Every): 37 skills + 51 agents — /ce-setup green across 7/7 tools"
+            - list [ref=e384]:
+              - listitem [ref=e385]: Every-built official plugin — 37 skills + 51 agents covering review, planning, ideation, design, debugging, docs.
+              - listitem [ref=e386]: "Install: /plugin marketplace add EveryInc/compound-engineering-plugin → /plugin install compound-engineering."
+              - listitem [ref=e387]: /compound-engineering:ce-setup runs check-health and reports Plugin v3.4.1 · 7/7 tools · 1/1 skills green.
+              - listitem [ref=e388]: "Tools provisioned: agent-browser, gh, jq, vhs, silicon, ffmpeg, ast-grep."
+              - listitem [ref=e389]: Same plugin already underpins many of the agents I delegate to in /skills.
+      - generic [ref=e390]:
+        - generic [ref=e391]:
+          - paragraph [ref=e392]: Timeline · commits + curated notes
+          - paragraph [ref=e393]: 11 entries
+        - list [ref=e394]:
+          - listitem [ref=e395]:
+            - generic [ref=e397]:
+              - time [ref=e398]: 2026-05-10
+              - link "abf8a3e" [ref=e399] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/abf8a3e23b8b7501259b19d0bb06466200ffbe67
+              - generic [ref=e400]: fix(weekly)
+              - link "favicon fallback for unrecognised sources + SemiAnalysis ASCII flows" [ref=e401] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/abf8a3e23b8b7501259b19d0bb06466200ffbe67
+          - listitem [ref=e402]:
+            - generic [ref=e404]:
+              - time [ref=e405]: 2026-05-10
+              - link "2414583" [ref=e406] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/24145835dd074dd6cac0dee36f15c23d3b0fdb7e
+              - generic [ref=e407]: content(skills)
+              - link "update client-value-maximizer to latest" [ref=e408] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/24145835dd074dd6cac0dee36f15c23d3b0fdb7e
+          - listitem [ref=e409]:
+            - generic [ref=e411]:
+              - time [ref=e412]: 2026-05-10
+              - link "74cadc3" [ref=e413] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/74cadc34d47eb87e0fb8412f6732402c2214abde
+              - generic [ref=e414]: content(skills)
+              - link "add build-a-chatbot, playwright-doc-generator, playwright-cli, full-app-test" [ref=e415] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/74cadc34d47eb87e0fb8412f6732402c2214abde
+          - listitem [ref=e416]:
+            - generic [ref=e418]:
+              - time [ref=e419]: 2026-05-07
+              - link "fa15871" [ref=e420] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/fa158712195fae4f4fde5404e3468bb3e272764f
+              - generic [ref=e421]: refactor
+              - link "rename public/images → public/assets; relocate dev screenshots" [ref=e422] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/fa158712195fae4f4fde5404e3468bb3e272764f
+          - listitem [ref=e423]:
+            - generic [ref=e425]:
+              - time [ref=e426]: 2026-05-07
+              - link "b9efdfc" [ref=e427] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/b9efdfc0f9639e51579b27530d9bdb181fb12228
+              - generic [ref=e428]: chore
+              - link "document Bun-only toolchain and ignore foreign lockfiles" [ref=e429] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/b9efdfc0f9639e51579b27530d9bdb181fb12228
+          - listitem [ref=e430]:
+            - generic [ref=e432]:
+              - time [ref=e433]: 2026-05-07
+              - link "0fce065" [ref=e434] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/0fce065ab69443e25c24a7799f70dd88bd968708
+              - link "bun" [ref=e435] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/0fce065ab69443e25c24a7799f70dd88bd968708
+          - listitem [ref=e436]:
+            - generic [ref=e438]:
+              - time [ref=e439]: 2026-05-07
+              - link "adf0326" [ref=e440] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/adf0326cc2799035be65b5a78dfa6823ad7c8d87
+              - link "bun" [ref=e441] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/adf0326cc2799035be65b5a78dfa6823ad7c8d87
+          - listitem [ref=e442]:
+            - generic [ref=e444]:
+              - time [ref=e445]: 2026-05-07
+              - link "2d4af33" [ref=e446] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/2d4af33d176cfd0d0e59db428ecc989f25cbc5bd
+              - link "more docs" [ref=e447] [cursor=pointer]:
+                - /url: https://github.com/ArkashJ/Personal-Website/commit/2d4af33d176cfd0d0e59db428ecc989f25cbc5bd
+          - listitem [ref=e448]:
+            - generic [ref=e450]:
+              - time [ref=e451]: 2026-05-05
+              - generic [ref=e452]: note
+              - generic [ref=e453]: Tuesday reading log merged in — Avis short squeeze (Levine), SemiAnalysis AI value-capture flows, TBPN earnings quad-kill, two Stratechery posts, LATAM-payments and Stripe-crypto tweets.
+          - listitem [ref=e454]:
+            - generic [ref=e456]:
+              - time [ref=e457]: 2026-05-04
+              - generic [ref=e458]: note
+              - generic [ref=e459]: "Added 3 dev-tooling finds to built rail: RTK (token killer), context-mode (MCP sandbox + SQLite session continuity), Compound Engineering plugin v3.4.1."
+          - listitem [ref=e460]:
+            - generic [ref=e462]:
+              - time [ref=e463]: 2026-05-04
+              - generic [ref=e464]: note
+              - generic [ref=e465]: Initial publish — three watched entries (Kalshi, Spiegel, Stripe Sessions 2026 keynote) with anchored prose sections.
+  - contentinfo [ref=e466]:
+    - generic [ref=e467]:
+      - generic [ref=e468]:
+        - heading "Arkash Jain" [level=3] [ref=e469]
+        - paragraph [ref=e470]:
+          - text: Forward Deployed Engineer & AI Researcher at
+          - link "Benmore Technologies" [ref=e471] [cursor=pointer]:
+            - /url: https://benmore.tech
+          - text: .
+        - paragraph [ref=e472]: AI researcher (Harvard Kirchhausen Lab), forward deployed engineer at Benmore Technologies, three published papers including SpatialDINO — a 3D self-supervised vision transformer for lattice light-sheet microscopy.
+      - generic [ref=e473]:
+        - heading "Pages" [level=4] [ref=e474]
+        - list [ref=e475]:
+          - listitem [ref=e476]:
+            - link "About" [ref=e477] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e478]:
+            - link "Research" [ref=e479] [cursor=pointer]:
+              - /url: /research
+          - listitem [ref=e480]:
+            - link "Projects" [ref=e481] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=e482]:
+            - link "Claude Skills" [ref=e483] [cursor=pointer]:
+              - /url: /skills
+          - listitem [ref=e484]:
+            - link "Writing" [ref=e485] [cursor=pointer]:
+              - /url: /writing
+          - listitem [ref=e486]:
+            - link "Weekly" [ref=e487] [cursor=pointer]:
+              - /url: /weekly
+          - listitem [ref=e488]:
+            - link "Media" [ref=e489] [cursor=pointer]:
+              - /url: /media
+          - listitem [ref=e490]:
+            - link "Knowledge" [ref=e491] [cursor=pointer]:
+              - /url: /knowledge
+          - listitem [ref=e492]:
+            - link "Credentials" [ref=e493] [cursor=pointer]:
+              - /url: /credentials
+          - listitem [ref=e494]:
+            - link "Stack" [ref=e495] [cursor=pointer]:
+              - /url: /stack
+          - listitem [ref=e496]:
+            - link "Architecture (legacy)" [ref=e497] [cursor=pointer]:
+              - /url: /architecture
+          - listitem [ref=e498]:
+            - link "Coursework" [ref=e499] [cursor=pointer]:
+              - /url: /coursework
+          - listitem [ref=e500]:
+            - link "Docs" [ref=e501] [cursor=pointer]:
+              - /url: /docs
+          - listitem [ref=e502]:
+            - link "About archive" [ref=e503] [cursor=pointer]:
+              - /url: /about/archive
+      - generic [ref=e504]:
+        - heading "Elsewhere" [level=4] [ref=e505]
+        - list [ref=e506]:
+          - listitem [ref=e507]:
+            - link "GitHub" [ref=e508] [cursor=pointer]:
+              - /url: https://github.com/ArkashJ
+              - generic [ref=e509]: GitHub
+          - listitem [ref=e510]:
+            - link "LinkedIn" [ref=e511] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/arkashj/
+              - img [ref=e512]
+              - generic [ref=e515]: LinkedIn
+          - listitem [ref=e516]:
+            - link "X" [ref=e517] [cursor=pointer]:
+              - /url: https://x.com/ArkashJ__
+              - generic [ref=e518]: X
+          - listitem [ref=e519]:
+            - link "Substack" [ref=e520] [cursor=pointer]:
+              - /url: https://arkash.substack.com
+              - generic [ref=e521]: Substack
+          - listitem [ref=e522]:
+            - link "Medium" [ref=e523] [cursor=pointer]:
+              - /url: https://medium.com/@arkjain
+              - generic [ref=e524]: Medium
+          - listitem [ref=e525]:
+            - link "Harvard" [ref=e526] [cursor=pointer]:
+              - /url: https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs
+              - img [ref=e527]
+              - generic [ref=e530]: Harvard
+          - listitem [ref=e531]:
+            - link "Scholar" [ref=e532] [cursor=pointer]:
+              - /url: https://scholar.google.com/scholar?q=arkash+jain
+              - generic [ref=e533]: Scholar
+          - listitem [ref=e534]:
+            - link "ORCID" [ref=e535] [cursor=pointer]:
+              - /url: https://orcid.org/0000-0003-2692-7472
+              - generic [ref=e536]: ORCID
+          - listitem [ref=e537]:
+            - link "Email" [ref=e538] [cursor=pointer]:
+              - /url: mailto:arkash@benmore.tech
+              - img [ref=e539]
+              - generic [ref=e542]: Email
+        - paragraph [ref=e543]:
+          - link "arkash@benmore.tech" [ref=e544] [cursor=pointer]:
+            - /url: mailto:arkash@benmore.tech
+    - generic [ref=e546]:
+      - generic [ref=e547]:
+        - text: © 2026 Arkash Jain — built & maintained by
+        - link "arkashj.com" [ref=e548] [cursor=pointer]:
+          - /url: https://www.arkashj.com
+      - generic [ref=e549]:
+        - generic [ref=e550]: Next.js · Vercel
+        - link "/architecture" [ref=e551] [cursor=pointer]:
+          - /url: /architecture
+          - text: /architecture
+          - img [ref=e552]
+        - link "humans.txt" [ref=e556] [cursor=pointer]:
+          - /url: /humans.txt
+          - text: humans.txt
+          - img [ref=e557]
