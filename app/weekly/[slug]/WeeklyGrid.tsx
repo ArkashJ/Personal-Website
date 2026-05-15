@@ -128,7 +128,7 @@ function DetailModal({
           {isYouTubeThumb && resolved.image && (
             <Image
               src={resolved.image}
-              alt=""
+              alt={`${resolved.source ?? 'Source'} thumbnail — ${resolved.text}`}
               width={96}
               height={54}
               className="flex-shrink-0 border border-border object-cover"
@@ -290,7 +290,7 @@ function ItemCard({
           <div className="relative w-full aspect-video border-b border-border bg-elevated overflow-hidden">
             <Image
               src={resolved.image}
-              alt=""
+              alt={`${resolved.source ?? 'YouTube'} — ${resolved.text}`}
               fill
               sizes="320px"
               className="object-cover"

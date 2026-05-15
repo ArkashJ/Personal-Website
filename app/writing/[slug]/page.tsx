@@ -5,7 +5,7 @@ import Badge from '@/components/ui/Badge'
 import CopyForLlm from '@/components/ui/CopyForLlm'
 import MdxContent from '@/components/MdxContent'
 import JsonLd from '@/components/seo/JsonLd'
-import { articleSchema } from '@/lib/structured-data'
+import { articleSchema, breadcrumbSchema } from '@/lib/structured-data'
 import { getAllWritingPosts, getWritingPost } from '@/lib/content'
 import { buildMetadata } from '@/lib/metadata'
 
@@ -40,6 +40,13 @@ export default async function WritingPost({ params }: { params: Promise<{ slug: 
           date: post.meta.date,
           slug: `/writing/${post.meta.slug}`,
         })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Writing', path: '/writing' },
+          { name: post.meta.title, path: `/writing/${post.meta.slug}` },
+        ])}
       />
 
       <div className="flex items-center justify-between gap-3">

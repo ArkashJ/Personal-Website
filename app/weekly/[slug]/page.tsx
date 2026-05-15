@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Badge from '@/components/ui/Badge'
 import CopyForLlm from '@/components/ui/CopyForLlm'
+import JsonLd from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { getAllWeeklyLogs, getWeeklyLog, type WeeklyLogMeta } from '@/lib/weekly'
 import { findReleaseInWeek } from '@/lib/changelog-md'
@@ -53,6 +55,13 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
 
   return (
     <article className="px-6 py-16 max-w-5xl mx-auto">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Weekly', path: '/weekly' },
+          { name: meta.title, path: `/weekly/${meta.slug}` },
+        ])}
+      />
       <div className="flex items-center justify-between gap-3">
         <Link href="/weekly" className="text-primary hover:text-accent font-mono text-sm">
           ← Weekly

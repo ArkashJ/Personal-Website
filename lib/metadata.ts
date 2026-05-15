@@ -80,8 +80,8 @@ export function buildMetadata({
       title: fullTitle,
       description: desc,
       ...(image ? { images: [image] } : {}),
-      creator: '@_arkash',
-      site: '@_arkash',
+      creator: '@ArkashJ__',
+      site: '@ArkashJ__',
     },
   }
 }

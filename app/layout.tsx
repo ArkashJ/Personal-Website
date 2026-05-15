@@ -10,6 +10,8 @@ import { personSchema, websiteSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { SITE } from '@/lib/site'
 import { ClerkProvider } from '@clerk/nextjs'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   ...buildMetadata({ path: '/' }),
@@ -17,6 +19,13 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
   verification: {
     google: '9i4OP2Utb_pb1gOLKG8gTxVcs0GrI8sDAJ4--Wi-xYU',
+    // Set NEXT_PUBLIC_BING_VERIFICATION / NEXT_PUBLIC_YANDEX_VERIFICATION in Vercel
+    // env to surface the meta tags. Generate at bing.com/webmasters and
+    // webmaster.yandex.com respectively.
+    other: {
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION ?? '',
+      'yandex-verification': process.env.NEXT_PUBLIC_YANDEX_VERIFICATION ?? '',
+    },
   },
 }
 
@@ -81,6 +90,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </ThemeProvider>
         </ClerkProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
