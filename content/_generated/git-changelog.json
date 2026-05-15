@@ -1,5 +1,14 @@
 [
   {
+    "hash": "55d8b70d18d801a095c7bcbbe9aacea67581cbd5",
+    "date": "2026-05-15T00:36:11-05:00",
+    "type": "feat",
+    "scopes": ["content"],
+    "summary": "embed playwright-cli demo + weekly-scroll GIFs on site",
+    "body": "Surface both captures the new pipeline produces:\n\n- /skills/playwright-cli — vhs recording of the CLI session at the top of\n  the skill body, with a link to the full weekly-scroll capture.\n- /weekly/2026-W19 — new \"playwright-cli capture pipeline\" entry on the\n  shipped rail with anchor playwright-cli-pipeline. Clicking the card opens\n  a modal containing both GIFs (weekly-scroll.gif + playwright-cli-demo.gif)\n  and a short note on what changed this week (real favicons, skill-only\n  automation, Tuesday-reads merge).\n\nRe-encoded GIFs for web delivery: weekly-scroll.gif 2.1 MB (900px / 12 fps),\nplaywright-cli-demo.gif 426 KB (900px / 12 fps).\n\nCo-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>",
+    "tags": ["feat", "content"]
+  },
+  {
     "hash": "15d66bd4f87198b5646fec4621e37f4b984653df",
     "date": "2026-05-15T00:28:46-05:00",
     "type": "feat",

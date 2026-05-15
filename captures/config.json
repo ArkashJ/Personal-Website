@@ -1,0 +1,15 @@
+{
+  "base_url": "http://localhost:3000",
+  "viewport": { "width": 1280, "height": 800 },
+  "device_scale_factor": 2,
+  "theme": "dark",
+  "frames_per_page": 30,
+  "scroll_step_px": 0,
+  "fps": 12,
+  "quality": 85,
+  "gif_width": 1100,
+  "wait_ms_after_nav": 1200,
+  "wait_ms_between_frames": 80,
+  "browser": "chrome",
+  "session_name": "site-capture"
+}

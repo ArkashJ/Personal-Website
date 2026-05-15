@@ -55,3 +55,6 @@ yarn-error.log*
 .compound-engineering/*.local.yaml
 .env.local
 docs/screenshots/
+
+# site-capture skill output
+captures/out/

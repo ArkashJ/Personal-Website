@@ -1,0 +1,42 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "name": "home",
+      "components": [{ "selector": "header", "name": "nav" }]
+    },
+    { "path": "/about", "name": "about" },
+    { "path": "/about/archive", "name": "about-archive" },
+    { "path": "/research", "name": "research" },
+    { "path": "/projects", "name": "projects" },
+    { "path": "/work", "name": "work" },
+    { "path": "/writing", "name": "writing" },
+    { "path": "/weekly", "name": "weekly-index" },
+    {
+      "path": "/weekly/2026-W19",
+      "name": "weekly-w19",
+      "frames_per_page": 60,
+      "wait_ms_after_nav": 1800
+    },
+    { "path": "/weekly/2026-W18", "name": "weekly-w18" },
+    { "path": "/skills", "name": "skills-index" },
+    {
+      "path": "/skills/playwright-cli",
+      "name": "skill-playwright-cli",
+      "wait_ms_after_nav": 2000
+    },
+    {
+      "path": "/skills/site-capture",
+      "name": "skill-site-capture",
+      "wait_ms_after_nav": 2000
+    },
+    { "path": "/media", "name": "media" },
+    { "path": "/stack", "name": "stack" },
+    { "path": "/learnings", "name": "learnings" },
+    { "path": "/architecture", "name": "architecture" },
+    { "path": "/changelog", "name": "changelog" },
+    { "path": "/credentials", "name": "credentials" },
+    { "path": "/coursework", "name": "coursework" },
+    { "path": "/docs", "name": "docs" }
+  ]
+}
