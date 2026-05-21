@@ -9,7 +9,7 @@ export function getIsoWeek(date: Date): { year: number; week: number } {
   return { year: d.getFullYear(), week }
 }
 
-export function pad2(n: number): string {
+function pad2(n: number): string {
   return n.toString().padStart(2, '0')
 }
 
