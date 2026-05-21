@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import { useMutation } from '@tanstack/react-query'
 import { addWeeklyItem } from './actions'
 import type { RailKey, WeeklyItemKind } from '@/lib/weekly-types'
 import { RAIL_LABEL, RAIL_ORDER, RAIL_DEFAULT_KIND } from '@/lib/weekly-types'
@@ -27,12 +28,6 @@ function isValidUrl(value: string): boolean {
   }
 }
 
-type Status =
-  | { type: 'idle' }
-  | { type: 'saving' }
-  | { type: 'success'; msg: string }
-  | { type: 'error'; msg: string }
-
 export default function WeeklyItemForm() {
   const [rail, setRail] = useState<RailKey>('read')
   const [kind, setKind] = useState<WeeklyItemKind>(RAIL_DEFAULT_KIND['read'])
@@ -43,7 +38,25 @@ export default function WeeklyItemForm() {
   const [description, setDescription] = useState('')
   const [thumbnail, setThumbnail] = useState('')
   const [tags, setTags] = useState('')
-  const [status, setStatus] = useState<Status>({ type: 'idle' })
+  const [validationError, setValidationError] = useState<string | null>(null)
+
+  const resetFields = useCallback(() => {
+    setTitle('')
+    setSource('')
+    setHref('')
+    setDescription('')
+    setThumbnail('')
+    setTags('')
+  }, [])
+
+  const mutation = useMutation({
+    mutationFn: async (fd: FormData) => {
+      const result = await addWeeklyItem(fd)
+      if (!result.ok) throw new Error(result.error ?? 'unknown error')
+      return result
+    },
+    onSuccess: resetFields,
+  })
 
   const handleRailChange = useCallback(
     (newRail: RailKey) => {
@@ -61,23 +74,15 @@ export default function WeeklyItemForm() {
   }, [])
 
   const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
+    (e: React.FormEvent) => {
       e.preventDefault()
+      setValidationError(null)
 
-      if (!title.trim()) {
-        setStatus({ type: 'error', msg: 'title is required' })
-        return
-      }
-      if (!href.trim() || !isValidUrl(href.trim())) {
-        setStatus({ type: 'error', msg: 'a valid href URL is required' })
-        return
-      }
-      if (thumbnail.trim() && !isValidUrl(thumbnail.trim())) {
-        setStatus({ type: 'error', msg: 'thumbnail must be a valid URL when provided' })
-        return
-      }
-
-      setStatus({ type: 'saving' })
+      if (!title.trim()) return setValidationError('title is required')
+      if (!href.trim() || !isValidUrl(href.trim()))
+        return setValidationError('a valid href URL is required')
+      if (thumbnail.trim() && !isValidUrl(thumbnail.trim()))
+        return setValidationError('thumbnail must be a valid URL when provided')
 
       const fd = new FormData()
       fd.set('rail', rail)
@@ -89,27 +94,24 @@ export default function WeeklyItemForm() {
       fd.set('thumbnail', thumbnail.trim())
       fd.set('tags', tags.trim())
 
-      try {
-        const result = await addWeeklyItem(fd)
-        if (result.ok) {
-          setStatus({ type: 'success', msg: `added to ${result.slug}` })
-          // Reset form fields except rail/kind
-          setTitle('')
-          setSource('')
-          setHref('')
-          setDescription('')
-          setThumbnail('')
-          setTags('')
-        } else {
-          setStatus({ type: 'error', msg: result.error ?? 'unknown error' })
-        }
-      } catch (err: unknown) {
-        const message = err instanceof Error ? err.message : 'unknown error'
-        setStatus({ type: 'error', msg: message })
-      }
+      mutation.mutate(fd)
     },
-    [rail, kind, title, source, href, description, thumbnail, tags]
+    [rail, kind, title, source, href, description, thumbnail, tags, mutation]
   )
+
+  const isSaving = mutation.status === 'pending'
+  const statusMessage = (() => {
+    if (validationError) return { tone: 'error' as const, text: validationError }
+    if (mutation.status === 'pending') return { tone: 'muted' as const, text: 'saving...' }
+    if (mutation.status === 'success')
+      return { tone: 'success' as const, text: `added to ${mutation.data.slug}` }
+    if (mutation.status === 'error')
+      return {
+        tone: 'error' as const,
+        text: mutation.error instanceof Error ? mutation.error.message : 'unknown error',
+      }
+    return null
+  })()
 
   const inputClass =
     'bg-bg border border-border px-3 py-1.5 text-sm text-text font-mono focus:outline-none focus:border-primary placeholder:text-muted/50 w-full'
@@ -123,23 +125,23 @@ export default function WeeklyItemForm() {
           admin / weekly log editor
         </span>
         <div className="flex items-center gap-4">
-          {status.type !== 'idle' && (
+          {statusMessage && (
             <span
               className={`font-mono text-xs ${
-                status.type === 'success'
+                statusMessage.tone === 'success'
                   ? 'text-green-500'
-                  : status.type === 'error'
+                  : statusMessage.tone === 'error'
                     ? 'text-red-500'
                     : 'text-muted'
               }`}
             >
-              {status.type === 'saving' ? 'saving...' : status.msg}
+              {statusMessage.text}
             </span>
           )}
           <button
             type="submit"
             form="weekly-item-form"
-            disabled={status.type === 'saving'}
+            disabled={isSaving}
             className="px-4 py-1.5 bg-primary text-bg font-mono text-xs hover:opacity-80 transition-opacity disabled:opacity-40"
           >
             add item
@@ -269,10 +271,10 @@ export default function WeeklyItemForm() {
           <div className="pt-2">
             <button
               type="submit"
-              disabled={status.type === 'saving'}
+              disabled={isSaving}
               className="w-full px-4 py-2.5 bg-primary text-bg font-mono text-sm hover:opacity-80 transition-opacity disabled:opacity-40"
             >
-              {status.type === 'saving' ? 'saving...' : 'add item'}
+              {isSaving ? 'saving...' : 'add item'}
             </button>
           </div>
         </form>

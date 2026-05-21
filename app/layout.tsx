@@ -12,6 +12,7 @@ import { SITE } from '@/lib/site'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import Providers from './providers'
 
 export const metadata: Metadata = {
   ...buildMetadata({ path: '/' }),
@@ -82,13 +83,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </p>
         </noscript>
         <ClerkProvider>
-          <ThemeProvider>
-            <JsonLd data={personSchema()} />
-            <JsonLd data={websiteSchema()} />
-            <Nav />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </ThemeProvider>
+          <Providers>
+            <ThemeProvider>
+              <JsonLd data={personSchema()} />
+              <JsonLd data={websiteSchema()} />
+              <Nav />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </ThemeProvider>
+          </Providers>
         </ClerkProvider>
         <Analytics />
         <SpeedInsights />
