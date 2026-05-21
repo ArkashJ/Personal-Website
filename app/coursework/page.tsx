@@ -5,7 +5,7 @@ import Badge from '@/components/ui/Badge'
 import TechBadge from '@/components/ui/TechBadge'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
-import { COURSES, coursesBySemester, type Course } from '@/lib/coursework'
+import { coursesBySemester, type Course } from '@/lib/coursework'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({

@@ -7,9 +7,11 @@ import { getAllWeeklyLogs, getAllItems } from '@/lib/weekly'
 const PAGE_SIZE = 5
 
 function formatDateRange(weekStart: string, weekEnd: string) {
+  // Parse YYYY-MM-DD as local-time to avoid UTC-shift off-by-one.
   const fmt = (d: string) => {
-    const date = new Date(d)
-    if (Number.isNaN(date.getTime())) return d
+    const m = d.match(/^(\d{4})-(\d{2})-(\d{2})$/)
+    if (!m) return d
+    const date = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]))
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
   }
   return `${fmt(weekStart)} → ${fmt(weekEnd)}`

@@ -4,16 +4,16 @@ import { create } from 'zustand'
 
 type UiState = {
   paletteOpen: boolean
-  setPaletteOpen: (open: boolean) => void
+  setPaletteOpen: (_open: boolean) => void
   togglePalette: () => void
 
   mobileNavOpen: boolean
-  setMobileNavOpen: (open: boolean) => void
+  setMobileNavOpen: (_open: boolean) => void
   toggleMobileNav: () => void
 
   modalId: string | null
   modalPayload: unknown
-  openModal: (id: string, payload?: unknown) => void
+  openModal: (_id: string, _payload?: unknown) => void
   closeModal: () => void
 }
 

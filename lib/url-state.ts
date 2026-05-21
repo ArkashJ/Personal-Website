@@ -8,7 +8,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 // Empty / null values clear the param.
 export function useUrlState(keys: readonly string[]): {
   values: Record<string, string>
-  set: (key: string, value: string | null) => void
+  set: (_key: string, _value: string | null) => void
   reset: () => void
 } {
   const router = useRouter()

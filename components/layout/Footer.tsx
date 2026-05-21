@@ -37,8 +37,8 @@ const SocialIcon = ({ spec }: { spec: IconSpec }) => {
     const Icon = spec.Component
     return <Icon size={16} />
   }
-  // eslint-disable-next-line @next/next/no-img-element
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={`https://cdn.simpleicons.org/${spec.slug}`}
       alt=""
