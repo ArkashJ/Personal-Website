@@ -12,7 +12,6 @@
     "dev": "next dev --turbo",
     "prebuild": "bun scripts/sync-git-changelog.mjs && bun scripts/sync-project-readmes.mjs",
     "build": "next build",
-    "analyze": "ANALYZE=1 bun run build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -20,6 +19,8 @@
     "format:check": "prettier --check .",
     "knip": "knip",
     "knip:fix": "knip --fix --allow-remove-files",
+    "biome": "biome check",
+    "biome:fix": "biome check --write",
     "sync:changelog": "bun scripts/sync-git-changelog.mjs",
     "sync:readmes": "bun scripts/sync-project-readmes.mjs",
     "icons:fetch": "bun scripts/fetch-icons.ts",
@@ -49,7 +50,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^16.2.6",
+    "@biomejs/biome": "^2.4.15",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

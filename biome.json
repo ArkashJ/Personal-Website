@@ -1,0 +1,124 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "app/**/*",
+      "components/**/*",
+      "lib/**/*",
+      "!**/node_modules",
+      "!**/.next",
+      "!**/.turbo",
+      "!**/.vercel",
+      "!**/dist",
+      "!**/build",
+      "!**/out",
+      "!**/coverage",
+      "!**/.playwright-mcp",
+      "!**/captures",
+      "!**/public",
+      "!**/content/**/*.mdx",
+      "!**/*.md",
+      "!**/*.mdx",
+      "!**/*.css"
+    ]
+  },
+  "formatter": {
+    "enabled": false,
+    "indentStyle": "tab"
+  },
+  "linter": {
+    "enabled": true,
+    "includes": ["app/**/*", "components/**/*", "lib/**/*"],
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "noSvgWithoutTitle": "off",
+        "useSemanticElements": "off",
+        "noLabelWithoutControl": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "useJsxKeyInIterable": "off",
+        "noUnusedImports": "off",
+        "noUnusedVariables": "off",
+        "noChildrenProp": "off",
+        "noUnknownProperty": "off"
+      },
+      "style": {
+        "useImportType": "off",
+        "useNodejsImportProtocol": "off",
+        "useTemplate": "off",
+        "useSelfClosingElements": "off",
+        "useConst": "off",
+        "noNonNullAssertion": "off",
+        "useNumberNamespace": "off",
+        "useFilenamingConvention": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noExplicitAny": "off",
+        "noConsole": "off",
+        "noAssignInExpressions": "off"
+      },
+      "complexity": {
+        "noBannedTypes": "off",
+        "useOptionalChain": "off",
+        "noUselessFragments": "off",
+        "useArrowFunction": "off",
+        "noForEach": "off"
+      },
+      "performance": {
+        "noImgElement": "off",
+        "noDelete": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "assist": {
+    "enabled": false,
+    "actions": {
+      "source": {
+        "organizeImports": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["app/**/*.tsx", "app/**/*.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNamingConvention": "off"
+          },
+          "suspicious": {
+            "noEmptyBlockStatements": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.config.{js,ts,mjs,cjs}", "scripts/**/*"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    }
+  ]
+}
