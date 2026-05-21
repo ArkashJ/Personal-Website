@@ -56,8 +56,8 @@ const readmeMdxComponents = {
   hr: () => <hr className="border-border my-8" />,
   strong: (p: ComponentProps<'strong'>) => <strong className="text-text font-bold" {...p} />,
   em: (p: ComponentProps<'em'>) => <em className="text-text" {...p} />,
-  // eslint-disable-next-line @next/next/no-img-element
   img: (p: ComponentProps<'img'>) => (
+    // eslint-disable-next-line @next/next/no-img-element
     <img className="max-w-full h-auto my-4" alt={p.alt ?? ''} {...p} />
   ),
   table: (p: ComponentProps<'table'>) => (
