@@ -6,6 +6,7 @@ import PaperCard from '@/components/sections/PaperCard'
 import ProjectCard from '@/components/sections/ProjectCard'
 import RollingLog from '@/components/sections/RollingLog'
 import FeaturedBanner from '@/components/sections/FeaturedBanner'
+import ThisWeekFloat from '@/components/sections/ThisWeekFloat'
 import Card from '@/components/ui/Card'
 import TechBadge from '@/components/ui/TechBadge'
 import { PAPERS, PROJECTS } from '@/lib/data'
@@ -78,6 +79,9 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
           </div>
         </Card>
       </section>
+
+      {/* Floating "This Week" feature card — sits in the middle of the page */}
+      <ThisWeekFloat />
 
       {/* Research */}
       <section className="px-6 py-10 max-w-6xl mx-auto">
