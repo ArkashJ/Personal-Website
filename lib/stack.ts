@@ -1,4 +1,4 @@
-export type StackItem = {
+type StackItem = {
   name: string
   why: string
   url?: string

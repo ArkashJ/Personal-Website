@@ -8,7 +8,7 @@ export type FeaturedBanner = {
   priority: number
 }
 
-export const BANNERS: FeaturedBanner[] = [
+const BANNERS: FeaturedBanner[] = [
   {
     id: 'w19-tuesday-reads-2026-05-05',
     headline: 'May 5',

@@ -2,7 +2,7 @@
 // Each entry maps to one MDX file at content/coursework/<semester-slug>/<slug>.mdx,
 // rendered by app/coursework/[slug]/page.tsx (and optional sub-pages via [sub]).
 
-export type CoursePaper = {
+type CoursePaper = {
   title: string
   authors?: string
   year?: string

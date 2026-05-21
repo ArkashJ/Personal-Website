@@ -91,7 +91,7 @@ export type ResolvedItem = {
 
 // Normalizes a rail entry into a renderable object, deriving thumbnails and
 // source logos when the author didn't supply them.
-export function resolveItem(item: WeeklyItem): ResolvedItem {
+function resolveItem(item: WeeklyItem): ResolvedItem {
   if (typeof item === 'string') {
     return { text: item, bodyMarkdown: item }
   }

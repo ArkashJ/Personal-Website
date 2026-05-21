@@ -1,4 +1,4 @@
-export type TagIcon = { slug: string; label?: string }
+type TagIcon = { slug: string; label?: string }
 
 const normalize = (name: string): string =>
   name.toLowerCase().replace(/\s+/g, ' ').replace(/[._]+/g, ' ').trim()
@@ -83,7 +83,7 @@ const RAW: Record<string, TagIcon> = {
   spotify: { slug: 'spotify', label: 'Spotify' },
 }
 
-export function tagIconSlug(name: string): string | undefined {
+function tagIconSlug(name: string): string | undefined {
   return RAW[normalize(name)]?.slug
 }
 

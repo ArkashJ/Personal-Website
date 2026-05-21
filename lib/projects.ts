@@ -6,7 +6,7 @@ export type ProjectLike = (Project | WorkTool) & {
   slug: string
 }
 
-export function projectSlug(name: string): string {
+function projectSlug(name: string): string {
   return name
     .toLowerCase()
     .replace(/\(.+?\)/g, '')
