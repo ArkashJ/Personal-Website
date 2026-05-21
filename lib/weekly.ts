@@ -58,8 +58,3 @@ export async function getWeeklyLog(
   if (!isValidWeeklyMeta(data)) return null
   return { meta: { slug, ...(data as Omit<WeeklyLogMeta, 'slug'>) }, source: content }
 }
-
-export function getLatestWeeklyLog(): WeeklyLogMeta | null {
-  const all = getAllWeeklyLogs()
-  return all[0] ?? null
-}

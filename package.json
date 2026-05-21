@@ -17,6 +17,10 @@
     "lint:fix": "next lint --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "knip": "knip",
+    "knip:fix": "knip --fix --allow-remove-files",
+    "biome": "biome check",
+    "biome:fix": "biome check --write",
     "sync:changelog": "bun scripts/sync-git-changelog.mjs",
     "sync:readmes": "bun scripts/sync-project-readmes.mjs",
     "icons:fetch": "bun scripts/fetch-icons.ts",
@@ -28,6 +32,7 @@
   "dependencies": {
     "@clerk/nextjs": "^7.3.0",
     "@next/third-parties": "^16.2.4",
+    "@tanstack/react-query": "^5.100.11",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "cmdk": "^1.1.1",
@@ -40,12 +45,12 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-markdown": "^10.1.0",
-    "react-tweet": "^3.3.0",
-    "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.15",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -54,6 +59,7 @@
     "eslint-config-next": "^15.5.15",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",
+    "knip": "^6.14.1",
     "lint-staged": "^15.2.10",
     "postcss": "^8.4.20",
     "prettier": "^3.3.3",

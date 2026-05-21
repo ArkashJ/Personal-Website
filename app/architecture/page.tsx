@@ -4,6 +4,7 @@ import Pill from '@/components/ui/Pill'
 import { buildMetadata } from '@/lib/metadata'
 import {
   CiCdDiagram,
+  ClientStateDiagram,
   ComponentTreeDiagram,
   ContentPipelineDiagram,
   NavigationFlowDiagram,
@@ -15,7 +16,7 @@ import {
 export const metadata = buildMetadata({
   title: 'Site Architecture',
   description:
-    'Architecture diagrams for arkashj.com — page structure, navigation, content pipeline, SEO, CI/CD, and component hierarchy.',
+    'Architecture diagrams for arkashj.com — page structure, navigation, content pipeline, SEO, CI/CD, component hierarchy, skills library, and client state (Zustand + TanStack Query).',
   path: '/architecture',
   keywords: [
     'site architecture',
@@ -24,6 +25,8 @@ export const metadata = buildMetadata({
     'CI/CD',
     'content pipeline',
     'component tree',
+    'Zustand',
+    'TanStack Query',
   ],
 })
 
@@ -65,11 +68,12 @@ export default function ArchitecturePage() {
           How this site is built.
         </h1>
         <p className="mt-1 text-2xl md:text-3xl font-bold leading-[1.1] tracking-tight italic text-accent">
-          Seven diagrams.
+          Eight diagrams.
         </p>
         <p className="text-muted text-sm md:text-base leading-relaxed max-w-2xl mt-4">
-          Page structure, navigation, content pipeline, SEO, CI/CD, component hierarchy, and the
-          public skills library. The canonical reference for how arkashj.com is built.
+          Page structure, navigation, content pipeline, SEO, CI/CD, component hierarchy, the public
+          skills library, and the client-state layer. The canonical reference for how arkashj.com is
+          built.
         </p>
       </div>
 
@@ -123,6 +127,29 @@ export default function ArchitecturePage() {
 
       <DiagramSection
         index="07"
+        title="Client state — Zustand + TanStack Query"
+        description="Two narrow client-state layers wrapped around a server-rendered app: Zustand for transient UI flags, TanStack Query for server-action lifecycle."
+      >
+        <ClientStateDiagram />
+        <p className="text-muted text-sm leading-relaxed max-w-2xl mt-6">
+          Almost the entire site is server-rendered. The two exceptions live inside the provider
+          chain mounted by <span className="font-mono text-[12px]">app/layout.tsx</span>:{' '}
+          <span className="font-mono text-[12px]">ClerkProvider</span> →{' '}
+          <span className="font-mono text-[12px]">Providers (QueryClient)</span> →{' '}
+          <span className="font-mono text-[12px]">ThemeProvider</span>. A single Zustand store (
+          <span className="font-mono text-[12px]">useUiStore</span>) owns the cmdk palette, mobile
+          nav, and a generic modal slot — consumed by{' '}
+          <span className="font-mono text-[12px]">Nav</span> and{' '}
+          <span className="font-mono text-[12px]">CommandPalette</span>. TanStack Query wraps the
+          one server action that mutates from the browser: the Clerk-gated weekly editor calls{' '}
+          <span className="font-mono text-[12px]">addWeeklyItem</span> through{' '}
+          <span className="font-mono text-[12px]">useMutation</span>, giving the form its
+          loading/error/success states without hand-rolling reducers.
+        </p>
+      </DiagramSection>
+
+      <DiagramSection
+        index="08"
         title="Skills library"
         description="71 Claude Code skills served from flat markdown files via /skills, /skills/[slug], /skills/[slug]/raw, and /skills.json."
       >

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "app/**/{page,layout,loading,error,not-found,template,opengraph-image,apple-icon}.{ts,tsx}",
+    "app/**/route.{ts,tsx}",
+    "app/api/**/*.{ts,tsx}",
+    "scripts/**/*.{ts,mjs}"
+  ],
+  "project": [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "lib/**/*.{ts,tsx}",
+    "types/**/*.{ts,tsx}"
+  ],
+  "ignoreExportsUsedInFile": true,
+  "ignoreBinaries": ["vhs", "scripts/capture-weekly.sh", "scripts/frames-to-gif.sh"]
+}

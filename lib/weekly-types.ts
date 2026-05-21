@@ -138,14 +138,3 @@ export function getAllItems(meta: WeeklyLogMeta): EnrichedWeeklyItem[] {
   }
   return out
 }
-
-export function categoryCounts(meta: WeeklyLogMeta) {
-  return {
-    read: meta.read?.length ?? 0,
-    watched: meta.watched?.length ?? 0,
-    built: meta.built?.length ?? 0,
-    shipped: meta.shipped?.length ?? 0,
-    learned: meta.learned?.length ?? 0,
-    met: meta.met?.length ?? 0,
-  }
-}

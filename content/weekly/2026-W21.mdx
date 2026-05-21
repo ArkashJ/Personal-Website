@@ -1,0 +1,166 @@
+---
+title: 'Tooling pass — Biome, Knip, Zustand, TanStack Query, and three backfilled weekly entries'
+weekStart: '2026-05-18'
+weekEnd: '2026-05-24'
+description: 'Cleaned up the dev toolchain (added Biome + Knip alongside ESLint/Prettier), introduced Zustand for cmdk/mobile-nav state, wrapped the admin/weekly form in TanStack Query, purged ~14 dead files + ~1k LOC via Knip, refreshed the architecture map with a new client-state diagram, and backfilled three earlier weekly entries (W11, W12, W17) that never made it to the site.'
+tags:
+  - 'Personal Site'
+  - 'arkashj.com'
+  - 'Biome'
+  - 'Knip'
+  - 'Zustand'
+  - 'TanStack Query'
+  - 'Server Actions'
+  - 'Dead Code'
+  - 'Tooling'
+  - 'Architecture'
+  - 'Next.js 15'
+  - 'React 19'
+  - 'Bun'
+  - 'Dev Velocity'
+  - 'a11y'
+  - 'Bundle Hygiene'
+  - 'Weekly Backfill'
+shipped:
+  - text: 'Zustand UI store — lib/store.ts'
+    href: 'https://github.com/ArkashJ/Personal-Website/blob/main/lib/store.ts'
+    source: 'GitHub'
+    kind: 'repo'
+    notes: 'Single `useUiStore` slice: paletteOpen (cmdk visibility), mobileNavOpen, and a generic modalId/modalPayload slot reserved for cross-component coordination. Nav and CommandPalette now read/write through the store instead of prop-drilling open/onOpenChange — the Cmd+K keyboard handler lives next to its state.'
+  - text: 'TanStack Query + addWeeklyItem useMutation'
+    href: 'https://tanstack.com/query/v5'
+    source: 'TanStack'
+    kind: 'repo'
+    notes: 'Client-side QueryClientProvider mounted in app/providers.tsx with 60s staleTime, 5m gc, no window-focus refetch. WeeklyItemForm now wraps the addWeeklyItem server action in useMutation — automatic isPending/isError tracking + reset-on-success flow.'
+  - text: 'Biome alongside ESLint + Prettier'
+    href: 'https://biomejs.dev'
+    source: 'Biome'
+    kind: 'repo'
+    notes: 'biome.json scoped to lint only (formatting stays with Prettier). Caught 11 real findings ESLint missed — button-type, ARIA-prop mismatches, useless regex escapes, suspicious JSX semicolons. Coexists with ESLint + Prettier rather than replacing them; lint-staged + husky untouched.'
+  - text: 'Knip for unused-export detection + cleanup pass'
+    href: 'https://knip.dev'
+    source: 'Knip'
+    kind: 'repo'
+    notes: 'knip.json scoped to app/components/lib trees. First-pass report flagged 14 files + 2 deps + 7 unused exports + 1 unused type. Cleanup removed 977 lines / 23 files: lib/finance.ts, lib/highlights.ts, lib/learnings.ts, components/embeds/* (Tweet/YouTube/Substack/LinkedInPost/Gist), components/sections/{CommitsSidebar,ExperienceStoryNode,ThesisTracker,TradeLog}, components/ui/SocialLinks, plus react-tweet + rehype-slug deps. Each deletion verified by grep across content/ + source.'
+  - text: 'New ClientStateDiagram on /architecture'
+    href: '/architecture'
+    source: 'arkashj.com'
+    kind: 'note'
+    notes: 'Eighth architecture diagram: visualizes the provider chain (html → ClerkProvider → Providers/QueryClient → ThemeProvider → app) alongside the Zustand store slices and their consumers. ComponentTreeDiagram refreshed to show the full provider stack.'
+  - text: 'Three backfilled weekly entries — 2026-W11, 2026-W12, 2026-W17'
+    href: '/weekly'
+    source: 'arkashj.com'
+    kind: 'note'
+    notes: 'Translated three private notes weeks into MDX + day-tagged entries. W11 (Mar 9–15) — PCS hardening week + four-engineer onboarding + Anthropic J-curve + ERCOT vs PJM deep dive. W12 (Mar 16–22) — PR queue + hiring kickoff + Legora culture. W17 (Apr 20–26) — HSP + Cattle Logic App Store launches + 92K-layoff macro backdrop. W11 also enriched with source-linked context pulled from the alpha CHANGELOG.'
+built:
+  - text: 'Six pre-existing Biome a11y errors flagged for follow-up'
+    notes: 'useButtonType (ce-plan/Editor, WeeklyGrid, ProjectDetailModal), useAriaPropsSupportedByRole (media/page x2), noStaticElementInteractions (CommandPalette overlay div). All predate this pass — Biome made them visible, fix lands next.'
+  - text: 'Bundle-analyzer wiring left out on purpose'
+    notes: 'Partial prod-efficiency refactor introduced a broken dynamic import in WeeklyGrid (missing Image + ReactMarkdown imports after extracting WeeklyDetailModal). Reverted to keep the branch shippable. Bundle analyzer can be wired up cleanly in a follow-up alongside the targeted dynamic imports.'
+met: []
+watched:
+  - text: 'Production-readiness walk via playwright-cli'
+    source: 'playwright-cli'
+    kind: 'note'
+    notes: '31 routes hit on localhost:3011 — all 200s (or 307 redirects for /VC, /Volunteering, /work pointing at /about). New routes /weekly/2026-W11, W12, W17 + their /raw variants render cleanly. /architecture loads the new ClientStateDiagram. Sitemap regenerated automatically.'
+  - text: 'Knip findings report — initial vs post-cleanup'
+    source: 'knip.dev'
+    kind: 'article'
+    notes: 'Before: 14 unused files, 2 unused deps, 7 unused exports, 1 unused type. After: 0 / 0 / 0 / 0 (only the pre-existing .sh-binaries config warning remains). 977 deletions / 36 insertions across 23 files. Build still passes.'
+learned:
+  - 'Worktree isolation needs explicit verification. The Agent tool''s `isolation: "worktree"` is best-effort — a parallel-dispatched agent ended up running in the main tree, broke WeeklyGrid mid-refactor, and forced a manual recovery (kill the agent, stash, drop, cherry-pick the good worktree branch).'
+  - 'Knip cannot trace MDX-mapped components. The cleanup agent was right to verify every flagged file with grep across `content/` — six embed components looked dead but Knip''s `project` glob excludes MDX, so Knip''s "unused" verdict needed manual confirmation. In this case the grep confirmed actually-zero usage; in another repo it could easily delete a live `<Tweet>`.'
+  - "Adding Biome on top of ESLint + Prettier is the safe upgrade path. The full swap is appealing for CI speed, but `next lint`'s Next.js-aware rules don't have a direct Biome equivalent. Co-existence catches the gaps (a11y, useless escapes, suspicious JSX) without losing Next-specific lint coverage."
+  - "Module-cached `getAllWeeklyLogs` survives across dev reloads. Adding new MDX files at runtime makes the detail pages render but they don't appear in the rolling-log index until the dev server restarts — a clean snapshot of why the cache exists (production gets a fresh build per deploy anyway)."
+  - "Server actions wrap cleanly in useMutation. `addWeeklyItem` is a single import; useMutation around it gives isPending + onSuccess + structured error states with zero ceremony. No `'use client'` boundary inside the action — Query just treats it like any async function."
+changelog:
+  - date: '2026-05-21'
+    note: 'Initial publish — Zustand + TanStack Query + Biome + Knip + W11/W12/W17 backfill + ClientStateDiagram all landed in a single feature branch.'
+---
+
+## What actually shipped
+
+Tooling week. Four additions to the dev pipeline and one set of content backfills.
+
+The big one: **the client-state layer got real**. `lib/store.ts` is a small
+Zustand store carrying the command palette open/close, the mobile-nav open
+state, and a generic modal slot for future cross-component coordination.
+`Nav` and `CommandPalette` were both reading/writing the same logical state
+through props before — now they share it through the store and the Cmd+K
+keyboard handler lives next to its state. The admin weekly form is the
+first **TanStack Query** consumer: `useMutation` wraps the
+`addWeeklyItem` server action with automatic `isPending`/`isError`/data
+tracking and a reset-on-success flow.
+
+**Biome** is in alongside ESLint + Prettier — not replacing them.
+Formatting stays with Prettier; Biome runs read-only lint over the
+app/components/lib trees and immediately caught 11 things ESLint missed
+(button-type, ARIA-on-disallowed-elements, useless regex escapes,
+suspicious JSX semicolons). Six of those are pre-existing and queued for
+a follow-up.
+
+**Knip** got configured + ran + cleaned. The cleanup pass removed 14
+files / 2 deps / 8 exports — 977 deletions in total: `lib/finance.ts`,
+`lib/highlights.ts`, `lib/learnings.ts`, every `components/embeds/*`
+(Tweet/YouTube/Substack/LinkedInPost/Gist — none referenced from MDX),
+the legacy `CommitsSidebar`/`ExperienceStoryNode`/`ThesisTracker`/`TradeLog`
+sections, plus `react-tweet` and `rehype-slug` deps that nothing imported.
+Each deletion verified by grep across `content/`, `app/`, `components/`,
+`lib/`.
+
+The **architecture map** picked up an eighth diagram — `ClientStateDiagram`
+shows the provider chain (html → ClerkProvider → Providers/QueryClient →
+ThemeProvider → app surface) next to the Zustand slices and their
+consumers. The existing `ComponentTreeDiagram` got refreshed to show the
+full provider stack instead of the old Clerk-only chain.
+
+## Reading
+
+The recovery from the parallel-agent worktree escape was the lesson of
+the week. Four agents dispatched in `isolation: "worktree"` mode against
+the same base branch — one of them somehow ended up modifying the main
+tree instead of its isolated copy, broke a dynamic-import refactor on
+`WeeklyGrid.tsx`, and left ~25 uncommitted files behind. The recovery
+path: stop the running agent, stash the dirty changes, drop the stash,
+cherry-pick the clean worktree branch (Biome) onto the working branch,
+and discard the half-refactor. Cost: about ten minutes. Bias for next
+time: verify a worktree branch is alive _before_ assuming the agent
+operated in isolation, and don't dispatch parallel agents that touch the
+same root files without rebase contracts.
+
+## Backfilled this week
+
+Three earlier weekly entries that lived only in private notes are now
+public:
+
+- **[2026-W11](/weekly/2026-W11)** — PCS audit logging + Kong + JWT
+  hardening, CRL/Workforce shipped, four engineers onboarded (Jacob,
+  Leo, Aditya, Enrin), Anthropic's $1B→$14B 14-month J-curve, the
+  ERCOT-vs-PJM capacity-market deep dive, and the SEC/CFTC split on
+  tokenized securities.
+- **[2026-W12](/weekly/2026-W12)** — five PCS PRs cleared (#114, #128,
+  #109, #120, #118), Martins kicked off Claude Code hiring sessions via
+  Trueup + Builtin, Alex Titov starts Monday, and the Legora culture
+  profile.
+- **[2026-W17](/weekly/2026-W17)** — HSP and Cattle Logic both submitted
+  to the App Store with launch posts, PCS certificate management
+  merged, arkashj.com revamped (UROP, changelog, stack icons, sitemap
+  submitted to Google + IndexNow Bing), all against a 92K-layoff macro
+  tape.
+
+## What's next week
+
+Three things on deck:
+
+1. **Bundle-analyzer pass — done cleanly this time.** Wire
+   `@next/bundle-analyzer` into `next.config.js`, run `ANALYZE=1`, pick
+   2-3 targeted dynamic imports (WeeklyDetailModal, ProjectDetailModal,
+   GearMenu candidates), measure the diff, ship.
+2. **Clear the six Biome a11y errors.** Button types and ARIA prop
+   mismatches across `ce-plan/Editor`, `WeeklyGrid`, `ProjectDetailModal`,
+   `media/page` (×2), and the `CommandPalette` overlay div.
+3. **Extend the Zustand store + TanStack Query coverage.** Move the
+   `ProjectDetailModal` open state to the generic modal slot
+   (`modalId: 'project'` + payload). Add a `useQuery` for the projects
+   index so the search/filter UI reflects server-side data — the modal
+   detail content stays SSR for SEO.

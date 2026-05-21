@@ -295,6 +295,7 @@ export default function MediaPage() {
                     {r.reviewer}
                   </span>
                   <span
+                    role="img"
                     className="text-success text-base leading-none flex-shrink-0"
                     aria-label="Five stars"
                   >
@@ -334,6 +335,7 @@ export default function MediaPage() {
                       trustpilot.com/{reviewLabel(r.url)}…
                     </span>
                     <span
+                      role="img"
                       className="text-success text-sm leading-none flex-shrink-0"
                       aria-label="Five stars"
                     >

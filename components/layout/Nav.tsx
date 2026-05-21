@@ -2,22 +2,25 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
 import { NAV_LINKS } from '@/lib/site'
 import ThemeToggle from '@/components/ThemeToggle'
 import CommandPalette from '@/components/ui/CommandPalette'
 import GearMenu from '@/components/layout/GearMenu'
+import { useUiStore } from '@/lib/store'
 
 const Nav = () => {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
-  const [paletteOpen, setPaletteOpen] = useState(false)
+  const mobileNavOpen = useUiStore((s) => s.mobileNavOpen)
+  const setMobileNavOpen = useUiStore((s) => s.setMobileNavOpen)
+  const toggleMobileNav = useUiStore((s) => s.toggleMobileNav)
+  const setPaletteOpen = useUiStore((s) => s.setPaletteOpen)
   const [isMac, setIsMac] = useState(true)
 
   useEffect(() => {
-    setOpen(false)
-  }, [pathname])
+    setMobileNavOpen(false)
+  }, [pathname, setMobileNavOpen])
 
   useEffect(() => {
     setIsMac(typeof navigator !== 'undefined' && /Mac|iP/.test(navigator.platform))
@@ -27,7 +30,7 @@ const Nav = () => {
     <>
       <div className="sticky top-0 z-50 px-3 pt-3 pb-1 bg-gradient-to-b from-bg/95 via-bg/70 to-transparent backdrop-blur-md">
         <nav
-          className={`max-w-6xl mx-auto bg-surface/95 border border-border-strong shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-[border-radius] duration-200 ${open ? 'rounded-2xl' : 'rounded-full'}`}
+          className={`max-w-6xl mx-auto bg-surface/95 border border-border-strong shadow-[0_8px_28px_-12px_rgba(0,0,0,0.45)] transition-[border-radius] duration-200 ${mobileNavOpen ? 'rounded-2xl' : 'rounded-full'}`}
         >
           <div className="px-5 py-2.5 flex items-center justify-between gap-4">
             <Link
@@ -89,30 +92,30 @@ const Nav = () => {
               <GearMenu size={16} />
               <ThemeToggle />
               <button
-                aria-label={open ? 'Close menu' : 'Open menu'}
-                aria-expanded={open}
+                aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileNavOpen}
                 type="button"
-                onClick={() => setOpen((v) => !v)}
+                onClick={toggleMobileNav}
                 className="flex flex-col gap-1 p-2 -mr-2"
               >
                 <span
                   className={`block h-0.5 w-5 bg-text transition-transform ${
-                    open ? 'translate-y-1.5 rotate-45' : ''
+                    mobileNavOpen ? 'translate-y-1.5 rotate-45' : ''
                   }`}
                 />
                 <span
-                  className={`block h-0.5 w-5 bg-text transition-opacity ${open ? 'opacity-0' : ''}`}
+                  className={`block h-0.5 w-5 bg-text transition-opacity ${mobileNavOpen ? 'opacity-0' : ''}`}
                 />
                 <span
                   className={`block h-0.5 w-5 bg-text transition-transform ${
-                    open ? '-translate-y-1.5 -rotate-45' : ''
+                    mobileNavOpen ? '-translate-y-1.5 -rotate-45' : ''
                   }`}
                 />
               </button>
             </div>
           </div>
 
-          {open && (
+          {mobileNavOpen && (
             <div className="md:hidden border-t border-border rounded-b-2xl">
               <ul className="px-5 py-4 flex flex-col gap-2">
                 {NAV_LINKS.map((link) => {
@@ -135,7 +138,7 @@ const Nav = () => {
           )}
         </nav>
       </div>
-      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      <CommandPalette />
     </>
   )
 }

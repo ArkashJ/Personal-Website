@@ -12,40 +12,6 @@ export type GitCommit = {
   tags: string[]
 }
 
-export type CommitType =
-  | 'feat'
-  | 'fix'
-  | 'refactor'
-  | 'chore'
-  | 'docs'
-  | 'perf'
-  | 'test'
-  | 'build'
-  | 'ci'
-  | 'style'
-  | 'revert'
-  | 'weekly'
-  | 'other'
-
-export const KNOWN_TYPES: ReadonlySet<CommitType> = new Set<CommitType>([
-  'feat',
-  'fix',
-  'chore',
-  'docs',
-  'refactor',
-  'perf',
-  'test',
-  'build',
-  'ci',
-  'style',
-  'revert',
-  'weekly',
-])
-
-export function isKnownType(t: string | null): boolean {
-  return Boolean(t && KNOWN_TYPES.has(t as CommitType))
-}
-
 const REPO_URL = 'https://github.com/ArkashJ/Personal-Website'
 
 export function commitGithubUrl(hash: string): string {
