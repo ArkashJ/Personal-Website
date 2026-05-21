@@ -102,6 +102,7 @@ export default function Editor() {
             </span>
           )}
           <button
+            type="button"
             onClick={handlePublish}
             disabled={status.type === 'saving'}
             className="px-4 py-1.5 bg-primary text-bg font-mono text-xs hover:opacity-80 transition-opacity disabled:opacity-40"

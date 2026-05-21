@@ -13,5 +13,5 @@
     "types/**/*.{ts,tsx}"
   ],
   "ignoreExportsUsedInFile": true,
-  "ignoreBinaries": ["vhs"]
+  "ignoreBinaries": ["vhs", "scripts/capture-weekly.sh", "scripts/frames-to-gif.sh"]
 }

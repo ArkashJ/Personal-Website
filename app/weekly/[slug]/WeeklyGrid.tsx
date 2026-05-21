@@ -161,6 +161,7 @@ function DetailModal({
             </div>
           </div>
           <button
+            type="button"
             onClick={requestClose}
             className="flex-shrink-0 text-subtle hover:text-text active:scale-[0.92] transition-[color,transform] duration-150 p-1 -mr-1 -mt-1"
             aria-label="Close"

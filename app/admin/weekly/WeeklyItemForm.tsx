@@ -30,7 +30,7 @@ function isValidUrl(value: string): boolean {
 
 export default function WeeklyItemForm() {
   const [rail, setRail] = useState<RailKey>('read')
-  const [kind, setKind] = useState<WeeklyItemKind>(RAIL_DEFAULT_KIND['read'])
+  const [kind, setKind] = useState<WeeklyItemKind>(RAIL_DEFAULT_KIND.read)
   const [kindOverridden, setKindOverridden] = useState(false)
   const [title, setTitle] = useState('')
   const [source, setSource] = useState('')

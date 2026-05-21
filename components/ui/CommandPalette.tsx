@@ -94,6 +94,7 @@ const CommandPalette = () => {
   if (!open) return null
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: modal backdrop click-to-close — Escape key handler lives in the global useEffect above and covers all keyboard users
     <div
       className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] px-4 bg-bg/80 backdrop-blur-sm"
       onClick={() => setOpen(false)}

@@ -198,7 +198,8 @@ export default function InfoPage() {
               <span>
                 <strong className="text-text font-mono text-[13px]">Weekly admin → MDX</strong> —
                 the local weekly admin appends a new entry into{' '}
-                <code className="font-mono text-[12px]">content/weekly/&lt;ISO-week&gt;.mdx</code>;
+                <code className="font-mono text-[12px]">content/weekly/&lt;ISO-week&gt;.mdx</code>
+                {';'}
                 the latest log surfaces on the home page automatically.
               </span>
             </li>
