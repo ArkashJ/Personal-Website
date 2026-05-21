@@ -309,9 +309,29 @@ const TREE: TreeNode = {
   label: 'app/layout.tsx',
   tone: 'teal',
   children: [
-    { label: '<Nav>', children: [{ label: 'sticky · active-route highlight', tone: 'muted' }] },
-    { label: '<main>{children}</main>' },
-    { label: '<Footer>', children: [{ label: 'site map · social', tone: 'muted' }] },
+    {
+      label: '<ClerkProvider>',
+      tone: 'cyan',
+      children: [
+        {
+          label: '<Providers> (QueryClient)',
+          tone: 'cyan',
+          children: [
+            {
+              label: '<ThemeProvider>',
+              children: [
+                {
+                  label: '<Nav>',
+                  children: [{ label: 'sticky · active-route highlight', tone: 'muted' }],
+                },
+                { label: '<main>{children}</main>' },
+                { label: '<Footer>', children: [{ label: 'site map · social', tone: 'muted' }] },
+              ],
+            },
+          ],
+        },
+      ],
+    },
     { label: '<JsonLd> Person', tone: 'cyan' },
   ],
 }
@@ -469,6 +489,97 @@ export const SkillsLibraryDiagram = () => {
         by filename regex, and feeds three render paths: a categorized list page, a per-skill detail
         page with a Copy-for-LLM button, and two machine-readable endpoints (`/raw` plain text +
         `/skills.json` index) designed to be curl-able by other agents.
+      </p>
+    </div>
+  )
+}
+
+/* ------------------------------------------------------------------ */
+/* 8. Client state — Zustand + TanStack Query                          */
+/* ------------------------------------------------------------------ */
+
+export const ClientStateDiagram = () => {
+  const providerChain: { label: string; tone?: 'default' | 'teal' | 'cyan' | 'muted' }[] = [
+    { label: '<html>', tone: 'muted' },
+    { label: '<ClerkProvider>', tone: 'cyan' },
+    { label: '<Providers> (QueryClient)', tone: 'cyan' },
+    { label: '<ThemeProvider>', tone: 'cyan' },
+    { label: 'app surface', tone: 'teal' },
+  ]
+
+  return (
+    <div className="w-full">
+      <Label>Provider chain · Zustand store · TanStack Query consumers</Label>
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6">
+        {/* Provider chain (left column, vertical) */}
+        <div className="flex flex-col items-center">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-subtle mb-3">
+            Provider chain
+          </p>
+          {providerChain.map((p, i) => (
+            <div key={p.label} className="flex flex-col items-center">
+              <Node tone={p.tone}>{p.label}</Node>
+              {i < providerChain.length - 1 && <Connector direction="v" />}
+            </div>
+          ))}
+        </div>
+
+        {/* Sidebars (right column) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border">
+          {/* Zustand */}
+          <div className="bg-surface p-4">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-2">
+              Zustand · lib/store.ts
+            </p>
+            <p className="font-mono text-[11px] text-text mb-3">useUiStore</p>
+            <div className="flex flex-col gap-1 mb-4">
+              <p className="font-mono text-[10px] text-muted">└─ paletteOpen (cmdk)</p>
+              <p className="font-mono text-[10px] text-muted">└─ mobileNavOpen</p>
+              <p className="font-mono text-[10px] text-muted">└─ modalId · modalPayload</p>
+            </div>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-subtle mb-2">
+              Consumers
+            </p>
+            <div className="flex flex-col gap-2">
+              <Node tone="default" className="justify-start">
+                components/layout/Nav.tsx
+              </Node>
+              <Node tone="default" className="justify-start">
+                components/ui/CommandPalette.tsx
+              </Node>
+            </div>
+          </div>
+
+          {/* TanStack Query */}
+          <div className="bg-surface p-4">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-accent mb-2">
+              TanStack Query · app/providers.tsx
+            </p>
+            <p className="font-mono text-[11px] text-text mb-3">QueryClient</p>
+            <div className="flex flex-col gap-1 mb-4">
+              <p className="font-mono text-[10px] text-muted">└─ staleTime 60s · gcTime 5m</p>
+              <p className="font-mono text-[10px] text-muted">└─ retry 1 · no refetch on focus</p>
+              <p className="font-mono text-[10px] text-muted">└─ mutations: retry 0</p>
+            </div>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-subtle mb-2">
+              Consumers
+            </p>
+            <div className="flex flex-col gap-2">
+              <Node tone="default" className="justify-start">
+                app/admin/weekly/WeeklyItemForm.tsx
+              </Node>
+              <p className="font-mono text-[10px] text-subtle">
+                useMutation → addWeeklyItem (server action)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className="font-mono text-[10px] text-subtle mt-4 max-w-2xl">
+        Client state lives in two narrow layers. Zustand owns transient UI flags (palette, mobile
+        nav, modal); TanStack Query owns server-action lifecycle (loading · error · success) for the
+        Clerk-gated weekly editor. Both providers mount once in `app/layout.tsx` and stay invisible
+        to server components.
       </p>
     </div>
   )
