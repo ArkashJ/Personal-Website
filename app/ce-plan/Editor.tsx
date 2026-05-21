@@ -17,7 +17,7 @@ function mdToHtml(md: string): string {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/`(.+?)`/g, '<code class="font-mono bg-surface px-1 rounded text-sm">$1</code>')
-    .replace(/^\- (.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
+    .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc">$1</li>')
     .replace(/^(\d+)\. (.+)$/gm, '<li class="ml-4 list-decimal">$2</li>')
     .replace(/\n\n/g, '</p><p class="mb-2">')
     .replace(/^(?!<[h1-6li])(.+)$/gm, '<p class="mb-2">$1</p>')
