@@ -83,8 +83,6 @@ const RAW: Record<string, TagIcon> = {
   spotify: { slug: 'spotify', label: 'Spotify' },
 }
 
-export const TAG_ICONS: Record<string, TagIcon> = RAW
-
 export function tagIconSlug(name: string): string | undefined {
   return RAW[normalize(name)]?.slug
 }

@@ -68,12 +68,6 @@ export type TimelineEntry = {
   featured?: boolean
 }
 
-export type KnowledgeDomainMeta = {
-  slug: string
-  name: string
-  description: string
-}
-
 export const PAPERS: Paper[] = [
   {
     title: 'SpatialDINO: Self-Supervised Learning for 3D Vision Transformers',

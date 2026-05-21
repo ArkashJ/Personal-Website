@@ -12,6 +12,7 @@
     "dev": "next dev --turbo",
     "prebuild": "bun scripts/sync-git-changelog.mjs && bun scripts/sync-project-readmes.mjs",
     "build": "next build",
+    "analyze": "ANALYZE=1 bun run build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -43,13 +44,12 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-markdown": "^10.1.0",
-    "react-tweet": "^3.3.0",
-    "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "server-only": "^0.0.1",
     "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.2.6",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

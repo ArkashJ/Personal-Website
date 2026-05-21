@@ -294,9 +294,6 @@ export const courseBySlug = (slug: string): Course | undefined =>
 export const coursesBySemester = (semester: Course['semester']): Course[] =>
   COURSES.filter((c) => c.semester === semester)
 
-export const coursesBySemesterSlug = (slug: Course['semesterSlug']): Course[] =>
-  COURSES.filter((c) => c.semesterSlug === slug)
-
 export const allCourseSubPages = (): { courseSlug: string; sub: CourseSubPage }[] => {
   const out: { courseSlug: string; sub: CourseSubPage }[] = []
   for (const c of COURSES) {
