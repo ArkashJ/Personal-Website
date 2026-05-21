@@ -4,6 +4,7 @@ import { Command } from 'cmdk'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { NAV_LINKS, SECONDARY_LINKS, SITE } from '@/lib/site'
+import { useUiStore } from '@/lib/store'
 
 type Item = { label: string; href: string; group: string; hint?: string }
 
@@ -58,34 +59,31 @@ const ITEMS: Item[] = [
 
 const GROUPS = ['Navigate', 'Coursework', 'Timeline', 'More', 'External'] as const
 
-const CommandPalette = ({
-  open,
-  onOpenChange,
-}: {
-  open: boolean
-  onOpenChange: (v: boolean) => void
-}) => {
+const CommandPalette = () => {
   const router = useRouter()
+  const open = useUiStore((s) => s.paletteOpen)
+  const setOpen = useUiStore((s) => s.setPaletteOpen)
+  const togglePalette = useUiStore((s) => s.togglePalette)
   const [search, setSearch] = useState('')
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault()
-        onOpenChange(!open)
+        togglePalette()
       }
-      if (e.key === 'Escape') onOpenChange(false)
+      if (e.key === 'Escape') setOpen(false)
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [open, onOpenChange])
+  }, [setOpen, togglePalette])
 
   useEffect(() => {
     if (!open) setSearch('')
   }, [open])
 
   const go = (href: string) => {
-    onOpenChange(false)
+    setOpen(false)
     if (href.startsWith('http') || href.startsWith('mailto:')) {
       window.open(href, href.startsWith('mailto:') ? '_self' : '_blank')
     } else {
@@ -98,7 +96,7 @@ const CommandPalette = ({
   return (
     <div
       className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] px-4 bg-bg/80 backdrop-blur-sm"
-      onClick={() => onOpenChange(false)}
+      onClick={() => setOpen(false)}
     >
       <Command
         label="Quick navigation"
