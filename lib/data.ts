@@ -374,6 +374,19 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    name: 'NeoSci - lab automation startup (YC application)',
+    year: '2024',
+    description:
+      'Independent original work outside of employment: NeoSci - "the future of science: automated, affordable, and based on ideas not resources." Applied to Y Combinator (March 2024) with a thesis that current lab automations are point automations (liquid handling, LNP synthesis, single-station rigs) and that no end-to-end solution automates an academic lab workflow from prep to analysis. Drafted a preliminary technical design for a Laboratory Robotic Assistant built on an MiR AMR base (250 kg payload, omnidirectional, SLAM-based navigation) carrying two collaborative UR arms (UR3/UR5/UR10) with Robotiq grippers + wrist camera for pick-and-place. Pitch framed around human-form limits (~8-12 hr work, two arms, chemical-exposure risk), the lack of automation democratization (only Langer-Lab-scale labs afford it), and the knowledge-transfer cost of graduating PhDs/technicians.',
+    tech: ['Robotics', 'AMR', 'SLAM', 'UR arms', 'Lab Automation', 'Hardware Design'],
+    highlights: [
+      'Authored a preliminary technical design for the robot architecture (mobility, manipulators, end effectors, vision)',
+      'Wrote the Y Combinator application end-to-end (March 2024) as solo technical founder',
+      'Identified the gap: current lab automations are point automations, not workflow automations',
+      'Targeted the academic-research market: democratize automation beyond GSK/Langer-scale labs',
+    ],
+  },
+  {
     name: 'Raft (Go)',
     year: '2023',
     description:
@@ -807,6 +820,15 @@ export const TIMELINE: TimelineEntry[] = [
     slug: 'coursework-spring-2023',
   },
   {
+    title: 'Hack4Impact talk - "Navigating Your Career In Tech"',
+    org: 'Boston University',
+    category: 'Talk',
+    date: '2023',
+    status: 'Completed',
+    description:
+      'Invited talk to BU Hack4Impact on navigating a career in tech as an undergrad - the path from physics into CS + math, running VC and research internships in parallel, and how each step fed the next.',
+  },
+  {
     title: "Boston Children's Hospital - Software Engineering Intern",
     org: "Boston Children's Hospital",
     category: 'Engineering',
@@ -1018,6 +1040,22 @@ export const TIMELINE: TimelineEntry[] = [
         href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
       },
       { label: 'All papers ->', href: '/research' },
+    ],
+  },
+  {
+    title: 'Kirchhausen Lab meeting - SpatialDINO presentation',
+    org: 'Harvard',
+    category: 'Talk',
+    date: 'Jul 2025',
+    status: 'Completed',
+    description:
+      'Presented "Spatial-DINO: Self Supervised, Annotation-Free 3D Modeling - Seeing is Believing" at the Kirchhausen Lab on July 15, 2025. Walked the lab through the problem statement (no general segmentation + tracking model for LLSM volumes across endosomes, viruses, mitochondria, clathrin-coated pits, nuclei, apilmods), the 3D student/teacher ViT design, KMeans content-aware cropping, NoPE, the streaming encoder, and the downstream-task benchmarks beating the prior Betzig-led approach.',
+    links: [
+      {
+        label: 'BioArxiv preprint',
+        href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+      },
+      { label: 'SpatialDINO lessons ->', href: '/writing/spatialdino-lessons' },
     ],
   },
   {
