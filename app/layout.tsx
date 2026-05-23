@@ -9,7 +9,7 @@ import ThemeProvider from '@/components/ThemeProvider'
 import { personSchema, websiteSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
 import { SITE } from '@/lib/site'
-import { ClerkProvider } from '@clerk/nextjs'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Providers from './providers'
@@ -82,17 +82,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Site built and maintained by Arkash Jain — <a href={SITE.url}>{SITE.url}</a>.
           </p>
         </noscript>
-        <ClerkProvider>
-          <Providers>
-            <ThemeProvider>
-              <JsonLd data={personSchema()} />
-              <JsonLd data={websiteSchema()} />
-              <Nav />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </ThemeProvider>
-          </Providers>
-        </ClerkProvider>
+        <Providers>
+          <ThemeProvider>
+            <JsonLd data={personSchema()} />
+            <JsonLd data={websiteSchema()} />
+            <Nav />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </Providers>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
         <Analytics />
         <SpeedInsights />
       </body>

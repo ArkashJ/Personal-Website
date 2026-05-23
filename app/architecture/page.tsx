@@ -91,19 +91,14 @@ const DIAGRAMS: DiagramEntry[] = [
     component: <ClientStateDiagram />,
     body: (
       <p className="text-muted text-sm leading-relaxed max-w-2xl mt-6">
-        Almost the entire site is server-rendered. The two exceptions live inside the provider chain
-        mounted by <code className="font-mono text-[12px]">app/layout.tsx</code>:{' '}
-        <code className="font-mono text-[12px]">ClerkProvider</code> →{' '}
+        Almost the entire site is server-rendered. The two client-state layers live inside the
+        provider chain mounted by <code className="font-mono text-[12px]">app/layout.tsx</code>:{' '}
         <code className="font-mono text-[12px]">Providers (QueryClient)</code> →{' '}
         <code className="font-mono text-[12px]">ThemeProvider</code>. A single Zustand store (
         <code className="font-mono text-[12px]">useUiStore</code>) owns the cmdk palette, mobile
         nav, and a generic modal slot — consumed by{' '}
         <code className="font-mono text-[12px]">Nav</code> and{' '}
-        <code className="font-mono text-[12px]">CommandPalette</code>. TanStack Query wraps the one
-        server action that mutates from the browser: the Clerk-gated weekly editor calls{' '}
-        <code className="font-mono text-[12px]">addWeeklyItem</code> through{' '}
-        <code className="font-mono text-[12px]">useMutation</code>, giving the form its
-        loading/error/success states without hand-rolling reducers.
+        <code className="font-mono text-[12px]">CommandPalette</code>.
       </p>
     ),
   },

@@ -18,7 +18,7 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   experimental: {
     // Tree-shake heavy barrel packages (smaller Server/Client bundles)
-    optimizePackageImports: ['lucide-react', 'cmdk', '@clerk/nextjs'],
+    optimizePackageImports: ['lucide-react', 'cmdk'],
   },
   async headers() {
     return [

@@ -25,6 +25,25 @@ export const personSchema = () => ({
   worksFor: { '@type': 'Organization', name: SITE.worksFor, url: 'https://benmore.tech' },
   alumniOf: SITE.alumniOf.map((name) => ({ '@type': 'EducationalOrganization', name })),
   knowsLanguage: ['en', 'hi'],
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Master of Science in Computer Science',
+      credentialCategory: "Master's Degree",
+      recognizedBy: { '@type': 'EducationalOrganization', name: 'Boston University' },
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Bachelor of Arts in Physics & Computer Science',
+      credentialCategory: "Bachelor's Degree",
+      recognizedBy: { '@type': 'EducationalOrganization', name: 'Boston University' },
+    },
+  ],
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: SITE.jobTitle,
+    occupationLocation: { '@type': 'Country', name: 'US' },
+  },
   knowsAbout: [
     'Machine Learning',
     'Computer Vision',
@@ -64,6 +83,11 @@ export const websiteSchema = () => ({
   copyrightYear: new Date().getFullYear(),
   mainEntity: { '@id': `${SITE.url}#person` },
   inLanguage: 'en',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: { '@type': 'EntryPoint', urlTemplate: `${SITE.url}/writing?q={search_term_string}` },
+    'query-input': 'required name=search_term_string',
+  },
 })
 
 export const breadcrumbSchema = (items: { name: string; path: string }[]) => ({
