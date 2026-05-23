@@ -310,24 +310,18 @@ const TREE: TreeNode = {
   tone: 'teal',
   children: [
     {
-      label: '<ClerkProvider>',
+      label: '<Providers> (QueryClient)',
       tone: 'cyan',
       children: [
         {
-          label: '<Providers> (QueryClient)',
-          tone: 'cyan',
+          label: '<ThemeProvider>',
           children: [
             {
-              label: '<ThemeProvider>',
-              children: [
-                {
-                  label: '<Nav>',
-                  children: [{ label: 'sticky · active-route highlight', tone: 'muted' }],
-                },
-                { label: '<main>{children}</main>' },
-                { label: '<Footer>', children: [{ label: 'site map · social', tone: 'muted' }] },
-              ],
+              label: '<Nav>',
+              children: [{ label: 'sticky · active-route highlight', tone: 'muted' }],
             },
+            { label: '<main>{children}</main>' },
+            { label: '<Footer>', children: [{ label: 'site map · social', tone: 'muted' }] },
           ],
         },
       ],
@@ -501,7 +495,6 @@ export const SkillsLibraryDiagram = () => {
 export const ClientStateDiagram = () => {
   const providerChain: { label: string; tone?: 'default' | 'teal' | 'cyan' | 'muted' }[] = [
     { label: '<html>', tone: 'muted' },
-    { label: '<ClerkProvider>', tone: 'cyan' },
     { label: '<Providers> (QueryClient)', tone: 'cyan' },
     { label: '<ThemeProvider>', tone: 'cyan' },
     { label: 'app surface', tone: 'teal' },
@@ -565,11 +558,8 @@ export const ClientStateDiagram = () => {
               Consumers
             </p>
             <div className="flex flex-col gap-2">
-              <Node tone="default" className="justify-start">
-                app/admin/weekly/WeeklyItemForm.tsx
-              </Node>
               <p className="font-mono text-[10px] text-subtle">
-                useMutation → addWeeklyItem (server action)
+                available for future server-action consumers
               </p>
             </div>
           </div>
@@ -577,9 +567,8 @@ export const ClientStateDiagram = () => {
       </div>
       <p className="font-mono text-[10px] text-subtle mt-4 max-w-2xl">
         Client state lives in two narrow layers. Zustand owns transient UI flags (palette, mobile
-        nav, modal); TanStack Query owns server-action lifecycle (loading · error · success) for the
-        Clerk-gated weekly editor. Both providers mount once in `app/layout.tsx` and stay invisible
-        to server components.
+        nav, modal); TanStack Query owns server-action lifecycle (loading · error · success). Both
+        providers mount once in `app/layout.tsx` and stay invisible to server components.
       </p>
     </div>
   )
