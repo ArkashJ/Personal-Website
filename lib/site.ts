@@ -37,7 +37,6 @@ export const NAV_LINKS: NavLink[] = [
 
 // Secondary pages — surfaced in footer + gear menu, not primary nav
 export const SECONDARY_LINKS: NavLink[] = [
-  { href: '/knowledge', label: 'Knowledge' },
   { href: '/credentials', label: 'Credentials' },
   { href: '/stack', label: 'Stack' },
   { href: '/architecture', label: 'Architecture (legacy)' },

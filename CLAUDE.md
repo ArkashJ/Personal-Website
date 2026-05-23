@@ -23,7 +23,12 @@ bun run lint            # ESLint
 bun run lint:fix        # ESLint --fix
 bun run format          # Prettier write
 bun run format:check    # Prettier check (CI uses this)
+bun run knip            # Knip — dead-code / unused-export check (not in CI)
+bun run biome           # Biome — secondary lint/format check (not in CI)
+bun run icons:fetch     # Refetch SimpleIcons SVGs into public/assets/icons/
 ```
+
+`predev` and `prebuild` automatically run `scripts/sync-git-changelog.mjs` (and `sync-project-readmes.mjs` for prebuild), generating files under `content/_generated/` from git + project READMEs. Don't hand-edit anything inside `content/_generated/`.
 
 A Husky pre-commit hook runs **`bunx lint-staged`** (Prettier + ESLint on staged files).
 
@@ -35,31 +40,34 @@ A Husky pre-commit hook runs **`bunx lint-staged`** (Prettier + ESLint on staged
 
 All routes live under `app/`. Each folder is a segment; `page.tsx` renders that segment. Server components are the default; client components opt-in via `'use client'`.
 
-| Route                                                                        | Purpose                                                                            |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `/`                                                                          | Hero · life arc · current focus · research · work · projects · knowledge · writing |
-| `/about`                                                                     | Life Changelog (17 milestones, major/minor visual hierarchy)                       |
-| `/about/timeline/[slug]`                                                     | Per-milestone deep dive                                                            |
-| `/about/archive`                                                             | Pre-revamp legacy bio                                                              |
-| `/research`                                                                  | 4 published papers + ML stack + PyTorch contribution                               |
-| `/projects`                                                                  | 13 real projects with GitHub links                                                 |
-| `/work`                                                                      | 4 internal CLIs (Foundry · RTK · Compound Skills · Excalidraw)                     |
-| `/writing` + `/writing/[slug]` + `/writing/[slug]/raw`                       | Tagged essay index + MDX articles + plaintext for LLMs                             |
-| `/weekly` + `/weekly/[slug]` + `/weekly/[slug]/raw`                          | Append-only weekly log + per-week detail + plaintext for LLMs                      |
-| `/knowledge` + `/knowledge/[domain]` + `/knowledge/[domain]/[slug]` + `/raw` | 4 domains with MDX deep dives + plaintext for LLMs                                 |
-| `/skills` + `/skills/[slug]` + `/skills/[slug]/raw`                          | "Claude Skills" library — public Claude Code skills, plaintext for copy            |
-| `/media`                                                                     | STU STREET podcast embeds + Medium + Substack + press                              |
-| `/stack`                                                                     | uses.tech-style page (36 entries × 7 categories)                                   |
-| `/learnings`                                                                 | 12+ hard-won lessons, reverse chronological                                        |
-| `/architecture`                                                              | 6 React/SVG diagrams of the running stack                                          |
-| `/changelog`                                                                 | Parsed `CHANGELOG.md` (left) + sticky commits-and-history sidebar (right)          |
-| `/admin/weekly`                                                              | Clerk-gated owner-only editor that appends to current ISO-week MDX                 |
-| `/credentials`                                                               | Verifiable PDF credentials                                                         |
-| `/coursework`                                                                | BU + Harvard coursework hub                                                        |
-| `/docs`                                                                      | In-site rendering of `docs/*.md`                                                   |
-| `/experience` · `/VC` · `/Volunteering`                                      | Server-side redirects (`/experience` → `/about#career`)                            |
-| `/knowledge/<old>/...`                                                       | 308 redirects for essays moved into `/writing` (see `next.config.js`)              |
-| `/sitemap.xml` · `/robots.txt` · `/manifest.webmanifest`                     | Native Next metadata routes                                                        |
+| Route                                                    | Purpose                                                                            |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `/`                                                      | Hero · life arc · current focus · research · work · projects · knowledge · writing |
+| `/about`                                                 | Life Changelog (17 milestones, major/minor visual hierarchy)                       |
+| `/about/timeline/[slug]`                                 | Per-milestone deep dive                                                            |
+| `/about/archive`                                         | Pre-revamp legacy bio                                                              |
+| `/research`                                              | 4 published papers + ML stack + PyTorch contribution                               |
+| `/projects`                                              | 13 real projects with GitHub links                                                 |
+| `/work`                                                  | 4 internal CLIs (Foundry · RTK · Compound Skills · Excalidraw)                     |
+| `/writing` + `/writing/[slug]` + `/writing/[slug]/raw`   | Tagged essay index + MDX articles + plaintext for LLMs                             |
+| `/weekly` + `/weekly/[slug]` + `/weekly/[slug]/raw`      | Append-only weekly log + per-week detail + plaintext for LLMs                      |
+| `/skills` + `/skills/[slug]` + `/skills/[slug]/raw`      | "Claude Skills" library — public Claude Code skills, plaintext for copy            |
+| `/media`                                                 | STU STREET podcast embeds + Medium + Substack + press                              |
+| `/stack`                                                 | uses.tech-style page (36 entries × 7 categories)                                   |
+| `/architecture`                                          | 6 React/SVG diagrams of the running stack                                          |
+| `/ai-hardware-stack`                                     | Route wrapper around the same-origin `public/ai-hardware-stack.html` deck          |
+| `/ce-plan`                                               | Continuing-education plan                                                          |
+| `/info`                                                  | About-site / colophon                                                              |
+| `/sign-in`                                               | Clerk sign-in (gates `/admin/weekly`)                                              |
+| `/api/*` · `/skills.json`                                | JSON routes (skills feed, weekly admin write endpoint, etc.)                       |
+| `/changelog`                                             | Parsed `CHANGELOG.md` (left) + sticky commits-and-history sidebar (right)          |
+| `/admin/weekly`                                          | Clerk-gated owner-only editor that appends to current ISO-week MDX                 |
+| `/credentials`                                           | Verifiable PDF credentials                                                         |
+| `/coursework`                                            | BU + Harvard coursework hub                                                        |
+| `/docs`                                                  | In-site rendering of `docs/*.md`                                                   |
+| `/experience` · `/VC` · `/Volunteering`                  | Server-side redirects (`/experience` → `/about#career`)                            |
+| `/knowledge/<old>/...`                                   | 308 redirects for essays moved into `/writing` (see `next.config.js`)              |
+| `/sitemap.xml` · `/robots.txt` · `/manifest.webmanifest` | Native Next metadata routes                                                        |
 
 ### Layout & global wrappers
 
@@ -86,28 +94,38 @@ components/
 
 All structured site content is typed and lives in `lib/`. **Edit these files to add content.**
 
-| File                     | Owns                                                                    |
-| ------------------------ | ----------------------------------------------------------------------- |
-| `lib/site.ts`            | `SITE` constants (URL, name) and `NAV_LINKS`                            |
-| `lib/data.ts`            | Papers, experience, projects, internal tools, education, awards, links  |
-| `lib/finance.ts`         | Theses + trade log                                                      |
-| `lib/learnings.ts`       | Learnings cards                                                         |
-| `lib/media.ts`           | Podcast episodes, Medium articles, Substack posts, press                |
-| `lib/stack.ts`           | uses.tech entries                                                       |
-| `lib/coursework.ts`      | BU + Harvard coursework                                                 |
-| `lib/content.ts`         | MDX frontmatter loaders for `content/writing/` and `content/knowledge/` |
-| `lib/docs.ts`            | Loaders for `docs/*.md` rendered at `/docs`                             |
-| `lib/structured-data.ts` | Person · Article · ScholarlyArticle JSON-LD factories                   |
-| `lib/metadata.ts`        | `buildMetadata()` factory typed against Next's `Metadata`               |
-| `lib/og.tsx`             | Shared 1200×630 OG image renderer                                       |
+| File                                                                                     | Owns                                                                            |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `lib/site.ts`                                                                            | `SITE` constants (URL, name) and `NAV_LINKS`                                    |
+| `lib/data.ts`                                                                            | Papers, experience, projects, internal tools, education, awards, links          |
+| `lib/projects.ts` + `lib/projects-readme.ts`                                             | Project list + README sync that feeds `content/_generated/`                     |
+| `lib/skills.ts`                                                                          | Claude Skills library entries surfaced under `/skills`                          |
+| `lib/weekly.ts` + `lib/weekly-types.ts` + `lib/weekly-render.ts` + `lib/weekly-dates.ts` | Weekly-log types, ISO-week math, icon/source resolution for `/weekly`           |
+| `lib/github-stats.ts`                                                                    | GraphQL `contributionsCollection` fetcher for the home "This week in repo" card |
+| `lib/banners.ts`                                                                         | Home/global banner picker (highest non-expired priority wins)                   |
+| `lib/tags.ts` + `lib/tag-icons.ts`                                                       | Tag taxonomy + per-tag SimpleIcons mapping                                      |
+| `lib/changelog-md.ts`                                                                    | Parses `CHANGELOG.md` for `/changelog`                                          |
+| `lib/git-changelog.ts` + `lib/git-commit.ts`                                             | Server-only readers for the synced git history sidebar                          |
+| `lib/finance.ts`                                                                         | Theses + trade log                                                              |
+| `lib/media.ts`                                                                           | Podcast episodes, Medium articles, Substack posts, press                        |
+| `lib/stack.ts`                                                                           | uses.tech entries                                                               |
+| `lib/coursework.ts`                                                                      | BU + Harvard coursework                                                         |
+| `lib/content.ts`                                                                         | MDX frontmatter loaders for `content/writing/` and other MDX surfaces           |
+| `lib/docs.ts`                                                                            | Loaders for `docs/*.md` rendered at `/docs`                                     |
+| `lib/structured-data.ts`                                                                 | Person · Article · ScholarlyArticle JSON-LD factories                           |
+| `lib/metadata.ts`                                                                        | `buildMetadata()` factory typed against Next's `Metadata`                       |
+| `lib/og.tsx`                                                                             | Shared 1200×630 OG image renderer                                               |
 
 ### Content (MDX)
 
 ```
 content/
 ├── writing/           # *.mdx — long-form essays
-├── knowledge/[domain]/# *.mdx — knowledge deep dives
-└── coursework/        # course descriptions in MDX
+├── weekly/            # *.mdx — ISO-week logs (YYYY-Www.mdx)
+├── projects/          # *.mdx — project deep-dives
+├── skills/            # *.mdx — Claude Skills library entries
+├── coursework/        # course descriptions in MDX
+└── _generated/        # auto-synced from git + project READMEs — do NOT hand-edit
 ```
 
 MDX files are picked up automatically via `lib/content.ts`. Frontmatter contract: `title`, `date`, `tags`, `description`. Server-side rendered via `next-mdx-remote/rsc` — no client JS overhead.
@@ -192,7 +210,6 @@ Reference rules:
 | New podcast / Medium / Substack / press          | `lib/media.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | New thesis / trade                               | `lib/finance.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | New stack entry                                  | `lib/stack.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| New learning                                     | `lib/learnings.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | New nav link                                     | `NAV_LINKS` in `lib/site.ts`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | New course                                       | `lib/coursework.ts` + optional MDX in `content/coursework/`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | New verifiable credential                        | Drop PDF in `public/assets/files/` + entry in `app/credentials/page.tsx`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -215,6 +232,7 @@ This site is the central evidence hub for Arkash's O-1 visa application — SEO 
 - `app/about/archive/page.tsx` is the snapshot of the pre-revamp bio. Don't accidentally edit it as the canonical about page.
 - `next.config.js` whitelists exact remote image hosts. New external image hosts require a `remotePatterns` entry.
 - `bun run build` must pass before push — CI also runs it. Lint errors fail the build.
+- Root-asset guard: `scripts/check-no-stray-root-assets.sh` rejects stray `.md`/`.png`/`.jpg`/`.gif`/`.webp`/`.pdf` at repo root (allowlist: `README.md`, `CHANGELOG.md`, `CLAUDE.md`, `LICENSE`). Route dev screenshots to `docs/screenshots/` and shipped media to `public/assets/`.
 
 ## See also
 
