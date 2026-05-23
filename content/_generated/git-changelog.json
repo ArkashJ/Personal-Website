@@ -1,5 +1,77 @@
 [
   {
+    "hash": "73efa9518c18b6ca8b6aa7e06d411ab7f39983f5",
+    "date": "2026-05-23T10:15:55-05:00",
+    "type": "chore",
+    "scopes": ["nav", "timeline"],
+    "summary": "drop /knowledge nav link + add Hack4Impact and Kirchhausen lab-meeting timeline entries",
+    "body": "- lib/site.ts: remove '/knowledge' from NAV_LINKS\n- lib/data.ts: add TIMELINE entries for the 2023 Hack4Impact career talk\n  and the July 2025 Kirchhausen Lab SpatialDINO presentation\n- CLAUDE.md: prettier reformatting (no content change)",
+    "tags": ["chore", "nav", "timeline"]
+  },
+  {
+    "hash": "627c96b50b33ff329dbb221a7477c505ef35165e",
+    "date": "2026-05-23T10:11:04-05:00",
+    "type": "docs",
+    "scopes": ["env"],
+    "summary": "document GITHUB_TOKEN for live stats fetcher",
+    "body": "",
+    "tags": ["docs", "env"]
+  },
+  {
+    "hash": "8e5c4181e5dbcc8440d81214f5b72d63dc5d3010",
+    "date": "2026-05-23T10:10:33-05:00",
+    "type": "feat",
+    "scopes": ["githubactivity"],
+    "summary": "wire live 30d/7d commit stats via GraphQL with fallback",
+    "body": "",
+    "tags": ["feat", "githubactivity"]
+  },
+  {
+    "hash": "a76e5b920991eb9272fc8bf9f6e17546c79d449c",
+    "date": "2026-05-23T10:09:19-05:00",
+    "type": "feat",
+    "scopes": ["lib"],
+    "summary": "add GitHub stats fetcher backed by GraphQL contributionsCollection",
+    "body": "",
+    "tags": ["feat", "lib"]
+  },
+  {
+    "hash": "d12c7e46b7a390f03133a0503e9d15ef1cc84a90",
+    "date": "2026-05-21T09:12:07-05:00",
+    "type": "fix",
+    "scopes": [],
+    "summary": "RollingLog timezone off-by-one + clear all 11 ESLint warnings",
+    "body": "RollingLog now uses the same local-time YYYY-MM-DD parser as\nThisWeekFloat so weekStart/weekEnd render as the actual ISO Monday\nand Sunday instead of UTC-shifted by one day (W21 reads 'May 18 →\nMay 24' on both cards).\n\nESLint warnings cleared from 11 → 0:\n- lib/store.ts (4) — prefixed type-signature param names with `_` so\n  they pass the `argsIgnorePattern: \"^_\"` rule. The names are\n  documentation only, no API change for consumers.\n- lib/tags.ts (1), lib/url-state.ts (2) — same `_` prefix on\n  callback type-signature params.\n- app/coursework/page.tsx (1) — dropped the unused `COURSES`\n  import; the page renders via `coursesBySemester` only.\n- components/layout/Footer.tsx (1), app/projects/[slug]/page.tsx\n  (1) — moved the `eslint-disable-next-line @next/next/no-img-element`\n  comment immediately above the `<img>` tag so it actually suppresses\n  the warning (previously it was outside the JSX return block).\n\nVerified by playwright-cli: /, /weekly, /weekly/2026-W21,\n/architecture, /coursework, /projects, /skills, /about — all 200.\n`bun run build / biome / knip / format:check / lint` all clean.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix"]
+  },
+  {
+    "hash": "354f20f6158fcb971772d33a10d6cbe11db95667",
+    "date": "2026-05-21T09:06:52-05:00",
+    "type": "feat",
+    "scopes": ["home", "architecture"],
+    "summary": "floating \"This week in repo\" card + restructured /architecture",
+    "body": "Home page now features a prominent floating card pinned to the middle\nof the scroll (between The Arc summary and Research). Shows the\nlatest weekly entry with a pulsing \"This week in repo\" pill, slug,\ndate range, title, description, first 3 rail items, item count, and\ntop 4 tags. Lifts on hover with a subtle teal glow. Uses a\ntimezone-safe date formatter so the week range displays the actual\nweekStart day (Mon) instead of one-off-by-one (the existing\nRollingLog still has the older parser).\n\n/architecture page restructured:\n- Single DIAGRAMS array drives both the TOC and the body — eliminates\n  the duplicate per-diagram boilerplate\n- Sticky TOC at the top (4-column grid, monospaced indices) lets\n  readers jump to any diagram\n- Each diagram section has a scroll-mt-20 anchor target + hover-only\n  hash link\n- Lighter framing: left-border accent instead of the heavy bordered\n  box around each diagram\n- Body prose for the Client-state diagram inlined into the entry so\n  the layout stays consistent for diagrams 1-6 and 8\n\nVerified by playwright-cli walk: /, /weekly, /weekly/2026-W21,\n/architecture, /about, /writing, /skills, /projects, /research,\n/credentials — all 200, no console errors, TOC anchors resolve, the\nfloating card renders between sections 4 and 6 of the home scroll.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "home", "architecture"]
+  },
+  {
+    "hash": "25883cc78aefc906bade404d8568a0a8952de9ba",
+    "date": "2026-05-21T09:00:10-05:00",
+    "type": "chore",
+    "scopes": ["knip"],
+    "summary": "un-export internal-only symbols across lib/",
+    "body": "Knip flagged 5 unused exports + 3 unused exported types after\nturning off the `ignoreExportsUsedInFile` shortcut. None of them\nwere imported anywhere — they were `export`ed but used only inside\ntheir defining file. Demoted to file-local:\n\n- BANNERS in lib/banners.ts\n- projectSlug in lib/projects.ts\n- tagIconSlug in lib/tag-icons.ts\n- pad2 in lib/weekly-dates.ts\n- resolveItem in lib/weekly-render.ts\n- CoursePaper type in lib/coursework.ts\n- StackItem type in lib/stack.ts\n- TagIcon type in lib/tag-icons.ts\n\nAlso drops the `ignoreExportsUsedInFile: true` shortcut from\nknip.json now that the actual surface area matches reality. Knip\nruns clean with zero findings.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "knip"]
+  },
+  {
+    "hash": "b614fa4c7ce32dc704b85a2cc1d70e79682afd0a",
+    "date": "2026-05-21T08:53:18-05:00",
+    "type": "fix",
+    "scopes": ["a11y", "biome"],
+    "summary": "clear remaining Biome findings + knip binaries config",
+    "body": "Resolves every Biome finding documented in W21's built rail:\n\n- useButtonType: type=\"button\" added to close + publish buttons in\n  WeeklyGrid, ProjectDetailModal, and ce-plan/Editor\n- useAriaPropsSupportedByRole: role=\"img\" added to the star-rating\n  spans in /media so aria-label is on a valid element\n- useLiteralKeys: RAIL_DEFAULT_KIND['read'] -> RAIL_DEFAULT_KIND.read\n- noSuspiciousSemicolonInJsx: trailing ; after <code> in /info wrapped\n  as {';'} so the JSX parser stops flagging it\n- noStaticElementInteractions: CommandPalette backdrop kept as-is\n  (modal backdrop click-to-close is a documented pattern) with a\n  scoped biome-ignore comment — Escape handler in the useEffect above\n  already covers keyboard users\n\nAlso adds the two .sh scripts to knip.ignoreBinaries so Knip runs\nclean. Full pipeline now: lint, format, build, knip, and biome all\npass with zero errors.\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["fix", "a11y", "biome"]
+  },
+  {
     "hash": "5b5d49ac5940a1ee21edb82cb9e8a34bb638047d",
     "date": "2026-05-21T08:45:08-05:00",
     "type": "content",
