@@ -20,6 +20,7 @@ const OUT_DIR = join(ROOT, 'content', 'projects')
 // slug -> "owner/repo". Slugs match lib/projects.ts:projectSlug(name).
 // Verified against PROJECTS / WORK_TOOLS in lib/data.ts on 2026-05-02.
 const REPOS = {
+  'claude-code-config': 'ArkashJ/Claude_code_config',
   'benmore-meridian': 'Benmore-Studio/Benmore-Meridian',
   raft: 'ArkashJ/Raft',
   'cloudcomputing-coursework-projects': 'ArkashJ/CloudComputing',

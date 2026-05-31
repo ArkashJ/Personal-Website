@@ -1,12 +1,21 @@
 [
   {
-    "hash": "73efa9518c18b6ca8b6aa7e06d411ab7f39983f5",
-    "date": "2026-05-23T10:15:55-05:00",
-    "type": "chore",
-    "scopes": ["nav", "timeline"],
-    "summary": "drop /knowledge nav link + add Hack4Impact and Kirchhausen lab-meeting timeline entries",
-    "body": "- lib/site.ts: remove '/knowledge' from NAV_LINKS\n- lib/data.ts: add TIMELINE entries for the 2023 Hack4Impact career talk\n  and the July 2025 Kirchhausen Lab SpatialDINO presentation\n- CLAUDE.md: prettier reformatting (no content change)",
-    "tags": ["chore", "nav", "timeline"]
+    "hash": "964770d088daa2777c4767e3d9ce29648a8e0149",
+    "date": "2026-05-23T17:48:30-05:00",
+    "type": "feat",
+    "scopes": ["seo"],
+    "summary": "boost SEO + remove Clerk + wire GA4 (#21)",
+    "body": "- Add SearchAction to WebSite JSON-LD schema (enables \"Search site:\" in Google SERPs)\n- Add EducationalOccupationalCredential + hasOccupation to Person schema\n- Wire Google Analytics 4 via @next/third-parties (conditional on NEXT_PUBLIC_GA_ID)\n- Remove @clerk/nextjs and all Clerk-gated pages (admin/weekly, ce-plan, sign-in)\n- Remove empty middleware.ts\n- Update architecture diagrams to reflect removed ClerkProvider\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat", "seo"]
+  },
+  {
+    "hash": "cb4a91979e30962f352ec336604c7bd7e8d26fff",
+    "date": "2026-05-23T17:29:39-05:00",
+    "type": "feat",
+    "scopes": [],
+    "summary": "add NeoSci project, timeline entries, drop /knowledge nav (#20)",
+    "body": "* chore(nav,timeline): drop /knowledge nav link + add Hack4Impact and Kirchhausen lab-meeting timeline entries\n\n- lib/site.ts: remove '/knowledge' from NAV_LINKS\n- lib/data.ts: add TIMELINE entries for the 2023 Hack4Impact career talk\n  and the July 2025 Kirchhausen Lab SpatialDINO presentation\n- CLAUDE.md: prettier reformatting (no content change)\n\n* feat(projects): add NeoSci lab-automation startup project\n\nIndependent original technical work outside of employment: NeoSci — a lab automation\nstartup. Y Combinator application (March 2024) and a preliminary design for a\nLaboratory Robotic Assistant built on an MiR AMR base with collaborative UR arms.\nSupports the O-1 'Original Contributions of Major Significance' criterion.\n\n* .",
+    "tags": ["feat"]
   },
   {
     "hash": "627c96b50b33ff329dbb221a7477c505ef35165e",

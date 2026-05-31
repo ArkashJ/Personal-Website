@@ -2,16 +2,17 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import type { ComponentProps } from 'react'
-import Card from '@/components/ui/Card'
-import Badge from '@/components/ui/Badge'
 import JsonLd from '@/components/seo/JsonLd'
-import { breadcrumbSchema } from '@/lib/structured-data'
+import Badge from '@/components/ui/Badge'
+import Card from '@/components/ui/Card'
 import { buildMetadata } from '@/lib/metadata'
 import { getAllProjects, getProjectBySlug } from '@/lib/projects'
 import { getReadme } from '@/lib/projects-readme'
+import { breadcrumbSchema } from '@/lib/structured-data'
 
 // slug -> "owner/repo" for the README eyebrow. Mirrors scripts/sync-project-readmes.mjs.
 const README_REPOS: Record<string, string> = {
+  'claude-code-config': 'ArkashJ/Claude_code_config',
   'benmore-meridian': 'Benmore-Studio/Benmore-Meridian',
   raft: 'ArkashJ/Raft',
   'cloudcomputing-coursework-projects': 'ArkashJ/CloudComputing',
@@ -138,6 +139,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const isExternal = project.href ? /^https?:\/\//.test(project.href) : false
   const highlights = project.highlights ?? []
   const commands = project.commands ?? []
+  const links = project.links ?? []
   const readme = getReadme(slug)
   const readmeRepo = README_REPOS[slug]
 
@@ -223,6 +225,25 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <div className="flex flex-wrap gap-1.5">
             {project.tech.map((t) => (
               <Badge key={t}>{t}</Badge>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {links.length > 0 && (
+        <section className="mb-10">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-primary mb-3">Links</p>
+          <div className="flex flex-col gap-2">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                target={/^https?:\/\//.test(l.href) ? '_blank' : undefined}
+                rel={/^https?:\/\//.test(l.href) ? 'noopener noreferrer' : undefined}
+                className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-accent underline underline-offset-2 w-fit"
+              >
+                {l.label} <ExternalLinkIcon />
+              </a>
             ))}
           </div>
         </section>

@@ -191,7 +191,12 @@ export const EXPERIENCE: ExperienceEntry[] = [
       { label: 'TA tenure', value: '3 years' },
     ],
     tech: ['Java', 'Apache Flink', 'RocksDB', 'Go', 'Python'],
-    links: [{ label: 'BU CS Profile', href: 'https://www.bu.edu/cs/profiles/arkash-jain/' }],
+    links: [
+      {
+        label: 'BU CS Profile',
+        href: 'https://www.bu.edu/cs/profiles/arkash-jain/',
+      },
+    ],
     bullets: [
       'TA across systems and CS theory courses.',
       'Thesis: dynamic checkpointing for Apache Flink - adaptive checkpoint cadence based on backpressure signals.',
@@ -223,6 +228,31 @@ export const EXPERIENCE: ExperienceEntry[] = [
 ]
 
 export const PROJECTS: Project[] = [
+  {
+    name: 'Claude Code Config',
+    year: '2026',
+    description:
+      'Version-controlled `~/.claude` configuration repo — my Claude Code setup as code. Whitelist-style .gitignore that tracks the hand-authored config (settings, hooks, rules, slash commands, skills, plugin manifests) while never committing secrets, transcripts, or downloaded plugin code. Cross-machine sync via a push/pull/status/setup helper, a find-skills hook that nudges skill discovery once on the third turn of each session, auto-format-on-edit hooks, and a context-mode MCP allowlist to cut permission-prompt friction. Released as v1.0.1.',
+    tech: ['Bash', 'JSON', 'Git', 'Claude Code', 'MCP'],
+    href: 'https://github.com/ArkashJ/Claude_code_config',
+    highlights: [
+      'Whitelist .gitignore — tracks config, never commits secrets/transcripts/plugin code',
+      'find-skills UserPromptSubmit hook fires exactly once at the 3rd turn, per session, with stale-counter pruning',
+      'context-mode MCP tools allowlisted to reduce permission prompts on the most-used tools',
+      'sync.sh push/pull/status/setup for reproducible setup across machines (no force-push)',
+      'Keep a Changelog + SemVer release discipline — tagged GitHub releases',
+    ],
+    links: [
+      {
+        label: 'Repo — github.com/ArkashJ/Claude_code_config',
+        href: 'https://github.com/ArkashJ/Claude_code_config',
+      },
+      {
+        label: 'Release v1.0.1',
+        href: 'https://github.com/ArkashJ/Claude_code_config/releases/tag/v1.0.1',
+      },
+    ],
+  },
   {
     name: 'Cattle Logic',
     year: '2026',
@@ -713,7 +743,10 @@ export const TIMELINE: TimelineEntry[] = [
     description:
       '"Ultrafast Two Dimensional Infrared Spectroscopy of Supercritical Fluids: Energy Relaxation and Local Critical Slowing Effects." NSF-funded UROP under Lawrence Ziegler (CAS Chemistry).',
     links: [
-      { label: 'BU CS profile', href: 'https://www.bu.edu/cs/profiles/arkash-jain/' },
+      {
+        label: 'BU CS profile',
+        href: 'https://www.bu.edu/cs/profiles/arkash-jain/',
+      },
       {
         label: 'UROP Symposium 2021 brochure (PDF)',
         href: 'https://www.bu.edu/urop/files/2021/10/UROP-Symposium-2021-Brochure-v5.pdf',
@@ -745,9 +778,18 @@ export const TIMELINE: TimelineEntry[] = [
       'Battery taught me VC end-to-end. Worked under Dallin Bills sourcing early-stage B2B software - learned the difference between vertical and horizontal SaaS, fintech investment theses (payments, infra, embedded, neobanks), and how Battery sized markets across verticals. Got fluent in the financial bar: Rule of 40, ARR growth vs. burn multiples, gross retention vs. logo churn vs. net dollar retention, magic number, and CAC payback. Sourced 3 deals to partner-meeting stage, including CarNow.',
     links: [
       { label: 'Battery Ventures', href: 'https://www.battery.com/' },
-      { label: 'CarNow (Battery portfolio)', href: 'https://www.battery.com/company/carnow/' },
-      { label: 'Michael Brown - GP', href: 'https://www.battery.com/people/michael-brown/' },
-      { label: 'Dallin Bills (LinkedIn)', href: 'https://www.linkedin.com/in/dallinbills/' },
+      {
+        label: 'CarNow (Battery portfolio)',
+        href: 'https://www.battery.com/company/carnow/',
+      },
+      {
+        label: 'Michael Brown - GP',
+        href: 'https://www.battery.com/people/michael-brown/',
+      },
+      {
+        label: 'Dallin Bills (LinkedIn)',
+        href: 'https://www.linkedin.com/in/dallinbills/',
+      },
     ],
   },
   {
@@ -813,8 +855,14 @@ export const TIMELINE: TimelineEntry[] = [
     tech: ['Go', 'Raft', 'Java', 'OOP', 'Design Patterns'],
     links: [
       { label: 'CS 350 deep dive', href: '/coursework/cs350-raft' },
-      { label: 'CS 611 Monsters & Heroes', href: '/coursework/cs611-monsters-and-heroes' },
-      { label: 'CS 611 Trading System', href: '/coursework/cs611-trading-system' },
+      {
+        label: 'CS 611 Monsters & Heroes',
+        href: '/coursework/cs611-monsters-and-heroes',
+      },
+      {
+        label: 'CS 611 Trading System',
+        href: '/coursework/cs611-trading-system',
+      },
       { label: 'All coursework', href: '/coursework' },
     ],
     slug: 'coursework-spring-2023',
@@ -882,7 +930,10 @@ export const TIMELINE: TimelineEntry[] = [
       'Office Add-ins',
     ],
     links: [
-      { label: 'merkle_tree (Rust POC)', href: 'https://github.com/ArkashJ/merkle_tree' },
+      {
+        label: 'merkle_tree (Rust POC)',
+        href: 'https://github.com/ArkashJ/merkle_tree',
+      },
       {
         label: 'Merkle tree write-up',
         href: '/writing/merkle-tree-rust-poc',
@@ -991,12 +1042,18 @@ export const TIMELINE: TimelineEntry[] = [
     tech: ['PyTorch', 'DDP', 'CUDA', 'Infiniband', 'NCCL', 'DGX', 'LLSM', '3D ViT'],
     links: [
       { label: 'View research ->', href: '/research' },
-      { label: 'PyTorch #144779', href: 'https://github.com/pytorch/pytorch/issues/144779' },
+      {
+        label: 'PyTorch #144779',
+        href: 'https://github.com/pytorch/pytorch/issues/144779',
+      },
       {
         label: 'Kirchhausen Lab profile',
         href: 'https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs',
       },
-      { label: 'Harvard ID (PDF)', href: '/assets/files/arkash-jain-harvard-university-id.pdf' },
+      {
+        label: 'Harvard ID (PDF)',
+        href: '/assets/files/arkash-jain-harvard-university-id.pdf',
+      },
     ],
     slug: 'harvard-kirchhausen',
   },

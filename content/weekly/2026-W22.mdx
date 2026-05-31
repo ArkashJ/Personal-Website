@@ -1,0 +1,70 @@
+---
+title: 'Versioning my Claude Code config as code — shipped v1.0.1'
+weekStart: '2026-05-25' # Monday (ISO week start)
+weekEnd: '2026-05-31' # Sunday
+description: 'Turned my ~/.claude setup into a version-controlled repo this week: whitelist .gitignore that tracks config but never secrets, a find-skills hook that fires once on the third turn, a context-mode MCP allowlist to cut permission prompts, and a tagged v1.0.1 release.'
+
+tags:
+  - 'Claude Code'
+  - 'Tooling'
+  - 'Open Source'
+
+shipped:
+  - text: 'Claude Code config repo — v1.0.1'
+    href: 'https://github.com/ArkashJ/Claude_code_config/releases/tag/v1.0.1'
+    image: '/assets/projects/claude-code-config.gif'
+    source: 'GitHub'
+    kind: 'repo'
+    notes: 'Config-maintenance release: allowlisted the context-mode MCP tools to cut permission prompts, taught the find-skills hook to prune stale per-session turn-counters, and added a tool-preferences line (LSP for navigation, ast-grep for structural edits). Tagged with Keep a Changelog + SemVer notes.'
+  - text: 'Initial config repo — skills, hooks, rules, sync script'
+    href: 'https://github.com/ArkashJ/Claude_code_config'
+    source: 'GitHub'
+    kind: 'repo'
+    notes: 'Bootstrapped ~/.claude into git with a whitelist .gitignore, a sync.sh push/pull/status/setup helper, and a comprehensive README + repo-level CLAUDE.md.'
+
+built:
+  - text: 'find-skills hook that fires exactly once on the 3rd turn'
+    notes: 'Per-session turn counter in state/, gated on -eq 3 so it nudges skill discovery a single time — plus a prune pass so abandoned counters do not accumulate.'
+
+learned:
+  - 'A whitelist .gitignore (`/*` then `!path`) is the safe default when the repo IS your live config dir — secrets stay out by construction, not by remembering to exclude them.'
+
+changelog:
+  - date: '2026-05-30'
+    note: 'Initial publish — config repo shipped, v1.0.1 release, commit-history recap.'
+---
+
+## What actually shipped
+
+This week I stopped treating `~/.claude` as throwaway local state and turned it
+into a versioned repo. The whole point: my Claude Code setup — permissions,
+hooks, slash commands, rules, skills, and plugin manifests — is now reproducible
+across machines and has a history I can read back.
+
+The commit trail tells the story. It opens on **2026-05-29** with the `init`
+commit (skills, hooks, rules, and the `sync.sh` helper) and a docs pass that
+added a comprehensive README and a repo-level `CLAUDE.md`. On **2026-05-30** I
+moved the find-skills trigger off session-start and onto the third turn of each
+session, synced the plugin manifests, and landed a config-maintenance commit
+that pruned stale turn-counters, allowlisted the context-mode MCP tools, and
+wrote down a tool-preferences rule. That last commit became **v1.0.1**.
+
+```
+2026-05-29  init: skills, hooks, rules, sync script
+2026-05-29  docs: comprehensive README + repo-level CLAUDE.md
+2026-05-30  hooks: find-skills trigger on 3rd turn (not session start)
+2026-05-30  chore: sync plugin manifests
+2026-05-30  config: prune turn-counters · allowlist context-mode MCP · tool prefs  ── v1.0.1
+```
+
+![Scroll capture of the Claude Code Config project page on arkashj.com, recorded with playwright-cli and stitched into a GIF with gifski](/assets/projects/claude-code-config.gif)
+
+The trick that makes this safe is the whitelist `.gitignore`: ignore everything
+at the top level, then re-include only the hand-authored config. Secrets,
+transcripts, downloaded plugin code, and machine-specific local settings never
+enter git by construction — I don't have to remember to exclude them.
+
+## What's next week
+
+Wire the same release discipline into the rest of my tooling repos, and see
+whether the find-skills nudge actually changes which skills I reach for.
