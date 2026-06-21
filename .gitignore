@@ -44,7 +44,10 @@ yarn-error.log*
 .playwright-cli/
 
 # claude code session artifacts + dev audit dumps
-.claude/
+# Ignore .claude/ contents, but track shared skills + local settings.
+.claude/*
+!.claude/skills/
+!.claude/settings.local.json
 /site-audit/
 
 # screenshots — ignore loose PNGs everywhere except inside docs/ and public/
