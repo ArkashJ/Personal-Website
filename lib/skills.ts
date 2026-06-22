@@ -20,13 +20,19 @@ export type SkillFull = SkillMeta & {
 const CATEGORY_RULES: Array<[RegExp, string]> = [
   [/^(stripe|stripe-)/i, 'Payments'],
   [/^(django|django-|fastapi|django-celery)/i, 'Python Backend'],
-  [/^(vercel-|chatbot|frontend|sentry-|three|remotion|expo|push-|playground)/i, 'Frontend & Apps'],
+  [
+    /^(vercel-|chatbot|build-a-chatbot|frontend|sentry-|three|remotion|expo|push-|playground|network-graph)/i,
+    'Frontend & Apps',
+  ],
   [
     /^(audit|security|hipaa|gdpr|financial-audit|healthcare|dependency|service-invariant|multi-tenant|cross-module)/i,
     'Compliance & Security',
   ],
   [/^(ai-seo|seo|programmatic|ai-)/i, 'SEO & AI'],
-  [/^(emil|web-design|minimalist|modern-floating|frontend-productionize)/i, 'Design Engineering'],
+  [
+    /^(emil|web-design|minimalist|modern-floating|frontend-productionize|design-director)/i,
+    'Design Engineering',
+  ],
   [
     /^(creating-user-flows|user-flows|feature-alignment|client-|better-scope|client-value)/i,
     'Product & Discovery',
@@ -105,4 +111,25 @@ export function getCategories(skills: SkillMeta[]): { name: string; count: numbe
   return Object.entries(counts)
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count)
+}
+
+// Some skills ship a bundle of sub-files (references/, scripts/, assets/) alongside
+// the top-level SKILL.md. Those live in public/skill-files/<slug>/ so they are saved
+// in the repo AND statically served at /skill-files/<slug>/<path>.
+const SKILL_FILES_DIR = path.join(process.cwd(), 'public', 'skill-files')
+
+export function getSkillBundleFiles(slug: string): string[] {
+  if (!/^[a-z0-9._-]+$/i.test(slug)) return []
+  const dir = path.join(SKILL_FILES_DIR, slug)
+  if (!fs.existsSync(dir)) return []
+  const out: string[] = []
+  const walk = (rel: string) => {
+    for (const entry of fs.readdirSync(path.join(dir, rel), { withFileTypes: true })) {
+      const childRel = rel ? `${rel}/${entry.name}` : entry.name
+      if (entry.isDirectory()) walk(childRel)
+      else if (entry.isFile()) out.push(childRel)
+    }
+  }
+  walk('')
+  return out.sort((a, b) => a.localeCompare(b))
 }

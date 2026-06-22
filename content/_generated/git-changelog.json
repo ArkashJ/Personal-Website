@@ -1,5 +1,14 @@
 [
   {
+    "hash": "73badf16bb884469fa108c7f7d7db1c4af1c8499",
+    "date": "2026-05-30T20:13:44-05:00",
+    "type": "feat",
+    "scopes": [],
+    "summary": "add Claude Code Config project, W22 weekly, project Links section",
+    "body": "- lib/data.ts: add Claude Code Config project (featured) linking the repo + v1.0.1 release\n- app/projects/[slug]: render project links[] (surfaces release link on every project) + README_REPOS entry\n- scripts/sync-project-readmes.mjs: register claude-code-config README sync\n- content/weekly/2026-W22.mdx: weekly recap of the config-repo commit history + v1.0.1, with scroll GIF\n- public/assets/projects/claude-code-config.gif: playwright-cli capture stitched via gifski\n- content/projects/*.md, _generated/git-changelog.json: refresh from sync scripts\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>",
+    "tags": ["feat"]
+  },
+  {
     "hash": "964770d088daa2777c4767e3d9ce29648a8e0149",
     "date": "2026-05-23T17:48:30-05:00",
     "type": "feat",

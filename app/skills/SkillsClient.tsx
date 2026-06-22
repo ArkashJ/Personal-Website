@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
-import { Search, X, Copy, Check, ExternalLink } from 'lucide-react'
+import { Search, X, Copy, Check, ExternalLink, Star } from 'lucide-react'
 import type { SkillMeta } from '@/lib/skills'
 import { copySkillRawToClipboard } from '@/lib/copy-skill'
+import { useFavoritesStore } from '@/lib/favorites-store'
 
 type Props = {
   skills: SkillMeta[]
@@ -15,11 +16,21 @@ export default function SkillsClient({ skills, categories }: Props) {
   const [query, setQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null)
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
+
+  // Favorites are read from localStorage on the client only — gate the UI behind
+  // `mounted` so the server render (no favorites) matches the first client paint.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const favorites = useFavoritesStore((s) => s.favorites)
+  const toggleFavorite = useFavoritesStore((s) => s.toggle)
+  const favoriteSet = useMemo(() => new Set(favorites), [favorites])
 
   const q = query.trim().toLowerCase()
 
   const visible = useMemo(() => {
     let result = skills
+    if (mounted && showFavoritesOnly) result = result.filter((s) => favoriteSet.has(s.slug))
     if (activeCategory) result = result.filter((s) => s.category === activeCategory)
     if (q) {
       result = result.filter(
@@ -31,7 +42,7 @@ export default function SkillsClient({ skills, categories }: Props) {
       )
     }
     return result
-  }, [skills, q, activeCategory])
+  }, [skills, q, activeCategory, mounted, showFavoritesOnly, favoriteSet])
 
   async function handleCopy(slug: string) {
     try {
@@ -81,6 +92,19 @@ export default function SkillsClient({ skills, categories }: Props) {
         >
           All ({skills.length})
         </button>
+        <button
+          type="button"
+          onClick={() => setShowFavoritesOnly((v) => !v)}
+          aria-pressed={showFavoritesOnly}
+          className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-mono border transition-[color,border-color,background-color] duration-150 ${
+            showFavoritesOnly
+              ? 'bg-primary text-bg border-primary'
+              : 'border-border text-muted hover:border-primary hover:text-primary'
+          }`}
+        >
+          <Star className="w-3 h-3" fill={showFavoritesOnly ? 'currentColor' : 'none'} />
+          Favorites ({mounted ? favorites.length : 0})
+        </button>
         {categories.map((c) => (
           <button
             key={c.name}
@@ -98,9 +122,10 @@ export default function SkillsClient({ skills, categories }: Props) {
       </div>
 
       {/* Result count */}
-      {(q || activeCategory) && (
+      {(q || activeCategory || (mounted && showFavoritesOnly)) && (
         <p className="text-xs font-mono text-muted mb-5">
           {visible.length} skill{visible.length === 1 ? '' : 's'}
+          {mounted && showFavoritesOnly ? ' · ★ favorites' : ''}
           {q ? ` for "${q}"` : ''}
           {activeCategory ? ` · ${activeCategory}` : ''}
         </p>
@@ -111,6 +136,7 @@ export default function SkillsClient({ skills, categories }: Props) {
         {visible.map((s) => {
           const copied = copiedSlug === s.slug
           const errored = copiedSlug === 'error:' + s.slug
+          const fav = mounted && favoriteSet.has(s.slug)
           return (
             <article
               key={s.slug}
@@ -134,6 +160,24 @@ export default function SkillsClient({ skills, categories }: Props) {
                   </div>
                   <p className="text-muted text-xs leading-relaxed line-clamp-2">{s.description}</p>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => toggleFavorite(s.slug)}
+                  aria-pressed={fav}
+                  aria-label={
+                    fav ? `Remove ${s.name} from favorites` : `Save ${s.name} to favorites`
+                  }
+                  title={fav ? 'Remove from favorites' : 'Save to favorites'}
+                  className={`shrink-0 -mt-1 -mr-1 p-1.5 transition-colors duration-150 ${
+                    fav ? 'text-accent' : 'text-subtle hover:text-primary'
+                  }`}
+                >
+                  <Star
+                    className="w-4 h-4"
+                    fill={fav ? 'currentColor' : 'none'}
+                    strokeWidth={1.75}
+                  />
+                </button>
               </div>
               <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/60">
                 <button
@@ -181,7 +225,11 @@ export default function SkillsClient({ skills, categories }: Props) {
           )
         })}
         {visible.length === 0 && (
-          <p className="text-muted text-sm py-8 text-center">No skills match your search.</p>
+          <p className="text-muted text-sm py-8 text-center">
+            {mounted && showFavoritesOnly && favorites.length === 0
+              ? 'No favorites yet — tap the ☆ on any skill to save it here.'
+              : 'No skills match your search.'}
+          </p>
         )}
       </div>
     </>

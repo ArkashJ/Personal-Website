@@ -4,7 +4,7 @@ import BackLink from '@/components/ui/BackLink'
 import JsonLd from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/structured-data'
 import { buildMetadata } from '@/lib/metadata'
-import { getAllSkills, getSkill } from '@/lib/skills'
+import { getAllSkills, getSkill, getSkillBundleFiles } from '@/lib/skills'
 import SkillCopyButton from './SkillCopyButton'
 import SkillBody from './SkillBody'
 
@@ -30,6 +30,8 @@ export default async function SkillPage({ params }: { params: Promise<Params> })
   const { slug } = await params
   const skill = getSkill(slug)
   if (!skill) notFound()
+
+  const bundleFiles = getSkillBundleFiles(slug)
 
   return (
     <article className="px-6 py-12 max-w-3xl mx-auto">
@@ -71,6 +73,43 @@ export default async function SkillPage({ params }: { params: Promise<Params> })
       </header>
 
       <SkillBody body={skill.body} />
+
+      {/* Bundled sub-files — references, scripts, assets shipped with the skill */}
+      {bundleFiles.length > 0 && (
+        <section className="mt-12 bg-surface border border-border">
+          <header className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-3">
+            <h2 className="font-mono text-[11px] uppercase tracking-widest text-primary">
+              ● Bundled files ({bundleFiles.length})
+            </h2>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-subtle">
+              scaffolds · refs · assets
+            </span>
+          </header>
+          <ul className="divide-y divide-border/60">
+            {bundleFiles.map((f) => (
+              <li key={f}>
+                <a
+                  href={`/skill-files/${slug}/${f}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-4 px-5 py-2.5 hover:bg-elevated transition-colors duration-150"
+                >
+                  <span className="font-mono text-xs text-text group-hover:text-primary transition-colors duration-150 truncate">
+                    {f}
+                  </span>
+                  <span className="font-mono text-[10px] text-subtle group-hover:text-primary transition-colors duration-150 shrink-0">
+                    open →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="px-5 py-3 text-[11px] font-mono text-subtle border-t border-border">
+            Sub-files this skill references — scaffolds, reference docs, and assets. Served
+            verbatim; review before running.
+          </p>
+        </section>
+      )}
 
       {/* Per-skill credit + install hint */}
       <aside className="mt-12 bg-surface border border-border p-5">

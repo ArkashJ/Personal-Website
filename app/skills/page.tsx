@@ -6,10 +6,11 @@ import { getAllSkills, getCategories } from '@/lib/skills'
 import SkillsClient from './SkillsClient'
 import BenmoreBadge from '@/components/ui/BenmoreBadge'
 
+const skillCount = getAllSkills().length
+
 export const metadata = buildMetadata({
-  title: 'Skills — 75 Claude Code skills, copy-ready for LLMs',
-  description:
-    'A public library of 75 Claude Code skills authored for forward-deployed engineering: AI SEO, design, payments, compliance, CLI tooling, and more. Each one is one click to copy into your LLM.',
+  title: `Skills — ${skillCount} Claude Code skills, copy-ready for LLMs`,
+  description: `A public library of ${skillCount} Claude Code skills authored for forward-deployed engineering: AI SEO, design, payments, compliance, CLI tooling, and more. Each one is one click to copy into your LLM.`,
   path: '/skills',
   keywords: [
     'Claude Code skills',
