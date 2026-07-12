@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{TITLE}}</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f5f5f5;
+        color: #111;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 36px 28px 56px;
+        background: #fff;
+      }
+      .meta {
+        margin: 0 0 22px;
+        color: #666;
+        font-size: 13px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 28px;
+        line-height: 1.12;
+        letter-spacing: -0.5px;
+      }
+      .intro {
+        margin: 0 0 28px;
+        font-size: 17px;
+        line-height: 1.5;
+      }
+      h2 {
+        margin: 32px 0 20px;
+        text-align: center;
+        font-size: 18px;
+      }
+      h3 {
+        margin: 27px 0 10px;
+        font-size: 17px;
+        line-height: 1.35;
+      }
+      p,
+      li {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      p {
+        margin: 0 0 13px;
+      }
+      ul {
+        margin: 8px 0 0;
+        padding-left: 22px;
+      }
+      li {
+        margin: 7px 0;
+      }
+      a {
+        color: #111;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .source {
+        color: #666;
+        font-size: 13px;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
+      }
+      @media (max-width: 640px) {
+        main {
+          padding: 28px 20px 44px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="meta">{{DATE}} · {{READ_TIME}}</p>
+      <h1>{{TITLE}}</h1>
+      <p class="intro">{{INTRO}}</p>
+
+      <h2>{{SECTION_ONE}}</h2>
+      <h3><a href="{{HEADLINE_ONE_URL}}">{{HEADLINE_ONE}}</a></h3>
+      <p>{{HEADLINE_ONE_COPY}}</p>
+      <ul>
+        <li>{{HEADLINE_ONE_BULLET_ONE}}</li>
+        <li>{{HEADLINE_ONE_BULLET_TWO}}</li>
+      </ul>
+
+      <h3><a href="{{HEADLINE_TWO_URL}}">{{HEADLINE_TWO}}</a></h3>
+      <p>{{HEADLINE_TWO_COPY}}</p>
+
+      <h2>{{SECTION_TWO}}</h2>
+      <ul>
+        <li>{{TAKEAWAY_ONE}}</li>
+        <li>{{TAKEAWAY_TWO}}</li>
+        <li>{{TAKEAWAY_THREE}}</li>
+      </ul>
+
+      <h2>Listen / read</h2>
+      <ul>
+        <li><a href="{{LINK_ONE_URL}}">{{LINK_ONE}}</a></li>
+        <li><a href="{{LINK_TWO_URL}}">{{LINK_TWO}}</a></li>
+      </ul>
+
+      <p class="footer">{{FOOTER}}</p>
+    </main>
+  </body>
+</html>

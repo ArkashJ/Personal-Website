@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Memory is the bottleneck now</title>
+    <style>
+      body {
+        margin: 0;
+        background: #f5f5f5;
+        color: #111;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 36px 28px 56px;
+        background: #fff;
+      }
+      .meta {
+        margin: 0 0 22px;
+        color: #666;
+        font-size: 13px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 28px;
+        line-height: 1.12;
+        letter-spacing: -0.5px;
+      }
+      .intro {
+        margin: 0 0 28px;
+        font-size: 17px;
+        line-height: 1.5;
+      }
+      h2 {
+        margin: 32px 0 20px;
+        text-align: center;
+        font-size: 18px;
+      }
+      h3 {
+        margin: 27px 0 10px;
+        font-size: 17px;
+        line-height: 1.35;
+      }
+      p,
+      li {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      p {
+        margin: 0 0 13px;
+      }
+      ul {
+        margin: 8px 0 0;
+        padding-left: 22px;
+      }
+      li {
+        margin: 7px 0;
+      }
+      a {
+        color: #111;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .cite {
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 400;
+      }
+      .flow {
+        display: flex;
+        align-items: stretch;
+        gap: 8px;
+        margin: 22px 0 10px;
+      }
+      .flow-step {
+        flex: 1;
+        padding: 13px 10px;
+        border: 1px solid #111;
+      }
+      .flow-step strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 14px;
+      }
+      .flow-step span {
+        display: block;
+        color: #555;
+        font-size: 13px;
+        line-height: 1.35;
+      }
+      .flow-arrow {
+        align-self: center;
+        color: #666;
+        font-size: 18px;
+      }
+      .audience {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .audience li {
+        margin: 0;
+        padding: 14px 0;
+        border-top: 1px solid #ddd;
+      }
+      .audience li:last-child {
+        border-bottom: 1px solid #ddd;
+      }
+      .footer {
+        margin-top: 40px;
+        padding-top: 18px;
+        border-top: 1px solid #ddd;
+        color: #666;
+        font-size: 13px;
+      }
+      @media (max-width: 640px) {
+        main {
+          padding: 28px 20px 44px;
+        }
+        .flow {
+          flex-direction: column;
+        }
+        .flow-arrow {
+          align-self: center;
+          transform: rotate(90deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- EDIT: issue metadata -->
+      <p class="meta">Week of July 12 · 6 minute read</p>
+      <h1>Memory is the bottleneck now</h1>
+      <p class="intro">
+        For founders, investors, and leaders: the GPU is not the whole AI story. Every AI product
+        still has to move, hold, and retrieve a lot of data. That is why memory is becoming a real
+        business constraint—not just a chip detail.
+      </p>
+
+      <!-- EDIT: this is the one visual. Keep labels plain-language. -->
+      <div
+        class="flow"
+        role="img"
+        aria-label="AI products depend on compute, fast memory, and persistent storage"
+      >
+        <div class="flow-step"><strong>AI model</strong><span>Does the work</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-step"><strong>Fast memory</strong><span>Keeps it moving</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="flow-step"><strong>Storage</strong><span>Keeps the work</span></div>
+      </div>
+
+      <!-- EDIT: headline blocks. Duplicate one entire h3 + p + ul block to add a story. -->
+      <h2>Headlines &amp; launches</h2>
+
+      <h3>
+        SK Hynix raises $26.5B in its U.S. ADR debut; shares close up 12.8%
+        <a
+          class="cite"
+          href="https://www.bloomberg.com/news/articles/2026-07-08/sk-hynix-us-offering-is-more-than-seven-times-oversubscribed"
+          >[Bloomberg]</a
+        >
+      </h3>
+      <p>
+        SK Hynix sold 177.9M ADRs at $149, raised $26.5B, opened at $170, and closed at $168.01.
+        Situational Awareness, Coatue, and Baillie Gifford indicated interest in up to $7B of the
+        deal.
+      </p>
+      <ul>
+        <li>The money is going into fab capacity, advanced packaging, and EUV equipment.</li>
+        <li>
+          The story is simple: the market is funding more memory supply because AI demand is still
+          eating through the existing supply.
+        </li>
+        <li>
+          The more interesting question is how quickly that new supply arrives and changes the
+          cycle.
+        </li>
+      </ul>
+
+      <h3>
+        Samsung’s memory business is now producing Nvidia-sized profit numbers
+        <a
+          class="cite"
+          href="https://www.bloomberg.com/news/articles/2026-07-06/samsung-s-record-profit-fails-to-impress-after-ai-chip-rally"
+          >[Bloomberg]</a
+        >
+      </h3>
+      <p>
+        Samsung’s preliminary second-quarter operating profit came in at $58.5B, above Nvidia’s most
+        recent quarterly operating profit of $53.54B. The memory business is no longer a side
+        character in the AI buildout.
+      </p>
+      <ul>
+        <li>DRAM, NAND, HBM, and enterprise SSD pricing are all part of the same supply story.</li>
+        <li>
+          SK Hynix, Samsung, and Micron are the tight side of that story; they are all building more
+          capacity into it.
+        </li>
+      </ul>
+
+      <h2>What this means</h2>
+      <ul class="audience">
+        <li>
+          <strong>Founders:</strong> AI product costs are not only about the model API. The more
+          your product remembers, searches, and automates, the more the surrounding data stack
+          matters. Build for a useful workflow, not just a good demo.
+        </li>
+        <li>
+          <strong>Investors:</strong> Follow the full buildout, not only the GPU. Memory, storage,
+          packaging, power, and cooling are all places where AI spending lands.
+        </li>
+        <li>
+          <strong>Leaders:</strong> Treat AI as an operating-system change. Start with the work you
+          want to automate, then budget for the data, context, and governance needed to run it
+          reliably.
+        </li>
+      </ul>
+
+      <h2>
+        Why NAND matters
+        <a
+          class="cite"
+          href="https://www.bloomberg.com/news/videos/2026-02-16/ray-wang-on-how-ai-is-causing-dram-prices-to-surge-video"
+          >[Bloomberg]</a
+        >
+      </h2>
+      <p>
+        Agents do not only generate tokens. They read repos, open PDFs, store tool output, cache
+        models, write logs, keep checkpoints, and come back to work later. That is a storage problem
+        as much as a compute problem.
+      </p>
+      <ul>
+        <li>
+          <strong>HBM is the GPU’s close-in workspace.</strong> It is very fast and very expensive.
+          Without enough bandwidth, the GPU waits.
+        </li>
+        <li>
+          <strong>DRAM is the broader working memory.</strong> It holds active data across servers,
+          PCs, and phones.
+        </li>
+        <li>
+          <strong>NAND is persistent storage.</strong> It is the flash in SSDs: slower than HBM, but
+          it keeps the repos, documents, weights, caches, checkpoints, and agent traces.
+        </li>
+        <li>
+          <strong>You need all three.</strong> HBM makes an inference system fast; DRAM keeps the
+          machine working; NAND keeps the work when the session ends.
+        </li>
+      </ul>
+
+      <!-- EDIT: workflow section -->
+      <h2>Developer workflow</h2>
+      <h3>Maximize ROI on $400</h3>
+      <p>
+        One Claude Code account plus one Codex account is about $400/month. This workflow is
+        producing around <strong>2K commits a month</strong> when planning, execution, review, and
+        context are treated as separate jobs.
+      </p>
+      <ul>
+        <li>
+          <strong>Plan in Fable medium.</strong> Start with business criteria, acceptance criteria,
+          risks, and todos. Do not use high for planning by default; it is a token killer.
+        </li>
+        <li>
+          <strong>Make the GitHub ticket real.</strong> Use `/goal` commands and give each task a
+          clear done state before execution starts.
+        </li>
+        <li>
+          <strong>Terra high for normal execution; Sol high for hard work.</strong> Spend the
+          expensive pass on tasks that are actually difficult.
+        </li>
+        <li>
+          <strong>Run 5–10 narrow PRs, then review them.</strong> A generated diff is not a reviewed
+          change.
+        </li>
+        <li>
+          <strong>Update context.</strong> Keep `CLAUDE.md`, `context.md`, and component files
+          current so the next agent starts informed.
+        </li>
+      </ul>
+
+      <!-- EDIT: links. Keep only primary video links and FT/Bloomberg reading. -->
+      <h2>Listen / read</h2>
+      <h3>
+        <a href="https://www.youtube.com/watch?v=BagWrgPww1o"
+          >Etched — the $800M inference-chip bet</a
+        >
+      </h3>
+      <p>
+        Gavin Uberti and Rob Wachen on why power delivery, interconnects, and cost per useful token
+        decide whether agents can run all day.
+      </p>
+
+      <h3>
+        <a href="https://www.youtube.com/watch?v=PHL1j2ti420"
+          >All-In — Anthropic’s valuation, a price war, and Trump Accounts</a
+        >
+      </h3>
+      <p>
+        The question underneath the valuation talk: if labs have massive compute bills and start
+        competing on token price, who still gets software-like margins?
+      </p>
+
+      <h3>
+        <a href="https://www.youtube.com/watch?v=FPapuOvtKy0"
+          >Diet TBPN — OpenAI 5.6 and Meta Muse Spark 1.1</a
+        >
+      </h3>
+      <p>
+        Meta is using price as the wedge. For agents that read repos, retry tools, and work for
+        hours, the cheap model does not need to win every benchmark.
+      </p>
+
+      <p class="footer">
+        Citations in this issue link directly to Bloomberg reporting. Every section above is
+        hand-authored in this one file: edit the marked blocks, duplicate a headline block to add a
+        story, and publish a new edge.
+      </p>
+    </main>
+  </body>
+</html>
