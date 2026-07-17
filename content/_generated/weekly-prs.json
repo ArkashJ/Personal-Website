@@ -1,0 +1,5422 @@
+{
+  "2026-W26": [
+    {
+      "n": 587,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/587",
+      "add": 53176,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 575,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/575",
+      "add": 30982,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 223,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/223",
+      "add": 23990,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 118,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/118",
+      "add": 23385,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 75,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/75",
+      "add": 19329,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 581,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/581",
+      "add": 17662,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 432,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/432",
+      "add": 14726,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 428,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/428",
+      "add": 14468,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 192,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/192",
+      "add": 13852,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 116,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/116",
+      "add": 13826,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 95,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/95",
+      "add": 12829,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 175,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/175",
+      "add": 12239,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 183,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/183",
+      "add": 11553,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 104,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/104",
+      "add": 11116,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 107,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/107",
+      "add": 9245,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 606,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/606",
+      "add": 9245,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 103,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/103",
+      "add": 8613,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 241,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/241",
+      "add": 8430,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 141,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/141",
+      "add": 8255,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 74,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/74",
+      "add": 8252,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 125,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/125",
+      "add": 6812,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 101,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/101",
+      "add": 6739,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 109,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/109",
+      "add": 6029,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 250,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/250",
+      "add": 5811,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 92,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/92",
+      "add": 5538,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 234,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/234",
+      "add": 5371,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 435,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/435",
+      "add": 5214,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 603,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/603",
+      "add": 5017,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 580,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/580",
+      "add": 4656,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 591,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/591",
+      "add": 4604,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 91,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/91",
+      "add": 3618,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 605,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/605",
+      "add": 3163,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 190,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/190",
+      "add": 3140,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 186,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/186",
+      "add": 2579,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 584,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/584",
+      "add": 2574,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 187,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/187",
+      "add": 2552,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 166,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/166",
+      "add": 2486,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 165,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/165",
+      "add": 2485,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 172,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/172",
+      "add": 2353,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 86,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/86",
+      "add": 2306,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 601,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/601",
+      "add": 2169,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 247,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/247",
+      "add": 2089,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 188,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/188",
+      "add": 2076,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 587,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/587",
+      "add": 2073,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 244,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/244",
+      "add": 2055,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 158,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/158",
+      "add": 2042,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 8,
+      "url": "https://github.com/Benmore-Studio/Portfolio_optimzation_196/pull/8",
+      "add": 1832,
+      "cat": "Portfolio-optimization (discovery)"
+    },
+    {
+      "n": 66,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/66",
+      "add": 1829,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 585,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/585",
+      "add": 1739,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 84,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/84",
+      "add": 1686,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 56,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/56",
+      "add": 1654,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 157,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/157",
+      "add": 1630,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 171,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/171",
+      "add": 1534,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 267,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/267",
+      "add": 1522,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 92,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/92",
+      "add": 1431,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 585,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/585",
+      "add": 1431,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 592,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/592",
+      "add": 1426,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 68,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/68",
+      "add": 1364,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 90,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/90",
+      "add": 1356,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 101,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/101",
+      "add": 1337,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 123,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/123",
+      "add": 1335,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 130,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/130",
+      "add": 1282,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 602,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/602",
+      "add": 1239,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 269,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/269",
+      "add": 1231,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 249,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/249",
+      "add": 1215,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 586,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/586",
+      "add": 1202,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 255,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/255",
+      "add": 1189,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 248,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/248",
+      "add": 1175,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 191,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/191",
+      "add": 1150,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 97,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/97",
+      "add": 1135,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 186,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/186",
+      "add": 1118,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 165,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/165",
+      "add": 1111,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 88,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/88",
+      "add": 1069,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 189,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/189",
+      "add": 1064,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 242,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/242",
+      "add": 1048,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 91,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/91",
+      "add": 951,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 61,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/61",
+      "add": 938,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 174,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/174",
+      "add": 842,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 173,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/173",
+      "add": 803,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 175,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/175",
+      "add": 773,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 246,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/246",
+      "add": 726,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 433,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/433",
+      "add": 717,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 87,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/87",
+      "add": 716,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 580,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/580",
+      "add": 711,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 126,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/126",
+      "add": 697,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 252,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/252",
+      "add": 680,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 127,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/127",
+      "add": 680,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 266,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/266",
+      "add": 672,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 122,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/122",
+      "add": 668,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 437,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/437",
+      "add": 666,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 253,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/253",
+      "add": 654,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 89,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/89",
+      "add": 642,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 470,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/470",
+      "add": 626,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 5,
+      "url": "https://github.com/Benmore-Studio/Portfolio_optimzation_196/pull/5",
+      "add": 606,
+      "cat": "Portfolio-optimization (discovery)"
+    },
+    {
+      "n": 170,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/170",
+      "add": 601,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 110,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/110",
+      "add": 597,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 110,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/110",
+      "add": 550,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 126,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/126",
+      "add": 525,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 109,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/109",
+      "add": 524,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 128,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/128",
+      "add": 522,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 251,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/251",
+      "add": 514,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 103,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/103",
+      "add": 497,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 106,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/106",
+      "add": 494,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 124,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/124",
+      "add": 494,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 112,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/112",
+      "add": 488,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 104,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/104",
+      "add": 486,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 7,
+      "url": "https://github.com/Benmore-Studio/Portfolio_optimzation_196/pull/7",
+      "add": 462,
+      "cat": "Portfolio-optimization (discovery)"
+    },
+    {
+      "n": 125,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/125",
+      "add": 455,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 245,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/245",
+      "add": 448,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 623,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/623",
+      "add": 442,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 131,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/131",
+      "add": 441,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 68,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/68",
+      "add": 438,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 582,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/582",
+      "add": 425,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 113,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/113",
+      "add": 420,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 111,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/111",
+      "add": 417,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 326,
+      "url": "https://github.com/Benmore-Studio/Ben130/pull/326",
+      "add": 413,
+      "cat": "Doc-extraction pipeline (AWS)"
+    },
+    {
+      "n": 325,
+      "url": "https://github.com/Benmore-Studio/Ben130/pull/325",
+      "add": 409,
+      "cat": "Doc-extraction pipeline (AWS)"
+    },
+    {
+      "n": 137,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/137",
+      "add": 406,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 73,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/73",
+      "add": 405,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 136,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/136",
+      "add": 392,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 102,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/102",
+      "add": 367,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 128,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/128",
+      "add": 366,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 79,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/79",
+      "add": 364,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 189,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/189",
+      "add": 345,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 168,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/168",
+      "add": 319,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 121,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/121",
+      "add": 315,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 98,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/98",
+      "add": 301,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 622,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/622",
+      "add": 284,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 138,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/138",
+      "add": 282,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 257,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/257",
+      "add": 280,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 120,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/120",
+      "add": 273,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 254,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/254",
+      "add": 272,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 69,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/69",
+      "add": 270,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 70,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/70",
+      "add": 264,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 243,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/243",
+      "add": 252,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 190,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/190",
+      "add": 249,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 111,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/111",
+      "add": 242,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 143,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/143",
+      "add": 240,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 102,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/102",
+      "add": 222,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 596,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/596",
+      "add": 212,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 97,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/97",
+      "add": 197,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 76,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/76",
+      "add": 197,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 270,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/270",
+      "add": 195,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 163,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/163",
+      "add": 163,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 156,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/156",
+      "add": 160,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 142,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/142",
+      "add": 152,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 155,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/155",
+      "add": 150,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 112,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/112",
+      "add": 146,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 624,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/624",
+      "add": 143,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 593,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/593",
+      "add": 133,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 159,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/159",
+      "add": 132,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 6,
+      "url": "https://github.com/Benmore-Studio/Portfolio_optimzation_196/pull/6",
+      "add": 128,
+      "cat": "Portfolio-optimization (discovery)"
+    },
+    {
+      "n": 153,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/153",
+      "add": 123,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 271,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/271",
+      "add": 121,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 131,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/131",
+      "add": 120,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 599,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/599",
+      "add": 114,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 67,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/67",
+      "add": 113,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 137,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/137",
+      "add": 112,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 115,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/115",
+      "add": 112,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 174,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/174",
+      "add": 102,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 178,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/178",
+      "add": 97,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 162,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/162",
+      "add": 89,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 179,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/179",
+      "add": 88,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 81,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/81",
+      "add": 79,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 256,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/256",
+      "add": 69,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 162,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/162",
+      "add": 68,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 130,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/130",
+      "add": 64,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 185,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/185",
+      "add": 62,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 136,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/136",
+      "add": 61,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 132,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/132",
+      "add": 57,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 129,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/129",
+      "add": 54,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 118,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/118",
+      "add": 54,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 134,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/134",
+      "add": 52,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 140,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/140",
+      "add": 51,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 586,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/586",
+      "add": 47,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 117,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/117",
+      "add": 41,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 604,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/604",
+      "add": 40,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 116,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/116",
+      "add": 40,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 625,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/625",
+      "add": 38,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 117,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/117",
+      "add": 38,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 105,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/105",
+      "add": 35,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 180,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/180",
+      "add": 35,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 100,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/100",
+      "add": 33,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 127,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/127",
+      "add": 32,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 99,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/99",
+      "add": 30,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 193,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/193",
+      "add": 28,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 135,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/135",
+      "add": 28,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 176,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/176",
+      "add": 28,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 185,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/185",
+      "add": 25,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 160,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/160",
+      "add": 24,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 85,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/85",
+      "add": 21,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 583,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/583",
+      "add": 21,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 163,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/163",
+      "add": 19,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 129,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/129",
+      "add": 17,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 177,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/177",
+      "add": 17,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 597,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/597",
+      "add": 16,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 434,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/434",
+      "add": 12,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 144,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/144",
+      "add": 11,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 233,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/233",
+      "add": 9,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 96,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/96",
+      "add": 9,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 86,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/86",
+      "add": 9,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 187,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/187",
+      "add": 9,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 77,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/77",
+      "add": 8,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 598,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/598",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 272,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/272",
+      "add": 3,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 133,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/133",
+      "add": 3,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 114,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/114",
+      "add": 3,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 273,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/273",
+      "add": 2,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 119,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/119",
+      "add": 2,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 258,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/258",
+      "add": 1,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 82,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/82",
+      "add": 0,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 80,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/80",
+      "add": 0,
+      "cat": "HRIS / payroll"
+    }
+  ],
+  "2026-W27": [
+    {
+      "n": 663,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/663",
+      "add": 236847,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 254,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/254",
+      "add": 27177,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 471,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/471",
+      "add": 12401,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 297,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/297",
+      "add": 11577,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 310,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/310",
+      "add": 10123,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 268,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/268",
+      "add": 8617,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 144,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/144",
+      "add": 8570,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 478,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/478",
+      "add": 7975,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 248,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/248",
+      "add": 7964,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 103,
+      "url": "https://github.com/ric897/benmore-go/pull/103",
+      "add": 7315,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 260,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/260",
+      "add": 7155,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 151,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/151",
+      "add": 7076,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 323,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/323",
+      "add": 6861,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 638,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/638",
+      "add": 6773,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 212,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/212",
+      "add": 6050,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 480,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/480",
+      "add": 5839,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 250,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/250",
+      "add": 5811,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 677,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/677",
+      "add": 4177,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 597,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/597",
+      "add": 4079,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 261,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/261",
+      "add": 3933,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 264,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/264",
+      "add": 3928,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 627,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/627",
+      "add": 3777,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 594,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/594",
+      "add": 3714,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 259,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/259",
+      "add": 3476,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 325,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/325",
+      "add": 3202,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 474,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/474",
+      "add": 3152,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 628,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/628",
+      "add": 2724,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 291,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/291",
+      "add": 2718,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 475,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/475",
+      "add": 2243,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 481,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/481",
+      "add": 2158,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 247,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/247",
+      "add": 2089,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 599,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/599",
+      "add": 2044,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 139,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/139",
+      "add": 2001,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 180,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/180",
+      "add": 1906,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 175,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/175",
+      "add": 1864,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 177,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/177",
+      "add": 1816,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 320,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/320",
+      "add": 1799,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 234,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/234",
+      "add": 1678,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 295,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/295",
+      "add": 1656,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 595,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/595",
+      "add": 1653,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 269,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/269",
+      "add": 1641,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 626,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/626",
+      "add": 1636,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 243,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/243",
+      "add": 1556,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 245,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/245",
+      "add": 1555,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 255,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/255",
+      "add": 1551,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 267,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/267",
+      "add": 1522,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 244,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/244",
+      "add": 1519,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 473,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/473",
+      "add": 1499,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 210,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/210",
+      "add": 1415,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 593,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/593",
+      "add": 1413,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 263,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/263",
+      "add": 1412,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 280,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/280",
+      "add": 1337,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 176,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/176",
+      "add": 1331,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 138,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/138",
+      "add": 1319,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 215,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/215",
+      "add": 1249,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 269,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/269",
+      "add": 1231,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 249,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/249",
+      "add": 1215,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 255,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/255",
+      "add": 1189,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 248,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/248",
+      "add": 1175,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 294,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/294",
+      "add": 1173,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 211,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/211",
+      "add": 1110,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 179,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/179",
+      "add": 1103,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 178,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/178",
+      "add": 1086,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 219,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/219",
+      "add": 1078,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 292,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/292",
+      "add": 1052,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 268,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/268",
+      "add": 989,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 279,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/279",
+      "add": 980,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 225,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/225",
+      "add": 769,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 104,
+      "url": "https://github.com/ric897/benmore-go/pull/104",
+      "add": 760,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 189,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/189",
+      "add": 750,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 299,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/299",
+      "add": 742,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 246,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/246",
+      "add": 726,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 247,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/247",
+      "add": 722,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 262,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/262",
+      "add": 705,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 265,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/265",
+      "add": 690,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 252,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/252",
+      "add": 680,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 266,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/266",
+      "add": 672,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 253,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/253",
+      "add": 654,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 596,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/596",
+      "add": 648,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 551,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/551",
+      "add": 634,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 589,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/589",
+      "add": 617,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 251,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/251",
+      "add": 514,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 213,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/213",
+      "add": 500,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 282,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/282",
+      "add": 487,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 227,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/227",
+      "add": 471,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 218,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/218",
+      "add": 469,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 245,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/245",
+      "add": 448,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 281,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/281",
+      "add": 445,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 273,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/273",
+      "add": 438,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 476,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/476",
+      "add": 421,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 284,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/284",
+      "add": 417,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 591,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/591",
+      "add": 408,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 101,
+      "url": "https://github.com/ric897/benmore-go/pull/101",
+      "add": 383,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 240,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/240",
+      "add": 371,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 477,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/477",
+      "add": 364,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 592,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/592",
+      "add": 360,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 482,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/482",
+      "add": 353,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 639,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/639",
+      "add": 352,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 552,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/552",
+      "add": 335,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 190,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/190",
+      "add": 316,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 188,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/188",
+      "add": 298,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 257,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/257",
+      "add": 280,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 588,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/588",
+      "add": 277,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 254,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/254",
+      "add": 272,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 181,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/181",
+      "add": 264,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 226,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/226",
+      "add": 226,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 232,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/232",
+      "add": 214,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 195,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/195",
+      "add": 203,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 270,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/270",
+      "add": 195,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 214,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/214",
+      "add": 185,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 650,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/650",
+      "add": 165,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 241,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/241",
+      "add": 142,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 271,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/271",
+      "add": 121,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 192,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/192",
+      "add": 116,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 651,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/651",
+      "add": 103,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 205,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/205",
+      "add": 90,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 673,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/673",
+      "add": 88,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 181,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/181",
+      "add": 85,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 194,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/194",
+      "add": 75,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 256,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/256",
+      "add": 69,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 235,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/235",
+      "add": 68,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 228,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/228",
+      "add": 65,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 242,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/242",
+      "add": 53,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 671,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/671",
+      "add": 51,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 322,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/322",
+      "add": 51,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 274,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/274",
+      "add": 42,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 200,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/200",
+      "add": 41,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 278,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/278",
+      "add": 32,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 206,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/206",
+      "add": 32,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 196,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/196",
+      "add": 31,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 664,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/664",
+      "add": 29,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 187,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/187",
+      "add": 29,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 146,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/146",
+      "add": 27,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 654,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/654",
+      "add": 26,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 647,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/647",
+      "add": 25,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 640,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/640",
+      "add": 25,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 192,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/192",
+      "add": 25,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 662,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/662",
+      "add": 24,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 105,
+      "url": "https://github.com/ric897/benmore-go/pull/105",
+      "add": 24,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 208,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/208",
+      "add": 23,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 193,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/193",
+      "add": 23,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 149,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/149",
+      "add": 22,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 672,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/672",
+      "add": 21,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 660,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/660",
+      "add": 21,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 203,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/203",
+      "add": 21,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 659,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/659",
+      "add": 20,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 644,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/644",
+      "add": 18,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 655,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/655",
+      "add": 16,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 231,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/231",
+      "add": 15,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 223,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/223",
+      "add": 15,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 204,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/204",
+      "add": 15,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 224,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/224",
+      "add": 12,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 668,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/668",
+      "add": 11,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 649,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/649",
+      "add": 11,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 590,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/590",
+      "add": 11,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 665,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/665",
+      "add": 8,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 658,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/658",
+      "add": 8,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 148,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/148",
+      "add": 8,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 661,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/661",
+      "add": 7,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 656,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/656",
+      "add": 7,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 147,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/147",
+      "add": 7,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 201,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/201",
+      "add": 7,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 193,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/193",
+      "add": 7,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 648,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/648",
+      "add": 6,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 642,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/642",
+      "add": 6,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 669,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/669",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 667,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/667",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 652,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/652",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 646,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/646",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 641,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/641",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 102,
+      "url": "https://github.com/ric897/benmore-go/pull/102",
+      "add": 5,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 666,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/666",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 657,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/657",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 645,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/645",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 643,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/643",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 275,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/275",
+      "add": 4,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 229,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/229",
+      "add": 4,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 274,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/274",
+      "add": 3,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 277,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/277",
+      "add": 3,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 272,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/272",
+      "add": 3,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 233,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/233",
+      "add": 3,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 275,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/275",
+      "add": 2,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 276,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/276",
+      "add": 2,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 273,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/273",
+      "add": 2,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 670,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/670",
+      "add": 1,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 653,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/653",
+      "add": 1,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 258,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/258",
+      "add": 1,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 221,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/221",
+      "add": 1,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 246,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/246",
+      "add": 0,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 202,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/202",
+      "add": 0,
+      "cat": "HRIS / payroll"
+    }
+  ],
+  "2026-W28": [
+    {
+      "n": 171,
+      "url": "https://github.com/ric897/benmore-go/pull/171",
+      "add": 504966,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 663,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/663",
+      "add": 236847,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 229,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/229",
+      "add": 97454,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 254,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/254",
+      "add": 27177,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 694,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/694",
+      "add": 22561,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 696,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/696",
+      "add": 14300,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 319,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/319",
+      "add": 14235,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 328,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/328",
+      "add": 13385,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 804,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/804",
+      "add": 13183,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 327,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/327",
+      "add": 13017,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 326,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/326",
+      "add": 12844,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 805,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/805",
+      "add": 12813,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 310,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/310",
+      "add": 10123,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 845,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/845",
+      "add": 9917,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 825,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/825",
+      "add": 9591,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 725,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/725",
+      "add": 8763,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 724,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/724",
+      "add": 8730,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 268,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/268",
+      "add": 8617,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 144,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/144",
+      "add": 8570,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 695,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/695",
+      "add": 8472,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 566,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/566",
+      "add": 8404,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 478,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/478",
+      "add": 7975,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 248,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/248",
+      "add": 7964,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 103,
+      "url": "https://github.com/ric897/benmore-go/pull/103",
+      "add": 7315,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 815,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/815",
+      "add": 7236,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 151,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/151",
+      "add": 7076,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 276,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/276",
+      "add": 7016,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 323,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/323",
+      "add": 6861,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 638,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/638",
+      "add": 6773,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 754,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/754",
+      "add": 6248,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 721,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/721",
+      "add": 5852,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 480,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/480",
+      "add": 5839,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 564,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/564",
+      "add": 5800,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 720,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/720",
+      "add": 4942,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 187,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/187",
+      "add": 4286,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 763,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/763",
+      "add": 4227,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 677,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/677",
+      "add": 4177,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 597,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/597",
+      "add": 4079,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 199,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/199",
+      "add": 3778,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 209,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/209",
+      "add": 3739,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 594,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/594",
+      "add": 3714,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 253,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/253",
+      "add": 3701,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 225,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/225",
+      "add": 3643,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 227,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/227",
+      "add": 3526,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 154,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/154",
+      "add": 3416,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 232,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/232",
+      "add": 3362,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 226,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/226",
+      "add": 3292,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 198,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/198",
+      "add": 3262,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 249,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/249",
+      "add": 3246,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 325,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/325",
+      "add": 3202,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 823,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/823",
+      "add": 3186,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 563,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/563",
+      "add": 3095,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 604,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/604",
+      "add": 3019,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 606,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/606",
+      "add": 2986,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 636,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/636",
+      "add": 2913,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 228,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/228",
+      "add": 2877,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 600,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/600",
+      "add": 2735,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 237,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/237",
+      "add": 2696,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 207,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/207",
+      "add": 2449,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 199,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/199",
+      "add": 2419,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 634,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/634",
+      "add": 2401,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 197,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/197",
+      "add": 2356,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 142,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/142",
+      "add": 2356,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 691,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/691",
+      "add": 2355,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 98,
+      "url": "https://github.com/Benmore-Studio/benmore-mobile-noble-gas/pull/98",
+      "add": 2271,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 261,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/261",
+      "add": 2214,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 243,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/243",
+      "add": 2167,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 722,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/722",
+      "add": 2163,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 565,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/565",
+      "add": 2163,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 481,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/481",
+      "add": 2158,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 103,
+      "url": "https://github.com/Benmore-Studio/benmore-mobile-noble-gas/pull/103",
+      "add": 2086,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 599,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/599",
+      "add": 2044,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 603,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/603",
+      "add": 1978,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 320,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/320",
+      "add": 1799,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 809,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/809",
+      "add": 1763,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 568,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/568",
+      "add": 1692,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 234,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/234",
+      "add": 1678,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 153,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/153",
+      "add": 1662,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 595,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/595",
+      "add": 1653,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 269,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/269",
+      "add": 1641,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 243,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/243",
+      "add": 1556,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 245,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/245",
+      "add": 1555,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 255,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/255",
+      "add": 1551,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 244,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/244",
+      "add": 1519,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 847,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/847",
+      "add": 1488,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 164,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/164",
+      "add": 1484,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 761,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/761",
+      "add": 1441,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 807,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/807",
+      "add": 1439,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 593,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/593",
+      "add": 1413,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 259,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/259",
+      "add": 1394,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 812,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/812",
+      "add": 1340,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 235,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/235",
+      "add": 1327,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 165,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/165",
+      "add": 1327,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 824,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/824",
+      "add": 1323,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 277,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/277",
+      "add": 1293,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 203,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/203",
+      "add": 1250,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 699,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/699",
+      "add": 1189,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 821,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/821",
+      "add": 1137,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 203,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/203",
+      "add": 1119,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 723,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/723",
+      "add": 1114,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 189,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/189",
+      "add": 1103,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 569,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/569",
+      "add": 1052,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 816,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/816",
+      "add": 1026,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 808,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/808",
+      "add": 1023,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 810,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/810",
+      "add": 1014,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 279,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/279",
+      "add": 967,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 2,
+      "url": "https://github.com/Benmore-Studio/Sandbox_lovable_measure_hris/pull/2",
+      "add": 964,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 534,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/534",
+      "add": 945,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 635,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/635",
+      "add": 916,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 841,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/841",
+      "add": 890,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 531,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/531",
+      "add": 888,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 258,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/258",
+      "add": 876,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 97,
+      "url": "https://github.com/Benmore-Studio/benmore-mobile-noble-gas/pull/97",
+      "add": 870,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 205,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/205",
+      "add": 843,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 700,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/700",
+      "add": 841,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 231,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/231",
+      "add": 831,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 245,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/245",
+      "add": 815,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 752,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/752",
+      "add": 812,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 757,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/757",
+      "add": 789,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 225,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/225",
+      "add": 769,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 104,
+      "url": "https://github.com/ric897/benmore-go/pull/104",
+      "add": 760,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 692,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/692",
+      "add": 742,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 299,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/299",
+      "add": 742,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 247,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/247",
+      "add": 722,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 208,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/208",
+      "add": 697,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 693,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/693",
+      "add": 687,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 759,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/759",
+      "add": 682,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 167,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/167",
+      "add": 682,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 842,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/842",
+      "add": 680,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 170,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/170",
+      "add": 674,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 150,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/150",
+      "add": 674,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 697,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/697",
+      "add": 652,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 596,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/596",
+      "add": 648,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 155,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/155",
+      "add": 644,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 765,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/765",
+      "add": 643,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 551,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/551",
+      "add": 634,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 236,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/236",
+      "add": 632,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 196,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/196",
+      "add": 580,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 726,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/726",
+      "add": 570,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 771,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/771",
+      "add": 563,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 345,
+      "url": "https://github.com/ric897/blueprint/pull/345",
+      "add": 557,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 278,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/278",
+      "add": 520,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 846,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/846",
+      "add": 512,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 204,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/204",
+      "add": 510,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 201,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/201",
+      "add": 507,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 227,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/227",
+      "add": 471,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 230,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/230",
+      "add": 466,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 567,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/567",
+      "add": 463,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 168,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/168",
+      "add": 452,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 206,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/206",
+      "add": 447,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 679,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/679",
+      "add": 445,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 201,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/201",
+      "add": 442,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 273,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/273",
+      "add": 438,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 56,
+      "url": "https://github.com/ric897/benmorewebsite/pull/56",
+      "add": 436,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 197,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/197",
+      "add": 430,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 244,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/244",
+      "add": 427,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 826,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/826",
+      "add": 421,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 768,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/768",
+      "add": 412,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 681,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/681",
+      "add": 411,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 680,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/680",
+      "add": 398,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 820,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/820",
+      "add": 389,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 688,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/688",
+      "add": 381,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 191,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/191",
+      "add": 378,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 240,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/240",
+      "add": 371,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 592,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/592",
+      "add": 360,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 482,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/482",
+      "add": 353,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 639,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/639",
+      "add": 352,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 552,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/552",
+      "add": 335,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 189,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/189",
+      "add": 317,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 526,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/526",
+      "add": 317,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 717,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/717",
+      "add": 313,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 762,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/762",
+      "add": 304,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 806,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/806",
+      "add": 302,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 202,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/202",
+      "add": 294,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 234,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/234",
+      "add": 282,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 198,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/198",
+      "add": 282,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 233,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/233",
+      "add": 265,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 537,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/537",
+      "add": 264,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 206,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/206",
+      "add": 248,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 525,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/525",
+      "add": 247,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 192,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/192",
+      "add": 246,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 282,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/282",
+      "add": 246,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 813,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/813",
+      "add": 240,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 205,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/205",
+      "add": 240,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 811,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/811",
+      "add": 236,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 529,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/529",
+      "add": 230,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 527,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/527",
+      "add": 228,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 226,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/226",
+      "add": 226,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 163,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/163",
+      "add": 216,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 232,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/232",
+      "add": 214,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 530,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/530",
+      "add": 211,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 99,
+      "url": "https://github.com/Benmore-Studio/benmore-mobile-noble-gas/pull/99",
+      "add": 204,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 195,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/195",
+      "add": 203,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 561,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/561",
+      "add": 192,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 770,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/770",
+      "add": 189,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 727,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/727",
+      "add": 188,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 818,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/818",
+      "add": 187,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 766,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/766",
+      "add": 176,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 240,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/240",
+      "add": 172,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 157,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/157",
+      "add": 167,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 650,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/650",
+      "add": 165,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 280,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/280",
+      "add": 155,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 201,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/201",
+      "add": 152,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 690,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/690",
+      "add": 147,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 241,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/241",
+      "add": 142,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 767,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/767",
+      "add": 138,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 830,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/830",
+      "add": 134,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 200,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/200",
+      "add": 124,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 199,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/199",
+      "add": 123,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 242,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/242",
+      "add": 118,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 687,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/687",
+      "add": 116,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 204,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/204",
+      "add": 115,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 602,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/602",
+      "add": 114,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 829,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/829",
+      "add": 111,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 241,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/241",
+      "add": 106,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 651,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/651",
+      "add": 103,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 528,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/528",
+      "add": 97,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 827,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/827",
+      "add": 92,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 822,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/822",
+      "add": 91,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 540,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/540",
+      "add": 90,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 202,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/202",
+      "add": 89,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 673,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/673",
+      "add": 88,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 559,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/559",
+      "add": 86,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 169,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/169",
+      "add": 75,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 194,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/194",
+      "add": 75,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 772,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/772",
+      "add": 72,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 235,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/235",
+      "add": 68,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 281,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/281",
+      "add": 68,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 228,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/228",
+      "add": 65,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 210,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/210",
+      "add": 61,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 242,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/242",
+      "add": 53,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 848,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/848",
+      "add": 52,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 671,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/671",
+      "add": 51,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 322,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/322",
+      "add": 51,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 532,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/532",
+      "add": 48,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 4,
+      "url": "https://github.com/Benmore-Studio/Sandbox_lovable_measure_hris/pull/4",
+      "add": 47,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 570,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/570",
+      "add": 47,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 674,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/674",
+      "add": 46,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 1,
+      "url": "https://github.com/Benmore-Studio/Sandbox_lovable_measure_hris/pull/1",
+      "add": 45,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 814,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/814",
+      "add": 35,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 558,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/558",
+      "add": 35,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 533,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/533",
+      "add": 34,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 196,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/196",
+      "add": 31,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 200,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/200",
+      "add": 30,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 664,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/664",
+      "add": 29,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 146,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/146",
+      "add": 27,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 817,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/817",
+      "add": 26,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 654,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/654",
+      "add": 26,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 202,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/202",
+      "add": 26,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 647,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/647",
+      "add": 25,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 640,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/640",
+      "add": 25,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 192,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/192",
+      "add": 25,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 101,
+      "url": "https://github.com/Benmore-Studio/benmore-mobile-noble-gas/pull/101",
+      "add": 25,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 662,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/662",
+      "add": 24,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 105,
+      "url": "https://github.com/ric897/benmore-go/pull/105",
+      "add": 24,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 193,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/193",
+      "add": 23,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 843,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/843",
+      "add": 22,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 149,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/149",
+      "add": 22,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 686,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/686",
+      "add": 21,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 672,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/672",
+      "add": 21,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 660,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/660",
+      "add": 21,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 200,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/200",
+      "add": 21,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 659,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/659",
+      "add": 20,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 644,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/644",
+      "add": 18,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 262,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/262",
+      "add": 17,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 560,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/560",
+      "add": 17,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 655,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/655",
+      "add": 16,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 231,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/231",
+      "add": 15,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 676,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/676",
+      "add": 14,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 556,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/556",
+      "add": 12,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 539,
+      "url": "https://github.com/Benmore-Studio/Cattle_ranch_software/pull/539",
+      "add": 12,
+      "cat": "Livestock operations (AgTech)"
+    },
+    {
+      "n": 668,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/668",
+      "add": 11,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 649,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/649",
+      "add": 11,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 675,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/675",
+      "add": 10,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 263,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/263",
+      "add": 10,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 207,
+      "url": "https://github.com/Benmore-Studio/benmore-noble-gas/pull/207",
+      "add": 9,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 102,
+      "url": "https://github.com/Benmore-Studio/benmore-mobile-noble-gas/pull/102",
+      "add": 9,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 828,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/828",
+      "add": 8,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 665,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/665",
+      "add": 8,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 658,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/658",
+      "add": 8,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 148,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/148",
+      "add": 8,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 661,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/661",
+      "add": 7,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 656,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/656",
+      "add": 7,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 147,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/147",
+      "add": 7,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 769,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/769",
+      "add": 6,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 648,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/648",
+      "add": 6,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 642,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/642",
+      "add": 6,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 100,
+      "url": "https://github.com/Benmore-Studio/benmore-mobile-noble-gas/pull/100",
+      "add": 6,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 718,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/718",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 669,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/669",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 667,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/667",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 652,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/652",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 646,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/646",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 641,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/641",
+      "add": 5,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 3,
+      "url": "https://github.com/Benmore-Studio/Sandbox_lovable_measure_hris/pull/3",
+      "add": 5,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 102,
+      "url": "https://github.com/ric897/benmore-go/pull/102",
+      "add": 5,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 666,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/666",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 657,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/657",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 645,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/645",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 643,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/643",
+      "add": 4,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 229,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/229",
+      "add": 4,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 233,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/233",
+      "add": 3,
+      "cat": "HRIS / payroll"
+    },
+    {
+      "n": 274,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/274",
+      "add": 3,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 689,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/689",
+      "add": 2,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 166,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/166",
+      "add": 2,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 275,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/275",
+      "add": 2,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 670,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/670",
+      "add": 1,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 653,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/653",
+      "add": 1,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 184,
+      "url": "https://github.com/Patriot-Compliance-Systems/PCS_workforce/pull/184",
+      "add": 0,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 246,
+      "url": "https://github.com/Benmore-Studio/Measure_hris/pull/246",
+      "add": 0,
+      "cat": "HRIS / payroll"
+    }
+  ],
+  "2026-W25": [
+    {
+      "n": 560,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/560",
+      "add": 47423,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 571,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/571",
+      "add": 28842,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 72,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/72",
+      "add": 20147,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 49,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/49",
+      "add": 15314,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 249,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/249",
+      "add": 13031,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 13,
+      "url": "https://github.com/Benmore-Studio/Compensation_OS/pull/13",
+      "add": 12515,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 34,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/34",
+      "add": 12181,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 197,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/197",
+      "add": 11768,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 73,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/73",
+      "add": 11277,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 548,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/548",
+      "add": 10618,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 46,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/46",
+      "add": 10356,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 47,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/47",
+      "add": 9087,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 63,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/63",
+      "add": 8012,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 184,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/184",
+      "add": 7968,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 71,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/71",
+      "add": 6826,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 42,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/42",
+      "add": 6756,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 203,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/203",
+      "add": 6722,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 37,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/37",
+      "add": 6716,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 4,
+      "url": "https://github.com/Benmore-Studio/Portfolio_optimzation_196/pull/4",
+      "add": 6533,
+      "cat": "Portfolio-optimization (discovery)"
+    },
+    {
+      "n": 13,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/13",
+      "add": 5666,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 204,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/204",
+      "add": 5438,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 248,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/248",
+      "add": 5411,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 2,
+      "url": "https://github.com/Benmore-Studio/Portfolio_optimzation_196/pull/2",
+      "add": 5253,
+      "cat": "Portfolio-optimization (discovery)"
+    },
+    {
+      "n": 163,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/163",
+      "add": 5165,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 191,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/191",
+      "add": 5108,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 10,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/10",
+      "add": 4742,
+      "cat": "Other"
+    },
+    {
+      "n": 11,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/11",
+      "add": 4187,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 68,
+      "url": "https://github.com/ric897/benmore-go/pull/68",
+      "add": 4169,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 202,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/202",
+      "add": 3620,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 19,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/19",
+      "add": 3386,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 164,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/164",
+      "add": 3377,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 554,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/554",
+      "add": 3221,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 52,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/52",
+      "add": 2605,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 162,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/162",
+      "add": 2376,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 9,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/9",
+      "add": 2215,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 8,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/8",
+      "add": 2215,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 5,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/5",
+      "add": 1947,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 15,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/15",
+      "add": 1821,
+      "cat": "Other"
+    },
+    {
+      "n": 54,
+      "url": "https://github.com/ric897/benmore-go/pull/54",
+      "add": 1798,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 161,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/161",
+      "add": 1785,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 49,
+      "url": "https://github.com/Benmore-Studio/Benmore-Meridian/pull/49",
+      "add": 1743,
+      "cat": "Other"
+    },
+    {
+      "n": 128,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/128",
+      "add": 1716,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 570,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/570",
+      "add": 1667,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 569,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/569",
+      "add": 1597,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 175,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/175",
+      "add": 1492,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 54,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/54",
+      "add": 1480,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 247,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/247",
+      "add": 1473,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 31,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/31",
+      "add": 1459,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 427,
+      "url": "https://github.com/Benmore-Studio/GO_180/pull/427",
+      "add": 1365,
+      "cat": "Veterans-services platform"
+    },
+    {
+      "n": 19,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/19",
+      "add": 1346,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 237,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/237",
+      "add": 1332,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 47,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/47",
+      "add": 1328,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 46,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/46",
+      "add": 1309,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 25,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/25",
+      "add": 1309,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 199,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/199",
+      "add": 1302,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 51,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/51",
+      "add": 1288,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 557,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/557",
+      "add": 1264,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 52,
+      "url": "https://github.com/ric897/benmore-go/pull/52",
+      "add": 1220,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 246,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/246",
+      "add": 1212,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 48,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/48",
+      "add": 1183,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 56,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/56",
+      "add": 1128,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 193,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/193",
+      "add": 1118,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 186,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/186",
+      "add": 1116,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 55,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/55",
+      "add": 1088,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 12,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/12",
+      "add": 1087,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 10,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/10",
+      "add": 1041,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 41,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/41",
+      "add": 1021,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 194,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/194",
+      "add": 1001,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 26,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/26",
+      "add": 982,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 36,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/36",
+      "add": 977,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 190,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/190",
+      "add": 942,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 565,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/565",
+      "add": 870,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 12,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/12",
+      "add": 867,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 189,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/189",
+      "add": 849,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 2,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/2",
+      "add": 828,
+      "cat": "Other"
+    },
+    {
+      "n": 568,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/568",
+      "add": 815,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 2,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/2",
+      "add": 814,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 195,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/195",
+      "add": 813,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 188,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/188",
+      "add": 804,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 20,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/20",
+      "add": 801,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 15,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/15",
+      "add": 799,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 200,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/200",
+      "add": 796,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 205,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/205",
+      "add": 774,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 35,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/35",
+      "add": 763,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 245,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/245",
+      "add": 758,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 244,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/244",
+      "add": 744,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 566,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/566",
+      "add": 739,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 230,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/230",
+      "add": 736,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 1,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/1",
+      "add": 703,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 196,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/196",
+      "add": 692,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 50,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/50",
+      "add": 690,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 4,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/4",
+      "add": 675,
+      "cat": "Other"
+    },
+    {
+      "n": 49,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/49",
+      "add": 658,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 30,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/30",
+      "add": 658,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 572,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/572",
+      "add": 640,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 185,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/185",
+      "add": 626,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 14,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/14",
+      "add": 625,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 238,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/238",
+      "add": 610,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 48,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/48",
+      "add": 608,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 34,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/34",
+      "add": 605,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 58,
+      "url": "https://github.com/ric897/benmore-go/pull/58",
+      "add": 596,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 22,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/22",
+      "add": 571,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 17,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/17",
+      "add": 568,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 50,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/50",
+      "add": 553,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 192,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/192",
+      "add": 553,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 22,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/22",
+      "add": 536,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 187,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/187",
+      "add": 529,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 252,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/252",
+      "add": 525,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 43,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/43",
+      "add": 513,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 53,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/53",
+      "add": 509,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 5,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/5",
+      "add": 504,
+      "cat": "Other"
+    },
+    {
+      "n": 51,
+      "url": "https://github.com/Benmore-Studio/Benmore-Meridian/pull/51",
+      "add": 489,
+      "cat": "Other"
+    },
+    {
+      "n": 556,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/556",
+      "add": 489,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 232,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/232",
+      "add": 481,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 558,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/558",
+      "add": 474,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 251,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/251",
+      "add": 419,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 32,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/32",
+      "add": 407,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 228,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/228",
+      "add": 384,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 571,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/571",
+      "add": 365,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 166,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/166",
+      "add": 355,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 29,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/29",
+      "add": 353,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 3,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/3",
+      "add": 348,
+      "cat": "Other"
+    },
+    {
+      "n": 6,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/6",
+      "add": 339,
+      "cat": "Other"
+    },
+    {
+      "n": 4,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/4",
+      "add": 331,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 13,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/13",
+      "add": 323,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 56,
+      "url": "https://github.com/ric897/benmore-go/pull/56",
+      "add": 316,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 198,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/198",
+      "add": 289,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 181,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/181",
+      "add": 279,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 45,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/45",
+      "add": 276,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 62,
+      "url": "https://github.com/Benmore-Studio/Profectus/pull/62",
+      "add": 268,
+      "cat": "CRM platform"
+    },
+    {
+      "n": 21,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/21",
+      "add": 260,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 233,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/233",
+      "add": 255,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 201,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/201",
+      "add": 254,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 568,
+      "url": "https://github.com/Benmore-Studio/echelon_nil_135/pull/568",
+      "add": 254,
+      "cat": "Athlete NIL platform"
+    },
+    {
+      "n": 243,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/243",
+      "add": 250,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 63,
+      "url": "https://github.com/ric897/benmore-go/pull/63",
+      "add": 243,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 241,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/241",
+      "add": 229,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 3,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/3",
+      "add": 227,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 133,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/133",
+      "add": 219,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 1,
+      "url": "https://github.com/Benmore-Studio/Compensation_OS/pull/1",
+      "add": 214,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 38,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/38",
+      "add": 207,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 177,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/177",
+      "add": 198,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 39,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/39",
+      "add": 189,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 549,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/549",
+      "add": 187,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 176,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/176",
+      "add": 180,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 28,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/28",
+      "add": 163,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 67,
+      "url": "https://github.com/ric897/benmore-go/pull/67",
+      "add": 148,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 179,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/179",
+      "add": 146,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 7,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/7",
+      "add": 144,
+      "cat": "Other"
+    },
+    {
+      "n": 7,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/7",
+      "add": 124,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 24,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/24",
+      "add": 123,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 129,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/129",
+      "add": 120,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 231,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/231",
+      "add": 114,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 50,
+      "url": "https://github.com/Benmore-Studio/Benmore-Meridian/pull/50",
+      "add": 107,
+      "cat": "Other"
+    },
+    {
+      "n": 167,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/167",
+      "add": 106,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 21,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/21",
+      "add": 104,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 6,
+      "url": "https://github.com/Benmore-Studio/anchor_bgo/pull/6",
+      "add": 102,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 178,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/178",
+      "add": 90,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 20,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/20",
+      "add": 78,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 180,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/180",
+      "add": 61,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 8,
+      "url": "https://github.com/Benmore-Studio/benmore/pull/8",
+      "add": 54,
+      "cat": "Other"
+    },
+    {
+      "n": 173,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/173",
+      "add": 52,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 156,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/156",
+      "add": 45,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 90,
+      "url": "https://github.com/ric897/benmore-go/pull/90",
+      "add": 41,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 183,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/183",
+      "add": 35,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 182,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/182",
+      "add": 33,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 23,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/23",
+      "add": 32,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 66,
+      "url": "https://github.com/ric897/benmore-go/pull/66",
+      "add": 31,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 169,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/169",
+      "add": 28,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 550,
+      "url": "https://github.com/Benmore-Studio/House-service-pass--benmore-128-/pull/550",
+      "add": 24,
+      "cat": "Home-services membership"
+    },
+    {
+      "n": 171,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/171",
+      "add": 23,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 170,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/170",
+      "add": 23,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 172,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/172",
+      "add": 18,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 567,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/567",
+      "add": 17,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 3,
+      "url": "https://github.com/Benmore-Studio/Portfolio_optimzation_196/pull/3",
+      "add": 17,
+      "cat": "Portfolio-optimization (discovery)"
+    },
+    {
+      "n": 44,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/44",
+      "add": 16,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 33,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/33",
+      "add": 15,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 132,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/132",
+      "add": 14,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 250,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/250",
+      "add": 13,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 168,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/168",
+      "add": 12,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 16,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_frontend/pull/16",
+      "add": 10,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 6,
+      "url": "https://github.com/Benmore-Studio/Compensation_OS/pull/6",
+      "add": 10,
+      "cat": "Loyalty / compliance platform"
+    },
+    {
+      "n": 53,
+      "url": "https://github.com/ric897/benmore-go/pull/53",
+      "add": 8,
+      "cat": "Benmore platform & OSS"
+    },
+    {
+      "n": 563,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/563",
+      "add": 0,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 562,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/562",
+      "add": 0,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 561,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/561",
+      "add": 0,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 564,
+      "url": "https://github.com/Patriot-Compliance-Systems/pcs_backend/pull/564",
+      "add": 0,
+      "cat": "Compliance & workforce SaaS"
+    },
+    {
+      "n": 40,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/40",
+      "add": 0,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 131,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/131",
+      "add": 0,
+      "cat": "M&A deal-review platform"
+    },
+    {
+      "n": 130,
+      "url": "https://github.com/Benmore-Studio/Chantanl_175/pull/130",
+      "add": 0,
+      "cat": "M&A deal-review platform"
+    }
+  ]
+}

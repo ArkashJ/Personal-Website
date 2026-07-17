@@ -12,6 +12,8 @@ import { getCommitsForWeek } from '@/lib/git-changelog'
 import { WeeklyGrid } from './WeeklyGrid'
 import WeeklyBullets from '@/components/weekly/WeeklyBullets'
 import WeeklyTimeline from '@/components/weekly/WeeklyTimeline'
+import PrTiles from '@/components/weekly/PrTiles'
+import weeklyPrs from '@/content/_generated/weekly-prs.json'
 
 export const dynamicParams = false
 
@@ -94,6 +96,14 @@ export default async function WeeklyDetailPage({ params }: { params: Promise<{ s
       {meta.description && (
         <p className="text-muted text-lg leading-relaxed mb-8">{meta.description}</p>
       )}
+
+      {/* Every merged PR this week as a clickable impact tile (linked to GitHub) */}
+      {(() => {
+        const prs = (
+          weeklyPrs as Record<string, { n: number; url: string; add: number; cat: string }[]>
+        )[meta.slug]
+        return prs?.length ? <PrTiles prs={prs} /> : null
+      })()}
 
       {/* Cards first — visual scan / click-through */}
       <Suspense fallback={<div className="h-32" />}>

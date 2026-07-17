@@ -90,6 +90,11 @@ Latest weekly logs:
 - 2026-W25 (2026-06-15 → 2026-06-21): Engineering — 190 PRs and a production launch push — https://www.arkashj.com/weekly/2026-W25
 - 2026-W18 (2026-04-27 → 2026-05-03): Cattle Logic onboarding + Skills go public — https://www.arkashj.com/weekly/2026-W18
 
+Live products shipped as Forward Deployed Engineer at Benmore:
+- GO180 — veterans-services platform: https://go180.ai
+- Noble — loyalty & compliance platform (web + mobile): https://noble-portal.com
+- Cattle Logic — operating system for American cattle ranches: https://cattlelogicapp.com
+
 ## Site Map
 
 Home (/) — Introduction, featured papers, current work, latest writing
