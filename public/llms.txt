@@ -84,6 +84,10 @@ Arkash maintains a public library of 71 Claude Code skills for forward-deployed 
 Arkash maintains a weekly running log at https://www.arkashj.com/weekly with one entry per ISO week covering what he read, watched, built, shipped, learned, and who he met.
 
 Latest weekly logs:
+- 2026-W28 (2026-07-06 → 2026-07-12): Engineering — 310 PRs across 10 product lines (compliance SaaS, HRIS, loyalty, AgTech, platform) — https://www.arkashj.com/weekly/2026-W28
+- 2026-W27 (2026-06-29 → 2026-07-05): Engineering — 190 PRs, an end-to-end e-sign document flow and a platform hardening pass — https://www.arkashj.com/weekly/2026-W27
+- 2026-W26 (2026-06-22 → 2026-06-28): Engineering — 212 PRs, the busiest merge week of the month — https://www.arkashj.com/weekly/2026-W26
+- 2026-W25 (2026-06-15 → 2026-06-21): Engineering — 190 PRs and a production launch push — https://www.arkashj.com/weekly/2026-W25
 - 2026-W18 (2026-04-27 → 2026-05-03): Cattle Logic onboarding + Skills go public — https://www.arkashj.com/weekly/2026-W18
 
 ## Site Map
