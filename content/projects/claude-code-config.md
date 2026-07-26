@@ -21,8 +21,11 @@ is git-ignored. Only hand-authored config is committed.
 ├── commands/                    custom slash commands
 │   └── full-app-test.md
 │
-├── hooks/                       PreToolUse / PostToolUse / Stop hook scripts
-│   └── context-mode-cache-heal.mjs
+├── hooks/                       PreToolUse / PostToolUse / SessionStart hook scripts
+│   ├── context-mode-cache-heal.mjs   keeps the context-mode cache healthy
+│   ├── format-on-edit.sh             repo-aware Prettier/Biome auto-format
+│   ├── enforce-agnostic.mjs          guards the agnostic contract on edits
+│   └── cleanup.sh                    sweeps caches (>14d) + plans (>36h)
 │
 ├── rules/                       auto-loaded rule files (@-included by CLAUDE.md)
 │   └── context7.md              ctx7 docs-fetching rule

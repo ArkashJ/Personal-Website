@@ -61,3 +61,6 @@ docs/screenshots/
 
 # site-capture skill output
 captures/out/
+
+# private, local-only context (never commit)
+docs/personal_life/

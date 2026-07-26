@@ -1,5 +1,50 @@
 [
   {
+    "hash": "2205e19e47bbf8f5a1f992740bf9e4bcc18b2cb8",
+    "date": "2026-07-17T18:55:32-05:00",
+    "type": "weekly",
+    "scopes": [],
+    "summary": "PR impact-tile graph (every PR linked) + PR/product links (go180.ai, noble-portal.com, cattlelogicapp.com)",
+    "body": "",
+    "tags": ["weekly"]
+  },
+  {
+    "hash": "ec2dbff0f88018096695947b1f80b8f19db379d5",
+    "date": "2026-07-17T18:37:10-05:00",
+    "type": "weekly",
+    "scopes": [],
+    "summary": "engineering digests W25–W28",
+    "body": "",
+    "tags": ["weekly"]
+  },
+  {
+    "hash": "9a2cbd960e8c41747d68d555ab23548c268eb48c",
+    "date": "2026-07-12T18:50:19-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "updated markdown",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "30f24d00a3e6f7ffc1098051de112dbc86625ec2",
+    "date": "2026-06-21T19:34:00-05:00",
+    "type": null,
+    "scopes": [],
+    "summary": "updates",
+    "body": "",
+    "tags": []
+  },
+  {
+    "hash": "ec73ea865e2c2c3673644d18e3b23fd8b612aad1",
+    "date": "2026-06-21T18:52:43-05:00",
+    "type": "chore",
+    "scopes": ["skills"],
+    "summary": "sync benmore-cli, qa_skill, design-director into repo",
+    "body": "Track these shared Claude Code skills in the repo so the project carries\nits own copy. Adjust .gitignore to whitelist .claude/skills/ (the .claude/*\nrule otherwise excludes the whole dir and blocks re-include of children).\n\nCo-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore", "skills"]
+  },
+  {
     "hash": "73badf16bb884469fa108c7f7d7db1c4af1c8499",
     "date": "2026-05-30T20:13:44-05:00",
     "type": "feat",
