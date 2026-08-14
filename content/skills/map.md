@@ -30,3 +30,5 @@ that could be false next week, delete it or replace it with the command that ans
 
 Finish with: what you mapped, what you could NOT determine (didn't run, couldn't reach), and the
 three things most likely to surprise a new session here.
+
+<!-- sync probe -->
