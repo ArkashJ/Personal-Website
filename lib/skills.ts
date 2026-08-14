@@ -41,6 +41,8 @@ const CATEGORY_RULES: Array<[RegExp, string]> = [
     /^(productionize|deep-dive-ascii|create-research-primer|github-issue|gh_issue|tickets|release-notes|meeting-notes|qa-plan|create-project|skill-chain|full-pr-review|quick-pr-review)/i,
     'Workflow & Ops',
   ],
+  // Slash-command workflows synced from ~/.claude/commands by commands/bin/sync-skills.sh
+  [/^(start|wrap|checkpoint|mission|map|investigate|featuredev|harvest)$/i, 'Session Workflow'],
   [
     /^(mcp|claude-api|cli-builder|stripe_processing|skill-creator|find-skills|nano_banana|stripe-projects|video-download|xlsx|pdf|docx|presentation|mailjet|otp|role-based|universal-auth|django-react-2fa|django-auth)/i,
     'Tooling & Integrations',
