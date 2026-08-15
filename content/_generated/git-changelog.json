@@ -1,5 +1,41 @@
 [
   {
+    "hash": "2f284724c76da5170e879cb58d5f418f6c5eff1b",
+    "date": "2026-08-14T17:17:22-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "sync 1 command(s) from ~/.claude/commands",
+    "body": "",
+    "tags": ["skills"]
+  },
+  {
+    "hash": "93d04ae55f617e38df6cdc064738036ce9eab53f",
+    "date": "2026-08-14T17:16:33-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "sync 1 command(s) from ~/.claude/commands",
+    "body": "",
+    "tags": ["skills"]
+  },
+  {
+    "hash": "5100ec9e243bf7e2d299c23230ee306e5517f053",
+    "date": "2026-08-14T17:11:51-05:00",
+    "type": "chore",
+    "scopes": [],
+    "summary": "regenerate git changelog + project README snapshots",
+    "body": "Output of the prebuild sync scripts; no hand edits.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore"]
+  },
+  {
+    "hash": "d2f0162e9f9b985ae8e9699b75dd4dc8354be936",
+    "date": "2026-08-14T17:11:40-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "publish the 8 ~/.claude/commands workflows to /skills",
+    "body": "Synced by commands/bin/sync-skills.sh, which copies each command .md into\ncontent/skills/ and injects the `name:` frontmatter key lib/skills.ts needs.\nAdds a \"Session Workflow\" category so they don't all land in General.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "tags": ["skills"]
+  },
+  {
     "hash": "3d353b19d32ac76d0b541b10dd424da09e896e55",
     "date": "2026-07-26T09:40:41-05:00",
     "type": null,
@@ -1463,15 +1499,6 @@
     "type": null,
     "scopes": [],
     "summary": "first commit",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "21733abbb401e8fa8cbf8469e426e9ec2cd3eba6",
-    "date": "2022-12-27T12:10:28+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "Initial commit from Create Next App",
     "body": "",
     "tags": []
   }
