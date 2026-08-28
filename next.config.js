@@ -36,6 +36,17 @@ const nextConfig = {
         destination: '/images/files/papers/2025.12.31.697247.full.pdf',
         permanent: true,
       },
+      // retired essay
+      {
+        source: '/writing/o1-visa-evidence-hub',
+        destination: '/writing',
+        permanent: true,
+      },
+      {
+        source: '/writing/o1-visa-evidence-hub/raw',
+        destination: '/writing',
+        permanent: true,
+      },
       {
         source: '/experience',
         destination: '/about#career',

@@ -335,7 +335,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ### Added — Cover-letter response doc
 
-- `docs/cover-letters/2026-04-keith-liston-o1-response.md` — point-by-point evidence inventory mapping to all 8 USCIS O-1A criteria. Private working draft (folder excluded from `lib/docs.ts` so it is not served by the website).
+- `docs/cover-letters/` — private working drafts (folder excluded from `lib/docs.ts` so it is not served by the website).
 
 ### Changed — Hero stat box
 
@@ -528,7 +528,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ### Added — More MDX content
 
-- 7 additional articles: o1-visa-evidence-hub, FDE feedback loop, Raft in 5 minutes, RocksDB write amplification, convergence intuition, why TypeScript strict, FSDP vs tensor parallel
+- 6 additional articles: FDE feedback loop, Raft in 5 minutes, RocksDB write amplification, convergence intuition, why TypeScript strict, FSDP vs tensor parallel
 
 ---
 

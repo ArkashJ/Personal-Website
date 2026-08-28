@@ -41,7 +41,7 @@ The codebase claims `https://www.arkashj.com` (sitemap, JSON-LD, OG images) but 
 4. Confirm `https://www.arkashj.com` returns the latest build
 5. (Optional) Add to LinkedIn, GitHub, Substack profile fields once live
 
-**Why P0:** Everything SEO-related claims this URL. Without it the visa evidence hub is fragmented across vercel.app subdomains.
+**Why P0:** Everything SEO-related claims this URL. Without it the evidence hub is fragmented across vercel.app subdomains.
 
 ### 2. Submit sitemap to Google Search Console
 
@@ -72,7 +72,7 @@ Specific MDX articles that round out the body of work (suggested in the content 
 | Title                                                  | Where                                    | Why                                                          |
 | ------------------------------------------------------ | ---------------------------------------- | ------------------------------------------------------------ |
 | `spatialdino-the-architecture-decisions.mdx`           | `content/knowledge/ai/`                  | Anchor for the SpatialDINO paper, explains technical choices |
-| `beating-betzig-with-24-gpus.mdx`                      | `content/writing/`                       | Visa-grade story: small team beats Nobel laureate's pipeline |
+| `beating-betzig-with-24-gpus.mdx`                      | `content/writing/`                       | Flagship story: small team beats Nobel laureate's pipeline   |
 | `pytorch-144779-the-infiniband-fix.mdx`                | `content/knowledge/distributed-systems/` | Walkthrough of the open-source contribution                  |
 | `dynamic-checkpointing-flink-thesis.mdx`               | `content/knowledge/distributed-systems/` | Thesis summary                                               |
 | `from-supercritical-fluids-to-vision-transformers.mdx` | `content/writing/`                       | The arc story — about-page anchor                            |
@@ -86,11 +86,11 @@ Specific MDX articles that round out the body of work (suggested in the content 
 
 ## P1 — High value, larger scope
 
-### 5. New surfaces still missing (visa hub completeness)
+### 5. New surfaces still missing (hub completeness)
 
-The site's stated O-1 goal calls for these surfaces. Each is a single typed array + page. The data model proposal lives in `docs/superpowers/specs/2026-04-26-personal-website-revamp-design.md` and the content scaffolding agent's output (in session history).
+The site’s stated goals call for these surfaces. Each is a single typed array + page. The data model proposal lives in `docs/superpowers/specs/2026-04-26-personal-website-revamp-design.md` and the content scaffolding agent's output (in session history).
 
-| Surface          | O-1 criterion                      | Effort                                                   |
+| Surface          | Rationale                          | Effort                                                   |
 | ---------------- | ---------------------------------- | -------------------------------------------------------- |
 | `/press`         | Press coverage                     | Trivial — extend `lib/media.ts` PRESS to its own page    |
 | `/talks`         | Scholarly recognition + leadership | Small — add Talk type, scaffold cards                    |

@@ -4,7 +4,7 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 ## Quick facts
 
-- **Site**: [arkashj.com](https://www.arkashj.com) — Arkash Jain's personal website + O-1 visa evidence hub.
+- **Site**: [arkashj.com](https://www.arkashj.com) — Arkash Jain's personal website + canonical evidence hub.
 - **Stack**: Next.js 15.5 App Router · React 19 · TypeScript strict · Tailwind CSS 3 · MDX (RSC).
 - **Toolchain**: **Bun** for installs and repo scripts (`bun install`, `bun run …`, `bunx …`). Vercel and CI consume the committed **`bun.lock`** (regenerate with `bun install` after any `package.json` edit). The **Node.js 22** runtime still executes the built Next.js app on Vercel. Repo root **`bunfig.toml`** sets `trustedDependencies` so Husky’s lifecycle scripts can run; CI caches `~/.bun/install/cache` for faster installs. **`.gitignore`** excludes root **`package-lock.json`**, **`pnpm-lock.yaml`**, and **`yarn.lock`** so accidental non-Bun installs do not get committed.
 - **Deployment**: Vercel (auto-deploy from `main`).
@@ -211,7 +211,7 @@ Reference rules:
 
 ## SEO infrastructure
 
-This site is the central evidence hub for Arkash's O-1 visa application — SEO is load-bearing, not decorative.
+This site is the canonical public record of Arkash's work — SEO is load-bearing, not decorative.
 
 - `app/sitemap.ts` enumerates every static + dynamic MDX route.
 - `public/robots.txt` allow-all + sitemap pointer. Static file, not a metadata route — there is no `app/robots.ts`.

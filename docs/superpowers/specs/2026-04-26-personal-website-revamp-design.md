@@ -13,7 +13,7 @@ The current site (Next.js 13, Pages Router, no TypeScript, 3 pages) is completel
 
 Two goals drive this rebuild:
 
-1. **O-1 visa** — Google must index Arkash as an extraordinary individual. The site is the canonical evidence hub linking to every public proof point (papers, GitHub, Substack, LinkedIn).
+1. **Discoverability** — Google must index Arkash accurately. The site is the canonical evidence hub linking to every public proof point (papers, GitHub, Substack, LinkedIn).
 2. **Personal brand** — a modern, data-dense portfolio that reflects the actual trajectory: physicist → VC → distributed systems researcher → Harvard AI researcher → AI consultant building companies.
 
 ---
@@ -216,7 +216,7 @@ Hero section: SpatialDINO featured prominently (largest card, animated). Below: 
 3. UNET for Semi-Supervised Segmentation — Journal of Cell Biology, Aug 2025
 4. Ultrafast 2DIR comparison... — Journal of Chemical Physics, Nov 2022
 
-**Infrastructure section** (the O-1 differentiator):
+**Infrastructure section** (the differentiator):
 
 - Full ML stack: Infiniband/RDMA → RAID → NVMe → NVLink → DGX nodes → bf16 → FSDP
 - PyTorch open source contribution: Issue #144779 (Infiniband RDZV backend) — link to GitHub

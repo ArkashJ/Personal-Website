@@ -13,7 +13,7 @@ This document is the single source of truth for working on the site. Read this b
 The site is two things at once, and both must stay true:
 
 1. **A personal portfolio** for Arkash Jain — AI researcher (Harvard Kirchhausen Lab, four published papers including SpatialDINO) turned forward deployed engineer (Head of FDE at Benmore Technologies).
-2. **A deliberate O-1 visa evidence hub.** Every claim of extraordinary ability — papers, GitHub contributions, talks, press, awards, current employer — must have a canonical, crawlable URL on this site that points to authoritative external proof. USCIS adjudicators, recruiters, and search engines should all land on the same evidence trail.
+2. **A deliberate evidence hub.** Every claim — papers, GitHub contributions, talks, press, awards, current employer — must have a canonical, crawlable URL on this site that points to authoritative external proof. Readers, recruiters, and search engines should all land on the same evidence trail.
 
 Design and SEO decisions are made through that lens. If a page can't be defended as either portfolio surface or evidence anchor, it doesn't ship.
 

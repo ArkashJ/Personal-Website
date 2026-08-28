@@ -1,6 +1,6 @@
 # arkashj.com
 
-> Personal website, canonical knowledge hub, and O-1 visa evidence portfolio for **[Arkash Jain](https://www.arkashj.com)** — first-author of [SpatialDINO](https://www.biorxiv.org/content/10.1101/2025.02.04.636474), Harvard ML researcher (Kirchhausen Lab), Head of Forward Deployed Engineering at [Benmore Technologies](https://benmore.tech), four-time published author across cell biology, chemical physics, and self-supervised learning.
+> Personal website, canonical knowledge hub, and portfolio for **[Arkash Jain](https://www.arkashj.com)** — first-author of [SpatialDINO](https://www.biorxiv.org/content/10.1101/2025.02.04.636474), Harvard ML researcher (Kirchhausen Lab), Head of Forward Deployed Engineering at [Benmore Technologies](https://benmore.tech), four-time published author across cell biology, chemical physics, and self-supervised learning.
 >
 > This README is intentionally long. It consolidates the website's contents — biography, credentials, publications, experience, knowledge, projects, internal tools, life changelog, stack, and external links — into a single navigable Markdown reference. Treat it as the canonical text-only mirror of [arkashj.com](https://www.arkashj.com).
 
@@ -66,7 +66,7 @@ In parallel he interned twice at [**Battery Ventures**](https://www.battery.com)
 
 He writes weekly at **[arkash.substack.com](https://arkash.substack.com)** on AI hardware, finance, distributed systems, geopolitics, and venture strategy. He is the co-host of the **[STU STREET](https://podcasts.apple.com/us/podcast/stu-street/id1635472305)** podcast (long-form interviews with founders, athletes, and professors, originally on WTBU). He has 7 distributed-systems articles on [Medium](https://medium.com/@arkjain) and active accounts on [X / Twitter](https://x.com/_arkash) and [LinkedIn](https://www.linkedin.com/in/arkashj/).
 
-He arrived in the United States from **Chandigarh, India** in September 2020. This website is the central evidence hub for his **O-1 visa application** — every page is structured to be Google-indexed, link-rich, and built around verifiable external citations.
+He arrived in the United States from **Chandigarh, India** in September 2020. This website is his canonical public record — every page is structured to be Google-indexed, link-rich, and built around verifiable external citations.
 
 ---
 
@@ -95,7 +95,6 @@ He arrived in the United States from **Chandigarh, India** in September 2020. Th
 | **Title**                | Head of Forward Deployed Engineering, Benmore Technologies                                                                                                           |
 | **Prior**                | ML Researcher, Kirchhausen Lab — Harvard Medical School / Boston Children's Hospital                                                                                 |
 | **Education**            | Harvard University (Postgraduate Research, Computer Vision & AI, 2024–2025) · Boston University (BA Math + CS, MS CS — 4-yr accelerated, 2020–2024, Magna Cum Laude) |
-| **Citizenship**          | Indian national (in the US since Sep 2020); O-1 visa applicant                                                                                                       |
 | **Hometown**             | Chandigarh, India                                                                                                                                                    |
 | **Currently in**         | Boston / Chicago (remote-first)                                                                                                                                      |
 | **Languages spoken**     | English, Hindi, Punjabi                                                                                                                                              |
@@ -317,7 +316,6 @@ Site-hosted essays (MDX, render at `/writing/[slug]`):
 
 - [why-fde](https://www.arkashj.com/writing/why-fde) — why forward-deployed engineering is the right model right now.
 - [the-fde-feedback-loop](https://www.arkashj.com/writing/the-fde-feedback-loop) — the engagement mechanism behind 887% growth.
-- [o1-visa-evidence-hub](https://www.arkashj.com/writing/o1-visa-evidence-hub) — building a website as O-1 evidence.
 - [distributed-checkpointing](https://www.arkashj.com/writing/distributed-checkpointing) — adaptive cadence under backpressure (Flink thesis).
 - [sample-ai-hardware](https://www.arkashj.com/writing/sample-ai-hardware) — the AI hardware stack from training to deploy.
 
@@ -610,7 +608,7 @@ Components live in `components/embeds/`, wired via `components/MdxContent.tsx`.
 
 ### SEO infrastructure
 
-Because this site is the central evidence hub for an O-1 visa application, SEO is load-bearing.
+Because this site is the canonical public record of Arkash’s work, SEO is load-bearing.
 
 - `app/sitemap.ts` enumerates every static and dynamic MDX route.
 - `app/robots.ts` allow-all + sitemap pointer.

@@ -64,3 +64,5 @@ captures/out/
 
 # private, local-only context (never commit)
 docs/personal_life/
+.env*
+docs/cover-letters/

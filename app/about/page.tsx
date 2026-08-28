@@ -52,8 +52,8 @@ export default function AboutPage() {
             a: 'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy. Native 3D student/teacher ViTs with 3D iBOT block masking, no positional encoding, a streaming encoder for million-token sequence lengths. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s with PyTorch DDP. Outperformed a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction. Released as a BioRxiv preprint, first-author.',
           },
           {
-            q: 'What is the O-1 visa evidence hub on arkashj.com?',
-            a: 'arkashj.com is structured as both a personal site and an O-1 visa evidence hub — every research paper, project, talk, credential, and engagement that supports the extraordinary-ability application is linked, dated, and source-verifiable. The /credentials route hosts PDF verifiable credentials, /research covers the published papers, and /projects + /work cover the technical contributions.',
+            q: 'What is arkashj.com?',
+            a: 'A personal site and canonical hub — every research paper, project, talk, credential, and engagement is linked, dated, and source-verifiable. The /credentials route hosts PDF verifiable credentials, /research covers the published papers, and /projects + /work cover the technical contributions.',
           },
           {
             q: 'Where did Arkash study?',
