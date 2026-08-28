@@ -1,5 +1,23 @@
 [
   {
+    "hash": "42755809adbf7de4d3f79f65fd4f2ecc4b58fad1",
+    "date": "2026-08-14T20:12:04-05:00",
+    "type": "chore",
+    "scopes": [],
+    "summary": "regenerate synced content",
+    "body": "Picks up the rewritten Claude_code_config README on /projects/claude-code-config.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore"]
+  },
+  {
+    "hash": "417aba4207d031787cc92f7431099293adddf774",
+    "date": "2026-08-14T20:02:36-05:00",
+    "type": "docs",
+    "scopes": [],
+    "summary": "correct CLAUDE.md against the actual app",
+    "body": "Clerk was removed and content/knowledge/ collapsed into /writing (v2.6.0)\nwithout the doc following. Verified every path CLAUDE.md names.\n\nRemoved (routes/files that no longer exist): /ce-plan, /sign-in, /admin/weekly,\n/api/*, lib/finance.ts, lib/highlights.ts, docs/playwright-cli-demo.md, and the\ncheatsheet rows for the weekly admin UI, highlights, theses, and knowledge articles.\n\nCorrected: robots.txt is public/robots.txt, not an app/robots.ts metadata route;\noptimizePackageImports is ['lucide-react', 'cmdk'] with no @clerk/nextjs.\n\nAdded: the content/skills/ files for the 8 session-workflow skills are generated\nby claude-sync, so hand-edits get overwritten — documented in the cheatsheet and\nin Common pitfalls.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "tags": ["docs"]
+  },
+  {
     "hash": "2f284724c76da5170e879cb58d5f418f6c5eff1b",
     "date": "2026-08-14T17:17:22-05:00",
     "type": "skills",
@@ -1481,24 +1499,6 @@
     "type": null,
     "scopes": [],
     "summary": "my picture",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "45e298b05d3935875f1c8c24ecae33bb98f07c6e",
-    "date": "2022-12-28T12:49:46+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "add code",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "f7c9aeaadbe7024124296db0dcc344da2aa3717a",
-    "date": "2022-12-28T12:49:29+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "first commit",
     "body": "",
     "tags": []
   }
