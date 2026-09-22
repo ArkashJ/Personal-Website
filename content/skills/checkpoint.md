@@ -1,6 +1,6 @@
 ---
 name: checkpoint
-description: Force a save-point NOW — commit, push, checkpoint log, status. For leaving, risk, or a session that feels wobbly
+description: Force a save-point NOW — commit, push, checkpoint log with verify certificates, status. For leaving, risk, or a session that feels wobbly
 ---
 
 Force a checkpoint right now, exactly as /start rule 3 defines it — this is the manual override

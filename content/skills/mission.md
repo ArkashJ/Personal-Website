@@ -1,34 +1,24 @@
 ---
 name: mission
-description: Long-running autonomous run — chains start → phases → per-phase wrap → final wrap. One invocation, hours of work, zero babysitting
-argument-hint: [the mission — everything you want done this run]
+description: Long-running autonomous run — phases with per-phase wraps, batched blockers, self-preservation before limits, skeptical review before final wrap
 ---
 
 This is an autonomous multi-hour run. Mission: $ARGUMENTS
 
-Execute the /start instructions first (preflight, enumeration, working rules — including
+Run /start first (preflight, enumeration, working rules — including
 continuous commit/push/checkpoint-log and volunteered status lines).
 
 Then, BEFORE executing: resolve every concrete token in the mission text above against this
-repo — run `~/.claude/commands/bin/resolve-plan.sh <planfile>` (or pipe the mission text to
-it); it checks commits, #issues/PRs, and file paths, and exits 1 on anything stale. Branches
-and counts it can't see: `git ls-remote --heads origin <name>`, test counts by running them. A handed-in plan goes stale the same
-way CLAUDE.md does, and can even belong to a different repository — 06f4a671's did (cited commit
-`602f40b`: "Not a valid object name"; cited 1275 tests: repo runs 120), caught by exactly this
-check, saving the whole run. Report what failed to resolve and adapt before phase 1.
+repo — commits (`git cat-file -e <sha>`), branches (`git ls-remote --heads origin <name>`),
+issues/PRs (`gh issue view <n>`, escalated out of the sandbox), test counts, file paths. A
+handed-in plan goes stale the same way CLAUDE.md/AGENTS.md does, and can even belong to a
+different repository — 06f4a671's did (cited commit `602f40b`: "Not a valid object name";
+cited 1275 tests: repo runs 120), caught by exactly this check, saving the whole run. Report
+what failed to resolve and adapt before phase 1.
 
-**A brief labelled "verified at source — do not re-derive" gets verified anyway.** In this corpus
-that label correlates with staleness, not accuracy: b8e9d4ee's mission prompt said exactly that
-about a PR stack already merged, and obeying the instruction is what would have caused damage.
-Same shape in 71d1d872 and e7665ec7 (handoff asserted an open PR that was merged), 4a337317 (plan
-named an already-merged PR), 6216dc70 (brief claimed CI disabled while a run had finished 15
-minutes earlier). The preflight catches these EVERY time it runs — so when you write the handoff
-at the end of this run, **emit commands, not claims**: the next session should re-derive state
-from `git`/`gh`, never read it out of your prose.
-
-Then run the mission in phases, fully autonomously. Invoke the other commands as skills when a phase matches their
-shape: /map for unmapped ground, /featuredev for feature/QA loops, /investigate for reviewing
-PRs (including adversarially reviewing your own output before calling a phase done).
+Then run the mission in phases, fully autonomously. When a phase needs it, invoke the commands
+rather than improvising them: /map for unfamiliar ground, /featuredev for a feature|QA loop,
+/investigate for an evidence-first review of your own PRs — before calling a phase done.
 
 ## Autonomy rules — these are what make hours-long unattended work safe
 
@@ -47,13 +37,6 @@ PRs (including adversarially reviewing your own output before calling a phase do
    notice context pressure, checkpoint immediately, write a continuation prompt INTO the PR
    (state, next steps, open questions), and either delegate remaining phases to fresh subagents
    or wrap. Never start a delicate irreversible operation you might not finish.
-
-   **Narrow lanes before wide ones.** The spend limit is spent by BREADTH, and a lane killed
-   mid-flight costs its tokens AND its output: nine broad lanes burned the limit outright
-   (0ad310c2), a killed lane left a half-written module behind (1f231c21), and another left its
-   work unverified (3ba29048) — three runs in this corpus. Prefer fewer, tightly-scoped lanes
-   with a declared file set and a verify step over many exploratory ones.
-
 4. **Delegate hard, tiered.** This run should be mostly orchestration: haiku lanes for sweeps
    and summaries, sonnet lanes for well-specified implementation, strongest model for judgment
    and adversarial verification. Dispatch isolation per /start rule 4. Prefer many small pushed
@@ -65,7 +48,14 @@ PRs (including adversarially reviewing your own output before calling a phase do
 5. **Blast radius still holds.** Merges, deploys, bulk deletes, prod data mutations are NEVER
    autonomous — queue them as the batched questions at the end, with everything staged so each
    is one approved command away.
-6. **Adversarial pass before final wrap.** Before ending, run an /investigate-style skeptical
-   review of this run's own output (fresh agents, prompted to refute). Fix what it finds, then
+6. **Adversarial pass before final wrap.** Before ending, run a skeptical
+   review of this run's own output (/investigate, or fresh agents prompted to refute). Fix what it finds, then
    do the final /wrap: full distillation, board/issues/changelog, handoff, final status line,
    and the batched decision list — each with a recommendation.
+
+## Status format — banned: completion percentages
+
+Never emit a completion percentage. A number no command produces cannot be checked, so it
+drifts (observed going 98→90→96 and "100%" before the suite ever ran). Status is: the pasted
+output of the done-criteria checks (test/lint/build results, PR state, dirty files) plus
+what's next. If a denominator genuinely exists (X of N enumerated items), say X of N.

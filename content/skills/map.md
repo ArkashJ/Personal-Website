@@ -16,7 +16,7 @@ cannot go stale. The split below is the whole point — violating it poisons eve
 
 ## Persist — conclusions only
 
-Synthesize into CLAUDE.md (create or surgically update, keep it SMALL): build/test/run commands,
+Synthesize into AGENTS.md (create or surgically update, keep it SMALL): build/test/run commands,
 conventions, entry points, invariants and gotchas, architecture map with file:line references.
 Distilled prose, no raw dumps. If docs claimed things the code contradicts, flag each mismatch
 explicitly rather than silently writing the corrected version.
