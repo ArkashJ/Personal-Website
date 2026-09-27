@@ -9,10 +9,46 @@ computed, and never write down state that a command can fetch fresh.** Do all ap
 for any that don't apply, say so in one line. Use cheap-model subagents for the mechanical
 derivations where it helps.
 
+## 0. If /harvest ran too: harvest first, wrap consumes it
+
+Harvest builds and commits guards. Wrap lands, merges, cleans up and hands off. Harvest's
+undispositioned signals go into step 8's "Not done", never silently dropped.
+
+## 0b. The asks ledger: prove every request with a command
+
+```bash
+python3 ~/.claude/skills/harvest/signals.py --related   # skip if harvest just printed ASKS + RELATED
+```
+
+RELATED (harvest step 0b) lists code in other repos that shares this session's concern. Wrap
+does not fix those files. Each LEAD becomes an issue in its repo or a line in step 8, so the
+optimisation carries across repos instead of ending with this session.
+
+ASKS lists every request the human made this session, with Jev's routing of what kind it is.
+Prove each one with its command. Never reread your own replies as proof: a self-report reread
+as evidence is how "done" got claimed while the files were not on main.
+
+| kind           | proof                                                                |
+| -------------- | -------------------------------------------------------------------- |
+| push / cleanup | `~/.claude/commands/bin/repo-hygiene.sh --landed` (step 6b)          |
+| merge          | `gh pr view <n> --json state,mergedAt,mergeCommit`                   |
+| deploy         | fresh readback of the NEW behaviour from the serving system (step 9) |
+| issues_board   | `gh issue view <n> --json state,projectItems`                        |
+| handoff        | the step 8 block, printed                                            |
+| code_change    | the commit SHA is on the remote: `git branch -r --contains <sha>`    |
+| study / other  | read the turn yourself. These rows never gate ending.                |
+
+Report `asks proven X of N`. An unproven ask goes into "Not done" with its failing command.
+Studied follow-ups this answers before they are asked: "did you merge and deploy??", "Are the
+files on main or no??", "did you act on all the changes???", "are the workflows running though
+or not???".
+
 ## 1. Land the work
 
 `git status --porcelain` must end empty: commit remaining work (logical commits, not one blob),
 push, and make sure the draft PR exists and is current. Remove scratch artifacts from the tree.
+Batch the push: one push per branch at the end, not one per fix. Every push re-runs hosted CI
+and sometimes a deploy ("you cannot rerun ci cd after every push", Codex 01a0d50e).
 
 ## 2. Handoff → PR, not loose files
 
@@ -50,7 +86,7 @@ with a recorded failing command/response attached; otherwise it is "not attempte
 If code changed any surface that docs describe (API routes, schemas, CLI flags, env vars): diff
 docs against the generated spec or the code itself, fix drift, and flag—don't silently fix—any
 doc claim that was already wrong before this session. Never add mutable state to auto-loaded
-files (AGENTS.md and kin); those carry only invariants and pointers to commands.
+files (CLAUDE.md, AGENTS.md and kin); those carry only invariants and pointers to commands.
 
 A link checker is not a claim checker: `verify.docs-links` passes green on a roadmap with a
 wrong issue count, a stale CI banner and a hostname that now 502s (33ecb76f). Any doc that
@@ -61,8 +97,13 @@ caught committed client-facing DNS values disagreeing with live infra that way).
 ## 6b. Repo hygiene — run the script, do not re-derive it
 
 ```bash
-~/.Codex/commands/bin/repo-hygiene.sh          # reports; exit 1 = something is stale
+~/.claude/commands/bin/repo-hygiene.sh --landed   # reports; exit 1 = something is stale or unlanded
 ```
+
+`--landed` adds: uncommitted files in every worktree, commits that exist on no remote (including
+branches that have no upstream), and your open PRs with their check state. Those PRs are durable
+but not yet on the default branch. It ends with `SAFE TO END: yes|no — <reason>`. Step 9 quotes
+that line verbatim. Never write it by hand.
 
 Then act on what it prints: prune worktrees, delete branches whose PR is merged, commit
 any dirty agent-instruction file. **Deleting a branch or worktree is a blast-radius
@@ -99,6 +140,7 @@ Done: <3 lines max, each with its verify command>.
 Not done: <items, each "blocked: <failing command>" or "not attempted">.
 Decisions waiting on the human: <each one approved command away, with a recommendation —
   for a merge, literally: `gh pr merge <n> --squash --delete-branch` — say go. Recommend: yes/no, why>.
+Related elsewhere: <repo/path — why, from RELATED LEADs; or "none above 0.70">.
 Read first: PR #<n> checkpoint log; <one file>.
 ```
 
@@ -106,10 +148,18 @@ Commands, not claims — the /mission preamble explains why a brief labelled "ve
 one that gets you. If the human asks for the prompt before /wrap, this block IS the answer;
 do not make them ask twice (32 sessions contain a re-ask of an already-answered request).
 
+Ask pending decisions with the interactive question tool, all in one call (merge bypasses,
+deletions, product choices), each with a recommended option. Do not leave them as a prose list.
+"ask all interactively!!" was a correction in 3 studied sessions.
+
 ## 9. Final status line
 
 End with: branch, HEAD, PR URL + state, CI state, issues updated/created, board moves, anything
 left dirty or in flight — and the one thing most likely to bite the next session.
+
+The last line is the `SAFE TO END:` line, copied verbatim from a `repo-hygiene.sh --landed` run
+made in this closing turn. "do i end session" / "So do we end this session?" was asked after 3
+studied wraps. This line answers it before it is asked.
 
 Any "deployed / live / fixed in prod" claim in this line requires a fresh readback from the
 serving system IN THIS CLOSING TURN: curl the live URL and check for the NEW behavior —

@@ -26,7 +26,7 @@ where it stopped, and ask whether to resume it or start fresh.
 Then run the hygiene report and act on what it prints:
 
 ```bash
-~/.Codex/commands/bin/repo-hygiene.sh          # exit 1 = something is stale
+~/.claude/commands/bin/repo-hygiene.sh          # exit 1 = something is stale
 ```
 
 Inherited mess is a session-open problem, not a session-close one: AGENTS.md files inherited
@@ -172,7 +172,7 @@ line; do not silently drop the work.
 
 ## 8. Ending a turn
 
-A Stop hook (`~/.Codex/commands/hooks/block-open-ended-stop.sh`) refuses to end a turn whose
+A Stop hook (`~/.claude/commands/hooks/block-open-ended-stop.sh`) refuses to end a turn whose
 reply defers work with no accepted reason, or claims done on a dirty tree. Accepted reasons:
 `blocked: <failing command>`, `not attempted`, `human decision` (rule 7 actions, each one
 approved command away with a recommendation). "Next steps" you are allowed to take are not

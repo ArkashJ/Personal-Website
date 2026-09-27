@@ -15,3 +15,9 @@ Load the `qa` skill. Target: $ARGUMENTS (else the current repo).
    `ui-stress` states (empty, error, slow, long text, 320px, denied).
 5. Group findings by shared cause: one fix at the shared component, then re-measure every consumer.
    Report: verified defects (P1–P3, file:line, what the user sees), the shared causes, and what stayed unmeasured.
+
+Close with (these were the follow-ups every studied run of this command got): `acted X of N`
+over the leads, each one test written / fixed (commit) / issue (URL) / dismissed with a reason;
+the live state of any background agent or workflow, read now rather than from memory ("are the
+workflows running though or not???"); and, when work continues in another session, /wrap step
+8's continuation prompt. Nothing is "on main" until `~/.claude/commands/bin/repo-hygiene.sh --landed` says so.
