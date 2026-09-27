@@ -17,19 +17,16 @@ undispositioned signals go into step 8's "Not done", never silently dropped.
 ## 0b. The asks ledger: prove every request with a command
 
 ```bash
-python3 ~/.claude/skills/harvest/signals.py --related   # skip if harvest just printed ASKS + RELATED
+python3 ~/.claude/skills/harvest/signals.py     # skip if harvest just printed ASKS
 ```
 
 If harvest did not run, still do its step 0c (`hunt.py --since <session start>`) on the code this
 session changed. It is the last Jev look that code gets before the next fresh session.
 
-RELATED (harvest step 0b) lists code in other repos that shares this session's concern. Wrap
-does not fix those files. Each LEAD becomes an issue in its repo or a line in step 8, so the
-optimisation carries across repos instead of ending with this session.
-
-ASKS lists every request the human made this session, with Jev's routing of what kind it is.
-Prove each one with its command. Never reread your own replies as proof: a self-report reread
-as evidence is how "done" got claimed while the files were not on main.
+If this session fixed a bug, its siblings in other repos are found with harvest step 0b: a
+calibrated `qa/sweep.py` family run with `--all-repos`. Wrap does not fix them. Each verified
+sibling becomes an issue in its repo or a line in step 8, so the fix carries across repos instead
+of ending with this session.
 
 | kind           | proof                                                                |
 | -------------- | -------------------------------------------------------------------- |
@@ -143,7 +140,7 @@ Done: <3 lines max, each with its verify command>.
 Not done: <items, each "blocked: <failing command>" or "not attempted">.
 Decisions waiting on the human: <each one approved command away, with a recommendation —
   for a merge, literally: `gh pr merge <n> --squash --delete-branch` — say go. Recommend: yes/no, why>.
-Related elsewhere: <repo/path — why, from RELATED LEADs; or "none above 0.70">.
+Siblings elsewhere: <repo/path:line from the sweep ledger, verified; or "no family calibrated this session">.
 Read first: PR #<n> checkpoint log; <one file>.
 ```
 
