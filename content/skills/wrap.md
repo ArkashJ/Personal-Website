@@ -20,6 +20,9 @@ undispositioned signals go into step 8's "Not done", never silently dropped.
 python3 ~/.claude/skills/harvest/signals.py --related   # skip if harvest just printed ASKS + RELATED
 ```
 
+If harvest did not run, still do its step 0c (`hunt.py --since <session start>`) on the code this
+session changed. It is the last Jev look that code gets before the next fresh session.
+
 RELATED (harvest step 0b) lists code in other repos that shares this session's concern. Wrap
 does not fix those files. Each LEAD becomes an issue in its repo or a line in step 8, so the
 optimisation carries across repos instead of ending with this session.

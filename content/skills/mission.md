@@ -26,6 +26,11 @@ rather than improvising them: /map for unfamiliar ground, /featuredev for a feat
    phase plan to the draft PR. At the END of each phase run the /wrap distillation for that
    phase (changelog delta, issues/board updates, PR comment with done/not-done/not-read). A run
    that dies mid-phase loses at most one phase, never the day.
+   Each phase wrap also runs `python3 ~/.claude/skills/harvest/signals.py` and posts
+   `asks proven X of N` (wrap step 0b), plus `hunt.py <repo> --since <phase start>` when the
+   phase changed React/TanStack code. Long runs studied ended with the human asking "did you act
+   on all the changes???" and "are the workflows running though or not???", which a per-phase
+   ledger answers before it is asked.
 2. **Never stop to ask mid-run — but never run silent either.** Blockers and decisions-that-are-
    mine get recorded (issue or checkpoint log) with your best recommendation, and you continue
    with everything not blocked by them. Only when nothing actionable remains do you stop and
