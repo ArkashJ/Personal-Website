@@ -100,8 +100,9 @@ skill you failed to enumerate.
 
 ## 3. Isolate, commit, push, checkpoint — continuously, without being asked
 
-Work in a worktree. Commit after every green verify; push every commit; open a draft PR at the
-first commit. Non-empty `git status` at a stopping point is a defect. Scratch artifacts go to a
+Work in a worktree. Commit after every green verify; push at each checkpoint (batched, not per
+commit: every push spends hosted-CI minutes, and hosted CI is not a gate; see /wrap step 1); open a
+draft PR at the first push. Non-empty `git status` at a stopping point is a defect. Scratch artifacts go to a
 temp dir, never the repo tree.
 
 After each completed unit of work (green verify, finished sub-task, before any large fan-out),

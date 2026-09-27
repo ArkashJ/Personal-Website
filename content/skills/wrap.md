@@ -50,6 +50,13 @@ push, and make sure the draft PR exists and is current. Remove scratch artifacts
 Batch the push: one push per branch at the end, not one per fix. Every push re-runs hosted CI
 and sometimes a deploy ("you cannot rerun ci cd after every push", Codex 01a0d50e).
 
+**Hosted CI is not a gate (user policy, 2026-09-27).** It costs money and hours; runs were blocked by
+Actions billing in several studied sessions. Run the repo's own local gates (tests, lint, typecheck,
+its `verify`/`check:*` scripts) and paste their output into the PR. Do not wait for hosted CI, poll
+it, or re-run it. When branch protection blocks a merge only on hosted CI, merge with
+`gh pr merge <n> --squash --admin --delete-branch`, citing the local gate output in the PR. A merge
+needs that local evidence; the bypass is not permission to skip it.
+
 ## 2. Handoff → PR, not loose files
 
 Distill the rolling "Checkpoint log" comment first: every `SURPRISE:` / `FALSIFIED:` line gets

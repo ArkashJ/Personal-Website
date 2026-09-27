@@ -53,6 +53,8 @@ rather than improvising them: /map for unfamiliar ground, /featuredev for a feat
 5. **Blast radius still holds.** Merges, deploys, bulk deletes, prod data mutations are NEVER
    autonomous — queue them as the batched questions at the end, with everything staged so each
    is one approved command away.
+   Hosted CI is never something to wait on: local gates are the evidence, and a merge blocked
+   only on hosted CI goes through `--admin` once the human approves the merge (/wrap step 1).
 6. **Adversarial pass before final wrap.** Before ending, run a skeptical
    review of this run's own output (/investigate, or fresh agents prompted to refute). Fix what it finds, then
    do the final /wrap: full distillation, board/issues/changelog, handoff, final status line,
