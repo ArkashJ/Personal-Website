@@ -1,7 +1,7 @@
 ---
 name: ui-hunt
 description: Find the UI bugs this repo keeps shipping — history → shared causes → browser proof
-argument-hint: repo path (default: cwd) [--base URL]
+argument-hint: 'repo path (default: cwd) [--base URL]'
 ---
 
 Load the `qa` skill. Target: $ARGUMENTS (else the current repo).

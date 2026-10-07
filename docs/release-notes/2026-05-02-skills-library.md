@@ -45,7 +45,7 @@
 
 - The skills library converts ~70 internal markdown artifacts into a public, citable, machine-readable corpus — every skill has a stable URL, a plain-text endpoint, and is enumerated in `/skills.json` for AI crawlers and agent ingestion.
 - Unified search collapses three previously separate surfaces (writing, knowledge, learnings) into one query, removing dead-ends in the IA.
-- `/weekly` + Recent Wins gives the site an always-fresh "what changed this week" surface — load-bearing for the O-1 evidence narrative.
+- `/weekly` + Recent Wins gives the site an always-fresh "what changed this week" surface.
 
 ## Screenshots
 

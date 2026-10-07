@@ -4,7 +4,7 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 ## Quick facts
 
-- **Site**: [arkashj.com](https://www.arkashj.com) — Arkash Jain's personal website + canonical evidence hub.
+- **Site**: [arkashj.com](https://www.arkashj.com) — Arkash Jain's personal website.
 - **Stack**: Next.js 15.5 App Router · React 19 · TypeScript strict · Tailwind CSS 3 · MDX (RSC).
 - **Toolchain**: **Bun** for installs and repo scripts (`bun install`, `bun run …`, `bunx …`). Vercel and CI consume the committed **`bun.lock`** (regenerate with `bun install` after any `package.json` edit). The **Node.js 22** runtime still executes the built Next.js app on Vercel. Repo root **`bunfig.toml`** sets `trustedDependencies` so Husky’s lifecycle scripts can run; CI caches `~/.bun/install/cache` for faster installs. **`.gitignore`** excludes root **`package-lock.json`**, **`pnpm-lock.yaml`**, and **`yarn.lock`** so accidental non-Bun installs do not get committed.
 - **Deployment**: Vercel (auto-deploy from `main`).

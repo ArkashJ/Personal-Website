@@ -1,7 +1,7 @@
 ---
 name: review-queue
 description: Triage and review every open PR in a repo — Jev picks depth and model, code picks merge order
-argument-hint: OWNER/REPO (default: this repo's origin)
+argument-hint: "OWNER/REPO (default: this repo's origin)"
 ---
 
 Load the `qa` skill, REVIEW mode. Target: $ARGUMENTS (else `gh repo view --json nameWithOwner`).

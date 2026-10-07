@@ -166,7 +166,7 @@ Any Card component
 
 ### Resolved During Planning
 
-- _Should `/knowledge` completely disappear or redirect?_ → Redirect to `/writing#second-brain`. All existing `/knowledge/[domain]/[slug]` permalinks stay valid (critical for SEO / O-1 evidence links).
+- _Should `/knowledge` completely disappear or redirect?_ → Redirect to `/writing#second-brain`. All existing `/knowledge/[domain]/[slug]` permalinks stay valid (preserves existing links and search indexing).
 - _Which experience entries get "story" treatment?_ → Benmore (current, flagship), Harvard (research narrative), BU (origin story). Battery Ventures and others keep bullet-only treatment.
 - _Where does Experience sit in nav?_ → Replace Knowledge slot (7th item) with Experience. Knowledge remains discoverable via Writing page and Footer.
 
@@ -533,7 +533,7 @@ ExperienceStoryNode props:
 
 - CHANGELOG.md: add entry for revamp under a new `## [next]` heading
 - SEO: after deploy, verify `/writing` and `/experience` appear in Google Search Console
-- The O-1 visa context means `/experience` SEO is load-bearing — JSON-LD for each institution should include `Organization` + `Role` markup
+- `/experience` should be discoverable in search — JSON-LD for each institution should include `Organization` + `Role` markup
 
 ---
 

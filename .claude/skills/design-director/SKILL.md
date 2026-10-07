@@ -25,7 +25,7 @@ The Design Director removes that loop. It does two things:
 1. **Gives the project ONE design contract** (a `DESIGN.md`) so "what good looks
    like" is written down once and read before every UI build — style stops
    drifting.
-2. **Diagnoses each screen in precise terms** and routes to the *smallest useful*
+2. **Diagnoses each screen in precise terms** and routes to the _smallest useful_
    `impeccable` chain, then verifies the result visually.
 
 If you find yourself critiquing output instead of pointing at a contract the
@@ -53,7 +53,7 @@ like" lives. This is the step that stops the nitpick loop.
 1. **Look for an existing contract.** Check for `DESIGN.md`, `PRODUCT.md`,
    `BRAND.md`, a brand kit, or design tokens (`tokens.*`, `theme.*`, CSS
    variables, a Tailwind/`shadcn` theme). If one exists, **it owns direction.**
-   Read it first. `impeccable` and every richness idea become *executors* of
+   Read it first. `impeccable` and every richness idea become _executors_ of
    that contract, never deciders. New surfaces must comply with it — that is how
    drift is prevented.
 
@@ -83,7 +83,7 @@ like" lives. This is the step that stops the nitpick loop.
    extend the contract instead, then use it.
 
 Only one system may own direction at a time. Never run two direction-owning
-sources (e.g. an existing brand kit *and* a fresh `design-taste` proposal)
+sources (e.g. an existing brand kit _and_ a fresh `design-taste` proposal)
 against the same surface in one pass.
 
 ## Required Sub-Skills
@@ -128,7 +128,7 @@ dependency was missing.
      `microcopy`, `CTA`, `inline error`, `front-loading`.
    - For each term, write: `term -> actual screen symptom -> desired change`.
    - Use plain English after the term. The user is not expected to know the
-     jargon — the term sharpens *your* diagnosis, the plain English explains it.
+     jargon — the term sharpens _your_ diagnosis, the plain English explains it.
    - When you name a component or interaction, use the right half of the
      confusable pair so the fix is unambiguous: badge (attached, informational)
      vs tag (standalone, selectable); tooltip (non-interactive) vs popover
@@ -337,25 +337,25 @@ but feel dead.
 
 ## Routing Table
 
-| User symptom | Vocabulary focus | Impeccable chain |
-|---|---|---|
-| "Every build looks different / style keeps drifting" | design tokens, system, consistency, semantic color | establish/extend `DESIGN.md` first, then `critique -> distill -> choose layout or colorize -> polish` |
-| "It looks bland/generic/AI" | visual language, hierarchy, contrast, rhythm, negative space | `critique -> bolder -> choose 1-2 of layout, typeset, colorize, animate -> polish`, or `critique -> overdrive -> polish` |
-| "It is messy/too busy" | hierarchy, density, progressive disclosure, scannability | `critique -> quieter -> distill -> choose layout or adapt` |
-| "The composition is weak" | hierarchy, focal point, grid, asymmetry, negative space | `critique -> layout -> typeset -> polish` |
-| "The colors feel flat/off" | chroma, contrast ratio, tinted neutral, semantic token | `critique -> colorize -> audit -> polish` |
-| "The typography feels wrong" | type scale, leading, tracking, line length, weight | `critique -> typeset -> layout -> polish` |
-| "The UI works but feels lifeless" | affordance, motion as feedback, easing, choreography | `critique -> animate -> delight -> polish` or `bolder -> animate -> polish` |
-| "Rebuild this page with real taste (Linear/Stripe)" | restraint, type scale, whitespace, consistent radius/shadow | pin the contract, then `critique -> layout -> typeset -> colorize -> polish` (visuals only, no new features) |
-| "Mobile/responsive is bad" | breakpoint, layout shift, touch target, overflow | `audit -> adapt -> layout -> polish` |
-| "Build a new UI/feature" | mental model, hierarchy, affordance, empty/error states | `shape -> craft -> adapt -> polish` |
-| "Get every interaction/state right" | empty, loading, error, hover/focus/disabled, feedback | `shape -> craft -> harden -> polish` (run the States gate) |
-| "Make this form usable" | validation, inline error, defaults, keyboard, multi-step | `shape -> craft -> harden -> polish` (run the States gate) |
-| "Build a landing page that converts" | value prop, hierarchy, social proof, single CTA | `shape -> brand register -> craft -> typeset -> polish` |
-| "The copy/labels feel unclear" | microcopy, CTA, front-loading, tone, error message | `clarify -> typeset -> polish` |
-| "Make it production-ready" | accessibility, contrast, focus state, reduced motion, error state | `audit -> harden -> adapt -> polish` |
-| "I want richer components/charts/modals/navigation" | information density, wayfinding, data visualization, progressive disclosure | `critique -> bolder -> choose 1-2 of layout, colorize, animate -> polish` |
-| "Pull scattered UI into a design system" | tokens, component library, semantic naming, reuse | establish `DESIGN.md`, then `distill -> harden -> polish` across components |
+| User symptom                                         | Vocabulary focus                                                            | Impeccable chain                                                                                                         |
+| ---------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| "Every build looks different / style keeps drifting" | design tokens, system, consistency, semantic color                          | establish/extend `DESIGN.md` first, then `critique -> distill -> choose layout or colorize -> polish`                    |
+| "It looks bland/generic/AI"                          | visual language, hierarchy, contrast, rhythm, negative space                | `critique -> bolder -> choose 1-2 of layout, typeset, colorize, animate -> polish`, or `critique -> overdrive -> polish` |
+| "It is messy/too busy"                               | hierarchy, density, progressive disclosure, scannability                    | `critique -> quieter -> distill -> choose layout or adapt`                                                               |
+| "The composition is weak"                            | hierarchy, focal point, grid, asymmetry, negative space                     | `critique -> layout -> typeset -> polish`                                                                                |
+| "The colors feel flat/off"                           | chroma, contrast ratio, tinted neutral, semantic token                      | `critique -> colorize -> audit -> polish`                                                                                |
+| "The typography feels wrong"                         | type scale, leading, tracking, line length, weight                          | `critique -> typeset -> layout -> polish`                                                                                |
+| "The UI works but feels lifeless"                    | affordance, motion as feedback, easing, choreography                        | `critique -> animate -> delight -> polish` or `bolder -> animate -> polish`                                              |
+| "Rebuild this page with real taste (Linear/Stripe)"  | restraint, type scale, whitespace, consistent radius/shadow                 | pin the contract, then `critique -> layout -> typeset -> colorize -> polish` (visuals only, no new features)             |
+| "Mobile/responsive is bad"                           | breakpoint, layout shift, touch target, overflow                            | `audit -> adapt -> layout -> polish`                                                                                     |
+| "Build a new UI/feature"                             | mental model, hierarchy, affordance, empty/error states                     | `shape -> craft -> adapt -> polish`                                                                                      |
+| "Get every interaction/state right"                  | empty, loading, error, hover/focus/disabled, feedback                       | `shape -> craft -> harden -> polish` (run the States gate)                                                               |
+| "Make this form usable"                              | validation, inline error, defaults, keyboard, multi-step                    | `shape -> craft -> harden -> polish` (run the States gate)                                                               |
+| "Build a landing page that converts"                 | value prop, hierarchy, social proof, single CTA                             | `shape -> brand register -> craft -> typeset -> polish`                                                                  |
+| "The copy/labels feel unclear"                       | microcopy, CTA, front-loading, tone, error message                          | `clarify -> typeset -> polish`                                                                                           |
+| "Make it production-ready"                           | accessibility, contrast, focus state, reduced motion, error state           | `audit -> harden -> adapt -> polish`                                                                                     |
+| "I want richer components/charts/modals/navigation"  | information density, wayfinding, data visualization, progressive disclosure | `critique -> bolder -> choose 1-2 of layout, colorize, animate -> polish`                                                |
+| "Pull scattered UI into a design system"             | tokens, component library, semantic naming, reuse                           | establish `DESIGN.md`, then `distill -> harden -> polish` across components                                              |
 
 ## Command Selection Rules
 
@@ -421,44 +421,53 @@ tokens does not stop drift. Keep it short enough to be read before every build.
 
 ```markdown
 # DESIGN.md — <project> design contract
+
 Read this before building or editing any UI. Use these tokens; do not invent
 one-off values. To change the system, edit this file, then use the new token.
 
 ## Color (semantic, not raw)
-- Background: base / subtle / muted          (#…, #…, #…)
-- Foreground: default / muted / subtle       (#…, #…, #…)
-- Brand / primary + on-primary               (#…, #…)
-- Border / ring                              (#…, #…)
-- Status: success / warning / danger / info  (#…, #…, #…, #…)
+
+- Background: base / subtle / muted (#…, #…, #…)
+- Foreground: default / muted / subtle (#…, #…, #…)
+- Brand / primary + on-primary (#…, #…)
+- Border / ring (#…, #…)
+- Status: success / warning / danger / info (#…, #…, #…, #…)
 - Rule: state is never conveyed by color alone.
 
 ## Typography
+
 - Font families: display / body / mono
 - Scale (px/rem + line-height): xs … 4xl
 - Weights in use; tabular numbers for data; max line length ~66ch.
 
 ## Spacing & layout
+
 - Spacing scale (e.g. 4 8 12 16 24 32 48 64); base unit = 4px.
 - Container widths; grid columns; section rhythm.
 
 ## Radius & elevation
+
 - Radius scale: sm / md / lg / full; nested radii are concentric.
 - Shadows: layered ring + soft shadow per elevation level (not hard borders).
 
 ## Motion
+
 - Durations (e.g. 120 / 200 / 320ms) and easings.
 - CSS transitions for state; keyframes only for one-shot sequences.
 - Always honor prefers-reduced-motion.
 
 ## Components
+
 - Buttons, inputs, cards, modals, tables, nav: variants, sizes, default tokens.
 - Source primitives from <shadcn/ui or the repo's standard>, themed by token.
 
 ## Required states (every interactive surface ships these)
+
 - empty · loading (skeleton) · error · hover · focus-visible · active ·
   disabled · success/failure feedback.
 
 ## Accessibility baseline
+
 - Contrast 4.5:1 body / 3:1 UI; visible focus; full keyboard operation;
   44px touch targets; survives 200% zoom.
 ```

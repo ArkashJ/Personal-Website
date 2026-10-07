@@ -13,7 +13,7 @@ The current site (Next.js 13, Pages Router, no TypeScript, 3 pages) is completel
 
 Two goals drive this rebuild:
 
-1. **Discoverability** — Google must index Arkash accurately. The site is the canonical evidence hub linking to every public proof point (papers, GitHub, Substack, LinkedIn).
+1. **Discoverability** — Google must index Arkash accurately. The site is the personal portfolio linking to published work and profiles (papers, GitHub, Substack, LinkedIn).
 2. **Personal brand** — a modern, data-dense portfolio that reflects the actual trajectory: physicist → VC → distributed systems researcher → Harvard AI researcher → AI consultant building companies.
 
 ---

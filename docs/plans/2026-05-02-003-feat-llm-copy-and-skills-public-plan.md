@@ -17,7 +17,7 @@ Two related public-signal improvements. First, overhaul `llms.txt` and `llms-ful
 
 **LLM copy:** The current `llms.txt` is correct but shallow — it misses individual knowledge articles, the bm CLI / skills as a project, and lacks structured frontmatter that AI crawlers (Perplexity, Claude.ai, ChatGPT browse) consume most reliably. There is no `/llm` HTML page that surfaces Arkash's work to AI-powered search without JavaScript.
 
-**Skills public release:** The Benmore-Meridian repo (`github.com/Benmore-Studio/Benmore-Meridian`) has 76 skills and the `bm` CLI, currently under MIT license but with `private: true`. Three skill folders contain internal Benmore API references (`benmore-api/`, `pcs/*`, `using-bm/`) and must stay private or be scrubbed. The remaining ~70 skills are generic and publishable. A public repo creates a linkable O-1 evidence artifact and an open-source signal for Arkash's personal site.
+**Skills public release:** The Benmore-Meridian repo (`github.com/Benmore-Studio/Benmore-Meridian`) has 76 skills and the `bm` CLI, currently under MIT license but with `private: true`. Three skill folders contain internal Benmore API references (`benmore-api/`, `pcs/*`, `using-bm/`) and must stay private or be scrubbed. The remaining ~70 skills are generic and publishable. A public repo creates a linkable open-source project for Arkash's personal site.
 
 ---
 

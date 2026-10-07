@@ -60,12 +60,21 @@ function parseCommit(record) {
   return { hash, date, type, scopes, summary, body, tags }
 }
 
+export function isPublicCommit(commit) {
+  // Keep private application context out of the site's generated activity feed.
+  return !/\bo[-\u2011\u2013]?1\b|\bvisa\b|evidence[- ]hub|why this site exists/i.test(
+    `${commit.summary}\n${commit.body}`
+  )
+}
+
 function main() {
   const records = readGitLog()
   const commits = records.map(parseCommit)
 
   // Strip trivial single-dot commits ('.', ',.') the user uses as WIP.
-  const cleaned = commits.filter((c) => c.summary && c.summary.replace(/[.\s,]/g, '').length > 0)
+  const cleaned = commits.filter(
+    (c) => c.summary && c.summary.replace(/[.\s,]/g, '').length > 0 && isPublicCommit(c)
+  )
 
   mkdirSync(OUT_DIR, { recursive: true })
   writeFileSync(OUT_FILE, JSON.stringify(cleaned, null, 2) + '\n', 'utf8')
@@ -81,4 +90,4 @@ function main() {
   )
 }
 
-main()
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main()

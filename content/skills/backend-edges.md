@@ -1,7 +1,7 @@
 ---
 name: backend-edges
 description: Backend edge-case hunt — every endpoint judged by Jev, failing tests written for real gaps
-argument-hint: repo path (default: cwd)
+argument-hint: 'repo path (default: cwd)'
 ---
 
 Load the `qa` skill. Target: $ARGUMENTS (else the current repo).

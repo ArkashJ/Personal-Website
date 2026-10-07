@@ -17,7 +17,7 @@ Two related-but-separable features. **Weekly logs** = a public, append-only "wha
 
 Arkash ships impressive things daily but most evaporates: a paper read in the morning, a talk watched at lunch, a CLI flag fixed in an afternoon — none of it shows up on the site. The site reads as a static dossier of completed work, not a _running engine_ of activity. Two costs:
 
-1. **O-1 evidence loss.** Continuous output is the strongest visa signal, but the site has no surface that proves cadence — only milestones.
+1. **Missing day-to-day work.** The site shows milestones but has no place for ongoing activity.
 2. **Reader fatigue / no return reason.** Visitors who saw the site once have no reason to come back. A weekly log creates one.
 
 The data bank exists because a single weekly file is too coarse for "what was the best thing this Monday?" — Arkash wants per-item granularity that the home page can curate.

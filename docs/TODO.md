@@ -41,7 +41,7 @@ The codebase claims `https://www.arkashj.com` (sitemap, JSON-LD, OG images) but 
 4. Confirm `https://www.arkashj.com` returns the latest build
 5. (Optional) Add to LinkedIn, GitHub, Substack profile fields once live
 
-**Why P0:** Everything SEO-related claims this URL. Without it the evidence hub is fragmented across vercel.app subdomains.
+**Why P0:** Everything SEO-related claims this URL. Without it the site is fragmented across vercel.app subdomains.
 
 ### 2. Submit sitemap to Google Search Console
 

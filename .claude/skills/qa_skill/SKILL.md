@@ -94,9 +94,9 @@ Before generating any test case, create an evidence ledger and include it in eve
 ```markdown
 ## Evidence Ledger
 
-| Evidence ID | Source | Verified Fact | Used For | Confidence |
-| ----------- | ------ | ------------- | -------- | ---------- |
-| E1 | `path/file.ts:42` | Route validates org membership before loading record | Security risk, P0 auth test | high |
+| Evidence ID | Source            | Verified Fact                                        | Used For                    | Confidence |
+| ----------- | ----------------- | ---------------------------------------------------- | --------------------------- | ---------- |
+| E1          | `path/file.ts:42` | Route validates org membership before loading record | Security risk, P0 auth test | high       |
 ```
 
 Evidence rules:
@@ -140,9 +140,9 @@ Create a context map:
 ```markdown
 ## Global Context Map
 
-| Subsystem | Entrypoints | Data / State | External Boundaries | Auth / Tenant Boundary | Tests | Evidence | Confidence |
-| --------- | ----------- | ------------ | ------------------- | ---------------------- | ----- | -------- | ---------- |
-| Billing API | `api/billing/*` | invoices, ledger rows | Stripe webhook | org-scoped route guard | `billing/*.test.*` | E1, E2, E8 | high |
+| Subsystem   | Entrypoints     | Data / State          | External Boundaries | Auth / Tenant Boundary | Tests              | Evidence   | Confidence |
+| ----------- | --------------- | --------------------- | ------------------- | ---------------------- | ------------------ | ---------- | ---------- |
+| Billing API | `api/billing/*` | invoices, ledger rows | Stripe webhook      | org-scoped route guard | `billing/*.test.*` | E1, E2, E8 | high       |
 ```
 
 When docs are absent, label the context as `INFERRED` and lower confidence for architecture claims that are not directly verified.
@@ -154,11 +154,11 @@ Trace two hops from each changed area. Use project-native search first (`rg`, ty
 ```markdown
 ## Blast Radius
 
-| Area ID | Hop | Area | Evidence | Why It Matters | Confidence |
-| ------- | --- | ---- | -------- | -------------- | ---------- |
-| A1 | 0 | Changed validator | E1, E2 | Accepts/rejects user input | high |
-| A2 | 1 | API handler calling validator | E3 | User-facing write path | high |
-| A3 | 2 | Report consuming saved output | E4 | Regression risk in summary totals | medium |
+| Area ID | Hop | Area                          | Evidence | Why It Matters                    | Confidence |
+| ------- | --- | ----------------------------- | -------- | --------------------------------- | ---------- |
+| A1      | 0   | Changed validator             | E1, E2   | Accepts/rejects user input        | high       |
+| A2      | 1   | API handler calling validator | E3       | User-facing write path            | high       |
+| A3      | 2   | Report consuming saved output | E4       | Regression risk in summary totals | medium     |
 ```
 
 Hop definitions:
@@ -200,41 +200,41 @@ Create one risk row per meaningful blast-radius area. Score risk as `Likelihood 
 
 Likelihood factors:
 
-| Factor | Low: 1 | Medium: 3 | High: 5 |
-| ------ | ------ | --------- | ------- |
-| Change size | tiny rename or copy change | localized logic change | broad/new flow |
-| Complexity | mechanical | conditional logic | new algorithm, async path, migration, state machine |
-| Coupling | one file | 2-3 modules | 4+ modules or external integration |
-| Historical risk | no signal | known fragile area | repeated bugs, incidents, or TODO warnings |
-| Evidence confidence | high | medium | low or partly inferred |
+| Factor              | Low: 1                     | Medium: 3              | High: 5                                             |
+| ------------------- | -------------------------- | ---------------------- | --------------------------------------------------- |
+| Change size         | tiny rename or copy change | localized logic change | broad/new flow                                      |
+| Complexity          | mechanical                 | conditional logic      | new algorithm, async path, migration, state machine |
+| Coupling            | one file                   | 2-3 modules            | 4+ modules or external integration                  |
+| Historical risk     | no signal                  | known fragile area     | repeated bugs, incidents, or TODO warnings          |
+| Evidence confidence | high                       | medium                 | low or partly inferred                              |
 
 Impact factors:
 
-| Factor | Low: 1 | Medium: 3 | High: 5 |
-| ------ | ------ | --------- | ------- |
-| User effect | cosmetic or internal-only | degraded workflow | broken core workflow or data loss |
-| Data integrity | read-only | validated write | destructive/irreversible write |
-| Security/privacy | no sensitive data | scoped sensitive data | auth, tenant, permission, secrets, PII |
-| Financial/compliance | no regulated output | reporting/export | billing, audit record, legal/compliance |
-| Recovery | easy rollback | manual cleanup | hard correction or customer-visible fallout |
+| Factor               | Low: 1                    | Medium: 3             | High: 5                                     |
+| -------------------- | ------------------------- | --------------------- | ------------------------------------------- |
+| User effect          | cosmetic or internal-only | degraded workflow     | broken core workflow or data loss           |
+| Data integrity       | read-only                 | validated write       | destructive/irreversible write              |
+| Security/privacy     | no sensitive data         | scoped sensitive data | auth, tenant, permission, secrets, PII      |
+| Financial/compliance | no regulated output       | reporting/export      | billing, audit record, legal/compliance     |
+| Recovery             | easy rollback             | manual cleanup        | hard correction or customer-visible fallout |
 
 Risk bands:
 
-| Score | Coverage |
-| ----- | -------- |
+| Score | Coverage                                                                                                 |
+| ----- | -------------------------------------------------------------------------------------------------------- |
 | 20-25 | Exhaustive: happy path, main error paths, boundaries, permissions, data integrity, and regression checks |
-| 12-19 | Heavy: happy path, error path, representative edge case, and direct integration check |
-| 6-11 | Standard: happy path and one negative or regression check |
-| 1-5 | Smoke: smoke checklist item only unless evidence shows a known hotspot |
+| 12-19 | Heavy: happy path, error path, representative edge case, and direct integration check                    |
+| 6-11  | Standard: happy path and one negative or regression check                                                |
+| 1-5   | Smoke: smoke checklist item only unless evidence shows a known hotspot                                   |
 
 Risk table format:
 
 ```markdown
 ## Risk Assessment
 
-| Risk ID | Area | Likelihood | Impact | Score | Coverage | Evidence | Confidence | Rationale |
-| ------- | ---- | ---------- | ------ | ----- | -------- | -------- | ---------- | --------- |
-| R1 | Tenant-filtered search endpoint | 4 | 5 | 20 | Exhaustive | E1, E3 | high | Write path exposes scoped records and auth filter changed |
+| Risk ID | Area                            | Likelihood | Impact | Score | Coverage   | Evidence | Confidence | Rationale                                                 |
+| ------- | ------------------------------- | ---------- | ------ | ----- | ---------- | -------- | ---------- | --------------------------------------------------------- |
+| R1      | Tenant-filtered search endpoint | 4          | 5      | 20    | Exhaustive | E1, E3   | high       | Write path exposes scoped records and auth filter changed |
 ```
 
 Overall risk level is the highest risk score:
@@ -288,21 +288,36 @@ Full audit mode must use this structure:
 9. **Test Cases By Feature Area**
    - Hop 0 and Hop 1 tests grouped by behavior or subsystem
 10. **Regression Test Cases**
-   - Hop 2 tests only; known hotspots at Hop 0 or Hop 1 belong in the relevant feature-area section with `Type = regression`
+
+- Hop 2 tests only; known hotspots at Hop 0 or Hop 1 belong in the relevant feature-area section with `Type = regression`
+
 11. **Edge Cases & Negative Tests**
-   - cross-cutting boundaries tied to risk rows
+
+- cross-cutting boundaries tied to risk rows
+
 12. **Conditional Checks**
-   - only include warranted security, multi-tenant, offline/sync, performance, migration, observability, or compatibility checks
+
+- only include warranted security, multi-tenant, offline/sync, performance, migration, observability, or compatibility checks
+
 13. **Adversarial Review Notes**
-   - what the reviewer challenged, what changed in response, and unresolved concerns
+
+- what the reviewer challenged, what changed in response, and unresolved concerns
+
 14. **Fix Queue**
-   - evidence-backed recommended fixes, owners/areas, risk, and whether implementation needs explicit user approval
+
+- evidence-backed recommended fixes, owners/areas, risk, and whether implementation needs explicit user approval
+
 15. **Smoke Test Checklist**
-   - 5-15 fast checks drawn from P0/P1 coverage
+
+- 5-15 fast checks drawn from P0/P1 coverage
+
 16. **Analysis Caveats**
-   - required when any context is inferred, unavailable, or unverified
+
+- required when any context is inferred, unavailable, or unverified
+
 17. **Exit Criteria**
-   - concrete pass/fail gates before ship
+
+- concrete pass/fail gates before ship
 
 Detail level within each mode:
 
@@ -314,9 +329,9 @@ Detail level within each mode:
 
 Every test table must use this shape:
 
-| # | Test Case | Priority | Type | Risk | Evidence | Steps | Expected | Caveats |
-| - | --------- | -------- | ---- | ---- | -------- | ----- | -------- | ------- |
-| 4.1 | **Reject cross-tenant access** | P0 | security | R1 | E1, E3 | Numbered actions | Specific assertion | Setup, file:line refs, or verified limitation |
+| #   | Test Case                      | Priority | Type     | Risk | Evidence | Steps            | Expected           | Caveats                                       |
+| --- | ------------------------------ | -------- | -------- | ---- | -------- | ---------------- | ------------------ | --------------------------------------------- |
+| 4.1 | **Reject cross-tenant access** | P0       | security | R1   | E1, E3   | Numbered actions | Specific assertion | Setup, file:line refs, or verified limitation |
 
 Priority:
 
@@ -375,9 +390,9 @@ Create a `Fix Queue` when the evidence reveals likely defects, missing tests, we
 ```markdown
 ## Fix Queue
 
-| Fix ID | Finding | Evidence | Risk ID | Risk | Recommended Action | Mutates Code? | Approval Needed |
-| ------ | ------- | -------- | ------- | ---- | ------------------ | ------------- | --------------- |
-| F1 | Tenant filter missing on export path | E9 | R2 | CRITICAL | Add org-scoped filter and regression test | yes | yes |
+| Fix ID | Finding                              | Evidence | Risk ID | Risk     | Recommended Action                        | Mutates Code? | Approval Needed |
+| ------ | ------------------------------------ | -------- | ------- | -------- | ----------------------------------------- | ------------- | --------------- |
+| F1     | Tenant filter missing on export path | E9       | R2      | CRITICAL | Add org-scoped filter and regression test | yes           | yes             |
 ```
 
 Rules:
@@ -434,17 +449,17 @@ Caveats: <none|summary>
 
 ## Common Mistakes
 
-| Mistake | Fix |
-| ------- | --- |
-| Writing tests from gut feel | Build the Evidence Ledger first, then generate tests from risk rows |
-| Citing files without line verification | Use `rg -n` or `nl -ba`; cite verified `path:line` only |
-| Treating whole sections as P0/P1 | Assign priority per test case |
-| Over-including security/offline sections | Include them only when diff or blast radius touches those paths |
-| Hiding uncertainty | Add `Analysis Caveats` and lower confidence |
-| Producing a long generic matrix | Delete tests that do not map to a risk row and evidence |
-| Reading the whole repo without structure | Build a context graph from entrypoints, indexes, and dependency edges |
-| Drawing unsupported diagrams | Put an `Evidence ID` on every meaningful edge or mark the edge low confidence |
-| Letting QA mutate code | Use `Fix Queue`; require explicit approval before implementation |
+| Mistake                                  | Fix                                                                           |
+| ---------------------------------------- | ----------------------------------------------------------------------------- |
+| Writing tests from gut feel              | Build the Evidence Ledger first, then generate tests from risk rows           |
+| Citing files without line verification   | Use `rg -n` or `nl -ba`; cite verified `path:line` only                       |
+| Treating whole sections as P0/P1         | Assign priority per test case                                                 |
+| Over-including security/offline sections | Include them only when diff or blast radius touches those paths               |
+| Hiding uncertainty                       | Add `Analysis Caveats` and lower confidence                                   |
+| Producing a long generic matrix          | Delete tests that do not map to a risk row and evidence                       |
+| Reading the whole repo without structure | Build a context graph from entrypoints, indexes, and dependency edges         |
+| Drawing unsupported diagrams             | Put an `Evidence ID` on every meaningful edge or mark the edge low confidence |
+| Letting QA mutate code                   | Use `Fix Queue`; require explicit approval before implementation              |
 
 ## Core Principle
 

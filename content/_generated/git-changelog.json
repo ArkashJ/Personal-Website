@@ -1,5 +1,59 @@
 [
   {
+    "hash": "08df2feaab5186ad830fd690b1a82f7b79be45a9",
+    "date": "2026-09-27T02:20:44-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "sync 3 command(s) from ~/.claude/commands",
+    "body": "",
+    "tags": ["skills"]
+  },
+  {
+    "hash": "34f827c4f71220c0a0cb7d51c8a6e8d2c252b12e",
+    "date": "2026-09-27T01:53:06-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "sync 1 command(s) from ~/.claude/commands",
+    "body": "",
+    "tags": ["skills"]
+  },
+  {
+    "hash": "a5de31b48e86ccf63635c4f26ca1c7fd0af651eb",
+    "date": "2026-09-27T01:40:26-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "sync 2 command(s) from ~/.claude/commands",
+    "body": "",
+    "tags": ["skills"]
+  },
+  {
+    "hash": "c4e2cf31927073654cc53c73ff5161cdb58e5880",
+    "date": "2026-09-27T01:38:59-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "sync 5 command(s) from ~/.claude/commands",
+    "body": "",
+    "tags": ["skills"]
+  },
+  {
+    "hash": "11855b295667ee672ad0e5e8cf6c189353ccedc8",
+    "date": "2026-09-22T13:29:08-05:00",
+    "type": "skills",
+    "scopes": [],
+    "summary": "sync 8 command(s) from ~/.claude/commands",
+    "body": "",
+    "tags": ["skills"]
+  },
+  {
+    "hash": "ad3530db4e36d26b4131c1986aa6efdf7b03ed2a",
+    "date": "2026-08-27T19:00:20-05:00",
+    "type": "chore",
+    "scopes": [],
+    "summary": "regenerate synced content",
+    "body": "Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "tags": ["chore"]
+  },
+  {
     "hash": "42755809adbf7de4d3f79f65fd4f2ecc4b58fad1",
     "date": "2026-08-14T20:12:04-05:00",
     "type": "chore",
@@ -133,15 +187,6 @@
     "summary": "boost SEO + remove Clerk + wire GA4 (#21)",
     "body": "- Add SearchAction to WebSite JSON-LD schema (enables \"Search site:\" in Google SERPs)\n- Add EducationalOccupationalCredential + hasOccupation to Person schema\n- Wire Google Analytics 4 via @next/third-parties (conditional on NEXT_PUBLIC_GA_ID)\n- Remove @clerk/nextjs and all Clerk-gated pages (admin/weekly, ce-plan, sign-in)\n- Remove empty middleware.ts\n- Update architecture diagrams to reflect removed ClerkProvider\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
     "tags": ["feat", "seo"]
-  },
-  {
-    "hash": "cb4a91979e30962f352ec336604c7bd7e8d26fff",
-    "date": "2026-05-23T17:29:39-05:00",
-    "type": "feat",
-    "scopes": [],
-    "summary": "add NeoSci project, timeline entries, drop /knowledge nav (#20)",
-    "body": "* chore(nav,timeline): drop /knowledge nav link + add Hack4Impact and Kirchhausen lab-meeting timeline entries\n\n- lib/site.ts: remove '/knowledge' from NAV_LINKS\n- lib/data.ts: add TIMELINE entries for the 2023 Hack4Impact career talk\n  and the July 2025 Kirchhausen Lab SpatialDINO presentation\n- CLAUDE.md: prettier reformatting (no content change)\n\n* feat(projects): add NeoSci lab-automation startup project\n\nIndependent original technical work outside of employment: NeoSci — a lab automation\nstartup. Y Combinator application (March 2024) and a preliminary design for a\nLaboratory Robotic Assistant built on an MiR AMR base with collaborative UR arms.\nSupports the O-1 'Original Contributions of Major Significance' criterion.\n\n* .",
-    "tags": ["feat"]
   },
   {
     "hash": "627c96b50b33ff329dbb221a7477c505ef35165e",
@@ -990,15 +1035,6 @@
     "tags": ["feat", "home"]
   },
   {
-    "hash": "11441f13e50dc9d0550b3cbd1daf1e3df8ec4839",
-    "date": "2026-04-27T00:09:01-05:00",
-    "type": "chore",
-    "scopes": ["release"],
-    "summary": "v2.3.0 — image consolidation, mobile, GitHub live charts, Trustpilot images",
-    "body": "Bumps package.json 1.0.0 -> 2.3.0 and rewrites the CHANGELOG entry\nto cover the full set of changes shipped this cycle:\n\n- Asset consolidation under public/images/\n- New /media page Trustpilot section using real reviewer screenshots\n- Live GitHub activity widgets on the homepage (contribution graph, stats, streak, top langs)\n- Hero stat: 887% revenue -> 6+ years tech experience\n- Twitter handle fix (x.com/_arkash -> x.com/ArkashJ__)\n- Mobile responsiveness fixes (min-w-0 on grid items in /media disclosure & link lists)\n- docs/cover-letters/ private working folder for O-1 evidence drafting\n- README, CLAUDE.md, profile README rewrites\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
-    "tags": ["chore", "release"]
-  },
-  {
     "hash": "59db2095b20d40f8f6901c62fef8c90109572631",
     "date": "2026-04-26T23:49:35-05:00",
     "type": null,
@@ -1204,15 +1240,6 @@
     "summary": "Next.js 15 App Router + TypeScript strict migration (#5)",
     "body": "FRAMEWORK\n- Next.js 13 → 15.5\n- React 18 → 19\n- Pages Router → App Router (app/)\n- Plain JS → TypeScript strict\n\nNEW APP TREE\n- app/layout.tsx (Person JSON-LD, Nav, Footer, OG metadataBase)\n- app/page.tsx (homepage)\n- app/about, /research, /experience, /projects, /work\n- app/writing/page + [slug]/page (server components, generateStaticParams)\n- app/knowledge/page + [domain]/page + [domain]/[slug]/page\n- app/architecture/page + flows.ts\n- app/sitemap.ts (native MetadataRoute, dynamic MDX routes)\n- app/robots.ts (native MetadataRoute)\n- app/not-found.tsx\n- app/VC, /Volunteering — server-side redirects\n\nMDX\n- Switched MdxContent.tsx to next-mdx-remote/rsc (server component)\n- lib/content.ts returns raw MDX source (RSC compiles at request time)\n\nLIB\n- lib/site.ts, lib/data.ts, lib/finance.ts, lib/content.ts → typed\n- lib/structured-data.ts (Person, Article, ScholarlyArticle factories)\n- lib/metadata.ts buildMetadata() factory typed against next/Metadata\n\nCOMPONENTS\n- components/{ui, layout, sections, seo, architecture}/*.tsx — all typed\n- Nav uses usePathname() hook with 'use client'\n- Removed unused legacy mainPage/, battery/, volunteer/ component dirs\n\nCONFIG\n- tsconfig.json with strict mode + paths alias @/*\n- types/css.d.ts for CSS side-effect imports\n- tailwind.config.js content globs updated for app/ + ts/tsx\n- .eslintrc.json disables no-html-link-for-pages (no pages/ dir)\n\nDELETED\n- pages/ (entire dir)\n- styles/*.module.css\n- styles/globals.css (moved to app/globals.css)\n\nVERIFIED\n- npm run build: 33 routes generated; static + SSG mix\n- All routes return 200 in dev (curl + Playwright)\n- Person JSON-LD on every page; ScholarlyArticle on /research\n- MDX renders identically to v1 via RSC\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
     "tags": ["feat", "v2"]
-  },
-  {
-    "hash": "881b4e92e4a1cac11b86cf013b92f9ca40d21afe",
-    "date": "2026-04-26T11:30:02-05:00",
-    "type": "feat",
-    "scopes": ["content"],
-    "summary": "7 new MDX articles + sitemap rewrite for dynamic routes (#4)",
-    "body": "CONTENT\n- writing/o1-visa-evidence-hub.mdx (the site's mission, in public)\n- knowledge/finance/{aggregation-theory, index}.mdx\n- knowledge/physics/{why-i-left-physics, supercritical-fluids-paper}.mdx\n- knowledge/software/claude-code-as-an-os.mdx\n- knowledge/math/optimizers.mdx\n\nSITEMAP\n- pages/sitemap.xml.js now enumerates every dynamic MDX route\n- Per-file lastmod dates from frontmatter\n- Knowledge domains added as their own routes\n\nUI\n- /knowledge hub shows real per-domain article counts (filesystem-driven)\n\nBuild SSGs 4 writing posts + 7 knowledge MDX files.\n\nCo-authored-by: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
-    "tags": ["feat", "content"]
   },
   {
     "hash": "aef69506a6e0c5fb90ec083297175d2bcd5165f2",
@@ -1436,69 +1463,6 @@
     "type": null,
     "scopes": [],
     "summary": "added pictures to the folder, making a widget for the projects section of the website",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "04278611ddcee49c0588a8d85e94e558a0fbcfd4",
-    "date": "2022-12-28T22:58:57+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "adding my project data to this page, going to make a widget tomorrow",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "f944df0d1f4623b0acc58db99d0b5be37210907f",
-    "date": "2022-12-28T20:30:37+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "adding a projects section",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "63ea996c8ed889cac44a496601c70acc3167d32d",
-    "date": "2022-12-28T20:29:54+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "finishing descripting section, adding projects now",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "848a3f1a63148c8fd6db6296169d7c0ffd791558",
-    "date": "2022-12-28T20:20:18+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "adding my picture and description on the website",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "b950360cefe21a299b4a0defd1779dc6d6b7145a",
-    "date": "2022-12-28T19:44:58+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "making a border",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "3c035f3c841dbc41cbce8bec8039f75207c08ced",
-    "date": "2022-12-28T19:39:22+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "making a border",
-    "body": "",
-    "tags": []
-  },
-  {
-    "hash": "417f74c54b1853a1ac07946d6feaa9ad4ca59abc",
-    "date": "2022-12-28T19:27:55+05:30",
-    "type": null,
-    "scopes": [],
-    "summary": "my picture",
     "body": "",
     "tags": []
   }

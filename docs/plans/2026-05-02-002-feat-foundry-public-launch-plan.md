@@ -17,13 +17,13 @@ This plan covers making the Benmore Foundry development engine publicly accessib
 
 ## Problem Frame
 
-The Foundry is one of Arkash's most significant O-1 evidence pieces — Employee #2, 887% revenue growth, built the internal development engine. Currently:
+Arkash built the Foundry internal development engine as Employee #2 during a period of 887% revenue growth. Currently:
 
 - The benmore_website repo is proprietary (no public GitHub)
 - The Foundry CLI is undocumented externally
 - arkashj.com's `/work` page mentions Foundry but has no public link to land on
 
-Making it public creates: a linkable artifact for the O-1 application, a public signal of the tooling quality, and potential inbound interest from SMB clients.
+Making it public creates: public documentation of the tooling, and potential inbound interest from SMB clients.
 
 ---
 
@@ -114,7 +114,7 @@ Verify `git log --all --full-history -- "*.env"` shows no `.env` file was ever c
 
 - If goal is open-source: MIT or Apache 2.0 (recommended for portfolio/visibility)
 - If goal is source-available but not OSS: Business Source License (BSL) or "All Rights Reserved" with public visibility
-- **Recommended for O-1 purposes**: MIT — maximises visibility signal; the Foundry narrative is the IP, not the template code
+- **Recommended license**: MIT — permits broad reuse; the Foundry narrative is the IP, not the template code
 - Update `README.md` license badge from `proprietary` to chosen license
 
 **Test scenarios:**
