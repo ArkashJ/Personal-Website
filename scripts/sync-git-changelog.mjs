@@ -8,7 +8,7 @@
 // Run automatically via Bun-driven `predev` and `prebuild` hooks in package.json.
 
 import { execSync } from 'node:child_process'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -35,7 +35,7 @@ function readGitLog() {
       .filter(Boolean)
   } catch (err) {
     console.warn('[sync-git-changelog] git log failed:', err.message)
-    return []
+    return null
   }
 }
 
@@ -69,7 +69,7 @@ export function isPublicCommit(commit) {
 
 function main() {
   const records = readGitLog()
-  const commits = records.map(parseCommit)
+  const commits = records ? records.map(parseCommit) : JSON.parse(readFileSync(OUT_FILE, 'utf8'))
 
   // Strip trivial single-dot commits ('.', ',.') the user uses as WIP.
   const cleaned = commits.filter(
