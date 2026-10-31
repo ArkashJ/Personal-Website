@@ -7,6 +7,7 @@ import { getDocsByCategory, type DocEntry } from '@/lib/docs'
 import { buildMetadata } from '@/lib/metadata'
 
 export const metadata = buildMetadata({
+  noindex: true,
   title: 'Docs — Project Documentation',
   description:
     'How arkashj.com works: handoff, open work, design spec, plans, changelog. The proper analog of API docs for a static content site.',

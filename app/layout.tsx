@@ -51,12 +51,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="me" href={SITE.social.substack} />
         <link rel="me" href={SITE.social.medium} />
         <link rel="me" href={SITE.social.orcid} />
-        <link rel="me" href={SITE.social.scholar} />
         <link rel="me" href={SITE.social.harvard} />
-        <link rel="me" href={SITE.social.bu} />
         <link rel="me" href={`mailto:${SITE.email}`} />
         <link rel="author" href={SITE.url} />
-        <link rel="canonical" href={SITE.url} />
         <meta name="author" content={SITE.name} />
         <meta name="creator" content={SITE.name} />
         <meta name="designer" content={SITE.name} />
@@ -67,7 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="og:see_also" content={SITE.social.github} />
         <meta property="og:see_also" content={SITE.social.linkedin} />
         <meta property="og:see_also" content={SITE.social.twitter} />
-        <meta property="og:see_also" content={SITE.social.scholar} />
         <meta property="og:see_also" content={SITE.social.orcid} />
         <meta property="og:see_also" content={SITE.social.harvard} />
         <meta property="og:see_also" content={SITE.social.substack} />

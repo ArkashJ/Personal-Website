@@ -135,29 +135,16 @@ Memory > compute > networking, on a relative-spend basis, over the next 36 month
 
 ---
 
-## KNOWLEDGE: SpatialDINO Lessons — 3D SSL on Cryo-ET
+## KNOWLEDGE: SpatialDINO Lessons — 3D SSL on Lattice Light-Sheet Microscopy
 
-title: 'SpatialDINO Lessons: 3D SSL on Cryo-ET'
+title: 'SpatialDINO Lessons: 3D SSL on Lattice Light-Sheet Microscopy'
 date: '2025-09-01'
 domain: 'ai'
-description: 'What we learned building the first 3D self-supervised vision transformer for subcellular cryo-electron tomography.'
+description: 'A detailed log from building SpatialDINO — a 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy.'
 
-SpatialDINO was the first 3D self-supervised vision transformer applied to cryo-electron tomograms. The model learned subcellular structural representations without labels and beat a Nobel laureate–led approach that relied on hand-crafted geometric features.
+SpatialDINO is a native 3D self-supervised vision transformer for live-cell lattice light-sheet microscopy (LLSM). It learns volumetric representations without voxel-level labels and drives downstream detection, segmentation and tracking of endosomes, clathrin-coated structures and other organelles. Full engineering log: https://www.arkashj.com/writing/spatialdino-lessons
 
-## What worked
-
-- **Volumetric ViT patches.** Using 3D patches (rather than slice-then-stack) preserved the spatial coherence the network was meant to learn.
-- **DINOv2-style multi-crop self-distillation.** Two student crops, four teacher crops, EMA teacher. The recipe transferred surprisingly well from natural images.
-- **Aggressive masking.** 75% random masking forced the network to learn local structural context rather than memorize global appearance.
-
-## What didn't
-
-- **Full-volume passes.** Tomograms are too large to fit in memory at native resolution. We sub-sampled, which costs detail in fine structures.
-- **Infiniband RDMA stalls.** Caught a Rendezvous backend bug in PyTorch — filed #144779. Cost a week.
-
-## What's next
-
-Diffusion-based denoising as a pretraining objective for cryo-ET is the obvious follow-up. The signal-to-noise floor of CET is much worse than natural images — pretraining the network to denoise gives it a stronger prior than masked autoencoding alone.
+Paper: https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2 (doi:10.64898/2025.12.31.697247; PubMed 41509489). Authors: Lavaee*, Jain*, Scanavachi*, Costa-Filho*, Ingemansson, Kirchhausen (*equal contribution).
 
 ---
 
@@ -227,13 +214,14 @@ You stop trying to memorize prompts and start designing **workflows that compoun
 
 ### Paper 1: SpatialDINO
 
-**Title:** SpatialDINO: Self-Supervised Learning for 3D Vision Transformers
-**Journal:** BioRxiv
-**Date:** 2025
-**Authors:** Arkash Jain et al. (Kirchhausen Lab, Harvard Medical School)
-**URL:** https://www.biorxiv.org/content/10.1101/2025.02.04.636474
+**Title:** SpatialDINO: A Self-Supervised 3D Vision Transformer that enables Segmentation and Tracking in Crowded Cellular Environments
+**Journal:** bioRxiv
+**Date:** Jan 2026
+**DOI:** 10.64898/2025.12.31.697247 (PubMed 41509489, PMC12776300)
+**Authors:** Alex Lavaee*, Arkash Jain*, Gustavo Scanavachi*, Jose Inacio Costa-Filho*, Adam Ingemansson, Tom Kirchhausen (*equal contribution)
+**URL:** https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2
 
-Abstract: A 3D self-supervised vision transformer that beats a Nobel laureate-led approach for understanding subcellular structures from cryo-electron tomograms.
+Abstract: A native 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular structures in live-cell lattice light-sheet microscopy volumes.
 
 ### Paper 2: ER Exit Sites (Journal of Cell Biology)
 
@@ -242,7 +230,8 @@ Abstract: A 3D self-supervised vision transformer that beats a Nobel laureate-le
 **Date:** 2026
 **Volume:** 225(1)
 **Article:** e202504178
-**Authors:** Kirchhausen Lab
+**DOI:** 10.1083/jcb.202504178 (PubMed 41171079)
+**Authors:** Athul Nair, Akhil Nair, Patrick Stock, Arkash Jain, Elliott Somerville, Anwesha Sanyal, Jose Inacio Costa-Filho, Tom Kirchhausen
 **URL:** https://rupress.org/jcb/article-abstract/225/1/e202504178/278432/
 
 Abstract: Volumetric reconstruction of mammalian ER exit sites at unprecedented resolution via FIB-SEM and learned segmentation.
@@ -252,7 +241,7 @@ Abstract: Volumetric reconstruction of mammalian ER exit sites at unprecedented 
 **Title:** Close-up of Vesicular ER Exit Sites by FIB-SEM (preprint)
 **Journal:** BioRxiv
 **Date:** Apr 2025
-**Authors:** Kirchhausen Lab
+**Authors:** Same author list as the JCB paper (Arkash Jain, 4th of 8)
 **URL:** https://www.biorxiv.org/content/10.1101/2025.04.23.650353v3
 
 Abstract: Pre-print companion to the JCB paper — full FIB-SEM volumes plus the segmentation pipeline used to identify vesicles.
@@ -264,10 +253,11 @@ Abstract: Pre-print companion to the JCB paper — full FIB-SEM volumes plus the
 **Date:** Nov 2022
 **Volume:** 157(17)
 **Article:** 174305
-**Authors:** Arkash Jain et al.
+**DOI:** 10.1063/5.0118395 (PubMed 36347695)
+**Authors:** Matthew C. Rotondaro, Arkash Jain, Shyamsunder Erramilli, Lawrence D. Ziegler
 **URL:** https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177/
 
-Abstract: First-author work on supercritical-fluid dynamics using ultrafast 2DIR spectroscopy.
+Abstract: Supercritical-fluid dynamics using ultrafast 2DIR spectroscopy (co-author; NSF UROP research).
 
 ---
 
@@ -312,7 +302,7 @@ BA in Math & CS, MS in Computer Science, completed in four years. Graduated Magn
 Joined Kirchhausen Lab as ML Researcher.
 
 ### 2025: SpatialDINO
-Authored first 3D self-supervised vision transformer for cryo-ET subcellular structure prediction. Trained on DGX nodes with FSDP, bf16, NVLink, Infiniband. BioRxiv preprint released.
+Co-first-authored SpatialDINO, a 3D self-supervised vision transformer for lattice light-sheet microscopy. Trained on DGX A100 nodes with DDP, bf16, NVLink, InfiniBand. bioRxiv preprint posted Jan 2026.
 
 ### Aug 2025: Benmore Technologies
 Joined as Employee #2. Head of FDE (Forward Deployed Strategist & Engineer).
@@ -330,7 +320,7 @@ Head of Forward Deployed Engineering at Benmore. Building Cattle Logic and the B
 **AI & Machine Learning:**
 - Self-supervised learning (DINO, masked autoencoding)
 - 3D vision transformers
-- Cryo-electron tomography (cryo-ET)
+- Lattice light-sheet microscopy (LLSM)
 - Distributed training infrastructure (PyTorch FSDP, DGX, InfiniBand, RDMA)
 - Fine-tuning and transfer learning
 

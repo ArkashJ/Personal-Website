@@ -49,7 +49,7 @@ export default function AboutPage() {
           },
           {
             q: 'What is SpatialDINO?',
-            a: 'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy. Native 3D student/teacher ViTs with 3D iBOT block masking, no positional encoding, a streaming encoder for million-token sequence lengths. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s with PyTorch DDP. Outperformed a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction. Released as a BioRxiv preprint, first-author.',
+            a: 'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy. Native 3D student/teacher ViTs with 3D iBOT block masking, no positional encoding, a streaming encoder for million-token sequence lengths. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s with PyTorch DDP. Outperformed a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction. Posted as a bioRxiv preprint (co-first author, equal contribution; PubMed 41509489).',
           },
           {
             q: 'What is arkashj.com?',
