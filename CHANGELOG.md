@@ -5,6 +5,25 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · Versions: [S
 
 ---
 
+## [Unreleased] — SEO canonical fix + publication metadata corrections
+
+### Fixed
+
+- **Duplicate `rel=canonical` on every page.** `app/layout.tsx` hard-coded `<link rel="canonical" href={SITE.url} />`, so every route emitted the homepage canonical _before_ its own (from `buildMetadata`). Removed; each page now has exactly one self-referencing canonical.
+- **SpatialDINO DOI.** `10.1101/2025.02.04.636474` resolves to an unrelated paper. Replaced everywhere with `10.64898/2025.12.31.697247` (bioRxiv v2), plus PubMed 41509489 / PMC12776300.
+- **Author attribution matches the published record.** SpatialDINO → co-first author (equal contribution, 2nd of 6); J. Chem. Phys. 2022 → co-author (2nd of 4); JCB 2026 → co-author (4th of 8). Removed the uncited "UNET for semi-supervised segmentation" JCB entry (the 3D U-Net/ASEM pipeline is part of the JCB ER-exit-sites paper) and the J. Phys. Chem. Lett. "companion" links (that paper is by other authors). Fixed stale "cryo-ET" wording in `llms*.txt` → LLSM.
+- **ScholarlyArticle JSON-LD.** Full ordered author lists (`authorList`), Arkash linked to `#person`, ISO `datePublished`, PubMed `sameAs`.
+- **Person JSON-LD.** `sameAs` now lists profile URLs only (dropped search-result URLs, a paper URL, and the 404ing BU CS profile). Degree corrected to BA Mathematics & Computer Science.
+- Dead `x.com/_arkash` handle in `humans.txt`, `llms.txt`, README → `@ArkashJ__`.
+- In-body markdown `#` headings on skill and doc pages (`SkillBody`, `MarkdownView`) render as `<h2>`, so each page has a single `<h1>`.
+
+### Changed
+
+- `/docs/*` is `noindex` and removed from the sitemap (internal project docs).
+- Sitemap only emits `lastModified` when a real content date exists, instead of stamping build time on every URL.
+
+---
+
 ## [Unreleased] — Money Stuff daily log (W19 May 4–7), new W20 ribbon, 4 Benmore case-study projects
 
 ### Added

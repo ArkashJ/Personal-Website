@@ -38,7 +38,7 @@ export default function ResearchPage() {
         data={faqSchema([
           {
             q: 'What is SpatialDINO?',
-            a: 'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). First-author work from the Kirchhausen Lab at Harvard Medical School. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s with PyTorch DDP, bf16 mixed precision. Outperformed a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction. Released as a BioRxiv preprint.',
+            a: 'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Co-first-author (equal contribution) work from the Kirchhausen Lab at Harvard Medical School. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s with PyTorch DDP, bf16 mixed precision. Outperformed a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction. Posted as a bioRxiv preprint (doi:10.64898/2025.12.31.697247) and indexed in PubMed (PMID 41509489).',
           },
           {
             q: 'What is lattice light-sheet microscopy (LLSM)?',
@@ -50,7 +50,7 @@ export default function ResearchPage() {
           },
           {
             q: 'What was the supercritical fluid paper about?',
-            a: 'Published in J. Chem. Phys. (Nov 2022), first-author work using ultrafast two-dimensional infrared spectroscopy to study rotational energy transfer, isolated binary collision breakdown, and near-critical fluctuations in Xe and SF6 solutions.',
+            a: 'Published in J. Chem. Phys. (Nov 2022; co-author, 2nd of 4, with Rotondaro, Erramilli and Ziegler), using ultrafast two-dimensional infrared spectroscopy to study rotational energy transfer, isolated binary collision breakdown, and near-critical fluctuations in Xe and SF6 solutions.',
           },
           {
             q: 'Are the papers open-access?',

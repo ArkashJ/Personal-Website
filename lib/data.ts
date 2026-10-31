@@ -8,6 +8,10 @@ export type Paper = {
   featured?: boolean
   doi?: string
   sameAs?: string[]
+  /** Full, ordered author list as published — drives ScholarlyArticle JSON-LD. */
+  authorList?: string[]
+  /** ISO 8601 date for structured data. */
+  datePublished?: string
 }
 
 export type ExperienceEntry = {
@@ -70,36 +74,70 @@ export type TimelineEntry = {
 
 export const PAPERS: Paper[] = [
   {
-    title: 'SpatialDINO: Self-Supervised Learning for 3D Vision Transformers',
-    journal: 'BioRxiv',
-    date: '2025',
-    authors: 'Arkash Jain et al. (Kirchhausen Lab, Harvard Medical School)',
+    title:
+      'SpatialDINO: A Self-Supervised 3D Vision Transformer that enables Segmentation and Tracking in Crowded Cellular Environments',
+    journal: 'bioRxiv',
+    date: 'Jan 2026',
+    datePublished: '2026-01-02',
+    authors:
+      'Lavaee A*, Jain A*, Scanavachi G*, Costa-Filho JI*, Ingemansson A, Kirchhausen T — *equal contribution (Kirchhausen Lab, Harvard Medical School)',
+    authorList: [
+      'Alex Lavaee',
+      'Arkash Jain',
+      'Gustavo Scanavachi',
+      'Jose Inacio Costa-Filho',
+      'Adam Ingemansson',
+      'Tom Kirchhausen',
+    ],
     abstract:
-      'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Beat a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction.',
-    url: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+      'Co-first author (equal contribution). A native 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in live-cell lattice light-sheet microscopy (LLSM). Beat a prior approach co-led by Nobel laureate Eric Betzig on downstream subcellular structure prediction.',
+    url: 'https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2',
     featured: true,
-    doi: '10.1101/2025.02.04.636474',
-    sameAs: ['https://doi.org/10.1101/2025.02.04.636474'],
+    doi: '10.64898/2025.12.31.697247',
+    sameAs: [
+      'https://doi.org/10.64898/2025.12.31.697247',
+      'https://pubmed.ncbi.nlm.nih.gov/41509489/',
+      'https://pmc.ncbi.nlm.nih.gov/articles/PMC12776300/',
+    ],
   },
   {
     title: 'Close-up of Vesicular ER Exit Sites by Volume Electron Imaging using FIB-SEM',
     journal: 'Journal of Cell Biology',
-    date: '2026',
-    authors: 'Kirchhausen Lab',
+    date: 'Jan 2026',
+    datePublished: '2026-01-05',
+    authors:
+      'Nair A, Nair A, Stock P, Jain A, Somerville E, Sanyal A, Costa-Filho JI, Kirchhausen T',
+    authorList: [
+      'Athul Nair',
+      'Akhil Nair',
+      'Patrick Stock',
+      'Arkash Jain',
+      'Elliott Somerville',
+      'Anwesha Sanyal',
+      'Jose Inacio Costa-Filho',
+      'Tom Kirchhausen',
+    ],
     abstract:
-      'Volumetric reconstruction of mammalian ER exit sites at unprecedented resolution via FIB-SEM and learned segmentation.',
+      'Volumetric reconstruction of mammalian ER exit sites via large-scale FIB-SEM, with automated 3D U-Net segmentation (ASEM) trained on sparsely labeled COPI vesicles.',
     url: 'https://rupress.org/jcb/article-abstract/225/1/e202504178/278432/Close-up-of-vesicular-ER-exit-sites-by-volume',
     doi: '10.1083/jcb.202504178',
-    sameAs: ['https://doi.org/10.1083/jcb.202504178'],
+    sameAs: ['https://doi.org/10.1083/jcb.202504178', 'https://pubmed.ncbi.nlm.nih.gov/41171079/'],
   },
   {
     title:
       'Ultrafast 2DIR comparison of rotational energy transfer, isolated binary collision breakdown, and near critical fluctuations in Xe and SF6 solutions',
     journal: 'Journal of Chemical Physics',
     date: 'Nov 2022',
-    authors: 'Arkash Jain et al.',
+    datePublished: '2022-11-07',
+    authors: 'Rotondaro MC, Jain A, Erramilli S, Ziegler LD',
+    authorList: [
+      'Matthew C. Rotondaro',
+      'Arkash Jain',
+      'Shyamsunder Erramilli',
+      'Lawrence D. Ziegler',
+    ],
     abstract:
-      'First-author work on supercritical-fluid dynamics using ultrafast two-dimensional infrared spectroscopy.',
+      'Supercritical-fluid dynamics studied with ultrafast two-dimensional infrared spectroscopy — the outcome of NSF UROP research in the Ziegler Lab (BU Chemistry).',
     url: 'https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177',
     doi: '10.1063/5.0118395',
     sameAs: ['https://doi.org/10.1063/5.0118395', 'https://pubmed.ncbi.nlm.nih.gov/36347695/'],
@@ -136,7 +174,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     location: 'Boston, MA',
     featured: true,
     story:
-      'Joined the Kirchhausen Lab at Harvard Medical School to work on lattice light-sheet microscopy (LLSM) — 4D live-cell imaging of subcellular dynamics at ~3 nm. I authored SpatialDINO, a 3D self-supervised vision transformer for label-free segmentation and tracking of endosomes, viruses, and other sub-resolution organelles in LLSM volumes. Pre-trained on 2.4 TB / 180k volumes across 24 A100s; introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), a 3D adaptation of SINDER for singular-defect repair, and a streaming encoder with token-store + online softmax for full-volume inference. Contributed a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training. The work produced three papers, two published in the Journal of Cell Biology.',
+      'Joined the Kirchhausen Lab at Harvard Medical School to work on lattice light-sheet microscopy (LLSM) — 4D live-cell imaging of subcellular dynamics at ~3 nm. I authored SpatialDINO, a 3D self-supervised vision transformer for label-free segmentation and tracking of endosomes, viruses, and other sub-resolution organelles in LLSM volumes. Pre-trained on 2.4 TB / 180k volumes across 24 A100s; introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), a 3D adaptation of SINDER for singular-defect repair, and a streaming encoder with token-store + online softmax for full-volume inference. Contributed a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training. The work contributed to two papers: SpatialDINO (bioRxiv, indexed in PubMed; co-first author) and a 2026 Journal of Cell Biology paper on vesicular ER exit sites.',
     stats: [
       { label: 'Papers', value: '3' },
       { label: 'Training infra', value: 'DGX A100' },
@@ -145,8 +183,8 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['PyTorch', 'DDP', 'DGX A100', 'LLSM', '3D ViT', 'MONAI', 'Triton', 'Python', 'CUDA'],
     links: [
       {
-        label: 'SpatialDINO (BioRxiv)',
-        href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+        label: 'SpatialDINO (bioRxiv)',
+        href: 'https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2',
       },
       {
         label: 'Kirchhausen Lab',
@@ -160,7 +198,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     bullets: [
       'Authored SpatialDINO - 3D self-supervised vision transformer for label-free segmentation and tracking in lattice light-sheet microscopy.',
       'Pre-trained on 2.4 TB / 180k volumes on DGX A100 nodes with DDP, bf16, NVLink, InfiniBand; contributed Rendezvous backend fix to PyTorch (#144779).',
-      'Co-authored two follow-on papers in Journal of Cell Biology.',
+      'Co-authored a 2026 Journal of Cell Biology paper on vesicular ER exit sites (FIB-SEM + 3D U-Net segmentation).',
     ],
   },
   {
@@ -184,17 +222,17 @@ export const EXPERIENCE: ExperienceEntry[] = [
     location: 'Boston, MA',
     featured: true,
     story:
-      'BU was the foundation. I arrived as a freshman from India, won one of five university-wide NSF UROP scholarships, and published my first first-author paper in chemical physics — all before my second year. I spent three years as a TA for systems and CS theory courses while pursuing a thesis on dynamic checkpointing for Apache Flink, building adaptive checkpoint cadence based on real-time backpressure signals. BU is where I learned that shipping real systems is different from studying them.',
+      'BU was the foundation. I arrived as a freshman from India, won one of five university-wide NSF UROP scholarships, and turned that research into my first paper — a co-authored 2022 J. Chem. Phys. study of supercritical fluids. I spent three years as a TA for systems and CS theory courses while pursuing a thesis on dynamic checkpointing for Apache Flink, building adaptive checkpoint cadence based on real-time backpressure signals. BU is where I learned that shipping real systems is different from studying them.',
     stats: [
       { label: 'NSF UROP', value: '1 of 5' },
-      { label: 'First paper', value: 'Year 1' },
+      { label: 'First paper', value: '2022' },
       { label: 'TA tenure', value: '3 years' },
     ],
     tech: ['Java', 'Apache Flink', 'RocksDB', 'Go', 'Python'],
     links: [
       {
-        label: 'BU CS Profile',
-        href: 'https://www.bu.edu/cs/profiles/arkash-jain/',
+        label: 'BU Today feature (STU STREET)',
+        href: 'https://www.bu.edu/articles/2022/wtbu-podcast-talk-sports-news-novels-and-more/',
       },
     ],
     bullets: [
@@ -222,7 +260,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     dates: 'Jan 2021 - Aug 2021',
     location: 'Boston, MA',
     bullets: [
-      '1 of 5 UROP scholars selected university-wide as a freshman; led to first-author paper in chemical physics.',
+      '1 of 5 UROP scholars selected university-wide as a freshman; led to a co-authored J. Chem. Phys. paper (2022).',
     ],
   },
 ]
@@ -390,9 +428,9 @@ export const PROJECTS: Project[] = [
     name: 'SpatialDINO',
     year: '2025',
     description:
-      'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Adapts DINO-style student/teacher contrastive learning natively into 3D — student/teacher 3D ViTs trained over volumetric LLSM crops with 3D iBOT block masking. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s using PyTorch DDP, bf16 mixed precision, NVLink intra-node and InfiniBand inter-node. On downstream subcellular structure prediction it outperformed a prior approach co-led by Nobel laureate Eric Betzig. Released as a BioRxiv preprint, first-author; full engineering log at /writing/spatialdino-lessons. The work also produced a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training over InfiniBand.',
+      'A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Adapts DINO-style student/teacher contrastive learning natively into 3D — student/teacher 3D ViTs trained over volumetric LLSM crops with 3D iBOT block masking. Pre-trained on 2.4 TB / 180k volumes across 24 NVIDIA A100s using PyTorch DDP, bf16 mixed precision, NVLink intra-node and InfiniBand inter-node. On downstream subcellular structure prediction it outperformed a prior approach co-led by Nobel laureate Eric Betzig. Posted as a bioRxiv preprint (co-first author, equal contribution); full engineering log at /writing/spatialdino-lessons. The work also produced a Rendezvous backend fix to PyTorch (PR #144779) that unblocked multi-node training over InfiniBand.',
     tech: ['PyTorch', 'DDP', 'DGX A100', 'LLSM', '3D ViT', 'DINO', 'Triton', 'CUDA'],
-    href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+    href: 'https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2',
     highlights: [
       'Native 3D student/teacher ViT with 3D iBOT block masking — no 2D-stack hacks',
       'KMeans content-aware 3D cropping and a 3D adaptation of SINDER for singular-defect repair',
@@ -724,10 +762,6 @@ export const TIMELINE: TimelineEntry[] = [
         href: 'https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177/Ultrafast-2DIR-comparison-of-rotational-energy?redirectedFrom=fulltext',
       },
       {
-        label: 'ACS - J. Phys. Chem. Lett.',
-        href: 'https://pubs.acs.org/doi/10.1021/acs.jpclett.2c03331',
-      },
-      {
         label: 'Matt Rotondaro (LinkedIn)',
         href: 'https://www.linkedin.com/in/matthew-rotondaro-274176a0/',
       },
@@ -743,10 +777,6 @@ export const TIMELINE: TimelineEntry[] = [
     description:
       '"Ultrafast Two Dimensional Infrared Spectroscopy of Supercritical Fluids: Energy Relaxation and Local Critical Slowing Effects." NSF-funded UROP under Lawrence Ziegler (CAS Chemistry).',
     links: [
-      {
-        label: 'BU CS profile',
-        href: 'https://www.bu.edu/cs/profiles/arkash-jain/',
-      },
       {
         label: 'UROP Symposium 2021 brochure (PDF)',
         href: 'https://www.bu.edu/urop/files/2021/10/UROP-Symposium-2021-Brochure-v5.pdf',
@@ -831,10 +861,6 @@ export const TIMELINE: TimelineEntry[] = [
         href: 'https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177/Ultrafast-2DIR-comparison-of-rotational-energy?redirectedFrom=fulltext',
       },
       { label: 'PubMed', href: 'https://pubmed.ncbi.nlm.nih.gov/36347695/' },
-      {
-        label: 'J. Phys. Chem. Lett. (ACS)',
-        href: 'https://pubs.acs.org/doi/10.1021/acs.jpclett.2c03331',
-      },
     ],
   },
   {
@@ -1071,13 +1097,13 @@ export const TIMELINE: TimelineEntry[] = [
       'Introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), and a 3D adaptation of SINDER for singular-defect repair.',
       'Built a streaming encoder with token-store + online softmax for full-volume inference at million-token sequence lengths.',
       'Beat the prior SOTA — including the Nobel-laureate-led approach — on downstream subcellular structure prediction.',
-      'Released as a BioRxiv preprint, first-author; engineering log at /writing/spatialdino-lessons.',
+      'Posted as a bioRxiv preprint (co-first author, equal contribution; PubMed 41509489); engineering log at /writing/spatialdino-lessons.',
     ],
     tech: ['PyTorch', 'DINO', '3D ViT', 'Self-Supervised Learning', 'LLSM', 'DDP', 'Triton'],
     links: [
       {
-        label: 'BioArxiv preprint',
-        href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+        label: 'bioRxiv preprint',
+        href: 'https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2',
       },
       { label: 'SpatialDINO lessons ->', href: '/writing/spatialdino-lessons' },
       { label: 'View papers ->', href: '/research' },
@@ -1085,16 +1111,17 @@ export const TIMELINE: TimelineEntry[] = [
     slug: 'spatialdino',
   },
   {
-    title: 'SpatialDINO - BioArxiv',
+    title: 'SpatialDINO - bioRxiv',
     org: 'Harvard',
     category: 'Publication',
     date: '2025',
     status: 'Published',
-    description: 'Preprint released on BioArxiv, first-author.',
+    description:
+      'Preprint posted on bioRxiv (co-first author, equal contribution); indexed in PubMed (PMID 41509489) and PMC.',
     links: [
       {
-        label: 'BioArxiv preprint',
-        href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+        label: 'bioRxiv preprint',
+        href: 'https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2',
       },
       { label: 'All papers ->', href: '/research' },
     ],
@@ -1109,20 +1136,24 @@ export const TIMELINE: TimelineEntry[] = [
       'Presented "Spatial-DINO: Self Supervised, Annotation-Free 3D Modeling - Seeing is Believing" at the Kirchhausen Lab on July 15, 2025. Walked the lab through the problem statement (no general segmentation + tracking model for LLSM volumes across endosomes, viruses, mitochondria, clathrin-coated pits, nuclei, apilmods), the 3D student/teacher ViT design, KMeans content-aware cropping, NoPE, the streaming encoder, and the downstream-task benchmarks beating the prior Betzig-led approach.',
     links: [
       {
-        label: 'BioArxiv preprint',
-        href: 'https://www.biorxiv.org/content/10.1101/2025.02.04.636474',
+        label: 'bioRxiv preprint',
+        href: 'https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2',
       },
       { label: 'SpatialDINO lessons ->', href: '/writing/spatialdino-lessons' },
     ],
   },
   {
-    title: 'Journal of Cell Biology - 2 papers',
+    title: 'Journal of Cell Biology paper',
     org: 'Harvard',
     category: 'Publication',
-    date: 'Aug 2025',
+    date: 'Oct 2025',
     status: 'Published',
-    description: 'Cryo-ET architecture of ER exit sites; UNET for semi-supervised segmentation.',
-    links: [{ label: 'All papers ->', href: '/research' }],
+    description:
+      'Close-up of vesicular ER exit sites by volume electron imaging (FIB-SEM), with 3D U-Net (ASEM) segmentation trained on sparse labels. J Cell Biol 225(1), 2026.',
+    links: [
+      { label: 'DOI 10.1083/jcb.202504178', href: 'https://doi.org/10.1083/jcb.202504178' },
+      { label: 'All papers ->', href: '/research' },
+    ],
   },
   {
     title: 'Joined Benmore Technologies - Employee #2',

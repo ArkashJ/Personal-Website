@@ -10,6 +10,8 @@ export type PageMetaInput = {
   publishedTime?: string
   modifiedTime?: string
   type?: 'website' | 'article' | 'profile'
+  /** Keep the page reachable but out of search indexes (internal docs, etc). */
+  noindex?: boolean
 }
 
 const DEFAULT_KEYWORDS = [
@@ -38,6 +40,7 @@ export function buildMetadata({
   publishedTime,
   modifiedTime,
   type = 'website',
+  noindex = false,
 }: PageMetaInput = {}): Metadata {
   const fullTitle = title ? `${title} — ${SITE.name}` : SITE.title
   const desc = description || SITE.description
@@ -54,10 +57,10 @@ export function buildMetadata({
     category: 'technology',
     alternates: { canonical: url },
     robots: {
-      index: true,
+      index: !noindex,
       follow: true,
       googleBot: {
-        index: true,
+        index: !noindex,
         follow: true,
         'max-image-preview': 'large',
         'max-snippet': -1,

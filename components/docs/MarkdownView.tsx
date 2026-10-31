@@ -3,8 +3,9 @@ import remarkGfm from 'remark-gfm'
 import type { ComponentProps } from 'react'
 
 const components = {
+  // The page template renders the one <h1>; demote in-body markdown H1s to <h2>.
   h1: (p: ComponentProps<'h1'>) => (
-    <h1
+    <h2
       className="text-3xl md:text-4xl font-bold text-text tracking-tight mt-12 mb-4 first:mt-0"
       {...p}
     />

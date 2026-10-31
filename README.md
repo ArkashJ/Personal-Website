@@ -1,6 +1,6 @@
 # arkashj.com
 
-> Personal website, canonical knowledge hub, and portfolio for **[Arkash Jain](https://www.arkashj.com)** — first-author of [SpatialDINO](https://www.biorxiv.org/content/10.1101/2025.02.04.636474), Harvard ML researcher (Kirchhausen Lab), Head of Forward Deployed Engineering at [Benmore Technologies](https://benmore.tech), four-time published author across cell biology, chemical physics, and self-supervised learning.
+> Personal website, canonical knowledge hub, and portfolio for **[Arkash Jain](https://www.arkashj.com)** — co-first author of [SpatialDINO](https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2), Harvard ML researcher (Kirchhausen Lab), Head of Forward Deployed Engineering at [Benmore Technologies](https://benmore.tech), author on three papers across cell biology, chemical physics, and self-supervised learning.
 >
 > This README is intentionally long. It consolidates the website's contents — biography, credentials, publications, experience, knowledge, projects, internal tools, life changelog, stack, and external links — into a single navigable Markdown reference. Treat it as the canonical text-only mirror of [arkashj.com](https://www.arkashj.com).
 
@@ -21,7 +21,7 @@
 [![Husky](https://img.shields.io/badge/Husky-pre--commit-242938?style=flat-square&labelColor=0A1628)](https://typicode.github.io/husky/)
 [![Geist](https://img.shields.io/badge/font-Geist-000?style=flat-square&logo=vercel&logoColor=white&labelColor=0A1628)](https://vercel.com/font)
 
-[![BioRxiv](https://img.shields.io/badge/BioRxiv-SpatialDINO-CC2127?style=flat-square&labelColor=0A1628)](https://www.biorxiv.org/content/10.1101/2025.02.04.636474)
+[![BioRxiv](https://img.shields.io/badge/BioRxiv-SpatialDINO-CC2127?style=flat-square&labelColor=0A1628)](https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2)
 [![DOI JCB](https://img.shields.io/badge/DOI-10.1083%2Fjcb.202504178-1A66B0?style=flat-square&labelColor=0A1628)](https://doi.org/10.1083/jcb.202504178)
 [![DOI JCP](https://img.shields.io/badge/DOI-10.1063%2F5.0118395-1A66B0?style=flat-square&labelColor=0A1628)](https://doi.org/10.1063/5.0118395)
 [![PyTorch issue](https://img.shields.io/badge/PyTorch-%23144779-EE4C2C?style=flat-square&logo=pytorch&logoColor=white&labelColor=0A1628)](https://github.com/pytorch/pytorch/issues/144779)
@@ -58,13 +58,13 @@
 
 Arkash Jain is a researcher and engineer working at the intersection of self-supervised computer vision, distributed systems, and forward-deployed AI consulting. He is currently **Head of Forward Deployed Engineering at [Benmore Technologies](https://benmore.tech)** in Chicago, where he was the second technical hire and helped scale revenue **887% across 2025–2026** while serving as the lead engineer on engagements across SaaS, healthcare, NIL athletics, compliance (Vanta / SOC 2 / NIST / FedRAMP), and consumer verticals.
 
-Before Benmore, he spent fifteen months as an **ML researcher in the [Kirchhausen Lab](https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs) at Harvard Medical School / Boston Children's Hospital**, where he designed **SpatialDINO** — a 3D self-supervised vision transformer for lattice light-sheet microscopy (LLSM). SpatialDINO enables label-free segmentation and tracking of subcellular dynamics in 4D live-cell volumes, **beat a prior approach co-led by Nobel laureate Eric Betzig** on downstream subcellular structure prediction, was first-authored, and is currently a [BioRxiv preprint](https://www.biorxiv.org/content/10.1101/2025.02.04.636474). Two follow-on papers from the same lab were published in the [Journal of Cell Biology](https://rupress.org/jcb/article-abstract/225/1/e202504178/278432/Close-up-of-vesicular-ER-exit-sites-by-volume) in 2025 and 2026.
+Before Benmore, he spent fifteen months as an **ML researcher in the [Kirchhausen Lab](https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs) at Harvard Medical School / Boston Children's Hospital**, where he designed **SpatialDINO** — a 3D self-supervised vision transformer for lattice light-sheet microscopy (LLSM). SpatialDINO enables label-free segmentation and tracking of subcellular dynamics in 4D live-cell volumes, **beat a prior approach co-led by Nobel laureate Eric Betzig** on downstream subcellular structure prediction, was co-first-authored (equal contribution), and is currently a [bioRxiv preprint](https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2). He is also a co-author on a 2026 [Journal of Cell Biology](https://doi.org/10.1083/jcb.202504178) paper from the same lab.
 
 He started college at **Boston University** in 2020 as a physics student. By the end of his freshman year he was a [UROP Scholar](https://www.bu.edu/urop/achievements/award-recipients/2020-2021-awarded-students/) (1 of 5 freshmen selected university-wide), working on ultrafast 2D infrared spectroscopy of supercritical fluids in [Larry Ziegler's lab](https://www.bu.edu/chemistry/faculty/ziegler/). That work culminated in a co-authored 2022 paper in the [Journal of Chemical Physics](https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177). He then pivoted into computer science, completed an accelerated **BA/MS dual-degree in Math + CS / CS** in four years, graduated **Magna Cum Laude**, was named the **Marvin Freedman Scholar** (1 of 6 in the entire BU mathematics department), TA'd four classes (CS411, CS131, EK301, MA581), and authored a Master's thesis on **dynamic checkpointing in Apache Flink** under the BU distributed-systems group.
 
 In parallel he interned twice at [**Battery Ventures**](https://www.battery.com) (sourcing + diligence), once at [**Boston Children's Hospital**](https://www.childrenshospital.org/) (an ALS resource discovery web app built to Section 508 / WCAG 2.1 AA), and once at **ZeroSync** (production Rust on `tokio` + NATS JetStream + a Merkle-tree POC for tamper-evident sync). He also turned down VC offers from MassMutual Ventures and State Street to stay at Battery, and was admitted to UCL, NTU Singapore, NYU, and Dartmouth before choosing BU.
 
-He writes weekly at **[arkash.substack.com](https://arkash.substack.com)** on AI hardware, finance, distributed systems, geopolitics, and venture strategy. He is the co-host of the **[STU STREET](https://podcasts.apple.com/us/podcast/stu-street/id1635472305)** podcast (long-form interviews with founders, athletes, and professors, originally on WTBU). He has 7 distributed-systems articles on [Medium](https://medium.com/@arkjain) and active accounts on [X / Twitter](https://x.com/_arkash) and [LinkedIn](https://www.linkedin.com/in/arkashj/).
+He writes weekly at **[arkash.substack.com](https://arkash.substack.com)** on AI hardware, finance, distributed systems, geopolitics, and venture strategy. He is the co-host of the **[STU STREET](https://podcasts.apple.com/us/podcast/stu-street/id1635472305)** podcast (long-form interviews with founders, athletes, and professors, originally on WTBU). He has 7 distributed-systems articles on [Medium](https://medium.com/@arkjain) and active accounts on [X / Twitter](https://x.com/ArkashJ__) and [LinkedIn](https://www.linkedin.com/in/arkashj/).
 
 He arrived in the United States from **Chandigarh, India** in September 2020. This website is his canonical public record — every page is structured to be Google-indexed, link-rich, and built around verifiable external citations.
 
@@ -75,13 +75,12 @@ He arrived in the United States from **Chandigarh, India** in September 2020. Th
 - **Email** — [arkash@benmore.tech](mailto:arkash@benmore.tech)
 - **GitHub** — [@ArkashJ](https://github.com/ArkashJ)
 - **LinkedIn** — [/in/arkashj](https://www.linkedin.com/in/arkashj/)
-- **X / Twitter** — [@\_arkash](https://x.com/_arkash)
+- **X / Twitter** — [@ArkashJ\_\_](https://x.com/ArkashJ__)
 - **Substack** — [arkash.substack.com](https://arkash.substack.com)
 - **Medium** — [@arkjain](https://medium.com/@arkjain)
 - **ORCID** — [0000-0003-2692-7472](https://orcid.org/0000-0003-2692-7472)
 - **PubMed** — [arkash jain](https://pubmed.ncbi.nlm.nih.gov/?term=arkash+jain)
 - **Google Scholar** — [profile](https://scholar.google.com/scholar?q=arkash+jain)
-- **BU CS profile** — [bu.edu/cs/profiles/arkash-jain](https://www.bu.edu/cs/profiles/arkash-jain/)
 - **Harvard / Kirchhausen Lab profile** — [kirchhausen.hms.harvard.edu](https://kirchhausen.hms.harvard.edu/people/arkash-jain-ms-bs)
 - **STU STREET podcast** — [Apple](https://podcasts.apple.com/us/podcast/stu-street/id1635472305) · [Spotify](https://open.spotify.com/show/4xZ8WtTM7VbEW9P6FTAvkF) · YouTube (multi-episode)
 
@@ -89,20 +88,20 @@ He arrived in the United States from **Chandigarh, India** in September 2020. Th
 
 ## Identity at a glance
 
-|                          |                                                                                                                                                                      |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Name**                 | Arkash Jain                                                                                                                                                          |
-| **Title**                | Head of Forward Deployed Engineering, Benmore Technologies                                                                                                           |
-| **Prior**                | ML Researcher, Kirchhausen Lab — Harvard Medical School / Boston Children's Hospital                                                                                 |
-| **Education**            | Harvard University (Postgraduate Research, Computer Vision & AI, 2024–2025) · Boston University (BA Math + CS, MS CS — 4-yr accelerated, 2020–2024, Magna Cum Laude) |
-| **Hometown**             | Chandigarh, India                                                                                                                                                    |
-| **Currently in**         | Boston / Chicago (remote-first)                                                                                                                                      |
-| **Languages spoken**     | English, Hindi, Punjabi                                                                                                                                              |
-| **Languages programmed** | Python, TypeScript, Rust, Go, Java, OCaml, C, R, MATLAB, JavaScript, Bash                                                                                            |
-| **First paper**          | Nov 2022 — _J. Chem. Phys._ (chemical physics)                                                                                                                       |
-| **First-author paper**   | 2025 — _SpatialDINO_ on BioRxiv (3D self-supervised ViT)                                                                                                             |
-| **Open-source**          | [PyTorch issue #144779](https://github.com/pytorch/pytorch/issues/144779) — RDZV Infiniband backend                                                                  |
-| **Currently writing**    | Weekly long-form essays at [arkash.substack.com](https://arkash.substack.com)                                                                                        |
+|                           |                                                                                                                                                                      |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Name**                  | Arkash Jain                                                                                                                                                          |
+| **Title**                 | Head of Forward Deployed Engineering, Benmore Technologies                                                                                                           |
+| **Prior**                 | ML Researcher, Kirchhausen Lab — Harvard Medical School / Boston Children's Hospital                                                                                 |
+| **Education**             | Harvard University (Postgraduate Research, Computer Vision & AI, 2024–2025) · Boston University (BA Math + CS, MS CS — 4-yr accelerated, 2020–2024, Magna Cum Laude) |
+| **Hometown**              | Chandigarh, India                                                                                                                                                    |
+| **Currently in**          | Boston / Chicago (remote-first)                                                                                                                                      |
+| **Languages spoken**      | English, Hindi, Punjabi                                                                                                                                              |
+| **Languages programmed**  | Python, TypeScript, Rust, Go, Java, OCaml, C, R, MATLAB, JavaScript, Bash                                                                                            |
+| **First paper**           | Nov 2022 — _J. Chem. Phys._ (chemical physics)                                                                                                                       |
+| **Co-first-author paper** | 2026 — _SpatialDINO_ on bioRxiv (3D self-supervised ViT)                                                                                                             |
+| **Open-source**           | [PyTorch issue #144779](https://github.com/pytorch/pytorch/issues/144779) — RDZV Infiniband backend                                                                  |
+| **Currently writing**     | Weekly long-form essays at [arkash.substack.com](https://arkash.substack.com)                                                                                        |
 
 ---
 
@@ -118,7 +117,7 @@ Two years of E&M, particle physics, organic and physical chemistry, and optics �
 
 Arrived in the United States in **September 2020**. Joined **Larry Ziegler's ultrafast spectroscopy lab** as a freshman under PhD student **Matt Rotondaro**. Aligned femtosecond ultrafast laser systems for 2D infrared spectroscopy. Prepared supercritical Xe and SF₆ fluid samples for near-critical-density studies. Wrote the auto-correlation analysis code for rotational and vibrational energy relaxation traces.
 
-Selected as **NSF UROP Scholar** (1 of 5 freshmen across the entire university) for the project _"Ultrafast Two Dimensional Infrared Spectroscopy of Supercritical Fluids: Energy Relaxation and Local Critical Slowing Effects."_ Co-authored the Nov 2022 _Journal of Chemical Physics_ paper on N₂O dynamics in supercritical solvents — IBC breakdown and critical slowing near the critical point — and a companion paper in the _Journal of Physical Chemistry Letters_ (ACS).
+Selected as **NSF UROP Scholar** (1 of 5 freshmen across the entire university) for the project _"Ultrafast Two Dimensional Infrared Spectroscopy of Supercritical Fluids: Energy Relaxation and Local Critical Slowing Effects."_ Co-authored the Nov 2022 _Journal of Chemical Physics_ paper on N₂O dynamics in supercritical solvents — IBC breakdown and critical slowing near the critical point.
 
 The lab also taught me that I liked the math and the code more than the optics bench. By the end of sophomore year I had pivoted to computer science.
 
@@ -157,7 +156,7 @@ Joined the **[Kirchhausen Lab](https://kirchhausen.hms.harvard.edu/people/arkash
 
 Trained on multi-node DGX clusters: **A100 / H100** GPUs, **NVLink** intra-node, **Infiniband** inter-node, RAID + custom NVMe storage tier. Used **PyTorch DDP** with **bf16** mixed precision and activation checkpointing to fit large 3D vision transformers. **Diagnosed and reported a Rendezvous (RDZV) backend issue** affecting Infiniband multi-node training — filed [PyTorch issue #144779](https://github.com/pytorch/pytorch/issues/144779).
 
-**[SpatialDINO](https://www.biorxiv.org/content/10.1101/2025.02.04.636474)** — designed and trained a 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in LLSM. Adapted DINO-style self-supervised contrastive learning into 3D — student/teacher ViTs over volumetric movies — and introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), a 3D adaptation of SINDER for singular-defect repair, and a streaming encoder with token-store + online softmax for full-volume inference at million-token sequence lengths. Pre-trained on **2.4 TB / 180k volumes across 24 A100s**. **Beat the prior SOTA, including a method co-led by Nobel laureate Eric Betzig**, on downstream subcellular structure prediction. Released as a BioRxiv preprint, first-author. Detailed engineering log: [/knowledge/ai/spatialdino-lessons](https://www.arkashj.com/knowledge/ai/spatialdino-lessons).
+**[SpatialDINO](https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2)** — designed and trained a 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in LLSM. Adapted DINO-style self-supervised contrastive learning into 3D — student/teacher ViTs over volumetric movies — and introduced KMeans content-aware 3D cropping, no-positional-encoding 3D ViTs (NoPE), a 3D adaptation of SINDER for singular-defect repair, and a streaming encoder with token-store + online softmax for full-volume inference at million-token sequence lengths. Pre-trained on **2.4 TB / 180k volumes across 24 A100s**. **Beat the prior SOTA, including a method co-led by Nobel laureate Eric Betzig**, on downstream subcellular structure prediction. Posted as a bioRxiv preprint (co-first author, equal contribution). Detailed engineering log: [/knowledge/ai/spatialdino-lessons](https://www.arkashj.com/knowledge/ai/spatialdino-lessons).
 
 Two co-authored follow-on papers appeared in the **Journal of Cell Biology** (Aug 2025): a volumetric reconstruction of mammalian ER exit sites at unprecedented resolution via FIB-SEM and learned segmentation; and a UNET architecture for semi-supervised segmentation. ([JCB 225, e202504178](https://rupress.org/jcb/article-abstract/225/1/e202504178/278432/Close-up-of-vesicular-ER-exit-sites-by-volume))
 
@@ -197,34 +196,31 @@ Verifiable credentials (PDF) are linked under [Verifiable credentials](#verifiab
 
 ## Publications
 
-Four formal publications, in reverse-chronological order. All have permanent DOI / preprint server URLs.
+Three papers, in reverse-chronological order. All have permanent DOIs and are indexed in PubMed.
 
-### 1. SpatialDINO: Self-Supervised Learning for 3D Vision Transformers — _BioRxiv_, 2025
+### 1. SpatialDINO: A Self-Supervised 3D Vision Transformer that enables Segmentation and Tracking in Crowded Cellular Environments — _bioRxiv_, 2026
 
-**First-author**, Kirchhausen Lab, Harvard Medical School. A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Pre-trained on 2.4 TB / 180k volumes across 24 A100s. Beat a prior approach co-led by Nobel laureate Eric Betzig on downstream evaluation.
+**Co-first author** (equal contribution; authors: Lavaee\*, Jain\*, Scanavachi\*, Costa-Filho\*, Ingemansson, Kirchhausen), Kirchhausen Lab, Harvard Medical School. A 3D self-supervised vision transformer for label-free segmentation and tracking of subcellular dynamics in lattice light-sheet microscopy (LLSM). Pre-trained on 2.4 TB / 180k volumes across 24 A100s. Beat a prior approach co-led by Nobel laureate Eric Betzig on downstream evaluation.
 
-- DOI: [10.1101/2025.02.04.636474](https://doi.org/10.1101/2025.02.04.636474)
-- Preprint: [biorxiv.org/content/10.1101/2025.02.04.636474](https://www.biorxiv.org/content/10.1101/2025.02.04.636474)
+- DOI: [10.64898/2025.12.31.697247](https://doi.org/10.64898/2025.12.31.697247)
+- Preprint: [biorxiv.org/content/10.64898/2025.12.31.697247v2](https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2)
+- PubMed: [41509489](https://pubmed.ncbi.nlm.nih.gov/41509489/) · PMC: [PMC12776300](https://pmc.ncbi.nlm.nih.gov/articles/PMC12776300/)
 
 ### 2. Close-up of Vesicular ER Exit Sites by Volume Electron Imaging using FIB-SEM — _Journal of Cell Biology_, 2026
 
-Volumetric reconstruction of mammalian ER exit sites at unprecedented resolution via FIB-SEM and learned segmentation. Co-author, Kirchhausen Lab.
+Volumetric reconstruction of mammalian ER exit sites via large-scale FIB-SEM, with automated 3D U-Net (ASEM) segmentation trained on sparse labels. Co-author (4th of 8), Kirchhausen Lab.
 
 - DOI: [10.1083/jcb.202504178](https://doi.org/10.1083/jcb.202504178)
+- PubMed: [41171079](https://pubmed.ncbi.nlm.nih.gov/41171079/)
 - Article: [rupress.org/jcb/article-abstract/225/1/e202504178](https://rupress.org/jcb/article-abstract/225/1/e202504178/278432/Close-up-of-vesicular-ER-exit-sites-by-volume)
 
-### 3. UNET for Semi-Supervised Segmentation — _Journal of Cell Biology_, 2025
+### 3. Ultrafast 2DIR comparison of rotational energy transfer, isolated binary collision breakdown, and near-critical fluctuations in Xe and SF₆ solutions — _Journal of Chemical Physics_, Nov 2022
 
-Co-author. Semi-supervised UNET segmentation as part of the broader Kirchhausen Lab program.
-
-### 4. Ultrafast 2DIR comparison of rotational energy transfer, isolated binary collision breakdown, and near-critical fluctuations in Xe and SF₆ solutions — _Journal of Chemical Physics_, Nov 2022
-
-First publication. Femtosecond two-dimensional infrared spectroscopy of N₂O dynamics in supercritical xenon and SF₆ — IBC breakdown and critical slowing near the critical point. Companion paper in _Journal of Physical Chemistry Letters_ (ACS).
+First publication — co-author (2nd of 4: Rotondaro, Jain, Erramilli, Ziegler). Femtosecond two-dimensional infrared spectroscopy of N₂O dynamics in supercritical xenon and SF₆ — IBC breakdown and critical slowing near the critical point.
 
 - DOI: [10.1063/5.0118395](https://doi.org/10.1063/5.0118395)
 - AIP: [pubs.aip.org/aip/jcp/article-abstract/157/17/174305](https://pubs.aip.org/aip/jcp/article-abstract/157/17/174305/2842177)
 - PubMed: [36347695](https://pubmed.ncbi.nlm.nih.gov/36347695/)
-- ACS companion: [J. Phys. Chem. Lett.](https://pubs.acs.org/doi/10.1021/acs.jpclett.2c03331)
 
 ---
 
@@ -277,7 +273,7 @@ Internal tools page: [arkashj.com/work](https://www.arkashj.com/work).
 
 A representative slice — full list with GitHub links lives at [arkashj.com/projects](https://www.arkashj.com/projects).
 
-- **[SpatialDINO](https://www.biorxiv.org/content/10.1101/2025.02.04.636474)** (2025) — 3D SSL ViT for label-free LLSM segmentation and tracking. PyTorch · DDP · DGX · LLSM.
+- **[SpatialDINO](https://www.biorxiv.org/content/10.64898/2025.12.31.697247v2)** (2026) — 3D SSL ViT for label-free LLSM segmentation and tracking. PyTorch · DDP · DGX · LLSM.
 - **[Raft (Go)](https://github.com/ArkashJ/Raft)** (2023) — From-scratch consensus impl: leader election, log replication, snapshotting.
 - **[CloudComputing](https://github.com/ArkashJ/CloudComputing)** (2023) — BU CS591 — MapReduce, Spark, distributed kv-store.
 - **[NEXMARK Benchmark](https://github.com/ArkashJ/NEXMARK-Benchmark)** (2023) — Streaming-systems benchmark against Apache Flink.

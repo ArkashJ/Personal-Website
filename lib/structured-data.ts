@@ -14,12 +14,8 @@ export const personSchema = () => ({
     SITE.social.substack,
     SITE.social.medium,
     SITE.social.twitter,
-    SITE.social.biorxiv,
-    SITE.social.scholar,
     SITE.social.harvard,
     SITE.social.orcid,
-    SITE.social.pubmed,
-    SITE.social.bu,
   ],
   jobTitle: SITE.jobTitle,
   worksFor: { '@type': 'Organization', name: SITE.worksFor, url: 'https://benmore.tech' },
@@ -34,7 +30,7 @@ export const personSchema = () => ({
     },
     {
       '@type': 'EducationalOccupationalCredential',
-      name: 'Bachelor of Arts in Physics & Computer Science',
+      name: 'Bachelor of Arts in Mathematics & Computer Science',
       credentialCategory: "Bachelor's Degree",
       recognizedBy: { '@type': 'EducationalOrganization', name: 'Boston University' },
     },
@@ -142,6 +138,8 @@ export const scholarlyArticleSchema = ({
   abstract,
   doi,
   sameAs,
+  authorList,
+  datePublished,
 }: {
   title: string
   authors?: string | string[]
@@ -151,15 +149,29 @@ export const scholarlyArticleSchema = ({
   abstract?: string
   doi?: string
   sameAs?: string[]
+  /** Full, ordered author list as published (one name per entry). */
+  authorList?: string[]
+  /** ISO 8601 publication date; falls back to the display `date`. */
+  datePublished?: string
 }) => {
-  const authorList = Array.isArray(authors) ? authors : authors ? [authors] : [SITE.name]
+  const names = authorList?.length
+    ? authorList
+    : Array.isArray(authors)
+      ? authors
+      : authors
+        ? [authors]
+        : [SITE.name]
   return {
     '@context': 'https://schema.org',
     '@type': 'ScholarlyArticle',
     headline: title,
-    author: authorList.map((name) => ({ '@type': 'Person', name })),
+    author: names.map((name) =>
+      name === SITE.name
+        ? { '@type': 'Person', '@id': `${SITE.url}#person`, name, url: SITE.url }
+        : { '@type': 'Person', name }
+    ),
     publisher: { '@type': 'Organization', name: journal },
-    datePublished: date,
+    datePublished: datePublished || date,
     url,
     abstract,
     inLanguage: 'en',
